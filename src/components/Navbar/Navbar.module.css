@@ -1,0 +1,64 @@
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+}
+
+.nav {
+    height: max-content;
+    grid-area: n;
+    margin-left: 300px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: #138D90;
+    padding: 20px;
+    grid-template-areas: "n" "f";
+}
+
+.navbar {
+    grid-area: n;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.item {
+    margin-bottom: 5px;
+}
+
+.itemLink {
+    font-size: 25px;
+}
+
+.item a.active {
+    color: gold;
+}
+
+.friendsBlock {
+    padding-top: 50px;
+    grid-area: f;
+    width: 100%;
+    float: left;
+    /*padding-left: 8px;*/
+}
+
+.friendsBlock img {
+    height: 42px;
+    width: 42px;
+    border-radius: 30px;
+    /*margin-top: 20px;*/
+    /*margin-right: 10px;*/
+}
+
+.friendsBlock a {
+    font-size: 28px;
+}
+
+.PositionBlock {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "b b b" "b b b";
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}

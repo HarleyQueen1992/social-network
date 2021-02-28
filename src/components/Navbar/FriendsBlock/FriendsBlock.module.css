@@ -1,0 +1,13 @@
+.FriendsBlock img{
+    /*grid-area: b;*/
+    height: 50px;
+    width: 50px;
+
+}
+.nameFriends {
+    font-size: 12px;
+}
+.FriendsBlock {
+    /*grid-area:;*/
+    float:left;
+}

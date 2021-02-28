@@ -1,0 +1,25 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItem {
+    padding: 20px;
+}
+
+
+.dialog {
+    padding-bottom: 5px;
+}
+
+.dialog a.active {
+    color: red;
+}
+.ava {
+    height: 27px;
+    width: 27px;
+    border-radius: 30px;
+    vertical-align: middle;
+
+}
+

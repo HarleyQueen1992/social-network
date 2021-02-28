@@ -1,0 +1,44 @@
+.descriptionBlock {
+    display: grid;
+    grid-template-columns: 300px 350px;
+    grid-template-areas: "ava discription";
+    grid-column-gap: 50px;
+}
+
+.description {
+    grid-area: discription;
+    border: 2px solid #138D90;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.ava {
+    grid-area: ava;
+    width: 300px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.imgHeader {
+    width: 100%;
+    height: 400px;
+}
+
+.about {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.about:hover {
+    background-color: rgb(175, 129, 69);
+}
+
+.input {
+    margin-top: -200px;
+}

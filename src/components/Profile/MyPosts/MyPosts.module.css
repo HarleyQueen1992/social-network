@@ -1,0 +1,29 @@
+
+.content {
+    grid-area: c;
+    background-color: cornflowerblue;
+}
+.posts {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+
+.PostsBlock {
+    padding: 10px;
+}
+.but {
+    background-color: lawngreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin-top: -30px;
+    margin-left: 200px;
+}
+.addNewpost {
+    margin-left: 50px;
+}
+.myPost {
+    margin-left: 50px;
+}

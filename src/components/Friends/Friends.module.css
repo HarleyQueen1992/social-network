@@ -1,0 +1,52 @@
+.friend {
+    margin-left: 200px;
+    display: grid;
+    grid-template-columns: 100px 400px;
+    grid-template-areas: "left right";
+    grid-column-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.leftPart {
+    grid-area: left;
+}
+
+.rightPart {
+    grid-area: right;
+    border: 2px solid #138D90;
+    border-radius: 30px;
+    padding: 15px;
+    display: grid;
+    grid-template-areas: "n w";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.photo {
+    height: 100px;
+}
+
+.selectedPage {
+    font-weight: bold;
+}
+
+.name {
+    grid-area: n;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.writeMessage {
+    grid-area: w;
+    justify-self: end;
+    align-self: flex-end;
+}
+
+.writeMessage a {
+    font-size: 15px;
+    color: black;
+}
