@@ -2,7 +2,7 @@ import React from 'react'
 import { connect} from 'react-redux';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogs-reducer';
+import { sendMessageActionCreator } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs'
 
 class DialogsContainer extends React.Component {
@@ -21,12 +21,12 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        sendMessages: () => {
-            dispatch(sendMessageActionCreator());
+        sendMessages: (messageBody) => {
+            dispatch(sendMessageActionCreator(messageBody));
         },
-        submitMessage: (text) => {
-            dispatch(updateNewMessageTextActionCreator(text))
-        }
+        // submitMessage: (text) => {
+        //     dispatch(updateNewMessageTextActionCreator(text))
+        // }
     }
 }
 

@@ -4,7 +4,8 @@ import s from './ProfileInfo.module.css'
 import profileImg from '../../../assets/images/user.png'
 import ProfileStatus from './ProfileStatus'
 import { Redirect } from 'react-router-dom';
-debugger
+import iconSettings from '../../../assets/images/settings.png'
+
 const ProfileInfo = (props) => {
     if (props.profile == null) {
         return( 
@@ -25,11 +26,31 @@ const ProfileInfo = (props) => {
             </div> */}
             <div className={s.descriptionBlock}>
                 <img className={s.ava} src={srcImg} />
-                <div className={s.description} >                    
-                    <div className={s.title} >Name: {props.profile.fullName}</div>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <img className={s.icon} src={iconSettings}/>
+                <div className={s.description} >
+                    <div className={s.discriptionTop} >
+                        <div className={s.name} >{props.profile.fullName}</div>
+                        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                    </div>
+                    <div className={s.descriptionCenter} >    
+                        <div>Birthday: 25 августа </div>
+                        <div>City: Lugansk</div>
+                        <div>Place of study: school №5</div>                     
+                    </div>                      
+                    <div className={s.discriptionBot}>
+                        <div className={s.botLeft} >
+                            <div className={s.numberOfFriends} >120</div>
+                            <div className={s.friends} >Friends</div>
+                            <div className={s.numberOfSubscribers} >50</div>
+                            <div className={s.subscribers} >Subscriders</div>
+                            <div className={s.numberOfPhotos}>2</div>
+                            <div className={s.photo} >Photo</div>
+                        </div>
+                        <div className={s.botRight} >заходил час назад</div>  
+                    </div>
+                    
                     {/* <div className={s.title} >About me: {props.profile.aboutMe}</div> */}
-                    <div className={s.title} >Job: {props.profile.lookingForAJobDescription}</div>
+                    {/* <div className={s.title} >Job: {props.profile.lookingForAJobDescription}</div> */}
                 </div>
             </div>
 

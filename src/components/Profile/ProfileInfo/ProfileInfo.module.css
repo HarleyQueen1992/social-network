@@ -1,7 +1,7 @@
 .descriptionBlock {
     display: grid;
-    grid-template-columns: 300px 350px;
-    grid-template-areas: "ava discription";
+    grid-template-columns: 300px 20px 450px;
+    grid-template-areas: "ava icon discription";
     grid-column-gap: 50px;
 }
 
@@ -9,7 +9,10 @@
     grid-area: discription;
     border: 2px solid #138D90;
     border-radius: 20px;
-    padding: 10px;
+    padding: 16px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "top" "center" "bot";
 }
 
 .ava {
@@ -17,10 +20,77 @@
     width: 300px;
 }
 
-.title {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 20px;
+.icon {
+    grid-area: icon;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.discriptionTop {
+    grid-area: top;
+}
+
+.descriptionCenter {
+    grid-area: center;
+}
+
+.discriptionBot {
+    grid-area: bot;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "left right";
+}
+
+.name {
+    font-size: 22px;
+    font-weight: 600;
+    /* margin-bottom: 10px; */
+}
+
+.botLeft {
+    grid-area: left;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "nf sf pf" "f s p";
+}
+
+.numberOfFriends {
+    grid-area: nf;
+    justify-self: center;
+}
+
+.friends {
+    grid-area: f;
+    justify-self: center;
+}
+
+.numberOfSubscribers {
+    grid-area: sf;
+    justify-self: center;
+}
+
+.subscribers {
+    grid-area: s;
+    justify-self: center;
+}
+
+.numberOfPhotos {
+    grid-area: pf;
+    justify-self: center;
+}
+
+.photo {
+    grid-area: p;
+    justify-self: center;
+}
+
+.botRight {
+    font-size: 14px;
+    grid-area: right;
+    align-self: flex-end;
+    justify-self: flex-end;
 }
 
 .imgHeader {
@@ -28,14 +98,14 @@
     height: 400px;
 }
 
-.about {
-    font-size: 16px;
+.status {
+    font-size: 14px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
 
-.about:hover {
+.status:hover {
     background-color: rgb(175, 129, 69);
 }
 

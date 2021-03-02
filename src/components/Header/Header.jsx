@@ -16,11 +16,11 @@ const Header = (props) => {
                     <div>{props.profileInfo.photos.large === null || undefined ?
                         <div className={h.avaLogin} >
                             <img className={h.ava} src={photo} />
-                            <span className={h.userName} >{props.login}</span>
+                            <span className={h.userName} >{props.profileInfo.fullName}</span>
                         </div> :
                         <div className={h.avaLogin} >  
                             <img className={h.ava} src={props.profileInfo.photos.large}/>
-                            <span className={h.userName} >{props.login}</span>
+                            <span className={h.userName} >{props.profileInfo.fullName}</span>
                         </div>}
                     </div> 
             : <NavLink to={'/login'} className={h.authBlock}>Login</NavLink>}

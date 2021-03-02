@@ -1,0 +1,13 @@
+.bottom {
+    margin-left: 50px;
+    margin-right: 50px;
+    grid-area: input;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas: "i b";
+}
+
+.but {
+    grid-area: b;
+    height: 33px;
+}

@@ -27,7 +27,8 @@ const authReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
-                    profileInfo: action.profile
+                    profileInfo: action.profile,
+                    isAuth: true
                 }
             }
         default:
@@ -63,6 +64,20 @@ export const getAuthMe = () => {
                             dispatch(setProfileData(respo.data));
                         })
                     dispatch(setAuthUserData(id, login, email));
+                }
+            })
+    }
+}
+
+export const loginIn = (email, password) => {
+    return (dispatch) => {
+        authAPI.loginIn(email, password)
+            .then(data => {
+                if (data.data.resultCode === 0) {
+                    profileAPI.getProfile(data.data.data.userId)
+                        .then(respo => {
+                            dispatch(setProfileData(respo.data));
+                        })
                 }
             })
     }

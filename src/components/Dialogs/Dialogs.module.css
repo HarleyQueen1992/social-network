@@ -1,12 +1,10 @@
 .dialogs {
     display: grid;
     grid-template-columns: 20% 50% 30%;
-    grid-template-areas:
-    "d m o";
+    grid-template-areas: "d m o";
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
-
 }
 
 .dialogsItem {
@@ -25,6 +23,7 @@
     /*"message"*/
     /*"input";*/
 }
+
 .other {
     grid-area: o;
 }
@@ -32,25 +31,28 @@
 .messageBlock {
     display: grid;
     grid-template-rows: minmax(500px, 1fr);
-    grid-template-areas:
-    "message"
-    "input";
+    grid-template-areas: "message" "input";
 }
 
+
+/* 
 .bottom {
     margin-left: 50px;
     margin-right: 50px;
     grid-area: input;
     display: grid;
-    grid-template-columns: 80% 20% ;
-    grid-template-areas:
-    "i b";
-}
+    grid-template-columns: 80% 20%;
+    grid-template-areas: "i b";
+} */
+
 .text {
     grid-area: i;
     height: 30px;
 }
+
+
+/* 
 .but {
     grid-area: b;
     height: 33px;
-}
+} */
