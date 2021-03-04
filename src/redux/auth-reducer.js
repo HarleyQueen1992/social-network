@@ -18,8 +18,7 @@ const authReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
-                    ...action.data,
-                    isAuth: true
+                    ...action.data
 
                 };
             }
@@ -27,8 +26,7 @@ const authReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
-                    profileInfo: action.profile,
-                    isAuth: true
+                    ...action.data
                 }
             }
         default:
@@ -37,17 +35,17 @@ const authReducer = (state = initialState, action) => {
 }
 
 // Action Creator
-export const setAuthUserData = (userId, login, email) => {
+export const setAuthUserData = (userId, login, email, isAuth) => {
     return {
         type: SET_USER_DATA,
-        data: { userId, login, email }
+        data: { userId, login, email, isAuth }
     }
 }
 
-export const setProfileData = (profile) => {
+export const setProfileData = (profileInfo, isAuth) => {
     return {
         type: SET_PROFILE_DATA,
-        profile
+        data: { profileInfo, isAuth }
     }
 }
 
@@ -63,7 +61,7 @@ export const getAuthMe = () => {
                         .then(respo => {
                             dispatch(setProfileData(respo.data));
                         })
-                    dispatch(setAuthUserData(id, login, email));
+                    dispatch(setAuthUserData(id, login, email, true));
                 }
             })
     }
@@ -76,8 +74,21 @@ export const loginIn = (email, password) => {
                 if (data.data.resultCode === 0) {
                     profileAPI.getProfile(data.data.data.userId)
                         .then(respo => {
-                            dispatch(setProfileData(respo.data));
+                            dispatch(setProfileData(respo.data, true));
                         })
+                }
+            })
+    }
+}
+
+export const logOut = () => {
+    return (dispatch) => {
+        authAPI.logOut()
+            .then(data => {
+                debugger
+                if (data.data.resultCode === 0) {
+                    dispatch(setProfileData(null, false));
+
                 }
             })
     }

@@ -17,10 +17,14 @@ const Header = (props) => {
                         <div className={h.avaLogin} >
                             <img className={h.ava} src={photo} />
                             <span className={h.userName} >{props.profileInfo.fullName}</span>
+                            {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png" />   */}
+                            <button className={h.logout} onClick={props.logOut} >Log Out</button>  
                         </div> :
                         <div className={h.avaLogin} >  
                             <img className={h.ava} src={props.profileInfo.photos.large}/>
                             <span className={h.userName} >{props.profileInfo.fullName}</span>
+                            {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png"/> */}
+                            <button className={h.logout} onClick={props.logOut} >Log Out</button>  
                         </div>}
                     </div> 
             : <NavLink to={'/login'} className={h.authBlock}>Login</NavLink>}

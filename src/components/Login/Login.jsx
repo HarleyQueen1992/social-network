@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { compose } from 'redux'
 import { authAPI } from '../../API/api'
 import { loginIn } from '../../redux/auth-reducer'
@@ -18,15 +19,15 @@ class Login extends React.Component {
 
     render () {
         return (
-            <LoginReduxForm onSubmit={this.onSubmit}/>
+            this.props.isAuth ? <Redirect to={"/profile"} /> : <LoginReduxForm onSubmit={this.onSubmit}/>
         )
     }
     
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
     return {
-
+        isAuth: state.auth.isAuth
     }
 }
 
