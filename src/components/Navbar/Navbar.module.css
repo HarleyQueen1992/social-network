@@ -1,6 +1,6 @@
 a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 21px;
 }
 
@@ -11,28 +11,50 @@ a {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    background-color: #138D90;
+    /* background-color: #138D90; */
     padding: 20px;
     grid-template-areas: "n" "f";
 }
 
 .navbar {
     grid-area: n;
-    margin-top: 30px;
-    margin-left: 10px;
+    /* margin-top: 30px;
+    margin-left: 30px; */
+    margin-left: 30px;
+    height: 75%;
+    display: grid;
+    grid-template-rows: repeat(20px, 6);
 }
 
 .item {
-    margin-bottom: 5px;
+    height: 80%;
+    align-self: center;
+    padding-top: 4px;
+    padding-left: 30px;
+    /* margin-top: 10px; */
+    /* background-color: coral; */
+    /* margin-left: 30px; */
+    /* margin-bottom: 8px;
+    margin-right: 30px;
+    padding-left: 10px; */
+    /* padding-bottom: 10px; */
+}
+
+.item:hover {
+    background-color: coral;
+    border-radius: 5px;
 }
 
 .itemLink {
-    font-size: 25px;
+    font-size: 17px;
+    font-weight: 500;
 }
 
+
+/* 
 .item a.active {
     color: gold;
-}
+} */
 
 .friendsBlock {
     padding-top: 50px;
@@ -51,14 +73,14 @@ a {
 }
 
 .friendsBlock a {
-    font-size: 28px;
+    font-size: 20px;
 }
 
 .PositionBlock {
     padding-top: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "b b b" "b b b";
+    /* grid-template-areas: "b b b"; */
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }

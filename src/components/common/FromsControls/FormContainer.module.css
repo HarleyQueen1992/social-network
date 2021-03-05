@@ -6,3 +6,7 @@
 .formControl.error div {
     color: red;
 }
+
+.formSummaryError {
+    border: 1px solid black;
+}
