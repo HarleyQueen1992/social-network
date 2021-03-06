@@ -53,22 +53,23 @@ export const setProfileData = (profileInfo, isAuth) => {
 
 // Thunk Creator
 
-export const getAuthMe = () => {
-    return (dispatch) => {
-        authAPI.getAuthMe()
-            .then(data => {
+export const getAuthMe = () => (dispatch) => {
+    return authAPI.getAuthMe()
+        .then(data => {
+            if (data.resultCode === 0) {
+                let { id, login, email } = data.data;
+                dispatch(setAuthUserData(id, login, email, true));
                 debugger
-                if (data.resultCode === 0) {
-                    let { id, login, email } = data.data;
-                    profileAPI.getProfile(id)
-                        .then(respo => {
-                            debugger
-                            dispatch(setProfileData(respo.data, true));
-                        })
-                        // dispatch(setAuthUserData(id, login, email, true));
-                }
-            })
-    }
+                return profileAPI.getProfile(id)
+                    .then(respo => {
+                        debugger
+                        dispatch(setProfileData(respo.data, true));
+                        debugger
+                    })
+                    // dispatch(setAuthUserData(id, login, email, true));
+            }
+        })
+
 }
 
 export const loginIn = (email, password) => {
