@@ -2,7 +2,9 @@ import React from 'react'
 import { connect} from 'react-redux';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import { sendMessageActionCreator } from '../../redux/dialogs-reducer';
+import { getIsAuth } from '../../redux/AuthReducer/auth-selectors';
+import { sendMessageActionCreator } from '../../redux/DialogsReducer/dialogs-reducer';
+import { getDialogsPage } from '../../redux/DialogsReducer/dialogs-selectors';
 import Dialogs from './Dialogs'
 
 class DialogsContainer extends React.Component {
@@ -14,8 +16,8 @@ class DialogsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
+        dialogsPage: getDialogsPage(state),
+        isAuth: getIsAuth(state)
     }
 }
 

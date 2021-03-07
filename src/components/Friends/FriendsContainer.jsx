@@ -1,25 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Friends from './Friends';
-import {setFriends, toggleIsFatching, setCurrentPage, setFriendsTotalCount, nextPage, earlyPage, getFriends} from '../../redux/friends-reducer'
+import {setFriends, toggleIsFatching, setCurrentPage, setFriendsTotalCount, nextPage, earlyPage, requestFriends} from '../../redux/FriendsReducer/friends-reducer'
 import Preloader from '../common/Preloader/Preloader';
+import { getCurrentPage, getFriends, getIsFatching, getPageSize, getTotalFriendsCount } from '../../redux/FriendsReducer/friends-selectors';
 
 class FriendsContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getFriends(this.props.currentPage, this.props.pageSize)
+        this.props.requestFriends(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChenged = (pageNumber) => {
-        this.props.getFriends(pageNumber, this.props.pageSize)
+        this.props.requestFriends(pageNumber, this.props.pageSize)
     }
 
     earlyPageNumber = () => {
-        this.props.getFriends(this.props.currentPage - 1, this.props.pageSize, 'early')
+        this.props.requestFriends(this.props.currentPage - 1, this.props.pageSize, 'early')
     }
 
     increasePageNumber = () => {
-        this.props.getFriends(this.props.currentPage + 1, this.props.pageSize, 'next')
+        this.props.requestFriends(this.props.currentPage + 1, this.props.pageSize, 'next')
     }
 
     render() {
@@ -47,14 +48,14 @@ class FriendsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        friends: state.friendsPage.friends,
-        isFatching: state.friendsPage.isFatching,
-        pageSize: state.friendsPage.pageSize,
-        totalFriendsCount: state.friendsPage.totalFriendsCount,
-        currentPage: state.friendsPage.currentPage
+        friends: getFriends(state),
+        isFatching: getIsFatching(state) ,
+        pageSize: getPageSize(state),
+        totalFriendsCount: getTotalFriendsCount(state),
+        currentPage: getCurrentPage(state)
 
     }
 }
 
 export default connect(mapStateToProps, {setFriendsTotalCount, setFriends, setCurrentPage, 
-                                         toggleIsFatching, nextPage, earlyPage, getFriends})(FriendsContainer);
+                                         toggleIsFatching, nextPage, earlyPage, requestFriends})(FriendsContainer);

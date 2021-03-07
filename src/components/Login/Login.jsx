@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { compose } from 'redux'
 import { authAPI } from '../../API/api'
-import { loginIn } from '../../redux/auth-reducer'
+import { loginIn } from '../../redux/AuthReducer/auth-reducer'
+import { getIsAuth } from '../../redux/AuthReducer/auth-selectors'
 import LoginReduxForm from './LoginForm/LoginForm'
 
 class Login extends React.Component {
@@ -27,7 +28,7 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: getIsAuth(state)
     }
 }
 

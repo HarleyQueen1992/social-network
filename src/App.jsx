@@ -14,9 +14,10 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { initializeApp } from './redux/app-reducer';
+import { initializeApp } from './redux/AppReducer/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import { withAuthRedirecr } from './Hoc/withAuthRedirect';
+import { getInitialized } from './redux/AppReducer/app-selectors';
 
 class App extends React.Component {
     
@@ -58,7 +59,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-       initialized: state.app.initialized
+       initialized: getInitialized(state)
     }
 }
 

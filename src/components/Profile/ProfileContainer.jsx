@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import {getUserProfile, getStatus, updateStatus } from '../../redux/profile-reducer';
+import {getUserProfile, requestStatus, updateStatus } from '../../redux/ProfileReducer/profile-reducer';
+import { getProfile, getStatus } from '../../redux/ProfileReducer/profile-selectors';
 import Profile from './Profile';
+import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'
 
 class ProfileContainer extends React.Component  {
     componentDidMount() {
@@ -14,7 +16,7 @@ class ProfileContainer extends React.Component  {
             userid = this.props.profileInfo.userId
         }
         this.props.getUserProfile(userid)
-        this.props.getStatus(userid)
+        this.props.requestStatus(userid)
     }
 
     render() {
@@ -26,11 +28,11 @@ class ProfileContainer extends React.Component  {
     }
 }
 const mapStateToProps = (state) => ({
-    profile: state.profilePage.profile  ,
-    isAuth: state.auth.isAuth,
-    status: state.profilePage.status,
-    profileInfo: state.auth.profileInfo,
-    userId: state.auth.userId
+    profile: getProfile(state),
+    isAuth: getIsAuth(state),
+    status: getStatus(state),
+    profileInfo: getProfileInfo(state),
+    userId: getUserId(state)
 })
 
 // let withRedirect = withAuthRedirecr(ProfileContainer)
@@ -41,7 +43,7 @@ const mapStateToProps = (state) => ({
 // export default connect(mapStateToProps,{getUserProfile})(WithUrlDataContainerComponent);
 
 export default compose(
-    connect(mapStateToProps,{getUserProfile, getStatus, updateStatus}),
+    connect(mapStateToProps,{getUserProfile, requestStatus, updateStatus}),
     withRouter,
     withAuthRedirecr
 )(ProfileContainer)

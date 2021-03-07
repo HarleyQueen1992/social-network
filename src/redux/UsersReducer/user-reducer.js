@@ -1,4 +1,4 @@
-import { usersAPI } from '../API/api'
+import { usersAPI } from '../../API/api'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -118,8 +118,9 @@ export const toggleIsFatching = (isFatching) => ({ type: TOGGLE_IS_FATCHING, isF
 export const toggleFollowingProgress = (isFatching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFatching, userId })
 
 //Thunk Creater
+debugger
 
-export const getUsers = (currentPage, pageSize, append = '') => {
+export const requestUsers = (currentPage, pageSize, append = '') => {
     return (dispatch) => {
         dispatch(toggleIsFatching(true));
         if (append === 'early') {

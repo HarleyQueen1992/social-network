@@ -1,6 +1,6 @@
 import { compose } from 'redux';
 import { stopSubmit } from 'redux-form';
-import { profileAPI, authAPI } from '../API/api'
+import { profileAPI, authAPI } from '../../API/api'
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
 

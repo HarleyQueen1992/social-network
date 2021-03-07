@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { getPanelFriends } from '../../redux/NavbarReducer/navbar-selectors'
 import Navbar from './Navbar'
 
 class NavbarContainer extends React.Component {
@@ -12,7 +13,7 @@ class NavbarContainer extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        friends: state.navbarPage.friends
+        friends: getPanelFriends(state)
     }
 }
 

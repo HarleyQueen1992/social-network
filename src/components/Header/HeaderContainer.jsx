@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authAPI } from '../../API/api.js';
-import { setAuthUserData, setProfileData, getAuthMe, logOut } from '../../redux/auth-reducer.js';
+import { setAuthUserData, setProfileData, getAuthMe, logOut } from '../../redux/AuthReducer/auth-reducer.js';
+import { getIsAuth, getProfileInfo, getLogin } from '../../redux/AuthReducer/auth-selectors.js';
 import Header from './Header.jsx'
 
 class HeaderContainer extends React.Component {
@@ -27,9 +28,9 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        login: state.auth.login,
-        isAuth: state.auth.isAuth,
-        profileInfo: state.auth.profileInfo
+        login: getLogin(state),
+        isAuth: getIsAuth(state),
+        profileInfo: getProfileInfo(state)
     }
 }
 

@@ -1,27 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUsers, follow, setUsers,
-          unfollow, toggleFollowingProgress } from '../../redux/user-reducer';
+import { requestUsers, follow, setUsers,
+          unfollow, toggleFollowingProgress } from '../../redux/UsersReducer/user-reducer';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { getUsers, getCurrentPage, getPageSize, getTotalUsersCount, getIsFatching, getFollowingInProgress } from '../../redux/UsersReducer/users-selectors';
 class UsersC extends React.Component {
     
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        debugger
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
     
     earlyPageNumber = () => {
-        this.props.getUsers(this.props.currentPage - 1, this.props.pageSize, 'early')
+        this.props.requestUsers(this.props.currentPage - 1, this.props.pageSize, 'early')
     }
 
     increasePageNumber = () => {
-        this.props.getUsers(this.props.currentPage + 1, this.props.pageSize, 'next')
+        this.props.requestUsers(this.props.currentPage + 1, this.props.pageSize, 'next')
     }
 
     onPageChenged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.requestUsers(pageNumber, this.props.pageSize)
     }
     render() {
         return <> 
@@ -42,18 +44,13 @@ class UsersC extends React.Component {
     
 }
 
-let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        currentPage: state.usersPage.currentPage,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        isFatching: state.usersPage.isFatching,
-        followingInProgress: state.usersPage.followingInProgress
-
-
-    }
-}
+let mapStateToProps = (state) => ({users: getUsers(state),
+        currentPage: getCurrentPage(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        isFatching: getIsFatching(state),
+        followingInProgress: getFollowingInProgress(state)
+})
 
 // let withRedirect = withAuthRedirecr(UsersC)
 
@@ -67,7 +64,8 @@ export default compose(
     connect(mapStateToProps, 
         {
             follow, unfollow, setUsers,
-            toggleFollowingProgress, getUsers
+            toggleFollowingProgress, requestUsers
         }),
     withAuthRedirecr
 )(UsersC)
+

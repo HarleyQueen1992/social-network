@@ -1,4 +1,4 @@
-import { friendsAPI } from '../API/api'
+import { friendsAPI } from '../../API/api'
 const SET_FRIENDS = 'SET_FRIENDS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_FRIENDS_COUNT = 'SET_TOTAL_FRIENDS_COUNT';
@@ -84,7 +84,7 @@ export const earlyPage = () => ({ type: EARLY_PAGE })
 
 // Thunk Creator
 
-export const getFriends = (currentPage, pageSize, append = '') => {
+export const requestFriends = (currentPage, pageSize, append = '') => {
     return (dispatch) => {
         dispatch(toggleIsFatching(true));
         if (append === 'early') {
