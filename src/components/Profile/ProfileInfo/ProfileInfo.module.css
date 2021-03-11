@@ -1,12 +1,13 @@
 .descriptionBlock {
     display: grid;
-    grid-template-columns: 300px 20px 450px;
+    grid-template-columns: 300px 20px 470px;
     grid-template-areas: "ava icon discription";
-    grid-column-gap: 50px;
+    /* grid-column-gap: 50px; */
 }
 
 .description {
     grid-area: discription;
+    margin-left: 20px;
     border: 2px solid #138D90;
     border-radius: 20px;
     padding: 16px;

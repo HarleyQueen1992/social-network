@@ -1,24 +1,63 @@
-.item {
-    padding-bottom: 15px;
-    margin-left: 50px;
+.postBlock {
+    display: grid;
+    /* grid-template-rows: 50px 30px; */
+    grid-template-areas: "photo body" "pass like";
+    grid-template-columns: 15% 85%;
+    /* grid-template-rows: minmax(50px, auto) 0%; */
+    /* border: 2px solid #138D90; */
+    border-radius: 7px;
+    background-color: #ff8000;
+    padding: 10px;
+    margin-bottom: 20px;
 }
-.item img {
+
+.postImg {
+    align-self: center;
     width: 50px;
     height: 50px;
     border-radius: 30px;
 }
+
+.postText {
+    grid-area: body;
+    display: grid;
+}
+
+.postPhoto {
+    grid-area: photo;
+    display: grid;
+}
+
 .but {
-    background-color: #C660CB;
+    background-color: #b39ab4;
+    cursor: pointer;
+    /* border: 1px solid black; */
     height: 30px;
     padding: 3px;
-    margin-left: 10px;
     margin-top: 20px;
-}
-.messageItem {
-    margin-left: 55px;
-    margin-top: -35px;
 }
 
 button {
     color: black;
+}
+
+.heart {
+    align-self: center;
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+    margin-right: 4px;
+}
+
+.likeBlock {
+    grid-area: like;
+    justify-self: end;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.textPost {
+    align-self: center;
 }

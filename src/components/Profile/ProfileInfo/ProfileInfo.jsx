@@ -5,6 +5,7 @@ import profileImg from '../../../assets/images/user.png'
 import ProfileStatus from './ProfileStatus'
 import { Redirect } from 'react-router-dom';
 import iconSettings from '../../../assets/images/settings.png'
+import ProfileStatusWithHooks from './ProfileStatusWithHooks'
 
 const ProfileInfo = (props) => {
     if (props.profile == null) {
@@ -30,7 +31,7 @@ const ProfileInfo = (props) => {
                 <div className={s.description} >
                     <div className={s.discriptionTop} >
                         <div className={s.name} >{props.profile.fullName}</div>
-                        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                     </div>
                     <div className={s.descriptionCenter} >    
                         <div>Birthday: 25 августа </div>

@@ -1,11 +1,18 @@
+.profileBlock {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-row-gap: 50px;
+    grid-template-areas: "info" "posts";
+    margin-right: 290px;
+}
+
+.profileInfo {
+    grid-area: info;
+}
+
 .posts {
-    margin-top: 30px;
-    margin-left: 20px;
-}
-.item {
-    padding-bottom: 15px;
-}
-.item.active {
-    color: red;
-    font-size: 20px;
+    grid-area: posts;
+    justify-self: end;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
 }

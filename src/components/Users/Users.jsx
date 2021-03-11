@@ -16,7 +16,6 @@ const Users = (props) => {
 
     createPages(page, pagesCount, props.currentPage )
     
-    console.log(page)
     return <div>
             {/* <div>
                 <span onClick={ () => {props.earlyPageNumber() }}>L</span>

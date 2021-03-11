@@ -3,14 +3,12 @@ const ADD_POST = 'ADD-POST';
 // const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const ADD_LIKES = 'ADD_LIKES'
 
 let initialState = {
     posts: [
-        { message: 'Hi, my name is Artem', like: 50, dislike: 100 },
-        { message: 'Hi, my name is Artem', like: 52, dislike: 99 },
-        { message: 'Hi, my name is Artem', like: 51, dislike: 56 },
-        { message: 'Hi, my name is Artem', like: 9, dislike: 13 },
-        { message: 'Hi, my name is Artem', like: 51, dislike: 9 },
+        { id: 0, message: 'Hi, my name is Artem', like: 50, dislike: 100, isDisable: false },
+        { id: 1, message: 'Hi, my name is Artem', like: 52, dislike: 99, isDisable: false }
     ],
     newPostText: 'mops.com',
     profile: null,
@@ -23,9 +21,11 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             {
                 const newPost = {
+                    id: state.posts.length,
                     message: action.newPostText,
                     like: 0,
-                    dislike: 0
+                    dislike: 0,
+
                 };
                 return {
                     ...state,
@@ -33,6 +33,38 @@ const profileReducer = (state = initialState, action) => {
 
                 };
             }
+        case ADD_LIKES:
+            return {
+                ...state,
+                posts: state.posts.map(p => {
+                    if (p.id === action.postId) {
+                        if (p.isDisable === true) {
+                            let likes = p.like - 1;
+                            p.isDisable = false;
+                            return {...p, like: likes }
+                        } else {
+                            let likes = p.like + 1;
+                            p.isDisable = true;
+                            return {...p, like: likes }
+                        }
+                    }
+                    return p;
+                })
+            }
+            // case ADD_LIKES:
+            //     {
+            //         const post = state.posts.filter(post => post.id === action.postId);
+
+            //         post.like += 1
+
+            //         post[action.postId]
+
+            //         return {
+            //             ...state,
+            //             posts:
+
+            //         }
+            //     }
             // case UPDATE_NEW_POST_TEXT:
             //     return {
             //         ...state,
@@ -65,6 +97,12 @@ export const addPostActionCreator = (newPostText) => {
     //         newText: text
     //     }
     // }
+export const addLike = (postId) => {
+    return {
+        type: ADD_LIKES,
+        postId
+    }
+}
 
 export const setUserProfile = (profile) => {
     return {

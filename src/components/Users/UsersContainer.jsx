@@ -44,13 +44,17 @@ class UsersC extends React.Component {
     
 }
 
-let mapStateToProps = (state) => ({users: getUsers(state),
+let mapStateToProps = (state) => {
+    console.log("mapStateToProps")
+    return {
+        users: getUsers(state),
         currentPage: getCurrentPage(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         isFatching: getIsFatching(state),
         followingInProgress: getFollowingInProgress(state)
-})
+    }
+}
 
 // let withRedirect = withAuthRedirecr(UsersC)
 

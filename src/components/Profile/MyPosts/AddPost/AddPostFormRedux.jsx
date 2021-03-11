@@ -6,9 +6,9 @@ import { required } from '../../../../utils/validators/validators';
 
 const addNewMessagePost = (props) => {
     return (
-        <form onSubmit={props.handleSubmit} >
-            <div>   
-                <Field component="textarea" name="newPostText" placeholder="Text Post" validate={[required]}/>       
+        <form className={p.postsBlock} onSubmit={props.handleSubmit} >
+            <div className={p.postsBlock} >   
+                <Field className={p.postForm} component="input" name="newPostText" placeholder="What's new" validate={[required]}/>       
                 <button className={p.but}>Add</button>
             </div>
         </form>
