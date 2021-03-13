@@ -1,4 +1,7 @@
 .header {
+    position: fixed;
+    width: 100%;
+    z-index: 999999;
     grid-area: h;
     background-color: #FD3C3C;
     display: grid;

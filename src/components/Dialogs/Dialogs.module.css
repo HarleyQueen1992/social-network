@@ -1,6 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 20% 50% 30%;
+    grid-template-columns: 25% 50% 25%;
     grid-template-areas: "d m o";
     margin-top: 20px;
     margin-left: 20px;
@@ -9,14 +9,17 @@
 
 .dialogsItem {
     grid-area: d;
-    border-right: 1px solid #00CB91;
+    display: grid;
+    /* justify-self: center; */
+    grid-template-rows: 10% 80% 10%;
+    /* border-right: 1px solid #00CB91; */
 }
 
 .messages {
-    grid-area: m;
     grid-area: message;
-    border-right: 1px solid #00CB91;
     margin-left: 20px;
+    /* background-color: #ff794d; */
+    /* border-right: 1px solid #00CB91; */
     /*display: grid;*/
     /*grid-template-rows: 80% 20%;*/
     /*grid-template-areas:*/
@@ -29,6 +32,7 @@
 }
 
 .messageBlock {
+    background-color: #ff794d;
     display: grid;
     grid-template-rows: minmax(500px, 1fr);
     grid-template-areas: "message" "input";
@@ -48,6 +52,21 @@
 .text {
     grid-area: i;
     height: 30px;
+}
+
+.switch {
+    margin-right: 30px;
+    justify-self: center;
+}
+
+.arrowBot {
+    height: 40px;
+    width: 60px;
+}
+
+.arrowTop {
+    height: 40px;
+    width: 60px;
 }
 
 

@@ -1,8 +1,8 @@
 .postBlock {
+    /* width: 500px; */
     display: grid;
     /* grid-template-rows: 50px 30px; */
-    grid-template-areas: "photo body" "pass like";
-    grid-template-columns: 15% 85%;
+    grid-template-areas: "photoName" "body" "likes";
     /* grid-template-rows: minmax(50px, auto) 0%; */
     /* border: 2px solid #138D90; */
     border-radius: 7px;
@@ -12,7 +12,7 @@
 }
 
 .postImg {
-    align-self: center;
+    align-self: stretch;
     width: 50px;
     height: 50px;
     border-radius: 30px;
@@ -20,12 +20,20 @@
 
 .postText {
     grid-area: body;
-    display: grid;
+    padding-top: 15px;
+    font-size: 14px;
 }
 
-.postPhoto {
-    grid-area: photo;
+.photoName {
+    grid-area: photoName;
     display: grid;
+    grid-template-columns: 60px auto;
+}
+
+.userName {
+    align-self: center;
+    font-size: 16px;
+    color: #fff;
 }
 
 .but {
@@ -50,7 +58,7 @@ button {
 }
 
 .likeBlock {
-    grid-area: like;
+    grid-area: likes;
     justify-self: end;
     display: grid;
     grid-template-columns: 1fr 2fr;

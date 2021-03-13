@@ -1,12 +1,31 @@
 import React from 'react'
 import s from './DialogsItem.module.css';
 import {NavLink} from "react-router-dom";
+import Photo from './../../../assets/images/user.png'
 
 
 const DialogsItem = (props) => {
+    debugger
     return (
         <div className={s.dialog}>
-            <NavLink to={'/dialogs/' + props.id} activeClassName={s.active}><img className={s.ava} src="https://i.pinimg.com/originals/0e/1e/74/0e1e74ce635b2b22f0627c53f7b88eae.jpg" />{props.name}</NavLink>
+                <div className={s.userAva} >
+                    <NavLink to={'/dialogs/' + props.id} activeClassName={s.active}>
+                        {props.photos.small === null 
+                        ? <img className={s.ava} src={Photo} /> 
+                        : <img className={s.ava} src={props.photos.small} /> }   
+                    </NavLink>
+                </div>
+            
+            
+            
+                <div className={s.name} >
+                    <NavLink to={'/dialogs/' + props.id} activeClassName={s.active}>
+                        {props.name}
+                    </NavLink>
+                </div>
+                        
+                
+            
         </div>
     )
 

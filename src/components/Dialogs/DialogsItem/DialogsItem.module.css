@@ -1,25 +1,31 @@
-.dialogs {
+.dialog {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 45px auto;
+    grid-template-areas: "ava name";
+    /* border-top: 2px solid #138D90;
+    border-left: 2px solid #138D90; */
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
 }
 
 .dialogsItem {
     padding: 20px;
 }
 
-
-.dialog {
-    padding-bottom: 5px;
+.name {
+    grid-area: name;
+    align-self: center;
 }
 
-.dialog a.active {
-    color: red;
+.userAva {
+    grid-area: ava;
 }
+
 .ava {
-    height: 27px;
-    width: 27px;
+    height: 42px;
+    width: 42px;
     border-radius: 30px;
     vertical-align: middle;
-
 }
-
