@@ -96,8 +96,8 @@ export const requestFriends = (currentPage, pageSize, append = '') => {
         friendsAPI.getFriends(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFatching(false))
-                dispatch(setFriends(data.items));
-                dispatch(setFriendsTotalCount(data.totalCount));
+                dispatch(setFriends(data.data.items));
+                dispatch(setFriendsTotalCount(data.data.totalCount));
             })
     }
 }

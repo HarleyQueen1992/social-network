@@ -8,21 +8,7 @@ import Pagination from '../common/Pagination/Pagination'
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    
-    let page = [];
-
-    // for (let i = 1; i <= pagesCount; i++) page.push(i);
-
-    createPages(page, pagesCount, props.currentPage )
-    
     return <div>
-            {/* <div>
-                <span onClick={ () => {props.earlyPageNumber() }}>L</span>
-                <span onClick={ () => {props.increasePageNumber() }}>R</span>
-            </div> */}
-
-
         {
             props.users.map( u => <div className={s.users} key={u.id}>
                 <div className={s.leftPart} >
@@ -40,7 +26,7 @@ const Users = (props) => {
                                     disabled={props.followingInProgress.some(id => id === u.id)} 
                                     className={s.but} 
                                     onClick={ () => { props.follow(u.id)} }>Follow
-                              </button> }
+                            </button> }
                     </div>
                 </div>
                 <div className={s.rightPart} >
@@ -59,8 +45,9 @@ const Users = (props) => {
                 </div>
             </div>)      
         }
-                    <Pagination currentPage={props.currentPage} 
-                        page={page} 
+                    <Pagination totalUsersCount={props.totalUsersCount}
+                        pageSize={props.pageSize}
+                        currentPage={props.currentPage}
                         earlyPageNumber={props.earlyPageNumber} 
                         onPageChenged={props.onPageChenged} 
                         increasePageNumber={props.increasePageNumber}/>

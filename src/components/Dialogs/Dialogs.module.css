@@ -10,8 +10,10 @@
 .dialogsItem {
     grid-area: d;
     display: grid;
+    margin-top: 20px;
+    /* margin-bottom: -50px; */
     /* justify-self: center; */
-    grid-template-rows: 10% 80% 10%;
+    /* border: 1px solid black; */
     /* border-right: 1px solid #00CB91; */
 }
 
@@ -41,12 +43,12 @@
 
 /* 
 .bottom {
-    margin-left: 50px;
-    margin-right: 50px;
-    grid-area: input;
-    display: grid;
-    grid-template-columns: 80% 20%;
-    grid-template-areas: "i b";
+margin-left: 50px;
+margin-right: 50px;
+grid-area: input;
+display: grid;
+grid-template-columns: 80% 20%;
+grid-template-areas: "i b";
 } */
 
 .text {
@@ -54,7 +56,22 @@
     height: 30px;
 }
 
-.switch {
+.friends {
+    /* width: 250px; */
+    margin-left: 30px;
+    max-height: 480px;
+    overflow-y: scroll;
+    /* overflow-x: scroll; */
+    /* border: 1px solid black; */
+    /* direction: rtl; */
+}
+
+ ::-webkit-scrollbar {
+    background-color: #FFB74C;
+}
+
+
+/* .switch {
     margin-right: 30px;
     justify-self: center;
 }
@@ -67,11 +84,11 @@
 .arrowTop {
     height: 40px;
     width: 60px;
-}
+} */
 
 
 /* 
 .but {
-    grid-area: b;
-    height: 33px;
+grid-area: b;
+height: 33px;
 } */

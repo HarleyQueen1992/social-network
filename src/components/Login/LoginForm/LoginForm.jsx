@@ -8,7 +8,6 @@ let maxLength = maxLengthCreator(25)
 
 
 const LoginForm = (props) => {
-    debugger
     return (
         <form onSubmit={props.handleSubmit} >
             <div>

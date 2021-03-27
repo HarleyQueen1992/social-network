@@ -1,19 +1,97 @@
 .header {
     position: fixed;
+    height: 60px;
     width: 100%;
     z-index: 999999;
     grid-area: h;
     background-color: #FD3C3C;
     display: grid;
-    grid-template-areas: "logo login";
-    grid-template-columns: auto auto;
+    grid-template-areas: "logo input audio login";
+    grid-template-columns: 530px 280px 300px 1fr;
 }
 
-.header img {
-    max-width: 60px;
-    min-width: 10px;
-    max-height: 60px;
-    min-height: 10px;
+.audioPlaer {
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    grid-area: audio;
+    align-self: center;
+    display: grid;
+    height: 40px;
+    border-radius: 10px;
+    grid-template-columns: 80px 200px;
+    grid-column-gap: 10px;
+    /* background-color: rgb(235, 235, 235); */
+    height: 1;
+}
+
+.audioPlaer:hover {
+    background-color: #d49d9d;
+}
+
+.controls {
+    align-self: center;
+    display: grid;
+    grid-template-columns: 15px 15px 15px;
+    grid-column-gap: 10px;
+}
+
+.nameOfMusic {
+    align-self: center;
+}
+
+.controls span img {
+    height: 13px;
+}
+
+
+/* .playStop img {
+    height: 30px;
+} */
+
+.searchBlock {
+    grid-area: input;
+    display: grid;
+}
+
+.usersSearch {
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-right: 15px;
+    display: grid;
+    margin-left: 550px;
+    width: 150px;
+    height: auto;
+    background-color: rgb(238, 238, 238);
+    border-radius: 20px;
+}
+
+.user {
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+.user:hover {
+    background-color: rgb(180, 178, 178);
+    border-radius: 5px;
+}
+
+.searchUsers {
+    align-self: center;
+    width: 250px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: white;
+    background-image: url('https://www.freepngimg.com/download/world_wide_web/62434-engine-web-search-wordpress.com-icons-wallpaper-desktop.png');
+    background-size: 17px;
+    background-position: 10px 5px;
+    background-repeat: no-repeat;
+    padding: 5px 10px 5px 35px;
+    /* -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out; */
 }
 
 .logoBlock {
@@ -29,6 +107,7 @@
 }
 
 .loginBlock {
+    margin-right: 10px;
     grid-area: login;
     display: grid;
 }
@@ -38,7 +117,7 @@
     align-self: center;
     font-size: 20px;
     color: white;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .authBlock {
@@ -106,4 +185,9 @@
     align-self: center;
     grid-area: login;
     margin-left: 10px;
+}
+
+.userName a {
+    font-size: 16px;
+    font-weight: 600;
 }

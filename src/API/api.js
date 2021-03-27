@@ -25,6 +25,12 @@ export const usersAPI = {
     },
     postFollow(id) {
         return instance.post(`follow/${id}`)
+    },
+    searchUsers(term) {
+        return instance.get(`users?term=${term}`)
+            .then(response => {
+                return response.data
+            })
     }
 }
 
@@ -63,9 +69,12 @@ export const profileAPI = {
 export const friendsAPI = {
         getFriends(currentPage, pageSize) {
             return instance.get(`users?friend=true&page=${currentPage}&count=${pageSize}`)
-                .then(response => {
-                    return response.data;
-                })
+                // .then(response => {
+                //     return response.data;
+                // })
+        },
+        getAllFriends() {
+            return instance.get(`users?friend=true&count=100`)
         }
     }
     // export const getUsers = (currentPage = 1, pageSize = 10) => {

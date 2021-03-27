@@ -6,7 +6,7 @@ const SET_TOTAL_FRIENDS_COUNT = 'SET_TOTAL_FRIENDS_COUNT';
 const TOGGLE_IS_FATCHING = 'TOGGLE_IS_FATCHING';
 const NEXT_FRIEND = 'NEXT_FRIEND';
 const EARLY_FRIEND = 'EARLY_FRIEND';
-const SET_FRIENDS = 'SET_FRIENDS';
+const SET_FRIENDS_IN_DIALOGS = 'SET_FRIENDS_IN_DIALOGS';
 
 // const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
@@ -19,21 +19,15 @@ let initialState = {
 
 
     ],
-    // dialogs: [
-    //     { id: 1, name: 'Dimych' },
-    //     { id: 2, name: 'Sveta' },
-    //     { id: 3, name: 'Andrew' },
-    //     { id: 4, name: 'Sasha' },
-    //     { id: 5, name: 'Vicotr' },
-    //     { id: 6, name: 'Artem' },
-    // ],
     currentFriend: 1,
-    friends: [],
+    friendsInDialogs: [],
     pageSize: 7,
     totalFriendsCount: 20,
-    isFatching: false,
+    isFatching: true,
 
 }
+
+// Reducer
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -43,11 +37,11 @@ const dialogsReducer = (state = initialState, action) => {
                 messages: [...state.messages, { id: 6, message: action.newMessageText }]
 
             }
-        case SET_FRIENDS:
+        case SET_FRIENDS_IN_DIALOGS:
             {
                 return {
                     ...state,
-                    friends: [...action.friends]
+                    friendsInDialogs: [...action.friends]
                 }
             }
         case SET_CURRENT_FRIEND:
@@ -94,43 +88,23 @@ const dialogsReducer = (state = initialState, action) => {
 
 // Action Creator
 
-export const setFriends = (friends) => ({ type: SET_FRIENDS, friends })
-
-export const setFriendsTotalCount = (totalFriendsCount) => ({ type: SET_TOTAL_FRIENDS_COUNT, totalFriendsCount })
+export const setFriendsInDialogs = (friends) => ({ type: SET_FRIENDS_IN_DIALOGS, friends })
 
 export const toggleIsFatching = (isFatching) => ({ type: TOGGLE_IS_FATCHING, isFatching })
 
-export const nextFriend = () => ({ type: NEXT_FRIEND })
-
-export const earlyFriend = () => ({ type: EARLY_FRIEND })
-
 export const sendMessageActionCreator = (newMessageText) => ({ type: SEND_MESSAGE, newMessageText })
 
-export const setCurrentFriend = (currentFriend) => ({ type: SET_CURRENT_FRIEND, currentFriend })
 
+// Thunk Creator
 
-// export const updateNewMessageTextActionCreator = (body) => {
-//     return {
-//         type: UPDATE_NEW_MESSAGE_TEXT,
-//         newText: body
-//     }
-// }
-
-export const requestFriends = (currentFriend, pageSize, append = '') => {
+export const getFriends = () => {
     return (dispatch) => {
-        dispatch(toggleIsFatching(true));
-        if (append === 'early') {
-            dispatch(earlyFriend())
-        } else if (append === 'next') {
-            dispatch(nextFriend())
-        }
-        dispatch(setCurrentFriend(currentFriend))
-        friendsAPI.getFriends(currentFriend, pageSize)
-            .then(data => {
+        friendsAPI.getAllFriends()
+            .then(response => {
+                dispatch(setFriendsInDialogs(response.data.items))
                 dispatch(toggleIsFatching(false))
-                dispatch(setFriends(data.items));
-                dispatch(setFriendsTotalCount(data.totalCount));
             })
     }
 }
+
 export default dialogsReducer;

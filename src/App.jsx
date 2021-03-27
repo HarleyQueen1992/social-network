@@ -27,7 +27,6 @@ class App extends React.Component {
 
     render () {
        if (!this.props.initialized) {
-              debugger
               return <Preloader/>
        }
        return (
@@ -35,7 +34,7 @@ class App extends React.Component {
                      
                      <HeaderContaioner />
                      <NavbarContainer />
-
+             
                      <div className='app-wrapper-content'>
                             <Route path='/dialogs'
                                    render={ () => <DialogsContainer/> }/>
@@ -49,7 +48,7 @@ class App extends React.Component {
                             <Route path='/users' 
                                    render={ () => <UsersContainer/> }/>
                             <Route path='/login' 
-                                   render={ () => <Login/> }/>                    
+                                   render={ () => <Login/> }/>                  
                      </div>
 
               </div>);

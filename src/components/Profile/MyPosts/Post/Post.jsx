@@ -20,6 +20,9 @@ const Post = (props) => {
                 <img onClick={()=> {props.addLike(props.id)}} className={p.heart} src={heart}/> 
                 }
                 <span>{props.like}</span>
+            </div>
+            <div>
+                <button onClick={() => {props.deletePost(props.id)}} ></button>
             </div>       
 
         </div>

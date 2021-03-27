@@ -6,10 +6,10 @@ span {
 .users {
     margin-top: 5px;
     margin-bottom: 30px;
-    margin-left: 150px;
+    margin-left: 250px;
     display: grid;
     grid-template-areas: "photoFollowed content";
-    grid-template-columns: 100px 500px;
+    grid-template-columns: 100px 400px;
 }
 
 .leftPart {

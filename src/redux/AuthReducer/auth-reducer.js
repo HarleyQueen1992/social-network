@@ -1,4 +1,3 @@
-import { compose } from 'redux';
 import { stopSubmit } from 'redux-form';
 import { profileAPI, authAPI } from '../../API/api'
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -10,26 +9,30 @@ let initialState = {
     email: null,
     isAuth: false,
     profileInfo: null
-
-
 }
+
+// ? utils
+
+
+const setData = (state, action) => {
+    return {
+        ...state,
+        ...action.data
+
+    };
+}
+
+// ! Reducer
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
             {
-                return {
-                    ...state,
-                    ...action.data
-
-                };
+                return setData(state, action)
             }
         case SET_PROFILE_DATA:
             {
-                return {
-                    ...state,
-                    ...action.data
-                }
+                return setData(state, action)
             }
         default:
             return state;
@@ -37,6 +40,7 @@ const authReducer = (state = initialState, action) => {
 }
 
 // Action Creator
+
 export const setAuthUserData = (userId, login, email, isAuth) => {
     return {
         type: SET_USER_DATA,
@@ -59,14 +63,10 @@ export const getAuthMe = () => (dispatch) => {
             if (data.resultCode === 0) {
                 let { id, login, email } = data.data;
                 dispatch(setAuthUserData(id, login, email, true));
-                debugger
                 return profileAPI.getProfile(id)
                     .then(respo => {
-                        debugger
                         dispatch(setProfileData(respo.data, true));
-                        debugger
                     })
-                    // dispatch(setAuthUserData(id, login, email, true));
             }
         })
 
@@ -76,16 +76,12 @@ export const loginIn = (email, password) => {
     return (dispatch) => {
         authAPI.loginIn(email, password)
             .then(data => {
-                debugger
                 if (data.data.resultCode === 0) {
-                    // debugger
                     profileAPI.getProfile(data.data.data.userId)
                         .then(respo => {
-                            // debugger
                             dispatch(setProfileData(respo.data, true));
                         })
                 } else {
-                    debugger
                     let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some error"
                     dispatch(stopSubmit("login", { _error: message }))
                 }

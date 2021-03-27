@@ -8,15 +8,21 @@ const NEXT_PAGE = 'NEXT_PAGE';
 const EARLY_PAGE = 'EARLY_PAGE';
 const TOGGLE_IS_FATCHING = 'TOGGLE_IS_FATCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
-
+const SET_SEARCH_USERS = 'SET_SEARCH_USERS';
+const SET_VALUE = 'SET_VALUE';
+const CLEAR_VALUE = 'CLEAR_VALUE';
+const SET_WINDOW_MODE = 'SET_WINDOW_MODE'
 
 let initialState = {
     users: [],
+    usersSearch: null,
     pageSize: 5,
     totalUsersCount: 20,
     currentPage: 1,
     isFatching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    value: '',
+    windowMode: false
 
 };
 const usersReducer = (state = initialState, action) => {
@@ -54,6 +60,35 @@ const usersReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         currentPage: action.currentPage
+                    }
+                }
+            case SET_VALUE:
+                {
+                    return {
+                        ...state,
+                        value: action.value,
+                        windowMode: true
+                    }
+                }
+            case SET_WINDOW_MODE:
+                {
+                    return {
+                        ...state,
+                        windowMode: action.isWindow
+                    }
+                }
+            case CLEAR_VALUE:
+                {
+                    return {
+                        ...state,
+                        value: ''
+                    }
+                }
+            case SET_SEARCH_USERS:
+                {
+                    return {
+                        ...state,
+                        usersSearch: [...action.searchUsers]
                     }
                 }
             case SET_TOTAL_USERS_COUNT:
@@ -101,7 +136,15 @@ const usersReducer = (state = initialState, action) => {
 
 export const followSuccess = (userId) => ({ type: FOLLOW, userId })
 
+export const setValue = (value) => ({ type: SET_VALUE, value })
+
+export const clearValue = () => ({ type: CLEAR_VALUE })
+
+export const setWindowMode = (isWindow) => ({ type: SET_WINDOW_MODE, isWindow })
+
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId })
+
+export const setUserSearching = (searchUsers) => ({ type: SET_SEARCH_USERS, searchUsers })
 
 export const setUsers = (users) => ({ type: SET_USERS, users })
 
@@ -118,7 +161,6 @@ export const toggleIsFatching = (isFatching) => ({ type: TOGGLE_IS_FATCHING, isF
 export const toggleFollowingProgress = (isFatching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFatching, userId })
 
 //Thunk Creater
-debugger
 
 export const requestUsers = (currentPage, pageSize, append = '') => {
     return (dispatch) => {
@@ -160,6 +202,15 @@ export const unfollow = (userId) => {
                     dispatch(unfollowSuccess(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId))
+            })
+    }
+}
+
+export const requestForUsers = (term) => {
+    return (dispatch) => {
+        usersAPI.searchUsers(term)
+            .then(response => {
+                dispatch(setUserSearching(response.items))
             })
     }
 }

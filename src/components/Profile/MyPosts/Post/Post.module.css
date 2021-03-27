@@ -20,6 +20,8 @@
 
 .postText {
     grid-area: body;
+    word-wrap: break-word;
+    max-width: 450px;
     padding-top: 15px;
     font-size: 14px;
 }

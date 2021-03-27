@@ -6,15 +6,8 @@ import s from './Friends.module.css'
 import FriendsPage from "./FriendsPage/FriendsPage";
 import Pagination from '../common/Pagination/Pagination'
 
-debugger;
 const Friends = (props) => {
 
-    let pagesCount = Math.ceil(props.totalFriendsCount / props.pageSize);
-
-    let page = []
-    // let FriendsElements = props.friends === null ? <Preloader/> : props.friends.map( f => <FriendsPage name={f.fullName}/>);
-    
-    createPages(page, pagesCount, props.currentPage)
 
     return (
         <div>
@@ -32,22 +25,13 @@ const Friends = (props) => {
                 </div>)
                 
             }
-            {/* {!props.friends ? <Preloader/> : props.friends.map(f => <div>{f.fullName}</div> )} */}
 
-            <Pagination currentPage={props.currentPage} 
-                        page={page} 
+            <Pagination currentPage={props.currentPage}
+                        pageSize={props.pageSize}
+                        totalUsersCount={props.totalFriendsCount}
                         earlyPageNumber={props.earlyPageNumber} 
                         onPageChenged={props.onPageChenged} 
                         increasePageNumber={props.increasePageNumber}/>
-            {/* <div className={s.pagination} >
-                <span onClick={ () => {props.earlyPageNumber() }}>ᐸ</span>
-                    <span className={s.numberPage} >
-                        { page.map( p => {
-                            return <span className={props.currentPage === p && s.selectedPage} onClick={ () => { props.onPageChenged(p)}}>{p}</span>
-                        } ) }
-                    </span>
-                <span onClick={ () => {props.increasePageNumber() }}>ᐳ</span>
-            </div> */}
         </div>
                  
     )

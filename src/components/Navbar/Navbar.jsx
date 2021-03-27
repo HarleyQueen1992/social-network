@@ -3,7 +3,6 @@ import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import FriendsBlock from "./FriendsBlock/FriendsBlock";
 
-debugger
 const Navbar = (props) => {
     let FriendsElements = props.friends.map(f => <FriendsBlock name={f.name}/>)
     return <nav className={s.nav}>

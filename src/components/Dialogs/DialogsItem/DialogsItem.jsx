@@ -5,7 +5,6 @@ import Photo from './../../../assets/images/user.png'
 
 
 const DialogsItem = (props) => {
-    debugger
     return (
         <div className={s.dialog}>
                 <div className={s.userAva} >

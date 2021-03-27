@@ -3,7 +3,7 @@ import store from './redux/redux-store';
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import { BrowserRouter, Route, withRouter, Switch } from "react-router-dom";
 import StoreContext from './StoreContext'
 import { Provider } from 'react-redux';
 
@@ -14,11 +14,14 @@ ReactDOM.render( <
     <
     BrowserRouter >
     <
+    Switch >
+    <
     Provider store = { store } >
     <
     App / >
     <
     /Provider> <
+    /Switch> <
     /BrowserRouter> <
     /React.StrictMode>, document.getElementById('root')
 );
