@@ -19,6 +19,10 @@ import Preloader from './components/common/Preloader/Preloader';
 import { withAuthRedirecr } from './Hoc/withAuthRedirect';
 import { getInitialized } from './redux/AppReducer/app-selectors';
 
+// const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+// const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
+
+
 class App extends React.Component {
     
     componentDidMount() {
@@ -37,9 +41,9 @@ class App extends React.Component {
              
                      <div className='app-wrapper-content'>
                             <Route path='/dialogs'
-                                   render={ () => <DialogsContainer/> }/>
+                                   render={ () => <DialogsContainer />}/>
                             <Route path='/profile/:userid?'
-                                   render={ () => <ProfileContainer /> }/>
+                                   render={ () => <ProfileContainer />}/>
                             <Route path='/news' render={ () => <News />}/>
                             <Route path='/music' render={ () => <Music />}/>
                             <Route path='/settings' render={ () => <Settings />}/>

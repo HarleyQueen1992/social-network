@@ -10,9 +10,7 @@ import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/aut
 
 class ProfileContainer extends React.Component  {
     componentDidMount() {
-        console.log('Profile inicialixed')
         let userid = this.props.match.params.userid;
-        console.log(userid)
 
         if (!userid) {
             userid = this.props.profileInfo.userId

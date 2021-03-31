@@ -9,11 +9,6 @@ import { compose } from 'redux';
 import { getUsers, getCurrentPage, getPageSize,  getTotalUsersCount, getIsFatching, getFollowingInProgress } from '../../redux/UsersReducer/users-selectors';
 class UsersC extends React.Component {
     
-    componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
-
-    }
-    
     earlyPageNumber = () => {
         this.props.requestUsers(this.props.currentPage - 1, this.props.pageSize, 'early')
     }
@@ -48,7 +43,6 @@ class UsersC extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    console.log("mapStateToProps")
     return {
         users: getUsers(state),
         currentPage: getCurrentPage(state),

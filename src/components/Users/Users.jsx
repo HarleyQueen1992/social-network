@@ -46,11 +46,11 @@ const Users = (props) => {
             </div>)      
         }
                     <Pagination totalUsersCount={props.totalUsersCount}
-                        pageSize={props.pageSize}
-                        currentPage={props.currentPage}
-                        earlyPageNumber={props.earlyPageNumber} 
-                        onPageChenged={props.onPageChenged} 
-                        increasePageNumber={props.increasePageNumber}/>
+                                pageSize={props.pageSize}
+                                currentPage={props.currentPage}
+                                earlyPageNumber={props.earlyPageNumber} 
+                                onPageChenged={props.onPageChenged} 
+                                increasePageNumber={props.increasePageNumber}/>
             {/* <div className={s.pagination} >
                 <span onClick={ () => {props.earlyPageNumber() }}>ᐸ</span>
                     <span className={s.numberPage} >

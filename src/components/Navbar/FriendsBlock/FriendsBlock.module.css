@@ -1,13 +1,17 @@
-.FriendsBlock img{
+.FriendsBlock img {
+    justify-self: center;
     /*grid-area: b;*/
     height: 50px;
     width: 50px;
-
 }
+
 .nameFriends {
+    justify-self: center;
     font-size: 12px;
 }
+
 .FriendsBlock {
+    display: grid;
     /*grid-area:;*/
-    float:left;
+    float: left;
 }

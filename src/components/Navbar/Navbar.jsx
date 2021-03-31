@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import FriendsBlock from "./FriendsBlock/FriendsBlock";
 
 const Navbar = (props) => {
-    let FriendsElements = props.friends.map(f => <FriendsBlock name={f.name}/>)
+    let FriendsElements = props.friends.map(f => <FriendsBlock id={f.id} name={f.name}/>)
     return <nav className={s.nav}>
         <div className={s.navbar}>
             <div className={s.item}>
@@ -29,7 +29,6 @@ const Navbar = (props) => {
         <div className={s.friendsBlock}>
             <NavLink to='/friends' activeClassName={s.active}>Friends</NavLink>
             <div className={s.PositionBlock}>
-                {FriendsElements}
                 {FriendsElements}
             </div>
         </div>

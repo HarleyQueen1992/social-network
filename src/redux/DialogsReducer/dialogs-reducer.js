@@ -99,7 +99,7 @@ export const sendMessageActionCreator = (newMessageText) => ({ type: SEND_MESSAG
 
 export const getFriends = () => {
     return (dispatch) => {
-        friendsAPI.getAllFriends()
+        return friendsAPI.getAllFriends()
             .then(response => {
                 dispatch(setFriendsInDialogs(response.data.items))
                 dispatch(toggleIsFatching(false))

@@ -1,5 +1,10 @@
 import { stopSubmit } from 'redux-form';
 import { profileAPI, authAPI } from '../../API/api'
+import { getFriends } from '../DialogsReducer/dialogs-reducer';
+import { getAllFriends } from '../NavbarReducer/navbar-reducer';
+import { requestFriends } from '../FriendsReducer/friends-reducer';
+import { getUserProfile, requestStatus, updateStatus } from '../ProfileReducer/profile-reducer';
+import { requestUsers } from '../UsersReducer/user-reducer';
 import { getAuthMe } from './../AuthReducer/auth-reducer';
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
@@ -32,10 +37,19 @@ export const initializedSuccess = () => {
 // Thunk Creator
 
 export const initializeApp = () => (dispatch) => {
-    let promise = dispatch(getAuthMe())
+    let promiseGetAuthMe = dispatch(getAuthMe())
+    let promiseRequestUsers = dispatch(requestUsers())
+    let promiseRequestFriends = dispatch(requestFriends())
+    let promiseGetFriends = dispatch(getFriends())
+    let promiseGetAllFriends = dispatch(getAllFriends())
+        // let promiseGetUserProfile = dispatch(getUserProfile())
+        // let primiseRequestState = dispatch(requestStatus())
 
-    promise.then(() => {
-        dispatch(initializedSuccess());
-    })
+    Promise.all([promiseGetAuthMe, promiseRequestUsers, promiseRequestFriends,
+            promiseGetFriends, promiseGetAllFriends
+        ])
+        .then(() => {
+            dispatch(initializedSuccess());
+        })
 }
 export default appReducer;

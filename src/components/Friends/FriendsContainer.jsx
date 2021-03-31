@@ -6,11 +6,7 @@ import Preloader from '../common/Preloader/Preloader';
 import { getCurrentPage, getFriends, getIsFatching, getPageSize, getTotalFriendsCount } from '../../redux/FriendsReducer/friends-selectors';
 
 class FriendsContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.requestFriends(this.props.currentPage, this.props.pageSize)
-    }
-
+    
     onPageChenged = (pageNumber) => {
         this.props.requestFriends(pageNumber, this.props.pageSize)
     }

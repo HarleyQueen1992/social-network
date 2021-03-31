@@ -8,6 +8,7 @@ const Pagination = (props) => {
 
     let page = [];
     
+    
     createPages(page, pagesCount, props.currentPage )
 
     return (

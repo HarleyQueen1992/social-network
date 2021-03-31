@@ -10,11 +10,6 @@ import Preloader from '../common/Preloader/Preloader';
 
 class DialogsContainer extends React.Component {
 
-        componentDidMount() {
-            this.props.getFriends()
-        }
-
-
     render() {
         return <>{this.props.isFatching ? <Preloader/> : <Dialogs {...this.props}/>}</>
     }

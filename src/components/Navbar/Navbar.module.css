@@ -7,7 +7,7 @@ a {
 .nav {
     height: max-content;
     grid-area: n;
-    margin-left: 300px;
+    margin-left: 280px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
@@ -60,8 +60,6 @@ a {
     padding-top: 50px;
     grid-area: f;
     width: 100%;
-    float: left;
-    /*padding-left: 8px;*/
 }
 
 .friendsBlock img {
@@ -81,6 +79,6 @@ a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* grid-template-areas: "b b b"; */
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    /* grid-column-gap: 10px;
+    grid-row-gap: 10px; */
 }

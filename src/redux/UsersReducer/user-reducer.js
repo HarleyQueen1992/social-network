@@ -2,7 +2,7 @@ import { usersAPI } from '../../API/api'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_CURRENT_PAGE_USERS = 'SET_CURRENT_PAGE_USERS';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const NEXT_PAGE = 'NEXT_PAGE';
 const EARLY_PAGE = 'EARLY_PAGE';
@@ -55,7 +55,7 @@ const usersReducer = (state = initialState, action) => {
                     }
                 }
 
-            case SET_CURRENT_PAGE:
+            case SET_CURRENT_PAGE_USERS:
                 {
                     return {
                         ...state,
@@ -148,7 +148,7 @@ export const setUserSearching = (searchUsers) => ({ type: SET_SEARCH_USERS, sear
 
 export const setUsers = (users) => ({ type: SET_USERS, users })
 
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE_USERS, currentPage })
 
 export const setUsersTotalCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount })
 
@@ -171,7 +171,7 @@ export const requestUsers = (currentPage, pageSize, append = '') => {
             dispatch(nextPage())
         }
         dispatch(setCurrentPage(currentPage))
-        usersAPI.getUsers(currentPage, pageSize)
+        return usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFatching(false))
                 dispatch(setUsers(data.items));

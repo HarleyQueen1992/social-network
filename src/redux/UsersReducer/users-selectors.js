@@ -5,7 +5,6 @@ const getUsersSelector = (state) => {
 }
 
 export const getUsers = createSelector(getUsersSelector, (users) => {
-    console.log("Reselect")
     return users.filter(u => true)
 })
 export const getCurrentPage = (state) => {

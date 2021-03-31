@@ -1,3 +1,3 @@
 export const getPanelFriends = (state) => {
-    return state.navbarPage.friends
+    return state.navbarPage.friendsBlock
 }

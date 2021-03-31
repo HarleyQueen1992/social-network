@@ -1,6 +1,6 @@
 import { friendsAPI } from '../../API/api'
 const SET_FRIENDS = 'SET_FRIENDS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_CURRENT_PAGE_FRIEND = 'SET_CURRENT_PAGE_FRIEND';
 const SET_TOTAL_FRIENDS_COUNT = 'SET_TOTAL_FRIENDS_COUNT';
 const TOGGLE_IS_FATCHING = 'TOGGLE_IS_FATCHING';
 const NEXT_PAGE = 'NEXT_PAGE';
@@ -25,7 +25,7 @@ const friendsReducer = (state = initialState, action) => {
                 }
             }
 
-        case SET_CURRENT_PAGE:
+        case SET_CURRENT_PAGE_FRIEND:
             {
                 return {
                     ...state,
@@ -71,7 +71,7 @@ const friendsReducer = (state = initialState, action) => {
 
 export const setFriends = (friends) => ({ type: SET_FRIENDS, friends })
 
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE_FRIEND, currentPage })
 
 export const setFriendsTotalCount = (totalFriendsCount) => ({ type: SET_TOTAL_FRIENDS_COUNT, totalFriendsCount })
 
@@ -93,11 +93,12 @@ export const requestFriends = (currentPage, pageSize, append = '') => {
             dispatch(nextPage())
         }
         dispatch(setCurrentPage(currentPage))
-        friendsAPI.getFriends(currentPage, pageSize)
+        return friendsAPI.getFriends(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFatching(false))
                 dispatch(setFriends(data.data.items));
                 dispatch(setFriendsTotalCount(data.data.totalCount));
+                dispatch(setCurrentPage(currentPage))
             })
     }
 }
