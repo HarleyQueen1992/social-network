@@ -4,3 +4,9 @@ export const getProfile = (state) => {
 export const getStatus = (state) => {
     return state.profilePage.status;
 }
+export const getNewPostText = (state) => {
+    return state.profilePage.newPostText;
+}
+export const getPosts = (state) => {
+    return state.profilePage.posts;
+}

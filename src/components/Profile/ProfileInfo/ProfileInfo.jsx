@@ -16,9 +16,11 @@ const ProfileInfo = (props) => {
     if (props.profile.photos.large ==  null) {
         srcImg = profileImg
     }
-    // if (props.isAuth === false) {
-    //     return <Redirect to={'/login'} />
-    // }
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
     return (
         <div>
             {/* <div>
@@ -27,7 +29,14 @@ const ProfileInfo = (props) => {
             </div> */}
             <div className={s.descriptionBlock}>
                 <img className={s.ava} src={srcImg} />
-                <img className={s.icon} src={iconSettings}/>
+                {props.isOwner && 
+                            <div>
+                                <input type="file" id="input__file" classname="input input__file" onchange="{onMainPhotoSelected}" /> 
+                                <label htmlfor="input__file">
+                                    <img classname="{s.icon}" src="{iconSettings}/" />
+                                </label>
+                            </div>
+                                    }
                 <div className={s.description} >
                     <div className={s.discriptionTop} >
                         <div className={s.name} >{props.profile.fullName}</div>

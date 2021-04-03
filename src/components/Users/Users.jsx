@@ -51,15 +51,7 @@ const Users = (props) => {
                                 earlyPageNumber={props.earlyPageNumber} 
                                 onPageChenged={props.onPageChenged} 
                                 increasePageNumber={props.increasePageNumber}/>
-            {/* <div className={s.pagination} >
-                <span onClick={ () => {props.earlyPageNumber() }}>ᐸ</span>
-                    <span className={s.numberPage} >
-                        { page.map( p => {
-                            return <span className={props.currentPage === p && s.selectedPage} onClick={ () => { props.onPageChenged(p)}}>{p}</span>
-                        } ) }
-                    </span>
-                <span onClick={ () => {props.increasePageNumber() }}>ᐳ</span>
-            </div> */}
+
             
         </div> 
 }

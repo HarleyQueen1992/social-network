@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import HeaderContaioner from './components/Header/HeaderContainer';
-import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -13,11 +12,11 @@ import FriendsContainer from './components/Friends/FriendsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, Provider} from 'react-redux';
 import { initializeApp } from './redux/AppReducer/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
-import { withAuthRedirecr } from './Hoc/withAuthRedirect';
 import { getInitialized } from './redux/AppReducer/app-selectors';
+import store from "./redux/redux-store";
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -66,8 +65,16 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default compose(
-    withRouter,
-    connect(mapStateToProps,{initializeApp})
-)(App)
-
+let AppContainer = compose(
+       withRouter,
+       connect(mapStateToProps, {initializeApp}))(App);
+   
+   const SamuraiJSApp = (props) => {
+      return <HashRouter >
+           <Provider store={store}>
+               <AppContainer />
+           </Provider>
+       </HashRouter>
+   }
+   
+   export default SamuraiJSApp;

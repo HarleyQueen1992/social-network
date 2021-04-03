@@ -1,4 +1,3 @@
-import { useReducer } from "react";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import dialogsReducer from "./DialogsReducer/dialogs-reducer";
 import friendsReducer from "./FriendsReducer/friends-reducer";

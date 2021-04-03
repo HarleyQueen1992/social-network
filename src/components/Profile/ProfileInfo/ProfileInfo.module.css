@@ -108,9 +108,23 @@
 }
 
 .status:hover {
-    background-color: rgb(175, 129, 69);
+    background-color: rgb(224, 162, 81);
+    height: 18px;
 }
 
 .input {
-    margin-top: -200px;
+    /* margin-top: 7px; */
+    width: 100%;
+    outline: none;
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid black;
+    /* margin-top: -200px; */
+}
+
+input[type=file] {
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none
 }

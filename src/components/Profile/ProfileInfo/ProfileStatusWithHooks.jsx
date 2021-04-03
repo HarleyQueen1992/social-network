@@ -23,25 +23,16 @@ const ProfileStatusWithHooks = (props) => {
 
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);   
-    }
-    
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (this.props.status !== prevProps.status) {
-    //         this.setState({
-    //             status: this.props.status
-    //         })
-    //     }
-    // }
-    
+    }   
         return (
             <div>
                 {!editMode &&
-                    <div>
-                        <span className={s.status} onDoubleClick={activateEditMode } >status: {props.status}</span>
+                    <div className={s.status} onDoubleClick={activateEditMode }>
+                        <span>status: {props.status}</span>
                     </div>}
                 {editMode &&
                     <div>
-                        <input onChange={onStatusChange} className={s.input} autoFocus={true} onBlur={deactivateEditMode } value={status}/>
+                        <input onChange={onStatusChange} className={s.input} autoFocus={true} onBlur={deactivateEditMode} value={status}/>
                     </div>}
             </div>)
 

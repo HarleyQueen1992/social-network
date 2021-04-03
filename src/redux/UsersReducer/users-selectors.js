@@ -22,3 +22,12 @@ export const getIsFatching = (state) => {
 export const getFollowingInProgress = (state) => {
     return state.usersPage.followingInProgress;
 }
+export const getValue = (state) => {
+    return state.usersPage.value;
+}
+export const getUsersSearch = (state) => {
+    return state.usersPage.usersSearch;
+}
+export const getWindowMode = (state) => {
+    return state.usersPage.windowMode;
+}

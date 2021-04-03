@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authAPI } from '../../API/api.js';
 import { setAuthUserData, setProfileData, getAuthMe, logOut } from '../../redux/AuthReducer/auth-reducer.js';
+import {getValue, getUsersSearch, getWindowMode} from '../../redux/UsersReducer/users-selectors'
 import {requestForUsers, setValue, clearValue, setWindowMode} from '../../redux/UsersReducer/user-reducer'
 import { getIsAuth, getProfileInfo, getLogin } from '../../redux/AuthReducer/auth-selectors.js';
 import Header from './Header.jsx'
@@ -12,15 +13,9 @@ class HeaderContainer extends React.Component {
 
     componentDidMount() {
         this.props.getAuthMe()
-        // authAPI.loginIn('3oiabe1r.isv@kjjit.eu', 'gaverla')
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     debugger
-    //     if (this.props.profileInfo !== prevProps.profileInfo) {
-    //         this.props.getAuthMe()
-    //     }
-    // }
+
     handleChange = (event) => {
         this.props.setValue(event.target.value)
         this.props.requestForUsers(event.target.value)
@@ -38,9 +33,9 @@ let mapStateToProps = (state) => {
         login: getLogin(state),
         isAuth: getIsAuth(state),
         profileInfo: getProfileInfo(state),
-        value: state.usersPage.value,
-        usersSearch: state.usersPage.usersSearch,
-        windowMode: state.usersPage.windowMode
+        value: getValue(state),
+        usersSearch: getUsersSearch(state),
+        windowMode: getWindowMode(state)
     }
 }
 

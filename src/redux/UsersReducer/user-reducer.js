@@ -176,6 +176,7 @@ export const requestUsers = (currentPage, pageSize, append = '') => {
                 dispatch(toggleIsFatching(false))
                 dispatch(setUsers(data.items));
                 dispatch(setUsersTotalCount(data.totalCount));
+                dispatch(setCurrentPage(currentPage))
             })
     }
 }

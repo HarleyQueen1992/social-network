@@ -1,38 +1,11 @@
 import reportWebVitals from './reportWebVitals';
-import store from './redux/redux-store';
 import ReactDOM from "react-dom";
 import React from "react";
-import App from "./App";
-import { BrowserRouter, Route, withRouter, Switch } from "react-router-dom";
-import StoreContext from './StoreContext'
-import { Provider } from 'react-redux';
+import SamuraiJSApp from './App';
 
 
 // let rerenderEntireTree = (state) => {
-ReactDOM.render( <
-    React.StrictMode >
-    <
-    BrowserRouter >
-    <
-    Switch >
-    <
-    Provider store = { store } >
-    <
-    App / >
-    <
-    /Provider> <
-    /Switch> <
-    /BrowserRouter> <
-    /React.StrictMode>, document.getElementById('root')
-);
-// }
-
-// rerenderEntireTree(store.getState());
-
-// store.subscribe(() => {
-//     let state = store.getState();
-//     rerenderEntireTree(state);
-// });
+ReactDOM.render( < SamuraiJSApp / > , document.getElementById('root'))
 
 
 // If you want to start measuring performance in your app, pass a function
