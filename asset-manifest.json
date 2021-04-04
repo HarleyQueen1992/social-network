@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/social-network/static/css/main.bd77610c.chunk.css",
-    "main.js": "/social-network/static/js/main.6c54c6e6.chunk.js",
-    "main.js.map": "/social-network/static/js/main.6c54c6e6.chunk.js.map",
-    "runtime-main.js": "/social-network/static/js/runtime-main.3f321529.js",
-    "runtime-main.js.map": "/social-network/static/js/runtime-main.3f321529.js.map",
-    "static/js/2.b8258550.chunk.js": "/social-network/static/js/2.b8258550.chunk.js",
-    "static/js/2.b8258550.chunk.js.map": "/social-network/static/js/2.b8258550.chunk.js.map",
-    "static/js/3.17fa37aa.chunk.js": "/social-network/static/js/3.17fa37aa.chunk.js",
-    "static/js/3.17fa37aa.chunk.js.map": "/social-network/static/js/3.17fa37aa.chunk.js.map",
+    "main.js": "/social-network/static/js/main.ed23a8e5.chunk.js",
+    "main.js.map": "/social-network/static/js/main.ed23a8e5.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.266d39c5.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.266d39c5.js.map",
+    "static/js/2.9fe20524.chunk.js": "/social-network/static/js/2.9fe20524.chunk.js",
+    "static/js/2.9fe20524.chunk.js.map": "/social-network/static/js/2.9fe20524.chunk.js.map",
+    "static/js/3.c98c24fc.chunk.js": "/social-network/static/js/3.c98c24fc.chunk.js",
+    "static/js/3.c98c24fc.chunk.js.map": "/social-network/static/js/3.c98c24fc.chunk.js.map",
     "index.html": "/social-network/index.html",
     "static/css/main.bd77610c.chunk.css.map": "/social-network/static/css/main.bd77610c.chunk.css.map",
-    "static/js/2.b8258550.chunk.js.LICENSE.txt": "/social-network/static/js/2.b8258550.chunk.js.LICENSE.txt",
+    "static/js/2.9fe20524.chunk.js.LICENSE.txt": "/social-network/static/js/2.9fe20524.chunk.js.LICENSE.txt",
     "static/media/Preloader.1f6d544c.svg": "/social-network/static/media/Preloader.1f6d544c.svg",
     "static/media/heart.c412cbae.png": "/social-network/static/media/heart.c412cbae.png",
     "static/media/user.ab7efdc7.png": "/social-network/static/media/user.ab7efdc7.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3f321529.js",
-    "static/js/2.b8258550.chunk.js",
+    "static/js/runtime-main.266d39c5.js",
+    "static/js/2.9fe20524.chunk.js",
     "static/css/main.bd77610c.chunk.css",
-    "static/js/main.6c54c6e6.chunk.js"
+    "static/js/main.ed23a8e5.chunk.js"
   ]
 }
