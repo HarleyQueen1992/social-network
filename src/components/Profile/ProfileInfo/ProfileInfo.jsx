@@ -31,9 +31,9 @@ const ProfileInfo = (props) => {
                 <img className={s.ava} src={srcImg} />
                 {props.isOwner && 
                             <div>
-                                <input type="file" id="input__file" classname="input input__file" onchange="{onMainPhotoSelected}" /> 
-                                <label htmlfor="input__file">
-                                    <img classname="{s.icon}" src="{iconSettings}/" />
+                                <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
+                                <label for="input__file">
+                                    <img className={s.icon} src={iconSettings} />
                                 </label>
                             </div>
                                     }

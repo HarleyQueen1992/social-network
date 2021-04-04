@@ -1,6 +1,6 @@
 import { friendsAPI } from "../../API/api";
 
-const SET_FRIENDS_IN_FRIENDS_BLOCK = 'SET_FRIENDS_IN_FRIENDS_BLOCK'
+const SET_FRIENDS_IN_FRIENDS_BLOCK = 'app/navbar-reducer/SET_FRIENDS_IN_FRIENDS_BLOCK'
 
 let initialState = {
     friendsBlock: null
@@ -23,13 +23,11 @@ export const setFriends = (friends) => ({ type: SET_FRIENDS_IN_FRIENDS_BLOCK, fr
 
 // ? Thunk Creator
 
-export const getAllFriends = () => {
-    return (dispatch) => {
-        return friendsAPI.getAllFriends()
-            .then(data => {
-                dispatch(setFriends(data.data.items));
-            })
-    }
+export const getAllFriends = () => async(dispatch) => {
+    let data = await friendsAPI.getAllFriends()
+
+    dispatch(setFriends(data.data.items));
 }
+
 
 export default navbarReducer;

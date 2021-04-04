@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form';
 import { profileAPI, authAPI } from '../../API/api'
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
+const SET_USER_DATA = 'app/auth-reducer/SET_USER_DATA';
+const SET_PROFILE_DATA = 'app/auth-reducer/SET_PROFILE_DATA'
 
 let initialState = {
     userId: null,
@@ -57,48 +57,43 @@ export const setProfileData = (profileInfo, isAuth) => {
 
 // Thunk Creator
 
-export const getAuthMe = () => (dispatch) => {
-    return authAPI.getAuthMe()
-        .then(data => {
-            if (data.resultCode === 0) {
-                let { id, login, email } = data.data;
-                dispatch(setAuthUserData(id, login, email, true));
-                return profileAPI.getProfile(id)
-                    .then(respo => {
-                        dispatch(setProfileData(respo.data, true));
-                    })
-            }
-        })
+export const getAuthMe = () => async(dispatch) => {
+    let data = await authAPI.getAuthMe()
+
+    if (data.resultCode === 0) {
+        let { id, login, email } = data.data;
+        dispatch(setAuthUserData(id, login, email, true));
+        let respo = await profileAPI.getProfile(id)
+
+        dispatch(setProfileData(respo.data, true));
+    }
+
 
 }
 
-export const loginIn = (email, password) => {
-    return (dispatch) => {
-        authAPI.loginIn(email, password)
-            .then(data => {
-                if (data.data.resultCode === 0) {
-                    profileAPI.getProfile(data.data.data.userId)
-                        .then(respo => {
-                            dispatch(setProfileData(respo.data, true));
-                        })
-                } else {
-                    let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some error"
-                    dispatch(stopSubmit("login", { _error: message }))
-                }
-            })
+export const loginIn = (email, password) => async(dispatch) => {
+    let data = await authAPI.loginIn(email, password)
+    if (data.data.resultCode === 0) {
+        let respo = await profileAPI.getProfile(data.data.data.userId)
+
+        dispatch(setProfileData(respo.data, true));
+
+    } else {
+        let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some error"
+        dispatch(stopSubmit("login", { _error: message }))
     }
+
+
 }
 
-export const logOut = () => {
-    return (dispatch) => {
-        authAPI.logOut()
-            .then(data => {
-                if (data.data.resultCode === 0) {
-                    dispatch(setProfileData(null, false));
+export const logOut = () => async(dispatch) => {
+    let data = await authAPI.logOut()
+    if (data.data.resultCode === 0) {
+        dispatch(setProfileData(null, false));
 
-                }
-            })
     }
+
+
 }
 
 export default authReducer;

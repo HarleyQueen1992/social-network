@@ -1,11 +1,12 @@
 import { profileAPI } from '../../API/api'
+import { getAuthMe } from '../AuthReducer/auth-reducer';
 const ADD_POST = 'ADD-POST';
 // const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const ADD_LIKES = 'ADD_LIKES';
-const DELETE_POST = 'DELETE_POST'
-const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
+const SET_USER_PROFILE = 'app/profile-reducer/SET_USER_PROFILE';
+const SET_STATUS = 'app/profile-reducer/SET_STATUS';
+const ADD_LIKES = 'app/profile-reducer/ADD_LIKES';
+const DELETE_POST = 'app/profile-reducer/DELETE_POST'
+const SAVE_PHOTO_SUCCESS = 'app/profile-reducer/SAVE_PHOTO_SUCCESS'
 
 let initialState = {
     posts: [
@@ -121,43 +122,37 @@ export const savePhotoSuccess = (photos) => {
 
 // Thunk Creator
 
-export const getUserProfile = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfile(userId)
-            .then(response => {
-                dispatch(setUserProfile(response.data));
-            })
-    }
+export const getUserProfile = (userId) => async(dispatch) => {
+    let response = await profileAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data));
+
 }
 
-export const requestStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then(response => {
-                dispatch(setStatus(response.data));
-            })
-    }
+
+export const requestStatus = (userId) => async(dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
+
 }
 
-export const updateStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setStatus(status));
-                }
-            })
+
+export const updateStatus = (status) => async(dispatch) => {
+    let response = await profileAPI.updateStatus(status)
+
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
     }
+
 }
 
-export const savePhoto = (file) => {
-    return (dispatch) => {
-        profileAPI.savePhoto(file)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(savePhotoSuccess(response.data.data.photos));
-                }
-            })
+
+export const savePhoto = (file) => async(dispatch) => {
+    let response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos));
+        dispatch(getAuthMe())
     }
+
 }
+
 export default profileReducer;

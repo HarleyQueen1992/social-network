@@ -1,10 +1,10 @@
 import { friendsAPI } from '../../API/api'
-const SET_FRIENDS = 'SET_FRIENDS';
-const SET_CURRENT_PAGE_FRIEND = 'SET_CURRENT_PAGE_FRIEND';
-const SET_TOTAL_FRIENDS_COUNT = 'SET_TOTAL_FRIENDS_COUNT';
-const TOGGLE_IS_FATCHING = 'TOGGLE_IS_FATCHING';
-const NEXT_PAGE = 'NEXT_PAGE';
-const EARLY_PAGE = 'EARLY_PAGE';
+const SET_FRIENDS = 'app/friends-reducer/SET_FRIENDS';
+const SET_CURRENT_PAGE_FRIEND = 'app/friends-reducer/SET_CURRENT_PAGE_FRIEND';
+const SET_TOTAL_FRIENDS_COUNT = 'app/friends-reducer/SET_TOTAL_FRIENDS_COUNT';
+const TOGGLE_IS_FATCHING = 'app/friends-reducer/TOGGLE_IS_FATCHING';
+const NEXT_PAGE = 'app/friends-reducer/NEXT_PAGE';
+const EARLY_PAGE = 'app/friends-reducer/EARLY_PAGE';
 
 let initialState = {
     friends: [],
@@ -84,22 +84,21 @@ export const earlyPage = () => ({ type: EARLY_PAGE })
 
 // Thunk Creator
 
-export const requestFriends = (currentPage, pageSize, append = '') => {
-    return (dispatch) => {
-        dispatch(toggleIsFatching(true));
-        if (append === 'early') {
-            dispatch(earlyPage())
-        } else if (append === 'next') {
-            dispatch(nextPage())
-        }
-        dispatch(setCurrentPage(currentPage))
-        return friendsAPI.getFriends(currentPage, pageSize)
-            .then(data => {
-                dispatch(toggleIsFatching(false))
-                dispatch(setFriends(data.data.items));
-                dispatch(setFriendsTotalCount(data.data.totalCount));
-                dispatch(setCurrentPage(currentPage))
-            })
+export const requestFriends = (currentPage, pageSize, append = '') => async(dispatch) => {
+    dispatch(toggleIsFatching(true));
+    if (append === 'early') {
+        dispatch(earlyPage())
+    } else if (append === 'next') {
+        dispatch(nextPage())
     }
+    dispatch(setCurrentPage(currentPage))
+    let data = await friendsAPI.getFriends(currentPage, pageSize)
+
+    dispatch(toggleIsFatching(false))
+    dispatch(setFriends(data.data.items));
+    dispatch(setFriendsTotalCount(data.data.totalCount));
+    dispatch(setCurrentPage(currentPage))
+
 }
+
 export default friendsReducer;

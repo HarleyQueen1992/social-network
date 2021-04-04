@@ -1,17 +1,17 @@
 import { usersAPI } from '../../API/api'
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE_USERS = 'SET_CURRENT_PAGE_USERS';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const NEXT_PAGE = 'NEXT_PAGE';
-const EARLY_PAGE = 'EARLY_PAGE';
-const TOGGLE_IS_FATCHING = 'TOGGLE_IS_FATCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
-const SET_SEARCH_USERS = 'SET_SEARCH_USERS';
-const SET_VALUE = 'SET_VALUE';
-const CLEAR_VALUE = 'CLEAR_VALUE';
-const SET_WINDOW_MODE = 'SET_WINDOW_MODE'
+const FOLLOW = 'app/user-reducer/FOLLOW';
+const UNFOLLOW = 'app/user-reducer/UNFOLLOW';
+const SET_USERS = 'app/user-reducer/SET_USERS';
+const SET_CURRENT_PAGE_USERS = 'app/user-reducer/SET_CURRENT_PAGE_USERS';
+const SET_TOTAL_USERS_COUNT = 'app/user-reducer/SET_TOTAL_USERS_COUNT';
+const NEXT_PAGE = 'app/user-reducer/NEXT_PAGE';
+const EARLY_PAGE = 'app/user-reducer/EARLY_PAGE';
+const TOGGLE_IS_FATCHING = 'app/user-reducer/TOGGLE_IS_FATCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'app/user-reducer/TOGGLE_IS_FOLLOWING_PROGRESS';
+const SET_SEARCH_USERS = 'app/user-reducer/SET_SEARCH_USERS';
+const SET_VALUE = 'app/user-reducer/SET_VALUE';
+const CLEAR_VALUE = 'app/user-reducer/CLEAR_VALUE';
+const SET_WINDOW_MODE = 'app/user-reducer/SET_WINDOW_MODE'
 
 let initialState = {
     users: [],

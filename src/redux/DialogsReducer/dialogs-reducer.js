@@ -1,12 +1,12 @@
 import { friendsAPI } from "../../API/api";
 
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const SET_CURRENT_FRIEND = 'SET_CURRENT_FRIEND';
-const SET_TOTAL_FRIENDS_COUNT = 'SET_TOTAL_FRIENDS_COUNT';
-const TOGGLE_IS_FATCHING = 'TOGGLE_IS_FATCHING';
-const NEXT_FRIEND = 'NEXT_FRIEND';
-const EARLY_FRIEND = 'EARLY_FRIEND';
-const SET_FRIENDS_IN_DIALOGS = 'SET_FRIENDS_IN_DIALOGS';
+const SEND_MESSAGE = 'app/dialogs-reducer/SEND-MESSAGE';
+const SET_CURRENT_FRIEND = 'app/dialogs-reducer/SET_CURRENT_FRIEND';
+const SET_TOTAL_FRIENDS_COUNT = 'app/dialogs-reducer/SET_TOTAL_FRIENDS_COUNT';
+const TOGGLE_IS_FATCHING = 'app/dialogs-reducer/TOGGLE_IS_FATCHING';
+const NEXT_FRIEND = 'app/dialogs-reducer/NEXT_FRIEND';
+const EARLY_FRIEND = 'app/dialogs-reducer/EARLY_FRIEND';
+const SET_FRIENDS_IN_DIALOGS = 'app/dialogs-reducer/SET_FRIENDS_IN_DIALOGS';
 
 // const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
@@ -97,14 +97,13 @@ export const sendMessageActionCreator = (newMessageText) => ({ type: SEND_MESSAG
 
 // Thunk Creator
 
-export const getFriends = () => {
-    return (dispatch) => {
-        return friendsAPI.getAllFriends()
-            .then(response => {
-                dispatch(setFriendsInDialogs(response.data.items))
-                dispatch(toggleIsFatching(false))
-            })
-    }
+export const getFriends = () => async(dispatch) => {
+    let response = await friendsAPI.getAllFriends()
+
+    dispatch(setFriendsInDialogs(response.data.items))
+    dispatch(toggleIsFatching(false))
+
 }
+
 
 export default dialogsReducer;

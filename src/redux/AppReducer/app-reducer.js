@@ -6,7 +6,7 @@ import { requestFriends } from '../FriendsReducer/friends-reducer';
 import { getUserProfile, requestStatus, updateStatus } from '../ProfileReducer/profile-reducer';
 import { requestUsers } from '../UsersReducer/user-reducer';
 import { getAuthMe } from './../AuthReducer/auth-reducer';
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'app/app-reducer/INITIALIZED_SUCCESS';
 
 let initialState = {
     initialized: false
@@ -42,8 +42,6 @@ export const initializeApp = () => (dispatch) => {
     let promiseRequestFriends = dispatch(requestFriends())
     let promiseGetFriends = dispatch(getFriends())
     let promiseGetAllFriends = dispatch(getAllFriends())
-        // let promiseGetUserProfile = dispatch(getUserProfile())
-        // let primiseRequestState = dispatch(requestStatus())
 
     Promise.all([promiseGetAuthMe, promiseRequestUsers, promiseRequestFriends,
             promiseGetFriends, promiseGetAllFriends
