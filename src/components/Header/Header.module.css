@@ -4,7 +4,7 @@
     width: 100%;
     z-index: 999999;
     grid-area: h;
-    background-color: #FD3C3C;
+    background-color: rgb(56, 56, 56);
     display: grid;
     grid-template-areas: "logo input audio login";
     grid-template-columns: 530px 280px 300px 1fr;
@@ -27,7 +27,7 @@
 }
 
 .audioPlaer:hover {
-    background-color: #d49d9d;
+    background-color: #7e7e7e;
 }
 
 .controls {
@@ -39,6 +39,7 @@
 
 .nameOfMusic {
     align-self: center;
+    color: white;
 }
 
 .controls span img {
@@ -115,7 +116,11 @@
 .headerName {
     margin-left: 5px;
     align-self: center;
+}
+
+.headerName a {
     font-size: 20px;
+    text-decoration: none;
     color: white;
     font-weight: 500;
 }
@@ -143,10 +148,12 @@
 }
 
 .logout {
-    background-color: white;
-    border: 1px solid white;
+    background-color: black;
+    border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 600;
+    color: white;
     align-self: center;
     height: 30px;
     font-size: 11px;
@@ -190,5 +197,7 @@
 
 .userName a {
     font-size: 16px;
+    text-decoration: none;
+    color: white;
     font-weight: 600;
 }

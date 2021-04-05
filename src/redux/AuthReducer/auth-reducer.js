@@ -1,5 +1,6 @@
 import { stopSubmit } from 'redux-form';
 import { profileAPI, authAPI } from '../../API/api'
+import { getUserProfile } from '../ProfileReducer/profile-reducer';
 const SET_USER_DATA = 'app/auth-reducer/SET_USER_DATA';
 const SET_PROFILE_DATA = 'app/auth-reducer/SET_PROFILE_DATA'
 

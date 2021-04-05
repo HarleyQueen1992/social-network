@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #FFB74C;
+    background-color: rgb(34, 34, 34);
     /* background-size:  100%; */
     /* background-attachment: fixed; */
 }
@@ -18,5 +18,5 @@ body {
 .app-wrapper-content {
     grid-area: c;
     margin-right: 300px;
-    background-color: #FFB74C;
+    background-color: rgb(34, 34, 34);
 }

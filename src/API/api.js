@@ -52,7 +52,7 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-    getProfile(id = 2) {
+    getProfile(id) {
         return instance.get(`profile/${id}`)
 
     },

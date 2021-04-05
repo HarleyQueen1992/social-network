@@ -7,6 +7,7 @@ const SET_STATUS = 'app/profile-reducer/SET_STATUS';
 const ADD_LIKES = 'app/profile-reducer/ADD_LIKES';
 const DELETE_POST = 'app/profile-reducer/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'app/profile-reducer/SAVE_PHOTO_SUCCESS'
+const TOGGLE_IS_FATCHING = 'app/profile-reducer/TOGGLE_IS_FATCHING';
 
 let initialState = {
     posts: [
@@ -14,6 +15,7 @@ let initialState = {
         { id: 1, message: 'Hi, my name is Artem', like: 52, dislike: 99, isDisable: false }
     ],
     newPostText: 'mops.com',
+    isFatching: false,
     profile: null,
     status: null
 
@@ -75,6 +77,11 @@ const profileReducer = (state = initialState, action) => {
                     ...state,
                     profile: {...state.profile, photos: action.photos }
                 }
+            case TOGGLE_IS_FATCHING:
+                return {
+                    ...state,
+                    isFatching: action.isFatching
+                }
             default:
                 return state;
         }
@@ -92,6 +99,9 @@ export const addLike = (postId) => {
         postId
     }
 }
+
+export const toggleIsFatching = (isFatching) => ({ type: TOGGLE_IS_FATCHING, isFatching })
+
 export const deletePost = (pId) => {
     return {
         type: DELETE_POST,
@@ -124,7 +134,9 @@ export const savePhotoSuccess = (photos) => {
 
 export const getUserProfile = (userId) => async(dispatch) => {
     let response = await profileAPI.getProfile(userId)
+    dispatch(toggleIsFatching(true))
     dispatch(setUserProfile(response.data));
+    dispatch(toggleIsFatching(false))
 
 }
 

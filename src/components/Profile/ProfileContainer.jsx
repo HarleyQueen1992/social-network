@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
 import {getUserProfile, requestStatus, updateStatus, deletePost, savePhoto } from '../../redux/ProfileReducer/profile-reducer';
-import { getProfile, getStatus } from '../../redux/ProfileReducer/profile-selectors';
+import { getIsFatching, getProfile, getStatus } from '../../redux/ProfileReducer/profile-selectors';
 import Profile from './Profile';
 import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'
+import Preloader from '../common/Preloader/Preloader'
 
 class ProfileContainer extends React.Component  {
 
@@ -39,6 +40,7 @@ class ProfileContainer extends React.Component  {
                         updateStatus={this.props.updateStatus}
                         deletePost={this.props.deletePost}
                         savePhoto={this.props.savePhoto} />
+            
             </>
         )
     }
@@ -46,6 +48,7 @@ class ProfileContainer extends React.Component  {
 const mapStateToProps = (state) => ({
     profile: getProfile(state),
     isAuth: getIsAuth(state),
+    isFatching: getIsFatching(state),
     status: getStatus(state),
     profileInfo: getProfileInfo(state),
     userId: getUserId(state)

@@ -6,9 +6,9 @@
     /* grid-template-rows: minmax(50px, auto) 0%; */
     /* border: 2px solid #138D90; */
     border-radius: 7px;
-    background-color: #ff8000;
+    background-color: #414040;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .postImg {
@@ -59,13 +59,33 @@ button {
     margin-right: 4px;
 }
 
-.likeBlock {
+.botBlock {
     grid-area: likes;
-    justify-self: end;
+    /* justify-self: end; */
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     margin-top: 10px;
     margin-left: 10px;
+}
+
+.likeBlock {
+    justify-self: end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.deleteBlock {
+    justify-self: start;
+}
+
+.deleteBut {
+    cursor: pointer;
+    background-color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
 }
 
 .textPost {

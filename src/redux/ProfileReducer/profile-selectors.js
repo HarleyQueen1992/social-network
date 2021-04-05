@@ -10,3 +10,6 @@ export const getNewPostText = (state) => {
 export const getPosts = (state) => {
     return state.profilePage.posts;
 }
+export const getIsFatching = (state) => {
+    return state.profilePage.isFatching;
+}

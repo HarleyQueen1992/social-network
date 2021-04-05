@@ -42,6 +42,7 @@ export const initializeApp = () => (dispatch) => {
     let promiseRequestFriends = dispatch(requestFriends())
     let promiseGetFriends = dispatch(getFriends())
     let promiseGetAllFriends = dispatch(getAllFriends())
+    let promiseGetUserProfile = dispatch(getUserProfile())
 
     Promise.all([promiseGetAuthMe, promiseRequestUsers, promiseRequestFriends,
             promiseGetFriends, promiseGetAllFriends

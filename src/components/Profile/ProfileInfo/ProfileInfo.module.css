@@ -8,12 +8,13 @@
 .description {
     grid-area: discription;
     margin-left: 20px;
-    border: 2px solid #138D90;
+    border: 2px solid white;
     border-radius: 20px;
     padding: 16px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: "top" "center" "bot";
+    background-color: rgb(43, 43, 43);
 }
 
 .ava {
@@ -32,8 +33,16 @@
     grid-area: top;
 }
 
+.discriptionTop {
+    color: rgb(173, 173, 173);
+}
+
 .descriptionCenter {
     grid-area: center;
+}
+
+.descriptionCenter div {
+    color: white;
 }
 
 .discriptionBot {
@@ -46,6 +55,7 @@
 .name {
     font-size: 22px;
     font-weight: 600;
+    color: white;
     /* margin-bottom: 10px; */
 }
 
@@ -56,6 +66,10 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "nf sf pf" "f s p";
+}
+
+.botLeft div {
+    color: white;
 }
 
 .numberOfFriends {
@@ -93,6 +107,7 @@
     grid-area: right;
     align-self: flex-end;
     justify-self: flex-end;
+    color: white;
 }
 
 .imgHeader {
@@ -108,8 +123,10 @@
 }
 
 .status:hover {
-    background-color: rgb(224, 162, 81);
-    height: 18px;
+    background-color: rgb(192, 192, 192);
+    border-radius: 5px;
+    color: black;
+    height: 16px;
 }
 
 .input {
