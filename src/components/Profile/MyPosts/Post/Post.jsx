@@ -5,7 +5,6 @@ import heartDisable from './../../../../assets/images/heartDisable.png'
 import avaInPosts from './../../../../assets/images/user.png'
 
 const Post = (props) => {
-    debugger
     return (
         <div className={p.postBlock}>
             <div className={p.photoName} >

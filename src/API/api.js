@@ -16,20 +16,20 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 5) {
+    getUsers(currentPage = 1, pageSize = 6) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
             })
     },
     deleteFollow(id) {
-        return instance.delete(`follow/${id}`)
+        return instance.delete(`follow/${id}/`)
     },
     postFollow(id) {
-        return instance.post(`follow/${id}`)
+        return instance.post(`follow/${id}/`)
     },
     searchUsers(term) {
-        return instance.get(`users?term=${term}`)
+        return instance.get(`users?term=${term}/`)
             .then(response => {
                 return response.data
             })
@@ -38,7 +38,7 @@ export const usersAPI = {
 
 export const authAPI = {
     getAuthMe() {
-        return instance.get(`auth/me`)
+        return instance.get(`auth/me/`)
             .then(response => {
                 return response.data;
             })
@@ -47,16 +47,16 @@ export const authAPI = {
         return instance.post(`auth/login?email=${email}&password=${password}`)
     },
     logOut() {
-        return instance.delete(`auth/login`)
+        return instance.delete(`auth/login/`)
     }
 }
 
 export const profileAPI = {
     getProfile(id) {
-        return instance.get(`profile/${id}`)
+        return instance.get(`profile/${id}/`)
 
     },
-    getStatus(userId = 2) {
+    getStatus(userId) {
         return instance.get(`/profile/status/` + userId)
     },
 
@@ -72,6 +72,9 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    getFollow(id) {
+        return instance.get(`/follow/${id}`)
     }
 }
 

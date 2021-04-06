@@ -11,9 +11,9 @@ import { withRouter } from 'react-router-dom';
 
 class HeaderContainer extends React.Component {
 
-    componentDidMount() {
-        this.props.getAuthMe()
-    }
+    // componentDidMount() {
+    //     this.props.getAuthMe()
+    // }
 
 
     handleChange = (event) => {

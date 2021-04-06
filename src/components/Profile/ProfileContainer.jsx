@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import {getUserProfile, requestStatus, updateStatus, deletePost, savePhoto } from '../../redux/ProfileReducer/profile-reducer';
-import { getIsFatching, getProfile, getStatus } from '../../redux/ProfileReducer/profile-selectors';
+import {getUserProfile, requestStatus,toggleIsFatching, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
+import { getIsFatching, getIsFollow, getProfile, getStatus } from '../../redux/ProfileReducer/profile-selectors';
 import Profile from './Profile';
 import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'
 import Preloader from '../common/Preloader/Preloader'
+import { follow, unfollow } from '../../redux/UsersReducer/user-reducer';
 
 class ProfileContainer extends React.Component  {
 
@@ -16,9 +17,16 @@ class ProfileContainer extends React.Component  {
 
         if (!userid) {
             userid = this.props.profileInfo.userId
+            this.props.getUserProfile(userid)
+            // this.props.requestStatus(userid)
+        } else {
+            this.props.toggleIsFatching(true)
+            this.props.getUserProfile(userid)
+            // this.props.requestStatus(userid)
+            this.props.getFollow(userid)
+            this.props.toggleIsFatching(false)
         }
-        this.props.getUserProfile(userid)
-        this.props.requestStatus(userid)
+
     }
 
     componentDidMount() {
@@ -29,17 +37,24 @@ class ProfileContainer extends React.Component  {
             this.refreshProfile()
         }
     }
-
+    componentWillUnmount() {
+        this.props.toggleIsFollow(null)
+        this.props.setUserProfile(null)
+        this.props.setStatus(null)
+    }
     render() {
         return (
-            <>
+            <>{ this.props.isFatching && this.props.isFollow !== null ? <div>Loading...</div>   :
                 <Profile {...this.props}
                         isOwner={!this.props.match.params.userid} 
                         profile={this.props.profile} 
                         status={this.props.status} 
                         updateStatus={this.props.updateStatus}
                         deletePost={this.props.deletePost}
-                        savePhoto={this.props.savePhoto} />
+                        savePhoto={this.props.savePhoto}
+                        follow={this.props.follow}
+                        unfollow={this.props.unfollow}
+                        isFollow={this.props.isFollow} />}
             
             </>
         )
@@ -51,7 +66,8 @@ const mapStateToProps = (state) => ({
     isFatching: getIsFatching(state),
     status: getStatus(state),
     profileInfo: getProfileInfo(state),
-    userId: getUserId(state)
+    userId: getUserId(state),
+    isFollow: getIsFollow(state)
 })
 
 // let withRedirect = withAuthRedirecr(ProfileContainer)
@@ -62,7 +78,9 @@ const mapStateToProps = (state) => ({
 // export default connect(mapStateToProps,{getUserProfile})(WithUrlDataContainerComponent);
 
 export default compose(
-    connect(mapStateToProps,{getUserProfile, requestStatus, updateStatus, deletePost, savePhoto}),
+    connect(mapStateToProps,{getUserProfile, updateStatus, 
+                            deletePost, savePhoto, follow, getFollow,
+                            unfollow, toggleIsFollow, toggleIsFatching, setUserProfile, setStatus}),
     withRouter,
     withAuthRedirecr
 )(ProfileContainer)

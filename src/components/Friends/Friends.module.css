@@ -33,6 +33,7 @@
 .name {
     grid-area: n;
     font-size: 20px;
+    color: white;
     font-weight: 500;
 }
 
@@ -48,5 +49,5 @@
 
 .writeMessage a {
     font-size: 15px;
-    color: black;
+    color: rgb(197, 197, 197);
 }

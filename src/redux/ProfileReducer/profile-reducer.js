@@ -8,6 +8,7 @@ const ADD_LIKES = 'app/profile-reducer/ADD_LIKES';
 const DELETE_POST = 'app/profile-reducer/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'app/profile-reducer/SAVE_PHOTO_SUCCESS'
 const TOGGLE_IS_FATCHING = 'app/profile-reducer/TOGGLE_IS_FATCHING';
+const TOGGLE_IS_FOLLOW = 'app/profile-reducer/TOGGLE_IS_FOLLOW';
 
 let initialState = {
     posts: [
@@ -17,7 +18,8 @@ let initialState = {
     newPostText: 'mops.com',
     isFatching: false,
     profile: null,
-    status: null
+    status: null,
+    isFollow: null
 
 }
 
@@ -82,6 +84,11 @@ const profileReducer = (state = initialState, action) => {
                     ...state,
                     isFatching: action.isFatching
                 }
+            case TOGGLE_IS_FOLLOW:
+                return {
+                    ...state,
+                    isFollow: action.isFollow
+                }
             default:
                 return state;
         }
@@ -101,6 +108,8 @@ export const addLike = (postId) => {
 }
 
 export const toggleIsFatching = (isFatching) => ({ type: TOGGLE_IS_FATCHING, isFatching })
+
+export const toggleIsFollow = (isFollow) => ({ type: TOGGLE_IS_FOLLOW, isFollow })
 
 export const deletePost = (pId) => {
     return {
@@ -134,18 +143,18 @@ export const savePhotoSuccess = (photos) => {
 
 export const getUserProfile = (userId) => async(dispatch) => {
     let response = await profileAPI.getProfile(userId)
-    dispatch(toggleIsFatching(true))
     dispatch(setUserProfile(response.data));
-    dispatch(toggleIsFatching(false))
+    let resp = await profileAPI.getStatus(userId)
+    dispatch(setStatus(resp.data));
 
 }
 
 
-export const requestStatus = (userId) => async(dispatch) => {
-    let response = await profileAPI.getStatus(userId)
-    dispatch(setStatus(response.data));
+// export const requestStatus = (userId) => async(dispatch) => {
+//     let response = await profileAPI.getStatus(userId)
+//     dispatch(setStatus(response.data));
 
-}
+// }
 
 
 export const updateStatus = (status) => async(dispatch) => {
@@ -167,4 +176,9 @@ export const savePhoto = (file) => async(dispatch) => {
 
 }
 
+export const getFollow = (id) => async(dispatch) => {
+    let response = await profileAPI.getFollow(id)
+    dispatch(toggleIsFollow(response.data))
+
+}
 export default profileReducer;

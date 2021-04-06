@@ -1,4 +1,5 @@
 import { friendsAPI } from "../../API/api";
+import { setFriends } from "../NavbarReducer/navbar-reducer";
 
 const SEND_MESSAGE = 'app/dialogs-reducer/SEND-MESSAGE';
 const SET_CURRENT_FRIEND = 'app/dialogs-reducer/SET_CURRENT_FRIEND';
@@ -99,7 +100,7 @@ export const sendMessageActionCreator = (newMessageText) => ({ type: SEND_MESSAG
 
 export const getFriends = () => async(dispatch) => {
     let response = await friendsAPI.getAllFriends()
-
+    dispatch(setFriends(response.data.items));
     dispatch(setFriendsInDialogs(response.data.items))
     dispatch(toggleIsFatching(false))
 

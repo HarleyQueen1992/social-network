@@ -28,15 +28,32 @@ const ProfileInfo = (props) => {
                     src='https://avatars.mds.yandex.net/get-marketcms/879900/img-800becaf-04f9-447b-90c4-000a2f46f35f.jpeg/optimize'/>
             </div> */}
             <div className={s.descriptionBlock}>
-                <img className={s.ava} src={srcImg} />
-                {props.isOwner && 
-                            <div>
-                                <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
-                                <label for="input__file">
-                                    <img className={s.icon} src={iconSettings} />
-                                </label>
-                            </div>
-                                    }
+                <div className={s.leftDescription} >
+                    <div className={s.topDescriptionLeft} >
+                        <div>
+                            <img className={s.ava} src={srcImg} />
+                        </div>
+                        
+                        {props.isOwner && 
+                                    <div className={s.setPhoto} >
+                                        <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
+                                        <label for="input__file">
+                                            <img className={s.icon} src={iconSettings} />
+                                        </label>
+                                    </div>
+                                            }
+
+                    </div>
+                    
+                    {props.isOwner || <div className={s.followed}>
+                        {props.isFollow === true ?
+                        <button onClick={ () => { props.unfollow(props.profile.userId)} } className={s.followBut} >Unfollow</button>
+                        : <button onClick={ () => { props.follow(props.profile.userId)} } className={s.followBut} >Follow</button>}
+                    </div>}
+
+                    
+                </div>
+                
                 <div className={s.description} >
                     <div className={s.discriptionTop} >
                         <div className={s.name} >{props.profile.fullName}</div>

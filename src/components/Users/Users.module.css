@@ -4,24 +4,28 @@ span {
 }
 
 .users {
-    margin-top: 5px;
-    margin-bottom: 30px;
+    display: grid;
+    margin-top: 30px;
+}
+
+.user {
     margin-left: 250px;
+    margin-bottom: 20px;
     display: grid;
     grid-template-areas: "photoFollowed content";
-    grid-template-columns: 100px 400px;
+    grid-template-columns: 100px 370px;
+    /* border: 1px solid black; */
 }
 
 .leftPart {
     grid-area: photoFollowed;
     display: grid;
-    grid-template-areas: "photo" "followed";
 }
 
 .rightPart {
     padding: 10px;
     border: 2px solid #138D90;
-    border-radius: 20px;
+    border-radius: 30px;
     grid-area: content;
     display: grid;
     grid-template-areas: "name country" "status city";
@@ -30,10 +34,10 @@ span {
 }
 
 .but {
-    border-color: #138D90;
+    border-color: #494949;
     border-style: solid;
     border-width: 1px;
-    background-color: #138D90;
+    background-color: #494949;
     text-align: center;
     font-size: 13px;
     width: 74px;
@@ -42,13 +46,14 @@ span {
 }
 
 button:disabled {
-    background-color: #5f7f80;
+    background-color: #3a3a3a;
+    border: 1px solid grey;
     cursor: default;
 }
 
 .photoUsers {
-    grid-area: photo;
     justify-self: center;
+    align-self: center;
 }
 
 .selectedPage {
@@ -70,6 +75,7 @@ button:disabled {
     font-size: 20px;
     grid-area: name;
     margin-left: 10px;
+    color: rgb(211, 211, 211);
 }
 
 .country {
@@ -85,9 +91,10 @@ button:disabled {
 }
 
 .photo {
-    height: 60px;
-    width: 60px;
+    height: 90px;
+    width: 90px;
     border-radius: 50px;
+    align-self: center;
 }
 
 .numberPage {

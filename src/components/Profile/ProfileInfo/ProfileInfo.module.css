@@ -1,13 +1,13 @@
 .descriptionBlock {
     display: grid;
-    grid-template-columns: 300px 20px 470px;
-    grid-template-areas: "ava icon discription";
-    /* grid-column-gap: 50px; */
+    grid-template-columns: 310px 500px;
+    grid-template-areas: "leftdiscription rightdescription";
+    grid-column-gap: 21px;
 }
 
 .description {
-    grid-area: discription;
-    margin-left: 20px;
+    grid-area: rightdescription;
+    /* margin-left: 20px; */
     border: 2px solid white;
     border-radius: 20px;
     padding: 16px;
@@ -15,6 +15,41 @@
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: "top" "center" "bot";
     background-color: rgb(43, 43, 43);
+}
+
+.leftDescription {
+    grid-area: leftdiscription;
+    display: grid;
+    grid-template-rows: 300px 30px;
+    grid-template-columns: 300px;
+}
+
+.topDescriptionLeft {
+    display: grid;
+    grid-template-columns: 260px 40px;
+}
+
+.setPhoto {
+    align-self: flex-end;
+}
+
+.followed {
+    justify-self: center;
+    align-self: end;
+}
+
+.followBut {
+    height: 24px;
+    width: 100px;
+    background-color: rgb(88, 88, 88);
+    border: 1px solid rgb(88, 88, 88);
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+
+.followBut:hover {
+    background-color: rgb(163, 163, 163);
+    border: 1px solid rgb(163, 163, 163);
 }
 
 .ava {

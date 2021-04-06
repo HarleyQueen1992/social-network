@@ -41,11 +41,11 @@ export const initializeApp = () => (dispatch) => {
     let promiseRequestUsers = dispatch(requestUsers())
     let promiseRequestFriends = dispatch(requestFriends())
     let promiseGetFriends = dispatch(getFriends())
-    let promiseGetAllFriends = dispatch(getAllFriends())
-    let promiseGetUserProfile = dispatch(getUserProfile())
+        // let promiseGetAllFriends = dispatch(getAllFriends())
+        // let promiseGetUserProfile = dispatch(getUserProfile())
 
     Promise.all([promiseGetAuthMe, promiseRequestUsers, promiseRequestFriends,
-            promiseGetFriends, promiseGetAllFriends
+            promiseGetFriends
         ])
         .then(() => {
             dispatch(initializedSuccess());

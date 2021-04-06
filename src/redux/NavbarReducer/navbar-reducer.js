@@ -23,11 +23,11 @@ export const setFriends = (friends) => ({ type: SET_FRIENDS_IN_FRIENDS_BLOCK, fr
 
 // ? Thunk Creator
 
-export const getAllFriends = () => async(dispatch) => {
-    let data = await friendsAPI.getAllFriends()
+// export const getAllFriends = () => async(dispatch) => {
+//     let data = await friendsAPI.getAllFriends()
 
-    dispatch(setFriends(data.data.items));
-}
+//     dispatch(setFriends(data.data.items));
+// }
 
 
 export default navbarReducer;

@@ -8,14 +8,14 @@ import Pagination from '../common/Pagination/Pagination'
 
 const Users = (props) => {
 
-    return <div>
+    return <div className={s.users} >
         {
-            props.users.map( u => <div className={s.users} key={u.id}>
+            props.users.map( u => <div className={s.user} key={u.id}>
                 <div className={s.leftPart} >
                     <div className={s.photoUsers} >
                         <NavLink to={'/profile/' + u.id} ><img src={ u.photos.small != null ? u.photos.small : userPhoto } className={s.photo} /></NavLink>
                     </div>
-                    <div className={s.followed} >
+                    {/* <div className={s.followed} >
                         { u.followed
                             ? <button 
                                     disabled={props.followingInProgress.some(id => id === u.id)} 
@@ -27,7 +27,7 @@ const Users = (props) => {
                                     className={s.but} 
                                     onClick={ () => { props.follow(u.id)} }>Follow
                             </button> }
-                    </div>
+                    </div> */}
                 </div>
                 <div className={s.rightPart} >
                     <div className={s.name} >
