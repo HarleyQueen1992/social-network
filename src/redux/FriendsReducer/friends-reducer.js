@@ -8,7 +8,7 @@ const EARLY_PAGE = 'app/friends-reducer/EARLY_PAGE';
 
 let initialState = {
     friends: [],
-    pageSize: 5,
+    pageSize: 6,
     totalFriendsCount: 20,
     currentPage: 1,
     isFatching: false,

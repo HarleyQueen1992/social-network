@@ -1,6 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 25% 40% 35%;
     grid-template-areas: "d m o";
     margin-top: 20px;
     margin-left: 20px;
@@ -10,7 +10,6 @@
 .dialogsItem {
     grid-area: d;
     display: grid;
-    margin-top: 20px;
     /* margin-bottom: -50px; */
     /* justify-self: center; */
     /* border: 1px solid black; */
@@ -34,10 +33,10 @@
 }
 
 .messageBlock {
-    background-color: #ff794d;
+    background-color: #3b3b3b;
     display: grid;
-    grid-template-rows: minmax(500px, 1fr);
-    grid-template-areas: "message" "input";
+    grid-template-rows: 40px 500px 40px;
+    grid-template-areas: "header" "body" "bot";
 }
 
 
@@ -56,19 +55,75 @@ grid-template-areas: "i b";
     height: 30px;
 }
 
+.header {
+    grid-area: header;
+    background-color: rgb(100, 98, 98);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.userName {
+    align-self: end;
+    justify-self: center;
+}
+
+.wasOnline {
+    font-size: 14px;
+    align-self: start;
+    justify-self: center;
+}
+
+.body {
+    grid-area: body;
+    /* background-color: wheat; */
+}
+
+.bot {
+    grid-area: bot;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    background-color: rgb(187, 187, 187);
+}
+
+.adding {
+    justify-self: center;
+    align-self: center;
+}
+
+.enclosure {
+    cursor: pointer;
+    height: 25px;
+}
+
+.form {
+    align-self: center;
+}
+
+.micro {
+    align-self: center;
+    justify-self: center;
+}
+
+.microImg {
+    cursor: pointer;
+    height: 24px;
+}
+
 .friends {
     /* width: 250px; */
     margin-left: 30px;
-    max-height: 480px;
+    max-height: 580px;
     overflow-y: scroll;
     /* overflow-x: scroll; */
     /* border: 1px solid black; */
     /* direction: rtl; */
 }
 
+
+/* 
  ::-webkit-scrollbar {
     background-color: #FFB74C;
-}
+} */
 
 
 /* .switch {

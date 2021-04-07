@@ -16,7 +16,13 @@
 
 .name {
     grid-area: name;
+    margin-left: 5px;
     align-self: center;
+}
+
+.name a {
+    color: rgb(224, 215, 215);
+    text-decoration: none;
 }
 
 .userAva {

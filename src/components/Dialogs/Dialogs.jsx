@@ -3,6 +3,8 @@ import s from './Dialogs.module.css';
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Messages from "./Messages/Messages";
 import AddMessageFromRedux from './AddMessage/AddMessageFromRedux';
+import enclosure  from './../../assets/images/enclosure.png'
+import micro from './../../assets/images/micro.png'
 
 const Dialogs = (props) => {
 
@@ -24,10 +26,27 @@ const Dialogs = (props) => {
                 </div>  
             </div>
             <div className={s.messageBlock}>
-                <div className={s.messages}>
-                    {messageElements}
+                <div className={s.header}>
+                    <div className={s.userName} >Name</div>
+                    <div className={s.wasOnline} >был в сети час назад</div> 
                 </div>
-                <AddMessageFromRedux onSubmit={sendMessage} />
+                <div className={s.body} >
+                    {messageElements}
+
+                </div>
+                <div className={s.bot} >
+                    <div className={s.adding} >
+                        <img className={s.enclosure} src={enclosure}/>
+                    </div>
+                    <div className={s.form} >
+                        <AddMessageFromRedux onSubmit={sendMessage} />
+                    </div>
+                    <div className={s.micro} >
+                        <img className={s.microImg} src={micro}/>
+
+                    </div>
+                    
+                </div>
             </div>
             <div className={s.other}>
                 content

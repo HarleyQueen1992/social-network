@@ -34,14 +34,16 @@ const Users = (props) => {
                         {u.name}
                     </div>
                     <div className={s.status} >
-                        {u.status}
+                        {!u.status ? u.status :
+                            <span>status: {u.status}</span>   }
+                    </div>
+                    <div className={s.city} >
+                        {u.followed ? <span>friend</span> : <span></span>}
                     </div>
                     <div className={s.country} >
                         {/* {u.location.country}, */}
                     </div>
-                    <div className={s.city} >  
-                        {/* {u.location.city} */}
-                    </div>
+                    
                 </div>
             </div>)      
         }

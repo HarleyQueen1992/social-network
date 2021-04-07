@@ -19,7 +19,7 @@ const Friends = (props) => {
                         </div>
                     </div>
                     <div className={s.rightPart}>
-                        <span className={s.name}>{f.name}</span><br/>
+                        <span className={s.name}>{f.name}</span>
                         <span className={s.writeMessage} ><a href="#">to write a message</a></span>           
                     </div>
                 </div>)

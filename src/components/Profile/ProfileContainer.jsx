@@ -20,11 +20,9 @@ class ProfileContainer extends React.Component  {
             this.props.getUserProfile(userid)
             // this.props.requestStatus(userid)
         } else {
-            this.props.toggleIsFatching(true)
             this.props.getUserProfile(userid)
             // this.props.requestStatus(userid)
             this.props.getFollow(userid)
-            this.props.toggleIsFatching(false)
         }
 
     }
@@ -44,7 +42,7 @@ class ProfileContainer extends React.Component  {
     }
     render() {
         return (
-            <>{ this.props.isFatching && this.props.isFollow !== null ? <div>Loading...</div>   :
+            <>{ this.props.isFatching ? <Preloader/>   :
                 <Profile {...this.props}
                         isOwner={!this.props.match.params.userid} 
                         profile={this.props.profile} 

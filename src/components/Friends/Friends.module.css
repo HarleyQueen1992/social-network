@@ -17,13 +17,14 @@
     border-radius: 30px;
     padding: 15px;
     display: grid;
-    grid-template-areas: "n w";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
+    grid-template-areas: "name write";
 }
 
 .photo {
     height: 100px;
+    border-radius: 50px;
 }
 
 .selectedPage {
@@ -31,7 +32,7 @@
 }
 
 .name {
-    grid-area: n;
+    grid-area: name;
     font-size: 20px;
     color: white;
     font-weight: 500;
@@ -42,12 +43,18 @@
 }
 
 .writeMessage {
-    grid-area: w;
+    grid-area: write;
     justify-self: end;
-    align-self: flex-end;
+    align-self: end;
 }
 
 .writeMessage a {
     font-size: 15px;
+    text-decoration: none;
     color: rgb(197, 197, 197);
+}
+
+.writeMessage a:hover {
+    font-size: 14px;
+    color: rgb(161, 161, 161);
 }

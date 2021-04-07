@@ -16,18 +16,18 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 6) {
+    getUsers(currentPage = 1, pageSize = 7) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
             })
     },
-    deleteFollow(id) {
-        return instance.delete(`follow/${id}/`)
-    },
-    postFollow(id) {
-        return instance.post(`follow/${id}/`)
-    },
+    // deleteFollow(id) {
+    //     return instance.delete(`follow/${id}/`)
+    // },
+    // postFollow(id) {
+    //     return instance.post(`follow/${id}/`)
+    // },
     searchUsers(term) {
         return instance.get(`users?term=${term}/`)
             .then(response => {
@@ -72,14 +72,14 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
-    },
-    getFollow(id) {
-        return instance.get(`/follow/${id}`)
     }
+    // getFollow(id) {
+    //     return instance.get(`/follow/${id}`)
+    // }
 }
 
 export const friendsAPI = {
-        getFriends(currentPage = 1, pageSize = 5) {
+        getFriends(currentPage = 1, pageSize = 6) {
             return instance.get(`users?friend=true&page=${currentPage}&count=${pageSize}`)
                 // .then(response => {
                 //     return response.data;
@@ -96,3 +96,14 @@ export const friendsAPI = {
     //             return response.data;
     //         })
     // }
+export const followAPI = {
+    getFollow(id) {
+        return instance.get(`/follow/${id}`)
+    },
+    deleteFollow(id) {
+        return instance.delete(`follow/${id}/`)
+    },
+    postFollow(id) {
+        return instance.post(`follow/${id}/`)
+    },
+}

@@ -5,6 +5,10 @@ body {
     /* background-attachment: fixed; */
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 .app-wrapper {
     margin: 0 auto;
     display: grid;

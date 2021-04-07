@@ -30,7 +30,7 @@ span {
     display: grid;
     grid-template-areas: "name country" "status city";
     grid-template-columns: 70% 30%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 30% 70%;
 }
 
 .but {
@@ -67,15 +67,18 @@ button:disabled {
 
 .status {
     font-size: 13px;
+    margin-left: 10px;
     grid-area: status;
-    align-self: flex-end;
+    color: rgb(177, 177, 177);
+    align-self: flex-start;
+    justify-self: start;
 }
 
 .name {
     font-size: 20px;
     grid-area: name;
     margin-left: 10px;
-    color: rgb(211, 211, 211);
+    color: rgb(238, 238, 238);
 }
 
 .country {
@@ -87,7 +90,9 @@ button:disabled {
 
 .city {
     grid-area: city;
+    align-self: end;
     justify-self: end;
+    color: rgb(204, 204, 204);
 }
 
 .photo {

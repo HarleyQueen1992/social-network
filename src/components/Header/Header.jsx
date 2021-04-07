@@ -41,13 +41,13 @@ const Header = (props) => {
                 props.profileInfo === null ? <Preloader/> :
                     <div>{props.profileInfo.photos.large === null || undefined ?
                         <div className={h.avaLogin} >
-                            <img className={h.ava} src={photo} />
+                            <NavLink  className={h.ava} to={'/profile/'}><img className={h.ava} src={photo} /></NavLink>
                             <span className={h.userName} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
                             {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png" />   */}
                             <button className={h.logout} onClick={props.logOut} >Log Out</button>  
                         </div> :
                         <div className={h.avaLogin} >  
-                            <img className={h.ava} src={props.profileInfo.photos.large}/>
+                            <NavLink  className={h.ava} to={'/profile/'}><img className={h.ava} src={props.profileInfo.photos.large}/></NavLink>
                             <span className={h.userName} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
                             {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png"/> */}
                             <button className={h.logout} onClick={props.logOut} >Log Out</button>  
@@ -55,7 +55,7 @@ const Header = (props) => {
                     </div> 
             : <NavLink to={'/login'} className={h.authBlock}>Login</NavLink>}
         </div>
-            
+                        
         {props.windowMode && props.value != '' && props.usersSearch != null
             ? <div className={h.usersSearch} >
                 {

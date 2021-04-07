@@ -8,7 +8,7 @@ const AddMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.bottom}>
-                <Field component={"textarea"} name="newMessageBody" placeholder="Enter you message" validate={[required]}/>
+                <Field className={s.input} component={"input"} name="newMessageBody" placeholder="Enter you message" validate={[required]}/>
                 <button className={s.but}>Submit</button>
             </div>
         </form>

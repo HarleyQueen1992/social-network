@@ -1,4 +1,4 @@
-import { profileAPI } from '../../API/api'
+import { profileAPI, followAPI } from '../../API/api'
 import { getAuthMe } from '../AuthReducer/auth-reducer';
 const ADD_POST = 'ADD-POST';
 // const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -142,10 +142,12 @@ export const savePhotoSuccess = (photos) => {
 // Thunk Creator
 
 export const getUserProfile = (userId) => async(dispatch) => {
+    dispatch(toggleIsFatching(true))
     let response = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
     let resp = await profileAPI.getStatus(userId)
     dispatch(setStatus(resp.data));
+    dispatch(toggleIsFatching(false))
 
 }
 
@@ -177,7 +179,7 @@ export const savePhoto = (file) => async(dispatch) => {
 }
 
 export const getFollow = (id) => async(dispatch) => {
-    let response = await profileAPI.getFollow(id)
+    let response = await followAPI.getFollow(id)
     dispatch(toggleIsFollow(response.data))
 
 }
