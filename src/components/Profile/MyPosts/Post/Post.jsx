@@ -9,7 +9,7 @@ const Post = (props) => {
         <div className={p.postBlock}>
             <div className={p.photoName} >
                 <img className={p.postImg}
-                    src={!props.profile.photos.small ? avaInPosts : props.profile.photos.small}/>
+                    src={!props.profile.photo ? avaInPosts : props.profile.photo}/>
                 <span className={p.userName} >{props.login}</span>    
             </div>
             <div className={p.postText}>

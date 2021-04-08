@@ -20,7 +20,7 @@ const Header = (props) => {
         </div>
         <div className={h.searchBlock} >
             {/* <form> */}
-                <input value={props.value} onBlur={() => {props.setWindowMode(false)}} onChange={props.handleChange} onClick={() => {props.setWindowMode(true)}} className={h.searchUsers} type="text" placeholder="Search.." />
+                <input value={props.value} onDoubleClick={() => {props.setWindowMode(false)}} onChange={props.handleChange} onClick={() => {props.setWindowMode(true)}} className={h.searchUsers} type="text" placeholder="Search.." />
             
             {/* </form> */}
             
@@ -39,16 +39,16 @@ const Header = (props) => {
         <div className={h.loginBlock}>  
             {props.isAuth ?
                 props.profileInfo === null ? <Preloader/> :
-                    <div>{props.profileInfo.photos.large === null || undefined ?
+                    <div>{props.profileInfo.photo === null || undefined ?
                         <div className={h.avaLogin} >
                             <NavLink  className={h.ava} to={'/profile/'}><img className={h.ava} src={photo} /></NavLink>
-                            <span className={h.userName} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
+                            <span className={h.Name} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
                             {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png" />   */}
                             <button className={h.logout} onClick={props.logOut} >Log Out</button>  
                         </div> :
                         <div className={h.avaLogin} >  
-                            <NavLink  className={h.ava} to={'/profile/'}><img className={h.ava} src={props.profileInfo.photos.large}/></NavLink>
-                            <span className={h.userName} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
+                            <NavLink  className={h.ava} to={'/profile/'}><img className={h.ava} src={props.profileInfo.photo}/></NavLink>
+                            <span className={h.Name} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
                             {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png"/> */}
                             <button className={h.logout} onClick={props.logOut} >Log Out</button>  
                         </div>}
@@ -59,11 +59,17 @@ const Header = (props) => {
         {props.windowMode && props.value != '' && props.usersSearch != null
             ? <div className={h.usersSearch} >
                 {
+                    props.usersSearch.length === 0 ?  <div className={h.notFound} >Not found</div> :
                     props.usersSearch.map(u => 
-                        <NavLink  className={h.user} to={'/profile/' + u.id}  >  
+                        <NavLink  className={h.user} to={'/profile/' + u.id}  >
+                            
+                                <img className={h.userAva} src={!u.photo ? photo : u.photo} />
+
                             <nav>
                                 {u.name}
                             </nav>
+                            
+                                
                         </NavLink>)
                 }
             </div> 

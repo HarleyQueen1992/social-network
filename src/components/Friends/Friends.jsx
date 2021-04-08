@@ -15,7 +15,7 @@ const Friends = (props) => {
                 props.friends.map(f => <div className={s.friend} >
                     <div className={s.leftPart} >
                         <div className={s.photoUsers} >
-                            <NavLink to={'/profile/' + f.id} ><img src={ f.photos.small != null ? f.photos.small : userPhoto } className={s.photo} /></NavLink>
+                            <NavLink to={'/profile/' + f.id} ><img src={ f.photo != null ? f.photo : userPhoto } className={s.photo} /></NavLink>
                         </div>
                     </div>
                     <div className={s.rightPart}>

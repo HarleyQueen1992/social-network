@@ -9,7 +9,7 @@ import micro from './../../assets/images/micro.png'
 const Dialogs = (props) => {
 
 
-    let dialogsElements = props.dialogsPage.friendsInDialogs.map(d => <DialogsItem photos={d.photos} id={d.id} name={d.name}/>);
+    let dialogsElements = props.dialogsPage.friendsInDialogs.map(d => <DialogsItem photo={d.photo} id={d.id} name={d.name}/>);
     let messageElements = props.dialogsPage.messages.map(m => <Messages messag={m.message}/>);
 
 

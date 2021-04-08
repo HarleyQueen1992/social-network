@@ -9,9 +9,9 @@ const DialogsItem = (props) => {
         <div className={s.dialog}>
                 <div className={s.userAva} >
                     <NavLink to={'/dialogs/' + props.id} activeClassName={s.active}>
-                        {props.photos.small === null 
+                        {props.photo === null 
                         ? <img className={s.ava} src={Photo} /> 
-                        : <img className={s.ava} src={props.photos.small} /> }   
+                        : <img className={s.ava} src={props.photo} /> }   
                     </NavLink>
                 </div>
             

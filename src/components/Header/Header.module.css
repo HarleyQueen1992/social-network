@@ -58,24 +58,43 @@
 
 .usersSearch {
     padding-left: 15px;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-right: 15px;
     display: grid;
-    margin-left: 550px;
+    margin-left: 560px;
     width: 150px;
     height: auto;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(189, 188, 188);
     border-radius: 20px;
 }
 
 .user {
+    display: grid;
+    grid-template-columns: 30px auto;
     margin-bottom: 5px;
     font-size: 17px;
+    color: black;
+    text-decoration: none;
+}
+
+.user nav {
+    align-self: center;
+    justify-self: start;
+    margin-left: 8px;
+}
+
+.user div {
+    align-self: center;
+    justify-self: center;
+}
+
+.notFound {
+    margin-bottom: 8px;
 }
 
 .user:hover {
-    background-color: rgb(180, 178, 178);
-    border-radius: 5px;
+    background-color: rgb(110, 110, 110);
+    border-radius: 20px;
 }
 
 .searchUsers {
@@ -189,15 +208,30 @@
     box-shadow: 0 0 1px rgba(0, 0, 0, .5) inset, 0 2px 3px rgba(0, 0, 0, .5) inset, 0 1px 1px rgba(255, 255, 255, .1);
 } */
 
-.userName {
+.Name {
     align-self: center;
     grid-area: login;
     margin-left: 10px;
 }
 
-.userName a {
+.avaBlock {
+    align-self: center;
+    justify-self: center;
+}
+
+.userAva {
+    height: 30px;
+    border-radius: 50%;
+}
+
+.Name a {
     font-size: 16px;
     text-decoration: none;
     color: white;
     font-weight: 600;
+}
+
+.userName {
+    color: black;
+    text-decoration: none;
 }

@@ -12,15 +12,19 @@ import { follow, unfollow } from '../../redux/UsersReducer/user-reducer';
 
 class ProfileContainer extends React.Component  {
 
+
     refreshProfile() {
         let userid = this.props.match.params.userid;
 
-        if (!userid) {
+        if (!userid || userid == this.props.profileInfo.userId) {
+            debugger
             userid = this.props.profileInfo.userId
             this.props.getUserProfile(userid)
             // this.props.requestStatus(userid)
         } else {
+            debugger
             this.props.getUserProfile(userid)
+
             // this.props.requestStatus(userid)
             this.props.getFollow(userid)
         }
@@ -44,7 +48,7 @@ class ProfileContainer extends React.Component  {
         return (
             <>{ this.props.isFatching ? <Preloader/>   :
                 <Profile {...this.props}
-                        isOwner={!this.props.match.params.userid} 
+                        isOwner={!this.props.match.params.userid || this.props.match.params.userid == this.props.profileInfo.userId} 
                         profile={this.props.profile} 
                         status={this.props.status} 
                         updateStatus={this.props.updateStatus}

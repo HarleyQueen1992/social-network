@@ -13,7 +13,7 @@ const Users = (props) => {
             props.users.map( u => <div className={s.user} key={u.id}>
                 <div className={s.leftPart} >
                     <div className={s.photoUsers} >
-                        <NavLink to={'/profile/' + u.id} ><img src={ u.photos.small != null ? u.photos.small : userPhoto } className={s.photo} /></NavLink>
+                        <NavLink to={'/profile/' + u.id} ><img src={ u.photo != null ? u.photo : userPhoto } className={s.photo} /></NavLink>
                     </div>
                     {/* <div className={s.followed} >
                         { u.followed

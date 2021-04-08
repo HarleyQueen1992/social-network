@@ -77,7 +77,7 @@ const profileReducer = (state = initialState, action) => {
             case SAVE_PHOTO_SUCCESS:
                 return {
                     ...state,
-                    profile: {...state.profile, photos: action.photos }
+                    profile: {...state.profile, photo: action.photo }
                 }
             case TOGGLE_IS_FATCHING:
                 return {
@@ -132,10 +132,10 @@ export const setStatus = (status) => {
     }
 }
 
-export const savePhotoSuccess = (photos) => {
+export const savePhotoSuccess = (photo) => {
     return {
         type: SAVE_PHOTO_SUCCESS,
-        photos
+        photo
     }
 }
 
@@ -172,7 +172,7 @@ export const updateStatus = (status) => async(dispatch) => {
 export const savePhoto = (file) => async(dispatch) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos));
+        dispatch(savePhotoSuccess(response.data.data.photo));
         dispatch(getAuthMe())
     }
 

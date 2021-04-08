@@ -12,8 +12,8 @@ const ProfileInfo = (props) => {
         return( 
             <Preloader />)
     }
-    let srcImg = props.profile.photos.large
-    if (props.profile.photos.large ==  null) {
+    let srcImg = props.profile.photo
+    if (props.profile.photo ==  null) {
         srcImg = profileImg
     }
     const onMainPhotoSelected = (e) => {
