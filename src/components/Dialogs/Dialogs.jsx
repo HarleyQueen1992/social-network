@@ -48,9 +48,6 @@ const Dialogs = (props) => {
                     
                 </div>
             </div>
-            <div className={s.other}>
-                content
-            </div>
         </div>
     )
 }

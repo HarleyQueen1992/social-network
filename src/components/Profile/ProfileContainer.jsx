@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import {getUserProfile, requestStatus,toggleIsFatching, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
-import { getIsFatching, getIsFollow, getProfile, getStatus } from '../../redux/ProfileReducer/profile-selectors';
+import {getUserProfile, requestStatus,toggleIsFatching, saveProfileInfo, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
+import { getIsFatching, getIsFollow, getProfile, getIsSavingPhoto, getStatus } from '../../redux/ProfileReducer/profile-selectors';
 import Profile from './Profile';
 import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'
 import Preloader from '../common/Preloader/Preloader'
@@ -17,12 +17,10 @@ class ProfileContainer extends React.Component  {
         let userid = this.props.match.params.userid;
 
         if (!userid || userid == this.props.profileInfo.userId) {
-            debugger
             userid = this.props.profileInfo.userId
             this.props.getUserProfile(userid)
             // this.props.requestStatus(userid)
         } else {
-            debugger
             this.props.getUserProfile(userid)
 
             // this.props.requestStatus(userid)
@@ -56,7 +54,9 @@ class ProfileContainer extends React.Component  {
                         savePhoto={this.props.savePhoto}
                         follow={this.props.follow}
                         unfollow={this.props.unfollow}
-                        isFollow={this.props.isFollow} />}
+                        isFollow={this.props.isFollow}
+                        saveProfileInfo={this.props.saveProfileInfo}
+                        isSavingPhoto={this.props.isSavingPhoto} />}
             
             </>
         )
@@ -69,7 +69,8 @@ const mapStateToProps = (state) => ({
     status: getStatus(state),
     profileInfo: getProfileInfo(state),
     userId: getUserId(state),
-    isFollow: getIsFollow(state)
+    isFollow: getIsFollow(state),
+    isSavingPhoto: getIsSavingPhoto(state)
 })
 
 // let withRedirect = withAuthRedirecr(ProfileContainer)
@@ -82,7 +83,9 @@ const mapStateToProps = (state) => ({
 export default compose(
     connect(mapStateToProps,{getUserProfile, updateStatus, 
                             deletePost, savePhoto, follow, getFollow,
-                            unfollow, toggleIsFollow, toggleIsFatching, setUserProfile, setStatus}),
+                            unfollow, toggleIsFollow, toggleIsFatching, 
+                            setUserProfile, setStatus, saveProfileInfo,
+                            getIsSavingPhoto}),
     withRouter,
     withAuthRedirecr
 )(ProfileContainer)

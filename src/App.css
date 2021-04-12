@@ -15,12 +15,25 @@ body {
     /* width: 1200px; */
     grid-template-areas: "h h h h" "n c c c";
     grid-template-rows: 60px 1fr;
-    grid-template-columns: 530px 1fr 1fr 1fr;
+    grid-template-columns: 500px 1fr 1fr 1fr;
     grid-gap: 20px;
 }
 
 .app-wrapper-content {
     grid-area: c;
-    margin-right: 300px;
+    display: grid;
+    /* margin-right: 300px; */
     background-color: rgb(34, 34, 34);
+}
+
+@media (max-width: 990px) {
+    .app-wrapper {
+        grid-template-columns: 430px 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 879px) {
+    .app-wrapper {
+        grid-template-columns: 380px 1fr 1fr 1fr;
+    }
 }

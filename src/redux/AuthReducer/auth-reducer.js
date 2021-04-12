@@ -1,8 +1,9 @@
 import { stopSubmit } from 'redux-form';
 import { profileAPI, authAPI } from '../../API/api'
-import { getUserProfile } from '../ProfileReducer/profile-reducer';
+import { getUserProfile, isSavePhoto } from '../ProfileReducer/profile-reducer';
 const SET_USER_DATA = 'app/auth-reducer/SET_USER_DATA';
 const SET_PROFILE_DATA = 'app/auth-reducer/SET_PROFILE_DATA'
+const SET_PROFILE_PHOTO = 'app/auth-reducer/SET_PROFILE_PHOTO'
 
 let initialState = {
     userId: null,
@@ -35,6 +36,13 @@ const authReducer = (state = initialState, action) => {
             {
                 return setData(state, action)
             }
+        case SET_PROFILE_PHOTO:
+            {
+                return {
+                    ...state,
+                    profileInfo: {...state.profileInfo, photo: action.profilePhoto }
+                }
+            }
         default:
             return state;
     }
@@ -56,7 +64,13 @@ export const setProfileData = (profileInfo, isAuth) => {
     }
 }
 
-// Thunk Creator
+export const setProfilePhoto = (profilePhoto) => {
+        return {
+            type: SET_PROFILE_PHOTO,
+            profilePhoto
+        }
+    }
+    // Thunk Creator
 
 export const getAuthMe = () => async(dispatch) => {
     let data = await authAPI.getAuthMe()
@@ -67,6 +81,7 @@ export const getAuthMe = () => async(dispatch) => {
         let respo = await profileAPI.getProfile(id)
 
         dispatch(setProfileData(respo.data, true));
+        // dispatch(isSavePhoto(false))
     }
 
 

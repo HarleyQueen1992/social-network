@@ -10,7 +10,7 @@ const Friends = (props) => {
 
 
     return (
-        <div>
+        <div className={s.friends} >
             {
                 props.friends.map(f => <div className={s.friend} >
                     <div className={s.leftPart} >

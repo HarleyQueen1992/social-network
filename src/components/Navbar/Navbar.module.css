@@ -81,3 +81,15 @@ nav a {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
 }
+
+@media (max-width: 990px) {
+    .nav {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 879px) {
+    .nav {
+        margin-left: 150px;
+    }
+}

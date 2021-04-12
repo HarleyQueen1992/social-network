@@ -9,9 +9,11 @@ span {
 }
 
 .user {
-    margin-left: 250px;
+    justify-self: center;
+    margin-right: 500px;
     margin-bottom: 20px;
     display: grid;
+    grid-template-rows: 90px;
     grid-template-areas: "photoFollowed content";
     grid-template-columns: 100px 370px;
     /* border: 1px solid black; */
@@ -123,3 +125,16 @@ button:disabled {
 .pagination {
     text-align: center;
 }
+
+@media (max-width: 1500px) {
+    .user {
+        margin-right: 0;
+    }
+}
+
+
+/* @media (max-width: 1300px) {
+    .user {
+        margin-right: 0;
+    }
+} */

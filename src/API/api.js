@@ -6,7 +6,7 @@ const instance = axios.create({
     withCredentials: true,
     // baseURL: `https://social-network.samuraijs.com/api/1.0`,
     baseURL: `https://social-network-api-1.herokuapp.com/api/1.0`,
-    // baseURL: 'https://443dafaba49a.ngrok.io/api/1.0'
+    // baseURL: 'https://15ceffe2a08d.ngrok.io/api/1.0'
     // baseURL: `https://5cf77382dbb5.ngrok.io/api/1.0`,
     // headers: {
     //     "API-KEY": "505604b6-4616-49b3-a97c-c92fd8b13d58"
@@ -64,6 +64,21 @@ export const profileAPI = {
     updateStatus(status) {
         return instance.put(`/profile/status/`, { status })
     },
+
+
+
+
+
+
+
+    saveProfileInfo(profileInfo) {
+        return instance.put(`/profile/`, profileInfo)
+    },
+
+
+
+
+
     savePhoto(photoFile) {
         const formData = new FormData();
         formData.append("image", photoFile);

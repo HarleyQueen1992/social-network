@@ -1,18 +1,20 @@
 .profileBlock {
+    width: 100%;
     display: grid;
     grid-template-rows: auto auto;
     grid-row-gap: 50px;
     grid-template-areas: "info" "posts";
-    margin-right: 290px;
+    /* margin-right: 290px; */
 }
 
 .profileInfo {
     grid-area: info;
+    justify-self: start;
 }
 
 .posts {
     grid-area: posts;
-    justify-self: end;
+    margin-left: 380px;
     /* display: grid;
     grid-template-columns: 1fr 1fr; */
 }

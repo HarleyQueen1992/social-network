@@ -1,7 +1,8 @@
 .dialogs {
+    justify-self: start;
     display: grid;
-    grid-template-columns: 25% 40% 35%;
-    grid-template-areas: "d m o";
+    grid-template-columns: 250px 400px;
+    grid-template-areas: "d m ";
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
@@ -10,22 +11,11 @@
 .dialogsItem {
     grid-area: d;
     display: grid;
-    /* margin-bottom: -50px; */
-    /* justify-self: center; */
-    /* border: 1px solid black; */
-    /* border-right: 1px solid #00CB91; */
 }
 
 .messages {
     grid-area: message;
     margin-left: 20px;
-    /* background-color: #ff794d; */
-    /* border-right: 1px solid #00CB91; */
-    /*display: grid;*/
-    /*grid-template-rows: 80% 20%;*/
-    /*grid-template-areas:*/
-    /*"message"*/
-    /*"input";*/
 }
 
 .other {
@@ -38,17 +28,6 @@
     grid-template-rows: 40px 500px 40px;
     grid-template-areas: "header" "body" "bot";
 }
-
-
-/* 
-.bottom {
-margin-left: 50px;
-margin-right: 50px;
-grid-area: input;
-display: grid;
-grid-template-columns: 80% 20%;
-grid-template-areas: "i b";
-} */
 
 .text {
     grid-area: i;
@@ -75,7 +54,6 @@ grid-template-areas: "i b";
 
 .body {
     grid-area: body;
-    /* background-color: wheat; */
 }
 
 .bot {
@@ -110,40 +88,17 @@ grid-template-areas: "i b";
 }
 
 .friends {
-    /* width: 250px; */
     margin-left: 30px;
     max-height: 580px;
     overflow-y: scroll;
-    /* overflow-x: scroll; */
-    /* border: 1px solid black; */
-    /* direction: rtl; */
 }
 
-
-/* 
- ::-webkit-scrollbar {
-    background-color: #FFB74C;
-} */
-
-
-/* .switch {
-    margin-right: 30px;
-    justify-self: center;
+@media (max-width: 1190px) {
+    .dialogs {
+        justify-self: center;
+        grid-template-columns: 400px;
+    }
+    .dialogsItem {
+        display: none;
+    }
 }
-
-.arrowBot {
-    height: 40px;
-    width: 60px;
-}
-
-.arrowTop {
-    height: 40px;
-    width: 60px;
-} */
-
-
-/* 
-.but {
-grid-area: b;
-height: 33px;
-} */

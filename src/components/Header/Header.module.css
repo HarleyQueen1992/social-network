@@ -1,3 +1,5 @@
+/*! Header */
+
 .header {
     position: fixed;
     height: 60px;
@@ -10,17 +12,161 @@
     grid-template-columns: 530px 280px 300px 1fr;
 }
 
+
+/*! Logo */
+
+.logoBlock {
+    grid-area: logo;
+    display: grid;
+    height: 60px;
+    grid-template-columns: 360px 1fr;
+}
+
+.logo {
+    justify-self: end;
+    width: 60px;
+    height: 60px;
+}
+
+.headerName {
+    margin-left: 5px;
+    align-self: center;
+    /* height: 100%; */
+}
+
+.headerName a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+@media (max-width:1350px) {
+    .header {
+        grid-template-columns: 496px 220px 204px 1fr;
+    }
+}
+
+@media (max-width: 1140px) {
+    .header {
+        grid-template-areas: "logo input music login";
+        grid-template-columns: 496px 182px 112px 1fr;
+    }
+}
+
+@media (max-width: 990px) {
+    .header {
+        grid-template-columns: 377px 182px 87px 1fr;
+    }
+    .logoBlock {
+        grid-template-columns: 248px 1fr;
+    }
+}
+
+@media (max-width: 879px) {
+    .header {
+        grid-template-columns: 233px 182px 87px 1fr;
+    }
+    .logoBlock {
+        grid-template-columns: 141px 1fr;
+    }
+}
+
+@media (max-width: 715px) {
+    .header {
+        grid-template-columns: 193px 130px 87px 1fr;
+    }
+    .logoBlock {
+        grid-template-columns: 108px 1fr;
+    }
+}
+
+
+/*! SearchBlock */
+
+.searchBlock {
+    grid-area: input;
+    display: grid;
+}
+
+.searchUsers {
+    align-self: center;
+    width: 250px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: white;
+    background-image: url('https://www.freepngimg.com/download/world_wide_web/62434-engine-web-search-wordpress.com-icons-wallpaper-desktop.png');
+    background-size: 17px;
+    background-position: 10px 5px;
+    background-repeat: no-repeat;
+    padding: 5px 10px 5px 35px;
+    /* -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out; */
+}
+
+.notFound {
+    margin-bottom: 8px;
+}
+
+.usersSearch {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-right: 15px;
+    display: grid;
+    margin-left: 560px;
+    width: 150px;
+    height: auto;
+    background-color: rgb(189, 188, 188);
+    border-radius: 20px;
+}
+
+@media (max-width:1350px) {
+    .searchUsers {
+        width: 180px;
+    }
+    .usersSearch {
+        margin-left: 500px;
+    }
+}
+
+@media (max-width: 990px) {
+    .usersSearch {
+        margin-left: 380px;
+    }
+}
+
+@media (max-width: 879px) {
+    .usersSearch {
+        margin-left: 235px;
+    }
+}
+
+@media (max-width: 715px) {
+    .searchUsers {
+        width: 130px;
+    }
+    .usersSearch {
+        margin-left: 193px;
+    }
+}
+
+
+/*! AudioPlaer */
+
 .audioPlaer {
     margin-left: 20px;
     padding-left: 20px;
-    padding-right: 20px;
+    /* padding-right: 20px; */
     cursor: pointer;
     grid-area: audio;
     align-self: center;
     display: grid;
     height: 40px;
     border-radius: 10px;
-    grid-template-columns: 80px 200px;
+    grid-template-columns: 80px 150px;
     grid-column-gap: 10px;
     /* background-color: rgb(235, 235, 235); */
     height: 1;
@@ -46,27 +192,36 @@
     height: 13px;
 }
 
-
-/* .playStop img {
-    height: 30px;
-} */
-
-.searchBlock {
-    grid-area: input;
-    display: grid;
+.music {
+    display: none;
 }
 
-.usersSearch {
-    padding-left: 15px;
-    padding-top: 5px;
-    padding-right: 15px;
-    display: grid;
-    margin-left: 560px;
-    width: 150px;
-    height: auto;
-    background-color: rgb(189, 188, 188);
-    border-radius: 20px;
+.music img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 }
+
+@media (max-width: 1350px) {
+    .audioPlaer {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+}
+
+@media (max-width: 1140px) {
+    .audioPlaer {
+        display: none;
+    }
+    .music {
+        display: block;
+        grid-area: music;
+        justify-self: end;
+    }
+}
+
+
+/*! LoginBlock */
 
 .user {
     display: grid;
@@ -88,60 +243,15 @@
     justify-self: center;
 }
 
-.notFound {
-    margin-bottom: 8px;
-}
-
 .user:hover {
     background-color: rgb(110, 110, 110);
     border-radius: 20px;
-}
-
-.searchUsers {
-    align-self: center;
-    width: 250px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    font-size: 14px;
-    background-color: white;
-    background-image: url('https://www.freepngimg.com/download/world_wide_web/62434-engine-web-search-wordpress.com-icons-wallpaper-desktop.png');
-    background-size: 17px;
-    background-position: 10px 5px;
-    background-repeat: no-repeat;
-    padding: 5px 10px 5px 35px;
-    /* -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out; */
-}
-
-.logoBlock {
-    grid-area: logo;
-    display: grid;
-    grid-template-columns: 360px 1fr;
-}
-
-.logo {
-    justify-self: end;
-    width: 60px;
-    height: 60px;
 }
 
 .loginBlock {
     margin-right: 10px;
     grid-area: login;
     display: grid;
-}
-
-.headerName {
-    margin-left: 5px;
-    align-self: center;
-}
-
-.headerName a {
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
 }
 
 .authBlock {
@@ -154,7 +264,7 @@
 .avaLogin {
     display: grid;
     grid-template-areas: "ava login out";
-    grid-template-columns: auto 130px 70px;
+    grid-template-columns: auto 100px 70px;
 }
 
 .ava {
@@ -180,33 +290,6 @@
     padding-right: 0px;
     margin: 5px;
 }
-
-
-/* .logout {
-    position: relative;
-    display: inline-block;
-    font-size: 70%;
-    font-weight: 700;
-    color: rgb(209, 209, 217);
-    text-decoration: none;
-    text-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
-    padding: .5em 1em;
-    outline: none;
-    border-radius: 3px;
-    background: linear-gradient(rgb(110, 112, 120), rgb(81, 81, 86)) rgb(110, 112, 120);
-    box-shadow: 0 1px rgba(255, 255, 255, .2) inset, 0 3px 5px rgba(0, 1, 6, .5), 0 0 1px 1px rgba(0, 1, 6, .2);
-    transition: .2s ease-in-out;
-}
-
-.logout:hover:not(:active) {
-    background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
-}
-
-.logout:active {
-    top: 1px;
-    background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
-    box-shadow: 0 0 1px rgba(0, 0, 0, .5) inset, 0 2px 3px rgba(0, 0, 0, .5) inset, 0 1px 1px rgba(255, 255, 255, .1);
-} */
 
 .Name {
     align-self: center;
@@ -234,4 +317,10 @@
 .userName {
     color: black;
     text-decoration: none;
+}
+
+@media (max-width: 1170px) {
+    .avaLogin {
+        grid-template-columns: auto 78px 70px;
+    }
 }

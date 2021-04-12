@@ -8,6 +8,10 @@ import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { getUsers, getCurrentPage, getPageSize,  getTotalUsersCount, getIsFatching, getFollowingInProgress } from '../../redux/UsersReducer/users-selectors';
 class UsersC extends React.Component {
+    componentDidMount() {
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        
+    } 
     
     earlyPageNumber = () => {
         this.props.requestUsers(this.props.currentPage - 1, this.props.pageSize, 'early')

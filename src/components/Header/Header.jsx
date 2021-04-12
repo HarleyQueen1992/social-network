@@ -6,6 +6,7 @@ import Preloader from '../common/Preloader/Preloader';
 import play from './../../assets/images/playAudioPleer.png'
 import next from './../../assets/images/next.png'
 import previous from './../../assets/images/previous.png'
+import musicIcon from './../../assets/images/—Pngtree—music icon_4490549.png'
 
 const Header = (props) => {
 
@@ -15,7 +16,7 @@ const Header = (props) => {
 
     return <header className={h.header}>
         <div className={h.logoBlock} >
-            <img width='100px' className={h.logo} src='https://png.pngtree.com/png-vector/20200908/ourlarge/pngtree-pug-dog-smoke-pipe-illustration-png-image_2341735.jpg' />
+            <img className={h.logo} src='https://png.pngtree.com/png-vector/20200908/ourlarge/pngtree-pug-dog-smoke-pipe-illustration-png-image_2341735.jpg' />
             <span className={h.headerName}> <NavLink to={'/profile/'} >Mosset</NavLink> </span>
         </div>
         <div className={h.searchBlock} >
@@ -36,6 +37,9 @@ const Header = (props) => {
             </div>
             {/* <audio controls="controls" ></audio> */}
         </div>
+        <div className={h.music}>
+                <img src={musicIcon}/>
+            </div>
         <div className={h.loginBlock}>  
             {props.isAuth ?
                 props.profileInfo === null ? <Preloader/> :

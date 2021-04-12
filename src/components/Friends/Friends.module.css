@@ -1,6 +1,13 @@
-.friend {
-    margin-left: 200px;
+.friends {
     display: grid;
+}
+
+.friend {
+    justify-self: start;
+    display: grid;
+    margin-left: 200px;
+    /* margin-right: 600px; */
+    grid-template-rows: 100px;
     grid-template-columns: 100px 400px;
     grid-template-areas: "left right";
     grid-column-gap: 10px;
@@ -57,4 +64,11 @@
 .writeMessage a:hover {
     font-size: 14px;
     color: rgb(161, 161, 161);
+}
+
+@media (max-width: 1500px) {
+    .friend {
+        justify-self: center;
+        margin-left: 0;
+    }
 }

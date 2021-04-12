@@ -7,14 +7,88 @@
 
 .description {
     grid-area: rightdescription;
+    /* height: 600px; */
     /* margin-left: 20px; */
     border: 2px solid white;
     border-radius: 20px;
     padding: 16px;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 100px;
     grid-template-areas: "top" "center" "bot";
     background-color: rgb(43, 43, 43);
+}
+
+.descriptionEditModeTrue {
+    grid-area: rightdescription;
+    height: 950px;
+    /* margin-left: 20px; */
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 16px;
+    display: grid;
+    grid-template-rows: 100px 100px 650px 100px;
+    grid-template-areas: "top" "center" "editMode" "bot";
+    background-color: rgb(43, 43, 43);
+}
+
+.field {
+    display: inline-block;
+}
+
+.preloader {
+    margin-top: -100px;
+}
+
+.descriptionDeployed {
+    grid-area: rightdescription;
+    height: 950px;
+    /* margin-left: 20px; */
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 16px;
+    display: grid;
+    grid-template-rows: 100px 100px 650px 100px;
+    grid-template-areas: "top" "center" "editMode" "bot";
+    background-color: rgb(43, 43, 43);
+}
+
+.deploy {
+    grid-area: editMode;
+}
+
+.detailed:hover {
+    color: rgba(255, 255, 255, 0.555);
+}
+
+.deploy div {
+    color: rgb(212, 212, 212);
+    margin-bottom: 5px;
+}
+
+.saveBut {
+    width: 60px;
+    cursor: pointer;
+    height: 30px;
+    margin-top: 10px;
+    background-color: rgb(99, 99, 99);
+    border: 1px solid rgb(99, 99, 99);
+}
+
+.saveBut:hover {
+    background-color: rgb(201, 200, 200);
+}
+
+.contactsBlock {
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+.contactsBlock b {
+    padding-top: 10px;
+}
+
+.contacts {
+    color: white;
 }
 
 .leftDescription {
@@ -74,6 +148,13 @@
 
 .descriptionCenter {
     grid-area: center;
+    display: grid;
+}
+
+.detailed {
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
 }
 
 .descriptionCenter div {

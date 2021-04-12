@@ -3,9 +3,17 @@
 }
 
 .pagination {
-    margin-left: 450px;
+    justify-self: center;
+    margin-left: -350px;
+    align-self: end;
 }
 
 .numberPage span {
     color: white;
+}
+
+@media (max-width: 1500px) {
+    .pagination {
+        margin-left: 0;
+    }
 }
