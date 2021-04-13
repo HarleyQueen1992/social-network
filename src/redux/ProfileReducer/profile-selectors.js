@@ -16,7 +16,6 @@ export const getIsFatching = (state) => {
 export const getIsFollow = (state) => {
     return state.profilePage.isFollow;
 }
-
 export const getIsSavingPhoto = (state) => {
     return state.profilePage.isSavingPhoto;
 }

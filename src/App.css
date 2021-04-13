@@ -26,6 +26,18 @@ body {
     background-color: rgb(34, 34, 34);
 }
 
+@media (max-width: 1250px) {
+    .app-wrapper-content {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 860px) {
+    .app-wrapper-content {
+        justify-content: start;
+    }
+}
+
 @media (max-width: 990px) {
     .app-wrapper {
         grid-template-columns: 430px 1fr 1fr 1fr;

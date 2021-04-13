@@ -6,10 +6,11 @@ span {
 .users {
     display: grid;
     margin-top: 30px;
+    justify-self: center;
 }
 
 .user {
-    justify-self: center;
+    /* justify-self: center; */
     margin-right: 500px;
     margin-bottom: 20px;
     display: grid;
@@ -126,7 +127,7 @@ button:disabled {
     text-align: center;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1650px) {
     .user {
         margin-right: 0;
     }

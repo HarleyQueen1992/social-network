@@ -35,7 +35,7 @@ const ProfileInfo = (props) => {
         );
     }
     return (
-        <div>
+        <div className={s.profileInfoBlock} >
             {/* <div>
                 <img className={s.imgHeader}
                     src='https://avatars.mds.yandex.net/get-marketcms/879900/img-800becaf-04f9-447b-90c4-000a2f46f35f.jpeg/optimize'/>
@@ -63,6 +63,10 @@ const ProfileInfo = (props) => {
                         <button onClick={ () => { props.unfollow(props.profile.userId)} } className={s.followBut} >Unfollow</button>
                         : <button onClick={ () => { props.follow(props.profile.userId)} } className={s.followBut} >Follow</button>}
                     </div>}
+                    <div className={s.rightTopDescription} >
+                        <div className={s.topName} >{props.profile.fullName}</div>
+                        <div className={s.centerStatus} ><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></div>
+                    </div>
 
                     
                 </div>

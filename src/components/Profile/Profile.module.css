@@ -1,5 +1,5 @@
 .profileBlock {
-    width: 100%;
+    /* justify-content: center; */
     display: grid;
     grid-template-rows: auto auto;
     grid-row-gap: 50px;
@@ -9,7 +9,8 @@
 
 .profileInfo {
     grid-area: info;
-    justify-self: start;
+    display: grid;
+    /* justify-self: center; */
 }
 
 .posts {
@@ -17,4 +18,10 @@
     margin-left: 380px;
     /* display: grid;
     grid-template-columns: 1fr 1fr; */
+}
+
+@media (max-width: 1250px) {
+    .posts {
+        margin-left: 0;
+    }
 }
