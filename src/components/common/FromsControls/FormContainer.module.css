@@ -3,11 +3,20 @@
     border: 2px solid red;
 }
 
-.formControl.error div {
+
+/* .formControl.error div {
     color: red;
 }
 
-
-/* .formSummaryError {
-    border: 1px solid black;
+.inputFalie {
+    background-color: red;
 } */
+
+
+/* .formControl {
+    grid-template-rows: 1fr 1fr;
+} */
+
+.formSummaryError {
+    color: rgb(211, 33, 20);
+}

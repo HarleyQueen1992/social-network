@@ -276,6 +276,10 @@
     border-radius: 30px;
 }
 
+.logOutLink {
+    align-self: center;
+}
+
 .logout {
     background-color: black;
     border: 1px solid black;
@@ -283,11 +287,10 @@
     cursor: pointer;
     font-weight: 600;
     color: white;
-    align-self: center;
     height: 30px;
     font-size: 11px;
-    padding-left: 0px;
-    padding-right: 0px;
+    /* padding-left: 0px;
+    padding-right: 0px; */
     margin: 5px;
 }
 

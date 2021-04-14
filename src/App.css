@@ -9,6 +9,11 @@ body {
     width: 0;
 }
 
+.loginPage {
+    height: 100vh;
+    display: grid;
+}
+
 .app-wrapper {
     margin: 0 auto;
     display: grid;

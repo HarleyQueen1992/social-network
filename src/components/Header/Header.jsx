@@ -54,7 +54,7 @@ const Header = (props) => {
                             <NavLink  className={h.ava} to={'/profile/'}><img className={h.ava} src={props.profileInfo.photo}/></NavLink>
                             <span className={h.Name} > <NavLink to={'/profile/'}>{props.profileInfo.fullName}</NavLink> </span>
                             {/* <img onClick={props.logOut} className={h.logout} src="https://image.flaticon.com/icons/png/512/25/25706.png"/> */}
-                            <button className={h.logout} onClick={props.logOut} >Log Out</button>  
+                            <NavLink className={h.logOutLink} to={'/login'} ><button className={h.logout} onClick={props.logOut} >Log Out</button></NavLink>
                         </div>}
                     </div> 
             : <NavLink to={'/login'} className={h.authBlock}>Login</NavLink>}

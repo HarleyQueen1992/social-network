@@ -3,7 +3,7 @@ import './App.css';
 import HeaderContaioner from './components/Header/HeaderContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {HashRouter, Route, withRouter} from "react-router-dom";
+import {HashRouter, Redirect, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -17,6 +17,7 @@ import { initializeApp } from './redux/AppReducer/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import { getInitialized } from './redux/AppReducer/app-selectors';
 import store from "./redux/redux-store";
+import { getIsAuth } from './redux/AuthReducer/auth-selectors';
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -32,12 +33,23 @@ class App extends React.Component {
        if (!this.props.initialized) {
               return <Preloader/>
        }
+       if (!this.props.isAuth) {
+              return (
+                     <div className='loginPage' >
+                     <Route path='/login/' 
+              render={ () => <Login/> }/> </div>)
+
+       } else{
+            
+
        return (
+              
+              
               <div className='app-wrapper'>
+                     <Redirect to='/profile'/>
                      
                      <HeaderContaioner />
-                     <NavbarContainer />
-             
+                     <NavbarContainer />  
                      <div className='app-wrapper-content'>
                             <Route path='/dialogs'
                                    render={ () => <DialogsContainer />}/>
@@ -50,18 +62,18 @@ class App extends React.Component {
                                    render={ () => <FriendsContainer /> }/>
                             <Route path='/users' 
                                    render={ () => <UsersContainer/> }/>
-                            <Route path='/login' 
-                                   render={ () => <Login/> }/>                  
+                                         
                      </div>
 
-              </div>);
+              </div>)}
        }
        
 };
 
 const mapStateToProps = (state) => {
     return {
-       initialized: getInitialized(state)
+       initialized: getInitialized(state),
+       isAuth: getIsAuth(state)
     }
 }
 

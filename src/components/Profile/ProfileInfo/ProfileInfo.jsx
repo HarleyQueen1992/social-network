@@ -71,7 +71,7 @@ const ProfileInfo = (props) => {
                     
                 </div>
                 
-                <div className={deployed ? s.descriptionDeployed :
+                <div className={
                             s.description} >
                     <div className={s.discriptionTop} >
                         <div className={s.name} >{props.profile.fullName}</div>
@@ -81,15 +81,15 @@ const ProfileInfo = (props) => {
                         <div>Birthday: 25 августа </div>
                         <div>City: Lugansk</div>
                         <div>Place of study: school №5</div>
-
-                        {deployed 
+                        {/*? Deploy will be in the future */}
+                        {/* {deployed 
                         ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
-                        : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                       
+                        : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
                     </div>
-                    {deployed 
+                    {/* {deployed 
                         ? editMode 
                             ? <ProfileDataFormReduxForm initialValues={props.profile} onSubmit={onSubmit} profile={props.profile} isOwner={props.isOwner}/> 
-                            : <ProfileData setEditMode={setEditMode} profile={props.profile} isOwner={props.isOwner}/>: <div></div>  }                 
+                            : <ProfileData setEditMode={setEditMode} profile={props.profile} isOwner={props.isOwner}/>: <div></div>  }                  */}
                     <div className={s.discriptionBot}>
                         <div className={s.botLeft} >
                             <div className={s.numberOfFriends} >120</div>

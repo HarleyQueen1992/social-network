@@ -1,6 +1,8 @@
 import { stopSubmit } from 'redux-form';
 import { profileAPI, authAPI } from '../../API/api'
+import { NavLink, Redirect } from "react-router-dom";
 import { getUserProfile, isSavePhoto } from '../ProfileReducer/profile-reducer';
+import { getFriends } from '../DialogsReducer/dialogs-reducer';
 const SET_USER_DATA = 'app/auth-reducer/SET_USER_DATA';
 const SET_PROFILE_DATA = 'app/auth-reducer/SET_PROFILE_DATA'
 const SET_PROFILE_PHOTO = 'app/auth-reducer/SET_PROFILE_PHOTO'
@@ -93,6 +95,8 @@ export const loginIn = (email, password) => async(dispatch) => {
         let respo = await profileAPI.getProfile(data.data.data.userId)
 
         dispatch(setProfileData(respo.data, true));
+        dispatch(getFriends());
+
 
     } else {
         let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some error"

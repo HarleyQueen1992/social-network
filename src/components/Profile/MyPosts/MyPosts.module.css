@@ -11,3 +11,15 @@
     display: grid;
     grid-column: 200px;
 }
+
+@media (max-width: 930px) {
+    .PostsBlock {
+        width: calc(390px + ( 450 - 390) * (( 100vw - 830px) / (930 - 830)));
+    }
+}
+
+@media (max-width: 830px) {
+    .PostsBlock {
+        width: 390px;
+    }
+}
