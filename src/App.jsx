@@ -18,6 +18,7 @@ import Preloader from './components/common/Preloader/Preloader';
 import { getInitialized } from './redux/AppReducer/app-selectors';
 import store from "./redux/redux-store";
 import { getIsAuth } from './redux/AuthReducer/auth-selectors';
+import {Helmet} from 'react-helmet'
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -43,8 +44,6 @@ class App extends React.Component {
             
 
        return (
-              
-              
               <div className='app-wrapper'>
                      <Redirect to='/profile'/>
                      
