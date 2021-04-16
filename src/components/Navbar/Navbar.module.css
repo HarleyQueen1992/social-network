@@ -82,6 +82,21 @@ nav a {
     grid-gap: 10px;
 }
 
+.burger {
+    display: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgb(126, 126, 126);
+    cursor: pointer;
+}
+
+.burger img {
+    width: 40px;
+    align-self: center;
+    justify-self: center;
+}
+
 @media (max-width: 990px) {
     .nav {
         margin-left: 200px;
@@ -91,5 +106,30 @@ nav a {
 @media (max-width: 879px) {
     .nav {
         margin-left: 150px;
+    }
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        display: none;
+    }
+    .nav {
+        width: 50px;
+        grid-template-rows: 1fr;
+        justify-self: center;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .friendsBlock {
+        display: none;
+    }
+    .burger {
+        display: grid;
+    }
+}
+
+@media (max-width: 628px) {
+    .nav {
+        display: none;
     }
 }

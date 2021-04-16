@@ -2,10 +2,14 @@ import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import FriendsBlock from "./FriendsBlock/FriendsBlock";
+import burger from "./../../assets/images/burger.png"
 
 const Navbar = (props) => {
     let FriendsElements = props.friends.map(f => <FriendsBlock photo={f.photo} id={f.id} name={f.name}/>)
     return <nav className={s.nav}>
+        <div className={s.burger} >
+            <img src={burger} />
+        </div>  
         <div className={s.navbar}>
             <div className={s.item}>
                 <NavLink to='/profile' className={s.itemLink} activeClassName={s.active}>Profile</NavLink>

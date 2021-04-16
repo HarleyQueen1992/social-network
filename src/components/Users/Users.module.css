@@ -133,6 +133,37 @@ button:disabled {
     }
 }
 
+@media (max-width: 522px) {
+    .users {
+        margin-top: 20px;
+        align-self: center;
+    }
+    .user {
+        grid-template-columns: 60px 280px;
+        grid-template-rows: 60px;
+        margin-bottom: 10px;
+    }
+    .photo {
+        height: 60px;
+        width: 60px;
+    }
+    .rightPart {
+        border-radius: 15px;
+    }
+    .name {
+        font-size: 15px;
+    }
+    .status {
+        font-size: 12px;
+    }
+    .city {
+        font-size: 13px;
+    }
+    .rightPart {
+        padding: 7px;
+    }
+}
+
 
 /* @media (max-width: 1300px) {
     .user {

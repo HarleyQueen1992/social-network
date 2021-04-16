@@ -102,3 +102,14 @@
         display: none;
     }
 }
+
+@media (max-width: 400px) {
+    .dialogs {
+        margin: 0;
+        grid-template-columns: 360px;
+    }
+    .messageBlock {
+        grid-template-rows: 45px 620px 46px;
+        height: 711px
+    }
+}

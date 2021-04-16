@@ -82,6 +82,25 @@
 }
 
 
+/* ! NavHead */
+
+.navHead {
+    display: none;
+    grid-area: navHead;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.navHead div {
+    align-self: center;
+    justify-self: center;
+}
+
+.navHead div a {
+    color: white;
+    text-decoration: none;
+}
+
+
 /*! SearchBlock */
 
 .searchBlock {
@@ -153,6 +172,12 @@
     }
 }
 
+@media (max-width: 627px) {
+    .searchBlock {
+        display: none;
+    }
+}
+
 
 /*! AudioPlaer */
 
@@ -217,6 +242,12 @@
         display: block;
         grid-area: music;
         justify-self: end;
+    }
+}
+
+@media (max-width: 627px) {
+    .music {
+        display: none;
     }
 }
 
@@ -325,5 +356,26 @@
 @media (max-width: 1170px) {
     .avaLogin {
         grid-template-columns: auto 78px 70px;
+    }
+}
+
+@media (max-width: 627px) {
+    .loginBlock {
+        display: none;
+    }
+}
+
+@media (max-width: 627px) {
+    .header {
+        grid-template-areas: "navHead";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        width: 100vw;
+    }
+    .navHead {
+        display: grid;
+    }
+    .logoBlock {
+        display: none;
     }
 }

@@ -327,3 +327,22 @@
             grid-area: descriotion;
         }
     }
+    
+    @media (max-width: 400px) {
+        .leftDescription {
+            grid-template-columns: 180px 180px;
+        }
+        .ava {
+            width: 180px;
+        }
+        .topDescriptionLeft {
+            grid-template-columns: 160px 20px;
+        }
+        .setPhoto {
+            margin-bottom: 20px;
+        }
+        .description {
+            width: 310px;
+            justify-self: center;
+        }
+    }

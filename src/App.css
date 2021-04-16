@@ -15,7 +15,8 @@ body {
 }
 
 .app-wrapper {
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    overflow: hidden;
     display: grid;
     /* width: 1200px; */
     grid-template-areas: "h h h h" "n c c c";
@@ -52,5 +53,23 @@ body {
 @media (max-width: 879px) {
     .app-wrapper {
         grid-template-columns: 380px 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .app-wrapper {
+        grid-template-columns: 90px 1fr 1fr 1fr;
+    }
+    .app-wrapper-content {
+        justify-self: center;
+    }
+}
+
+@media (max-width: 628px) {
+    .app-wrapper {
+        grid-template-areas: "h" "c";
+        grid-template-rows: 60px 1fr;
+        grid-template-columns: 100%;
+        grid-gap: 0;
     }
 }

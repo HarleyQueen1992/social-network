@@ -72,3 +72,30 @@
         margin-left: 0;
     }
 }
+
+@media (max-width: 522px) {
+    .friends {
+        margin-top: 20px;
+    }
+    .friend {
+        grid-template-rows: 70px;
+        grid-template-columns: 70px 270px;
+        margin-bottom: 10px;
+        grid-column-gap: 0;
+    }
+    .photo {
+        height: 70px;
+    }
+    .rightPart {
+        border-radius: 20px;
+        padding: 8px;
+    }
+    .name {
+        font-size: 15px;
+        margin-left: 8px;
+        margin-top: 5px;
+    }
+    .writeMessage a {
+        font-size: 12px;
+    }
+}
