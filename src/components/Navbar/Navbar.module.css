@@ -97,6 +97,53 @@ nav a {
     justify-self: center;
 }
 
+.menu {
+    position: fixed;
+    display: grid;
+    grid-template-rows: 10% 70% 20%;
+    z-index: 100;
+    left: 0;
+    height: 100vh;
+    width: 50vw;
+    margin: -20px;
+    background-color: rgb(10, 10, 10);
+    transform: translateX(0);
+    border-radius: 20px;
+}
+
+.headName {
+    display: grid;
+    width: 100%;
+    border-bottom: 2px solid white;
+    color: rgb(0, 0, 0);
+}
+
+.name {
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+}
+
+.linkItems {
+    margin-top: 20px;
+    display: grid;
+    grid-template-rows: repeat(5, 20px);
+    grid-row-gap: 20px;
+}
+
+.linkItem {
+    justify-self: center;
+}
+
+.back {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    justify-self: center;
+}
+
 @media (max-width: 990px) {
     .nav {
         margin-left: 200px;
@@ -128,7 +175,7 @@ nav a {
     }
 }
 
-@media (max-width: 628px) {
+@media (max-width: 480px) {
     .nav {
         display: none;
     }

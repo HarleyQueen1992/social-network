@@ -37,8 +37,8 @@ class App extends React.Component {
        if (!this.props.isAuth) {
               return (
                      <div className='loginPage' >
-                     <Route path='/login/' 
-              render={ () => <Login/> }/> </div>)
+                     <Redirect to='/login/'/>
+                     <Route path='/login' render={ () => <Login />}/></div>)
 
        } else{
             

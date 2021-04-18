@@ -74,7 +74,7 @@
 
 @media (max-width: 715px) {
     .header {
-        grid-template-columns: 193px 130px 87px 1fr;
+        grid-template-columns: 193px 1fr;
     }
     .logoBlock {
         grid-template-columns: 108px 1fr;
@@ -98,6 +98,28 @@
 .navHead div a {
     color: white;
     text-decoration: none;
+}
+
+.linkBlock {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+}
+
+.imgHead {
+    height: 30px;
+    width: 30px;
+    align-self: start;
+    justify-self: center;
+}
+
+.headName {
+    font-size: 13px;
+    align-self: end;
+    justify-self: center;
+}
+
+.headItem {
+    align-self: start;
 }
 
 
@@ -359,18 +381,19 @@
     }
 }
 
-@media (max-width: 627px) {
+@media (max-width: 480px) {
     .loginBlock {
         display: none;
     }
 }
 
-@media (max-width: 627px) {
+@media (max-width: 480px) {
     .header {
         grid-template-areas: "navHead";
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         width: 100vw;
+        bottom: 0;
     }
     .navHead {
         display: grid;

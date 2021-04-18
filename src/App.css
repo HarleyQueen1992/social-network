@@ -58,17 +58,17 @@ body {
 
 @media (max-width: 800px) {
     .app-wrapper {
-        grid-template-columns: 90px 1fr 1fr 1fr;
+        grid-template-columns: 50px 1fr 1fr 1fr;
     }
     .app-wrapper-content {
         justify-self: center;
     }
 }
 
-@media (max-width: 628px) {
+@media (max-width: 480px) {
     .app-wrapper {
         grid-template-areas: "h" "c";
-        grid-template-rows: 60px 1fr;
+        grid-template-rows: 1fr;
         grid-template-columns: 100%;
         grid-gap: 0;
     }

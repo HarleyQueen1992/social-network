@@ -292,7 +292,6 @@
     
     @media (max-width: 1250px) {
         .descriptionBlock {
-            justify-self: center;
             grid-template-columns: 1fr;
             grid-template-rows: 200px 200px;
             grid-template-areas: "leftdiscription" "rightdescription";

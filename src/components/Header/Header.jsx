@@ -7,6 +7,10 @@ import play from './../../assets/images/playAudioPleer.png'
 import next from './../../assets/images/next.png'
 import previous from './../../assets/images/previous.png'
 import musicIcon from './../../assets/images/—Pngtree—music icon_4490549.png'
+import Users from './../../assets/images/users.png.crdownload'
+import Frieds from './../../assets/images/friends.png'
+import Message from './../../assets/images/message.png'
+import Profile from './../../assets/images/profile.jpg'
 
 const Header = (props) => {
 
@@ -27,17 +31,25 @@ const Header = (props) => {
                 
             </div>
             <div className={h.navHead} >
-                <div>
-                    <NavLink to={"/profile"} >Profile</NavLink>
+                <div className={h.headItem}>
+                    <NavLink className={h.linkBlock} to={"/profile"} >    
+                    <img className={h.imgHead} src={Profile}/>
+                    <span className={h.headName} >Profile</span> </NavLink>
                 </div>
-                <div><NavLink to={'/dialogs'} >
-                    Message</NavLink>
+                <div className={h.headItem}><NavLink className={h.linkBlock} to={'/dialogs'} >
+                    <img className={h.imgHead} src={Message}/>
+                    <span className={h.headName} >Message</span>
+                    </NavLink>
                 </div>
-                <div><NavLink to={"/users"} >
-                    Users</NavLink>
+                <div className={h.headItem}><NavLink className={h.linkBlock} to={"/users"} >
+                    <img className={h.imgHead} src={Users}/>
+                    <span className={h.headName} >Users</span>
+                    </NavLink>
                 </div>
-                <div><NavLink to={"/friends"} >
-                    Friends</NavLink>
+                <div className={h.headItem} ><NavLink className={h.linkBlock} to={"/friends"} >
+                    <img className={h.imgHead} src={Frieds}/>
+                    <span className={h.headName} >Friends</span>
+                    </NavLink>
                 </div>
 
             </div>

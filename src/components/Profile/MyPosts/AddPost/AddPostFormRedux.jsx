@@ -8,7 +8,7 @@ const addNewMessagePost = (props) => {
     return (
         <form className={p.postsBlock} onSubmit={props.handleSubmit} >
             <div className={p.postsBlock} >   
-                <Field className={p.postForm} component="input" name="newPostText" placeholder="What's new" validate={[required]}/>       
+                <Field className={p.postForm} component="input" name="newPostText" placeholder="What's new" validate={[required]}/>
                 <button className={p.but}>Add</button>
             </div>
         </form>

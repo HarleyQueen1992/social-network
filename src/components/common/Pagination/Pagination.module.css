@@ -10,6 +10,7 @@
 
 .numberPage span {
     color: white;
+    margin-left: 5px;
 }
 
 @media (max-width: 1500px) {

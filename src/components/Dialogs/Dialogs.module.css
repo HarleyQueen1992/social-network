@@ -109,7 +109,7 @@
         grid-template-columns: 360px;
     }
     .messageBlock {
-        grid-template-rows: 45px 620px 46px;
-        height: 711px
+        grid-template-rows: 6% 88% 6%;
+        height: calc(100vh - 60px)
     }
 }
