@@ -284,6 +284,18 @@
         margin-left: 10px;
     }
     
+    .friendsBlock {
+        display: none;
+    }
+    
+    .detailed {
+        display: none;
+    }
+    
+    .editBlock {
+        display: none;
+    }
+    
     @media (max-width: 1355px) {
         .descriptionBlock {
             grid-template-columns: 310px calc(360px + (500 - 360) * ((100vw - 1250px) / (1355 - 1250)));
@@ -327,7 +339,138 @@
         }
     }
     
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
+        .descriptionBlock {
+            margin-top: 20px;
+            grid-template-rows: 150px 1fr 1fr;
+            grid-row-gap: 20px;
+            grid-template-columns: 1fr;
+        }
+        .topDescriptionLeft {
+            grid-template-columns: 90px;
+            align-self: center;
+            grid-area: photo;
+        }
+        .setPhoto {
+            display: none;
+        }
+        .editBlock {
+            display: block;
+        }
+        .description {
+            grid-template-rows: 1fr 40px;
+            border: 0px;
+            padding: 0 20px;
+            background-color: transparent;
+            border-radius: 0px;
+            border-bottom: 1px solid rgb(66, 65, 65);
+        }
+        .discriptionBot {
+            display: none;
+        }
+        .detailed {
+            display: block;
+            color: white;
+        }
+        .descriptionCenter div {
+            color: rgb(197, 197, 197);
+        }
+        input[type=file] {
+            display: none;
+        }
+        .edit {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(75, 74, 74);
+            display: grid;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .edit span {
+            color: white;
+            justify-self: center;
+            align-self: center;
+        }
+        .profileInfo {
+            grid-area: profileInfo;
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            grid-template-areas: "photo info";
+        }
+        .rightTopDescription {
+            grid-area: info;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+        .centerStatus {
+            align-self: center;
+        }
+        .friendsAva {
+            height: 50px;
+            border-radius: 50%;
+        }
+        .leftDescription {
+            grid-template-rows: 100px 30px;
+            grid-template-columns: 1fr;
+            padding: 0 20px;
+            grid-template-areas: "profileInfo" "edit";
+            border-bottom: 1px solid rgb(78, 77, 77);
+        }
+        .friendsList {
+            display: inline-flex;
+            overflow-x: scroll;
+        }
+        .friendsC {
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+        }
+        .rToFriends {
+            margin-right: 10px;
+            justify-self: center;
+            color: white;
+            text-decoration: none;
+            justify-self: end;
+        }
+        .countFriends {
+            margin-left: 5px;
+            color: rgb(121, 115, 115);
+        }
+        .friend {
+            display: grid;
+            text-decoration: none;
+            grid-template-columns: 70px;
+        }
+        .friendsPhoto {
+            justify-self: center;
+        }
+        .friendsName {
+            font-size: 13px;
+            color: rgb(214, 210, 210);
+            word-break: break-all;
+            justify-self: center;
+        }
+        .friendsBlock {
+            display: grid;
+            grid-template-rows: 20px 1fr;
+            grid-row-gap: 10px;
+        }
+        .ava {
+            width: 90px;
+            height: 90px;
+        }
+        .followed {
+            grid-area: edit;
+            height: 100%;
+            width: 100%;
+        }
+        .followBut {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    /* @media (max-width: 400px) {
         .leftDescription {
             grid-template-columns: 180px 180px;
         }
@@ -344,4 +487,4 @@
             width: 310px;
             justify-self: center;
         }
-    }
+    } */

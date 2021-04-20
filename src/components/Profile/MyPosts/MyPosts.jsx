@@ -14,7 +14,13 @@ const MyPosts = (props) => {
     return (
         <div className={p.PostsBlock}>
             <div className={p.addNewpost}>
-                <AddPostFormRedux onSubmit={addPost} />
+                <div className={p.createPost} >
+                    <div className={p.createPostBlock} >
+                        <span>Create post</span>
+                    </div>
+                    
+                </div>
+                {/* <AddPostFormRedux onSubmit={addPost} /> */}
                 <div className={p.posts}>
                     {postElements}
                 </div>

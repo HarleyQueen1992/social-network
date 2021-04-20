@@ -20,10 +20,10 @@ let initialState = {
 
 
     ],
-    currentFriend: 1,
+    // currentFriend: 1,
     friendsInDialogs: [],
-    pageSize: 7,
-    totalFriendsCount: 20,
+    // pageSize: 7,
+    // totalFriendsCount: 20,
     isFatching: true,
 
 }

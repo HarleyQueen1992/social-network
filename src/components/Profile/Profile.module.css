@@ -2,7 +2,7 @@
     /* justify-content: center; */
     display: grid;
     grid-template-rows: auto auto;
-    grid-row-gap: 50px;
+    grid-row-gap: 20px;
     grid-template-areas: "info" "posts";
     /* margin-right: 290px; */
 }

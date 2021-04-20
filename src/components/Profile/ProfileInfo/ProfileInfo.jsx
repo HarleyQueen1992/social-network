@@ -3,7 +3,7 @@ import Preloader from '../../common/Preloader/Preloader';
 import s from './ProfileInfo.module.css'
 import profileImg from '../../../assets/images/user.png'
 import ProfileStatus from './ProfileStatus'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import ProfileDataFormReduxForm from './ProfileDataForm/ProfileDataForm'
 import iconSettings from '../../../assets/images/settings.png'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks'
@@ -42,37 +42,54 @@ const ProfileInfo = (props) => {
             </div> */}
             <div className={s.descriptionBlock}>
                 <div className={s.leftDescription} >
-                    <div className={s.topDescriptionLeft} >
-                        <div>
-                            {props.isSavingPhoto ?  <div className={s.preloader} > < Preloader/> </div>: <img className={s.ava} src={srcImg} />}
+                    <div className={s.profileInfo} >
+                        <div className={s.topDescriptionLeft} >
+                            <div>
+                                {props.isSavingPhoto ?  <div className={s.preloader} > < Preloader/> </div>: <img className={s.ava} src={srcImg} />}
+                            </div>
+                            
+                            {props.isOwner && 
+                                        <div className={s.setPhoto} >
+                                            <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
+                                            <label for="input__file">
+                                                <img className={s.icon} src={iconSettings} />
+                                            </label>
+                                        </div>
+                                                }
+
                         </div>
                         
-                        {props.isOwner && 
-                                    <div className={s.setPhoto} >
-                                        <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
-                                        <label for="input__file">
-                                            <img className={s.icon} src={iconSettings} />
-                                        </label>
-                                    </div>
-                                            }
-
+                        {/* {props.isOwner || <div className={s.followed}>
+                            {props.isFollow === true ?
+                            <button onClick={ () => { props.unfollow(props.profile.userId)} } className={s.followBut} >Unfollow</button>
+                            : <button onClick={ () => { props.follow(props.profile.userId)} } className={s.followBut} >Follow</button>}
+                        </div>} */}
+                        <div className={s.rightTopDescription} >
+                            <div className={s.topName} >{props.profile.fullName}</div>
+                            <div className={s.centerStatus} ><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></div>
+                        </div>
                     </div>
-                    
                     {props.isOwner || <div className={s.followed}>
-                        {props.isFollow === true ?
-                        <button onClick={ () => { props.unfollow(props.profile.userId)} } className={s.followBut} >Unfollow</button>
-                        : <button onClick={ () => { props.follow(props.profile.userId)} } className={s.followBut} >Follow</button>}
-                    </div>}
-                    <div className={s.rightTopDescription} >
-                        <div className={s.topName} >{props.profile.fullName}</div>
-                        <div className={s.centerStatus} ><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></div>
-                    </div>
-
+                            {props.isFollow === true ?
+                            <button onClick={ () => { props.unfollow(props.profile.userId)} } className={s.followBut} >Unfollow</button>
+                            : <button onClick={ () => { props.follow(props.profile.userId)} } className={s.followBut} >Follow</button>}
+                        </div>}
+                    {props.isOwner ? 
+                                        <div className={s.editBlock} >
+                                            <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
+                                                <label className={s.edit} for="input__file">
+                                                        <span>Edit</span>
+                                                </label>
+                                        </div>
+                                    :   <div></div>
+                                                }
+                    {/* <div className={s.edit} >
+                        <span>Edit</span>
+                    </div> */}
                     
                 </div>
                 
-                <div className={
-                            s.description} >
+                <div className={s.description} >
                     <div className={s.discriptionTop} >
                         <div className={s.name} >{props.profile.fullName}</div>
                         <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
@@ -85,6 +102,9 @@ const ProfileInfo = (props) => {
                         {/* {deployed 
                         ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
                         : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
+                    </div>
+                    <div className={s.detailed} >
+                        detailed information
                     </div>
                     {/* {deployed 
                         ? editMode 
@@ -105,6 +125,32 @@ const ProfileInfo = (props) => {
                     {/* <div className={s.title} >About me: {props.profile.aboutMe}</div> */}
                     {/* <div className={s.title} >Job: {props.profile.lookingForAJobDescription}</div> */}
                 </div>
+            
+                <div className={s.friendsBlock} >
+                    <div className={s.friendsC} >
+                        Friends 
+                        <span className={s.countFriends} >
+                            {props.friends.length}
+                        </span>
+                        <NavLink className={s.rToFriends} to='/friends' >
+                        ➤   
+                        </NavLink></div>
+                    <div className={s.friendsList} >
+                        {props.friends.map(f => 
+                            <NavLink to={'/profile/' + f.id} className={s.friend} >
+                                <div className={s.friendsPhoto} >
+                                    <img className={s.friendsAva } src={!f.photo ? profileImg : f.photo } />
+                                </div>
+                                <div className={s.friendsName} >
+                                    {f.name}
+                                </div>
+                            </NavLink>
+                            )}
+                    </div>
+                    
+                </div>
+                
+            
             </div>
 
         </div>

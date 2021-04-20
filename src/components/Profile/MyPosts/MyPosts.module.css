@@ -7,9 +7,19 @@
     width: 450px;
 }
 
+.createPost {
+    display: none;
+}
+
 .posts {
     display: grid;
     grid-column: 200px;
+}
+
+@media (max-width: 1300px) {
+    .posts {
+        width: calc(390px + ( 450 - 390) * (( 100vw - 830px) / (930 - 830)));
+    }
 }
 
 @media (max-width: 930px) {
@@ -26,6 +36,35 @@
 
 @media (max-width: 400px) {
     .PostsBlock {
-        width: 340px;
+        width: 100vw;
+    }
+    .posts {
+        width: 100%;
+        margin-bottom: 60px;
+    }
+    .createPost {
+        box-sizing: border-box;
+        display: grid;
+        height: 50px;
+        padding: 10px 20px;
+        background-color: rgb(54, 53, 53);
+        margin-bottom: 10px;
+    }
+    .createPostBlock {
+        align-self: center;
+        justify-self: start;
+        cursor: pointer;
+        width: 50%;
+        display: grid;
+        border-radius: 8px;
+        padding: 5px;
+        background-color: rgb(82, 77, 77);
+    }
+    .createPostBlock span {
+        font-size: 17px;
+        font-weight: bold;
+        color: white;
+        align-self: center;
+        justify-self: center;
     }
 }

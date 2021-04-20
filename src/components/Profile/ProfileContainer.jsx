@@ -9,6 +9,8 @@ import Profile from './Profile';
 import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'
 import Preloader from '../common/Preloader/Preloader'
 import { follow, unfollow } from '../../redux/UsersReducer/user-reducer';
+import { getFriends } from '../../redux/DialogsReducer/dialogs-reducer';
+import { getFriendsInDialogs } from '../../redux/DialogsReducer/dialogs-selectors';
 
 class ProfileContainer extends React.Component  {
 
@@ -56,7 +58,8 @@ class ProfileContainer extends React.Component  {
                         unfollow={this.props.unfollow}
                         isFollow={this.props.isFollow}
                         saveProfileInfo={this.props.saveProfileInfo}
-                        isSavingPhoto={this.props.isSavingPhoto} />}
+                        isSavingPhoto={this.props.isSavingPhoto}
+                        friends={this.props.friends} />}
             
             </>
         )
@@ -70,7 +73,8 @@ const mapStateToProps = (state) => ({
     profileInfo: getProfileInfo(state),
     userId: getUserId(state),
     isFollow: getIsFollow(state),
-    isSavingPhoto: getIsSavingPhoto(state)
+    isSavingPhoto: getIsSavingPhoto(state),
+    friends: getFriendsInDialogs(state)
 })
 
 // let withRedirect = withAuthRedirecr(ProfileContainer)
