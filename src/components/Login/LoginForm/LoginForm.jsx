@@ -22,13 +22,13 @@ const LoginForm = (props) => {
             </div>
             <div className={l.emailField} >
                 <span>Remember Me</span>
-                <Field className={l.inputField} type={"checkbox"} name={"reememberMe"} component={Input} /> 
+                <Field className={l.inputField} type={"checkbox"} name={"rememberMe"} component={Input} /> 
             </div>
             { props.error && <div className={s.formSummaryError} >
                 {props.error}
             </div>}
             <div className={l.butBlock} >
-            <button className={l.loginBut} >Login</button>
+                <button className={l.loginBut} >Login</button>
             </div>  
             
 

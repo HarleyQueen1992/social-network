@@ -1,6 +1,7 @@
 import React from 'react';
 import {addPostActionCreator, addLike, deletePost} from '../../../redux/ProfileReducer/profile-reducer';
 import {getNewPostText, getPosts, getProfile, getIsFatching} from '../../../redux/ProfileReducer/profile-selectors'
+import {toggleIsPostCreation} from '../../../redux/AppReducer/app-reducer'
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 import { getLogin } from '../../../redux/AuthReducer/auth-selectors';
@@ -21,6 +22,7 @@ class MyPostsContainer extends React.Component  {
                 newPostText={this.props.newPostText}
                 login={this.props.login}
                 profile={this.props.profile}
+                toggleIsPostCreation={this.props.toggleIsPostCreation}
 
 
 
@@ -55,5 +57,6 @@ let mapStateToProps = (state) => {
 //     }
 // }
 export default compose(
-    connect(mapStateToProps,{deletePost, addLike, addPostActionCreator})
+    connect(mapStateToProps,{deletePost, addLike, addPostActionCreator,
+                            toggleIsPostCreation})
 )(MyPostsContainer)

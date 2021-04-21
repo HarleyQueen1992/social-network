@@ -13,12 +13,15 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
 import { connect, Provider} from 'react-redux';
-import { initializeApp } from './redux/AppReducer/app-reducer';
+import { initializeApp, toggleIsPostCreation } from './redux/AppReducer/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
-import { getInitialized } from './redux/AppReducer/app-selectors';
+import { getInitialized, getIsPostCreation } from './redux/AppReducer/app-selectors';
 import store from "./redux/redux-store";
+import {addPostActionCreator} from './redux/ProfileReducer/profile-reducer'
 import { getIsAuth } from './redux/AuthReducer/auth-selectors';
 import {Helmet} from 'react-helmet'
+import Post from './components/Profile/MyPosts/Post/Post';
+import PostCreation from './components/Profile/MyPosts/PostCreation/PostCreation';
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -40,9 +43,9 @@ class App extends React.Component {
                      <Redirect to='/login/'/>
                      <Route path='/login' render={ () => <Login />}/></div>)
 
-       } else{
-            
-
+       // } else if (this.props.isPostCreation) {
+       //      return <PostCreation addPostActionCreator={this.props.addPostActionCreator} toggleIsPostCreation={this.props.toggleIsPostCreation} />
+       } else {    
        return (
               <div className='app-wrapper'>
                      <Redirect to='/profile'/>
@@ -72,13 +75,14 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     return {
        initialized: getInitialized(state),
-       isAuth: getIsAuth(state)
+       isAuth: getIsAuth(state),
+       isPostCreation: getIsPostCreation(state)
     }
 }
 
 let AppContainer = compose(
        withRouter,
-       connect(mapStateToProps, {initializeApp}))(App);
+       connect(mapStateToProps, {initializeApp, addPostActionCreator,toggleIsPostCreation}))(App);
    
    const SamuraiJSApp = (props) => {
       return <HashRouter >

@@ -45,24 +45,25 @@
     .createPost {
         box-sizing: border-box;
         display: grid;
-        height: 50px;
-        padding: 10px 20px;
-        background-color: rgb(54, 53, 53);
+        height: 40px;
+        background-color: rgb(33, 32, 32);
         margin-bottom: 10px;
     }
     .createPostBlock {
+        margin-left: 10px;
+        height: 60%;
         align-self: center;
         justify-self: start;
         cursor: pointer;
-        width: 50%;
+        width: 60%;
         display: grid;
-        border-radius: 8px;
-        padding: 5px;
-        background-color: rgb(82, 77, 77);
+        border-radius: 5px;
+        padding: 3px;
+        background-color: rgb(71, 70, 70);
     }
     .createPostBlock span {
-        font-size: 17px;
-        font-weight: bold;
+        font-size: 16px;
+        font-weight: 500;
         color: white;
         align-self: center;
         justify-self: center;

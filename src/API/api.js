@@ -44,8 +44,8 @@ export const authAPI = {
                 return response.data;
             })
     },
-    loginIn(email, password) {
-        return instance.post(`auth/login/?email=${email}&password=${password}`)
+    loginIn(email, password, rememberMe = false) {
+        return instance.post(`auth/login/`, { email, password, rememberMe })
     },
     logOut() {
         return instance.delete(`auth/login/`)
@@ -60,25 +60,12 @@ export const profileAPI = {
     getStatus(userId) {
         return instance.get(`/profile/status/` + userId)
     },
-
     updateStatus(status) {
         return instance.put(`/profile/status/`, { status })
     },
-
-
-
-
-
-
-
     saveProfileInfo(profileInfo) {
         return instance.put(`/profile/`, profileInfo)
     },
-
-
-
-
-
     savePhoto(photoFile) {
         const formData = new FormData();
         formData.append("image", photoFile);

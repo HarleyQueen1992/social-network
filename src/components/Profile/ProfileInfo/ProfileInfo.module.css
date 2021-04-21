@@ -360,10 +360,10 @@
         .description {
             grid-template-rows: 1fr 40px;
             border: 0px;
-            padding: 0 20px;
+            margin: 0 10px;
             background-color: transparent;
             border-radius: 0px;
-            border-bottom: 1px solid rgb(66, 65, 65);
+            border-bottom: 1px solid rgb(53, 53, 53);
         }
         .discriptionBot {
             display: none;
@@ -411,9 +411,9 @@
         .leftDescription {
             grid-template-rows: 100px 30px;
             grid-template-columns: 1fr;
-            padding: 0 20px;
+            margin: 0 10px;
             grid-template-areas: "profileInfo" "edit";
-            border-bottom: 1px solid rgb(78, 77, 77);
+            border-bottom: 1px solid rgb(53, 53, 53);
         }
         .friendsList {
             display: inline-flex;

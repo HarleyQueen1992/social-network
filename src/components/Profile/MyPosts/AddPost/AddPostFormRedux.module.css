@@ -8,3 +8,9 @@
     width: 20%;
     height: 46px;
 }
+
+@media (max-width: 380px) {
+    .postsBlock {
+        display: none;
+    }
+}

@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import {getUserProfile, requestStatus,toggleIsFatching, saveProfileInfo, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
+import {getUserProfile, addPostActionCreator,toggleIsFatching, saveProfileInfo, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
 import { getIsFatching, getIsFollow, getProfile, getIsSavingPhoto, getStatus } from '../../redux/ProfileReducer/profile-selectors';
 import Profile from './Profile';
 import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'
 import Preloader from '../common/Preloader/Preloader'
+import {toggleIsPostCreation} from './../../redux/AppReducer/app-reducer'
 import { follow, unfollow } from '../../redux/UsersReducer/user-reducer';
 import { getFriends } from '../../redux/DialogsReducer/dialogs-reducer';
 import { getFriendsInDialogs } from '../../redux/DialogsReducer/dialogs-selectors';
+import { getIsPostCreation } from '../../redux/AppReducer/app-selectors';
 
 class ProfileContainer extends React.Component  {
 
@@ -59,7 +61,11 @@ class ProfileContainer extends React.Component  {
                         isFollow={this.props.isFollow}
                         saveProfileInfo={this.props.saveProfileInfo}
                         isSavingPhoto={this.props.isSavingPhoto}
-                        friends={this.props.friends} />}
+                        friends={this.props.friends}
+                        isPostCreation={this.props.isPostCreation}
+                        addPostActionCreator={this.props.addPostActionCreator}
+                        toggleIsPostCreation={this.props.toggleIsPostCreation} />
+                        }
             
             </>
         )
@@ -74,7 +80,8 @@ const mapStateToProps = (state) => ({
     userId: getUserId(state),
     isFollow: getIsFollow(state),
     isSavingPhoto: getIsSavingPhoto(state),
-    friends: getFriendsInDialogs(state)
+    friends: getFriendsInDialogs(state),
+    isPostCreation: getIsPostCreation(state)
 })
 
 // let withRedirect = withAuthRedirecr(ProfileContainer)
@@ -89,7 +96,7 @@ export default compose(
                             deletePost, savePhoto, follow, getFollow,
                             unfollow, toggleIsFollow, toggleIsFatching, 
                             setUserProfile, setStatus, saveProfileInfo,
-                            getIsSavingPhoto}),
+                            getIsSavingPhoto, addPostActionCreator, toggleIsPostCreation }),
     withRouter,
     withAuthRedirecr
 )(ProfileContainer)

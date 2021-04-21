@@ -89,8 +89,8 @@ export const getAuthMe = () => async(dispatch) => {
 
 }
 
-export const loginIn = (email, password) => async(dispatch) => {
-    let data = await authAPI.loginIn(email, password)
+export const loginIn = (email, password, rememberMe) => async(dispatch) => {
+    let data = await authAPI.loginIn(email, password, rememberMe)
     if (data.data.resultCode === 0) {
         let respo = await profileAPI.getProfile(data.data.data.userId)
 

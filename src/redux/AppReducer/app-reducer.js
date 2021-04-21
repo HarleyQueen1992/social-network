@@ -7,9 +7,11 @@ import { getUserProfile, requestStatus, updateStatus } from '../ProfileReducer/p
 import { requestUsers } from '../UsersReducer/user-reducer';
 import { getAuthMe } from './../AuthReducer/auth-reducer';
 const INITIALIZED_SUCCESS = 'app/app-reducer/INITIALIZED_SUCCESS';
+const IS_POST_CREATION = 'app/app-reducer/IS_POST_CREATION'
 
 let initialState = {
-    initialized: false
+    initialized: false,
+    isPostCreation: false
 
 
 }
@@ -24,6 +26,13 @@ const appReducer = (state = initialState, action) => {
 
                 };
             }
+        case IS_POST_CREATION:
+            {
+                return {
+                    ...state,
+                    isPostCreation: action.isPostCreation
+                }
+            }
         default:
             return state;
     }
@@ -33,6 +42,7 @@ const appReducer = (state = initialState, action) => {
 export const initializedSuccess = () => {
     return { type: INITIALIZED_SUCCESS }
 }
+export const toggleIsPostCreation = (isPostCreation) => ({ type: IS_POST_CREATION, isPostCreation })
 
 // Thunk Creator
 

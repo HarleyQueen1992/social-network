@@ -6,7 +6,7 @@
     /* grid-template-rows: minmax(50px, auto) 0%; */
     /* border: 2px solid #138D90; */
     border-radius: 7px;
-    background-color: #3a3939;
+    background-color: rgb(33, 32, 32);
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -20,6 +20,8 @@
 
 .postText {
     grid-area: body;
+    color: white;
+    font-weight: 400;
     word-wrap: break-word;
     max-width: 450px;
     padding-top: 15px;
@@ -74,15 +76,20 @@ button {
     grid-template-columns: 1fr 1fr;
 }
 
+.likeBlock span {
+    align-self: end;
+    margin-bottom: 3px;
+}
+
 .deleteBlock {
     justify-self: start;
 }
 
 .deleteBut {
     cursor: pointer;
-    background-color: black;
-    padding-left: 10px;
-    padding-right: 10px;
+    font-size: 12px;
+    background-color: rgb(87, 84, 84);
+    padding: 5px;
     border-radius: 5px;
     border: 1px solid black;
     color: white;
