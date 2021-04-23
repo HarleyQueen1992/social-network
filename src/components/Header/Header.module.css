@@ -98,6 +98,8 @@
 .navHead div a {
     color: white;
     text-decoration: none;
+    height: 100%;
+    width: 100%;
 }
 
 .linkBlock {
@@ -108,18 +110,47 @@
 .imgHead {
     height: 30px;
     width: 30px;
+    align-self: center;
+    justify-self: center;
+}
+
+.imgProfile {
+    height: 30px;
+    width: 30px;
+    align-self: center;
+    justify-self: center;
+}
+
+.imgNews {
+    height: 27px;
+    width: 27px;
+    align-self: center;
+    justify-self: center;
+}
+
+.imgPosts {
+    height: 37px;
+    width: 33px;
     align-self: start;
+    justify-self: center;
+}
+
+.imgServices {
+    height: 27px;
+    width: 27px;
+    align-self: center;
     justify-self: center;
 }
 
 .headName {
     font-size: 13px;
-    align-self: end;
+    align-self: start;
     justify-self: center;
 }
 
 .headItem {
-    align-self: start;
+    height: 100%;
+    width: 100%;
 }
 
 

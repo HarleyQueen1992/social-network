@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirecr } from '../../Hoc/withAuthRedirect';
-import {getUserProfile, addPostActionCreator,toggleIsFatching, saveProfileInfo, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
+import {getUserProfile, addPostActionCreator, toggleIsFatching, saveProfileInfo, setUserProfile, setStatus, toggleIsFollow, updateStatus, deletePost, savePhoto, getFollow } from '../../redux/ProfileReducer/profile-reducer';
 import { getIsFatching, getIsFollow, getProfile, getIsSavingPhoto, getStatus } from '../../redux/ProfileReducer/profile-selectors';
 import Profile from './Profile';
 import {getIsAuth, getProfileInfo, getUserId } from '../../redux/AuthReducer/auth-selectors'

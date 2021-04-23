@@ -128,7 +128,7 @@ const ProfileInfo = (props) => {
             
                 <div className={s.friendsBlock} >
                     <div className={s.friendsC} >
-                        Friends 
+                        Subscriptions
                         <span className={s.countFriends} >
                             {props.friends.length}
                         </span>

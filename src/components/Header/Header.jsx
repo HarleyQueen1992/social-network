@@ -10,7 +10,11 @@ import musicIcon from './../../assets/images/—Pngtree—music icon_4490549.png
 import Users from './../../assets/images/users2.png'
 import Frieds from './../../assets/images/friends.png'
 import Message from './../../assets/images/message.png'
-import Profile from './../../assets/images/profile.jpg'
+import Profile from './../../assets/images/profile.png'
+import News from './../../assets/images/newspaper.png'
+import Posts from './../../assets/images/chat.png'
+import Sub from './../../assets/images/renew.png'
+import Services from './../../assets/images/add.png'
 
 const Header = (props) => {
 
@@ -31,25 +35,25 @@ const Header = (props) => {
                 
             </div>
             <div className={h.navHead} >
-                <div className={h.headItem}>
-                    <NavLink className={h.linkBlock} to={"/profile"} >    
-                    <img className={h.imgHead} src={Profile}/>
-                    <span className={h.headName} >Profile</span> </NavLink>
-                </div>
-                <div className={h.headItem}><NavLink className={h.linkBlock} to={'/dialogs'} >
-                    <img className={h.imgHead} src={Message}/>
-                    <span className={h.headName} >Message</span>
-                    </NavLink>
-                </div>
-                <div className={h.headItem}><NavLink className={h.linkBlock} to={"/users"} >
-                    <img className={h.imgHead} src={Users}/>
-                    <span className={h.headName} >Users</span>
+            <div className={h.headItem}><NavLink className={h.linkBlock} to={"/users"} >
+                    <img className={h.imgNews} src={News}/>
+                    <span className={h.headName} >News</span>
                     </NavLink>
                 </div>
                 <div className={h.headItem} ><NavLink className={h.linkBlock} to={"/friends"} >
-                    <img className={h.imgHead} src={Frieds}/>
-                    <span className={h.headName} >Friends</span>
+                    <img className={h.imgServices} src={Services}/>
+                    <span className={h.headName} >Services</span>
                     </NavLink>
+                </div>
+                <div className={h.headItem}><NavLink className={h.linkBlock} to={'/posts'} >
+                    <img className={h.imgPosts} src={Posts}/>
+                    <span className={h.headName} >Posts</span>
+                    </NavLink>
+                </div>
+                <div className={h.headItem}>
+                    <NavLink className={h.linkBlock} to={"/profile"} >    
+                    <img className={h.imgProfile} src={Profile}/>
+                    <span className={h.headName} >Profile</span> </NavLink>
                 </div>
 
             </div>

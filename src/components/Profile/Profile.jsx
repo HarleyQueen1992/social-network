@@ -6,18 +6,16 @@ import PostCreation from './MyPosts/PostCreation/PostCreation'
 
 const Profile = (props) => {
     return (
-        <>
-        {!props.isPostCreation
-        ? <div className={p.profileBlock} >
+        
+        <div className={p.profileBlock} >
             <div className={p.profileInfo} >
                 <ProfileInfo friends={props.friends} isSavingPhoto={props.isSavingPhoto} saveProfileInfo={props.saveProfileInfo} isFollow={props.isFollow} unfollow={props.unfollow} follow={props.follow} savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile} isAuth={props.isAuth} status={props.status} updateStatus={props.updateStatus}/>
             </div>
-            <div className={p.posts} >
+            {/* <div className={p.posts} >
                 <MyPostsContainer/>
-            </div>
+            </div> */}
         </div>
-        : <PostCreation addPostActionCreator={props.addPostActionCreator} toggleIsPostCreation={props.toggleIsPostCreation}/>}
-        </>
+        
     )
 }
 
