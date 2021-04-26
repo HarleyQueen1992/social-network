@@ -23,6 +23,7 @@ import {Helmet} from 'react-helmet'
 import Post from './components/Profile/MyPosts/Post/Post';
 import PostCreation from './components/Posts/MyPosts/PostCreation/PostCreation';
 import MyPostsContainer from './components/Posts/MyPosts/MyPostsContainer';
+import Services from './components/Services/Services';
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -67,6 +68,8 @@ class App extends React.Component {
                                    render={ () => <UsersContainer/> }/>
                             <Route path='/posts'
                                    render={ () => <MyPostsContainer/> }/>
+                            <Route path='/services'
+                                   render={ () => <Services/>}/>
                             
                                          
                      </div>

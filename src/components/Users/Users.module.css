@@ -6,6 +6,7 @@ span {
     display: grid;
     margin-top: 30px;
     justify-self: center;
+    margin-bottom: 60px;
 }
 
 .user {

@@ -24,7 +24,7 @@ const ProfileInfo = (props) => {
     }
     const onMainPhotoSelected = (e) => {
         if (e.target.files.length) {
-            props.savePhoto(e.target.files[0])
+            props.savePhoto(e.target.files[0])  
         }
     }
     const onSubmit = (formData) => {
@@ -95,9 +95,10 @@ const ProfileInfo = (props) => {
                         <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                     </div>
                     <div className={s.descriptionCenter} >    
-                        <div>Birthday: 25 августа </div>
-                        <div>City: Lugansk</div>
-                        <div>Place of study: school №5</div>
+                        <div className={s.aboutMe} >About me : </div>  
+                        <div className={s.aboutMeText} > I am a team player. I am outgoing, dedicated, and open-minded. I get across to people and adjust to changes with ease. 
+                            I believe that a person should work on developing their professional skills and learning new things all the time.</div> 
+                        
                         {/*? Deploy will be in the future */}
                         {/* {deployed 
                         ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 

@@ -8,27 +8,39 @@ import { getCurrentPage, getFriends, getIsFatching, getPageSize, getTotalFriends
 class FriendsContainer extends React.Component {
 
     componentDidMount() {
-        this.props.requestFriends(this.props.currentPage, this.props.pageSize)
+        if (this.props.isFatching) {
+            this.props.requestFriends(this.props.currentPage)
+
+        }
     }
+
+    componentDidUpdate() {
+        if (this.props.isFatching) {
+            this.props.requestFriends(this.props.currentPage)
+
+        }
+    }
+    // componentDidMount() {
+    //     this.props.requestFriends(this.props.currentPage, this.props.pageSize)
+    // }
     
-    onPageChenged = (pageNumber) => {
-        this.props.requestFriends(pageNumber, this.props.pageSize)
-    }
+    // onPageChenged = (pageNumber) => {
+    //     this.props.requestFriends(pageNumber, this.props.pageSize)
+    // }
 
-    earlyPageNumber = () => {
-        this.props.requestFriends(this.props.currentPage - 1, this.props.pageSize, 'early')
-    }
+    // earlyPageNumber = () => {
+    //     this.props.requestFriends(this.props.currentPage - 1, this.props.pageSize, 'early')
+    // }
 
-    increasePageNumber = () => {
-        debugger
-        this.props.requestFriends(this.props.currentPage + 1, this.props.pageSize, 'next')
-    }
+    // increasePageNumber = () => {
+    //     debugger
+    //     this.props.requestFriends(this.props.currentPage + 1, this.props.pageSize, 'next')
+    // }
 
     render() {
         return (<>
-            { this.props.isFatching
-            ? <Preloader/> 
-            : <Friends friends={this.props.friends}
+            
+            <Friends friends={this.props.friends}
                        isFatching={this.props.isFatching}
                        pageSize={this.props.pageSize}
                        totalFriendsCount={this.props.totalFriendsCount}
@@ -39,7 +51,7 @@ class FriendsContainer extends React.Component {
                        toggleIsFatching={this.props.toggleIsFatching}
                        onPageChenged={this.onPageChenged}
                        earlyPageNumber={this.earlyPageNumber}
-                       increasePageNumber={this.increasePageNumber}/>}
+                       increasePageNumber={this.increasePageNumber}/>
 
         </>)
     }

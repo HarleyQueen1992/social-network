@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import userPhoto from '../../assets/images/user.png'
 import { createPages } from '../../utils/pagination';
 import { NavLink } from 'react-router-dom';
@@ -7,6 +7,19 @@ import FriendsPage from "./FriendsPage/FriendsPage";
 import Pagination from '../common/Pagination/Pagination'
 
 const Friends = (props) => {
+    
+
+    useEffect( () => {
+        document.addEventListener('scroll', scrollHandler)
+        return function () {
+            document.removeEventListener('scroll', scrollHandler)
+        }
+    })
+    const scrollHandler = (e) => {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) == 0 && props.friends.length < props.totalFriendsCount) {
+            props.toggleIsFatching(true)
+        }
+    }
 
 
     return (
@@ -26,12 +39,12 @@ const Friends = (props) => {
                 
             }
 
-            <Pagination currentPage={props.currentPage}
+            {/* <Pagination currentPage={props.currentPage}
                         pageSize={props.pageSize}
                         totalUsersCount={props.totalFriendsCount}
                         earlyPageNumber={props.earlyPageNumber} 
                         onPageChenged={props.onPageChenged} 
-                        increasePageNumber={props.increasePageNumber}/>
+                        increasePageNumber={props.increasePageNumber}/> */}
         </div>
                  
     )

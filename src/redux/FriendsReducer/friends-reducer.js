@@ -8,10 +8,10 @@ const EARLY_PAGE = 'app/friends-reducer/EARLY_PAGE';
 
 let initialState = {
     friends: [],
-    pageSize: 6,
+    pageSize: 9,
     totalFriendsCount: 20,
     currentPage: 1,
-    isFatching: false,
+    isFatching: true,
 
 
 };
@@ -21,7 +21,7 @@ const friendsReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
-                    friends: [...action.friends]
+                    friends: [...state.friends, ...action.friends]
                 }
             }
 
@@ -83,22 +83,34 @@ export const earlyPage = () => ({ type: EARLY_PAGE })
 
 
 // Thunk Creator
+export const requestFriends = (currentPage) => {
+        return (dispatch) => {
+            // dispatch(toggleIsFatching(true))
+            friendsAPI.getFriends(currentPage, initialState.pageSize)
+                .then(data => {
+                    dispatch(toggleIsFatching(false))
+                    dispatch(setFriends(data.data.items))
+                    dispatch(setCurrentPage(currentPage + 1))
+                    dispatch(setFriendsTotalCount(data.data.totalCount))
+                })
 
-export const requestFriends = (currentPage, pageSize, append = '') => async(dispatch) => {
-    dispatch(toggleIsFatching(true));
-    if (append === 'early') {
-        dispatch(earlyPage())
-    } else if (append === 'next') {
-        dispatch(nextPage())
+        }
     }
-    dispatch(setCurrentPage(currentPage))
-    let data = await friendsAPI.getFriends(currentPage, pageSize)
+    // export const requestFriends = (currentPage, pageSize, append = '') => async(dispatch) => {
+    //     dispatch(toggleIsFatching(true));
+    //     if (append === 'early') {
+    //         dispatch(earlyPage())
+    //     } else if (append === 'next') {
+    //         dispatch(nextPage())
+    //     }
+    //     dispatch(setCurrentPage(currentPage))
+    //     let data = await friendsAPI.getFriends(currentPage, pageSize)
 
-    dispatch(toggleIsFatching(false))
-    dispatch(setFriends(data.data.items));
-    dispatch(setFriendsTotalCount(data.data.totalCount));
-    dispatch(setCurrentPage(currentPage))
+//     dispatch(toggleIsFatching(false))
+//     dispatch(setFriends(data.data.items));
+//     dispatch(setFriendsTotalCount(data.data.totalCount));
+//     dispatch(setCurrentPage(currentPage))
 
-}
+// }
 
 export default friendsReducer;

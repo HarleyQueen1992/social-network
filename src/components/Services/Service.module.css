@@ -1,0 +1,59 @@
+.servicesBlock {
+    width: 100vw;
+    display: grid;
+    grid-row-gap: 20px;
+    grid-template-rows: 60px 1fr;
+}
+
+.header {
+    display: grid;
+    margin: 0 10px;
+    grid-template-columns: calc(100% - 60px) 30px 30px;
+    border-bottom: 1px solid rgb(56, 56, 56);
+}
+
+.title {
+    color: rgb(255, 255, 255);
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 1000;
+    align-self: center;
+}
+
+.scan {
+    align-self: center;
+    justify-self: center;
+    height: 20px;
+}
+
+.search {
+    align-self: center;
+    justify-self: center;
+    height: 20px;
+}
+
+.services {
+    justify-self: center;
+    display: grid;
+    width: 80%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+}
+
+.Img {
+    align-self: center;
+    justify-self: center;
+    height: 40px;
+}
+
+.block {
+    display: grid;
+    grid-template-rows: 40px auto;
+    text-decoration: none;
+}
+
+.name {
+    color: white;
+    justify-self: center;
+    font-weight: 600;
+}

@@ -18,10 +18,10 @@ const SET_WINDOW_MODE = 'app/user-reducer/SET_WINDOW_MODE'
 let initialState = {
     users: [],
     usersSearch: null,
-    pageSize: 7,
+    pageSize: 10,
     totalUsersCount: 20,
     currentPage: 1,
-    isFatching: false,
+    isFatching: true,
     followingInProgress: [],
     value: '',
     windowMode: false
@@ -53,7 +53,7 @@ const usersReducer = (state = initialState, action) => {
                 {
                     return {
                         ...state,
-                        users: [...action.users]
+                        users: [...state.users, ...action.users]
                     }
                 }
 
@@ -162,26 +162,40 @@ export const toggleIsFatching = (isFatching) => ({ type: TOGGLE_IS_FATCHING, isF
 
 export const toggleFollowingProgress = (isFatching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFatching, userId })
 
-//Thunk Creater
+//!Thunk Creater
 
-export const requestUsers = (currentPage, pageSize, append = '') => {
+export const requestUsers = (currentPage) => {
     return (dispatch) => {
-        dispatch(toggleIsFatching(true));
-        if (append === 'early') {
-            dispatch(earlyPage())
-        } else if (append === 'next') {
-            dispatch(nextPage())
-        }
-        dispatch(setCurrentPage(currentPage))
-        return usersAPI.getUsers(currentPage, pageSize)
+        // dispatch(toggleIsFatching(true))
+        usersAPI.getUsers(currentPage, initialState.pageSize)
             .then(data => {
                 dispatch(toggleIsFatching(false))
-                dispatch(setUsers(data.items));
-                dispatch(setUsersTotalCount(data.totalCount));
-                dispatch(setCurrentPage(currentPage))
+                dispatch(setUsers(data.items))
+                dispatch(setCurrentPage(currentPage + 1))
+                dispatch(setUsersTotalCount(data.totalCount))
             })
+
     }
 }
+
+// export const requestUsers = (currentPage, pageSize, append = '') => {
+//     return (dispatch) => {
+//         dispatch(toggleIsFatching(true));
+//         if (append === 'early') {
+//             dispatch(earlyPage())
+//         } else if (append === 'next') {
+//             dispatch(nextPage())
+//         }
+//         dispatch(setCurrentPage(currentPage))
+//         return usersAPI.getUsers(currentPage, pageSize)
+//             .then(data => {
+//                 dispatch(toggleIsFatching(false))
+//                 dispatch(setUsers(data.items));
+//                 dispatch(setUsersTotalCount(data.totalCount));
+//                 dispatch(setCurrentPage(currentPage))
+//             })
+//     }
+// }
 
 export const follow = (userId) => {
     return (dispatch) => {

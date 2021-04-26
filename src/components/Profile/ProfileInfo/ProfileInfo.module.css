@@ -342,7 +342,7 @@
     @media (max-width: 480px) {
         .descriptionBlock {
             margin-top: 20px;
-            grid-template-rows: 150px 1fr 1fr;
+            grid-template-rows: 150px 1fr auto;
             grid-row-gap: 20px;
             grid-template-columns: 1fr;
         }
@@ -374,6 +374,14 @@
         }
         .descriptionCenter div {
             color: rgb(197, 197, 197);
+        }
+        .aboutMe {
+            font-size: 16px;
+            font-weight: bold;
+            color: rgb(207, 207, 207);
+        }
+        .aboutMeText {
+            margin-left: 5px;
         }
         input[type=file] {
             display: none;

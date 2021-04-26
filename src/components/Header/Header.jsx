@@ -40,7 +40,7 @@ const Header = (props) => {
                     <span className={h.headName} >News</span>
                     </NavLink>
                 </div>
-                <div className={h.headItem} ><NavLink className={h.linkBlock} to={"/friends"} >
+                <div className={h.headItem} ><NavLink className={h.linkBlock} to={"/services"} >
                     <img className={h.imgServices} src={Services}/>
                     <span className={h.headName} >Services</span>
                     </NavLink>

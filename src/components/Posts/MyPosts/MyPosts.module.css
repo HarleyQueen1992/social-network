@@ -79,13 +79,18 @@
     .posts {
         width: 100%;
     }
+    .PostsBlock {
+        margin-bottom: 60px;
+    }
 }
 
 @media (max-width: 400px) {
     .PostsBlock {
         width: 100vw;
+        margin-bottom: 0;
     }
     .posts {
+        grid-row-gap: 10px;
         width: 100%;
         margin-bottom: 60px;
     }
