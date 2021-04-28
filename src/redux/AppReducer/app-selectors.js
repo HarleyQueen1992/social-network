@@ -4,3 +4,6 @@ export const getInitialized = (state) => {
 export const getIsPostCreation = (state) => {
     return state.app.isPostCreation
 }
+export const getTheme = (state) => {
+    return state.app.theme
+}

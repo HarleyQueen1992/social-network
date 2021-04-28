@@ -1,0 +1,43 @@
+.newsBlock {
+    display: grid;
+    width: 100vw;
+    grid-template-rows: 50px 1fr;
+    grid-row-gap: 20px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 30px 30px;
+    border-bottom: 1px solid rgb(56, 56, 56);
+    margin: 0 10px;
+}
+
+.postBlock {
+    /* width: 500px; */
+    display: grid;
+    /* grid-template-rows: 50px 30px; */
+    grid-template-areas: "photoName" "body" "likes";
+    /* grid-template-rows: minmax(50px, auto) 0%; */
+    /* border: 2px solid #138D90; */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(82, 82, 82);
+}
+
+.title {
+    align-self: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 1000;
+    margin-left: 20px;
+}
+
+.renewImg {
+    align-self: center;
+    height: 25px;
+}
+
+.searchImg {
+    align-self: center;
+    height: 22px;
+}

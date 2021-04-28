@@ -161,9 +161,7 @@
         cursor: pointer;
     }
     
-    .descriptionCenter div {
-        color: white;
-    }
+    .descriptionCenter div {}
     
     .discriptionBot {
         grid-area: bot;
@@ -272,7 +270,6 @@
     }
     
     .topName {
-        color: white;
         font-size: 20px;
         font-weight: 700;
         align-self: end;
@@ -372,13 +369,10 @@
             display: block;
             color: white;
         }
-        .descriptionCenter div {
-            color: rgb(197, 197, 197);
-        }
+        /* .descriptionCenter div {} */
         .aboutMe {
             font-size: 16px;
             font-weight: bold;
-            color: rgb(207, 207, 207);
         }
         .aboutMeText {
             margin-left: 5px;
@@ -421,7 +415,7 @@
             grid-template-columns: 1fr;
             margin: 0 10px;
             grid-template-areas: "profileInfo" "edit";
-            border-bottom: 1px solid rgb(53, 53, 53);
+            border-bottom: 1px solid var(--Fcolor);
         }
         .friendsList {
             display: inline-flex;
@@ -429,9 +423,8 @@
         }
         .friendsC {
             display: grid;
-            grid-template-columns: auto 1fr 1fr;
+            grid-template-columns: auto 1fr;
             padding-left: 10px;
-            color: white;
             font-size: 16px;
         }
         .rToFriends {
@@ -443,7 +436,6 @@
         }
         .countFriends {
             margin-left: 5px;
-            color: rgb(121, 115, 115);
         }
         .friend {
             display: grid;

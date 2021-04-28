@@ -8,10 +8,12 @@ import { requestUsers } from '../UsersReducer/user-reducer';
 import { getAuthMe } from './../AuthReducer/auth-reducer';
 const INITIALIZED_SUCCESS = 'app/app-reducer/INITIALIZED_SUCCESS';
 const IS_POST_CREATION = 'app/app-reducer/IS_POST_CREATION'
+const SET_THEME = 'app/app-reducer/SET_THEME'
 
 let initialState = {
     initialized: false,
-    isPostCreation: false
+    isPostCreation: false,
+    theme: 'light'
 
 
 }
@@ -33,6 +35,13 @@ const appReducer = (state = initialState, action) => {
                     isPostCreation: action.isPostCreation
                 }
             }
+        case SET_THEME:
+            {
+                return {
+                    ...state,
+                    theme: action.theme
+                }
+            }
         default:
             return state;
     }
@@ -43,6 +52,8 @@ export const initializedSuccess = () => {
     return { type: INITIALIZED_SUCCESS }
 }
 export const toggleIsPostCreation = (isPostCreation) => ({ type: IS_POST_CREATION, isPostCreation })
+
+export const setTheme = (theme) => ({ type: SET_THEME, theme })
 
 // Thunk Creator
 

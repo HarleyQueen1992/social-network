@@ -5,7 +5,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {HashRouter, Redirect, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
-import News from "./components/News/News";
+import NewsContainer from "./components/News/NewsContainer";
 import Music from "./components/Music/Music";
 import UsersContainer from "./components/Users/UsersContainer";
 import FriendsContainer from './components/Friends/FriendsContainer';
@@ -13,9 +13,9 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
 import { connect, Provider} from 'react-redux';
-import { initializeApp, toggleIsPostCreation } from './redux/AppReducer/app-reducer';
+import { initializeApp, toggleIsPostCreation, setTheme } from './redux/AppReducer/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
-import { getInitialized, getIsPostCreation } from './redux/AppReducer/app-selectors';
+import { getInitialized, getIsPostCreation, getTheme } from './redux/AppReducer/app-selectors';
 import store from "./redux/redux-store";
 import {addPostActionCreator} from './redux/ProfileReducer/profile-reducer'
 import { getIsAuth } from './redux/AuthReducer/auth-selectors';
@@ -24,17 +24,24 @@ import Post from './components/Profile/MyPosts/Post/Post';
 import PostCreation from './components/Posts/MyPosts/PostCreation/PostCreation';
 import MyPostsContainer from './components/Posts/MyPosts/MyPostsContainer';
 import Services from './components/Services/Services';
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
+const StyledApp = styled.div`
+  background-color: ${(props) => props.theme.body};
+`;
 
 class App extends React.Component {
     
     componentDidMount() {
        this.props.initializeApp()
     }
-
+    themeToggler = () => {
+       this.props.theme === "light" ? this.props.setTheme("dark") : this.props.setTheme("light")
+       }
     render () {
        if (!this.props.initialized) {
               return <Preloader/>
@@ -49,6 +56,9 @@ class App extends React.Component {
        //      return <PostCreation addPostActionCreator={this.props.addPostActionCreator} toggleIsPostCreation={this.props.toggleIsPostCreation} />
        } else {    
        return (
+              <ThemeProvider theme={this.props.theme === "light" ? lightTheme : darkTheme}>
+              <GlobalStyles />
+              <StyledApp>
               <div className='app-wrapper'>
                      <Redirect to='/profile'/>
                      
@@ -59,7 +69,6 @@ class App extends React.Component {
                                    render={ () => <DialogsContainer />}/>
                             <Route path='/profile/:userid?'
                                    render={ () => <ProfileContainer />}/>
-                            <Route path='/news' render={ () => <News />}/>
                             <Route path='/music' render={ () => <Music />}/>
                             <Route path='/settings' render={ () => <Settings />}/>
                             <Route path='/friends'
@@ -70,11 +79,15 @@ class App extends React.Component {
                                    render={ () => <MyPostsContainer/> }/>
                             <Route path='/services'
                                    render={ () => <Services/>}/>
+                            <Route path='/news'
+                                   render={ () => <NewsContainer/>}/>
                             
                                          
                      </div>
 
-              </div>)}
+              </div>
+              </StyledApp>
+              </ThemeProvider>)}
        }
        
 };
@@ -83,13 +96,14 @@ const mapStateToProps = (state) => {
     return {
        initialized: getInitialized(state),
        isAuth: getIsAuth(state),
-       isPostCreation: getIsPostCreation(state)
+       isPostCreation: getIsPostCreation(state),
+       theme: getTheme(state)
     }
 }
 
 let AppContainer = compose(
        withRouter,
-       connect(mapStateToProps, {initializeApp, addPostActionCreator,toggleIsPostCreation}))(App);
+       connect(mapStateToProps, {initializeApp, addPostActionCreator,toggleIsPostCreation, setTheme}))(App);
    
    const SamuraiJSApp = (props) => {
       return <HashRouter >

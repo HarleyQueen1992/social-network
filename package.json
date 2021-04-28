@@ -19,6 +19,7 @@
         "redux-form": "^8.3.7",
         "redux-thunk": "^2.3.0",
         "reselect": "^4.0.0",
+        "styled-components": "*",
         "svg-loaders": "*",
         "web-vitals": "^0.2.4"
     },

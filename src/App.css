@@ -1,12 +1,17 @@
 body {
     margin: 0;
-    background-color: rgb(35, 35, 35);
+    /* background-color: gray; */
     /* background-size:  100%; */
     /* background-attachment: fixed; */
 }
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+::root {
+    --Bcolor: rgb(35, 35, 35);
+    --Fcolor: white;
 }
 
 .loginPage {
@@ -29,7 +34,7 @@ body {
     grid-area: c;
     display: grid;
     /* margin-right: 300px; */
-    background-color: rgb(35, 35, 35);
+    background-color: var(--Bcolor);
 }
 
 @media (max-width: 1250px) {

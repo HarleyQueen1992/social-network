@@ -15,14 +15,21 @@ import News from './../../assets/images/newspaper.png'
 import Posts from './../../assets/images/chat.png'
 import Sub from './../../assets/images/renew.png'
 import Services from './../../assets/images/add.png'
+import styled from "styled-components";
 
 const Header = (props) => {
 
     // const handleChange = (event) => {
     //     props.setValue(event.target.value);
     //   }
-
-    return <header className={h.header}>
+    const Hdeader = styled.div`
+        background-color: ${(props) => props.theme.headerColor};
+    `
+    const Name = styled.div`
+        color: ${(props) => props.theme.statusColor};
+    `
+    return <div className={h.header}>
+        <Hdeader>
             <div className={h.logoBlock} >
                 <img className={h.logo} src='https://png.pngtree.com/png-vector/20200908/ourlarge/pngtree-pug-dog-smoke-pipe-illustration-png-image_2341735.jpg' />
                 <span className={h.headerName}> <NavLink to={'/profile/'} >Mosset</NavLink> </span>
@@ -35,25 +42,34 @@ const Header = (props) => {
                 
             </div>
             <div className={h.navHead} >
-            <div className={h.headItem}><NavLink className={h.linkBlock} to={"/users"} >
+            <div className={h.headItem}><NavLink className={h.linkBlock} to={"/news"} >
                     <img className={h.imgNews} src={News}/>
-                    <span className={h.headName} >News</span>
+                    <Name>
+                        <span className={h.headName} >News</span>
+                    </Name>
                     </NavLink>
                 </div>
                 <div className={h.headItem} ><NavLink className={h.linkBlock} to={"/services"} >
                     <img className={h.imgServices} src={Services}/>
-                    <span className={h.headName} >Services</span>
+                    <Name>
+                        <span className={h.headName} >Services</span>
+                    </Name>
                     </NavLink>
                 </div>
                 <div className={h.headItem}><NavLink className={h.linkBlock} to={'/posts'} >
                     <img className={h.imgPosts} src={Posts}/>
-                    <span className={h.headName} >Posts</span>
+                    <Name>
+                        <span className={h.headName} >Posts</span>
+                    </Name>
                     </NavLink>
                 </div>
                 <div className={h.headItem}>
                     <NavLink className={h.linkBlock} to={"/profile"} >    
                     <img className={h.imgProfile} src={Profile}/>
-                    <span className={h.headName} >Profile</span> </NavLink>
+                    <Name>
+                        <span className={h.headName} >Profile</span>
+                    </Name> 
+                    </NavLink>
                 </div>
 
             </div>
@@ -109,7 +125,9 @@ const Header = (props) => {
                     }
                 </div> 
                 : <div></div> }
-    </header>
+        </Hdeader>
+    </div>
+    
 }
 
 export default Header;

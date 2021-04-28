@@ -6,7 +6,6 @@
     width: 100%;
     z-index: 999999;
     grid-area: h;
-    background-color: rgb(56, 56, 56);
     display: grid;
     grid-template-areas: "logo input audio login";
     grid-template-columns: 530px 280px 300px 1fr;
@@ -96,7 +95,6 @@
 }
 
 .navHead div a {
-    color: white;
     text-decoration: none;
     height: 100%;
     width: 100%;
