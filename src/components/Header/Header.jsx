@@ -29,7 +29,6 @@ const Header = (props) => {
         color: ${(props) => props.theme.statusColor};
     `
     return <div className={h.header}>
-        <Hdeader>
             <div className={h.logoBlock} >
                 <img className={h.logo} src='https://png.pngtree.com/png-vector/20200908/ourlarge/pngtree-pug-dog-smoke-pipe-illustration-png-image_2341735.jpg' />
                 <span className={h.headerName}> <NavLink to={'/profile/'} >Mosset</NavLink> </span>
@@ -44,31 +43,23 @@ const Header = (props) => {
             <div className={h.navHead} >
             <div className={h.headItem}><NavLink className={h.linkBlock} to={"/news"} >
                     <img className={h.imgNews} src={News}/>
-                    <Name>
                         <span className={h.headName} >News</span>
-                    </Name>
                     </NavLink>
                 </div>
                 <div className={h.headItem} ><NavLink className={h.linkBlock} to={"/services"} >
                     <img className={h.imgServices} src={Services}/>
-                    <Name>
                         <span className={h.headName} >Services</span>
-                    </Name>
                     </NavLink>
                 </div>
                 <div className={h.headItem}><NavLink className={h.linkBlock} to={'/posts'} >
                     <img className={h.imgPosts} src={Posts}/>
-                    <Name>
                         <span className={h.headName} >Posts</span>
-                    </Name>
                     </NavLink>
                 </div>
                 <div className={h.headItem}>
                     <NavLink className={h.linkBlock} to={"/profile"} >    
                     <img className={h.imgProfile} src={Profile}/>
-                    <Name>
                         <span className={h.headName} >Profile</span>
-                    </Name> 
                     </NavLink>
                 </div>
 
@@ -125,7 +116,6 @@ const Header = (props) => {
                     }
                 </div> 
                 : <div></div> }
-        </Hdeader>
     </div>
     
 }

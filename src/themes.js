@@ -1,15 +1,22 @@
 import { createGlobalStyle } from "styled-components";
 
 export const lightTheme = {
-    body: "rgb(209, 209, 214)",
+    body: "#edeef0",
     fontColor: "#000",
     colorAbouMe: "rgb(197, 197, 197)",
     colorDeteilInfo: "#000",
     statusColor: "#000",
     descriptionColor: "#000",
-    headerColor: "rgb(140 140 140)",
-    EditBack: "rgb(108 107 121)"
+    headerColor: "#adadad",
+    EditBack: "rgb(210 195 186)"
 };
+
+Object.defineProperty(lightTheme, 'toString', {
+    value: () =>
+        'lightTheme',
+    enumerable: false,
+
+})
 
 export const darkTheme = {
     body: "rgb(35, 35, 35)",
@@ -18,15 +25,28 @@ export const darkTheme = {
     statusColor: "rgb(140 140 140)",
     colorDeteilInfo: "#fff",
     descriptionColor: "#fff",
-    headerColor: "rgb(56, 56, 56)"
+    headerColor: "rgb(56, 56, 56)",
+    EditBack: "rgb(113 113 113)"
 };
 
-export const GlobalStyles = createGlobalStyle `
 
-	body {
+Object.defineProperty(darkTheme, 'toString', {
+    value: () =>
+        'darkTheme',
+    enumerable: false,
 
-		background-color: ${(props) => props.theme.body};
+})
 
-	}
+// darkTheme.prototype.toString = () => {
+//     return 'darkTheme'
+// }
 
-`;
+// export const GlobalStyles = createGlobalStyle `
+
+// 	body {
+
+// 		background-color: ${(props) => props.theme.body};
+
+// 	}
+
+// `;

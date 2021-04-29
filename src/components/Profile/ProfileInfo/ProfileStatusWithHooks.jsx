@@ -24,15 +24,12 @@ const ProfileStatusWithHooks = (props) => {
 
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);   
-    }
-    const Status = styled.span`
-        color: ${(props) => props.theme.statusColor};
-    `   
+    }  
         return (
             <div>
                 {!editMode &&
                     <div className={s.status} onDoubleClick={activateEditMode }>
-                        <Status>status: {props.status}</Status>
+                        status: {props.status}
                     </div>}
                 {editMode &&
                     <div>

@@ -34,7 +34,7 @@
 }
 
 .heading {
-    color: white;
+    color: var(--fontColor);
     font-size: 25px;
     display: grid;
     height: 100%;

@@ -21,7 +21,7 @@
 .postText {
     min-height: 50px;
     grid-area: body;
-    color: white;
+    color: var(--fontColor);
     font-weight: 400;
     word-break: break-all;
     max-width: 450px;
@@ -38,7 +38,7 @@
 .userName {
     align-self: center;
     font-size: 16px;
-    color: #fff;
+    color: var(--fontColor);
 }
 
 .but {

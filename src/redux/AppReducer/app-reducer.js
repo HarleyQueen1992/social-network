@@ -5,6 +5,7 @@ import { getAllFriends } from '../NavbarReducer/navbar-reducer';
 import { requestFriends } from '../FriendsReducer/friends-reducer';
 import { getUserProfile, requestStatus, updateStatus } from '../ProfileReducer/profile-reducer';
 import { requestUsers } from '../UsersReducer/user-reducer';
+import { lightTheme, darkTheme } from './../../themes'
 import { getAuthMe } from './../AuthReducer/auth-reducer';
 const INITIALIZED_SUCCESS = 'app/app-reducer/INITIALIZED_SUCCESS';
 const IS_POST_CREATION = 'app/app-reducer/IS_POST_CREATION'
@@ -13,7 +14,8 @@ const SET_THEME = 'app/app-reducer/SET_THEME'
 let initialState = {
     initialized: false,
     isPostCreation: false,
-    theme: 'light'
+    theme: darkTheme,
+
 
 
 }
@@ -39,7 +41,7 @@ const appReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
-                    theme: action.theme
+                    theme: (action.theme === 'light' ? lightTheme : darkTheme)
                 }
             }
         default:

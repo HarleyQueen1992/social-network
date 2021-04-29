@@ -4,7 +4,7 @@ import HeaderContaioner from './components/Header/HeaderContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {HashRouter, Redirect, Route, withRouter} from "react-router-dom";
-import Settings from "./components/Settings/Settings";
+import SettingsContainer from "./components/Settings/SettingsContainer";
 import NewsContainer from "./components/News/NewsContainer";
 import Music from "./components/Music/Music";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -56,9 +56,6 @@ class App extends React.Component {
        //      return <PostCreation addPostActionCreator={this.props.addPostActionCreator} toggleIsPostCreation={this.props.toggleIsPostCreation} />
        } else {    
        return (
-              <ThemeProvider theme={this.props.theme === "light" ? lightTheme : darkTheme}>
-              <GlobalStyles />
-              <StyledApp>
               <div className='app-wrapper'>
                      <Redirect to='/profile'/>
                      
@@ -70,7 +67,7 @@ class App extends React.Component {
                             <Route path='/profile/:userid?'
                                    render={ () => <ProfileContainer />}/>
                             <Route path='/music' render={ () => <Music />}/>
-                            <Route path='/settings' render={ () => <Settings />}/>
+                            <Route path='/settings' render={ () => <SettingsContainer />}/>
                             <Route path='/friends'
                                    render={ () => <FriendsContainer /> }/>
                             <Route path='/users' 
@@ -85,9 +82,7 @@ class App extends React.Component {
                                          
                      </div>
 
-              </div>
-              </StyledApp>
-              </ThemeProvider>)}
+              </div>)}
        }
        
 };

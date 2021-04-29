@@ -35,33 +35,9 @@ const ProfileInfo = (props) => {
             }
         );
     }
-    const Styleds = styled.div`
-        color: ${(props) => props.theme.colorAbouMe};
-    `;
 
-    const StyledApp = styled.div`
-        color: ${(props) => props.theme.fontColor};
-        font-size: 20px;
-        font-weight: 700;
-        align-self: end;
-        margin-left: 10px;
-    `;
 
-    const DeteilInfo = styled.div`
-        color: ${(props) => props.theme.colorDeteilInfo};
-    `
 
-    const Description = styled.div`
-        color: ${(props) => props.theme.descriptionColor};
-    `
-    const Friends = styled.div`
-        color: ${(props) => props.theme.descriptionColor};
-    `
-    const Edit = styled.div`
-        background-color: ${(props) => props.theme.EditBack};
-        display:grid;
-        border-radius: 6px;
-    `
     return (
         // <Styleds>
         <div className={s.profileInfoBlock} >
@@ -96,7 +72,7 @@ const ProfileInfo = (props) => {
                             : <button onClick={ () => { props.follow(props.profile.userId)} } className={s.followBut} >Follow</button>}
                         </div>} */}
                         <div className={s.rightTopDescription} >
-                        <StyledApp>{props.profile.fullName}</StyledApp>
+                         <div className={s.topName} >{props.profile.fullName}</div> 
                             <div className={s.centerStatus} >  <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></div>
                         </div>
                     </div>
@@ -110,9 +86,7 @@ const ProfileInfo = (props) => {
                                             <input type="file" id="input__file" className="input input__file" onChange={onMainPhotoSelected} /> 
                                                
                                                 <label className={s.edit} for="input__file">
-                                                <Edit> 
                                                     <span>Edit</span>
-                                                </Edit>
                                                 </label>
                                             
                                                 
@@ -129,28 +103,22 @@ const ProfileInfo = (props) => {
                 
                 <div className={s.description} >
                     <div className={s.discriptionTop} >
-                    <StyledApp>
                         <div>
                             {props.profile.fullName} 
                         </div>
-                    </StyledApp>
                         <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                     </div>
                     <div className={s.descriptionCenter} >
-                        <Description>    
                         <div className={s.aboutMe} >About me : </div>  
                         <div className={s.aboutMeText} > I am a team player. I am outgoing, dedicated, and open-minded. I get across to people and adjust to changes with ease. 
-                            I believe that a person should work on developing their professional skills and learning new things all the time.</div> 
-                            </Description> 
+                            I believe that a person should work on developing their professional skills and learning new things all the time.</div>
                         {/*? Deploy will be in the future */}
                         {/* {deployed 
                         ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
                         : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
                     </div>
                     <div className={s.detailed} >
-                        <DeteilInfo>
                             detailed information
-                        </DeteilInfo>
                     </div>
                     {/* {deployed 
                         ? editMode 
@@ -174,12 +142,10 @@ const ProfileInfo = (props) => {
             
                 <div className={s.friendsBlock} >
                     <div className={s.friendsC} >
-                    <Friends>   
                         Subscriptions
                         <span className={s.countFriends} >
                             {props.friends.length}
                         </span>
-                        </Friends>
                         <NavLink className={s.rToFriends} to='/friends' >
                         ➤   
                         </NavLink></div>
@@ -190,9 +156,7 @@ const ProfileInfo = (props) => {
                                     <img className={s.friendsAva } src={!f.photo ? profileImg : f.photo } />
                                 </div>
                                 <div className={s.friendsName} >
-                                <Friends>
                                     {f.name}
-                                </Friends>
                                 </div>
                             </NavLink>
                             )}

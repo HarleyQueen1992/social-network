@@ -6,6 +6,7 @@ import { getTheme } from '../../redux/AppReducer/app-selectors'
 import Settings from './Settings'
 
 class SettingsContainer extends React.Component {
+
     render() {
         return ( <>
                      <Settings theme={this.props.theme}

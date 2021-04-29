@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    /* background-color: gray; */
+    background-color: var(--body);
     /* background-size:  100%; */
     /* background-attachment: fixed; */
 }
@@ -9,9 +9,16 @@ body {
     width: 0;
 }
 
-::root {
-    --Bcolor: rgb(35, 35, 35);
-    --Fcolor: white;
+html {
+    /* --body: rgb(209, 209, 214) */
+    --body: rgb(35, 35, 35);
+    --fontColor: #fff;
+    --colorAbouMe: rgb(197, 197, 197);
+    --statusColor: rgb(140 140 140);
+    --colorDeteilInfo: #fff;
+    --descriptionColor: #fff;
+    --headerColor: rgb(56, 56, 56);
+    --EditBack: rgb(113 113 113);
 }
 
 .loginPage {
@@ -34,7 +41,7 @@ body {
     grid-area: c;
     display: grid;
     /* margin-right: 300px; */
-    background-color: var(--Bcolor);
+    background-color: var(--body);
 }
 
 @media (max-width: 1250px) {

@@ -13,7 +13,7 @@
 }
 
 .title {
-    color: rgb(255, 255, 255);
+    color: var(--fontColor);
     margin-left: 5px;
     font-size: 20px;
     font-weight: 1000;
@@ -53,7 +53,7 @@
 }
 
 .name {
-    color: white;
+    color: var(--fontColor);
     justify-self: center;
     font-weight: 600;
 }

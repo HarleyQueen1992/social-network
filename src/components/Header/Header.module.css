@@ -9,6 +9,7 @@
     display: grid;
     grid-template-areas: "logo input audio login";
     grid-template-columns: 530px 280px 300px 1fr;
+    background-color: var(--headerColor);
 }
 
 
@@ -144,6 +145,7 @@
     font-size: 13px;
     align-self: start;
     justify-self: center;
+    color: var(--colorDeteilInfo)
 }
 
 .headItem {
