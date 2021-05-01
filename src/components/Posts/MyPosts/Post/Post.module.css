@@ -89,7 +89,7 @@ button {
 
 .likeBlock span {
     align-self: end;
-    color: white;
+    color: var(--fontColor);
     margin-bottom: 3px;
 }
 

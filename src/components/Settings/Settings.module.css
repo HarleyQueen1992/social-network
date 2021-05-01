@@ -17,7 +17,7 @@
 
 .label {
     box-sizing: border-box;
-    background-color: #111;
+    background-color: var(--swithThemeBac);
     border-radius: 50px;
     cursor: pointer;
     display: flex;
@@ -31,7 +31,7 @@
 }
 
 .label .ball {
-    background-color: #fff;
+    background-color: var(--swithThemeBall);
     border-radius: 50%;
     position: absolute;
     top: 2px;
@@ -39,7 +39,7 @@
     height: 22px;
     width: 22px;
     transform: translateX(0px);
-    transition: transform 0.2s linear;
+    transition: transform 0.3s linear;
 }
 
 .ball.active {

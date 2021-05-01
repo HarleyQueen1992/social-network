@@ -2,8 +2,11 @@ import React from 'react';
 import p from './Post.module.css'
 import heart from './../../../../assets/images/heart.png'
 import heartDisable from './../../../../assets/images/heartDisable.png'
+import heartDark from './../../../../assets/images/heartDark.png'
+import heartDisableDark from './../../../../assets/images/heartDisableDark.png'
 import avaInPosts from './../../../../assets/images/user.png'
 import Comments from './../../../../assets/images/comments.png'
+import CommentsLight from './../../../../assets/images/commentsLight.png'
 
 const Post = (props) => {
     return (
@@ -22,12 +25,12 @@ const Post = (props) => {
             <div className={p.botBlock} >
                 <div className={p.leftBlock} >
                     <div className={p.commentsBlock} >
-                        <img className={p.commentsImg} src={Comments} />
+                        <img className={p.commentsImg} src={props.theme == 'lightTheme' ? CommentsLight : Comments} />
                     </div>
                     <div className={p.likeBlock} > 
                         {props.isDisable ?
-                        <img onClick={()=> {props.addLike(props.id)}} className={p.heart} src={heartDisable}/> : 
-                        <img onClick={()=> {props.addLike(props.id)}} className={p.heart} src={heart}/> 
+                        <img onClick={()=> {props.addLike(props.id)}} className={p.heart} src={props.theme == 'lightTheme' ? heartDisable : heartDisableDark}/> : 
+                        <img onClick={()=> {props.addLike(props.id)}} className={p.heart} src={props.theme == 'lightTheme' ? heart : heartDark}/> 
                         }
                         <span>{props.like}</span>
                         

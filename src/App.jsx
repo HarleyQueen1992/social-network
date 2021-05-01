@@ -23,7 +23,7 @@ import {Helmet} from 'react-helmet'
 import Post from './components/Profile/MyPosts/Post/Post';
 import PostCreation from './components/Posts/MyPosts/PostCreation/PostCreation';
 import MyPostsContainer from './components/Posts/MyPosts/MyPostsContainer';
-import Services from './components/Services/Services';
+import ServicesContainer from './components/Services/ServicesContainer';
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 
@@ -60,8 +60,10 @@ class App extends React.Component {
                      <Redirect to='/profile'/>
                      
                      <HeaderContaioner />
-                     <NavbarContainer />  
+                     <NavbarContainer /> 
+                    
                      <div className='app-wrapper-content'>
+                             
                             <Route path='/dialogs'
                                    render={ () => <DialogsContainer />}/>
                             <Route path='/profile/:userid?'
@@ -75,7 +77,7 @@ class App extends React.Component {
                             <Route path='/posts'
                                    render={ () => <MyPostsContainer/> }/>
                             <Route path='/services'
-                                   render={ () => <Services/>}/>
+                                   render={ () => <ServicesContainer/>}/>
                             <Route path='/news'
                                    render={ () => <NewsContainer/>}/>
                             

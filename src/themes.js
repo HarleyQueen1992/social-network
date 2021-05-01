@@ -8,7 +8,10 @@ export const lightTheme = {
     statusColor: "#000",
     descriptionColor: "#000",
     headerColor: "#adadad",
-    EditBack: "rgb(210 195 186)"
+    EditBack: "rgb(210 195 186)",
+    swithThemeBac: "#9e9c9c",
+    swithThemeBall: "#232323"
+
 };
 
 Object.defineProperty(lightTheme, 'toString', {
@@ -26,7 +29,9 @@ export const darkTheme = {
     colorDeteilInfo: "#fff",
     descriptionColor: "#fff",
     headerColor: "rgb(56, 56, 56)",
-    EditBack: "rgb(113 113 113)"
+    EditBack: "rgb(113 113 113)",
+    swithThemeBac: "#111",
+    swithThemeBall: "#fff"
 };
 
 

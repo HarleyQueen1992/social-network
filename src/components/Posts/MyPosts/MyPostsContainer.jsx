@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { getLogin, getProfileInfo } from '../../../redux/AuthReducer/auth-selectors';
 import { compose } from 'redux';
 import Preloader from '../../common/Preloader/Preloader';
-import { getIsPostCreation } from '../../../redux/AppReducer/app-selectors';
+import { getIsPostCreation, getTheme } from '../../../redux/AppReducer/app-selectors';
 
 
 class MyPostsContainer extends React.Component  {
@@ -16,6 +16,7 @@ class MyPostsContainer extends React.Component  {
             { this.props.profile === null
                 ? <Preloader/> 
                 : <MyPosts
+                theme={this.props.theme}
                 deletePost={this.props.deletePost}
                 addPostActionCreator={this.props.addPostActionCreator}
                 addLike={this.props.addLike}
@@ -41,7 +42,8 @@ let mapStateToProps = (state) => {
         login: getLogin(state),
         profile: getProfileInfo(state),
         isFatching: getIsFatching(state),
-        isPostCreation: getIsPostCreation(state)
+        isPostCreation: getIsPostCreation(state),
+        theme: getTheme(state)
 
 
     }

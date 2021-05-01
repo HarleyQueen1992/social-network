@@ -6,10 +6,97 @@
     width: 100%;
     z-index: 999999;
     grid-area: h;
-    display: grid;
-    grid-template-areas: "logo input audio login";
-    grid-template-columns: 530px 280px 300px 1fr;
+    display: none;
+    grid-template-areas: "logo burger menu input login";
+    grid-template-columns: 530px 30px 380px 200px 1fr;
     background-color: var(--headerColor);
+}
+
+
+/* ! Burger */
+
+.HeaderBurger {
+    grid-area: burger;
+    align-self: center;
+    display: block;
+    width: 30px;
+    position: relative;
+    height: 20px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.HeaderBurger span {
+    position: absolute;
+    background-color: var(--fontColor);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;
+    top: 9px;
+    transition: all 0.3s ease 0s;
+}
+
+.HeaderBurger:before,
+.HeaderBurger:after {
+    content: '';
+    background-color: var(--fontColor);
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;
+    left: 0;
+    transition: all 0.3s ease 0s;
+}
+
+.HeaderBurger:before {
+    top: 0;
+}
+
+.HeaderBurger:after {
+    bottom: 0;
+}
+
+.HeaderBurger.active span {
+    transform: scale(0);
+}
+
+.HeaderBurger.active:after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+.HeaderBurger.active:before {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+
+/*! Menu */
+
+.HeaderMenu {
+    position: relative;
+    margin-left: 10px;
+    width: 200px;
+    grid-area: menu;
+    left: -10000%;
+    height: 100%;
+    width: 100%;
+    transition: all 0.7s ease 0s;
+    z-index: 1;
+}
+
+.HeaderMenu a {
+    text-decoration: none;
+    align-self: center;
+    margin-left: 10px;
+    color: var(--fontColor);
+    z-index: 1;
+}
+
+.HeaderMenu.active {
+    left: 0;
+    z-index: 0;
 }
 
 
@@ -20,6 +107,7 @@
     display: grid;
     height: 60px;
     grid-template-columns: 360px 1fr;
+    z-index: 5;
 }
 
 .logo {
@@ -413,6 +501,9 @@
 }
 
 @media (max-width: 480px) {
+    .header {
+        display: grid;
+    }
     .loginBlock {
         display: none;
     }
@@ -425,6 +516,12 @@
         grid-template-rows: 1fr;
         width: 100vw;
         bottom: 0;
+    }
+    .HeaderBurger {
+        display: none;
+    }
+    .HeaderMenu {
+        display: none;
     }
     .navHead {
         display: grid;

@@ -1,182 +1,112 @@
-nav a {
-    text-decoration: none;
-    color: white;
-    font-size: 21px;
-}
-
 .nav {
-    height: max-content;
+    position: absolute;
+}
+
+.HeaderBurger {
+    top: 40px;
+    left: 30px;
     grid-area: n;
-    margin-left: 280px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    /* background-color: #138D90; */
-    margin-right: 70px;
-    grid-template-areas: "n" "f";
-}
-
-.navbar {
-    grid-area: n;
-    /* margin-top: 30px;
-    margin-left: 30px; */
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 50px;
-    height: 75%;
-    display: grid;
-    grid-template-rows: repeat(20px, 6);
-}
-
-.item {
-    height: 75%;
-    align-self: center;
-    padding-top: 4px;
-    padding-left: 30px;
-    margin-bottom: 10px;
-}
-
-.item:hover {
-    background-color: rgb(87, 87, 87);
-    border-radius: 5px;
-}
-
-.itemLink {
-    font-size: 17px;
-    font-weight: 500;
-}
-
-
-/* 
-.item a.active {
-    color: gold;
-} */
-
-.friendsBlock {
-    padding-top: 50px;
-    grid-area: f;
-    display: grid;
-    grid-template-columns: 220px;
-    width: 100%;
-}
-
-.friendsBlock img {
-    height: 42px;
-    width: 42px;
-    border-radius: 30px;
-    /*margin-top: 20px;*/
-    /*margin-right: 10px;*/
-}
-
-.friendsBlock a {
-    font-size: 20px;
-}
-
-.PositionBlock {
-    background-color: rgb(70, 69, 69);
-    border-radius: 20px;
-    padding-top: 30px;
-    display: grid;
-    /* grid-template-rows: 1fr 1fr; */
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
-}
-
-.burger {
-    display: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    background-color: rgb(126, 126, 126);
+    display: block;
+    position: fixed;
+    width: 30px;
+    height: 20px;
     cursor: pointer;
+    z-index: 21;
 }
 
-.burger img {
-    width: 40px;
-    align-self: center;
-    justify-self: center;
+.HeaderBurger span {
+    position: absolute;
+    background-color: var(--fontColor);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;
+    top: 9px;
+    transition: all 0.5s ease 0s;
+}
+
+.HeaderBurger:before,
+.HeaderBurger:after {
+    content: '';
+    background-color: var(--fontColor);
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;
+    left: 0;
+    transition: all 0.5s ease 0s;
+}
+
+.HeaderBurger:before {
+    top: 0;
+}
+
+.HeaderBurger:after {
+    bottom: 0;
+}
+
+.HeaderBurger.active span {
+    transform: scale(0);
+}
+
+.HeaderBurger.active:after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+.HeaderBurger.active:before {
+    transform: rotate(45deg);
+    top: 9px;
 }
 
 .menu {
+    padding-top: 90px;
     position: fixed;
+    height: 100vw;
+    width: 20vw;
     display: grid;
-    grid-template-rows: 10% 70% 20%;
-    z-index: 100;
+    z-index: 20;
+    grid-template-rows: 70px 70px 70px 70px 70px;
+    left: -100%;
+    background-color: rgb(138 24 24);
+    transition: 0.7s;
+}
+
+.menu.active {
     left: 0;
-    height: 100vh;
-    width: 50vw;
-    margin: -20px;
-    background-color: rgb(10, 10, 10);
-    transform: translateX(0);
-    border-radius: 20px;
 }
 
-.headName {
-    display: grid;
-    width: 100%;
-    border-bottom: 2px solid white;
-    color: rgb(0, 0, 0);
-}
-
-.name {
-    margin: 0;
-    align-self: center;
+.menuLink {
+    font-weight: bold;
     justify-self: center;
-    color: rgb(255, 255, 255);
-    font-size: 22px;
+    padding: 20px;
+    font-size: 25px;
+    text-transform: uppercase;
 }
 
-.linkItems {
-    margin-top: 20px;
-    display: grid;
-    grid-template-rows: repeat(5, 20px);
-    grid-row-gap: 20px;
+.menuLink a {
+    text-decoration: none;
+    color: var(--fontColor);
 }
 
-.linkItem {
-    justify-self: center;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    z-index: 10;
+    opacity: 0;
+    background-color: black;
+    transition: 0.7s;
 }
 
-.back {
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-    justify-self: center;
-}
-
-@media (max-width: 990px) {
-    .nav {
-        margin-left: 200px;
-    }
-}
-
-@media (max-width: 879px) {
-    .nav {
-        margin-left: 150px;
-    }
-}
-
-@media (max-width: 800px) {
-    .navbar {
-        display: none;
-    }
-    .nav {
-        width: 50px;
-        grid-template-rows: 1fr;
-        justify-self: center;
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-    .friendsBlock {
-        display: none;
-    }
-    .burger {
-        display: grid;
-    }
+.overlay.active {
+    opacity: 40%;
 }
 
 @media (max-width: 480px) {
-    .nav {
+    .HeaderBurger {
         display: none;
     }
 }

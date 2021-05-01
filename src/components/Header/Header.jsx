@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import h from './Header.module.css'
 import {NavLink} from 'react-router-dom'
 import photo from '../../assets/images/user.png'
@@ -18,21 +18,28 @@ import Services from './../../assets/images/add.png'
 import styled from "styled-components";
 
 const Header = (props) => {
+    const [isActive, setIsActive] = useState(false)
 
     // const handleChange = (event) => {
     //     props.setValue(event.target.value);
     //   }
-    const Hdeader = styled.div`
-        background-color: ${(props) => props.theme.headerColor};
-    `
-    const Name = styled.div`
-        color: ${(props) => props.theme.statusColor};
-    `
     return <div className={h.header}>
             <div className={h.logoBlock} >
                 <img className={h.logo} src='https://png.pngtree.com/png-vector/20200908/ourlarge/pngtree-pug-dog-smoke-pipe-illustration-png-image_2341735.jpg' />
                 <span className={h.headerName}> <NavLink to={'/profile/'} >Mosset</NavLink> </span>
             </div>
+            <div onClick={ () => {setIsActive(!isActive)}} className={h.HeaderBurger + " " + (isActive ? h.active : "")} >
+                <span></span>
+            </div>
+            <div className={h.HeaderMenu + " " + (isActive ? h.active : "")} >
+                <NavLink to='1' >Profile</NavLink>
+                <NavLink to='1'>Posts</NavLink>
+                <NavLink to='1'>News</NavLink>
+                <NavLink to='1'>Users</NavLink>
+                <NavLink to='1'>Subscriptions</NavLink>
+
+            </div>
+            
             <div className={h.searchBlock} >
                 {/* <form> */}
                     <input value={props.value} onDoubleClick={() => {props.setWindowMode(false)}} onChange={props.handleChange} onClick={() => {props.setWindowMode(true)}} className={h.searchUsers} type="text" placeholder="Search.." />
@@ -64,20 +71,6 @@ const Header = (props) => {
                 </div>
 
             </div>
-            <div className={h.audioPlaer} >
-                <div className={h.controls} >
-                    <span className={h.previous} ><img src={previous}/> </span>
-                    <span className={h.playStop} ><img src={play} /></span>
-                    <span className={h.next} ><img src={next}/></span>
-                </div>
-                <div className={h.nameOfMusic} >
-                    Gorid Dorofeva
-                </div>
-                {/* <audio controls="controls" ></audio> */}
-            </div>
-            <div className={h.music}>
-                    <img src={musicIcon}/>
-                </div>
             <div className={h.loginBlock}>  
                 {props.isAuth ?
                     props.profileInfo === null ? <Preloader/> :

@@ -4,12 +4,13 @@ import Post from "./Post/Post";
 import AddPostFormRedux from './AddPost/AddPostFormRedux';
 import PostCreation from './PostCreation/PostCreation'
 import CreatePost from './../../../assets/images/editWhite.png'
+import CreatePostLight from './../../../assets/images/edit.png'
 
 const MyPosts = (props) => {
 
 
     let postElements =
-        props.posts.map(post => <Post profile={props.profile} login={props.login} deletePost={props.deletePost} addLike={props.addLike} id={post.id} message={post.message} like={post.like} dislike={post.dislike} isDisable={post.isDisable}/>)
+        props.posts.map(post => <Post theme={props.theme} profile={props.profile} login={props.login} deletePost={props.deletePost} addLike={props.addLike} id={post.id} message={post.message} like={post.like} dislike={post.dislike} isDisable={post.isDisable}/>)
 
     let addPost = (values) => {
         props.addPostActionCreator(values.newPostText)
@@ -26,7 +27,7 @@ const MyPosts = (props) => {
                         <span >Posts</span>
                     </div>
                     <div className={p.editBlock} >
-                        <img className={p.edit} src={CreatePost} onClick={() => {props.toggleIsPostCreation(true)}} />
+                        <img className={p.edit} src={props.theme == 'lightTheme' ? CreatePostLight : CreatePost} onClick={() => {props.toggleIsPostCreation(true)}} />
                     </div>
                     {/* <div className={p.createPostBlock} onClick={() => {props.toggleIsPostCreation(true)}}  >
                         <span>Create post</span>

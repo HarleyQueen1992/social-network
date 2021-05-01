@@ -4,6 +4,7 @@ import Users from './../../assets/images/grou4p.png'
 import Friends from './../../assets/images/friends2.png'
 import Settings from './../../assets/images/settings3.png'
 import Scan from './../../assets/images/scan.png'
+import ScanLight from './../../assets/images/scanLight.png'
 import Search from './../../assets/images/search.png'
 import { NavLink } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ const Services = (props) => {
     return <div className={s.servicesBlock}>
             <header className={s.header}>
                 <span className={s.title} >Services</span>
-                <img className={s.scan} src={Scan} />
+                <img className={s.scan} src={props.theme == 'lightTheme' ? ScanLight : Scan} />
                 <img className={s.search} src={Search} /> 
             </header>
             <div className={s.services} >

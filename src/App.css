@@ -3,6 +3,7 @@ body {
     background-color: var(--body);
     /* background-size:  100%; */
     /* background-attachment: fixed; */
+    transition: all 0.3s ease 0s;
 }
 
 ::-webkit-scrollbar {
@@ -27,21 +28,11 @@ html {
 }
 
 .app-wrapper {
-    /* margin: 0 auto; */
-    overflow: hidden;
     display: grid;
-    /* width: 1200px; */
-    grid-template-areas: "h h h h" "n c c c";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 500px 1fr 1fr 1fr;
-    grid-gap: 20px;
 }
 
 .app-wrapper-content {
-    grid-area: c;
-    display: grid;
-    /* margin-right: 300px; */
-    background-color: var(--body);
+    justify-self: center;
 }
 
 @media (max-width: 1250px) {
@@ -79,6 +70,7 @@ html {
 
 @media (max-width: 480px) {
     .app-wrapper {
+        display: grid;
         grid-template-areas: "h" "c";
         grid-template-rows: 1fr;
         grid-template-columns: 100%;
