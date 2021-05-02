@@ -9,6 +9,7 @@ import axios from "axios"
 import UsersImg from "./../../assets/images/grou4p.png"
 
 const Users = props => {
+  let users = !props.usersSearch ? props.users : props.usersSearch
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler)
     return function () {
@@ -33,12 +34,17 @@ const Users = props => {
         <span className={s.title}>Users</span>
         <div className={s.search}>
           <form>
-            <input className={s.searchUsers} type='text' />
+            <input
+              onChange={props.handleChange}
+              className={s.searchUsers}
+              type='text'
+              value={props.value}
+            />
           </form>
         </div>
       </header>
       <div className={s.users}>
-        {props.users.map(u => (
+        {users.map(u => (
           <div className={s.user} key={u.id}>
             <div className={s.leftPart}>
               <div className={s.photoUsers}>

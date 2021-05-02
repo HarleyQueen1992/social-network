@@ -14,9 +14,21 @@
   border-bottom: 1px solid var(--BorderBottom);
 }
 
-.settings {
+/*! GeneralSettings */
+
+.generalBlock {
   display: grid;
-  grid-template-rows: 60px;
+  grid-template-rows: 30px 1fr;
+}
+.generalSettings {
+  display: grid;
+  grid-template-rows: 40px;
+  padding-left: 10px;
+}
+.settingsTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--fontColor);
 }
 .title {
   align-self: center;
@@ -27,18 +39,20 @@
 
 .themes {
   display: grid;
+  padding: 10px;
   grid-template-columns: auto 1fr;
 }
 .themesTitle {
   color: var(--fontColor);
-  font-size: 20px;
+  font-size: 17px;
 }
 .changeTitle {
   color: var(--fontColor);
-  font-size: 20px;
+  font-size: 17px;
 }
 .changeAva {
   display: grid;
+  padding: 10px;
   grid-template-columns: auto 1fr;
 }
 .changeLabel {
@@ -96,7 +110,11 @@ input[type="file"] {
 .ball.active {
   transform: translateX(24px);
 }
-
+/*! ProfileSettings */
+.profileBlock {
+  display: grid;
+  grid-template-rows: 30px 1fr;
+}
 @media (max-width: 480px) {
   .settingsBlock {
     width: 100vw;

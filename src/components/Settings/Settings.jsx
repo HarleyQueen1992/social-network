@@ -4,6 +4,7 @@ import Sun from "./../../assets/images/sun.png"
 import Moon from "./../../assets/images/moon.png"
 import SettingsImg from "./../../assets/images/settings3.png"
 import More from "./../../assets/images/more.png"
+import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
 
 const Settings = props => {
   useEffect(() => {
@@ -30,6 +31,10 @@ const Settings = props => {
       props.savePhoto(e.target.files[0])
     }
   }
+  const onSubmit = formData => {
+    props.saveProfileInfo(formData).then(() => {})
+  }
+  debugger
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>
@@ -37,32 +42,51 @@ const Settings = props => {
         <div className={s.title}>Settings</div>
       </header>
       <div className={s.settings}>
-        <div className={s.themes}>
-          <span className={s.themesTitle}>themes:</span>
-          <input
-            onClick={() => {
-              themeToggler()
-            }}
-            type='checkbox'
-            className={s.checkbox}
-            id='chk'
-          />
-          <label className={s.label} for='chk'>
-            <img className={s.img} src={Moon} />
-            <img className={s.img} src={Sun} />
-            <div
-              className={
-                s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
-              }
-            ></div>
-          </label>
+        <div className={s.generalBlock}>
+          <div className={s.settingsTitle}>General:</div>
+          <div className={s.generalSettings}>
+            <div className={s.themes}>
+              <span className={s.themesTitle}>themes:</span>
+              <input
+                onClick={() => {
+                  themeToggler()
+                }}
+                type='checkbox'
+                className={s.checkbox}
+                id='chk'
+              />
+              <label className={s.label} for='chk'>
+                <img className={s.img} src={Moon} />
+                <img className={s.img} src={Sun} />
+                <div
+                  className={
+                    s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
+                  }
+                ></div>
+              </label>
+            </div>
+            <div className={s.changeAva}>
+              <span className={s.changeTitle}>change ava:</span>
+              <input
+                onChange={onMainPhotoSelected}
+                type='file'
+                id='input__file'
+              />
+              <label className={s.changeLabel} for='input__file'>
+                <img className={s.moreImg} src={More} />
+              </label>
+            </div>
+          </div>
         </div>
-        <div className={s.changeAva}>
-          <span className={s.changeTitle}>change ava:</span>
-          <input onChange={onMainPhotoSelected} type='file' id='input__file' />
-          <label className={s.changeLabel} for='input__file'>
-            <img className={s.moreImg} src={More} />
-          </label>
+        <div className={s.profileBlock}>
+          <div className={s.settingsTitle}>ProfileSettings:</div>
+          <div className={s.profileSettings}>
+            <ProfileDataFormReduxForm
+              initialValues={props.profile}
+              onSubmit={onSubmit}
+              profile={props.profile}
+            />
+          </div>
         </div>
       </div>
     </div>

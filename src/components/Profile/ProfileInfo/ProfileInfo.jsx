@@ -135,10 +135,17 @@ const ProfileInfo = props => {
                         : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
         </div>
         <div className={s.detailed}>detailed information</div>
-        {/* {deployed 
-                        ? editMode 
-                            ? <ProfileDataFormReduxForm initialValues={props.profile} onSubmit={onSubmit} profile={props.profile} isOwner={props.isOwner}/> 
-                            : <ProfileData setEditMode={setEditMode} profile={props.profile} isOwner={props.isOwner}/>: <div></div>  }                  */}
+        {/* <ProfileDataFormReduxForm
+          initialValues={props.profile}
+          onSubmit={onSubmit}
+          profile={props.profile}
+        /> */}
+        {/* <ProfileData
+          setEditMode={setEditMode}
+          profile={props.profile}
+          isOwner={props.isOwner}
+        /> */}
+        )
         <div className={s.discriptionBot}>
           <div className={s.botLeft}>
             <div className={s.numberOfFriends}>120</div>
@@ -150,7 +157,6 @@ const ProfileInfo = props => {
           </div>
           <div className={s.botRight}>заходил час назад</div>
         </div>
-
         {/* <div className={s.title} >About me: {props.profile.aboutMe}</div> */}
         {/* <div className={s.title} >Job: {props.profile.lookingForAJobDescription}</div> */}
       </div>

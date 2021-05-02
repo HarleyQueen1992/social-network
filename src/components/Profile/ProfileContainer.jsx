@@ -66,11 +66,11 @@ class ProfileContainer extends React.Component {
       this.refreshProfile()
     }
   }
-  componentWillUnmount() {
-    this.props.toggleIsFollow(null)
-    this.props.setUserProfile(null)
-    this.props.setStatus(null)
-  }
+  // componentWillUnmount() {
+  //   this.props.toggleIsFollow(null)
+  //   this.props.setUserProfile(null)
+  //   this.props.setStatus(null)
+  // }
   render() {
     return (
       <>

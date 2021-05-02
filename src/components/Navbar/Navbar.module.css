@@ -121,12 +121,12 @@
   z-index: 10;
   opacity: 0;
   background-color: black;
-  transition: display 0.7s;
+  transition: opacity 0.7s;
 }
 
 .overlay.active {
   display: block;
-  opacity: 40%;
+  opacity: 0.4;
 }
 @media (max-width: 650px) {
   .HeaderBurger {

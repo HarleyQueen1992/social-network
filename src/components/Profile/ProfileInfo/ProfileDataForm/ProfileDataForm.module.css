@@ -1,0 +1,22 @@
+.deploy {
+  padding: 10px;
+  display: grid;
+}
+.fieldInput {
+  display: inline-flex;
+  color: var(--fontColor);
+  padding: 5px;
+}
+
+.saveBut {
+  background-color: var(--BorderBottom);
+  border: 1px solid var(--BorderBottom);
+  color: var(--fontColor);
+  height: 30px;
+  font-size: 16px;
+  width: 50px;
+  justify-self: center;
+}
+.saveBlock {
+  justify-self: end;
+}

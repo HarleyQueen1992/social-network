@@ -1,8 +1,7 @@
 .formControl.error input,
 .formControl.error textarea {
-    border: 2px solid red;
+  border: 2px solid red;
 }
-
 
 /* .formControl.error div {
     color: red;
@@ -12,11 +11,34 @@
     background-color: red;
 } */
 
-
 /* .formControl {
     grid-template-rows: 1fr 1fr;
 } */
 
+.input {
+  margin-left: 5px;
+  background-color: var(--BorderBottom);
+  border: 1px solid var(--BorderBottom);
+  border-radius: 5px;
+  color: var(--fontColor);
+  font-size: 16px;
+  outline: none;
+}
+.input[type="checbox"] {
+  background-color: red;
+}
+.textarea {
+  margin-left: 5px;
+  background-color: var(--BorderBottom);
+  border: 1px solid var(--BorderBottom);
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  padding: 7px;
+  color: var(--fontColor);
+  resize: none;
+  outline: none;
+}
 .formSummaryError {
-    color: rgb(211, 33, 20);
+  color: rgb(211, 33, 20);
 }
