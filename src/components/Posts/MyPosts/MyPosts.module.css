@@ -4,58 +4,58 @@
 } */
 
 * {
-    font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .PostsBlock {
-    box-sizing: border-box;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    grid-row-gap: 10px;
-    grid-template-areas: "header" "posts";
-    /* height: calc(100vh - 60px); */
+  width: 700px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-row-gap: 10px;
+  grid-template-areas: "header" "posts";
+  /* height: calc(100vh - 60px); */
 }
 
 .header {
-    grid-area: header;
-    display: grid;
-    grid-template-columns: 1fr 60px;
-    margin: 0 20px;
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  margin: 0 20px;
 }
 
 .editBlock {
-    display: grid;
+  display: grid;
 }
 
 .edit {
-    align-self: center;
-    justify-self: end;
-    height: 35px;
+  align-self: center;
+  justify-self: end;
+  height: 35px;
 }
 
 .heading {
-    color: var(--fontColor);
-    font-size: 25px;
-    display: grid;
-    height: 100%;
-    width: 100%;
-    border-bottom: 1px solid rgb(75, 75, 75);
+  color: var(--fontColor);
+  font-size: 25px;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid rgb(75, 75, 75);
 }
 
 .heading span {
-    align-self: center;
-    justify-self: center;
+  align-self: center;
+  justify-self: center;
 }
 
 .createPost {
-    display: none;
+  display: none;
 }
 
 .posts {
-    display: grid;
-    grid-column: 200px;
+  display: grid;
+  grid-column: 200px;
 }
-
 
 /* @media (max-width: 1300px) {
     .posts {
@@ -63,61 +63,55 @@
     }
 } */
 
-@media (max-width: 930px) {
-    .PostsBlock {
-        width: calc(390px + ( 450 - 390) * (( 100vw - 830px) / (930 - 830)));
-    }
-}
-
 @media (max-width: 830px) {
-    .PostsBlock {
-        width: 390px;
-    }
+  .PostsBlock {
+    width: calc(400px + (700 - 400) * ((100vw - 480px) / (830 - 480)));
+  }
 }
 
 @media (max-width: 480px) {
-    .posts {
-        width: 100%;
-    }
-    .PostsBlock {
-        margin-bottom: 60px;
-    }
+  .posts {
+    width: 100%;
+  }
+  .PostsBlock {
+    margin-bottom: 60px;
+  }
 }
 
 @media (max-width: 400px) {
-    .PostsBlock {
-        width: 100vw;
-        margin-bottom: 0;
-    }
-    .posts {
-        grid-row-gap: 10px;
-        width: 100%;
-        margin-bottom: 60px;
-    }
-    .createPost {
-        box-sizing: border-box;
-        display: grid;
-        height: 40px;
-        background-color: rgb(33, 32, 32);
-        margin-bottom: 10px;
-    }
-    .createPostBlock {
-        margin-left: 10px;
-        height: 60%;
-        align-self: center;
-        justify-self: start;
-        cursor: pointer;
-        width: 60%;
-        display: grid;
-        border-radius: 5px;
-        padding: 3px;
-        background-color: rgb(71, 70, 70);
-    }
-    .createPostBlock span {
-        font-size: 16px;
-        font-weight: 500;
-        color: white;
-        align-self: center;
-        justify-self: center;
-    }
+  .PostsBlock {
+    width: 100vw;
+    margin-bottom: 0;
+  }
+  .posts {
+    grid-row-gap: 10px;
+    width: 100%;
+    margin-bottom: 60px;
+  }
+  .createPost {
+    box-sizing: border-box;
+    display: grid;
+    height: 40px;
+    background-color: rgb(33, 32, 32);
+    margin-bottom: 10px;
+  }
+  .createPostBlock {
+    margin-left: 10px;
+    height: 60%;
+    align-self: center;
+    justify-self: start;
+    cursor: pointer;
+    width: 60%;
+    display: grid;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgb(71, 70, 70);
+  }
+  .createPostBlock span {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    align-self: center;
+    justify-self: center;
+  }
 }

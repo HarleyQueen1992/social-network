@@ -1,102 +1,102 @@
 .friends {
-    display: grid;
-    margin-bottom: 60px;
+  margin-top: 40px;
+  display: grid;
+  margin-bottom: 60px;
 }
 
 .friend {
-    justify-self: start;
-    display: grid;
-    margin-left: 200px;
-    /* margin-right: 600px; */
-    grid-template-rows: 100px;
-    grid-template-columns: 100px 400px;
-    grid-template-areas: "left right";
-    grid-column-gap: 10px;
-    margin-bottom: 20px;
+  justify-self: start;
+  display: grid;
+  /* margin-right: 600px; */
+  grid-template-rows: 100px;
+  grid-template-columns: 100px 400px;
+  grid-template-areas: "left right";
+  grid-column-gap: 10px;
+  margin-bottom: 20px;
 }
 
 .leftPart {
-    grid-area: left;
+  grid-area: left;
 }
 
 .rightPart {
-    grid-area: right;
-    border: 2px solid #138D90;
-    border-radius: 30px;
-    padding: 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "name write";
+  grid-area: right;
+  border: 2px solid #138d90;
+  border-radius: 30px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "name write";
 }
 
 .photo {
-    height: 100px;
-    border-radius: 50px;
+  height: 100px;
+  border-radius: 50px;
 }
 
 .selectedPage {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .name {
-    grid-area: name;
-    font-size: 20px;
-    color: white;
-    font-weight: 500;
+  grid-area: name;
+  font-size: 20px;
+  color: white;
+  font-weight: 500;
 }
 
 .pagination {
-    text-align: center;
+  text-align: center;
 }
 
 .writeMessage {
-    grid-area: write;
-    justify-self: end;
-    align-self: end;
+  grid-area: write;
+  justify-self: end;
+  align-self: end;
 }
 
 .writeMessage a {
-    font-size: 15px;
-    text-decoration: none;
-    color: rgb(197, 197, 197);
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(197, 197, 197);
 }
 
 .writeMessage a:hover {
-    font-size: 14px;
-    color: rgb(161, 161, 161);
+  font-size: 14px;
+  color: rgb(161, 161, 161);
 }
 
 @media (max-width: 1500px) {
-    .friend {
-        justify-self: center;
-        margin-left: 0;
-    }
+  .friend {
+    justify-self: center;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 522px) {
-    .friends {
-        margin-top: 20px;
-    }
-    .friend {
-        grid-template-rows: 70px;
-        grid-template-columns: 70px 270px;
-        margin-bottom: 10px;
-        grid-column-gap: 0;
-    }
-    .photo {
-        height: 70px;
-    }
-    .rightPart {
-        border-radius: 20px;
-        padding: 8px;
-    }
-    .name {
-        font-size: 15px;
-        margin-left: 8px;
-        margin-top: 5px;
-    }
-    .writeMessage a {
-        font-size: 12px;
-    }
+  .friends {
+    margin-top: 20px;
+  }
+  .friend {
+    grid-template-rows: 70px;
+    grid-template-columns: 70px 270px;
+    margin-bottom: 10px;
+    grid-column-gap: 0;
+  }
+  .photo {
+    height: 70px;
+  }
+  .rightPart {
+    border-radius: 20px;
+    padding: 8px;
+  }
+  .name {
+    font-size: 15px;
+    margin-left: 8px;
+    margin-top: 5px;
+  }
+  .writeMessage a {
+    font-size: 12px;
+  }
 }

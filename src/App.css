@@ -1,41 +1,46 @@
 body {
-    margin: 0;
-    background-color: var(--body);
-    /* background-size:  100%; */
-    /* background-attachment: fixed; */
-    transition: all 0.3s ease 0s;
+  margin: 0;
+  background-color: var(--body);
+  /* background-size:  100%; */
+  /* background-attachment: fixed; */
+  transition: all 0.3s ease 0s;
 }
 
 ::-webkit-scrollbar {
-    width: 0;
+  width: 0;
 }
 
 html {
-    /* --body: rgb(209, 209, 214) */
-    --body: rgb(35, 35, 35);
-    --fontColor: #fff;
-    --colorAbouMe: rgb(197, 197, 197);
-    --statusColor: rgb(140 140 140);
-    --colorDeteilInfo: #fff;
-    --descriptionColor: #fff;
-    --headerColor: rgb(56, 56, 56);
-    --EditBack: rgb(113 113 113);
+  /* --body: rgb(209, 209, 214) */
+  --body: rgb(35, 35, 35);
+  --fontColor: #fff;
+  --colorAbouMe: rgb(197, 197, 197);
+  --statusColor: rgb(140, 140, 140);
+  --colorDeteilInfo: #fff;
+  --descriptionColor: #fff;
+  --headerColor: rgb(56, 56, 56);
+  --EditBack: rgb(113 113 113);
+  --bacMenu: rgb(138 24 24);
+  --followBtn: #484848;
+  --followBtnHover: rgb(146, 146, 146);
+  --BorderBottom: rgb(49, 49, 49);
+  --bacInput: rgb(192, 192, 192);
 }
 
 .loginPage {
-    height: 100vh;
-    display: grid;
+  height: 100vh;
+  display: grid;
 }
 
 .app-wrapper {
-    display: grid;
+  display: grid;
 }
 
 .app-wrapper-content {
-    justify-self: center;
+  justify-self: center;
 }
 
-@media (max-width: 1250px) {
+/* @media (max-width: 1250px) {
     .app-wrapper-content {
         justify-content: center;
     }
@@ -66,14 +71,14 @@ html {
     .app-wrapper-content {
         justify-self: center;
     }
-}
+} */
 
 @media (max-width: 480px) {
-    .app-wrapper {
-        display: grid;
-        grid-template-areas: "h" "c";
-        grid-template-rows: 1fr;
-        grid-template-columns: 100%;
-        grid-gap: 0;
-    }
+  .app-wrapper {
+    display: grid;
+    grid-template-areas: "h" "c";
+    grid-template-rows: 1fr;
+    grid-template-columns: 100%;
+    grid-gap: 0;
+  }
 }

@@ -1,112 +1,143 @@
 .nav {
-    position: absolute;
+  position: absolute;
 }
 
 .HeaderBurger {
-    top: 40px;
-    left: 30px;
-    grid-area: n;
-    display: block;
-    position: fixed;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 21;
+  top: 40px;
+  left: 30px;
+  grid-area: n;
+  display: block;
+  position: fixed;
+  width: 35px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 21;
 }
 
 .HeaderBurger span {
-    position: absolute;
-    background-color: var(--fontColor);
-    left: 0;
-    width: 100%;
-    height: 2px;
-    border-radius: 1px;
-    top: 9px;
-    transition: all 0.5s ease 0s;
+  position: absolute;
+  background-color: var(--fontColor);
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  top: 11px;
+  transition: all 0.5s ease 0s;
 }
 
 .HeaderBurger:before,
 .HeaderBurger:after {
-    content: '';
-    background-color: var(--fontColor);
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    border-radius: 1px;
-    left: 0;
-    transition: all 0.5s ease 0s;
+  content: "";
+  background-color: var(--fontColor);
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  left: 0;
+  transition: all 0.5s ease 0s;
 }
 
 .HeaderBurger:before {
-    top: 0;
+  top: 0;
 }
 
 .HeaderBurger:after {
-    bottom: 0;
+  bottom: 0;
 }
 
 .HeaderBurger.active span {
-    transform: scale(0);
+  transform: scale(0);
+  background-color: white;
 }
 
 .HeaderBurger.active:after {
-    transform: rotate(-45deg);
-    bottom: 9px;
+  transform: rotate(-45deg);
+  background-color: white;
+  bottom: 11px;
 }
 
 .HeaderBurger.active:before {
-    transform: rotate(45deg);
-    top: 9px;
+  transform: rotate(45deg);
+  top: 11px;
+  background-color: white;
 }
 
 .menu {
-    padding-top: 90px;
-    position: fixed;
-    height: 100vw;
-    width: 20vw;
-    display: grid;
-    z-index: 20;
-    grid-template-rows: 70px 70px 70px 70px 70px;
-    left: -100%;
-    background-color: rgb(138 24 24);
-    transition: 0.7s;
+  padding-top: 100px;
+  position: fixed;
+  height: 100vh;
+  width: 400px;
+  display: grid;
+  z-index: 20;
+  grid-template-rows: repeat(6, 70px);
+  left: -390px;
+  background-color: var(--bacMenu);
+  transition: 0.5s ease 0s;
 }
 
 .menu.active {
-    left: 0;
+  left: 0;
 }
 
 .menuLink {
-    font-weight: bold;
-    justify-self: center;
-    padding: 20px;
-    font-size: 25px;
-    text-transform: uppercase;
+  font-weight: bold;
+  justify-self: center;
+  position: relative;
+  padding: 20px;
+  font-size: 25px;
+  text-transform: uppercase;
+  transition: 0.5s;
+  text-decoration: none;
+  color: white;
+}
+.menuLink:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0.2rem;
+  left: 0;
+  bottom: 0;
+  background-color: rgb(255, 255, 255);
+  transform: scale(0, 1);
+  /* transform-origin: 100% 0%; */
+  transition: 0.3s;
+}
+.menuLink:hover:after {
+  transform: scale(1, 1);
 }
 
 .menuLink a {
-    text-decoration: none;
-    color: var(--fontColor);
+  text-decoration: none;
+  color: white;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vw;
-    z-index: 10;
-    opacity: 0;
-    background-color: black;
-    transition: 0.7s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  opacity: 0;
+  background-color: black;
+  transition: display 0.7s;
 }
 
 .overlay.active {
-    opacity: 40%;
+  display: block;
+  opacity: 40%;
 }
-
+@media (max-width: 650px) {
+  .HeaderBurger {
+    top: 25px;
+  }
+}
 @media (max-width: 480px) {
-    .HeaderBurger {
-        display: none;
-    }
+  .HeaderBurger {
+    display: none;
+  }
+  .menu {
+    display: none;
+  }
 }

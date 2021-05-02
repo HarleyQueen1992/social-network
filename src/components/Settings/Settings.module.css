@@ -1,47 +1,105 @@
-.container {
-    margin-top: 20px;
-    height: 100vh;
-    box-sizing: border-box;
+.settingsBlock {
+  width: 40vw;
+  margin-top: 20px;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-row-gap: 20px;
+  /* height: 100vh; */
+  box-sizing: border-box;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-bottom: 1px solid var(--BorderBottom);
+}
+
+.settings {
+  display: grid;
+  grid-template-rows: 60px;
+}
+.title {
+  align-self: center;
+  margin-left: 10px;
+  font-size: 25px;
+  color: var(--fontColor);
+}
+
+.themes {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.themesTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+}
+.changeTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+}
+.changeAva {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.changeLabel {
+  justify-self: end;
+  cursor: pointer;
+}
+input[type="file"] {
+  display: none;
+}
+.settingsImg {
+  justify-self: end;
+  height: 40px;
+  align-self: center;
 }
 
 .checkbox {
-    margin-top: 50px;
-    opacity: 0;
-    position: absolute;
-    box-sizing: border-box;
+  margin-top: 50px;
+  opacity: 0;
+  position: absolute;
+  box-sizing: border-box;
 }
 
 .img {
-    height: 16px;
+  height: 16px;
 }
 
 .label {
-    box-sizing: border-box;
-    background-color: var(--swithThemeBac);
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    position: relative;
-    height: 26px;
-    width: 50px;
-    transform: scale(1.5);
+  justify-self: end;
+  box-sizing: border-box;
+  background-color: var(--swithThemeBac);
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 26px;
+  width: 50px;
+  transform: scale(1.5);
 }
 
 .label .ball {
-    background-color: var(--swithThemeBall);
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: 22px;
-    width: 22px;
-    transform: translateX(0px);
-    transition: transform 0.3s linear;
+  background-color: var(--swithThemeBall);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  transform: translateX(0px);
+  transition: transform 0.3s linear;
 }
 
 .ball.active {
-    transform: translateX(24px);
+  transform: translateX(24px);
+}
+
+@media (max-width: 480px) {
+  .settingsBlock {
+    width: 100vw;
+    padding: 0 20px;
+  }
 }

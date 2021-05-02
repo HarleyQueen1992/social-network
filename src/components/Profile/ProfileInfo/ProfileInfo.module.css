@@ -1,481 +1,520 @@
-    .profileInfoBlock {
-        display: grid;
-    }
-    
-    .descriptionBlock {
-        display: grid;
-        grid-template-columns: 310px 500px;
-        grid-template-areas: "leftdiscription rightdescription";
-        grid-column-gap: 21px;
-    }
-    
-    .description {
-        grid-area: rightdescription;
-        /* height: 600px; */
-        /* margin-left: 20px; */
-        border: 2px solid white;
-        border-radius: 20px;
-        padding: 16px;
-        display: grid;
-        grid-template-rows: 100px 100px 100px;
-        grid-template-areas: "top" "center" "bot";
-        background-color: rgb(43, 43, 43);
-    }
-    
-    .descriptionEditModeTrue {
-        grid-area: rightdescription;
-        height: 950px;
-        /* margin-left: 20px; */
-        border: 2px solid white;
-        border-radius: 20px;
-        padding: 16px;
-        display: grid;
-        grid-template-rows: 100px 100px 650px 100px;
-        grid-template-areas: "top" "center" "editMode" "bot";
-        background-color: rgb(43, 43, 43);
-    }
-    
-    .field {
-        display: inline-block;
-    }
-    
-    .preloader {
-        margin-top: -100px;
-    }
-    
-    .descriptionDeployed {
-        grid-area: rightdescription;
-        height: 950px;
-        /* margin-left: 20px; */
-        border: 2px solid white;
-        border-radius: 20px;
-        padding: 16px;
-        display: grid;
-        grid-template-rows: 100px 100px 650px 100px;
-        grid-template-areas: "top" "center" "editMode" "bot";
-        background-color: rgb(43, 43, 43);
-    }
-    
-    .deploy {
-        grid-area: editMode;
-    }
-    
-    .detailed:hover {
-        color: rgba(255, 255, 255, 0.555);
-    }
-    
-    .deploy div {
-        color: rgb(212, 212, 212);
-        margin-bottom: 5px;
-    }
-    
-    .saveBut {
-        width: 60px;
-        cursor: pointer;
-        height: 30px;
-        margin-top: 10px;
-        background-color: rgb(99, 99, 99);
-        border: 1px solid rgb(99, 99, 99);
-    }
-    
-    .saveBut:hover {
-        background-color: rgb(201, 200, 200);
-    }
-    
-    .contactsBlock {
-        padding-left: 20px;
-        padding-top: 5px;
-    }
-    
-    .contactsBlock b {
-        padding-top: 10px;
-    }
-    
-    .contacts {
-        color: white;
-    }
-    
-    .leftDescription {
-        grid-area: leftdiscription;
-        display: grid;
-        grid-template-rows: 300px 30px;
-        grid-template-columns: 300px;
-    }
-    
-    .topDescriptionLeft {
-        display: grid;
-        grid-template-columns: 260px 40px;
-    }
-    
-    .setPhoto {
-        align-self: flex-end;
-    }
-    
-    .followed {
-        justify-self: center;
-        align-self: end;
-    }
-    
-    .followBut {
-        height: 24px;
-        width: 100px;
-        background-color: rgb(88, 88, 88);
-        border: 1px solid rgb(88, 88, 88);
-        cursor: pointer;
-        color: rgb(0, 0, 0);
-    }
-    
-    .followBut:hover {
-        background-color: rgb(163, 163, 163);
-        border: 1px solid rgb(163, 163, 163);
-    }
-    
-    .ava {
-        grid-area: ava;
-        width: 300px;
-        border-radius: 150px;
-    }
-    
-    .icon {
-        grid-area: icon;
-        align-self: flex-end;
-        cursor: pointer;
-    }
-    
-    .discriptionTop {
-        grid-area: top;
-    }
-    
-    .discriptionTop {
-        color: rgb(173, 173, 173);
-    }
-    
-    .descriptionCenter {
-        grid-area: center;
-        display: grid;
-    }
-    
-    .detailed {
-        align-self: center;
-        justify-self: center;
-        cursor: pointer;
-    }
-    
-    .descriptionCenter div {}
-    
-    .discriptionBot {
-        grid-area: bot;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        grid-template-areas: "left right";
-    }
-    
-    .name {
-        font-size: 22px;
-        font-weight: 600;
-        color: white;
-        /* margin-bottom: 10px; */
-    }
-    
-    .botLeft {
-        grid-area: left;
-        align-self: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: "nf sf pf" "f s p";
-    }
-    
-    .botLeft div {
-        color: white;
-    }
-    
-    .numberOfFriends {
-        grid-area: nf;
-        justify-self: center;
-    }
-    
-    .friends {
-        grid-area: f;
-        justify-self: center;
-    }
-    
-    .numberOfSubscribers {
-        grid-area: sf;
-        justify-self: center;
-    }
-    
-    .subscribers {
-        grid-area: s;
-        justify-self: center;
-    }
-    
-    .numberOfPhotos {
-        grid-area: pf;
-        justify-self: center;
-    }
-    
-    .photo {
-        grid-area: p;
-        justify-self: center;
-    }
-    
-    .botRight {
-        font-size: 14px;
-        grid-area: right;
-        align-self: flex-end;
-        justify-self: flex-end;
-        color: white;
-    }
-    
-    .imgHeader {
-        width: 100%;
-        height: 400px;
-    }
-    
-    .status {
-        font-size: 14px;
-        font-weight: 500;
-        margin-bottom: 5px;
-        cursor: pointer;
-        color: var(--statusColor)
-    }
-    
-    .status:hover {
-        background-color: rgb(192, 192, 192);
-        border-radius: 5px;
-        color: black;
-        height: 16px;
-    }
-    
-    .input {
-        /* margin-top: 7px; */
-        width: 100%;
-        outline: none;
-        padding: 3px;
-        border-radius: 8px;
-        border: 1px solid black;
-        /* margin-top: -200px; */
-    }
-    
-    input[type=file] {
-        outline: 0;
-        opacity: 0;
-        pointer-events: none;
-        user-select: none
-    }
-    
-    .rightTopDescription {
-        display: none;
-        grid-template-rows: 50px 1fr;
-    }
-    
-    .topName {
-        font-size: 20px;
-        font-weight: 700;
-        align-self: end;
-        margin-left: 10px;
-        color: var(--fontColor)
-    }
-    
-    .centerStatus {
-        margin-left: 10px;
-    }
-    
-    .friendsBlock {
-        display: none;
-    }
-    
-    .detailed {
-        display: none;
-    }
-    
-    .editBlock {
-        display: none;
-    }
-    
-    @media (max-width: 1355px) {
-        .descriptionBlock {
-            grid-template-columns: 310px calc(360px + (500 - 360) * ((100vw - 1250px) / (1355 - 1250)));
-        }
-    }
-    
-    @media (max-width: 1250px) {
-        .descriptionBlock {
-            grid-template-columns: 1fr;
-            grid-template-rows: 200px 200px;
-            grid-template-areas: "leftdiscription" "rightdescription";
-            grid-column-gap: 21px;
-        }
-        .leftDescription {
-            grid-template-rows: 200px;
-            grid-template-columns: 200px 200px;
-            grid-template-areas: "ava descriotion";
-        }
-        .topDescriptionLeft {
-            grid-area: ava;
-        }
-        .description {
-            grid-template-rows: 84px 84px;
-            grid-template-areas: "center" "bot";
-        }
-        .ava {
-            width: 200px;
-        }
-        .discriptionTop {
-            display: none;
-        }
-        .setPhoto {
-            margin-bottom: 5px;
-        }
-        .topDescriptionLeft {
-            grid-template-columns: 170px 30px;
-        }
-        .rightTopDescription {
-            display: grid;
-            grid-area: descriotion;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .descriptionBlock {
-            margin-top: 20px;
-            grid-template-rows: 150px 1fr auto;
-            grid-row-gap: 20px;
-            grid-template-columns: 1fr;
-        }
-        .topDescriptionLeft {
-            grid-template-columns: 90px;
-            align-self: center;
-            grid-area: photo;
-        }
-        .setPhoto {
-            display: none;
-        }
-        .editBlock {
-            display: block;
-        }
-        .description {
-            grid-template-rows: 1fr 40px;
-            border: 0px;
-            margin: 0 10px;
-            background-color: transparent;
-            border-radius: 0px;
-            border-bottom: 1px solid rgb(53, 53, 53);
-        }
-        .discriptionBot {
-            display: none;
-        }
-        .detailed {
-            display: block;
-            color: var(--fontColor)
-        }
-        /* .descriptionCenter div {} */
-        .aboutMe {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--descriptionColor)
-        }
-        .aboutMeText {
-            margin-left: 5px;
-            color: var(--descriptionColor)
-        }
-        input[type=file] {
-            display: none;
-        }
-        .edit {
-            width: 100%;
-            height: 100%;
-            background-color: var(--EditBack);
-            display: grid;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .edit span {
-            color: var(--fontColor);
-            justify-self: center;
-            align-self: center;
-        }
-        .profileInfo {
-            grid-area: profileInfo;
-            display: grid;
-            grid-template-columns: 90px 1fr;
-            grid-template-areas: "photo info";
-        }
-        .rightTopDescription {
-            grid-area: info;
-            grid-template-rows: 1fr 1fr 1fr;
-        }
-        .centerStatus {
-            align-self: center;
-        }
-        .friendsAva {
-            height: 50px;
-            border-radius: 50%;
-        }
-        .leftDescription {
-            grid-template-rows: 100px 30px;
-            grid-template-columns: 1fr;
-            margin: 0 10px;
-            grid-template-areas: "profileInfo" "edit";
-            border-bottom: 1px solid var(--Fcolor);
-        }
-        .friendsList {
-            display: inline-flex;
-            overflow-x: scroll;
-        }
-        .friendsC {
-            display: grid;
-            grid-template-columns: auto 1fr 1fr;
-            padding-left: 10px;
-            font-size: 16px;
-            color: var(--fontColor)
-        }
-        .rToFriends {
-            margin-right: 10px;
-            justify-self: center;
-            color: white;
-            text-decoration: none;
-            justify-self: end;
-        }
-        .countFriends {
-            margin-left: 5px;
-        }
-        .friend {
-            display: grid;
-            text-decoration: none;
-            grid-template-columns: 70px;
-        }
-        .friendsPhoto {
-            justify-self: center;
-        }
-        .friendsName {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--fontColor);
-            word-break: break-all;
-            justify-self: center;
-        }
-        .friendsBlock {
-            display: grid;
-            grid-template-rows: 20px 1fr;
-            grid-row-gap: 10px;
-        }
-        .ava {
-            width: 90px;
-            height: 90px;
-        }
-        .followed {
-            grid-area: edit;
-            height: 100%;
-            width: 100%;
-        }
-        .followBut {
-            height: 100%;
-            width: 100%;
-        }
-    }
-    /* @media (max-width: 400px) {
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap");
+
+.profileInfoBlock {
+  display: grid;
+}
+
+.descriptionBlock {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 600px;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "leftdiscription" "rightdescription";
+  grid-column-gap: 21px;
+}
+
+.description {
+  display: none;
+  grid-area: rightdescription;
+  /* height: 600px; */
+  /* margin-left: 20px; */
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 16px;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-areas: "top" "center" "bot";
+  background-color: rgb(43, 43, 43);
+}
+
+.descriptionEditModeTrue {
+  grid-area: rightdescription;
+  height: 950px;
+  /* margin-left: 20px; */
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 100px 100px 650px 100px;
+  grid-template-areas: "top" "center" "editMode" "bot";
+  background-color: rgb(43, 43, 43);
+}
+
+.field {
+  display: inline-block;
+}
+
+.preloader {
+  margin-top: -100px;
+}
+
+.descriptionDeployed {
+  grid-area: rightdescription;
+  height: 950px;
+  /* margin-left: 20px; */
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 100px 100px 650px 100px;
+  grid-template-areas: "top" "center" "editMode" "bot";
+  background-color: rgb(43, 43, 43);
+}
+
+.deploy {
+  grid-area: editMode;
+}
+
+.detailed:hover {
+  color: rgba(255, 255, 255, 0.555);
+}
+
+.deploy div {
+  color: rgb(212, 212, 212);
+  margin-bottom: 5px;
+}
+
+.saveBut {
+  width: 60px;
+  cursor: pointer;
+  height: 30px;
+  margin-top: 10px;
+  background-color: rgb(99, 99, 99);
+  border: 1px solid rgb(99, 99, 99);
+}
+
+.saveBut:hover {
+  background-color: rgb(201, 200, 200);
+}
+
+.contactsBlock {
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+.contactsBlock b {
+  padding-top: 10px;
+}
+.contacts {
+  color: white;
+}
+
+.leftDescription {
+  grid-area: leftdiscription;
+  display: grid;
+  grid-template-columns: 300px 300px;
+}
+
+.topDescriptionLeft {
+  display: grid;
+  grid-template-columns: 260px 40px;
+}
+
+.setPhoto {
+  align-self: flex-end;
+  display: none;
+}
+
+.followed {
+  width: 100%;
+  justify-self: center;
+  align-self: end;
+}
+
+.followBut {
+  height: 30px;
+  width: 100%;
+  background-color: var(--followBtn);
+  border: 1px solid var(--followBtn);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 17px;
+  color: var(--fontColor);
+}
+.followBut:hover {
+  background-color: var(--followBtnHover);
+  border: 1px solid var(--followBtnHover);
+}
+
+.ava {
+  grid-area: ava;
+  width: 300px;
+  height: 400px;
+}
+.aboutMeTopTitle {
+  margin-left: 10px;
+  font-size: 17px;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+
+.icon {
+  grid-area: icon;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.discriptionTop {
+  grid-area: top;
+}
+
+.discriptionTop {
+  color: rgb(173, 173, 173);
+}
+
+.descriptionCenter {
+  grid-area: center;
+  display: grid;
+}
+
+.detailed {
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+}
+.aboutMeTopText {
+  color: var(--fontColor);
+  font-size: 15px;
+  margin-left: 15px;
+}
+.statusTitle {
+  font-weight: bold;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 17px;
+  color: var(--fontColor);
+}
+.discriptionBot {
+  grid-area: bot;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "left right";
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  /* margin-bottom: 10px; */
+}
+
+.botLeft {
+  grid-area: left;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "nf sf pf" "f s p";
+}
+
+.botLeft div {
+  color: white;
+}
+
+.numberOfFriends {
+  grid-area: nf;
+  justify-self: center;
+}
+
+.friends {
+  grid-area: f;
+  justify-self: center;
+}
+
+.numberOfSubscribers {
+  grid-area: sf;
+  justify-self: center;
+}
+
+.subscribers {
+  grid-area: s;
+  justify-self: center;
+}
+
+.numberOfPhotos {
+  grid-area: pf;
+  justify-self: center;
+}
+
+.photo {
+  grid-area: p;
+  justify-self: center;
+}
+
+.botRight {
+  font-size: 14px;
+  grid-area: right;
+  align-self: flex-end;
+  justify-self: flex-end;
+  color: white;
+}
+
+.imgHeader {
+  width: 100%;
+  height: 400px;
+}
+
+.status {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  cursor: pointer;
+  color: var(--fontColor);
+}
+
+.status:hover {
+  background-color: rgb(192, 192, 192);
+  border-radius: 5px;
+  color: black;
+}
+
+.input {
+  /* margin-top: 7px; */
+  width: 100%;
+  outline: none;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid black;
+  /* margin-top: -200px; */
+}
+
+input[type="file"] {
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.rightTopDescription {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-rows: 30px 20px 1fr;
+}
+
+.topName {
+  font-size: 25px;
+  font-weight: 700;
+  align-self: start;
+  justify-self: center;
+  margin-left: 10px;
+  font-family: "Dancing Script", cursive;
+  color: var(--fontColor);
+}
+
+.centerStatus {
+  margin-left: 10px;
+}
+
+.friendsBlock {
+  display: none;
+}
+
+.detailed {
+  display: none;
+}
+
+.editBlock {
+  display: none;
+}
+.lastPost {
+  display: grid;
+  grid-template-rows: 70px auto;
+}
+.header {
+  display: grid;
+  border-bottom: 1px solid var(--fontColor);
+}
+.headerTitle {
+  align-self: center;
+  justify-self: center;
+  font-weight: bold;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 20px;
+  color: var(--fontColor);
+}
+@media (max-width: 750px) {
+  .descriptionBlock {
+    grid-template-columns: 450px;
+  }
+  .leftDescription {
+    grid-template-columns: 240px 210px;
+  }
+  .ava {
+    height: 300px;
+    width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lastPost {
+    grid-template-rows: 50px auto;
+  }
+  .descriptionBlock {
+    margin-bottom: 59px;
+    grid-template-areas:
+      "leftdiscription"
+      "rightdescription";
+    display: grid;
+    margin-top: 20px;
+    grid-template-rows: 150px 1fr auto;
+    grid-row-gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  .topName {
+    justify-self: start;
+  }
+  .rightTopDescription {
+    display: grid;
+    grid-area: descriotion;
+  }
+
+  .discriptionTop {
+    display: none;
+  }
+  .description {
+    grid-template-rows: 84px 84px;
+    grid-template-areas: "center" "bot";
+  }
+  .topDescriptionLeft {
+    grid-template-columns: 90px;
+    align-self: center;
+    grid-area: photo;
+  }
+  .setPhoto {
+    display: none;
+  }
+  .editBlock {
+    grid-area: edit;
+    display: block;
+  }
+  .description {
+    display: grid;
+    grid-template-rows: 1fr 40px;
+    border: 0px;
+    margin: 0 10px;
+    grid-template-areas:
+      "center"
+      "bot";
+    background-color: transparent;
+    border-radius: 0px;
+    border-bottom: 1px solid rgb(53, 53, 53);
+  }
+  .discriptionBot {
+    display: none;
+  }
+  .detailed {
+    display: block;
+    color: var(--fontColor);
+  }
+  /* .descriptionCenter div {} */
+  .aboutMe {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--descriptionColor);
+  }
+  .aboutMeText {
+    margin-left: 5px;
+    color: var(--descriptionColor);
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .edit {
+    width: 100%;
+    height: 100%;
+    background-color: var(--EditBack);
+    display: grid;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .edit span {
+    color: var(--fontColor);
+    justify-self: center;
+    align-self: center;
+  }
+  .profileInfo {
+    grid-area: ava;
+  }
+  .rightTopDescription {
+    grid-area: profileInfo;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .centerStatus {
+    align-self: center;
+  }
+  .friendsAva {
+    height: 50px;
+    border-radius: 50%;
+  }
+  .leftDescription {
+    grid-template-rows: 100px 30px;
+    grid-template-columns: 100px;
+    margin: 0 10px;
+    grid-template-areas:
+      "ava profileInfo"
+      "edit edit";
+    border-bottom: 1px solid var(--Fcolor);
+  }
+  .friendsList {
+    display: inline-flex;
+    overflow-x: scroll;
+  }
+  .aboutMeTop {
+    display: none;
+  }
+  .friendsC {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    padding-left: 10px;
+    font-size: 16px;
+    color: var(--fontColor);
+  }
+  .rToFriends {
+    margin-right: 10px;
+    justify-self: center;
+    color: white;
+    text-decoration: none;
+    justify-self: end;
+  }
+  .countFriends {
+    margin-left: 5px;
+  }
+  .friend {
+    display: grid;
+    text-decoration: none;
+    grid-template-columns: 70px;
+  }
+  .friendsPhoto {
+    justify-self: center;
+  }
+  .friendsName {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fontColor);
+    word-break: break-all;
+    justify-self: center;
+  }
+  .friendsBlock {
+    display: grid;
+    grid-template-rows: 20px 1fr;
+    grid-row-gap: 10px;
+  }
+  .ava {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  .followed {
+    grid-area: edit;
+    height: 100%;
+    width: 100%;
+  }
+  .followBut {
+    height: 100%;
+    width: 100%;
+  }
+}
+/* @media (max-width: 400px) {
         .leftDescription {
             grid-template-columns: 180px 180px;
         }

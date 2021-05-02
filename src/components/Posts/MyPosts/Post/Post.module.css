@@ -1,117 +1,129 @@
 .postBlock {
-    /* width: 500px; */
-    display: grid;
-    /* grid-template-rows: 50px 30px; */
-    grid-template-areas: "photoName" "body" "likes";
-    /* grid-template-rows: minmax(50px, auto) 0%; */
-    /* border: 2px solid #138D90; */
-    padding: 10px;
-    margin-bottom: 10px;
-    margin: 0 10px;
-    border-bottom: 1px solid rgb(49, 49, 49);
+  /* width: 500px; */
+  display: grid;
+  /* grid-template-rows: 50px 30px; */
+  grid-template-areas: "photoName" "body" "likes";
+  grid-row-gap: 20px;
+  /* grid-template-rows: minmax(50px, auto) 0%; */
+  /* border: 2px solid #138D90; */
+  padding: 10px;
+  margin-bottom: 10px;
+  margin: 0 10px;
+  border-bottom: 1px solid rgb(49, 49, 49);
 }
 
 .postImg {
-    align-self: stretch;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+  align-self: stretch;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 }
 
 .postText {
-    min-height: 50px;
-    grid-area: body;
-    color: var(--fontColor);
-    font-weight: 400;
-    word-break: break-all;
-    max-width: 450px;
-    padding-top: 10px;
-    font-size: 14px;
+  min-height: 50px;
+  grid-area: body;
+  color: var(--fontColor);
+  font-weight: 400;
+  word-break: break-all;
+  max-width: 100%;
+  padding-top: 10px;
+  font-size: 15px;
 }
 
 .photoName {
-    grid-area: photoName;
-    display: grid;
-    grid-template-columns: 50px auto;
+  grid-area: photoName;
+  display: grid;
+  grid-template-columns: 50px auto;
 }
 
 .userName {
-    align-self: center;
-    font-size: 16px;
-    color: var(--fontColor);
+  align-self: center;
+  font-size: 20px;
+  color: var(--fontColor);
 }
 
 .but {
-    background-color: #b39ab4;
-    cursor: pointer;
-    /* border: 1px solid black; */
-    height: 30px;
-    padding: 3px;
-    margin-top: 20px;
+  background-color: #b39ab4;
+  cursor: pointer;
+  /* border: 1px solid black; */
+  height: 30px;
+  padding: 3px;
+  margin-top: 20px;
 }
 
 button {
-    color: black;
+  color: black;
 }
 
 .heart {
-    align-self: center;
-    cursor: pointer;
-    height: 17px;
-    width: 17px;
-    margin-right: 4px;
+  align-self: center;
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+  margin-right: 4px;
 }
 
 .botBlock {
-    grid-area: likes;
-    /* justify-self: end; */
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 10px;
-    margin-left: 10px;
+  grid-area: likes;
+  /* justify-self: end; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .likeBlock {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .leftBlock {
-    display: grid;
-    grid-column-gap: 5px;
-    grid-template-columns: 20px 40px;
+  display: grid;
+  grid-column-gap: 5px;
+  grid-template-columns: 20px 40px;
 }
 
 .commentsBlock {
-    display: grid;
-    align-self: center;
+  display: grid;
+  align-self: center;
 }
 
 .likeBlock span {
-    align-self: end;
-    color: var(--fontColor);
-    margin-bottom: 3px;
+  align-self: end;
+  color: var(--fontColor);
+  margin-bottom: 3px;
 }
 
 .commentsImg {
-    align-self: center;
-    height: 20px;
+  align-self: center;
+  height: 20px;
 }
 
 .deleteBlock {
-    justify-self: start;
+  justify-self: start;
 }
 
 .deleteBut {
-    cursor: pointer;
-    font-size: 12px;
-    background-color: rgb(87, 84, 84);
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid black;
-    color: white;
+  cursor: pointer;
+  font-size: 12px;
+  background-color: rgb(87, 84, 84);
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: white;
 }
 
 .textPost {
-    align-self: center;
+  align-self: center;
+}
+@media (max-width: 480px) {
+  .postBlock {
+    grid-row-gap: 5px;
+  }
+  .userName {
+    font-size: 16px;
+  }
+  .postText {
+    font-size: 14px;
+  }
 }

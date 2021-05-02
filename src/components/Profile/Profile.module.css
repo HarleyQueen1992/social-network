@@ -1,34 +1,12 @@
-.profileBlock {
-    justify-content: center;
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-row-gap: 20px;
-    grid-template-areas: "info" "posts";
-    /* margin-right: 290px; */
-}
-
-.profileInfo {
-    grid-area: info;
-    display: grid;
-    /* justify-self: center; */
-}
-
-.posts {
-    grid-area: posts;
-    margin-left: 380px;
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
-}
-
 @media (max-width: 1355px) {
-    .posts {
-        margin-left: calc(250px + (380 - 250) * ((100vw - 1250px) / (1355 - 1250)));
-        justify-self: center;
-    }
+  .posts {
+    margin-left: calc(250px + (380 - 250) * ((100vw - 1250px) / (1355 - 1250)));
+    justify-self: center;
+  }
 }
 
 @media (max-width: 1250px) {
-    .posts {
-        margin-left: 0;
-    }
+  .posts {
+    margin-left: 0;
+  }
 }
