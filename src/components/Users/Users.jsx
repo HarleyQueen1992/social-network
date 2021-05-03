@@ -9,7 +9,8 @@ import axios from "axios"
 import UsersImg from "./../../assets/images/grou4p.png"
 
 const Users = props => {
-  let users = !props.usersSearch ? props.users : props.usersSearch
+  let users = props.usersSearch.length === 0 ? props.users : props.usersSearch
+
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler)
     return function () {
@@ -21,7 +22,7 @@ const Users = props => {
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) ==
         0 &&
-      props.users.length < props.totalUsersCount
+      users.length < props.totalUsersCount
     ) {
       props.toggleIsFatching(true)
     }
@@ -44,18 +45,21 @@ const Users = props => {
         </div>
       </header>
       <div className={s.users}>
-        {users.map(u => (
-          <div className={s.user} key={u.id}>
-            <div className={s.leftPart}>
-              <div className={s.photoUsers}>
-                <NavLink to={"/profile/" + u.id}>
-                  <img
-                    src={u.photo != null ? u.photo : userPhoto}
-                    className={s.photo}
-                  />
-                </NavLink>
-              </div>
-              {/* <div className={s.followed} >
+        {props.value !== "" && props.usersSearch.length === 0 ? (
+          <div className={s.errorNoUsers}>No users</div>
+        ) : (
+          users.map(u => (
+            <div className={s.user} key={u.id}>
+              <div className={s.leftPart}>
+                <div className={s.photoUsers}>
+                  <NavLink to={"/profile/" + u.id}>
+                    <img
+                      src={u.photo != null ? u.photo : userPhoto}
+                      className={s.photo}
+                    />
+                  </NavLink>
+                </div>
+                {/* <div className={s.followed} >
                         { u.followed
                             ? <button 
                                     disabled={props.followingInProgress.some(id => id === u.id)} 
@@ -68,26 +72,21 @@ const Users = props => {
                                     onClick={ () => { props.follow(u.id)} }>Follow
                             </button> }
                     </div> */}
-            </div>
-            <div className={s.rightPart}>
-              <div className={s.name}>{u.name}</div>
-              <div className={s.status}>
-                {!u.status ? u.status : <span>status: {u.status}</span>}
               </div>
-              <div className={s.city}>
-                {u.followed ? <span>friend</span> : <span></span>}
+              <div className={s.rightPart}>
+                <div className={s.name}>{u.name}</div>
+                <div className={s.status}>
+                  {!u.status ? u.status : <span>status: {u.status}</span>}
+                </div>
+                <div className={s.city}>
+                  {u.followed ? <span>friend</span> : <span></span>}
+                </div>
+                <div className={s.country}>{/* {u.location.country}, */}</div>
               </div>
-              <div className={s.country}>{/* {u.location.country}, */}</div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
-      {/* <Pagination totalUsersCount={props.totalUsersCount}
-                                pageSize={props.pageSize}
-                                currentPage={props.currentPage}
-                                earlyPageNumber={props.earlyPageNumber} 
-                                onPageChenged={props.onPageChenged} 
-                                increasePageNumber={props.increasePageNumber}/> */}
     </div>
   )
 }

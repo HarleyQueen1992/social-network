@@ -174,7 +174,35 @@ button:disabled {
 .pagination {
   text-align: center;
 }
-
+.errorNoUsers {
+  color: var(--fontColor);
+  font-size: 24px;
+}
+@media (max-width: 480px) {
+  .header {
+    grid-template-columns: 60px 80px auto;
+  }
+  .search {
+    margin-right: 10px;
+  }
+  .user {
+    grid-template-rows: 75px;
+    grid-template-columns: 70px 250px;
+  }
+  .photo {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+  }
+  .rightPart {
+    grid-template-columns: 66% 30%;
+    grid-template-rows: 45% 60%;
+  }
+  .status {
+    font-size: 13px;
+    color: var(--statusColor);
+  }
+}
 /* @media (max-width: 522px) {
   .users {
     margin-top: 20px;

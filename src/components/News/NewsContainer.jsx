@@ -13,7 +13,6 @@ import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
 
 class NewsContainer extends React.Component {
   render() {
-    debugger
     return (
       <>
         <News

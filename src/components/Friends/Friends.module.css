@@ -42,7 +42,7 @@
 .name {
   grid-area: name;
   font-size: 20px;
-  color: white;
+  color: var(--fontColor);
   font-weight: 500;
 }
 
@@ -59,7 +59,7 @@
 .writeMessage a {
   font-size: 15px;
   text-decoration: none;
-  color: rgb(197, 197, 197);
+  color: var(--statusColor);
 }
 
 .writeMessage a:hover {

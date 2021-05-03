@@ -1,23 +1,23 @@
-const SET_POSTS = 'app/posts-reducer/SET_POSTS'
+const SET_POSTS = "app/posts-reducer/SET_POSTS"
 
 let initialState = {
-    posts: [{ id: 0, authorId: 0, body: 'Мой новый пост!', like: 1, }]
+  posts: [{ id: 0, authorId: 0, body: "Мой новый пост!", like: 1 }],
 }
 
 const postsReducer = (state = initialState, action) => {
-        switch (action.type) {
-            case SET_POSTS:
-                return {
-                    ...state,
-                    posts: action.post
-                }
-            default:
-                return state;
-        }
-    }
-    // Action Creactor
+  switch (action.type) {
+    case SET_POSTS:
+      return {
+        ...state,
+        posts: action.post,
+      }
+    default:
+      return state
+  }
+}
+// Action Creactor
 
-export const setPosts = (post) => ({ type: SET_POSTS, post })
+export const setPosts = post => ({ type: SET_POSTS, post })
 
 // ? Thunk Creator
 
@@ -27,5 +27,4 @@ export const setPosts = (post) => ({ type: SET_POSTS, post })
 //     dispatch(setFriends(data.data.items));
 // }
 
-
-export default postsReducer;
+export default postsReducer

@@ -228,11 +228,11 @@ export const unfollow = userId => {
   }
 }
 
-export const requestForUsers = term => {
-  return dispatch => {
-    usersAPI.searchUsers(term).then(response => {
-      dispatch(setUserSearching(response.items))
-    })
-  }
-}
+// export const requestForUsers = term => {
+//   return dispatch => {
+//     usersAPI.searchUsers(term).then(response => {
+//       dispatch(setUserSearching(response.items))
+//     })
+//   }
+// }
 export default usersReducer

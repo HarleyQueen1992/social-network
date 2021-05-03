@@ -8,7 +8,6 @@ import Post from "./../Posts/MyPosts/Post/Post"
 import NewsImg from "./../../assets/images/newspaper.png"
 
 const News = props => {
-  debugger
   return (
     <div className={s.newsBlock}>
       <header className={s.header}>

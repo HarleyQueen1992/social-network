@@ -128,6 +128,12 @@
   display: block;
   opacity: 0.4;
 }
+@media (max-height: 525px) {
+  .menu {
+    padding-top: 0px;
+    overflow-y: scroll;
+  }
+}
 @media (max-width: 650px) {
   .HeaderBurger {
     top: 25px;

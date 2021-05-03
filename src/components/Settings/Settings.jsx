@@ -34,7 +34,6 @@ const Settings = props => {
   const onSubmit = formData => {
     props.saveProfileInfo(formData).then(() => {})
   }
-  debugger
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>
@@ -65,27 +64,28 @@ const Settings = props => {
                 ></div>
               </label>
             </div>
-            <div className={s.changeAva}>
-              <span className={s.changeTitle}>change ava:</span>
-              <input
-                onChange={onMainPhotoSelected}
-                type='file'
-                id='input__file'
-              />
-              <label className={s.changeLabel} for='input__file'>
-                <img className={s.moreImg} src={More} />
-              </label>
-            </div>
           </div>
-        </div>
-        <div className={s.profileBlock}>
-          <div className={s.settingsTitle}>ProfileSettings:</div>
-          <div className={s.profileSettings}>
-            <ProfileDataFormReduxForm
-              initialValues={props.profile}
-              onSubmit={onSubmit}
-              profile={props.profile}
-            />
+          <div className={s.profileBlock}>
+            <div className={s.settingsTitle}>ProfileSettings:</div>
+            <div className={s.profileSettings}>
+              <div className={s.changeAva}>
+                <span className={s.changeTitle}>change ava:</span>
+                <input
+                  onChange={onMainPhotoSelected}
+                  type='file'
+                  id='input__file'
+                />
+                <label className={s.changeLabel} for='input__file'>
+                  <img className={s.moreImg} src={More} />
+                </label>
+              </div>
+
+              <ProfileDataFormReduxForm
+                initialValues={props.profile}
+                onSubmit={onSubmit}
+                profile={props.profile}
+              />
+            </div>
           </div>
         </div>
       </div>

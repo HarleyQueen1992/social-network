@@ -145,7 +145,6 @@ const ProfileInfo = props => {
           profile={props.profile}
           isOwner={props.isOwner}
         /> */}
-        )
         <div className={s.discriptionBot}>
           <div className={s.botLeft}>
             <div className={s.numberOfFriends}>120</div>

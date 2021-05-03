@@ -1,5 +1,4 @@
 .deploy {
-  padding: 10px;
   display: grid;
 }
 .fieldInput {
@@ -9,8 +8,8 @@
 }
 
 .saveBut {
-  background-color: var(--BorderBottom);
-  border: 1px solid var(--BorderBottom);
+  background-color: var(--bacInputForm);
+  border: 1px solid var(--bacInputForm);
   color: var(--fontColor);
   height: 30px;
   font-size: 16px;

@@ -1,5 +1,5 @@
 .settingsBlock {
-  width: 40vw;
+  width: 500px;
   margin-top: 20px;
   display: grid;
   grid-template-rows: 60px 1fr;
@@ -52,7 +52,7 @@
 }
 .changeAva {
   display: grid;
-  padding: 10px;
+  padding-left: 5px;
   grid-template-columns: auto 1fr;
 }
 .changeLabel {
@@ -114,6 +114,14 @@ input[type="file"] {
 .profileBlock {
   display: grid;
   grid-template-rows: 30px 1fr;
+}
+.profileSettings {
+  padding: 10px;
+}
+@media (max-width: 1500px) {
+  .settingsBlock {
+    width: calc(360px + (500 - 360) * ((100vw - 480px) / (1200 - 480)));
+  }
 }
 @media (max-width: 480px) {
   .settingsBlock {

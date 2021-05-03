@@ -3,13 +3,21 @@ import { connect } from "react-redux"
 import {
   requestUsers,
   follow,
-  setUsers,
   unfollow,
   toggleIsFatching,
   toggleFollowingProgress,
-  setValue,
-  requestForUsers,
 } from "../../redux/UsersReducer/user-reducer"
+import {
+  requestForUsers,
+  setValue,
+  setUsers,
+} from "./../../redux/SearchReducer/search-reducer"
+import {
+  getCurrentPageSearch,
+  getTotalUsersCountSearch,
+  getValue,
+  getUsersSearch,
+} from "./../../redux/SearchReducer/search-selectors"
 import Users from "./Users"
 import Preloader from "../common/Preloader/Preloader"
 import { withAuthRedirecr } from "../../Hoc/withAuthRedirect"
@@ -21,8 +29,6 @@ import {
   getTotalUsersCount,
   getIsFatching,
   getFollowingInProgress,
-  getValue,
-  getUsersSearch,
 } from "../../redux/UsersReducer/users-selectors"
 class UsersC extends React.Component {
   componentDidMount() {
@@ -32,13 +38,17 @@ class UsersC extends React.Component {
   }
   handleChange = event => {
     this.props.setValue(event.target.value)
-    this.props.requestForUsers(event.target.value)
+    this.props.requestForUsers(event.target.value, this.props.currentPageSearch)
   }
 
   componentDidUpdate() {
     if (this.props.isFatching) {
       this.props.requestUsers(this.props.currentPage)
     }
+    // this.props.requestForUsers(
+    //   this.props.value,
+    //   this.props.currentPageSearch + 1
+    // )
   }
   render() {
     return (
@@ -60,6 +70,7 @@ class UsersC extends React.Component {
           handleChange={this.handleChange}
           value={this.props.value}
           usersSearch={this.props.usersSearch}
+          totalUsersCountSearch={this.props.totalUsersCountSearch}
         />
       </>
     )
@@ -70,8 +81,10 @@ let mapStateToProps = state => {
   return {
     users: getUsers(state),
     currentPage: getCurrentPage(state),
+    currentPageSearch: getCurrentPageSearch(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
+    totalUsersCountSearch: getTotalUsersCountSearch(state),
     isFatching: getIsFatching(state),
     followingInProgress: getFollowingInProgress(state),
     value: getValue(state),
