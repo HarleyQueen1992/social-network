@@ -140,6 +140,9 @@
   }
 }
 @media (max-width: 480px) {
+  .overlay.active {
+    display: none;
+  }
   .HeaderBurger {
     display: none;
   }

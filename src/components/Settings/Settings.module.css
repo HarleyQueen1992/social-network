@@ -6,6 +6,7 @@
   grid-row-gap: 20px;
   /* height: 100vh; */
   box-sizing: border-box;
+  margin-bottom: 60px;
 }
 
 .header {
@@ -109,6 +110,15 @@ input[type="file"] {
 
 .ball.active {
   transform: translateX(24px);
+}
+.btnLogOut {
+  cursor: pointer;
+  background-color: var(--followBtn);
+  border: 1px solid var(--followBtn);
+  color: var(--fontColor);
+  padding: 5px 8px;
+  font-weight: bold;
+  border-radius: 5px;
 }
 /*! ProfileSettings */
 .profileBlock {

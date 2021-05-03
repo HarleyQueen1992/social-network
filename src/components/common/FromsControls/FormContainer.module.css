@@ -23,9 +23,10 @@
   color: var(--fontColor);
   font-size: 16px;
   outline: none;
+  height: 20px;
 }
-.input[type="checbox"] {
-  background-color: red;
+
+input[type="text"] {
 }
 .textarea {
   margin-left: 5px;

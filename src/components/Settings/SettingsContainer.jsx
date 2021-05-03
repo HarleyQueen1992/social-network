@@ -8,6 +8,7 @@ import {
   savePhoto,
   saveProfileInfo,
 } from "./../../redux/ProfileReducer/profile-reducer"
+import { logOut } from "./../../redux/AuthReducer/auth-reducer"
 import Settings from "./Settings"
 import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors"
@@ -21,7 +22,8 @@ class SettingsContainer extends React.Component {
           setTheme={this.props.setTheme}
           savePhoto={this.props.savePhoto}
           saveProfileInfo={this.props.saveProfileInfo}
-          profile={this.props.profile}
+          profile={this.props.profileInfo}
+          logOut={this.props.logOut}
         />
       </>
     )
@@ -30,11 +32,10 @@ class SettingsContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     theme: getTheme(state),
-    profile: getProfile(state),
     profileInfo: getProfileInfo(state),
   }
 }
 
 export default compose(
-  connect(mapStateToProps, { setTheme, savePhoto, saveProfileInfo })
+  connect(mapStateToProps, { setTheme, savePhoto, saveProfileInfo, logOut })
 )(SettingsContainer)

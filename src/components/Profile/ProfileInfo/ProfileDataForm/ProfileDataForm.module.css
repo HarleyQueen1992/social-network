@@ -1,6 +1,17 @@
 .deploy {
   display: grid;
 }
+.contactsBlcok {
+  display: grid;
+  grid-template-rows: 25px 1fr;
+}
+.contactTitle {
+  color: var(--fontColor);
+  font-size: 19px;
+}
+.contacts {
+  margin-left: 10px;
+}
 .fieldInput {
   display: inline-flex;
   color: var(--fontColor);
@@ -8,12 +19,14 @@
 }
 
 .saveBut {
+  cursor: pointer;
   background-color: var(--bacInputForm);
   border: 1px solid var(--bacInputForm);
   color: var(--fontColor);
   height: 30px;
   font-size: 16px;
   width: 50px;
+  border-radius: 3px;
   justify-self: center;
 }
 .saveBlock {

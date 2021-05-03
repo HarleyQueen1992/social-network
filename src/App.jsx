@@ -68,7 +68,7 @@ class App extends React.Component {
     } else {
       return (
         <div className='app-wrapper'>
-          <Redirect to='/profile' />
+          {/* <Redirect to='/profile' /> */}
 
           <HeaderContaioner />
           <NavbarContainer />
@@ -79,6 +79,7 @@ class App extends React.Component {
               path='/profile/:userid?'
               render={() => <ProfileContainer />}
             />
+            <Route path='/login' render={() => <Login />} />
             <Route path='/music' render={() => <Music />} />
             <Route path='/settings' render={() => <SettingsContainer />} />
             <Route path='/friends' render={() => <FriendsContainer />} />

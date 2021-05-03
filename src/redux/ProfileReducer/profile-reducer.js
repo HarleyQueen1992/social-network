@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { profileAPI, followAPI } from "../../API/api"
+import { Redirect } from "react-router-dom"
 import { getAuthMe, setProfilePhoto } from "../AuthReducer/auth-reducer"
 const ADD_POST = "ADD-POST"
 // const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -227,6 +228,7 @@ export const saveProfileInfo = profileData => async dispatch => {
   let response = await profileAPI.saveProfileInfo(profileData)
   if (response.data.resultCode === 0) {
     dispatch(saveProfileSuccess(profileData))
+    ;<Redirect to='/profile' />
   } else {
     dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }))
     return Promise.reject(response.data.messages[0])

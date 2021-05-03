@@ -5,6 +5,7 @@ import Moon from "./../../assets/images/moon.png"
 import SettingsImg from "./../../assets/images/settings3.png"
 import More from "./../../assets/images/more.png"
 import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
+import { Redirect } from "react-router-dom"
 
 const Settings = props => {
   useEffect(() => {
@@ -85,6 +86,11 @@ const Settings = props => {
                 onSubmit={onSubmit}
                 profile={props.profile}
               />
+              <div className={s.logOut}>
+                <button className={s.btnLogOut} onClick={props.logOut}>
+                  LogOut
+                </button>
+              </div>
             </div>
           </div>
         </div>

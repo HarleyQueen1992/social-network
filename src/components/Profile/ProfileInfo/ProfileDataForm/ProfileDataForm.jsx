@@ -7,13 +7,14 @@ import {
 // import st from "./../../../common/FromsControls/FormContainer.module.css"
 import s from "./ProfileDataForm.module.css"
 import { reduxForm } from "redux-form"
+import { Redirect } from "react-router-dom"
 
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
   return (
     <form onSubmit={handleSubmit} className={s.deploy}>
       <div className={s.fieldInput}>
         <span>Full name</span>:{" "}
-        {createField("Full name", "fullName", [], Input)}
+        {createField("Full name", "fullName", [], Input, { type: "text" })}
       </div>
       <div className={s.fieldInput}>
         <span>Looking for a job:</span>{" "}
@@ -26,25 +27,30 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           "My professional skills",
           "LookingForAJobDescription",
           [],
-          Textarea
+          Textarea,
+          { type: "text" }
         )}
       </div>
 
       <div className={s.fieldInput}>
-        <span>About me</span>:{createField("About me", "aboutMe", [], Textarea)}
+        <span>About me</span>:
+        {createField("About me", "aboutMe", [], Textarea, { type: "text" })}
       </div>
-      {/* <div>
-        <b>Contacts : </b>{" "}
-        {Object.keys(profile.contacts).map(key => {
-          return (
-            <div>
-              <b>
-                {key} : {createField(key, "contacts." + key, [], Input)}
-              </b>{" "}
-            </div>
-          )
-        })}
-      </div> */}
+      <div className={s.contactsBlcok}>
+        <span className={s.contactTitle}>Contacts : </span>{" "}
+        <div className={s.contacts}>
+          {Object.keys(profile.contacts).map(key => {
+            return (
+              <div className={s.fieldInput}>
+                {key} :{" "}
+                {createField(key, "contacts." + key, [], Input, {
+                  type: "text",
+                })}{" "}
+              </div>
+            )
+          })}
+        </div>
+      </div>
       <div className={s.saveBlock}>
         <button className={s.saveBut}>save</button>
       </div>
