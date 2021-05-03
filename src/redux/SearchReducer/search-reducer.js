@@ -68,18 +68,14 @@ export const toggleIsFatchingSearch = isFatching => ({
 
 export const requestForUsers = (term, currentPage) => {
   return dispatch => {
-    if (initialState.value === "") {
-      dispatch(setUsers([]))
-    } else {
-      usersAPI.searchUsers(term, initialState.currentPage).then(response => {
-        dispatch(toggleIsFatchingSearch(false))
-        dispatch(setUsers(response.items))
-        dispatch(setTotalUsersCount(response.totalCount))
-        if (initialState.usersSearch.length < initialState.totalUsersCount) {
-          dispatch(setCurrentPage(currentPage + 1))
-        }
-      })
-    }
+    usersAPI.searchUsers(term, initialState.currentPage).then(response => {
+      dispatch(toggleIsFatchingSearch(false))
+      dispatch(setUsers(response.items))
+      dispatch(setTotalUsersCount(response.totalCount))
+      if (initialState.usersSearch.length < initialState.totalUsersCount) {
+        dispatch(setCurrentPage(currentPage + 1))
+      }
+    })
   }
 }
 // export const getAllFriends = () => async(dispatch) => {
