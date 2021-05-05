@@ -130,7 +130,7 @@ input[type="file"] {
 }
 @media (max-width: 1500px) {
   .settingsBlock {
-    width: calc(360px + (500 - 360) * ((100vw - 480px) / (1200 - 480)));
+    width: calc(360px + (500 - 360) * ((100vw - 480px) / (1500 - 480)));
   }
 }
 @media (max-width: 480px) {

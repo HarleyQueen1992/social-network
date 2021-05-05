@@ -28,9 +28,18 @@ export const usersAPI = {
   //     return instance.post(`follow/${id}/`)
   // },
   searchUsers(term, currentPage) {
-    return instance.get(`users/?term=${term}&count=100`).then(response => {
-      return response.data
-    })
+    return instance
+      .get(`users/?term=${term}&page=${currentPage}`)
+      .then(response => {
+        return response.data
+      })
+  },
+  searchFriends(term, currentPage) {
+    return instance
+      .get(`users/?term=${term}&page=${currentPage}&friend=true`)
+      .then(response => {
+        return response.data
+      })
   },
 }
 

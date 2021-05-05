@@ -9,7 +9,15 @@ import axios from "axios"
 import UsersImg from "./../../assets/images/grou4p.png"
 
 const Users = props => {
-  let users = props.usersSearch.length === 0 ? props.users : props.usersSearch
+  let users
+  let totalCount
+  if (props.usersSearch.length === 0) {
+    users = props.users
+    totalCount = props.totalUsersCount
+  } else {
+    users = props.usersSearch
+    totalCount = props.totalUsersCountSearch
+  }
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler)
@@ -20,14 +28,17 @@ const Users = props => {
   const scrollHandler = e => {
     if (
       e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) ==
-        0 &&
-      users.length < props.totalUsersCount
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+        100 &&
+      users.length < totalCount
     ) {
-      props.toggleIsFatching(true)
+      if (props.usersSearch.length === 0) {
+        props.toggleIsFatching(true)
+      } else {
+        props.toggleIsFatchingSearch(true)
+      }
     }
   }
-
   return (
     <div className={s.usersBlock}>
       <header className={s.header}>

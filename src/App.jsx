@@ -1,15 +1,13 @@
 import React, { Component } from "react"
 import "./App.css"
-import HeaderContaioner from "./components/Header/HeaderContainer"
 import ProfileContainer from "./components/Profile/ProfileContainer"
-import DialogsContainer from "./components/Dialogs/DialogsContainer"
 import { HashRouter, Redirect, Route, withRouter } from "react-router-dom"
 import SettingsContainer from "./components/Settings/SettingsContainer"
 import NewsContainer from "./components/News/NewsContainer"
-import Music from "./components/Music/Music"
 import UsersContainer from "./components/Users/UsersContainer"
 import FriendsContainer from "./components/Friends/FriendsContainer"
 import NavbarContainer from "./components/Navbar/NavbarContainer"
+import HeaderContainer from "./components/Header/HeaderContainer"
 import Login from "./components/Login/Login"
 import { compose } from "redux"
 import { connect, Provider } from "react-redux"
@@ -27,20 +25,13 @@ import {
 import store from "./redux/redux-store"
 import { addPostActionCreator } from "./redux/ProfileReducer/profile-reducer"
 import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
-import { Helmet } from "react-helmet"
-import Post from "./components/Profile/MyPosts/Post/Post"
 import PostCreation from "./components/Posts/MyPosts/PostCreation/PostCreation"
 import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
 import ServicesContainer from "./components/Services/ServicesContainer"
-import styled, { ThemeProvider } from "styled-components"
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js"
 
 // const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 // const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
-
-const StyledApp = styled.div`
-  background-color: ${props => props.theme.body};
-`
 
 class App extends React.Component {
   componentDidMount() {
@@ -51,6 +42,7 @@ class App extends React.Component {
       ? this.props.setTheme("dark")
       : this.props.setTheme("light")
   }
+
   render() {
     if (!this.props.initialized) {
       return <Preloader />
@@ -64,23 +56,27 @@ class App extends React.Component {
       )
 
       // } else if (this.props.isPostCreation) {
-      //      return <PostCreation addPostActionCreator={this.props.addPostActionCreator} toggleIsPostCreation={this.props.toggleIsPostCreation} />
+      //
+
+      return (
+        <PostCreation
+          addPostActionCreator={this.props.addPostActionCreator}
+          toggleIsPostCreation={this.props.toggleIsPostCreation}
+        />
+      )
     } else {
       return (
         <div className='app-wrapper'>
           {/* <Redirect to='/profile' /> */}
-
-          <HeaderContaioner />
+          <HeaderContainer />
           <NavbarContainer />
 
           <div className='app-wrapper-content'>
-            <Route path='/dialogs' render={() => <DialogsContainer />} />
             <Route
               path='/profile/:userid?'
               render={() => <ProfileContainer />}
             />
             <Route path='/login' render={() => <Login />} />
-            <Route path='/music' render={() => <Music />} />
             <Route path='/settings' render={() => <SettingsContainer />} />
             <Route path='/friends' render={() => <FriendsContainer />} />
             <Route path='/users' render={() => <UsersContainer />} />
@@ -104,7 +100,6 @@ const mapStateToProps = state => {
 }
 
 let AppContainer = compose(
-  withRouter,
   connect(mapStateToProps, {
     initializeApp,
     addPostActionCreator,

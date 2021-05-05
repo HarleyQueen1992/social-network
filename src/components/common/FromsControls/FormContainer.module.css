@@ -38,8 +38,14 @@ input[type="text"] {
   padding: 7px;
   color: var(--fontColor);
   resize: none;
+  box-sizing: border-box;
   outline: none;
 }
 .formSummaryError {
   color: rgb(211, 33, 20);
+}
+@media (max-width: 360px) {
+  .input {
+    width: 80%;
+  }
 }

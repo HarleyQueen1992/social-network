@@ -1,14 +1,3 @@
-import { stopSubmit } from "redux-form"
-import { profileAPI, authAPI } from "../../API/api"
-import { getFriends } from "../DialogsReducer/dialogs-reducer"
-import { getAllFriends } from "../NavbarReducer/navbar-reducer"
-import { requestFriends } from "../FriendsReducer/friends-reducer"
-import {
-  getUserProfile,
-  requestStatus,
-  updateStatus,
-} from "../ProfileReducer/profile-reducer"
-import { requestUsers } from "../UsersReducer/user-reducer"
 import { lightTheme, darkTheme } from "./../../themes"
 import { getAuthMe } from "./../AuthReducer/auth-reducer"
 const INITIALIZED_SUCCESS = "app/app-reducer/INITIALIZED_SUCCESS"
@@ -63,11 +52,11 @@ export const initializeApp = () => dispatch => {
   let promiseGetAuthMe = dispatch(getAuthMe())
   // let promiseRequestUsers = dispatch(requestUsers())
   // let promiseRequestFriends = dispatch(requestFriends())
-  let promiseGetFriends = dispatch(getFriends())
+  // let promiseGetFriends = dispatch(getFriends())
   // let promiseGetAllFriends = dispatch(getAllFriends())
   // let promiseGetUserProfile = dispatch(getUserProfile())
 
-  Promise.all([promiseGetAuthMe, promiseGetFriends]).then(() => {
+  Promise.all([promiseGetAuthMe]).then(() => {
     dispatch(initializedSuccess())
   })
 }

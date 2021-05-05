@@ -1,5 +1,4 @@
 import { usersAPI, followAPI } from "../../API/api"
-import { getFriends } from "../DialogsReducer/dialogs-reducer"
 import { toggleIsFollow } from "../ProfileReducer/profile-reducer"
 const FOLLOW = "app/user-reducer/FOLLOW"
 const UNFOLLOW = "app/user-reducer/UNFOLLOW"
@@ -207,7 +206,6 @@ export const follow = userId => {
       if (response.data.resultCode === 0) {
         dispatch(followSuccess(userId))
       }
-      dispatch(getFriends())
       dispatch(toggleIsFollow(true))
       dispatch(toggleFollowingProgress(false, userId))
     })
@@ -221,7 +219,6 @@ export const unfollow = userId => {
       if (response.data.resultCode === 0) {
         dispatch(unfollowSuccess(userId))
       }
-      dispatch(getFriends())
       dispatch(toggleIsFollow(false))
       dispatch(toggleFollowingProgress(false, userId))
     })

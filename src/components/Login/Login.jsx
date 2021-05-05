@@ -9,13 +9,20 @@ import LoginReduxForm from "./LoginForm/LoginForm"
 import s from "./Login.module.css"
 
 class Login extends React.Component {
-  componentDidMount() {}
-
   onSubmit = formData => {
     this.props.loginIn(formData.email, formData.password, formData.rememberMe)
   }
+  // componentDidUpdate() {
+  //   console.log("asdadasdsa")
+  //   if (this.props.isAuth) {
+  //     return <Redirect to='/profile' />
+  //   }
+  // }
 
   render() {
+    if (this.props.isAuth) {
+      return <Redirect to={"/profile"} />
+    }
     return (
       <div className={s.loginBlock}>
         <LoginReduxForm isAuth={this.props.isAuth} onSubmit={this.onSubmit} />

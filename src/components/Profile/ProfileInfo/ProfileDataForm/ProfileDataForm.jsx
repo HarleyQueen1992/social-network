@@ -13,7 +13,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
   return (
     <form onSubmit={handleSubmit} className={s.deploy}>
       <div className={s.fieldInput}>
-        <span>Full name</span>:{" "}
+        <span>Full name:</span>{" "}
         {createField("Full name", "fullName", [], Input, { type: "text" })}
       </div>
       <div className={s.fieldInput}>
@@ -33,7 +33,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
       </div>
 
       <div className={s.fieldInput}>
-        <span>About me</span>:
+        <span>About me:</span>
         {createField("About me", "aboutMe", [], Textarea, { type: "text" })}
       </div>
       <div className={s.contactsBlcok}>

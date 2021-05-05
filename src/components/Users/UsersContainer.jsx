@@ -11,12 +11,16 @@ import {
   requestForUsers,
   setValue,
   setUsers,
+  toggleIsFatchingSearch,
+  setCurrentPage,
+  clearUsers,
 } from "./../../redux/SearchReducer/search-reducer"
 import {
   getCurrentPageSearch,
   getTotalUsersCountSearch,
   getValue,
   getUsersSearch,
+  getIsFatchingSearch,
 } from "./../../redux/SearchReducer/search-selectors"
 import Users from "./Users"
 import Preloader from "../common/Preloader/Preloader"
@@ -37,18 +41,30 @@ class UsersC extends React.Component {
     }
   }
   handleChange = event => {
-    this.props.setValue(event.target.value)
-    this.props.requestForUsers(event.target.value, this.props.currentPageSearch)
+    if (event.target.value === "" && this.props.value.length == 1) {
+      this.props.clearUsers()
+      this.props.setCurrentPage(1)
+      this.props.setValue(event.target.value)
+    } else {
+      this.props.clearUsers()
+      this.props.setCurrentPage(1)
+      this.props.setValue(event.target.value)
+      this.props.requestForUsers(event.target.value, 1)
+    }
   }
 
   componentDidUpdate() {
-    if (this.props.isFatching) {
+    if (this.props.isFatchingSearch && this.props.value !== "") {
+      this.props.requestForUsers(this.props.value, this.props.currentPageSearch)
+    }
+    if (this.props.isFatching && this.props.value === "") {
       this.props.requestUsers(this.props.currentPage)
     }
-    // this.props.requestForUsers(
-    //   this.props.value,
-    //   this.props.currentPageSearch + 1
-    // )
+  }
+  componentWillUnmount() {
+    this.props.clearUsers()
+    this.props.setCurrentPage(1)
+    this.props.setValue("")
   }
   render() {
     return (
@@ -71,6 +87,7 @@ class UsersC extends React.Component {
           value={this.props.value}
           usersSearch={this.props.usersSearch}
           totalUsersCountSearch={this.props.totalUsersCountSearch}
+          toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
         />
       </>
     )
@@ -89,6 +106,7 @@ let mapStateToProps = state => {
     followingInProgress: getFollowingInProgress(state),
     value: getValue(state),
     usersSearch: getUsersSearch(state),
+    isFatchingSearch: getIsFatchingSearch(state),
   }
 }
 
@@ -110,6 +128,9 @@ export default compose(
     toggleIsFatching,
     setValue,
     requestForUsers,
+    toggleIsFatchingSearch,
+    setCurrentPage,
+    clearUsers,
   }),
   withAuthRedirecr
 )(UsersC)

@@ -2,7 +2,6 @@ span {
   cursor: pointer;
 }
 .usersBlock {
-  margin-top: 20px;
   display: grid;
   grid-template-rows: 60px 1fr;
 }
@@ -53,9 +52,10 @@ span {
   justify-self: center;
   margin-bottom: 60px;
 }
-@media (max-width: 700px) {
+@media (max-width: 630px) {
   .header {
     display: grid;
+    margin-left: 65px;
     grid-template-columns: 60px 100px auto;
   }
 }
@@ -177,9 +177,11 @@ button:disabled {
 .errorNoUsers {
   color: var(--fontColor);
   font-size: 24px;
+  font-weight: bold;
 }
 @media (max-width: 480px) {
   .header {
+    margin-left: 0;
     grid-template-columns: 60px 80px auto;
   }
   .search {
@@ -187,7 +189,7 @@ button:disabled {
   }
   .user {
     grid-template-rows: 75px;
-    grid-template-columns: 70px 250px;
+    grid-template-columns: 70px 245px;
   }
   .photo {
     height: 70px;

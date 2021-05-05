@@ -1,8 +1,6 @@
 import React from "react"
 import p from "./Profile.module.css"
-import MyPostsContainer from "./MyPosts/MyPostsContainer"
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
-import PostCreation from "./MyPosts/PostCreation/PostCreation"
 
 const Profile = props => {
   return (

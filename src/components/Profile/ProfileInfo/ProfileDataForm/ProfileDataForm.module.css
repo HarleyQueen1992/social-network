@@ -13,7 +13,8 @@
   margin-left: 10px;
 }
 .fieldInput {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   color: var(--fontColor);
   padding: 5px;
 }
@@ -31,4 +32,5 @@
 }
 .saveBlock {
   justify-self: end;
+  padding-top: 5px;
 }

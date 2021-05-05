@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
-import dialogsReducer from "./DialogsReducer/dialogs-reducer"
 import friendsReducer from "./FriendsReducer/friends-reducer"
 import navbarReducer from "./NavbarReducer/navbar-reducer"
 import profileReducer from "./ProfileReducer/profile-reducer"
@@ -13,7 +12,6 @@ import searchReducer from "./SearchReducer/search-reducer"
 
 let reducers = combineReducers({
   profilePage: profileReducer,
-  dialogsPage: dialogsReducer,
   friendsPage: friendsReducer,
   navbarPage: navbarReducer,
   usersPage: userReducer,

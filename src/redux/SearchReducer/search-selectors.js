@@ -10,3 +10,7 @@ export const getCurrentPageSearch = state => {
 export const getTotalUsersCountSearch = state => {
   return state.search.totalUsersCount
 }
+
+export const getIsFatchingSearch = state => {
+  return state.search.isFatchingSearch
+}

@@ -35,6 +35,7 @@ const Settings = props => {
   const onSubmit = formData => {
     props.saveProfileInfo(formData).then(() => {})
   }
+
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>

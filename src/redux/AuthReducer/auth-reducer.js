@@ -1,9 +1,5 @@
 import { stopSubmit } from "redux-form"
 import { profileAPI, authAPI } from "../../API/api"
-import { Link, NavLink, Redirect } from "react-router-dom"
-import { getUserProfile, isSavePhoto } from "../ProfileReducer/profile-reducer"
-import { useHistory } from "react-router-dom"
-import { getFriends } from "../DialogsReducer/dialogs-reducer"
 import Preloader from "../../components/common/Preloader/Preloader"
 const SET_USER_DATA = "app/auth-reducer/SET_USER_DATA"
 const SET_PROFILE_DATA = "app/auth-reducer/SET_PROFILE_DATA"
@@ -99,8 +95,7 @@ export const loginIn = (email, password, rememberMe) => async dispatch => {
     let respo = await profileAPI.getProfile(data.data.data.userId)
 
     dispatch(setProfileData(respo.data, true))
-    dispatch(getFriends())
-    return <Redirect to='/profile' />
+    // dispatch(getFriends())
     // let history = useHistory()
     // return useHistory().push("/profile")
   } else {

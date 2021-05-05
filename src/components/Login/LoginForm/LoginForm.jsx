@@ -12,10 +12,10 @@ import { NavLink, Redirect, useHistory } from "react-router-dom"
 let maxLength = maxLengthCreator(25)
 
 const LoginForm = props => {
-  let history = useHistory()
-  if (props.isAuth) {
-    history.push("/profile")
-  }
+  // let history = useHistory()
+  // if (props.isAuth) {
+  //   history.push("/profile")
+  // }
   return (
     <form className={l.loginForm} onSubmit={props.handleSubmit}>
       <div className={l.emailField}>

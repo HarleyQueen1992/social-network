@@ -26,6 +26,7 @@ import {
   getStatus,
   getLastPost,
 } from "../../redux/ProfileReducer/profile-selectors"
+import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer"
 import Profile from "./Profile"
 import {
   getIsAuth,
@@ -35,16 +36,16 @@ import {
 import Preloader from "../common/Preloader/Preloader"
 import { toggleIsPostCreation } from "./../../redux/AppReducer/app-reducer"
 import { follow, unfollow } from "../../redux/UsersReducer/user-reducer"
-import { getFriends } from "../../redux/DialogsReducer/dialogs-reducer"
-import { getFriendsInDialogs } from "../../redux/DialogsReducer/dialogs-selectors"
 import {
   getIsPostCreation,
   getTheme,
 } from "../../redux/AppReducer/app-selectors"
+import { getAllFriends } from "../../redux/FriendsReducer/friends-selectors"
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
     let userid = this.props.match.params.userid
+    this.props.requestAllFriends()
 
     if (!userid || userid == this.props.profileInfo.userId) {
       userid = this.props.profileInfo.userId
@@ -115,10 +116,10 @@ const mapStateToProps = state => ({
   userId: getUserId(state),
   isFollow: getIsFollow(state),
   isSavingPhoto: getIsSavingPhoto(state),
-  friends: getFriendsInDialogs(state),
   isPostCreation: getIsPostCreation(state),
   lastPost: getLastPost(state),
   theme: getTheme(state),
+  friends: getAllFriends(state),
 })
 
 // let withRedirect = withAuthRedirecr(ProfileContainer)
@@ -146,6 +147,7 @@ export default compose(
     toggleIsPostCreation,
     getTheLastPost,
     addLike,
+    requestAllFriends,
   }),
   withRouter,
   withAuthRedirecr

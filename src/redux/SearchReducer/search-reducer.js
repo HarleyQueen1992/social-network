@@ -4,15 +4,15 @@ const SET_TOTAL_USERS_COUNT = "app/search-reducer/SET_TOTAL_USERS_COUNT"
 const SET_VALUE = "app/search-reducer/SET_VALUE"
 const SET_CURRENT_PAGE = "app/search-reducer/SET_CURRENT_PAGE"
 const TOGGLE_IS_FATCHING = "app/search-reducer/TOGGLE_IS_FATCHING"
+const CLEAR_USERS = "app/search-reducer/CLEAR_USERS"
 
 let initialState = {
   usersSearch: [],
   pageSize: 15,
   totalUsersCount: null,
   currentPage: 1,
-  isFatching: true,
   value: "",
-  isFatchingSearch: true,
+  isFatchingSearch: false,
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -26,7 +26,12 @@ const searchReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        usersSearch: [...action.users],
+        usersSearch: [...state.usersSearch, ...action.users],
+      }
+    case CLEAR_USERS:
+      return {
+        ...state,
+        usersSearch: [],
       }
     case SET_TOTAL_USERS_COUNT:
       return {
@@ -55,6 +60,7 @@ export const setTotalUsersCount = count => ({
   count,
 })
 export const setValue = value => ({ type: SET_VALUE, value })
+export const clearUsers = () => ({ type: CLEAR_USERS })
 export const setCurrentPage = currentPage => ({
   type: SET_CURRENT_PAGE,
   currentPage,
@@ -68,7 +74,19 @@ export const toggleIsFatchingSearch = isFatching => ({
 
 export const requestForUsers = (term, currentPage) => {
   return dispatch => {
-    usersAPI.searchUsers(term, initialState.currentPage).then(response => {
+    usersAPI.searchUsers(term, currentPage).then(response => {
+      dispatch(toggleIsFatchingSearch(false))
+      dispatch(setUsers(response.items))
+      dispatch(setTotalUsersCount(response.totalCount))
+      if (initialState.usersSearch.length < response.totalCount) {
+        dispatch(setCurrentPage(currentPage + 1))
+      }
+    })
+  }
+}
+export const requestForFriends = (term, currentPage) => {
+  return dispatch => {
+    usersAPI.searchFriends(term, currentPage).then(response => {
       dispatch(toggleIsFatchingSearch(false))
       dispatch(setUsers(response.items))
       dispatch(setTotalUsersCount(response.totalCount))

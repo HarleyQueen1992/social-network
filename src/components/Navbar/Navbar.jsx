@@ -5,10 +5,6 @@ import FriendsBlock from "./FriendsBlock/FriendsBlock"
 import burger from "./../../assets/images/burger.png"
 
 const Navbar = props => {
-  let FriendsElements = props.friends.map(f => (
-    <FriendsBlock photo={f.photo} id={f.id} name={f.name} />
-  ))
-
   const [menuActive, setMenuActive] = useState(false)
 
   return (
