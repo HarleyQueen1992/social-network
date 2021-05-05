@@ -12,9 +12,14 @@ import { logOut } from "./../../redux/AuthReducer/auth-reducer"
 import Settings from "./Settings"
 import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors"
+import { Redirect } from "react-router"
 
 class SettingsContainer extends React.Component {
   render() {
+    const Save = () => {
+      return <Redirect to='/profile/' />
+    }
+
     return (
       <>
         <Settings
@@ -24,6 +29,7 @@ class SettingsContainer extends React.Component {
           saveProfileInfo={this.props.saveProfileInfo}
           profile={this.props.profileInfo}
           logOut={this.props.logOut}
+          Save={this.Save}
         />
       </>
     )

@@ -59,12 +59,7 @@ const ProfileInfo = props => {
           </div>
           <div className={s.aboutMeTop}>
             <span className={s.aboutMeTopTitle}>About Me:</span>
-            <div className={s.aboutMeTopText}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe
-              accusantium, laboriosam, exercitationem itaque quos quisquam
-              minima non natus assumenda nobis quas nostrum eligendi autem,
-              excepturi officiis suscipit labore minus id?
-            </div>
+            <div className={s.aboutMeTopText}>{props.profile.aboutMe}</div>
           </div>
         </div>
         {props.isOwner || (
@@ -120,20 +115,69 @@ const ProfileInfo = props => {
           />
         </div>
         <div className={s.descriptionCenter}>
-          <div className={s.aboutMe}>About me : </div>
-          <div className={s.aboutMeText}>
-            {" "}
-            I am a team player. I am outgoing, dedicated, and open-minded. I get
-            across to people and adjust to changes with ease. I believe that a
-            person should work on developing their professional skills and
-            learning new things all the time.
+          <div>
+            <div className={s.titleInfo}>About me : </div>
+            <div className={s.infoText}>{props.profile.aboutMe}</div>
+          </div>
+
+          <div
+            className={s.detailedInformation + " " + (deployed ? s.active : "")}
+          >
+            <div className={s.detailedInformationTop}>
+              <span className={s.titleInfo}>Looking for a job:</span>
+              <span className={s.infoText}>
+                {props.profile.lookingForAJob ? "yes" : "no"}{" "}
+              </span>
+            </div>
+            <div className={s.detailedInformationCenter}>
+              <span className={s.titleInfo}>My professional skills:</span>
+              <span className={s.infoText}>
+                {props.profile.lookingForAJobDescription}
+              </span>
+            </div>
+            <div className={s.detailedInformationBot}>
+              <span className={s.titleInfo}>Contacts:</span>
+              <div className={s.contactsBlock}>
+                {Object.keys(props.profile.contacts).map(key => {
+                  return (
+                    <div className={s.field}>
+                      <span className={s.titleField}>{key} : </span>
+                      <a
+                        className={s.linkField}
+                        href={props.profile.contacts[key]}
+                      >
+                        {props.profile.contacts[key]}
+                      </a>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           </div>
           {/*? Deploy will be in the future */}
           {/* {deployed 
                         ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
                         : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
         </div>
-        <div className={s.detailed}>detailed information</div>
+        {deployed ? (
+          <div
+            onClick={() => {
+              setdeployed(!deployed)
+            }}
+            className={s.detailed}
+          >
+            roll up
+          </div>
+        ) : (
+          <div
+            onClick={() => {
+              setdeployed(!deployed)
+            }}
+            className={s.detailed}
+          >
+            detailed information
+          </div>
+        )}
         {/* <ProfileDataFormReduxForm
           initialValues={props.profile}
           onSubmit={onSubmit}
@@ -219,14 +263,14 @@ export const ProfileData = props => {
       <div>
         <b>About me</b>: {props.profile.aboutMe}
       </div>
-      <b class={s.contacts}>Contacts : </b>{" "}
+      <span class={s.contacts}>Contacts : </span>{" "}
       {Object.keys(props.profile.contacts).map(key => {
-        return (
-          <Contacts
+        return {
+          /* <Contacts
             contactTitle={key}
             contactValue={props.profile.contacts[key]}
-          />
-        )
+          /> */
+        }
       })}
       {props.isOwner && (
         <div>
@@ -240,14 +284,6 @@ export const ProfileData = props => {
           </button>
         </div>
       )}
-    </div>
-  )
-}
-
-export const Contacts = props => {
-  return (
-    <div className={s.contactsBlock}>
-      <b>{props.contactTitle} : </b> {props.contactValue}
     </div>
   )
 }

@@ -86,6 +86,7 @@ const Settings = props => {
                 initialValues={props.profile}
                 onSubmit={onSubmit}
                 profile={props.profile}
+                Save={props.Save}
               />
               <div className={s.logOut}>
                 <button className={s.btnLogOut} onClick={props.logOut}>

@@ -25,6 +25,7 @@
   grid-template-rows: 100px 100px 100px;
   grid-template-areas: "top" "center" "bot";
   background-color: rgb(43, 43, 43);
+  transition: all 0.5s;
 }
 
 .descriptionEditModeTrue {
@@ -38,10 +39,6 @@
   grid-template-rows: 100px 100px 650px 100px;
   grid-template-areas: "top" "center" "editMode" "bot";
   background-color: rgb(43, 43, 43);
-}
-
-.field {
-  display: inline-block;
 }
 
 .preloader {
@@ -88,15 +85,29 @@
 }
 
 .contactsBlock {
-  padding-left: 20px;
-  padding-top: 5px;
+  word-break: break-all;
+  margin-left: 20px;
+  margin-top: 5px;
 }
-
-.contactsBlock b {
-  padding-top: 10px;
+.contactTitle {
+  color: var(--fontColor);
+}
+.contactsBody {
+  color: var(--statusColor);
 }
 .contacts {
   color: white;
+}
+.field {
+  color: var(--fontColor);
+}
+.linkField {
+  color: var(--statusColor);
+  text-decoration: none;
+}
+.titleField {
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .leftDescription {
@@ -322,15 +333,32 @@ input[type="file"] {
 }
 .header {
   display: grid;
-  border-bottom: 1px solid var(--fontColor);
+  margin: 0 10px;
+  border-bottom: 1px solid var(--BorderBottom);
 }
 .headerTitle {
   align-self: center;
   justify-self: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-family: "Ubuntu Condensed", sans-serif;
   font-size: 20px;
   color: var(--fontColor);
+}
+.detailedInformation {
+  max-height: 0;
+  overflow: hidden;
+  width: auto;
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-rows: auto auto 1fr;
+  transition: max-height 0.6s ease-out;
+}
+.active {
+  max-height: 1000px;
+  transition: max-height 0.6s ease-in;
+}
+.detailedInformationCenter {
+  word-break: break-all;
 }
 @media (max-width: 750px) {
   .descriptionBlock {
@@ -391,6 +419,7 @@ input[type="file"] {
     display: grid;
     grid-template-rows: 1fr 40px;
     border: 0px;
+    padding-top: 0;
     margin: 0 10px;
     grid-template-areas:
       "center"
@@ -407,12 +436,12 @@ input[type="file"] {
     color: var(--fontColor);
   }
   /* .descriptionCenter div {} */
-  .aboutMe {
+  .titleInfo {
     font-size: 16px;
     font-weight: bold;
     color: var(--descriptionColor);
   }
-  .aboutMeText {
+  .infoText {
     margin-left: 5px;
     color: var(--descriptionColor);
   }

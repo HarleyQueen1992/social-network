@@ -76,6 +76,7 @@ class App extends React.Component {
               path='/profile/:userid?'
               render={() => <ProfileContainer />}
             />
+
             <Route path='/login' render={() => <Login />} />
             <Route path='/settings' render={() => <SettingsContainer />} />
             <Route path='/friends' render={() => <FriendsContainer />} />
@@ -83,6 +84,7 @@ class App extends React.Component {
             <Route path='/posts' render={() => <MyPostsContainer />} />
             <Route path='/services' render={() => <ServicesContainer />} />
             <Route path='/news' render={() => <NewsContainer />} />
+            <Route path='/' exact render={() => <ProfileContainer />} />
           </div>
         </div>
       )
