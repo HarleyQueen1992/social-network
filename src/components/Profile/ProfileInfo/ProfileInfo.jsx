@@ -142,12 +142,16 @@ const ProfileInfo = props => {
                   return (
                     <div className={s.field}>
                       <span className={s.titleField}>{key} : </span>
-                      <a
-                        className={s.linkField}
-                        href={props.profile.contacts[key]}
-                      >
-                        {props.profile.contacts[key]}
-                      </a>
+                      {!props.profile.contacts[key] ? (
+                        <span>-</span>
+                      ) : (
+                        <a
+                          className={s.linkField}
+                          href={props.profile.contacts[key]}
+                        >
+                          {props.profile.contacts[key]}
+                        </a>
+                      )}
                     </div>
                   )
                 })}

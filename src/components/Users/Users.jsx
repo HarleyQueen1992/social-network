@@ -61,15 +61,13 @@ const Users = props => {
         ) : (
           users.map(u => (
             <div className={s.user} key={u.id}>
-              <div className={s.leftPart}>
-                <div className={s.photoUsers}>
-                  <NavLink to={"/profile/" + u.id}>
-                    <img
-                      src={u.photo != null ? u.photo : userPhoto}
-                      className={s.photo}
-                    />
-                  </NavLink>
-                </div>
+              <div className={s.photoUsers}>
+                <NavLink to={"/profile/" + u.id}>
+                  <img
+                    src={u.photo != null ? u.photo : userPhoto}
+                    className={s.photo}
+                  />
+                </NavLink>
                 {/* <div className={s.followed} >
                         { u.followed
                             ? <button 
@@ -92,7 +90,6 @@ const Users = props => {
                 <div className={s.city}>
                   {u.followed ? <span>friend</span> : <span></span>}
                 </div>
-                <div className={s.country}>{/* {u.location.country}, */}</div>
               </div>
             </div>
           ))

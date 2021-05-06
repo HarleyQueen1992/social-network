@@ -48,9 +48,9 @@ span {
 }
 .users {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-top: 30px;
   justify-self: center;
-  margin-bottom: 60px;
 }
 @media (max-width: 630px) {
   .header {
@@ -60,11 +60,11 @@ span {
   }
 }
 .user {
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   display: grid;
-  grid-template-rows: 90px;
-  grid-template-areas: "photoFollowed content";
-  grid-template-columns: 100px 370px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 90px auto;
+  grid-template-areas: "photo" "name";
   /* border: 1px solid black; */
 }
 
@@ -74,14 +74,11 @@ span {
 }
 
 .rightPart {
+  justify-self: center;
+  align-self: center;
   padding: 10px;
-  border: 2px solid #138d90;
-  border-radius: 30px;
-  grid-area: content;
+  grid-area: name;
   display: grid;
-  grid-template-areas: "name country" "status city";
-  grid-template-columns: 70% 30%;
-  grid-template-rows: 30% 70%;
 }
 
 .but {
@@ -103,6 +100,7 @@ button:disabled {
 }
 
 .photoUsers {
+  grid-area: photo;
   justify-self: center;
   align-self: center;
 }
@@ -124,11 +122,18 @@ button:disabled {
   align-self: flex-start;
   justify-self: start;
 }
+.status span {
+  display: none;
+}
 
 .name {
+  justify-self: center;
+  align-self: center;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
   font-size: 20px;
   grid-area: name;
-  margin-left: 10px;
   color: var(--fontColor);
 }
 
@@ -140,6 +145,7 @@ button:disabled {
 }
 
 .city {
+  display: none;
   grid-area: city;
   align-self: end;
   justify-self: end;
@@ -187,22 +193,47 @@ button:disabled {
   .search {
     margin-right: 10px;
   }
+  .users {
+    grid-template-columns: 1fr;
+    margin-bottom: 60px;
+  }
   .user {
+    display: grid;
+    grid-template-areas: "photoFollowed content";
     grid-template-rows: 75px;
-    grid-template-columns: 70px 245px;
+    grid-template-columns: 80px 245px;
   }
   .photo {
     height: 70px;
     width: 70px;
     border-radius: 50%;
   }
+  .photoUsers {
+    grid-area: photoFollowed;
+  }
   .rightPart {
+    padding: 10px;
+    border: 2px solid #138d90;
+    border-radius: 30px;
+    grid-area: content;
+    justify-self: normal;
+    align-self: normal;
+    display: grid;
+    grid-template-areas: "name country" "status city";
     grid-template-columns: 66% 30%;
     grid-template-rows: 45% 60%;
   }
   .status {
+    display: block;
     font-size: 13px;
     color: var(--statusColor);
+  }
+  .name {
+    justify-self: normal;
+    align-self: normal;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
   }
 }
 /* @media (max-width: 522px) {

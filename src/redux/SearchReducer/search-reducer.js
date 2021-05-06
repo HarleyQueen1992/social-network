@@ -8,7 +8,7 @@ const CLEAR_USERS = "app/search-reducer/CLEAR_USERS"
 
 let initialState = {
   usersSearch: [],
-  pageSize: 15,
+  pageSize: 30,
   totalUsersCount: null,
   currentPage: 1,
   value: "",

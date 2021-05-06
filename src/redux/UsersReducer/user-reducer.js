@@ -18,7 +18,7 @@ const SET_WINDOW_MODE = "app/user-reducer/SET_WINDOW_MODE"
 let initialState = {
   users: [],
   usersSearch: null,
-  pageSize: 15,
+  pageSize: 30,
   totalUsersCount: 20,
   currentPage: 1,
   isFatching: true,
