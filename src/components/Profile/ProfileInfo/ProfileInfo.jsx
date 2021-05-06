@@ -8,7 +8,20 @@ import iconSettings from "../../../assets/images/settings.png"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 import styled from "styled-components"
 import Post from "./../../Posts/MyPosts/Post/Post"
-
+import GitHub from "./../../../assets/images/github.png"
+import vk from "./../../../assets/images/vk.png"
+import facebook from "./../../../assets/images/facebook.png"
+import inst from "./../../../assets/images/inst.png"
+import twitter from "./../../../assets/images/twitter.png"
+import youtube from "./../../../assets/images/youtube.png"
+export const Icons = {
+  github: GitHub,
+  vk: vk,
+  facebook: facebook,
+  instagram: inst,
+  twitter: twitter,
+  youtube: youtube,
+}
 const ProfileInfo = props => {
   let [deployed, setdeployed] = useState(false)
   let [editMode, setEditMode] = useState(false)
@@ -16,6 +29,14 @@ const ProfileInfo = props => {
   if (props.profile == null) {
     return <Preloader />
   }
+  // export const Icons = {
+  //   github: GitHub,
+  //   vk: vk,
+  //   facebook: facebook,
+  //   instagram: inst,
+  //   twitter: twitter,
+  //   youtube: youtube,
+  // }
 
   let srcImg = props.profile.photo
   if (props.profile.photo == null) {
@@ -140,17 +161,23 @@ const ProfileInfo = props => {
               <div className={s.contactsBlock}>
                 {Object.keys(props.profile.contacts).map(key => {
                   return (
-                    <div className={s.field}>
-                      <span className={s.titleField}>{key} : </span>
+                    <div>
                       {!props.profile.contacts[key] ? (
-                        <span>-</span>
+                        <div> </div>
                       ) : (
-                        <a
-                          className={s.linkField}
-                          href={props.profile.contacts[key]}
-                        >
-                          {props.profile.contacts[key]}
-                        </a>
+                        <div className={s.field}>
+                          <img className={s.logo} src={Icons[key]} />
+                          <div>
+                            <span className={s.titleField}>{key} : </span>
+
+                            <a
+                              className={s.linkField}
+                              href={props.profile.contacts[key]}
+                            >
+                              {props.profile.contacts[key]}
+                            </a>
+                          </div>
+                        </div>
                       )}
                     </div>
                   )

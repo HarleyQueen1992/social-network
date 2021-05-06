@@ -8,6 +8,21 @@ import {
 import s from "./ProfileDataForm.module.css"
 import { reduxForm } from "redux-form"
 import { Redirect } from "react-router-dom"
+import GitHub from "../../../../assets/images/github.png"
+import vk from "../../../../assets/images/vk.png"
+import facebook from "../../../../assets/images/facebook.png"
+import inst from "../../../../assets/images/inst.png"
+import twitter from "../../../../assets/images/twitter.png"
+import youtube from "../../../../assets/images/youtube.png"
+
+export const Icons = {
+  github: GitHub,
+  vk: vk,
+  facebook: facebook,
+  instagram: inst,
+  twitter: twitter,
+  youtube: youtube,
+}
 
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
   return (
@@ -25,7 +40,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
         <span>My professional skills:</span>
         {createField(
           "My professional skills",
-          "LookingForAJobDescription",
+          "lookingForAJobDescription",
           [],
           Textarea,
           { type: "text" }
@@ -41,8 +56,9 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
         <div className={s.contacts}>
           {Object.keys(profile.contacts).map(key => {
             return (
-              <div className={s.fieldInput}>
-                {key} :{" "}
+              <div className={s.fieldInputContacts}>
+                <img className={s.logo} src={Icons[key]} />
+                <span className={s.title}>{key} :</span>{" "}
                 {createField(key, "contacts." + key, [], Input, {
                   type: "text",
                 })}{" "}

@@ -18,6 +18,16 @@
   color: var(--fontColor);
   padding: 5px;
 }
+.fieldInputContacts {
+  display: grid;
+  grid-template-columns: 20px 1fr 2fr;
+  color: var(--fontColor);
+  padding: 5px;
+}
+.title {
+  text-transform: capitalize;
+  margin-left: 5px;
+}
 
 .saveBut {
   cursor: pointer;
@@ -33,4 +43,7 @@
 .saveBlock {
   justify-self: end;
   padding-top: 5px;
+}
+.logo {
+  height: 20px;
 }
