@@ -520,8 +520,12 @@ input[type="file"] {
     font-size: 13px;
     font-weight: 500;
     color: var(--fontColor);
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 90%;
     justify-self: center;
+    text-align: center;
   }
   .friendsBlock {
     display: grid;
