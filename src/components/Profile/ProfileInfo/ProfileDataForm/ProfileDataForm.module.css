@@ -18,8 +18,25 @@
   color: var(--fontColor);
   padding: 5px;
 }
-.input[type="checkbox"] {
-  background-color: red;
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + label::before {
+  content: "";
+  background-size: 100%;
+  background-image: url(https://img.icons8.com/metro/452/checkmark.png);
+}
+.labelCheckbox::before {
+  cursor: pointer;
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-color: var(--bacInputForm);
+  /* margin-left: -10px; */
+  margin-right: 10px;
+  border: 1px solid var(--bacInputForm);
 }
 .fieldInputContacts {
   display: grid;

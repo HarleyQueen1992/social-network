@@ -8,7 +8,6 @@ export const FormControl = ({ input, meta, child, ...props }) => {
   return (
     <div className={s.formControl + " " + (hasError ? s.error : "")}>
       {props.children}
-      {/* {hasError && <div>{meta.error}</div> } */}
     </div>
   )
 }

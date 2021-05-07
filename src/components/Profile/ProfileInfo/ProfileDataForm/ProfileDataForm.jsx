@@ -6,7 +6,7 @@ import {
 } from "../../../common/FromsControls/FormsControls"
 // import st from "./../../../common/FromsControls/FormContainer.module.css"
 import s from "./ProfileDataForm.module.css"
-import { reduxForm } from "redux-form"
+import { reduxForm, Field } from "redux-form"
 import { Redirect } from "react-router-dom"
 import { Icons, IconsWhite } from "./../../../../utils/Icons/Icons"
 
@@ -19,7 +19,15 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
       </div>
       <div className={s.fieldInput}>
         <span>Looking for a job:</span>{" "}
-        {createField("", "lookingForAJob", [], Input, { type: "checkbox" })}
+        {/* <label className={s.labelCheckbox} for='checkbox'></label> */}
+        <Field
+          id='check'
+          name='lookingForAJob'
+          component='input'
+          type='checkbox'
+        />
+        <label for='check' className={s.labelCheckbox}></label>
+        {/* {createField("", "lookingForAJob", [], Input, { type: "checkbox" })} */}
       </div>
 
       <div className={s.fieldInput}>
