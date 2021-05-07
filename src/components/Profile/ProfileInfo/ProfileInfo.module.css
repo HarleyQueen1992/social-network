@@ -100,6 +100,7 @@
   display: grid;
   grid-template-columns: 20px 1fr;
   grid-column-gap: 2px;
+  margin-bottom: 5px;
 }
 .logo {
   margin-top: 2px;
