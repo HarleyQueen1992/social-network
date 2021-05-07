@@ -22,6 +22,8 @@ export const Icons = {
   instagram: inst,
   twitter: twitter,
   youtube: youtube,
+  website: website,
+  mainLink: mainLink,
 }
 
 export const IconsWhite = {
