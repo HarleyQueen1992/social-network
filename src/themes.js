@@ -17,6 +17,7 @@ export const lightTheme = {
   BorderBottom: "rgb(49, 49, 49)",
   bacInput: "rgb(255, 255, 255)",
   bacInputForm: "#c3c3c3",
+  HoversaveBut: "#a7a7a7",
 }
 
 Object.defineProperty(lightTheme, "toString", {
@@ -41,6 +42,7 @@ export const darkTheme = {
   BorderBottom: "rgb(49, 49, 49)",
   bacInput: "rgb(192, 192, 192)",
   bacInputForm: "rgb(49, 49, 49)",
+  HoversaveBut: "gray",
 }
 
 Object.defineProperty(darkTheme, "toString", {

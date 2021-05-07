@@ -4,3 +4,7 @@ export const getProfileInfo = state => {
 export const getIsFetching = state => {
   return state.settings.isFetching
 }
+
+export const getIsFetchingSuccess = state => {
+  return state.settings.isFetchingSuccess
+}

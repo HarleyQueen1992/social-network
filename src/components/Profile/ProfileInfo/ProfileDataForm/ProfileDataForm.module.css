@@ -60,6 +60,9 @@ input[type="checkbox"]:checked + label::before {
   border-radius: 3px;
   justify-self: center;
 }
+.saveBut:hover {
+  background-color: var(--HoversaveBut);
+}
 .saveBlock {
   justify-self: end;
   padding-top: 5px;

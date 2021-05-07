@@ -15,6 +15,7 @@ import {
 import {
   getProfileInfo,
   getIsFetching,
+  getIsFetchingSuccess,
 } from "./../../redux/SettingsReducer/settings-selectors"
 import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
 import { getUserId } from "../../redux/AuthReducer/auth-selectors"
@@ -28,6 +29,7 @@ class SettingsContainer extends React.Component {
   componentWillUnmount() {
     // this.props.clearProfileInfo()
   }
+
   render() {
     return (
       <>
@@ -42,6 +44,7 @@ class SettingsContainer extends React.Component {
             profile={this.props.profileInfo}
             logOut={this.props.logOut}
             Save={this.Save}
+            isFetchingSuccess={this.props.isFetchingSuccess}
           />
         )}
       </>
@@ -54,6 +57,7 @@ const mapStateToProps = state => {
     profileInfo: getProfileInfo(state),
     userid: getUserId(state),
     isFetching: getIsFetching(state),
+    isFetchingSuccess: getIsFetchingSuccess(state),
   }
 }
 

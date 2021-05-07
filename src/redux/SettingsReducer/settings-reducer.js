@@ -6,10 +6,13 @@ const SET_PROFILE_PHOTO = "app/settings-reducer/SET_PROFILE_PHOTO"
 const SAVE_PROFILE_SUCCESS = "app/settings-reducer/SAVE_PROFILE_SUCCESS"
 const TOGGLE_IS_FETCHING = "app/settings-reducer/TOGGLE_IS_FETCHING"
 const CLEAR_PROFILE_INFO = "app/settings-reducer/CLEAR_PROFILE_INFO"
+const TOGGLE_IS_FETCHING_SUCCESS =
+  "app/settings-reducer/TOGGLE_IS_FETCHING_SUCCESS"
 
 let initialState = {
   profileInfo: null,
   isFetching: true,
+  isFetchingSuccess: false,
 }
 
 // ? utils
@@ -52,6 +55,11 @@ const settingsReducer = (state = initialState, action) => {
         ...state,
         profileInfo: null,
       }
+    case TOGGLE_IS_FETCHING_SUCCESS:
+      return {
+        ...state,
+        isFetchingSuccess: action.isFetching,
+      }
     default:
       return state
   }
@@ -72,6 +80,10 @@ export const saveProfileSuccess = profile => ({
 
 export const toggleIsFetching = isFetching => ({
   type: TOGGLE_IS_FETCHING,
+  isFetching,
+})
+export const toggleIsFetchingSuccess = isFetching => ({
+  type: TOGGLE_IS_FETCHING_SUCCESS,
   isFetching,
 })
 
@@ -96,6 +108,7 @@ export const receiveProfileInfo = id => async dispatch => {
 }
 
 export const saveProfileInfo = profileData => async dispatch => {
+  dispatch(toggleIsFetchingSuccess(true))
   let response = await profileAPI.saveProfileInfo(profileData)
   if (response.data.resultCode === 0) {
     dispatch(saveProfileSuccess(profileData))
@@ -103,12 +116,15 @@ export const saveProfileInfo = profileData => async dispatch => {
     dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }))
     return Promise.reject(response.data.messages[0])
   }
+  dispatch(toggleIsFetchingSuccess(false))
 }
 export const savePhoto = file => async dispatch => {
+  dispatch(toggleIsFetchingSuccess(true))
   let response = await profileAPI.savePhoto(file)
   if (response.data.resultCode === 0) {
     dispatch(savePhotoSuccess(response.data.data.photo))
   }
+  dispatch(toggleIsFetchingSuccess(false))
 }
 
 export default settingsReducer
