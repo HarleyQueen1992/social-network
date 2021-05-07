@@ -11,7 +11,7 @@ const DELETE_POST = "app/profile-reducer/DELETE_POST"
 const SAVE_PHOTO_SUCCESS = "app/profile-reducer/SAVE_PHOTO_SUCCESS"
 const TOGGLE_IS_FATCHING = "app/profile-reducer/TOGGLE_IS_FATCHING"
 const TOGGLE_IS_FOLLOW = "app/profile-reducer/TOGGLE_IS_FOLLOW"
-const SAVE_PROFILE_SUCCESS = "app/profile-reducer/SAVE_PROFILE_SUCCESS"
+
 const SAVING_IN_PHOTO_PROGRESS = "app/profile-reducer/SAVING_IN_PHOTO_PROGRESS"
 const GET_LAST_POST = "app/profile-reducer/GET_LAST_POST"
 
@@ -112,11 +112,7 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         isFollow: action.isFollow,
       }
-    case SAVE_PROFILE_SUCCESS:
-      return {
-        ...state,
-        profile: action.profile,
-      }
+
     case SAVING_IN_PHOTO_PROGRESS:
       return {
         ...state,
@@ -150,11 +146,6 @@ export const getTheLastPost = () => ({
 })
 
 export const toggleIsFollow = isFollow => ({ type: TOGGLE_IS_FOLLOW, isFollow })
-
-export const saveProfileSuccess = profile => ({
-  type: SAVE_PROFILE_SUCCESS,
-  profile,
-})
 
 export const isSavePhoto = isSaving => ({
   type: SAVING_IN_PHOTO_PROGRESS,
@@ -212,26 +203,6 @@ export const updateStatus = status => async dispatch => {
 
   if (response.data.resultCode === 0) {
     dispatch(setStatus(status))
-  }
-}
-
-export const savePhoto = file => async dispatch => {
-  dispatch(isSavePhoto(true))
-  let response = await profileAPI.savePhoto(file)
-  if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.data.data.photo))
-    dispatch(setProfilePhoto(response.data.data.photo))
-  }
-  dispatch(isSavePhoto(false))
-}
-export const saveProfileInfo = profileData => async dispatch => {
-  let response = await profileAPI.saveProfileInfo(profileData)
-  if (response.data.resultCode === 0) {
-    dispatch(saveProfileSuccess(profileData))
-    ;<Redirect to='/profile' />
-  } else {
-    dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }))
-    return Promise.reject(response.data.messages[0])
   }
 }
 

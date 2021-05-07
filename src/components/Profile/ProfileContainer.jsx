@@ -14,7 +14,6 @@ import {
   toggleIsFollow,
   updateStatus,
   deletePost,
-  savePhoto,
   getFollow,
   addLike,
 } from "../../redux/ProfileReducer/profile-reducer"
@@ -26,6 +25,7 @@ import {
   getStatus,
   getLastPost,
 } from "../../redux/ProfileReducer/profile-selectors"
+import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer"
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer"
 import Profile from "./Profile"
 import {
@@ -92,7 +92,6 @@ class ProfileContainer extends React.Component {
             follow={this.props.follow}
             unfollow={this.props.unfollow}
             isFollow={this.props.isFollow}
-            saveProfileInfo={this.props.saveProfileInfo}
             isSavingPhoto={this.props.isSavingPhoto}
             friends={this.props.friends}
             isPostCreation={this.props.isPostCreation}
@@ -141,7 +140,6 @@ export default compose(
     toggleIsFatching,
     setUserProfile,
     setStatus,
-    saveProfileInfo,
     getIsSavingPhoto,
     addPostActionCreator,
     toggleIsPostCreation,

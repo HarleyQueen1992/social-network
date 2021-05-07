@@ -9,6 +9,7 @@ import { reducer as formReducer } from "redux-form"
 import appReducer from "./AppReducer/app-reducer"
 import postsReducer from "./PostsReducer/posts-reducer"
 import searchReducer from "./SearchReducer/search-reducer"
+import settingsReducer from "./SettingsReducer/settings-reducer"
 
 let reducers = combineReducers({
   profilePage: profileReducer,
@@ -20,6 +21,7 @@ let reducers = combineReducers({
   app: appReducer,
   posts: postsReducer,
   search: searchReducer,
+  settings: settingsReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
