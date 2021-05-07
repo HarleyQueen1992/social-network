@@ -18,9 +18,12 @@
   color: var(--fontColor);
   padding: 5px;
 }
+.input[type="checkbox"] {
+  background-color: red;
+}
 .fieldInputContacts {
   display: grid;
-  grid-template-columns: 20px 1fr 2fr;
+  grid-template-columns: 20px 80px 2fr;
   color: var(--fontColor);
   padding: 5px;
 }

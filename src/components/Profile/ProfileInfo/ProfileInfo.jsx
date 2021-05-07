@@ -42,8 +42,8 @@ const ProfileInfo = props => {
   }
   return (
     <div className={s.descriptionBlock}>
-      <div className={s.leftDescription}>
-        <div className={s.profileInfo}>
+      <div className={s.topBlock}>
+        <div className={s.avatar}>
           <div className={s.topDescriptionLeft}>
             <div>
               {props.isSavingPhoto ? (
@@ -60,15 +60,40 @@ const ProfileInfo = props => {
         <div className={s.rightTopDescription}>
           <div className={s.topName}>{props.profile.fullName}</div>
           <div className={s.centerStatus}>
-            {" "}
-            <ProfileStatusWithHooks
-              status={props.status}
-              updateStatus={props.updateStatus}
+            <div className={s.info}>
+              <ProfileStatusWithHooks
+                status={props.status}
+                updateStatus={props.updateStatus}
+              />
+            </div>
+          </div>
+          <div className={s.detailedInfoBlock}>
+            <DetailedInfo
+              profile={props.profile}
+              deployed={deployed}
+              theme={props.theme}
             />
           </div>
-          <div className={s.aboutMeTop}>
-            <span className={s.aboutMeTopTitle}>About Me:</span>
-            <div className={s.aboutMeTopText}>{props.profile.aboutMe}</div>
+          <div className={s.deployedBlock}>
+            {deployed ? (
+              <div
+                onClick={() => {
+                  setdeployed(!deployed)
+                }}
+                className={s.detailed}
+              >
+                roll up
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  setdeployed(!deployed)
+                }}
+                className={s.detailed}
+              >
+                detailed information
+              </div>
+            )}
           </div>
         </div>
         {props.isOwner || (
@@ -123,68 +148,12 @@ const ProfileInfo = props => {
             updateStatus={props.updateStatus}
           />
         </div>
-        <div className={s.descriptionCenter}>
-          <div>
-            <div className={s.titleInfo}>About me : </div>
-            <div className={s.infoText}>{props.profile.aboutMe}</div>
-          </div>
+        <DetailedInfo
+          profile={props.profile}
+          deployed={deployed}
+          theme={props.theme}
+        />
 
-          <div
-            className={s.detailedInformation + " " + (deployed ? s.active : "")}
-          >
-            <div className={s.detailedInformationTop}>
-              <span className={s.titleInfo}>Looking for a job:</span>
-              <span className={s.infoText}>
-                {props.profile.lookingForAJob ? "yes" : "no"}{" "}
-              </span>
-            </div>
-            <div className={s.detailedInformationCenter}>
-              <span className={s.titleInfo}>My professional skills:</span>
-              <span className={s.infoText}>
-                {props.profile.lookingForAJobDescription}
-              </span>
-            </div>
-            <div className={s.detailedInformationBot}>
-              <span className={s.titleInfo}>Contacts:</span>
-              <div className={s.contactsBlock}>
-                {Object.keys(props.profile.contacts).map(key => {
-                  return (
-                    <div>
-                      {!props.profile.contacts[key] ? (
-                        <div> </div>
-                      ) : (
-                        <div className={s.field}>
-                          <img
-                            className={s.logo}
-                            src={
-                              props.theme == "lightTheme"
-                                ? Icons[key]
-                                : IconsWhite[key]
-                            }
-                          />
-                          <div>
-                            <span className={s.titleField}>{key} : </span>
-
-                            <a
-                              className={s.linkField}
-                              href={props.profile.contacts[key]}
-                            >
-                              {props.profile.contacts[key]}
-                            </a>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-          {/*? Deploy will be in the future */}
-          {/* {deployed 
-                        ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
-                        : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
-        </div>
         {deployed ? (
           <div
             onClick={() => {
@@ -310,6 +279,75 @@ export const ProfileData = props => {
           </button>
         </div>
       )}
+    </div>
+  )
+}
+
+const DetailedInfo = props => {
+  return (
+    <div className={s.descriptionCenter}>
+      <div>
+        <div className={s.titleInfo}>About me : </div>
+        <div className={s.infoText}>{props.profile.aboutMe}</div>
+      </div>
+
+      <div
+        className={
+          s.detailedInformation + " " + (props.deployed ? s.active : "")
+        }
+      >
+        <div className={s.detailedInformationTop}>
+          <span className={s.titleInfo}>Looking for a job:</span>
+          <span className={s.infoText}>
+            {props.profile.lookingForAJob ? "yes" : "no"}{" "}
+          </span>
+        </div>
+        <div className={s.detailedInformationCenter}>
+          <span className={s.titleInfo}>My professional skills:</span>
+          <span className={s.infoText}>
+            {props.profile.lookingForAJobDescription}
+          </span>
+        </div>
+        <div className={s.detailedInformationBot}>
+          <span className={s.titleInfo}>Contacts:</span>
+          <div className={s.contactsBlock}>
+            {Object.keys(props.profile.contacts).map(key => {
+              return (
+                <div>
+                  {!props.profile.contacts[key] ? (
+                    <div> </div>
+                  ) : (
+                    <div className={s.field}>
+                      <img
+                        className={s.logo}
+                        src={
+                          props.theme == "lightTheme"
+                            ? Icons[key]
+                            : IconsWhite[key]
+                        }
+                      />
+                      <div>
+                        <span className={s.titleField}>{key} : </span>
+
+                        <a
+                          className={s.linkField}
+                          href={props.profile.contacts[key]}
+                        >
+                          {props.profile.contacts[key]}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+      {/*? Deploy will be in the future */}
+      {/* {deployed 
+                  ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
+                  : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
     </div>
   )
 }

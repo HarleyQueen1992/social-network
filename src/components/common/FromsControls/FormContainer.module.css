@@ -28,7 +28,9 @@
   padding: 4px;
 }
 
-input[type="text"] {
+.input[type="checkbox" i] {
+  background-color: red;
+  overflow: hidden;
 }
 .textarea {
   margin-left: 5px;

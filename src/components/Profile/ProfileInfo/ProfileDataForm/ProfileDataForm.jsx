@@ -9,14 +9,6 @@ import s from "./ProfileDataForm.module.css"
 import { reduxForm } from "redux-form"
 import { Redirect } from "react-router-dom"
 import { Icons, IconsWhite } from "./../../../../utils/Icons/Icons"
-// export const Icons = {
-//   github: GitHub,
-//   vk: vk,
-//   facebook: facebook,
-//   instagram: inst,
-//   twitter: twitter,
-//   youtube: youtube,
-// }
 
 const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
   return (
