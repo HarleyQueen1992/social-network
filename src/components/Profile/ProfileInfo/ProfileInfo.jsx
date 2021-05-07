@@ -8,20 +8,8 @@ import iconSettings from "../../../assets/images/settings.png"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 import styled from "styled-components"
 import Post from "./../../Posts/MyPosts/Post/Post"
-import GitHub from "./../../../assets/images/github.png"
-import vk from "./../../../assets/images/vk.png"
-import facebook from "./../../../assets/images/facebook.png"
-import inst from "./../../../assets/images/inst.png"
-import twitter from "./../../../assets/images/twitter.png"
-import youtube from "./../../../assets/images/youtube.png"
-export const Icons = {
-  github: GitHub,
-  vk: vk,
-  facebook: facebook,
-  instagram: inst,
-  twitter: twitter,
-  youtube: youtube,
-}
+import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
+
 const ProfileInfo = props => {
   let [deployed, setdeployed] = useState(false)
   let [editMode, setEditMode] = useState(false)
@@ -166,7 +154,14 @@ const ProfileInfo = props => {
                         <div> </div>
                       ) : (
                         <div className={s.field}>
-                          <img className={s.logo} src={Icons[key]} />
+                          <img
+                            className={s.logo}
+                            src={
+                              props.theme == "lightTheme"
+                                ? Icons[key]
+                                : IconsWhite[key]
+                            }
+                          />
                           <div>
                             <span className={s.titleField}>{key} : </span>
 

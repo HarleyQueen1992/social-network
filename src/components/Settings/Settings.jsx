@@ -87,6 +87,7 @@ const Settings = props => {
                 onSubmit={onSubmit}
                 profile={props.profile}
                 Save={props.Save}
+                theme={props.theme}
               />
               <div className={s.logOut}>
                 <button className={s.btnLogOut} onClick={props.logOut}>

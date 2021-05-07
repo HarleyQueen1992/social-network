@@ -8,23 +8,17 @@ import {
 import s from "./ProfileDataForm.module.css"
 import { reduxForm } from "redux-form"
 import { Redirect } from "react-router-dom"
-import GitHub from "../../../../assets/images/github.png"
-import vk from "../../../../assets/images/vk.png"
-import facebook from "../../../../assets/images/facebook.png"
-import inst from "../../../../assets/images/inst.png"
-import twitter from "../../../../assets/images/twitter.png"
-import youtube from "../../../../assets/images/youtube.png"
+import { Icons, IconsWhite } from "./../../../../utils/Icons/Icons"
+// export const Icons = {
+//   github: GitHub,
+//   vk: vk,
+//   facebook: facebook,
+//   instagram: inst,
+//   twitter: twitter,
+//   youtube: youtube,
+// }
 
-export const Icons = {
-  github: GitHub,
-  vk: vk,
-  facebook: facebook,
-  instagram: inst,
-  twitter: twitter,
-  youtube: youtube,
-}
-
-const ProfileDataForm = ({ handleSubmit, profile, error }) => {
+const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
   return (
     <form onSubmit={handleSubmit} className={s.deploy}>
       <div className={s.fieldInput}>
@@ -57,7 +51,10 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           {Object.keys(profile.contacts).map(key => {
             return (
               <div className={s.fieldInputContacts}>
-                <img className={s.logo} src={Icons[key]} />
+                <img
+                  className={s.logo}
+                  src={theme == "lightTheme" ? Icons[key] : IconsWhite[key]}
+                />
                 <span className={s.title}>{key} :</span>{" "}
                 {createField(key, "contacts." + key, [], Input, {
                   type: "text",
