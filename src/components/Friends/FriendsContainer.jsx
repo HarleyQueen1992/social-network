@@ -27,6 +27,7 @@ import {
 import {
   getCurrentPageSearch,
   getIsFatchingSearch,
+  getIsReceipt,
   getTotalUsersCountSearch,
   getUsersSearch,
   getValue,
@@ -105,6 +106,7 @@ class FriendsContainer extends React.Component {
           isFatchingSearch={this.props.isFatchingSearch}
           totalFriendsCountSearch={this.props.totalFriendsCountSearch}
           toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
+          isReceipt={this.props.isReceipt}
         />
       </>
     )
@@ -123,6 +125,7 @@ let mapStateToProps = state => {
     currentPageSearch: getCurrentPageSearch(state),
     totalFriendsCountSearch: getTotalUsersCountSearch(state),
     isFatchingSearch: getIsFatchingSearch(state),
+    isReceipt: getIsReceipt(state),
   }
 }
 

@@ -21,6 +21,7 @@ import {
   getValue,
   getUsersSearch,
   getIsFatchingSearch,
+  getIsReceipt,
 } from "./../../redux/SearchReducer/search-selectors"
 import Users from "./Users"
 import Preloader from "../common/Preloader/Preloader"
@@ -88,6 +89,7 @@ class UsersC extends React.Component {
           usersSearch={this.props.usersSearch}
           totalUsersCountSearch={this.props.totalUsersCountSearch}
           toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
+          isReceipt={this.props.isReceipt}
         />
       </>
     )
@@ -107,6 +109,7 @@ let mapStateToProps = state => {
     value: getValue(state),
     usersSearch: getUsersSearch(state),
     isFatchingSearch: getIsFatchingSearch(state),
+    isReceipt: getIsReceipt(state),
   }
 }
 

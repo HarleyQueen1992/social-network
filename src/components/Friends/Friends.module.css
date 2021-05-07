@@ -24,7 +24,8 @@
 .title {
   margin-left: 10px;
   align-self: center;
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: bold;
   color: var(--fontColor);
 }
 .search {
@@ -130,6 +131,12 @@
 @media (max-width: 480px) {
   .header {
     margin-left: 0;
+  }
+  .title {
+    margin-left: 0px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--fontColor);
   }
   .friend {
     grid-template-rows: 70px;

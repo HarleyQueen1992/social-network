@@ -6,6 +6,7 @@ import s from "./Friends.module.css"
 import FriendsPage from "./FriendsPage/FriendsPage"
 import Pagination from "../common/Pagination/Pagination"
 import FriendsImg from "./../../assets/images/friends2.png"
+import Preloader from "../common/Preloader/Preloader"
 
 const Friends = props => {
   let friends
@@ -54,7 +55,9 @@ const Friends = props => {
           </form>
         </div>
       </header>
-      {props.value !== "" && props.friendsSearch.length === 0 ? (
+      {props.isReceipt ? (
+        <Preloader />
+      ) : props.value !== "" && props.friendsSearch.length === 0 ? (
         <div className={s.errorNoUsers}>No users</div>
       ) : (
         <div className={s.friends}>

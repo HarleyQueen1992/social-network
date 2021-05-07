@@ -14,3 +14,7 @@ export const getTotalUsersCountSearch = state => {
 export const getIsFatchingSearch = state => {
   return state.search.isFatchingSearch
 }
+
+export const getIsReceipt = state => {
+  return state.search.isReceipt
+}

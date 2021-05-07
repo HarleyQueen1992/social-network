@@ -48,7 +48,7 @@ span {
 }
 .users {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 150px);
   margin-top: 30px;
   justify-self: center;
 }

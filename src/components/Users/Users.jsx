@@ -7,6 +7,7 @@ import { usersAPI } from "../../API/api"
 import Pagination from "../common/Pagination/Pagination"
 import axios from "axios"
 import UsersImg from "./../../assets/images/grou4p.png"
+import Preloader from "../common/Preloader/Preloader"
 
 const Users = props => {
   let users
@@ -55,20 +56,23 @@ const Users = props => {
           </form>
         </div>
       </header>
-      <div className={s.users}>
-        {props.value !== "" && props.usersSearch.length === 0 ? (
-          <div className={s.errorNoUsers}>No users</div>
-        ) : (
-          users.map(u => (
-            <div className={s.user} key={u.id}>
-              <div className={s.photoUsers}>
-                <NavLink to={"/profile/" + u.id}>
-                  <img
-                    src={u.photo != null ? u.photo : userPhoto}
-                    className={s.photo}
-                  />
-                </NavLink>
-                {/* <div className={s.followed} >
+      {props.isReceipt ? (
+        <Preloader />
+      ) : (
+        <div className={s.users}>
+          {props.value !== "" && props.usersSearch.length === 0 ? (
+            <div className={s.errorNoUsers}>No users</div>
+          ) : (
+            users.map(u => (
+              <div className={s.user} key={u.id}>
+                <div className={s.photoUsers}>
+                  <NavLink to={"/profile/" + u.id}>
+                    <img
+                      src={u.photo != null ? u.photo : userPhoto}
+                      className={s.photo}
+                    />
+                  </NavLink>
+                  {/* <div className={s.followed} >
                         { u.followed
                             ? <button 
                                     disabled={props.followingInProgress.some(id => id === u.id)} 
@@ -81,20 +85,21 @@ const Users = props => {
                                     onClick={ () => { props.follow(u.id)} }>Follow
                             </button> }
                     </div> */}
-              </div>
-              <div className={s.rightPart}>
-                <div className={s.name}>{u.name}</div>
-                <div className={s.status}>
-                  {!u.status ? u.status : <span>status: {u.status}</span>}
                 </div>
-                <div className={s.city}>
-                  {u.followed ? <span>friend</span> : <span></span>}
+                <div className={s.rightPart}>
+                  <div className={s.name}>{u.name}</div>
+                  <div className={s.status}>
+                    {!u.status ? u.status : <span>status: {u.status}</span>}
+                  </div>
+                  <div className={s.city}>
+                    {u.followed ? <span>friend</span> : <span></span>}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        )}
-      </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   )
 }

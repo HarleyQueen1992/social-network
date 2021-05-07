@@ -5,6 +5,7 @@ const SET_VALUE = "app/search-reducer/SET_VALUE"
 const SET_CURRENT_PAGE = "app/search-reducer/SET_CURRENT_PAGE"
 const TOGGLE_IS_FATCHING = "app/search-reducer/TOGGLE_IS_FATCHING"
 const CLEAR_USERS = "app/search-reducer/CLEAR_USERS"
+const TOGGLE_IS_RECEIPT = "app/search-reducer/TOGGLE_IS_RECEIPT"
 
 let initialState = {
   usersSearch: [],
@@ -12,6 +13,7 @@ let initialState = {
   totalUsersCount: null,
   currentPage: 1,
   value: "",
+  isReceipt: false,
   isFatchingSearch: false,
 }
 
@@ -48,6 +50,11 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         isFatchingSearch: action.isFatching,
       }
+    case TOGGLE_IS_RECEIPT:
+      return {
+        ...state,
+        isReceipt: action.isReceipt,
+      }
     default:
       return state
   }
@@ -70,31 +77,36 @@ export const toggleIsFatchingSearch = isFatching => ({
   isFatching,
 })
 
+export const setIsFatching = isReceipt => ({
+  type: TOGGLE_IS_RECEIPT,
+  isReceipt,
+})
+
 // ? Thunk Creator
 
-export const requestForUsers = (term, currentPage) => {
-  return dispatch => {
-    usersAPI.searchUsers(term, currentPage).then(response => {
-      dispatch(toggleIsFatchingSearch(false))
-      dispatch(setUsers(response.items))
-      dispatch(setTotalUsersCount(response.totalCount))
-      if (initialState.usersSearch.length < response.totalCount) {
-        dispatch(setCurrentPage(currentPage + 1))
-      }
-    })
+export const requestForUsers = (term, currentPage) => async dispatch => {
+  dispatch(setIsFatching(true))
+  let response = await usersAPI.searchUsers(term, currentPage)
+
+  dispatch(toggleIsFatchingSearch(false))
+  dispatch(setUsers(response.items))
+  dispatch(setTotalUsersCount(response.totalCount))
+  if (initialState.usersSearch.length < response.totalCount) {
+    dispatch(setCurrentPage(currentPage + 1))
   }
+  dispatch(setIsFatching(false))
 }
-export const requestForFriends = (term, currentPage) => {
-  return dispatch => {
-    usersAPI.searchFriends(term, currentPage).then(response => {
-      dispatch(toggleIsFatchingSearch(false))
-      dispatch(setUsers(response.items))
-      dispatch(setTotalUsersCount(response.totalCount))
-      if (initialState.usersSearch.length < initialState.totalUsersCount) {
-        dispatch(setCurrentPage(currentPage + 1))
-      }
-    })
+
+export const requestForFriends = (term, currentPage) => async dispatch => {
+  dispatch(setIsFatching(true))
+  let response = await usersAPI.searchFriends(term, currentPage)
+  dispatch(toggleIsFatchingSearch(false))
+  dispatch(setUsers(response.items))
+  dispatch(setTotalUsersCount(response.totalCount))
+  if (initialState.usersSearch.length < initialState.totalUsersCount) {
+    dispatch(setCurrentPage(currentPage + 1))
   }
+  dispatch(setIsFatching(false))
 }
 // export const getAllFriends = () => async(dispatch) => {
 //     let data = await friendsAPI.getAllFriends()
