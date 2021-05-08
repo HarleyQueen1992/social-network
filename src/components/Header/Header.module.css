@@ -1,532 +1,525 @@
 /*! Header */
 
 .header {
-    position: fixed;
-    height: 60px;
-    width: 100%;
-    z-index: 999999;
-    grid-area: h;
-    display: none;
-    grid-template-areas: "logo burger menu input login";
-    grid-template-columns: 530px 30px 380px 200px 1fr;
-    background-color: var(--headerColor);
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  z-index: 2;
+  grid-area: h;
+  display: none;
+  grid-template-areas: "logo burger menu input login";
+  grid-template-columns: 530px 30px 380px 200px 1fr;
+  background-color: var(--headerColor);
 }
-
 
 /* ! Burger */
 
 .HeaderBurger {
-    grid-area: burger;
-    align-self: center;
-    display: block;
-    width: 30px;
-    position: relative;
-    height: 20px;
-    cursor: pointer;
-    z-index: 5;
+  grid-area: burger;
+  align-self: center;
+  display: block;
+  width: 30px;
+  position: relative;
+  height: 20px;
+  cursor: pointer;
+  z-index: 5;
 }
 
 .HeaderBurger span {
-    position: absolute;
-    background-color: var(--fontColor);
-    left: 0;
-    width: 100%;
-    height: 2px;
-    border-radius: 1px;
-    top: 9px;
-    transition: all 0.3s ease 0s;
+  position: absolute;
+  background-color: var(--fontColor);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  top: 9px;
+  transition: all 0.3s ease 0s;
 }
 
 .HeaderBurger:before,
 .HeaderBurger:after {
-    content: '';
-    background-color: var(--fontColor);
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    border-radius: 1px;
-    left: 0;
-    transition: all 0.3s ease 0s;
+  content: "";
+  background-color: var(--fontColor);
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  left: 0;
+  transition: all 0.3s ease 0s;
 }
 
 .HeaderBurger:before {
-    top: 0;
+  top: 0;
 }
 
 .HeaderBurger:after {
-    bottom: 0;
+  bottom: 0;
 }
 
 .HeaderBurger.active span {
-    transform: scale(0);
+  transform: scale(0);
 }
 
 .HeaderBurger.active:after {
-    transform: rotate(-45deg);
-    bottom: 9px;
+  transform: rotate(-45deg);
+  bottom: 9px;
 }
 
 .HeaderBurger.active:before {
-    transform: rotate(45deg);
-    top: 9px;
+  transform: rotate(45deg);
+  top: 9px;
 }
-
 
 /*! Menu */
 
 .HeaderMenu {
-    position: relative;
-    margin-left: 10px;
-    width: 200px;
-    grid-area: menu;
-    left: -10000%;
-    height: 100%;
-    width: 100%;
-    transition: all 0.7s ease 0s;
-    z-index: 1;
+  position: relative;
+  margin-left: 10px;
+  width: 200px;
+  grid-area: menu;
+  left: -10000%;
+  height: 100%;
+  width: 100%;
+  transition: all 0.7s ease 0s;
+  z-index: 1;
 }
 
 .HeaderMenu a {
-    text-decoration: none;
-    align-self: center;
-    margin-left: 10px;
-    color: var(--fontColor);
-    z-index: 1;
+  text-decoration: none;
+  align-self: center;
+  margin-left: 10px;
+  color: var(--fontColor);
+  z-index: 1;
 }
 
 .HeaderMenu.active {
-    left: 0;
-    z-index: 0;
+  left: 0;
+  z-index: 0;
 }
-
 
 /*! Logo */
 
 .logoBlock {
-    grid-area: logo;
-    display: grid;
-    height: 60px;
-    grid-template-columns: 360px 1fr;
-    z-index: 5;
+  grid-area: logo;
+  display: grid;
+  height: 60px;
+  grid-template-columns: 360px 1fr;
+  z-index: 5;
 }
 
 .logo {
-    justify-self: end;
-    width: 60px;
-    height: 60px;
+  justify-self: end;
+  width: 60px;
+  height: 60px;
 }
 
 .headerName {
-    margin-left: 5px;
-    align-self: center;
-    /* height: 100%; */
+  margin-left: 5px;
+  align-self: center;
+  /* height: 100%; */
 }
 
 .headerName a {
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
 }
 
-@media (max-width:1350px) {
-    .header {
-        grid-template-columns: 496px 220px 204px 1fr;
-    }
+@media (max-width: 1350px) {
+  .header {
+    grid-template-columns: 496px 220px 204px 1fr;
+  }
 }
 
 @media (max-width: 1140px) {
-    .header {
-        grid-template-areas: "logo input music login";
-        grid-template-columns: 496px 182px 112px 1fr;
-    }
+  .header {
+    grid-template-areas: "logo input music login";
+    grid-template-columns: 496px 182px 112px 1fr;
+  }
 }
 
 @media (max-width: 990px) {
-    .header {
-        grid-template-columns: 377px 182px 87px 1fr;
-    }
-    .logoBlock {
-        grid-template-columns: 248px 1fr;
-    }
+  .header {
+    grid-template-columns: 377px 182px 87px 1fr;
+  }
+  .logoBlock {
+    grid-template-columns: 248px 1fr;
+  }
 }
 
 @media (max-width: 879px) {
-    .header {
-        grid-template-columns: 233px 182px 87px 1fr;
-    }
-    .logoBlock {
-        grid-template-columns: 141px 1fr;
-    }
+  .header {
+    grid-template-columns: 233px 182px 87px 1fr;
+  }
+  .logoBlock {
+    grid-template-columns: 141px 1fr;
+  }
 }
 
 @media (max-width: 715px) {
-    .header {
-        grid-template-columns: 193px 1fr;
-    }
-    .logoBlock {
-        grid-template-columns: 108px 1fr;
-    }
+  .header {
+    grid-template-columns: 193px 1fr;
+  }
+  .logoBlock {
+    grid-template-columns: 108px 1fr;
+  }
 }
-
 
 /* ! NavHead */
 
 .navHead {
-    display: none;
-    grid-area: navHead;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: none;
+  grid-area: navHead;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .navHead div {
-    align-self: center;
-    justify-self: center;
+  align-self: center;
+  justify-self: center;
 }
 
 .navHead div a {
-    text-decoration: none;
-    height: 100%;
-    width: 100%;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
 }
 
 .linkBlock {
-    display: grid;
-    grid-template-rows: 2fr 1fr;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
 }
 
 .imgHead {
-    height: 30px;
-    width: 30px;
-    align-self: center;
-    justify-self: center;
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  justify-self: center;
 }
 
 .imgProfile {
-    height: 30px;
-    width: 30px;
-    align-self: center;
-    justify-self: center;
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  justify-self: center;
 }
 
 .imgNews {
-    height: 27px;
-    width: 27px;
-    align-self: center;
-    justify-self: center;
+  height: 27px;
+  width: 27px;
+  align-self: center;
+  justify-self: center;
 }
 
 .imgPosts {
-    height: 37px;
-    width: 33px;
-    align-self: start;
-    justify-self: center;
+  height: 37px;
+  width: 33px;
+  align-self: start;
+  justify-self: center;
 }
 
 .imgServices {
-    height: 27px;
-    width: 27px;
-    align-self: center;
-    justify-self: center;
+  height: 27px;
+  width: 27px;
+  align-self: center;
+  justify-self: center;
 }
 
 .headName {
-    font-size: 13px;
-    align-self: start;
-    justify-self: center;
-    color: var(--colorDeteilInfo)
+  font-size: 13px;
+  align-self: start;
+  justify-self: center;
+  color: var(--colorDeteilInfo);
 }
 
 .headItem {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
-
 
 /*! SearchBlock */
 
 .searchBlock {
-    grid-area: input;
-    display: grid;
+  grid-area: input;
+  display: grid;
 }
 
 .searchUsers {
-    align-self: center;
-    width: 250px;
-    height: 30px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    font-size: 14px;
-    background-color: white;
-    background-image: url('https://www.freepngimg.com/download/world_wide_web/62434-engine-web-search-wordpress.com-icons-wallpaper-desktop.png');
-    background-size: 17px;
-    background-position: 10px 5px;
-    background-repeat: no-repeat;
-    padding: 5px 10px 5px 35px;
-    /* -webkit-transition: width 0.4s ease-in-out;
+  align-self: center;
+  width: 250px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: white;
+  background-image: url("https://www.freepngimg.com/download/world_wide_web/62434-engine-web-search-wordpress.com-icons-wallpaper-desktop.png");
+  background-size: 17px;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  padding: 5px 10px 5px 35px;
+  /* -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out; */
 }
 
 .notFound {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .usersSearch {
-    padding-left: 15px;
-    padding-top: 5px;
-    padding-right: 15px;
-    display: grid;
-    margin-left: 560px;
-    width: 150px;
-    height: auto;
-    background-color: rgb(189, 188, 188);
-    border-radius: 20px;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-right: 15px;
+  display: grid;
+  margin-left: 560px;
+  width: 150px;
+  height: auto;
+  background-color: rgb(189, 188, 188);
+  border-radius: 20px;
 }
 
-@media (max-width:1350px) {
-    .searchUsers {
-        width: 180px;
-    }
-    .usersSearch {
-        margin-left: 500px;
-    }
+@media (max-width: 1350px) {
+  .searchUsers {
+    width: 180px;
+  }
+  .usersSearch {
+    margin-left: 500px;
+  }
 }
 
 @media (max-width: 990px) {
-    .usersSearch {
-        margin-left: 380px;
-    }
+  .usersSearch {
+    margin-left: 380px;
+  }
 }
 
 @media (max-width: 879px) {
-    .usersSearch {
-        margin-left: 235px;
-    }
+  .usersSearch {
+    margin-left: 235px;
+  }
 }
 
 @media (max-width: 715px) {
-    .searchUsers {
-        width: 130px;
-    }
-    .usersSearch {
-        margin-left: 193px;
-    }
+  .searchUsers {
+    width: 130px;
+  }
+  .usersSearch {
+    margin-left: 193px;
+  }
 }
 
 @media (max-width: 627px) {
-    .searchBlock {
-        display: none;
-    }
+  .searchBlock {
+    display: none;
+  }
 }
-
 
 /*! AudioPlaer */
 
 .audioPlaer {
-    margin-left: 20px;
-    padding-left: 20px;
-    /* padding-right: 20px; */
-    cursor: pointer;
-    grid-area: audio;
-    align-self: center;
-    display: grid;
-    height: 40px;
-    border-radius: 10px;
-    grid-template-columns: 80px 150px;
-    grid-column-gap: 10px;
-    /* background-color: rgb(235, 235, 235); */
-    height: 1;
+  margin-left: 20px;
+  padding-left: 20px;
+  /* padding-right: 20px; */
+  cursor: pointer;
+  grid-area: audio;
+  align-self: center;
+  display: grid;
+  height: 40px;
+  border-radius: 10px;
+  grid-template-columns: 80px 150px;
+  grid-column-gap: 10px;
+  /* background-color: rgb(235, 235, 235); */
+  height: 1;
 }
 
 .audioPlaer:hover {
-    background-color: #7e7e7e;
+  background-color: #7e7e7e;
 }
 
 .controls {
-    align-self: center;
-    display: grid;
-    grid-template-columns: 15px 15px 15px;
-    grid-column-gap: 10px;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 15px 15px 15px;
+  grid-column-gap: 10px;
 }
 
 .nameOfMusic {
-    align-self: center;
-    color: white;
+  align-self: center;
+  color: white;
 }
 
 .controls span img {
-    height: 13px;
+  height: 13px;
 }
 
 .music {
-    display: none;
+  display: none;
 }
 
 .music img {
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 }
 
 @media (max-width: 1350px) {
-    .audioPlaer {
-        margin-left: 0px;
-        padding-left: 0px;
-    }
+  .audioPlaer {
+    margin-left: 0px;
+    padding-left: 0px;
+  }
 }
 
 @media (max-width: 1140px) {
-    .audioPlaer {
-        display: none;
-    }
-    .music {
-        display: block;
-        grid-area: music;
-        justify-self: end;
-    }
+  .audioPlaer {
+    display: none;
+  }
+  .music {
+    display: block;
+    grid-area: music;
+    justify-self: end;
+  }
 }
 
 @media (max-width: 627px) {
-    .music {
-        display: none;
-    }
+  .music {
+    display: none;
+  }
 }
-
 
 /*! LoginBlock */
 
 .user {
-    display: grid;
-    grid-template-columns: 30px auto;
-    margin-bottom: 5px;
-    font-size: 17px;
-    color: black;
-    text-decoration: none;
+  display: grid;
+  grid-template-columns: 30px auto;
+  margin-bottom: 5px;
+  font-size: 17px;
+  color: black;
+  text-decoration: none;
 }
 
 .user nav {
-    align-self: center;
-    justify-self: start;
-    margin-left: 8px;
+  align-self: center;
+  justify-self: start;
+  margin-left: 8px;
 }
 
 .user div {
-    align-self: center;
-    justify-self: center;
+  align-self: center;
+  justify-self: center;
 }
 
 .user:hover {
-    background-color: rgb(110, 110, 110);
-    border-radius: 20px;
+  background-color: rgb(110, 110, 110);
+  border-radius: 20px;
 }
 
 .loginBlock {
-    margin-right: 10px;
-    grid-area: login;
-    display: grid;
+  margin-right: 10px;
+  grid-area: login;
+  display: grid;
 }
 
 .authBlock {
-    align-self: center;
-    justify-self: end;
-    color: white;
-    margin-right: 10px;
+  align-self: center;
+  justify-self: end;
+  color: white;
+  margin-right: 10px;
 }
 
 .avaLogin {
-    display: grid;
-    grid-template-areas: "ava login out";
-    grid-template-columns: auto 100px 70px;
+  display: grid;
+  grid-template-areas: "ava login out";
+  grid-template-columns: auto 100px 70px;
 }
 
 .ava {
-    grid-area: ava;
-    align-self: center;
-    justify-self: end;
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+  grid-area: ava;
+  align-self: center;
+  justify-self: end;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
 }
 
 .logOutLink {
-    align-self: center;
+  align-self: center;
 }
 
 .logout {
-    background-color: black;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    color: white;
-    height: 30px;
-    font-size: 11px;
-    /* padding-left: 0px;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  height: 30px;
+  font-size: 11px;
+  /* padding-left: 0px;
     padding-right: 0px; */
-    margin: 5px;
+  margin: 5px;
 }
 
 .Name {
-    align-self: center;
-    grid-area: login;
-    margin-left: 10px;
+  align-self: center;
+  grid-area: login;
+  margin-left: 10px;
 }
 
 .avaBlock {
-    align-self: center;
-    justify-self: center;
+  align-self: center;
+  justify-self: center;
 }
 
 .userAva {
-    height: 30px;
-    border-radius: 50%;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .Name a {
-    font-size: 16px;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
 }
 
 .userName {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 @media (max-width: 1170px) {
-    .avaLogin {
-        grid-template-columns: auto 78px 70px;
-    }
+  .avaLogin {
+    grid-template-columns: auto 78px 70px;
+  }
 }
 
 @media (max-width: 480px) {
-    .header {
-        display: grid;
-    }
-    .loginBlock {
-        display: none;
-    }
+  .header {
+    display: grid;
+  }
+  .loginBlock {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
-    .header {
-        grid-template-areas: "navHead";
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        width: 100vw;
-        bottom: 0;
-    }
-    .HeaderBurger {
-        display: none;
-    }
-    .HeaderMenu {
-        display: none;
-    }
-    .navHead {
-        display: grid;
-    }
-    .logoBlock {
-        display: none;
-    }
+  .header {
+    grid-template-areas: "navHead";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100vw;
+    bottom: 0;
+  }
+  .HeaderBurger {
+    display: none;
+  }
+  .HeaderMenu {
+    display: none;
+  }
+  .navHead {
+    display: grid;
+  }
+  .logoBlock {
+    display: none;
+  }
 }

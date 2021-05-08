@@ -1,73 +1,97 @@
 .PostCreationBlock {
-    z-index: 99999999;
-    display: grid;
-    background-color: rgb(44, 43, 43);
-    grid-template-rows: 50px calc(100vh - 100px) 50px;
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box;
+  z-index: 99999999;
+  display: grid;
+  background-color: rgb(44, 43, 43);
+  grid-template-rows: 50px 50px calc(100vh - 150px) 50px;
+  width: 600px;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .header {
-    display: grid;
-    background-color: rgb(61, 61, 61);
-    grid-template-columns: 50px calc(100vw - 100px) 50px;
+  display: grid;
+  background-color: rgb(61, 61, 61);
+  grid-template-columns: 50px auto 50px;
 }
-
+.title {
+  display: grid;
+  margin: 0 10px;
+}
+.titleField {
+  margin: 0 auto;
+  justify-self: center;
+  align-self: center;
+  box-sizing: border-box;
+  font-size: 22px;
+  overflow: auto;
+  outline: none;
+  resize: inherit;
+  border: 1px solid rgb(44, 43, 43);
+  background-color: rgb(44, 43, 43);
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 5px 10px;
+  color: white;
+  text-align: center;
+  text-overflow: clip;
+  white-space: nowrap;
+  margin: 0 10px;
+}
 .back {
-    align-self: center;
-    justify-self: center;
-    height: 35px;
-    width: 35px;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+  height: 35px;
+  width: 35px;
 }
 
 .save {
-    align-self: center;
-    justify-self: center;
-    height: 35px;
-    width: 35px;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+  height: 35px;
+  width: 35px;
 }
 
 .tick {
-    align-self: center;
-    justify-self: center;
-    height: 35px;
-    width: 35px;
+  align-self: center;
+  justify-self: center;
+  height: 35px;
+  width: 35px;
 }
 
 .newPost {
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    align-self: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  align-self: center;
 }
 
 .fieldInput {
-    box-sizing: border-box;
-    font-size: 17px;
-    overflow: auto;
-    outline: none;
-    resize: inherit;
-    border: 1px solid rgb(44, 43, 43);
-    background-color: rgb(44, 43, 43);
-    width: 100%;
-    height: 100%;
-    padding: 20px 10px;
-    color: white;
+  box-sizing: border-box;
+  font-size: 17px;
+  overflow: auto;
+  outline: none;
+  resize: inherit;
+  border: 1px solid rgb(44, 43, 43);
+  background-color: rgb(44, 43, 43);
+  width: 100%;
+  height: 100%;
+  padding: 20px 10px;
+  color: white;
 }
 
 .bot {
-    border-top: 1px solid rgb(59, 58, 58);
-    margin: 0 10px;
-    display: grid;
-    grid-template-columns: 50px 50px 50px calc(100% - 200px) 50px;
+  border-top: 1px solid rgb(59, 58, 58);
+  margin: 0 10px;
+  display: grid;
+  grid-template-columns: 50px 50px 50px calc(100% - 200px) 50px;
 }
 
 .obelus {
-    height: 35px;
-    width: 35px;
+  height: 35px;
+  width: 35px;
 }
-
 
 /* .musicBlock {
     align-self: center;
@@ -77,15 +101,30 @@
 } */
 
 .bot div {
-    align-self: center;
-    justify-self: center;
-    height: 30px;
-    width: 30px;
+  align-self: center;
+  justify-self: center;
+  height: 30px;
+  width: 30px;
 }
 
 .bot div img {
-    align-self: center;
-    justify-self: center;
-    height: 25px;
-    width: 25px;
+  align-self: center;
+  justify-self: center;
+  height: 25px;
+  width: 25px;
+}
+@media (max-width: 480px) {
+  .PostCreationBlock {
+    grid-template-rows: 50px 70px calc(100vh - 230px) 50px;
+
+    width: 100vw;
+  }
+  .header {
+    grid-template-columns: 50px calc(100vw - 100px) 50px;
+  }
+  .titleField {
+    /* text-overflow: clip; */
+    white-space: normal;
+    margin: 0 10px;
+  }
 }
