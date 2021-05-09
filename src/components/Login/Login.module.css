@@ -1,11 +1,82 @@
+.loginPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  -webkit-box-orient: vertical;
+  order: 5;
+}
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.top {
+  height: 100%;
+  width: 100%;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.top span {
+  color: white;
+  font-size: 13px;
+  margin: 0 5px;
+}
+.bot {
+  height: 100%;
+  width: 100%;
+  /* justify-self: center; */
+  display: flex;
+  justify-content: center;
+}
+.bot span {
+  color: white;
+  font-size: 14px;
+  margin: 0 5px;
+}
 .loginBlock {
-    justify-self: center;
-    align-self: center;
-    width: 300px;
-    height: 200px;
-    padding: 20px;
-    background-color: rgb(80, 80, 80);
-    /* border: 3px solid black; */
-    border-radius: 30px;
-    display: grid;
+  box-sizing: border-box;
+  justify-self: center;
+  align-self: center;
+  /* width: 300px;
+  height: 400px; */
+  padding: 20px;
+  /* background-color: rgb(202, 46, 46); */
+  height: 500px;
+  min-width: 350px;
+  display: grid;
+}
+@media (max-width: 400px) {
+  .loginBlock {
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    min-width: unset;
+    /* min-height: unset; */
+  }
+  .main {
+    justify-content: start;
+    margin-top: 70px;
+  }
+}
+
+.register {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.regText {
+  color: white;
+  font-weight: bold;
+}
+.register a {
+  color: rgb(84 94 230);
+  font-weight: bold;
 }

@@ -18,39 +18,46 @@ const LoginForm = props => {
   // }
   return (
     <form className={l.loginForm} onSubmit={props.handleSubmit}>
-      <div className={l.emailField}>
-        <span>Mail :</span>
-        <Field
-          className={l.inputField}
-          placeholder={"Email"}
-          name={"email"}
-          component={Input}
-          validate={[required, maxLength]}
-        />
+      <header className={l.header}>
+        <span className={l.title}>Mosset</span>
+      </header>
+      <div className={l.inputsBlock}>
+        <div className={l.emailField}>
+          <Field
+            className={l.inputField}
+            placeholder={"Email"}
+            name={"email"}
+            component='input'
+            validate={[required, maxLength]}
+          />
+        </div>
+        <div className={l.passwordField}>
+          <Field
+            className={l.inputField}
+            placeholder={"Password"}
+            name={"password"}
+            component='input'
+            type='password'
+            validate={[required, maxLength]}
+          />
+        </div>
       </div>
-      <div className={l.emailField}>
-        <span>Password :</span>
-        <Field
-          className={l.inputField}
-          placeholder={"Password"}
-          name={"password"}
-          component={Input}
-          type='password'
-          validate={[required, maxLength]}
-        />
-      </div>
-      <div className={l.emailField}>
-        <span>Remember Me</span>
-        <Field
-          className={l.inputField}
-          type={"checkbox"}
-          name={"rememberMe"}
-          component={Input}
-        />
-      </div>
-      {props.error && <div className={s.formSummaryError}>{props.error}</div>}
-      <div className={l.butBlock}>
+      <div className={l.bottomBlock}>
         <button className={l.loginBut}>Login</button>
+        <div className={l.or}>
+          <span className={l.orText}>or</span>
+        </div>
+
+        <div className={l.forgotYourPassword}>
+          <NavLink to='#'>Forgot your password?</NavLink>
+        </div>
+        {props.error && <div className={s.formSummaryError}>{props.error}</div>}
+        <div className={l.register}>
+          <span className={l.regText}>You don't have an account yet?</span>
+          <NavLink className={l.regLink} to={"/register/"}>
+            Register
+          </NavLink>
+        </div>
       </div>
     </form>
   )
