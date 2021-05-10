@@ -1,4 +1,4 @@
-.loginPage {
+.registerPage {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -47,11 +47,11 @@
   justify-self: center;
   align-self: center;
   /* width: 300px;
-  height: 400px; */
+    height: 400px; */
   padding: 20px;
   /* background-color: rgb(202, 46, 46); */
-  height: 500px;
-  min-width: 350px;
+  /* height: 500px; */
+  min-width: 380px;
   display: grid;
 }
 @media (max-width: 400px) {
@@ -65,7 +65,7 @@
   }
   .main {
     justify-content: start;
-    margin-top: 70px;
+    margin-top: 30px;
   }
 }
 

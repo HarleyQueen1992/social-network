@@ -7,6 +7,7 @@ import { loginIn } from "../../redux/AuthReducer/auth-reducer"
 import { getIsAuth } from "../../redux/AuthReducer/auth-selectors"
 import LoginReduxForm from "./LoginForm/LoginForm"
 import s from "./Login.module.css"
+import Footer from "./../common/Footer/Footer"
 
 class Login extends React.Component {
   onSubmit = formData => {
@@ -39,25 +40,7 @@ class Login extends React.Component {
             </NavLink>
           </div> */}
         </main>
-
-        <footer className={s.footer}>
-          <div className={s.top}>
-            <span>Информация</span>
-            <span>Блог</span>
-            <span>Вакансии</span>
-            <span>Помощь</span>
-            <span>API</span>
-            <span>Конфиденциальность</span>
-            <span>Условия</span>
-            <span>Популярные аккаунты</span>
-            <span>Хэштеги</span>
-            <span>Места</span>
-          </div>
-          <div className={s.bot}>
-            <span>Языки</span>
-            <span>©Mosset от Facebook, 2021</span>
-          </div>
-        </footer>
+        <Footer />
       </div>
     )
   }

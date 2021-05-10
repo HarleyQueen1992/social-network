@@ -92,9 +92,10 @@ export const getAuthMe = () => async dispatch => {
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password, rememberMe)
   if (data.data.resultCode === 0) {
-    let respo = await profileAPI.getProfile(data.data.data.userId)
+    dispatch(getAuthMe())
+    // let respo = await profileAPI.getProfile(data.data.data.userId)
 
-    dispatch(setProfileData(respo.data, true))
+    // dispatch(setProfileData(respo.data, true))
     // dispatch(getFriends())
     // let history = useHistory()
     // return useHistory().push("/profile")
@@ -108,6 +109,8 @@ export const loginIn = (email, password, rememberMe) => async dispatch => {
 export const logOut = () => async dispatch => {
   let data = await authAPI.logOut()
   if (data.data.resultCode === 0) {
+    let { userId, login, email } = { userId: null, login: null, email: null }
+    dispatch(setAuthUserData(userId, login, email, false))
     dispatch(setProfileData(null, false))
   }
 }

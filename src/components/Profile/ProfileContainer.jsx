@@ -47,8 +47,8 @@ class ProfileContainer extends React.Component {
     let userid = this.props.match.params.userid
     this.props.requestAllFriends()
 
-    if (!userid || userid == this.props.profileInfo.userId) {
-      userid = this.props.profileInfo.userId
+    if (!userid || userid == this.props.userId) {
+      userid = this.props.userId
       this.props.getUserProfile(userid)
       // this.props.requestStatus(userid)
     } else {
@@ -75,7 +75,7 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFatching ? (
+        {this.props.isFatching || !this.props.userId ? (
           <Preloader />
         ) : (
           <Profile
