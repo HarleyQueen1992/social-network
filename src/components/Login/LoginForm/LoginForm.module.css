@@ -26,7 +26,6 @@
   justify-self: center;
   align-self: center;
   font-size: 30px;
-  /* font-weight: bold; */
   color: var(--fontColor);
   font-family: "Pacifico", cursive;
 }
@@ -36,7 +35,6 @@
   height: 80px;
   display: grid;
   grid-template-rows: 40px 40px;
-  /* grid-template-areas: "top" "centr" "bot"; */
 }
 .inputField {
   outline: none;
@@ -72,8 +70,6 @@
   cursor: pointer;
   background-color: rgb(241, 145, 145);
   border: 1px solid rgb(241, 145, 145);
-  /* width: 80px;
-  height: 30px; */
 }
 .loginBut:hover {
   background-color: rgb(214, 97, 97);
@@ -117,19 +113,15 @@
   display: flex;
   justify-content: center;
   align-self: center;
-  /* border-bottom: 1px solid white; */
 }
 .forgotYourPassword a {
   text-decoration: none;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
-
-  /* font-weight: bold; */
   color: var(--fontColor);
 }
 .register {
   grid-area: register;
-  /* padding-top: 30px; */
   align-self: center;
   justify-self: center;
   width: 90%;
@@ -144,4 +136,10 @@
   justify-self: end;
   color: rgb(84 94 230);
   font-weight: bold;
+}
+.formSummaryError {
+  box-sizing: border-box;
+  justify-self: center;
+  align-self: center;
+  color: rgb(211, 33, 20);
 }

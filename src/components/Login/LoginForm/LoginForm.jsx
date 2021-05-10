@@ -4,36 +4,30 @@ import {
   maxLengthCreator,
   required,
 } from "../../../utils/validators/validators"
-import { Input } from "../../common/FromsControls/FormsControls"
-import s from "./../../common/FromsControls/FormContainer.module.css"
-import l from "./LoginForm.module.css"
-import { NavLink, Redirect, useHistory } from "react-router-dom"
+import s from "./LoginForm.module.css"
+import { NavLink } from "react-router-dom"
 
 let maxLength = maxLengthCreator(25)
 
 const LoginForm = props => {
-  // let history = useHistory()
-  // if (props.isAuth) {
-  //   history.push("/profile")
-  // }
   return (
-    <form className={l.loginForm} onSubmit={props.handleSubmit}>
-      <header className={l.header}>
-        <span className={l.title}>Mosset</span>
+    <form className={s.loginForm} onSubmit={props.handleSubmit}>
+      <header className={s.header}>
+        <span className={s.title}>Mosset</span>
       </header>
-      <div className={l.inputsBlock}>
-        <div className={l.emailField}>
+      <div className={s.inputsBlock}>
+        <div className={s.emailField}>
           <Field
-            className={l.inputField}
+            className={s.inputField}
             placeholder={"Email"}
             name={"email"}
             component='input'
             validate={[required, maxLength]}
           />
         </div>
-        <div className={l.passwordField}>
+        <div className={s.passwordField}>
           <Field
-            className={l.inputField}
+            className={s.inputField}
             placeholder={"Password"}
             name={"password"}
             component='input'
@@ -42,19 +36,19 @@ const LoginForm = props => {
           />
         </div>
       </div>
-      <div className={l.bottomBlock}>
-        <button className={l.loginBut}>Login</button>
-        <div className={l.or}>
-          <span className={l.orText}>or</span>
+      <div className={s.bottomBlock}>
+        <button className={s.loginBut}>Login</button>
+        <div className={s.or}>
+          <span className={s.orText}>or</span>
         </div>
 
-        <div className={l.forgotYourPassword}>
+        <div className={s.forgotYourPassword}>
           <NavLink to='#'>Forgot your password?</NavLink>
         </div>
         {props.error && <div className={s.formSummaryError}>{props.error}</div>}
-        <div className={l.register}>
-          <span className={l.regText}>You don't have an account yet?</span>
-          <NavLink className={l.regLink} to={"/register/"}>
+        <div className={s.register}>
+          <span className={s.regText}>You don't have an account yet?</span>
+          <NavLink className={s.regLink} to={"/register/"}>
             Register
           </NavLink>
         </div>
