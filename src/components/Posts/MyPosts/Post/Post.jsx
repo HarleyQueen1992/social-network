@@ -17,9 +17,6 @@ const Post = props => {
           src={!props.profile.photo ? avaInPosts : props.profile.photo}
         />
         <span className={p.userName}>{props.profile.fullName}</span>
-        {/* <div>
-                    <img src="" alt=""/>
-                </div>     */}
       </div>
       <div className={p.postText}>{props.message}</div>
       <div className={p.botBlock}>

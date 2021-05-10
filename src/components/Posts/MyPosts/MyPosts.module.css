@@ -1,8 +1,3 @@
-/* .content {
-    grid-area: c;
-    background-color: cornflowerblue;
-} */
-
 * {
   font-family: "Source Sans Pro", sans-serif;
 }
@@ -14,7 +9,6 @@
   grid-template-rows: 60px 1fr;
   grid-row-gap: 10px;
   grid-template-areas: "header" "posts";
-  /* height: calc(100vh - 60px); */
 }
 
 .header {
@@ -56,12 +50,6 @@
   display: grid;
   grid-column: 200px;
 }
-
-/* @media (max-width: 1300px) {
-    .posts {
-        width: calc(390px + ( 450 - 390) * (( 100vw - 830px) / (930 - 830)));
-    }
-} */
 
 @media (max-width: 830px) {
   .PostsBlock {

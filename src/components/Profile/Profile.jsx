@@ -24,9 +24,6 @@ const Profile = props => {
           theme={props.theme}
         />
       </div>
-      {/* <div className={p.posts} >
-                <MyPostsContainer/>
-            </div> */}
     </div>
   )
 }

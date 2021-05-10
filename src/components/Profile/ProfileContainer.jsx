@@ -50,11 +50,9 @@ class ProfileContainer extends React.Component {
     if (!userid || userid == this.props.userId) {
       userid = this.props.userId
       this.props.getUserProfile(userid)
-      // this.props.requestStatus(userid)
     } else {
       this.props.getUserProfile(userid)
 
-      // this.props.requestStatus(userid)
       this.props.getFollow(userid)
     }
   }
@@ -67,11 +65,6 @@ class ProfileContainer extends React.Component {
       this.refreshProfile()
     }
   }
-  // componentWillUnmount() {
-  //   this.props.toggleIsFollow(null)
-  //   this.props.setUserProfile(null)
-  //   this.props.setStatus(null)
-  // }
   render() {
     return (
       <>
