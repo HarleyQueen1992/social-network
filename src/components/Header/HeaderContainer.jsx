@@ -1,76 +1,50 @@
-import React from "react"
+import React, { useState } from "react"
+import h from "./Header.module.css"
+import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
-import { authAPI } from "../../API/api.js"
-import {
-  setAuthUserData,
-  setProfileData,
-  getAuthMe,
-  logOut,
-} from "../../redux/AuthReducer/auth-reducer.js"
-import {
-  getValue,
-  getUsersSearch,
-  getWindowMode,
-} from "../../redux/UsersReducer/users-selectors"
-import {
-  setValue,
-  clearValue,
-  setWindowMode,
-} from "../../redux/UsersReducer/user-reducer"
-import {
-  getIsAuth,
-  getProfileInfo,
-  getLogin,
-} from "../../redux/AuthReducer/auth-selectors.js"
-import Header from "./Header.jsx"
 import { compose } from "redux"
 import { withRouter } from "react-router-dom"
 
-class HeaderContainer extends React.Component {
-  // componentDidMount() {
-  //     this.props.getAuthMe()
-  // }
+import Profile from "./../../assets/images/profile.png"
+import News from "./../../assets/images/newspaper.png"
+import Posts from "./../../assets/images/chat.png"
+import Services from "./../../assets/images/add.png"
 
-  //   handleChange = event => {
-  //     this.props.setValue(event.target.value)
-  //     this.props.requestForUsers(event.target.value)
-  //   }
-
-  render() {
-    return (
-      <Header
-        {...this.props}
-        windowMode={this.props.windowMode}
-        setWindowMode={this.props.setWindowMode}
-        clear={this.props.clearValue}
-        usersSearch={this.props.usersSearch}
-        handleChange={this.handleChange}
-        value={this.props.value}
-      />
-    )
-  }
+const Header = props => {
+  return (
+    <div className={h.header}>
+      <div className={h.navHead}>
+        <div className={h.headItem}>
+          <NavLink className={h.linkBlock} to={"/news"}>
+            <img className={h.imgNews} src={News} />
+            <span className={h.headName}>News</span>
+          </NavLink>
+        </div>
+        <div className={h.headItem}>
+          <NavLink className={h.linkBlock} to={"/services"}>
+            <img className={h.imgServices} src={Services} />
+            <span className={h.headName}>Services</span>
+          </NavLink>
+        </div>
+        <div className={h.headItem}>
+          <NavLink className={h.linkBlock} to={"/posts"}>
+            <img className={h.imgPosts} src={Posts} />
+            <span className={h.headName}>Posts</span>
+          </NavLink>
+        </div>
+        <div className={h.headItem}>
+          <NavLink className={h.linkBlock} to={"/profile"}>
+            <img className={h.imgProfile} src={Profile} />
+            <span className={h.headName}>Profile</span>
+          </NavLink>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 let mapStateToProps = state => {
-  return {
-    login: getLogin(state),
-    isAuth: getIsAuth(state),
-    profileInfo: getProfileInfo(state),
-    value: getValue(state),
-    usersSearch: getUsersSearch(state),
-    windowMode: getWindowMode(state),
-  }
+  return {}
 }
 
-export default compose(
-  connect(mapStateToProps, {
-    setWindowMode,
-    setAuthUserData,
-    setProfileData,
-    getAuthMe,
-    logOut,
-    setValue,
-    clearValue,
-  }),
-  withRouter
-)(HeaderContainer)
+export default compose(connect(mapStateToProps, {}), withRouter)(Header)

@@ -17,14 +17,12 @@ const SET_WINDOW_MODE = "app/user-reducer/SET_WINDOW_MODE"
 
 let initialState = {
   users: [],
-  usersSearch: null,
   pageSize: 30,
   totalUsersCount: 20,
   currentPage: 1,
   isFatching: true,
   followingInProgress: [],
   value: "",
-  windowMode: false,
 }
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -68,12 +66,7 @@ const usersReducer = (state = initialState, action) => {
         windowMode: true,
       }
     }
-    case SET_WINDOW_MODE: {
-      return {
-        ...state,
-        windowMode: action.isWindow,
-      }
-    }
+
     case CLEAR_VALUE: {
       return {
         ...state,
@@ -90,18 +83,6 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         totalUsersCount: action.totalUsersCount,
-      }
-    }
-    case NEXT_PAGE: {
-      return {
-        ...state,
-        currentPage: state.currentPage + 1,
-      }
-    }
-    case EARLY_PAGE: {
-      return {
-        ...state,
-        currentPage: state.currentPage - 1,
       }
     }
     case TOGGLE_IS_FATCHING: {
@@ -177,25 +158,6 @@ export const requestUsers = currentPage => async dispatch => {
   dispatch(setUsersTotalCount(data.totalCount))
 }
 
-// export const requestUsers = (currentPage, pageSize, append = '') => {
-//     return (dispatch) => {
-//         dispatch(toggleIsFatching(true));
-//         if (append === 'early') {
-//             dispatch(earlyPage())
-//         } else if (append === 'next') {
-//             dispatch(nextPage())
-//         }
-//         dispatch(setCurrentPage(currentPage))
-//         return usersAPI.getUsers(currentPage, pageSize)
-//             .then(data => {
-//                 dispatch(toggleIsFatching(false))
-//                 dispatch(setUsers(data.items));
-//                 dispatch(setUsersTotalCount(data.totalCount));
-//                 dispatch(setCurrentPage(currentPage))
-//             })
-//     }
-// }
-
 export const follow = userId => {
   return dispatch => {
     dispatch(toggleFollowingProgress(true, userId))
@@ -221,12 +183,4 @@ export const unfollow = userId => {
     })
   }
 }
-
-// export const requestForUsers = term => {
-//   return dispatch => {
-//     usersAPI.searchUsers(term).then(response => {
-//       dispatch(setUserSearching(response.items))
-//     })
-//   }
-// }
 export default usersReducer
