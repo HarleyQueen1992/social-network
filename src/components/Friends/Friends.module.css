@@ -116,12 +116,6 @@
   color: rgb(161, 161, 161);
 }
 
-@media (max-width: 1500px) {
-  .friend {
-    justify-self: center;
-    margin-left: 0;
-  }
-}
 @media (max-width: 600px) {
   .header {
     margin-left: 65px;

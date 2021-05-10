@@ -1,10 +1,7 @@
 import React, { useEffect } from "react"
 import userPhoto from "../../assets/images/user.png"
-import { createPages } from "../../utils/pagination"
 import { NavLink } from "react-router-dom"
 import s from "./Friends.module.css"
-import FriendsPage from "./FriendsPage/FriendsPage"
-import Pagination from "../common/Pagination/Pagination"
 import FriendsImg from "./../../assets/images/friends2.png"
 import Preloader from "../common/Preloader/Preloader"
 
@@ -83,13 +80,6 @@ const Friends = props => {
           ))}
         </div>
       )}
-
-      {/* <Pagination currentPage={props.currentPage}
-                        pageSize={props.pageSize}
-                        totalUsersCount={props.totalFriendsCount}
-                        earlyPageNumber={props.earlyPageNumber} 
-                        onPageChenged={props.onPageChenged} 
-                        increasePageNumber={props.increasePageNumber}/> */}
     </div>
   )
 }

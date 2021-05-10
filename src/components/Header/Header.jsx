@@ -1,21 +1,13 @@
 import React, { useState } from "react"
 import h from "./Header.module.css"
 import { NavLink } from "react-router-dom"
-import photo from "../../assets/images/user.png"
-import Preloader from "../common/Preloader/Preloader"
-import play from "./../../assets/images/playAudioPleer.png"
-import next from "./../../assets/images/next.png"
-import previous from "./../../assets/images/previous.png"
-import musicIcon from "./../../assets/images/—Pngtree—music icon_4490549.png"
-import Users from "./../../assets/images/users2.png"
-import Frieds from "./../../assets/images/friends.png"
-import Message from "./../../assets/images/message.png"
+import { connect } from "react-redux"
+import { compose } from "redux"
+import { withRouter } from "react-router-dom"
 import Profile from "./../../assets/images/profile.png"
 import News from "./../../assets/images/newspaper.png"
 import Posts from "./../../assets/images/chat.png"
-import Sub from "./../../assets/images/renew.png"
 import Services from "./../../assets/images/add.png"
-import styled from "styled-components"
 
 const Header = props => {
   return (
@@ -50,4 +42,8 @@ const Header = props => {
   )
 }
 
-export default Header
+let mapStateToProps = state => {
+  return {}
+}
+
+export default compose(connect(mapStateToProps, {}), withRouter)(Header)
