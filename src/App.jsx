@@ -6,7 +6,7 @@ import SettingsContainer from "./components/Settings/SettingsContainer"
 import NewsContainer from "./components/News/NewsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
 import FriendsContainer from "./components/Friends/FriendsContainer"
-import NavbarContainer from "./components/Navbar/NavbarContainer"
+import Navbar from "./components/Navbar/Navbar"
 import Header from "./components/Header/Header"
 import Login from "./components/Login/Login"
 import { compose } from "redux"
@@ -66,7 +66,7 @@ class App extends React.Component {
       return (
         <div className='app-wrapper'>
           <Header />
-          <NavbarContainer />
+          <Navbar />
 
           <div className='app-wrapper-content'>
             <Route

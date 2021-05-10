@@ -1,8 +1,8 @@
+import { connect } from "react-redux"
+import { compose } from "redux"
 import React, { useState } from "react"
 import s from "./Navbar.module.css"
 import { NavLink } from "react-router-dom"
-import FriendsBlock from "./FriendsBlock/FriendsBlock"
-import burger from "./../../assets/images/burger.png"
 
 const Navbar = props => {
   const [menuActive, setMenuActive] = useState(false)
@@ -83,4 +83,8 @@ const Navbar = props => {
   )
 }
 
-export default Navbar
+const mapStateToProps = state => {
+  return {}
+}
+
+export default compose(connect(mapStateToProps, {}))(Navbar)
