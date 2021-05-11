@@ -22,6 +22,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
         {/* <label className={s.labelCheckbox} for='checkbox'></label> */}
         <Field
           id='check'
+          className={s.inputCheck}
           name='lookingForAJob'
           component='input'
           type='checkbox'
