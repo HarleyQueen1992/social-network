@@ -442,6 +442,7 @@ input[type="file"] {
     display: none;
   }
   .editBlock {
+    cursor: pointer;
     grid-area: edit;
     display: block;
   }

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import profileImg from "../../../assets/images/user.png"
@@ -13,6 +13,16 @@ import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
 const ProfileInfo = props => {
   let [deployed, setdeployed] = useState(false)
   let [editMode, setEditMode] = useState(false)
+  let [status, setStatus] = useState(props.status)
+
+  const deactivateEditMode = () => {
+    // debugger
+    setEditMode(false)
+    props.updateStatus(status)
+  }
+  useEffect(() => {
+    setStatus(props.status)
+  }, [props.status])
 
   if (props.profile == null) {
     return <Preloader />
@@ -64,6 +74,11 @@ const ProfileInfo = props => {
               <ProfileStatusWithHooks
                 status={props.status}
                 updateStatus={props.updateStatus}
+                editMode={editMode}
+                statusState={status}
+                setStatus={setStatus}
+                setEditMode={setEditMode}
+                deactivateEditMode={deactivateEditMode}
               />
             </div>
           </div>
@@ -120,18 +135,29 @@ const ProfileInfo = props => {
           </div>
         )}
         {props.isOwner ? (
-          <div className={s.editBlock}>
-            <input
-              type='file'
-              id='input__file'
-              className='input input__file'
-              onChange={onMainPhotoSelected}
-            />
-
-            <label className={s.edit} for='input__file'>
-              <span>Edit</span>
-            </label>
-          </div>
+          !editMode ? (
+            <div className={s.editBlock}>
+              <label
+                className={s.edit}
+                onClick={() => {
+                  setEditMode(!editMode)
+                }}
+              >
+                <span>Edit status</span>
+              </label>
+            </div>
+          ) : (
+            <div className={s.editBlock}>
+              <label
+                className={s.edit}
+                onClick={() => {
+                  deactivateEditMode()
+                }}
+              >
+                <span>Save</span>
+              </label>
+            </div>
+          )
         ) : (
           <div></div>
         )}
