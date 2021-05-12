@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import h from "./Header.module.css"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
@@ -10,8 +10,17 @@ import Posts from "./../../assets/images/chat.png"
 import Services from "./../../assets/images/add.png"
 
 const Header = props => {
+  let [headerBlur, setHeaderBlur] = useState(false)
+  let [height, setHeight] = useState(window.innerHeight)
+  window.addEventListener("resize", function () {
+    if (height * 0.7 > window.innerHeight) {
+      setHeaderBlur(true)
+    } else {
+      setHeaderBlur(false)
+    }
+  })
   return (
-    <div className={h.header}>
+    <div className={h.header + " " + (headerBlur ? h.active : "")}>
       <div className={h.navHead}>
         <div className={h.headItem}>
           <NavLink className={h.linkBlock} to={"/news"}>

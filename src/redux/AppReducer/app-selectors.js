@@ -10,3 +10,6 @@ export const getTheme = state => {
 export const getHeaderBlur = state => {
   return state.app.headerBlur
 }
+export const getInnerHeight = state => {
+  return state.app.innerHeight
+}

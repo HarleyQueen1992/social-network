@@ -73,7 +73,7 @@ export const initializeApp = () => dispatch => {
     dispatch(initializedSuccess())
   })
 }
-export const setHeaderBlur = headerBlur => dispatch => {
-  dispatch(toggleIsHeaderBlur(headerBlur))
-}
+// export const setHeaderBlur = headerBlur => dispatch => {
+//   dispatch(toggleIsHeaderBlur(headerBlur))
+// }
 export default appReducer

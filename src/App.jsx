@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, useEffect } from "react"
 import "./App.css"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import { HashRouter, Redirect, Route, withRouter } from "react-router-dom"
@@ -23,6 +23,7 @@ import {
   getIsPostCreation,
   getTheme,
   getHeaderBlur,
+  getInnerHeight,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
 import { addPostActionCreator } from "./redux/ProfileReducer/profile-reducer"
@@ -43,6 +44,16 @@ class App extends React.Component {
   }
 
   render() {
+    // alert(this.props.innerHeight)
+    // let height = this.props.Height
+    // const setIsHeaderBlur = () => {
+    //   this.props.toggleIsHeaderBlur(true)
+    // }
+    // window.addEventListener("resize", function () {
+    //   if (height * 0.4 > window.innerHeight) {
+    //     setIsHeaderBlur()
+    //   }
+    // })
     if (!this.props.initialized) {
       return <Preloader />
     }
@@ -99,6 +110,7 @@ const mapStateToProps = state => {
     isPostCreation: getIsPostCreation(state),
     theme: getTheme(state),
     headerBlur: getHeaderBlur(state),
+    Height: getInnerHeight(state),
   }
 }
 

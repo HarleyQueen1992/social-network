@@ -2,7 +2,7 @@ import React from "react"
 import s from "./FormContainer.module.css"
 import { required } from "../../../utils/validators/validators"
 import { Field } from "redux-form"
-import { setHeaderBlur } from "./../../../redux/AppReducer/app-reducer"
+// import { setHeaderBlur } from "./../../../redux/AppReducer/app-reducer"
 import { connect } from "react-redux"
 import { compose } from "redux"
 
@@ -16,18 +16,18 @@ export const FormControl = ({ input, meta, child, ...props }) => {
   )
 }
 
-const textarea = props => {
+export const Textarea = props => {
   const { input, meta, child, ...restProps } = props
   return (
     <FormControl {...props}>
       <textarea
         className={s.textarea}
-        onMouseOut={() => {
-          props.setHeaderBlur(false)
-        }}
-        onClick={() => {
-          props.setHeaderBlur(true)
-        }}
+        // onMouseOut={() => {
+        //   props.setHeaderBlur(false)
+        // }}
+        // onClick={() => {
+        //   props.setHeaderBlur(true)
+        // }}
         {...input}
         {...restProps}
       />{" "}
@@ -35,19 +35,19 @@ const textarea = props => {
   )
 }
 
-const input = props => {
+export const Input = props => {
   const { input, meta, child, ...restProps } = props
 
   return (
     <FormControl {...props}>
       <input
         className={s.input}
-        onMouseOut={() => {
-          props.setHeaderBlur(false)
-        }}
-        onClick={() => {
-          props.setHeaderBlur(true)
-        }}
+        // onMouseOut={() => {
+        //   props.setHeaderBlur(false)
+        // }}
+        // onClick={() => {
+        //   props.setHeaderBlur(true)
+        // }}
         {...input}
         {...restProps}
       />
@@ -58,9 +58,6 @@ const input = props => {
 let mapStateToProps = state => {
   return {}
 }
-export let Input = connect(mapStateToProps, { setHeaderBlur })(input)
-
-export let Textarea = connect(mapStateToProps, { setHeaderBlur })(textarea)
 
 export const createField = (
   placeholder,

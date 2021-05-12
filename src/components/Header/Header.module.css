@@ -87,6 +87,9 @@
   .header {
     display: grid;
   }
+  .active {
+    display: none;
+  }
   .loginBlock {
     display: none;
   }
