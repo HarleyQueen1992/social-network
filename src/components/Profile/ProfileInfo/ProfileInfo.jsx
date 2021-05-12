@@ -16,26 +16,15 @@ const ProfileInfo = props => {
   let [status, setStatus] = useState(props.status)
 
   const deactivateEditMode = () => {
-    // debugger
     setEditMode(false)
     props.updateStatus(status)
   }
   useEffect(() => {
     setStatus(props.status)
   }, [props.status])
-
   if (props.profile == null) {
     return <Preloader />
   }
-  // export const Icons = {
-  //   github: GitHub,
-  //   vk: vk,
-  //   facebook: facebook,
-  //   instagram: inst,
-  //   twitter: twitter,
-  //   youtube: youtube,
-  // }
-
   let srcImg = props.profile.photo
   if (props.profile.photo == null) {
     srcImg = profileImg

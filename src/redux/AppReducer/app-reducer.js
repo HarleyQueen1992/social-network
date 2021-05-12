@@ -3,11 +3,13 @@ import { getAuthMe } from "./../AuthReducer/auth-reducer"
 const INITIALIZED_SUCCESS = "app/app-reducer/INITIALIZED_SUCCESS"
 const IS_POST_CREATION = "app/app-reducer/IS_POST_CREATION"
 const SET_THEME = "app/app-reducer/SET_THEME"
+const HEADER_BLUR = "app/app-reducer/HEADER_BLUR"
 
 let initialState = {
   initialized: false,
   isPostCreation: false,
   theme: darkTheme,
+  headerBlur: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -30,6 +32,12 @@ const appReducer = (state = initialState, action) => {
         theme: action.theme === "light" ? lightTheme : darkTheme,
       }
     }
+    case HEADER_BLUR: {
+      return {
+        ...state,
+        headerBlur: action.headerBlur,
+      }
+    }
     default:
       return state
   }
@@ -42,6 +50,11 @@ export const initializedSuccess = () => {
 export const toggleIsPostCreation = isPostCreation => ({
   type: IS_POST_CREATION,
   isPostCreation,
+})
+
+export const toggleIsHeaderBlur = headerBlur => ({
+  type: HEADER_BLUR,
+  headerBlur,
 })
 
 export const setTheme = theme => ({ type: SET_THEME, theme })
@@ -59,5 +72,8 @@ export const initializeApp = () => dispatch => {
   Promise.all([promiseGetAuthMe]).then(() => {
     dispatch(initializedSuccess())
   })
+}
+export const setHeaderBlur = headerBlur => dispatch => {
+  dispatch(toggleIsHeaderBlur(headerBlur))
 }
 export default appReducer

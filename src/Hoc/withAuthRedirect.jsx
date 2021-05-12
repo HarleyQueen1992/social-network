@@ -1,23 +1,22 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import React from "react"
+import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
 
-const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth,
 })
 
-export const withAuthRedirecr = (Component) => {
+export const withAuthRedirecr = Component => {
+  class RedirectComponent extends React.Component {
+    render() {
+      if (this.props.isAuth === false) return <Redirect to='/login' />
 
-    class RedirectComponent extends React.Component {
-        render() {
-            if (this.props.isAuth === false) return <Redirect to='/login' />
-
-            return <Component {...this.props}/>
-        }
+      return <Component {...this.props} />
     }
+  }
 
-    let ConnectedAuthRedirectComponent = connect(mapStateToProps)(RedirectComponent)
+  let ConnectedAuthRedirectComponent =
+    connect(mapStateToProps)(RedirectComponent)
 
-    return ConnectedAuthRedirectComponent;
+  return ConnectedAuthRedirectComponent
 }
-

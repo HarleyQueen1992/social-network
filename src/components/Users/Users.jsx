@@ -8,6 +8,7 @@ import Pagination from "../common/Pagination/Pagination"
 import axios from "axios"
 import UsersImg from "./../../assets/images/grou4p.png"
 import Preloader from "../common/Preloader/Preloader"
+import { Input } from "../common/FromsControls/FormsControls"
 
 const Users = props => {
   let users
@@ -47,8 +48,9 @@ const Users = props => {
         <span className={s.title}>Users</span>
         <div className={s.search}>
           <form>
-            <input
+            <Input
               onChange={props.handleChange}
+              // placeholder='sfsdfs'
               className={s.searchUsers}
               type='text'
               value={props.value}

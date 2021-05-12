@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import s from "./ProfileInfo.module.css"
 import styled from "styled-components"
+import { Input } from "../../common/FromsControls/FormsControls"
 
 const ProfileStatusWithHooks = props => {
   const onStatusChange = e => {
@@ -15,7 +16,7 @@ const ProfileStatusWithHooks = props => {
       )}
       {props.editMode && (
         <div>
-          <input
+          <Input
             onChange={onStatusChange}
             className={s.input}
             autoFocus={true}

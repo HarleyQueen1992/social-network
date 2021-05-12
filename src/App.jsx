@@ -15,12 +15,14 @@ import {
   initializeApp,
   toggleIsPostCreation,
   setTheme,
+  toggleIsHeaderBlur,
 } from "./redux/AppReducer/app-reducer"
 import Preloader from "./components/common/Preloader/Preloader"
 import {
   getInitialized,
   getIsPostCreation,
   getTheme,
+  getHeaderBlur,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
 import { addPostActionCreator } from "./redux/ProfileReducer/profile-reducer"
@@ -65,7 +67,8 @@ class App extends React.Component {
     } else {
       return (
         <div className='app-wrapper'>
-          <Header />
+          {/* {(input.onfocus = () => {})} */}
+          {!this.props.headerBlur && <Header />}
           <Navbar />
 
           <div className='app-wrapper-content'>
@@ -95,6 +98,7 @@ const mapStateToProps = state => {
     isAuth: getIsAuth(state),
     isPostCreation: getIsPostCreation(state),
     theme: getTheme(state),
+    headerBlur: getHeaderBlur(state),
   }
 }
 
@@ -104,6 +108,7 @@ let AppContainer = compose(
     addPostActionCreator,
     toggleIsPostCreation,
     setTheme,
+    toggleIsHeaderBlur,
   })
 )(App)
 

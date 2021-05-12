@@ -18,6 +18,7 @@ const PostCreation = props => {
       props.addPostActionCreator(text)
       props.toggleIsPostCreation(false)
     }
+    props.toggleIsHeaderBlur(false)
   }
   return (
     <div className={s.PostCreationBlock}>
@@ -26,6 +27,7 @@ const PostCreation = props => {
           className={s.back}
           onClick={() => {
             props.toggleIsPostCreation(false)
+            props.toggleIsHeaderBlur(false)
           }}
         >
           <img className={s.obelus} src={Obelus} />

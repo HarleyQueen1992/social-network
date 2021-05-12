@@ -115,7 +115,7 @@
 }
 @media (max-width: 480px) {
   .PostCreationBlock {
-    grid-template-rows: 50px 70px calc(100vh - 230px) 50px;
+    grid-template-rows: 50px 70px calc(100vh - 170px) 50px;
 
     width: 100vw;
   }

@@ -7,6 +7,7 @@ import More from "./../../assets/images/more.png"
 import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
 import { Redirect } from "react-router-dom"
 import Preloader from "../common/Preloader/Preloader"
+import { Input, Textarea } from "../common/FromsControls/FormsControls"
 
 const Settings = props => {
   useEffect(() => {

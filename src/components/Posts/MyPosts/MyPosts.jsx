@@ -36,18 +36,16 @@ const MyPosts = props => {
                 src={props.theme == "lightTheme" ? CreatePostLight : CreatePost}
                 onClick={() => {
                   props.toggleIsPostCreation(true)
+                  props.toggleIsHeaderBlur(true)
                 }}
               />
             </div>
-            {/* <div className={p.createPostBlock} onClick={() => {props.toggleIsPostCreation(true)}}  >
-                        <span>Create post</span>
-                      </div> */}
           </header>
-          {/* <AddPostFormRedux onSubmit={addPost} /> */}
           <div className={p.posts}>{postElements}</div>
         </div>
       ) : (
         <PostCreation
+          toggleIsHeaderBlur={props.toggleIsHeaderBlur}
           addPostActionCreator={props.addPostActionCreator}
           toggleIsPostCreation={props.toggleIsPostCreation}
         />

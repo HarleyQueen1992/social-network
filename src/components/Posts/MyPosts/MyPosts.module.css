@@ -23,6 +23,7 @@
 }
 
 .edit {
+  cursor: pointer;
   align-self: center;
   justify-self: end;
   height: 35px;

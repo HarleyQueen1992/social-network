@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import s from "./Friends.module.css"
 import FriendsImg from "./../../assets/images/friends2.png"
 import Preloader from "../common/Preloader/Preloader"
-
+import { Input } from "../common/FromsControls/FormsControls"
 const Friends = props => {
   let friends
   let totalCount
@@ -43,7 +43,7 @@ const Friends = props => {
         <div className={s.title}>Subscriptions</div>
         <div className={s.search}>
           <form>
-            <input
+            <Input
               onChange={props.handleChange}
               className={s.searchUsers}
               type='text'
