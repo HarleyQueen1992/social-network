@@ -5,28 +5,30 @@ import { compose } from "redux"
 import { withAuthRedirecr } from "../../Hoc/withAuthRedirect"
 import {
   getUserProfile,
-  addPostActionCreator,
-  getTheLastPost,
   toggleIsFatching,
   setUserProfile,
   setStatus,
   toggleIsFollow,
   updateStatus,
-  deletePost,
   getFollow,
-  addLike,
 } from "../../redux/ProfileReducer/profile-reducer"
+import {
+  deletePost,
+  addPostActionCreator,
+  addLike,
+  getTheLastPost,
+} from "./../../redux/PostsReducer/posts-reducer"
 import {
   getIsFatching,
   getIsFollow,
   getProfile,
   getIsSavingPhoto,
   getStatus,
-  getLastPost,
 } from "../../redux/ProfileReducer/profile-selectors"
 import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer"
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer"
 import Profile from "./Profile"
+import { getLastPost } from "./../../redux/PostsReducer/posts-selectors"
 import {
   getIsAuth,
   getProfileInfo,
@@ -79,7 +81,6 @@ class ProfileContainer extends React.Component {
             profile={this.props.profile}
             status={this.props.status}
             updateStatus={this.props.updateStatus}
-            deletePost={this.props.deletePost}
             savePhoto={this.props.savePhoto}
             follow={this.props.follow}
             unfollow={this.props.unfollow}
@@ -87,11 +88,10 @@ class ProfileContainer extends React.Component {
             isSavingPhoto={this.props.isSavingPhoto}
             friends={this.props.friends}
             isPostCreation={this.props.isPostCreation}
-            addPostActionCreator={this.props.addPostActionCreator}
             toggleIsPostCreation={this.props.toggleIsPostCreation}
             lastPost={this.props.lastPost}
-            addLike={this.props.addLike}
             theme={this.props.theme}
+            addLike={this.props.addLike}
           />
         )}
       </>

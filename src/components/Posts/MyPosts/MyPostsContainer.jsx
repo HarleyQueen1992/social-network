@@ -3,10 +3,10 @@ import {
   addPostActionCreator,
   addLike,
   deletePost,
-} from "../../../redux/ProfileReducer/profile-reducer"
+} from "../../../redux/PostsReducer/posts-reducer"
+import { getPosts } from "../../../redux/PostsReducer/posts-selectors"
 import {
   getNewPostText,
-  getPosts,
   getIsFatching,
 } from "../../../redux/ProfileReducer/profile-selectors"
 import {
@@ -62,20 +62,6 @@ let mapStateToProps = state => {
     theme: getTheme(state),
   }
 }
-
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         addPostText: (newPostText) => {
-//             dispatch(addPostActionCreator(newPostText))
-//         },
-//         addLike: (postId) => {
-//             dispatch(addLike(postId))
-//         },
-//         deletePost: (postId) => {
-//             dispatch(deletePost(postId))
-//         }
-//     }
-// }
 export default compose(
   connect(mapStateToProps, {
     deletePost,

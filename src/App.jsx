@@ -85,7 +85,7 @@ const mapStateToProps = state => {
   return {
     initialized: getInitialized(state),
     isAuth: getIsAuth(state),
-    isPostCreation: getIsPostCreation(state),
+    // isPostCreation: getIsPostCreation(state),
     theme: getTheme(state),
     headerBlur: getHeaderBlur(state),
     Height: getInnerHeight(state),
@@ -95,7 +95,7 @@ const mapStateToProps = state => {
 let AppContainer = compose(
   connect(mapStateToProps, {
     initializeApp,
-    addPostActionCreator,
+    // addPostActionCreator,
     toggleIsPostCreation,
     setTheme,
     toggleIsHeaderBlur,
