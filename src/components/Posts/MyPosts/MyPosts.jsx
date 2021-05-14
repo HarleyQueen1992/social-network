@@ -33,9 +33,7 @@ const MyPosts = props => {
             <div className={p.editBlock}>
               <img
                 className={p.edit}
-                src={
-                  props.theme === "lightTheme" ? CreatePostLight : CreatePost
-                }
+                src={props.theme == "lightTheme" ? CreatePostLight : CreatePost}
                 alt='edit'
                 onClick={() => {
                   props.toggleIsPostCreation(true)

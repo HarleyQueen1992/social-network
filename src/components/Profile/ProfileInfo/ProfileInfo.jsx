@@ -230,48 +230,6 @@ const ProfileInfo = props => {
         />
       </div>
     </div>
-
-    //  </Styleds>
-  )
-}
-
-export const ProfileData = props => {
-  return (
-    <div className={s.deploy}>
-      <div>
-        <b>Full name</b>: {props.profile.fullName}
-      </div>
-      <div>
-        <b>Looking for a job</b>: {props.profile.lookingForAJob ? "yes" : "no"}
-      </div>
-      <div>
-        <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
-      </div>
-      <div>
-        <b>About me</b>: {props.profile.aboutMe}
-      </div>
-      <span class={s.contacts}>Contacts : </span>{" "}
-      {Object.keys(props.profile.contacts).map(key => {
-        return {
-          /* <Contacts
-            contactTitle={key}
-            contactValue={props.profile.contacts[key]}
-          /> */
-        }
-      })}
-      {props.isOwner && (
-        <div>
-          <button
-            onClick={() => {
-              props.setEditMode(true)
-            }}
-          >
-            {" "}
-            Edit
-          </button>
-        </div>
-      )}
-    </div>
   )
 }
 
@@ -314,7 +272,7 @@ const DetailedInfo = props => {
                         className={s.logo}
                         alt='logo contacts'
                         src={
-                          props.theme === "lightTheme"
+                          props.theme == "lightTheme"
                             ? Icons[key]
                             : IconsWhite[key]
                         }
@@ -337,10 +295,6 @@ const DetailedInfo = props => {
           </div>
         </div>
       </div>
-      {/*? Deploy will be in the future */}
-      {/* {deployed 
-                  ? <div onClick={() => {setdeployed(false)}}className={s.detailed} >hide</div> 
-                  : <div onClick={() => {setdeployed(true)}}className={s.detailed} >detailed</div>}                        */}
     </div>
   )
 }

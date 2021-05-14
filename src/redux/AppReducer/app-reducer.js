@@ -29,7 +29,7 @@ const appReducer = (state = initialState, action) => {
     case SET_THEME: {
       return {
         ...state,
-        theme: action.theme === "light" ? lightTheme : darkTheme,
+        theme: action.theme == "light" ? lightTheme : darkTheme,
       }
     }
     case HEADER_BLUR: {

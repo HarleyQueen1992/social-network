@@ -17,7 +17,7 @@ const Settings = props => {
     }
   }, [props.theme])
   const themeToggler = () => {
-    props.theme === "lightTheme"
+    props.theme == "lightTheme"
       ? props.setTheme("dark")
       : props.setTheme("light")
   }
@@ -60,7 +60,7 @@ const Settings = props => {
                     className={
                       s.ball +
                       " " +
-                      (props.theme === "lightTheme" ? s.active : "")
+                      (props.theme == "lightTheme" ? s.active : "")
                     }
                   ></div>
                 </label>

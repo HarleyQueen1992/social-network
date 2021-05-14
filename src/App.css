@@ -28,6 +28,10 @@ html {
   --bacInput: rgb(192, 192, 192);
   --bbLogin: rgb(224, 173, 173);
   --bacInputLogin: rgb(255, 255, 255);
+  --swithThemeBac: #111;
+  --swithThemeBall: #fff;
+  --bacInputForm: rgb(49, 49, 49);
+  --HoversaveBut: gray;
 }
 
 .loginPage {

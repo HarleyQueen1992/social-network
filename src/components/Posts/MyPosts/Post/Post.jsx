@@ -26,7 +26,7 @@ const Post = props => {
             <img
               alt='comments'
               className={p.commentsImg}
-              src={props.theme === "lightTheme" ? CommentsLight : Comments}
+              src={props.theme == "lightTheme" ? CommentsLight : Comments}
             />
           </div>
           <div className={p.likeBlock}>
@@ -38,7 +38,7 @@ const Post = props => {
                 }}
                 className={p.heart}
                 src={
-                  props.theme === "lightTheme" ? heartDisable : heartDisableDark
+                  props.theme == "lightTheme" ? heartDisable : heartDisableDark
                 }
               />
             ) : (
@@ -48,7 +48,7 @@ const Post = props => {
                   props.addLike(props.id)
                 }}
                 className={p.heart}
-                src={props.theme === "lightTheme" ? heart : heartDark}
+                src={props.theme == "lightTheme" ? heart : heartDark}
               />
             )}
             <span>{props.like}</span>

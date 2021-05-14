@@ -51,7 +51,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
                 <img
                   alt='contactsImg'
                   className={s.logo}
-                  src={theme === "lightTheme" ? Icons[key] : IconsWhite[key]}
+                  src={theme == "lightTheme" ? Icons[key] : IconsWhite[key]}
                 />
                 <span className={s.title}>{key} :</span>{" "}
                 {createField(key, "contacts." + key, [], Input, {
