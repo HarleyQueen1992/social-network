@@ -1,10 +1,6 @@
 import React from "react"
 import s from "./FormContainer.module.css"
-import { required } from "../../../utils/validators/validators"
 import { Field } from "redux-form"
-// import { setHeaderBlur } from "./../../../redux/AppReducer/app-reducer"
-import { connect } from "react-redux"
-import { compose } from "redux"
 
 export const FormControl = ({ input, meta, child, ...props }) => {
   // debugger
@@ -53,10 +49,6 @@ export const Input = props => {
       />
     </FormControl>
   )
-}
-
-let mapStateToProps = state => {
-  return {}
 }
 
 export const createField = (

@@ -24,7 +24,6 @@ import {
   getIsReceipt,
 } from "./../../redux/SearchReducer/search-selectors"
 import Users from "./Users"
-import Preloader from "../common/Preloader/Preloader"
 import { withAuthRedirecr } from "../../Hoc/withAuthRedirect"
 import { compose } from "redux"
 import {
@@ -42,7 +41,7 @@ class UsersC extends React.Component {
     }
   }
   handleChange = event => {
-    if (event.target.value === "" && this.props.value.length == 1) {
+    if (event.target.value === "" && this.props.value.length === 1) {
       this.props.clearUsers()
       this.props.setCurrentPage(1)
       this.props.setValue(event.target.value)

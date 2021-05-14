@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
-import { createPages } from "../../utils/pagination"
 import { NavLink } from "react-router-dom"
-import { usersAPI } from "../../API/api"
-import Pagination from "../common/Pagination/Pagination"
-import axios from "axios"
 import UsersImg from "./../../assets/images/grou4p.png"
 import Preloader from "../common/Preloader/Preloader"
 import { Input } from "../common/FromsControls/FormsControls"
@@ -44,7 +40,7 @@ const Users = props => {
   return (
     <div className={s.usersBlock}>
       <header className={s.header}>
-        <img className={s.usersImg} src={UsersImg} />
+        <img className={s.usersImg} alt='usersImg' src={UsersImg} />
         <span className={s.title}>Users</span>
         <div className={s.search}>
           <form>
@@ -70,23 +66,11 @@ const Users = props => {
                 <div className={s.photoUsers}>
                   <NavLink to={"/profile/" + u.id}>
                     <img
+                      alt='userPhoto'
                       src={u.photo != null ? u.photo : userPhoto}
                       className={s.photo}
                     />
                   </NavLink>
-                  {/* <div className={s.followed} >
-                        { u.followed
-                            ? <button 
-                                    disabled={props.followingInProgress.some(id => id === u.id)} 
-                                    className={s.but} 
-                                    onClick={ () => { props.unfollow(u.id)}}>Unfollow
-                            </button> 
-                            : <button 
-                                    disabled={props.followingInProgress.some(id => id === u.id)} 
-                                    className={s.but} 
-                                    onClick={ () => { props.follow(u.id)} }>Follow
-                            </button> }
-                    </div> */}
                 </div>
                 <div className={s.rightPart}>
                   <div className={s.name}>{u.name}</div>

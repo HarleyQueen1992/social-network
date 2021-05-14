@@ -6,7 +6,7 @@ import {
 } from "../../../utils/validators/validators"
 import s from "./../../common/FromsControls/FormContainer.module.css"
 import l from "./RegisterForm.module.css"
-import { NavLink, Redirect, useHistory } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 let maxLength = maxLengthCreator(25)
 

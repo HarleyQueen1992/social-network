@@ -7,7 +7,6 @@ import {
   deletePost,
   addLike,
 } from "./../../redux/ProfileReducer/profile-reducer"
-import Preloader from "../common/Preloader/Preloader"
 import News from "./News"
 import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
 

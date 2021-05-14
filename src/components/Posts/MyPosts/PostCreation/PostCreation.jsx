@@ -30,16 +30,16 @@ const PostCreation = props => {
             props.toggleIsHeaderBlur(false)
           }}
         >
-          <img className={s.obelus} src={Obelus} />
+          <img className={s.obelus} alt='obelus' src={Obelus} />
         </div>
         <div className={s.newPost}>New post</div>
         <div className={s.save} onClick={addPost}>
-          <img className={s.tick} src={save} />
+          <img className={s.tick} alt='save' src={save} />
         </div>
       </header>
       <div className={s.title}>
         <textarea
-          maxlength='62'
+          maxLength='62'
           className={s.titleField}
           autoFocus
           placeholder='Title'
@@ -47,7 +47,6 @@ const PostCreation = props => {
       </div>
       <div className={s.body}>
         <textarea
-          autoFocus
           placeholder='Что нового?'
           ref={newPostElement}
           className={s.fieldInput}
@@ -55,17 +54,17 @@ const PostCreation = props => {
       </div>
       <div className={s.bot}>
         <div>
-          <img src={Gallery} />
+          <img src={Gallery} alt='gallery' />
         </div>
         <div className={s.musicBlock}>
-          <img className={s.music} src={Music} />
+          <img className={s.music} alt='music' src={Music} />
         </div>
         <div>
-          <img src={More} />
+          <img alt='more' src={More} />
         </div>
         <div />
         <div>
-          <img src={Settings} />
+          <img alt='settings' src={Settings} />
         </div>
       </div>
     </div>

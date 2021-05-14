@@ -1,4 +1,4 @@
-import { profileAPI, authAPI } from "../../API/api"
+import { profileAPI } from "../../API/api"
 import { stopSubmit } from "redux-form"
 import { savePhotoSuccess } from "./../ProfileReducer/profile-reducer"
 const SET_PROFILE_DATA = "app/settings-reducer/SET_PROFILE_DATA"
@@ -16,13 +16,6 @@ let initialState = {
 }
 
 // ? utils
-
-const setData = (state, action) => {
-  return {
-    ...state,
-    ...action.data,
-  }
-}
 
 // ! Reducer
 

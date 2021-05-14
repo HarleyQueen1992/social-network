@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import h from "./Header.module.css"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
@@ -11,7 +11,7 @@ import Services from "./../../assets/images/add.png"
 
 const Header = props => {
   let [headerBlur, setHeaderBlur] = useState(false)
-  let [height, setHeight] = useState(window.innerHeight)
+  let [height] = useState(window.innerHeight)
   window.addEventListener("resize", function () {
     if (height * 0.7 > window.innerHeight) {
       setHeaderBlur(true)
@@ -24,25 +24,25 @@ const Header = props => {
       <div className={h.navHead}>
         <div className={h.headItem}>
           <NavLink className={h.linkBlock} to={"/news"}>
-            <img className={h.imgNews} src={News} />
+            <img alt='news' className={h.imgNews} src={News} />
             <span className={h.headName}>News</span>
           </NavLink>
         </div>
         <div className={h.headItem}>
           <NavLink className={h.linkBlock} to={"/services"}>
-            <img className={h.imgServices} src={Services} />
+            <img alt='services' className={h.imgServices} src={Services} />
             <span className={h.headName}>Services</span>
           </NavLink>
         </div>
         <div className={h.headItem}>
           <NavLink className={h.linkBlock} to={"/posts"}>
-            <img className={h.imgPosts} src={Posts} />
+            <img alt='posts' className={h.imgPosts} src={Posts} />
             <span className={h.headName}>Posts</span>
           </NavLink>
         </div>
         <div className={h.headItem}>
           <NavLink className={h.linkBlock} to={"/profile"}>
-            <img className={h.imgProfile} src={Profile} />
+            <img alt='profile' className={h.imgProfile} src={Profile} />
             <span className={h.headName}>Profile</span>
           </NavLink>
         </div>

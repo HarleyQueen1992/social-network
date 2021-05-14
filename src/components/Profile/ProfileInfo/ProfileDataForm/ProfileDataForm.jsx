@@ -4,10 +4,8 @@ import {
   Input,
   Textarea,
 } from "../../../common/FromsControls/FormsControls"
-// import st from "./../../../common/FromsControls/FormContainer.module.css"
 import s from "./ProfileDataForm.module.css"
 import { reduxForm, Field } from "redux-form"
-import { Redirect } from "react-router-dom"
 import { Icons, IconsWhite } from "./../../../../utils/Icons/Icons"
 
 const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
@@ -19,7 +17,6 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
       </div>
       <div className={s.fieldInput}>
         <span>Looking for a job:</span>{" "}
-        {/* <label className={s.labelCheckbox} for='checkbox'></label> */}
         <Field
           id='check'
           className={s.inputCheck}
@@ -27,8 +24,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
           component='input'
           type='checkbox'
         />
-        <label for='check' className={s.labelCheckbox}></label>
-        {/* {createField("", "lookingForAJob", [], Input, { type: "checkbox" })} */}
+        <label htmlFor='check' className={s.labelCheckbox}></label>
       </div>
 
       <div className={s.fieldInput}>
@@ -51,10 +47,11 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
         <div className={s.contacts}>
           {Object.keys(profile.contacts).map(key => {
             return (
-              <div className={s.fieldInputContacts}>
+              <div className={s.fieldInputContacts} key={key}>
                 <img
+                  alt='contactsImg'
                   className={s.logo}
-                  src={theme == "lightTheme" ? Icons[key] : IconsWhite[key]}
+                  src={theme === "lightTheme" ? Icons[key] : IconsWhite[key]}
                 />
                 <span className={s.title}>{key} :</span>{" "}
                 {createField(key, "contacts." + key, [], Input, {

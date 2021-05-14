@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import s from "./ProfileInfo.module.css"
-import styled from "styled-components"
 import { Input } from "../../common/FromsControls/FormsControls"
 
 const ProfileStatusWithHooks = props => {

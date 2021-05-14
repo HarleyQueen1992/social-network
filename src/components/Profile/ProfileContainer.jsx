@@ -8,7 +8,6 @@ import {
   addPostActionCreator,
   getTheLastPost,
   toggleIsFatching,
-  saveProfileInfo,
   setUserProfile,
   setStatus,
   toggleIsFollow,
@@ -47,7 +46,7 @@ class ProfileContainer extends React.Component {
     let userid = this.props.match.params.userid
     this.props.requestAllFriends()
 
-    if (!userid || userid == this.props.userId) {
+    if (!userid || userid === this.props.userId) {
       userid = this.props.userId
       this.props.getUserProfile(userid)
     } else {
@@ -75,7 +74,7 @@ class ProfileContainer extends React.Component {
             {...this.props}
             isOwner={
               !this.props.match.params.userid ||
-              this.props.match.params.userid == this.props.profileInfo.userId
+              this.props.match.params.userid === this.props.profileInfo.userId
             }
             profile={this.props.profile}
             status={this.props.status}
@@ -113,12 +112,6 @@ const mapStateToProps = state => ({
   theme: getTheme(state),
   friends: getAllFriends(state),
 })
-
-// let withRedirect = withAuthRedirecr(ProfileContainer)
-
-// let WithUrlDataContainerComponent = withRouter(withRedirect)
-
-// export default connect(mapStateToProps,{getUserProfile})(WithUrlDataContainerComponent);
 
 export default compose(
   connect(mapStateToProps, {

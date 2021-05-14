@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import s from "./Settings.module.css"
 import Sun from "./../../assets/images/sun.png"
 import Moon from "./../../assets/images/moon.png"
 import SettingsImg from "./../../assets/images/settings3.png"
 import More from "./../../assets/images/more.png"
 import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
-import { Redirect } from "react-router-dom"
 import Preloader from "../common/Preloader/Preloader"
-import { Input, Textarea } from "../common/FromsControls/FormsControls"
 
 const Settings = props => {
   useEffect(() => {
@@ -18,13 +16,8 @@ const Settings = props => {
       )
     }
   }, [props.theme])
-
-  // changeTheme = (e) => {
-  //     props.setTheme({color: event.target.value});
-
-  // }
   const themeToggler = () => {
-    props.theme == "lightTheme"
+    props.theme === "lightTheme"
       ? props.setTheme("dark")
       : props.setTheme("light")
   }
@@ -40,7 +33,7 @@ const Settings = props => {
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>
-        <img className={s.settingsImg} src={SettingsImg} />
+        <img alt='SettingsImg' className={s.settingsImg} src={SettingsImg} />
         <div className={s.title}>Settings</div>
       </header>
       {props.isFetchingSuccess ? (
@@ -60,14 +53,14 @@ const Settings = props => {
                   className={s.checkbox}
                   id='chk'
                 />
-                <label className={s.label} for='chk'>
-                  <img className={s.img} src={Moon} />
-                  <img className={s.img} src={Sun} />
+                <label className={s.label} htmlFor='chk'>
+                  <img className={s.img} alt='moon' src={Moon} />
+                  <img className={s.img} alt='sun' src={Sun} />
                   <div
                     className={
                       s.ball +
                       " " +
-                      (props.theme == "lightTheme" ? s.active : "")
+                      (props.theme === "lightTheme" ? s.active : "")
                     }
                   ></div>
                 </label>
@@ -83,8 +76,8 @@ const Settings = props => {
                     type='file'
                     id='input__file'
                   />
-                  <label className={s.changeLabel} for='input__file'>
-                    <img className={s.moreImg} src={More} />
+                  <label className={s.changeLabel} htmlFor='input__file'>
+                    <img className={s.moreImg} alt='more' src={More} />
                   </label>
                 </div>
 

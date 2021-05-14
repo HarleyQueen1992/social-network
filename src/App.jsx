@@ -1,7 +1,7 @@
-import React, { Component, useEffect } from "react"
+import React from "react"
 import "./App.css"
 import ProfileContainer from "./components/Profile/ProfileContainer"
-import { HashRouter, Redirect, Route, withRouter } from "react-router-dom"
+import { HashRouter, Redirect, Route } from "react-router-dom"
 import SettingsContainer from "./components/Settings/SettingsContainer"
 import NewsContainer from "./components/News/NewsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
@@ -28,7 +28,6 @@ import {
 import store from "./redux/redux-store"
 import { addPostActionCreator } from "./redux/ProfileReducer/profile-reducer"
 import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
-import PostCreation from "./components/Posts/MyPosts/PostCreation/PostCreation"
 import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
 import ServicesContainer from "./components/Services/ServicesContainer"
 import Registration from "./components/Registration/Registration"
@@ -44,16 +43,6 @@ class App extends React.Component {
   }
 
   render() {
-    // alert(this.props.innerHeight)
-    // let height = this.props.Height
-    // const setIsHeaderBlur = () => {
-    //   this.props.toggleIsHeaderBlur(true)
-    // }
-    // window.addEventListener("resize", function () {
-    //   if (height * 0.4 > window.innerHeight) {
-    //     setIsHeaderBlur()
-    //   }
-    // })
     if (!this.props.initialized) {
       return <Preloader />
     }
@@ -65,20 +54,9 @@ class App extends React.Component {
           <Route path='/register' render={() => <Registration />} />
         </div>
       )
-
-      // } else if (this.props.isPostCreation) {
-      //
-
-      return (
-        <PostCreation
-          addPostActionCreator={this.props.addPostActionCreator}
-          toggleIsPostCreation={this.props.toggleIsPostCreation}
-        />
-      )
     } else {
       return (
         <div className='app-wrapper'>
-          {/* {(input.onfocus = () => {})} */}
           {!this.props.headerBlur && <Header />}
           <Navbar />
 

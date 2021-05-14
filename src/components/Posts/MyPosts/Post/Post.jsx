@@ -10,10 +10,11 @@ import CommentsLight from "./../../../../assets/images/commentsLight.png"
 
 const Post = props => {
   return (
-    <div className={p.postBlock}>
+    <div className={p.postBlock} key={props.id}>
       <div className={p.photoName}>
         <img
           className={p.postImg}
+          alt='post'
           src={!props.profile.photo ? avaInPosts : props.profile.photo}
         />
         <span className={p.userName}>{props.profile.fullName}</span>
@@ -23,28 +24,31 @@ const Post = props => {
         <div className={p.leftBlock}>
           <div className={p.commentsBlock}>
             <img
+              alt='comments'
               className={p.commentsImg}
-              src={props.theme == "lightTheme" ? CommentsLight : Comments}
+              src={props.theme === "lightTheme" ? CommentsLight : Comments}
             />
           </div>
           <div className={p.likeBlock}>
             {props.isDisable ? (
               <img
+                alt='heart disable'
                 onClick={() => {
                   props.addLike(props.id)
                 }}
                 className={p.heart}
                 src={
-                  props.theme == "lightTheme" ? heartDisable : heartDisableDark
+                  props.theme === "lightTheme" ? heartDisable : heartDisableDark
                 }
               />
             ) : (
               <img
+                alt='heart'
                 onClick={() => {
                   props.addLike(props.id)
                 }}
                 className={p.heart}
-                src={props.theme == "lightTheme" ? heart : heartDark}
+                src={props.theme === "lightTheme" ? heart : heartDark}
               />
             )}
             <span>{props.like}</span>

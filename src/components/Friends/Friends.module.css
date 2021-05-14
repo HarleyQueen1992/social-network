@@ -105,13 +105,14 @@
   align-self: end;
 }
 
-.writeMessage a {
+.writeMessage {
+  cursor: pointer;
   font-size: 15px;
   text-decoration: none;
   color: var(--statusColor);
 }
 
-.writeMessage a:hover {
+.writeMessage :hover {
   font-size: 14px;
   color: rgb(161, 161, 161);
 }
@@ -150,7 +151,7 @@
     margin-left: 8px;
     margin-top: 5px;
   }
-  .writeMessage a {
+  .writeMessage {
     font-size: 12px;
   }
 }

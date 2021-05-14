@@ -1,6 +1,5 @@
 import { stopSubmit } from "redux-form"
 import { profileAPI, authAPI } from "../../API/api"
-import Preloader from "../../components/common/Preloader/Preloader"
 const SET_USER_DATA = "app/auth-reducer/SET_USER_DATA"
 const SET_PROFILE_DATA = "app/auth-reducer/SET_PROFILE_DATA"
 const SET_PROFILE_PHOTO = "app/auth-reducer/SET_PROFILE_PHOTO"

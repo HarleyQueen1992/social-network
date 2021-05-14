@@ -24,7 +24,7 @@ const Friends = props => {
   const scrollHandler = e => {
     if (
       e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) ==
+        (e.target.documentElement.scrollTop + window.innerHeight) ===
         0 &&
       friends.length < totalCount
     ) {
@@ -39,7 +39,7 @@ const Friends = props => {
   return (
     <div className={s.friendsBlock}>
       <header className={s.header}>
-        <img className={s.friendsImg} src={FriendsImg} />
+        <img className={s.friendsImg} alt='friendsLogo' src={FriendsImg} />
         <div className={s.title}>Subscriptions</div>
         <div className={s.search}>
           <form>
@@ -59,11 +59,12 @@ const Friends = props => {
       ) : (
         <div className={s.friends}>
           {friends.map(f => (
-            <div className={s.friend}>
+            <div key={f.id} className={s.friend}>
               <div className={s.leftPart}>
                 <div className={s.photoUsers}>
                   <NavLink to={"/profile/" + f.id}>
                     <img
+                      alt='userphoto'
                       src={f.photo != null ? f.photo : userPhoto}
                       className={s.photo}
                     />
@@ -73,7 +74,7 @@ const Friends = props => {
               <div className={s.rightPart}>
                 <span className={s.name}>{f.name}</span>
                 <span className={s.writeMessage}>
-                  <a href='#'>to write a message</a>
+                  <span>to write a message</span>
                 </span>
               </div>
             </div>

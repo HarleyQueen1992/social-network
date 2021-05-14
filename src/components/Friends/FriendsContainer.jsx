@@ -6,7 +6,6 @@ import {
   setFriendsTotalCount,
   requestFriends,
 } from "../../redux/FriendsReducer/friends-reducer"
-import Preloader from "../common/Preloader/Preloader"
 import {
   requestForFriends,
   setValue,
@@ -37,7 +36,7 @@ class FriendsContainer extends React.Component {
     }
   }
   handleChange = event => {
-    if (event.target.value === "" && this.props.value.length == 1) {
+    if (event.target.value === "" && this.props.value.length === 1) {
       this.props.clearUsers()
       this.props.setCurrentPage(1)
       this.props.setValue(event.target.value)

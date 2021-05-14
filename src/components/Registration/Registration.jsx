@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink, Redirect, useHistory } from "react-router-dom"
 import { compose } from "redux"
 import RegisterReduxForm from "./RegisterForm/RegisterForm"
 import s from "./Registration.module.css"

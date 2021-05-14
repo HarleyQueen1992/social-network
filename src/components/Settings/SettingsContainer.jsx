@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 import { compose } from "redux"
 import { setTheme } from "./../../redux/AppReducer/app-reducer"
 import { getTheme } from "../../redux/AppReducer/app-selectors"
-import { getUserProfile } from "./../../redux/ProfileReducer/profile-reducer"
 import { logOut } from "./../../redux/AuthReducer/auth-reducer"
 import Settings from "./Settings"
 import {
@@ -17,9 +16,7 @@ import {
   getIsFetching,
   getIsFetchingSuccess,
 } from "./../../redux/SettingsReducer/settings-selectors"
-import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
 import { getUserId } from "../../redux/AuthReducer/auth-selectors"
-import { Redirect } from "react-router"
 import Preloader from "../common/Preloader/Preloader"
 
 class SettingsContainer extends React.Component {

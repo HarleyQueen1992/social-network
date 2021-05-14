@@ -7,7 +7,6 @@ import {
 import {
   getNewPostText,
   getPosts,
-  getProfile,
   getIsFatching,
 } from "../../../redux/ProfileReducer/profile-selectors"
 import {

@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react"
 import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import profileImg from "../../../assets/images/user.png"
-import { NavLink, Redirect } from "react-router-dom"
-import ProfileDataFormReduxForm from "./ProfileDataForm/ProfileDataForm"
-import iconSettings from "../../../assets/images/settings.png"
+import { NavLink } from "react-router-dom"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
-import styled from "styled-components"
 import Post from "./../../Posts/MyPosts/Post/Post"
 import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
 
@@ -29,16 +26,7 @@ const ProfileInfo = props => {
   if (props.profile.photo == null) {
     srcImg = profileImg
   }
-  const onMainPhotoSelected = e => {
-    if (e.target.files.length) {
-      props.savePhoto(e.target.files[0])
-    }
-  }
-  const onSubmit = formData => {
-    props.saveProfileInfo(formData).then(() => {
-      setEditMode(false)
-    })
-  }
+
   return (
     <div className={s.descriptionBlock}>
       <div className={s.topBlock}>
@@ -51,7 +39,7 @@ const ProfileInfo = props => {
                   <Preloader />{" "}
                 </div>
               ) : (
-                <img className={s.ava} src={srcImg} />
+                <img className={s.ava} alt='Avatar' src={srcImg} />
               )}
             </div>
           </div>
@@ -188,16 +176,6 @@ const ProfileInfo = props => {
             detailed information
           </div>
         )}
-        {/* <ProfileDataFormReduxForm
-          initialValues={props.profile}
-          onSubmit={onSubmit}
-          profile={props.profile}
-        /> */}
-        {/* <ProfileData
-          setEditMode={setEditMode}
-          profile={props.profile}
-          isOwner={props.isOwner}
-        /> */}
         <div className={s.discriptionBot}>
           <div className={s.botLeft}>
             <div className={s.numberOfFriends}>120</div>
@@ -209,8 +187,6 @@ const ProfileInfo = props => {
           </div>
           <div className={s.botRight}>заходил час назад</div>
         </div>
-        {/* <div className={s.title} >About me: {props.profile.aboutMe}</div> */}
-        {/* <div className={s.title} >Job: {props.profile.lookingForAJobDescription}</div> */}
       </div>
 
       <div className={s.friendsBlock}>
@@ -223,10 +199,11 @@ const ProfileInfo = props => {
         </div>
         <div className={s.friendsList}>
           {props.friends.map(f => (
-            <NavLink to={"/profile/" + f.id} className={s.friend}>
+            <NavLink to={"/profile/" + f.id} key={f.id} className={s.friend}>
               <div className={s.friendsPhoto}>
                 <img
                   className={s.friendsAva}
+                  alt='friends avatar'
                   src={!f.photo ? profileImg : f.photo}
                 />
               </div>
@@ -328,15 +305,16 @@ const DetailedInfo = props => {
           <div className={s.contactsBlock}>
             {Object.keys(props.profile.contacts).map(key => {
               return (
-                <div>
+                <div key={key}>
                   {!props.profile.contacts[key] ? (
                     <div> </div>
                   ) : (
                     <div className={s.field}>
                       <img
                         className={s.logo}
+                        alt='logo contacts'
                         src={
-                          props.theme == "lightTheme"
+                          props.theme === "lightTheme"
                             ? Icons[key]
                             : IconsWhite[key]
                         }

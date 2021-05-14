@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import p from "./MyPosts.module.css"
 import Post from "./Post/Post"
 import PostCreation from "./PostCreation/PostCreation"
@@ -8,6 +8,7 @@ import CreatePostLight from "./../../../assets/images/edit.png"
 const MyPosts = props => {
   let postElements = props.posts.map(post => (
     <Post
+      key={post.id}
       theme={props.theme}
       profile={props.profile}
       login={props.login}
@@ -26,14 +27,16 @@ const MyPosts = props => {
       {!props.isPostCreation ? (
         <div className={p.PostsBlock}>
           <header className={p.header}>
-            {/* <PostCreation/> */}
             <div className={p.heading}>
               <span>Posts</span>
             </div>
             <div className={p.editBlock}>
               <img
                 className={p.edit}
-                src={props.theme == "lightTheme" ? CreatePostLight : CreatePost}
+                src={
+                  props.theme === "lightTheme" ? CreatePostLight : CreatePost
+                }
+                alt='edit'
                 onClick={() => {
                   props.toggleIsPostCreation(true)
                   props.toggleIsHeaderBlur(true)

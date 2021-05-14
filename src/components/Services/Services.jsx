@@ -14,22 +14,23 @@ const Services = props => {
       <header className={s.header}>
         <span className={s.title}>Services</span>
         <img
+          alt='scan'
           className={s.scan}
-          src={props.theme == "lightTheme" ? ScanLight : Scan}
+          src={props.theme === "lightTheme" ? ScanLight : Scan}
         />
-        <img className={s.search} src={Search} />
+        <img alt='search' className={s.search} src={Search} />
       </header>
       <div className={s.services}>
         <NavLink to={"/users"} className={s.block}>
-          <img className={s.Img} src={Users} />
+          <img alt='users' className={s.Img} src={Users} />
           <div className={s.name}>Users</div>
         </NavLink>
         <NavLink to={"/friends"} className={s.block}>
-          <img className={s.Img} src={Friends} />
+          <img alt='friends' className={s.Img} src={Friends} />
           <div className={s.name}>Friends</div>
         </NavLink>
         <NavLink to={"/settings"} className={s.block}>
-          <img className={s.Img} src={Settings} />
+          <img alt='settings' className={s.Img} src={Settings} />
           <div className={s.name}>Settings</div>
         </NavLink>
       </div>
