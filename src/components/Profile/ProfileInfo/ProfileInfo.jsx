@@ -4,8 +4,10 @@ import s from "./ProfileInfo.module.css"
 import profileImg from "../../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
-import Post from "./../../Posts/MyPosts/Post/Post"
 import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
+
+import p from "./../../Posts/MyPosts/Post/Post.module.css"
+import avaInPosts from "./../../../assets/images/user.png"
 
 const ProfileInfo = props => {
   let [deployed, setdeployed] = useState(false)
@@ -217,17 +219,10 @@ const ProfileInfo = props => {
         <header className={s.header}>
           <div className={s.headerTitle}>LastPost</div>
         </header>
-        <Post
-          theme={props.theme}
-          profile={props.profile}
-          deletePost={props.deletePost}
-          addLike={props.addLike}
-          id={props.lastPost.id}
-          message={props.lastPost.message}
-          like={props.lastPost.like}
-          dislike={props.lastPost.dislike}
-          isDisable={props.lastPost.isDisable}
-        />
+        <div className={s.postBlock} key={props.id}>
+          <div className={s.postTitle}>{props.lastPost.title}</div>
+          <div className={p.postText}>{props.lastPost.message}</div>
+        </div>
       </div>
     </div>
   )

@@ -11,14 +11,7 @@ import CommentsLight from "./../../../../assets/images/commentsLight.png"
 const Post = props => {
   return (
     <div className={p.postBlock} key={props.id}>
-      <div className={p.photoName}>
-        <img
-          className={p.postImg}
-          alt='post'
-          src={!props.profile.photo ? avaInPosts : props.profile.photo}
-        />
-        <span className={p.userName}>{props.profile.fullName}</span>
-      </div>
+      <div className={p.postTitle}>{props.title}</div>
       <div className={p.postText}>{props.message}</div>
       <div className={p.botBlock}>
         <div className={p.leftBlock}>
@@ -53,6 +46,14 @@ const Post = props => {
             )}
             <span>{props.like}</span>
           </div>
+        </div>
+        <div className={p.photoName}>
+          <img
+            className={p.postImg}
+            alt='post'
+            src={!props.profile.photo ? avaInPosts : props.profile.photo}
+          />
+          <span className={p.userName}>{props.profile.fullName}</span>
         </div>
       </div>
     </div>

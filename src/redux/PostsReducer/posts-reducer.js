@@ -7,6 +7,7 @@ let initialState = {
   posts: [
     {
       id: 0,
+      title: "React!",
       message:
         "React изначально был спроектирован так, чтобы его можно было внедрять постепенно. Другими словами, вы можете начать с малого и использовать только ту функциональность React, которая необходима вам в данный момент. Информация в этом разделе будет полезна в любой ситуации: при первом знакомстве с React, при создании простой динамической HTML-страницы и даже при проектировании сложного React-приложения.",
       like: 50,
@@ -15,6 +16,7 @@ let initialState = {
     },
     {
       id: 1,
+      title: "Что то там!",
       message:
         "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
       like: 52,
@@ -32,6 +34,7 @@ const postsReducer = (state = initialState, action) => {
       const newPost = {
         id: state.posts.length,
         message: action.newPostText,
+        title: action.title,
         like: 0,
         dislike: 0,
       }
@@ -75,10 +78,11 @@ const postsReducer = (state = initialState, action) => {
 }
 // Action Creactor
 
-export const addPostActionCreator = newPostText => {
+export const addPostActionCreator = (newPostText, title) => {
   return {
     type: ADD_POST,
     newPostText,
+    title,
   }
 }
 export const addLike = postId => {

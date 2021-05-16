@@ -347,9 +347,9 @@ input[type="file"] {
 }
 .headerTitle {
   align-self: center;
-  justify-self: center;
+  justify-self: start;
+  margin-left: 20px;
   /* font-weight: bold; */
-  font-family: "Ubuntu Condensed", sans-serif;
   font-size: 20px;
   color: var(--fontColor);
 }
@@ -380,6 +380,19 @@ input[type="file"] {
 }
 .deployedBlock {
   justify-self: center;
+}
+.postBlock {
+  /* width: 500px; */
+  display: grid;
+  grid-template-areas: "title" "body";
+  /* grid-row-gap: 10px; */
+  padding: 10px;
+  margin: 0 10px;
+}
+.postTitle {
+  justify-self: center;
+  color: white;
+  font-size: 20px;
 }
 @media (max-width: 750px) {
   .descriptionBlock {

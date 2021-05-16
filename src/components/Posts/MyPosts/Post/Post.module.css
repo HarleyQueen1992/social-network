@@ -2,21 +2,26 @@
   /* width: 500px; */
   display: grid;
   /* grid-template-rows: 50px 30px; */
-  grid-template-areas: "photoName" "body" "likes";
-  grid-row-gap: 20px;
+  grid-template-areas: "title" "body" "bot";
+  /* grid-row-gap: 20px; */
   /* grid-template-rows: minmax(50px, auto) 0%; */
   /* border: 2px solid #138D90; */
   padding: 10px;
   margin-bottom: 10px;
-  margin: 0 10px;
+  margin: 10px 10px;
   border-bottom: 1px solid rgb(49, 49, 49);
 }
-
+.postTitle {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  word-break: break-all;
+}
 .postImg {
-  align-self: stretch;
+  /* align-self: stretch; */
   width: 40px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 50%;
 }
 
 .postText {
@@ -26,19 +31,21 @@
   font-weight: 400;
   word-break: break-all;
   max-width: 100%;
-  padding-top: 10px;
+  padding-top: 20px;
   font-size: 15px;
 }
 
 .photoName {
-  grid-area: photoName;
+  grid-area: right;
+  justify-self: end;
   display: grid;
-  grid-template-columns: 50px auto;
+  grid-column-gap: 5px;
+  grid-template-columns: 40px auto;
 }
 
 .userName {
   align-self: center;
-  font-size: 20px;
+  font-size: 16px;
   color: var(--fontColor);
 }
 
@@ -64,11 +71,12 @@ button {
 }
 
 .botBlock {
-  grid-area: likes;
+  grid-area: bot;
   /* justify-self: end; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 10px;
+  grid-template-areas: "left right";
+  margin-top: 20px;
   margin-left: 10px;
 }
 
@@ -79,6 +87,7 @@ button {
 
 .leftBlock {
   display: grid;
+  grid-area: left;
   grid-column-gap: 5px;
   grid-template-columns: 20px 40px;
 }
@@ -89,9 +98,8 @@ button {
 }
 
 .likeBlock span {
-  align-self: end;
+  align-self: center;
   color: var(--fontColor);
-  margin-bottom: 3px;
 }
 
 .commentsImg {

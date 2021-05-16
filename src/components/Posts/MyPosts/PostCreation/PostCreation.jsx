@@ -8,14 +8,16 @@ import More from "./../../../../assets/images/more.png"
 import Settings from "./../../../../assets/images/settings (1).png"
 
 const PostCreation = props => {
-  let newPostElement = React.createRef()
+  let newPostElementText = React.createRef()
+  let newPostElementTitle = React.createRef()
 
   let addPost = () => {
-    let text = newPostElement.current.value
+    let text = newPostElementText.current.value
+    let title = newPostElementTitle.current.value
     if (text === "") {
       props.toggleIsPostCreation(false)
     } else {
-      props.addPostActionCreator(text)
+      props.addPostActionCreator(text, title)
       props.toggleIsPostCreation(false)
     }
     props.toggleIsHeaderBlur(false)
@@ -41,6 +43,7 @@ const PostCreation = props => {
         <textarea
           maxLength='62'
           className={s.titleField}
+          ref={newPostElementTitle}
           autoFocus
           placeholder='Title'
         ></textarea>
@@ -48,7 +51,7 @@ const PostCreation = props => {
       <div className={s.body}>
         <textarea
           placeholder='Что нового?'
-          ref={newPostElement}
+          ref={newPostElementText}
           className={s.fieldInput}
         ></textarea>
       </div>

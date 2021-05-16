@@ -19,6 +19,7 @@ const MyPosts = props => {
       like={post.like}
       dislike={post.dislike}
       isDisable={post.isDisable}
+      title={post.title}
     />
   ))
 
