@@ -5,6 +5,7 @@ import profileImg from "../../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
+import Post from "./../../Posts/MyPosts/Post/Post"
 
 import p from "./../../Posts/MyPosts/Post/Post.module.css"
 import avaInPosts from "./../../../assets/images/user.png"
@@ -32,20 +33,47 @@ const ProfileInfo = props => {
   return (
     <div className={s.descriptionBlock}>
       <div className={s.topBlock}>
-        <div className={s.avatar}>
-          <div className={s.topDescriptionLeft}>
-            <div>
-              {props.isSavingPhoto ? (
-                <div className={s.preloader}>
-                  {" "}
-                  <Preloader />{" "}
-                </div>
-              ) : (
-                <img className={s.ava} alt='Avatar' src={srcImg} />
-              )}
+        <div className={s.avaFollowed}>
+          <div className={s.avatar}>
+            <div className={s.topDescriptionLeft}>
+              <div>
+                {props.isSavingPhoto ? (
+                  <div className={s.preloader}>
+                    {" "}
+                    <Preloader />{" "}
+                  </div>
+                ) : (
+                  <img className={s.ava} alt='Avatar' src={srcImg} />
+                )}
+              </div>
             </div>
           </div>
+
+          {props.isOwner || (
+            <div className={s.followedBlock}>
+              {props.isFollow === true ? (
+                <button
+                  onClick={() => {
+                    props.unfollow(props.profile.userId)
+                  }}
+                  className={s.followBut}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    props.follow(props.profile.userId)
+                  }}
+                  className={s.followBut}
+                >
+                  Follow
+                </button>
+              )}
+            </div>
+          )}
         </div>
+
         <div className={s.rightTopDescription}>
           <div className={s.topName}>{props.profile.fullName}</div>
           <div className={s.centerStatus}>
@@ -113,8 +141,8 @@ const ProfileInfo = props => {
             )}
           </div>
         )}
-        {props.isOwner ? (
-          !editMode ? (
+        {props.isOwner &&
+          (!editMode ? (
             <div className={s.editBlock}>
               <label
                 className={s.edit}
@@ -136,13 +164,7 @@ const ProfileInfo = props => {
                 <span>Save</span>
               </label>
             </div>
-          )
-        ) : (
-          <div></div>
-        )}
-        {/* <div className={s.edit} >
-                        <span>Edit</span>
-                    </div> */}
+          ))}
       </div>
 
       <div className={s.description}>
@@ -219,10 +241,19 @@ const ProfileInfo = props => {
         <header className={s.header}>
           <div className={s.headerTitle}>LastPost</div>
         </header>
-        <div className={s.postBlock} key={props.id}>
-          <div className={s.postTitle}>{props.lastPost.title}</div>
-          <div className={p.postText}>{props.lastPost.message}</div>
-        </div>
+        <Post
+          key={props.lastPost.id}
+          theme={props.theme}
+          profile={props.profile}
+          deletePost={props.deletePost}
+          addLike={props.addLike}
+          id={props.lastPost.id}
+          title={props.lastPost.title}
+          message={props.lastPost.message}
+          like={props.lastPost.like}
+          dislike={props.lastPost.dislike}
+          isDisable={props.lastPost.isDisable}
+        />
       </div>
     </div>
   )

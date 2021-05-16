@@ -16,7 +16,7 @@ let initialState = {
     },
     {
       id: 1,
-      title: "Что то там!",
+      title: "Redux!",
       message:
         "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
       like: 52,

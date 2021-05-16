@@ -134,6 +134,12 @@
 }
 
 .followed {
+  display: none;
+  width: 100%;
+  justify-self: center;
+  align-self: end;
+}
+.followedBlock {
   width: 100%;
   justify-self: center;
   align-self: end;
@@ -147,6 +153,7 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 17px;
+  border-radius: 5px;
   color: var(--fontColor);
 }
 .followBut:hover {
@@ -573,9 +580,13 @@ input[type="file"] {
     border-radius: 50%;
   }
   .followed {
+    display: grid;
     grid-area: edit;
     height: 100%;
     width: 100%;
+  }
+  .followedBlock {
+    display: none;
   }
   .followBut {
     height: 100%;

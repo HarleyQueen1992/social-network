@@ -218,7 +218,7 @@ button:disabled {
     display: grid;
     grid-template-areas: "name country" "status city";
     grid-template-columns: 66% 30%;
-    grid-template-rows: 45% 60%;
+    grid-template-rows: 60% 40%;
   }
   .status {
     display: block;

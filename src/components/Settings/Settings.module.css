@@ -6,7 +6,6 @@
   grid-row-gap: 20px;
   /* height: 100vh; */
   box-sizing: border-box;
-  margin-bottom: 60px;
 }
 
 .header {
@@ -85,7 +84,7 @@ input[type="file"] {
 .label {
   justify-self: end;
   box-sizing: border-box;
-  background-color: var(--swithThemeBac);
+  background-color: var(--bacInputForm);
   border-radius: 50px;
   cursor: pointer;
   display: flex;
@@ -139,5 +138,6 @@ input[type="file"] {
   .settingsBlock {
     width: 100vw;
     padding: 0 20px;
+    margin-bottom: 60px;
   }
 }
