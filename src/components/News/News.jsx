@@ -23,6 +23,7 @@ const News = props => {
             deletePost={props.deletePost}
             addLike={props.addLike}
             id={post.id}
+            title={post.title}
             message={post.message}
             like={post.like}
             dislike={post.dislike}
