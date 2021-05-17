@@ -47,6 +47,7 @@ const MyPosts = props => {
         </div>
       ) : (
         <PostCreation
+          theme={props.theme}
           toggleIsHeaderBlur={props.toggleIsHeaderBlur}
           addPostActionCreator={props.addPostActionCreator}
           toggleIsPostCreation={props.toggleIsPostCreation}

@@ -9,10 +9,10 @@
   padding: 10px;
   margin-bottom: 10px;
   margin: 10px 10px;
-  border-bottom: 1px solid rgb(49, 49, 49);
+  border-bottom: 1px solid var(--BorderBottom);
 }
 .postTitle {
-  color: white;
+  color: var(--fontColor);
   font-size: 20px;
   text-align: center;
   word-break: break-all;

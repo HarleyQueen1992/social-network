@@ -1,13 +1,34 @@
 import React from "react"
 import s from "./PostCreation.module.css"
-import Obelus from "./../../../../assets/images/obelus.png"
-import save from "./../../../../assets/images/save.png"
+import Obelus from "./../../../../assets/images/obelusW.png"
+import save from "./../../../../assets/images/saveW.png"
 import Music from "./../../../../assets/images/music.png"
+import MusicW from "./../../../../assets/images/musicW.png"
 import Gallery from "./../../../../assets/images/gallery.png"
 import More from "./../../../../assets/images/more.png"
 import Settings from "./../../../../assets/images/settings (1).png"
+import GalleryW from "./../../../../assets/images/galleryW.png"
+import MoreW from "./../../../../assets/images/moreW.png"
+import SettingsW from "./../../../../assets/images/settings (1)W.png"
 
 const PostCreation = props => {
+  let music
+  let more
+  let settings
+  let gallery
+
+  if (props.theme != "lightTheme") {
+    music = MusicW
+    more = MoreW
+    settings = SettingsW
+    gallery = GalleryW
+  } else {
+    music = Music
+    more = More
+    settings = Settings
+    gallery = Gallery
+  }
+
   let newPostElementText = React.createRef()
   let newPostElementTitle = React.createRef()
 
@@ -57,17 +78,17 @@ const PostCreation = props => {
       </div>
       <div className={s.bot}>
         <div>
-          <img src={Gallery} alt='gallery' />
+          <img src={gallery} alt='gallery' />
         </div>
         <div className={s.musicBlock}>
-          <img className={s.music} alt='music' src={Music} />
+          <img className={s.music} alt='music' src={music} />
         </div>
         <div>
-          <img alt='more' src={More} />
+          <img alt='more' src={more} />
         </div>
         <div />
         <div>
-          <img alt='settings' src={Settings} />
+          <img alt='settings' src={settings} />
         </div>
       </div>
     </div>
