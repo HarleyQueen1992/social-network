@@ -10,10 +10,13 @@
 
 .header {
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 60px 1fr 30px;
   border-bottom: 1px solid var(--BorderBottom);
 }
-
+.preloader {
+  align-self: end;
+  margin-bottom: 5px;
+}
 /*! GeneralSettings */
 
 .generalBlock {
