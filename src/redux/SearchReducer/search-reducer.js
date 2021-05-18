@@ -86,12 +86,15 @@ export const setIsFatching = isReceipt => ({
 // ? Thunk Creator
 
 export const requestForUsers = (term, currentPage) => async dispatch => {
-  dispatch(setIsFatching(true))
+  if (currentPage === 1) {
+    dispatch(setIsFatching(true))
+  }
   let response = await usersAPI.searchUsers(term, currentPage)
 
   dispatch(toggleIsFatchingSearch(false))
   dispatch(setUsers(response.items))
   dispatch(setTotalUsersCount(response.totalCount))
+
   if (initialState.usersSearch.length < response.totalCount) {
     dispatch(setCurrentPage(currentPage + 1))
   }
@@ -99,7 +102,9 @@ export const requestForUsers = (term, currentPage) => async dispatch => {
 }
 
 export const requestForFriends = (term, currentPage) => async dispatch => {
-  dispatch(setIsFatching(true))
+  if (currentPage === 1) {
+    dispatch(setIsFatching(true))
+  }
   let response = await usersAPI.searchFriends(term, currentPage)
   dispatch(toggleIsFatchingSearch(false))
   dispatch(setUsers(response.items))

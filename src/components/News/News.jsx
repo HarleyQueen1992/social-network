@@ -17,6 +17,7 @@ const News = props => {
       <div className={s.news}>
         {props.posts.map(post => (
           <Post
+            border={true}
             key={post.id}
             theme={props.theme}
             profile={{ fullName: "Artem", photo: null }}

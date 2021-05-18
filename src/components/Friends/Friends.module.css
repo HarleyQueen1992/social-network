@@ -138,8 +138,8 @@
   }
   .friend {
     grid-template-rows: 70px;
-    grid-template-columns: 70px 245px;
-    margin-bottom: 10px;
+    grid-template-columns: 80px 235px;
+    margin-bottom: 15px;
     grid-column-gap: 0;
   }
   .photo {

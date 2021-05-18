@@ -164,7 +164,9 @@ export const toggleFollowingProgress = (isFatching, userId) => ({
 //!Thunk Creater
 
 export const requestUsers = currentPage => async dispatch => {
-  dispatch(toggleIsFetching(true))
+  if (currentPage === 1) {
+    dispatch(toggleIsFetching(true))
+  }
   let data = await usersAPI.getUsers(currentPage, initialState.pageSize)
   dispatch(toggleIsFatching(false))
   dispatch(setUsers(data.items))

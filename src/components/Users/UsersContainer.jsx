@@ -38,9 +38,9 @@ import {
 import Preloader from "../common/Preloader/Preloader"
 class UsersC extends React.Component {
   componentDidMount() {
-    if (this.props.isFatching) {
-      this.props.requestUsers(this.props.currentPage)
-    }
+    // if (this.props.isFatching) {
+    this.props.requestUsers(this.props.currentPage)
+    // }
   }
   handleChange = event => {
     if (event.target.value === "" && this.props.value.length === 1) {
@@ -56,10 +56,18 @@ class UsersC extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.isFatchingSearch && this.props.value !== "") {
+    if (
+      this.props.isFatchingSearch &&
+      this.props.value !== "" &&
+      !this.props.isReceipt
+    ) {
       this.props.requestForUsers(this.props.value, this.props.currentPageSearch)
     }
-    if (this.props.isFatching && this.props.value === "") {
+    if (
+      this.props.isFatching &&
+      this.props.value === "" &&
+      !this.props.isFetching
+    ) {
       this.props.requestUsers(this.props.currentPage)
     }
   }
@@ -80,6 +88,7 @@ class UsersC extends React.Component {
             pageSize={this.props.pageSize}
             users={this.props.users}
             follow={this.props.follow}
+            isFatching={this.props.isFatching}
             unfollow={this.props.unfollow}
             onPageChenged={this.onPageChenged}
             increasePageNumber={this.increasePageNumber}

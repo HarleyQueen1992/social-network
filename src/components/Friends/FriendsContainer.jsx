@@ -50,13 +50,21 @@ class FriendsContainer extends React.Component {
     }
   }
   componentDidUpdate() {
-    if (this.props.isFatchingSearch && this.props.value !== "") {
+    if (
+      this.props.isFatchingSearch &&
+      this.props.value !== "" &&
+      !this.props.isReceipt
+    ) {
       this.props.requestForFriends(
         this.props.value,
         this.props.currentPageSearch
       )
     }
-    if (this.props.isFatching && this.props.value === "") {
+    if (
+      this.props.isFatching &&
+      this.props.value === "" &&
+      !this.props.isFetching
+    ) {
       this.props.requestFriends(this.props.currentPage)
     }
   }
@@ -74,7 +82,7 @@ class FriendsContainer extends React.Component {
         ) : (
           <Friends
             friends={this.props.friends}
-            // isFatching={this.props.isFatching}
+            isFatching={this.props.isFatching}
             totalFriendsCount={this.props.totalFriendsCount}
             toggleIsFatching={this.props.toggleIsFatching}
             handleChange={this.handleChange}

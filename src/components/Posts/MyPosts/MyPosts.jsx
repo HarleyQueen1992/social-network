@@ -8,6 +8,7 @@ import CreatePostLight from "./../../../assets/images/edit.png"
 const MyPosts = props => {
   let postElements = props.posts.map(post => (
     <Post
+      border={true}
       key={post.id}
       theme={props.theme}
       profile={props.profile}

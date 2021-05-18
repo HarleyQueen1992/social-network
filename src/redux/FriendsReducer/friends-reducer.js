@@ -106,7 +106,10 @@ export const earlyPage = () => ({ type: EARLY_PAGE })
 // Thunk Creator
 export const requestFriends = currentPage => {
   return dispatch => {
-    dispatch(toggleIsFetching(true))
+    if (currentPage === 1) {
+      dispatch(toggleIsFetching(true))
+    }
+
     // dispatch(toggleIsFatching(true))
     friendsAPI.getFriends(currentPage, initialState.pageSize).then(data => {
       dispatch(toggleIsFatching(false))

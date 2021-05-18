@@ -9,6 +9,8 @@
   padding: 10px;
   margin-bottom: 10px;
   margin: 10px 10px;
+}
+.border {
   border-bottom: 1px solid var(--BorderBottom);
 }
 .postTitle {
