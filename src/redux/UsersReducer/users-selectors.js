@@ -19,6 +19,9 @@ export const getTotalUsersCount = state => {
 export const getIsFatching = state => {
   return state.usersPage.isFatching
 }
+export const getIsFetching = state => {
+  return state.usersPage.isFetching
+}
 export const getFollowingInProgress = state => {
   return state.usersPage.followingInProgress
 }

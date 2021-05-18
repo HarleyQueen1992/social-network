@@ -4,6 +4,9 @@ export const getFriends = state => {
 export const getIsFatching = state => {
   return state.friendsPage.isFatching
 }
+export const getIsFetching = state => {
+  return state.friendsPage.isFetching
+}
 export const getPageSize = state => {
   return state.friendsPage.pageSize
 }

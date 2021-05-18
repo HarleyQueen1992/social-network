@@ -33,7 +33,9 @@ import {
   getTotalUsersCount,
   getIsFatching,
   getFollowingInProgress,
+  getIsFetching,
 } from "../../redux/UsersReducer/users-selectors"
+import Preloader from "../common/Preloader/Preloader"
 class UsersC extends React.Component {
   componentDidMount() {
     if (this.props.isFatching) {
@@ -69,27 +71,31 @@ class UsersC extends React.Component {
   render() {
     return (
       <>
-        <Users
-          totalUsersCount={this.props.totalUsersCount}
-          currentPage={this.props.currentPage}
-          pageSize={this.props.pageSize}
-          users={this.props.users}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
-          onPageChenged={this.onPageChenged}
-          increasePageNumber={this.increasePageNumber}
-          earlyPageNumber={this.earlyPageNumber}
-          toggleIsFatching={this.props.toggleIsFatching}
-          followingInProgress={this.props.followingInProgress}
-          toggleFollowingProgress={this.props.toggleFollowingProgress}
-          scrollHandler={this.props.scrollHandler}
-          handleChange={this.handleChange}
-          value={this.props.value}
-          usersSearch={this.props.usersSearch}
-          totalUsersCountSearch={this.props.totalUsersCountSearch}
-          toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
-          isReceipt={this.props.isReceipt}
-        />
+        {this.props.isFetching ? (
+          <Preloader />
+        ) : (
+          <Users
+            totalUsersCount={this.props.totalUsersCount}
+            currentPage={this.props.currentPage}
+            pageSize={this.props.pageSize}
+            users={this.props.users}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
+            onPageChenged={this.onPageChenged}
+            increasePageNumber={this.increasePageNumber}
+            earlyPageNumber={this.earlyPageNumber}
+            toggleIsFatching={this.props.toggleIsFatching}
+            followingInProgress={this.props.followingInProgress}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            scrollHandler={this.props.scrollHandler}
+            handleChange={this.handleChange}
+            value={this.props.value}
+            usersSearch={this.props.usersSearch}
+            totalUsersCountSearch={this.props.totalUsersCountSearch}
+            toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
+            isReceipt={this.props.isReceipt}
+          />
+        )}
       </>
     )
   }
@@ -104,6 +110,7 @@ let mapStateToProps = state => {
     totalUsersCount: getTotalUsersCount(state),
     totalUsersCountSearch: getTotalUsersCountSearch(state),
     isFatching: getIsFatching(state),
+    isFetching: getIsFetching(state),
     followingInProgress: getFollowingInProgress(state),
     value: getValue(state),
     usersSearch: getUsersSearch(state),

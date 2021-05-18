@@ -1,8 +1,10 @@
 import { friendsAPI } from "../../API/api"
+// import { toggleIsFetching } from "../AppReducer/app-reducer"
 const SET_FRIENDS = "app/friends-reducer/SET_FRIENDS"
 const SET_CURRENT_PAGE_FRIEND = "app/friends-reducer/SET_CURRENT_PAGE_FRIEND"
 const SET_TOTAL_FRIENDS_COUNT = "app/friends-reducer/SET_TOTAL_FRIENDS_COUNT"
 const TOGGLE_IS_FATCHING = "app/friends-reducer/TOGGLE_IS_FATCHING"
+const TOGGLE_IS_FETCHING = "app/friends-reducer/TOGGLE_IS_FETCHING"
 const NEXT_PAGE = "app/friends-reducer/NEXT_PAGE"
 const EARLY_PAGE = "app/friends-reducer/EARLY_PAGE"
 const SET_ALL_FRIENDS = "app/friends-reducer/SET_ALL_FRIENDS"
@@ -14,6 +16,7 @@ let initialState = {
   totalFriendsCount: 20,
   currentPage: 1,
   isFatching: true,
+  isFetching: false,
 }
 const friendsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -40,6 +43,12 @@ const friendsReducer = (state = initialState, action) => {
       return {
         ...state,
         isFatching: action.isFatching,
+      }
+    }
+    case TOGGLE_IS_FETCHING: {
+      return {
+        ...state,
+        isFetching: action.isFetching,
       }
     }
     case NEXT_PAGE: {
@@ -83,6 +92,11 @@ export const toggleIsFatching = isFatching => ({
   type: TOGGLE_IS_FATCHING,
   isFatching,
 })
+
+export const toggleIsFetching = isFetching => ({
+  type: TOGGLE_IS_FETCHING,
+  isFetching,
+})
 export const setAllFriends = friends => ({ type: SET_ALL_FRIENDS, friends })
 
 export const nextPage = () => ({ type: NEXT_PAGE })
@@ -92,12 +106,14 @@ export const earlyPage = () => ({ type: EARLY_PAGE })
 // Thunk Creator
 export const requestFriends = currentPage => {
   return dispatch => {
+    dispatch(toggleIsFetching(true))
     // dispatch(toggleIsFatching(true))
     friendsAPI.getFriends(currentPage, initialState.pageSize).then(data => {
       dispatch(toggleIsFatching(false))
       dispatch(setFriends(data.data.items))
       dispatch(setCurrentPage(currentPage + 1))
       dispatch(setFriendsTotalCount(data.data.totalCount))
+      dispatch(toggleIsFetching(false))
     })
   }
 }

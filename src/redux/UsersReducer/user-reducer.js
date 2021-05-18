@@ -1,4 +1,5 @@
 import { usersAPI, followAPI } from "../../API/api"
+// import { toggleIsFetching } from "../AppReducer/app-reducer"
 import { toggleIsFollow } from "../ProfileReducer/profile-reducer"
 const FOLLOW = "app/user-reducer/FOLLOW"
 const UNFOLLOW = "app/user-reducer/UNFOLLOW"
@@ -14,6 +15,7 @@ const SET_SEARCH_USERS = "app/user-reducer/SET_SEARCH_USERS"
 const SET_VALUE = "app/user-reducer/SET_VALUE"
 const CLEAR_VALUE = "app/user-reducer/CLEAR_VALUE"
 const SET_WINDOW_MODE = "app/user-reducer/SET_WINDOW_MODE"
+const TOGGLE_IS_FETCHING = "app/user-reducer/TOGGLE_IS_FETCHING"
 
 let initialState = {
   users: [],
@@ -21,6 +23,7 @@ let initialState = {
   totalUsersCount: 20,
   currentPage: 1,
   isFatching: true,
+  isFetching: false,
   followingInProgress: [],
   value: "",
 }
@@ -91,6 +94,12 @@ const usersReducer = (state = initialState, action) => {
         isFatching: action.isFatching,
       }
     }
+    case TOGGLE_IS_FETCHING: {
+      return {
+        ...state,
+        isFetching: action.isFetching,
+      }
+    }
     case TOGGLE_IS_FOLLOWING_PROGRESS: {
       return {
         ...state,
@@ -141,6 +150,11 @@ export const toggleIsFatching = isFatching => ({
   isFatching,
 })
 
+export const toggleIsFetching = isFetching => ({
+  type: TOGGLE_IS_FETCHING,
+  isFetching,
+})
+
 export const toggleFollowingProgress = (isFatching, userId) => ({
   type: TOGGLE_IS_FOLLOWING_PROGRESS,
   isFatching,
@@ -150,12 +164,13 @@ export const toggleFollowingProgress = (isFatching, userId) => ({
 //!Thunk Creater
 
 export const requestUsers = currentPage => async dispatch => {
-  // dispatch(toggleIsFatching(true))
+  dispatch(toggleIsFetching(true))
   let data = await usersAPI.getUsers(currentPage, initialState.pageSize)
   dispatch(toggleIsFatching(false))
   dispatch(setUsers(data.items))
   dispatch(setCurrentPage(currentPage + 1))
   dispatch(setUsersTotalCount(data.totalCount))
+  dispatch(toggleIsFetching(false))
 }
 
 export const follow = userId => {

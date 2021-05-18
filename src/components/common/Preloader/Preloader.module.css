@@ -1,8 +1,19 @@
-.preloader {
-    text-align: center;
-    margin-top: 300px;
-}
+/* .preloader {
+  height: 100vh;
+  position: relative;
+} */
 
 .preloader img {
-    height: 100px;
+  height: 100px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+@media (max-width: 480px) {
+  .preloader img {
+    bottom: 60px;
+  }
 }

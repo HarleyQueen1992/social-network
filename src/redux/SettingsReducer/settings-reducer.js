@@ -1,6 +1,7 @@
 import { profileAPI } from "../../API/api"
 import { stopSubmit } from "redux-form"
 import { savePhotoSuccess } from "./../ProfileReducer/profile-reducer"
+// import { toggleIsFetching } from "./../AppReducer/app-reducer"
 const SET_PROFILE_DATA = "app/settings-reducer/SET_PROFILE_DATA"
 const SET_PROFILE_PHOTO = "app/settings-reducer/SET_PROFILE_PHOTO"
 const SAVE_PROFILE_SUCCESS = "app/settings-reducer/SAVE_PROFILE_SUCCESS"

@@ -1,4 +1,5 @@
 import { profileAPI, followAPI } from "../../API/api"
+import { toggleIsFetching } from "../AppReducer/app-reducer"
 import { getTheLastPost } from "./../PostsReducer/posts-reducer"
 const SET_USER_PROFILE = "app/profile-reducer/SET_USER_PROFILE"
 const SET_STATUS = "app/profile-reducer/SET_STATUS"
@@ -91,12 +92,14 @@ export const setStatus = status => {
 
 export const getUserProfile = userId => async dispatch => {
   dispatch(toggleIsFatching(true))
+  // dispatch(toggleIsFetching(true))
   let response = await profileAPI.getProfile(userId)
   dispatch(setUserProfile(response.data))
   let resp = await profileAPI.getStatus(userId)
   dispatch(setStatus(resp.data))
   dispatch(getTheLastPost())
   dispatch(toggleIsFatching(false))
+  // dispatch(toggleIsFetching(false))
 }
 
 // export const requestStatus = (userId) => async(dispatch) => {

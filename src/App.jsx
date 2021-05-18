@@ -20,13 +20,11 @@ import {
 import Preloader from "./components/common/Preloader/Preloader"
 import {
   getInitialized,
-  getIsPostCreation,
   getTheme,
   getHeaderBlur,
   getInnerHeight,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
-import { addPostActionCreator } from "./redux/ProfileReducer/profile-reducer"
 import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
 import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
 import ServicesContainer from "./components/Services/ServicesContainer"
@@ -56,26 +54,31 @@ class App extends React.Component {
       )
     } else {
       return (
-        <div className='app-wrapper'>
-          {!this.props.headerBlur && <Header />}
-          <Navbar />
+        <>
+          <div className='app-wrapper'>
+            {!this.props.headerBlur && <Header />}
+            <Navbar />
+            {/* {this.props.isFetching ? (
+              <Preloader />
+            ) : ( */}
+            <div className='app-wrapper-content'>
+              <Route
+                path='/profile/:userid?'
+                render={() => <ProfileContainer />}
+              />
 
-          <div className='app-wrapper-content'>
-            <Route
-              path='/profile/:userid?'
-              render={() => <ProfileContainer />}
-            />
-
-            <Route path='/login' render={() => <Login />} />
-            <Route path='/settings' render={() => <SettingsContainer />} />
-            <Route path='/friends' render={() => <FriendsContainer />} />
-            <Route path='/users' render={() => <UsersContainer />} />
-            <Route path='/posts' render={() => <MyPostsContainer />} />
-            <Route path='/services' render={() => <ServicesContainer />} />
-            <Route path='/news' render={() => <NewsContainer />} />
-            <Route path='/' exact render={() => <ProfileContainer />} />
+              <Route path='/login' render={() => <Login />} />
+              <Route path='/settings' render={() => <SettingsContainer />} />
+              <Route path='/friends' render={() => <FriendsContainer />} />
+              <Route path='/users' render={() => <UsersContainer />} />
+              <Route path='/posts' render={() => <MyPostsContainer />} />
+              <Route path='/services' render={() => <ServicesContainer />} />
+              <Route path='/news' render={() => <NewsContainer />} />
+              <Route path='/' exact render={() => <ProfileContainer />} />
+            </div>
+            {/* )} */}
           </div>
-        </div>
+        </>
       )
     }
   }

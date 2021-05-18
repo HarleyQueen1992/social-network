@@ -17,6 +17,7 @@ import {
   getCurrentPage,
   getFriends,
   getIsFatching,
+  getIsFetching,
   getPageSize,
   getTotalFriendsCount,
 } from "../../redux/FriendsReducer/friends-selectors"
@@ -28,6 +29,7 @@ import {
   getUsersSearch,
   getValue,
 } from "../../redux/SearchReducer/search-selectors"
+import Preloader from "../common/Preloader/Preloader"
 
 class FriendsContainer extends React.Component {
   componentDidMount() {
@@ -66,19 +68,24 @@ class FriendsContainer extends React.Component {
   render() {
     return (
       <>
-        <Friends
-          friends={this.props.friends}
-          isFatching={this.props.isFatching}
-          totalFriendsCount={this.props.totalFriendsCount}
-          toggleIsFatching={this.props.toggleIsFatching}
-          handleChange={this.handleChange}
-          value={this.props.value}
-          friendsSearch={this.props.friendsSearch}
-          isFatchingSearch={this.props.isFatchingSearch}
-          totalFriendsCountSearch={this.props.totalFriendsCountSearch}
-          toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
-          isReceipt={this.props.isReceipt}
-        />
+        {" "}
+        {this.props.isFetching ? (
+          <Preloader />
+        ) : (
+          <Friends
+            friends={this.props.friends}
+            // isFatching={this.props.isFatching}
+            totalFriendsCount={this.props.totalFriendsCount}
+            toggleIsFatching={this.props.toggleIsFatching}
+            handleChange={this.handleChange}
+            value={this.props.value}
+            friendsSearch={this.props.friendsSearch}
+            isFatchingSearch={this.props.isFatchingSearch}
+            totalFriendsCountSearch={this.props.totalFriendsCountSearch}
+            toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
+            isReceipt={this.props.isReceipt}
+          />
+        )}
       </>
     )
   }
@@ -88,6 +95,7 @@ let mapStateToProps = state => {
   return {
     friends: getFriends(state),
     isFatching: getIsFatching(state),
+    isFetching: getIsFetching(state),
     pageSize: getPageSize(state),
     totalFriendsCount: getTotalFriendsCount(state),
     currentPage: getCurrentPage(state),
