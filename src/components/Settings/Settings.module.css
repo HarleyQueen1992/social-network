@@ -60,14 +60,22 @@
   grid-template-columns: auto 1fr;
 }
 .changeLabel {
+  width: 34px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
   position: relative;
+  justify-self: end;
+  display: grid;
+}
+.changeLabel span {
+  position: absolute;
   height: 4px;
   width: 4px;
-  top: 0%;
+  right: 12px;
   border: 2px solid var(--fontColor);
   border-radius: 50%;
   align-self: center;
-  justify-self: end;
   cursor: pointer;
 }
 .changeLabel:after {
@@ -75,24 +83,23 @@
   content: "";
   height: 4px;
   width: 4px;
-  top: -40%;
-  right: 9px;
+  /* top: -40%; */
+  right: 0;
   border: 2px solid var(--fontColor);
   border-radius: 50%;
-  justify-self: end;
   align-self: center;
   cursor: pointer;
 }
 .changeLabel:before {
   position: absolute;
   content: "";
-  top: -40%;
-  right: 20px;
+  /* top: -40%; */
+  right: 25px;
   height: 4px;
   width: 4px;
   border: 2px solid var(--fontColor);
+  align-self: center;
   border-radius: 50%;
-  justify-self: end;
   cursor: pointer;
 }
 input[type="file"] {
@@ -174,7 +181,7 @@ input[type="file"] {
 @media (max-width: 480px) {
   .settingsBlock {
     width: 100vw;
-    padding: 0 20px;
+    padding: 0 10px;
     margin-bottom: 60px;
   }
 }
