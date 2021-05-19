@@ -7,9 +7,6 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
 import Post from "./../../Posts/MyPosts/Post/Post"
 
-import p from "./../../Posts/MyPosts/Post/Post.module.css"
-import avaInPosts from "./../../../assets/images/user.png"
-
 const ProfileInfo = props => {
   let [deployed, setdeployed] = useState(false)
   let [editMode, setEditMode] = useState(false)
@@ -260,6 +257,12 @@ const ProfileInfo = props => {
 }
 
 const DetailedInfo = props => {
+  let contacts = 0
+  Object.keys(props.profile.contacts).map(key => {
+    if (props.profile.contacts[key] === null) {
+      contacts += 1
+    }
+  })
   return (
     <div className={s.descriptionCenter}>
       <div>
@@ -278,50 +281,53 @@ const DetailedInfo = props => {
             {props.profile.lookingForAJob ? "yes" : "no"}{" "}
           </span>
         </div>
-        {props.profile.lookingForAJobDescription !== "" && (
-          <div className={s.detailedInformationCenter}>
-            <span className={s.titleInfo}>My professional skills:</span>
-            <span className={s.infoText}>
-              {props.profile.lookingForAJobDescription}
-            </span>
+        {props.profile.lookingForAJobDescription !== "" ||
+          (props.profile.lookingForAJobDescription !== null && (
+            <div className={s.detailedInformationCenter}>
+              <span className={s.titleInfo}>My professional skills:</span>
+              <span className={s.infoText}>
+                {props.profile.lookingForAJobDescription}
+              </span>
+            </div>
+          ))}
+        {contacts !== 8 && (
+          <div className={s.detailedInformationBot}>
+            <span className={s.titleInfo}>Contacts:</span>
+            <div className={s.contactsBlock}>
+              {Object.keys(props.profile.contacts).map(key => {
+                return (
+                  <div key={key}>
+                    {!props.profile.contacts[key] ? (
+                      <div> </div>
+                    ) : (
+                      <div className={s.field}>
+                        <img
+                          className={s.logo}
+                          alt='logo contacts'
+                          src={
+                            props.theme == "lightTheme"
+                              ? Icons[key]
+                              : IconsWhite[key]
+                          }
+                        />
+                        <div>
+                          <span className={s.titleField}>{key} : </span>
+
+                          <a
+                            className={s.linkField}
+                            href={props.profile.contacts[key]}
+                          >
+                            {props.profile.contacts[key]}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
           </div>
         )}
-        <div className={s.detailedInformationBot}>
-          <span className={s.titleInfo}>Contacts:</span>
-          <div className={s.contactsBlock}>
-            {Object.keys(props.profile.contacts).map(key => {
-              return (
-                <div key={key}>
-                  {!props.profile.contacts[key] ? (
-                    <div> </div>
-                  ) : (
-                    <div className={s.field}>
-                      <img
-                        className={s.logo}
-                        alt='logo contacts'
-                        src={
-                          props.theme == "lightTheme"
-                            ? Icons[key]
-                            : IconsWhite[key]
-                        }
-                      />
-                      <div>
-                        <span className={s.titleField}>{key} : </span>
-
-                        <a
-                          className={s.linkField}
-                          href={props.profile.contacts[key]}
-                        >
-                          {props.profile.contacts[key]}
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
       </div>
     </div>
   )
