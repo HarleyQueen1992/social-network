@@ -116,8 +116,8 @@
 }
 
 .writeMessage :hover {
-  font-size: 14px;
-  color: rgb(161, 161, 161);
+  /* border-bottom: 1px solid gray; */
+  color: rgb(201, 201, 201);
 }
 
 @media (max-width: 600px) {

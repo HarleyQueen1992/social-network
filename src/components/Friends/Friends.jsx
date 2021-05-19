@@ -74,7 +74,7 @@ const Friends = props => {
               <div className={s.rightPart}>
                 <span className={s.name}>{f.name}</span>
                 <span className={s.writeMessage}>
-                  <span>to write a message</span>
+                  <span>view posts</span>
                 </span>
               </div>
             </div>
