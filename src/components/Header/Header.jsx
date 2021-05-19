@@ -22,30 +22,22 @@ const Header = props => {
   return (
     <div className={h.header + " " + (headerBlur ? h.active : "")}>
       <div className={h.navHead}>
-        <div className={h.headItem}>
-          <NavLink className={h.linkBlock} to={"/news"}>
-            <img alt='news' className={h.imgNews} src={News} />
-            <span className={h.headName}>News</span>
-          </NavLink>
-        </div>
-        <div className={h.headItem}>
-          <NavLink className={h.linkBlock} to={"/services"}>
-            <img alt='services' className={h.imgServices} src={Services} />
-            <span className={h.headName}>Services</span>
-          </NavLink>
-        </div>
-        <div className={h.headItem}>
-          <NavLink className={h.linkBlock} to={"/posts"}>
-            <img alt='posts' className={h.imgPosts} src={Posts} />
-            <span className={h.headName}>Posts</span>
-          </NavLink>
-        </div>
-        <div className={h.headItem}>
-          <NavLink className={h.linkBlock} to={"/profile"}>
-            <img alt='profile' className={h.imgProfile} src={Profile} />
-            <span className={h.headName}>Profile</span>
-          </NavLink>
-        </div>
+        <NavLink className={h.linkBlock} to={"/news"}>
+          <img alt='news' className={h.imgNews} src={News} />
+          <span className={h.headName}>News</span>
+        </NavLink>
+        <NavLink className={h.linkBlock} to={"/services"}>
+          <img alt='services' className={h.imgServices} src={Services} />
+          <span className={h.headName}>Services</span>
+        </NavLink>
+        <NavLink className={h.linkBlock} to={"/posts"}>
+          <img alt='posts' className={h.imgPosts} src={Posts} />
+          <span className={h.headName}>Posts</span>
+        </NavLink>
+        <NavLink className={h.linkBlock} to={"/profile"}>
+          <img alt='profile' className={h.imgProfile} src={Profile} />
+          <span className={h.headName}>Profile</span>
+        </NavLink>
       </div>
     </div>
   )

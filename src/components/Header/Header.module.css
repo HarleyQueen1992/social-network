@@ -76,9 +76,34 @@
   color: var(--colorDeteilInfo);
 }
 
-.headItem {
+.linkBlock {
+  position: relative;
+  display: grid;
+  text-decoration: none;
+  transition-duration: 0.4s;
   height: 100%;
   width: 100%;
+}
+.linkBlock:after {
+  justify-self: center;
+  align-self: center;
+  content: "";
+  background: #5f5d81;
+  display: block;
+  position: absolute;
+  width: 70%;
+  height: 50px;
+  top: 50;
+  border-radius: 15%;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.linkBlock:active:after {
+  height: 60px;
+  width: 100%;
+  margin: 0;
+  opacity: 0.3;
+  transition: 0s;
 }
 
 /*! SearchBlock */
