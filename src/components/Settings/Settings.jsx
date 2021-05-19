@@ -95,9 +95,7 @@ const Settings = props => {
                   type='file'
                   id='input__file'
                 />
-                <label className={s.changeLabel} htmlFor='input__file'>
-                  <img className={s.moreImg} alt='more' src={More} />
-                </label>
+                <label className={s.changeLabel} htmlFor='input__file'></label>
               </div>
 
               <ProfileDataFormReduxForm

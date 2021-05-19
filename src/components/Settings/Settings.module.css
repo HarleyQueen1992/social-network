@@ -56,9 +56,42 @@
 .changeAva {
   display: grid;
   padding-left: 5px;
+  margin-bottom: 10px;
   grid-template-columns: auto 1fr;
 }
 .changeLabel {
+  position: relative;
+  height: 4px;
+  width: 4px;
+  top: 0%;
+  border: 2px solid var(--fontColor);
+  border-radius: 50%;
+  align-self: center;
+  justify-self: end;
+  cursor: pointer;
+}
+.changeLabel:after {
+  position: absolute;
+  content: "";
+  height: 4px;
+  width: 4px;
+  top: -40%;
+  right: 9px;
+  border: 2px solid var(--fontColor);
+  border-radius: 50%;
+  justify-self: end;
+  align-self: center;
+  cursor: pointer;
+}
+.changeLabel:before {
+  position: absolute;
+  content: "";
+  top: -40%;
+  right: 20px;
+  height: 4px;
+  width: 4px;
+  border: 2px solid var(--fontColor);
+  border-radius: 50%;
   justify-self: end;
   cursor: pointer;
 }
@@ -133,24 +166,6 @@ input[type="file"] {
   padding: 10px;
 }
 
-/* ! Chenge password */
-.changePasswordBlock {
-  display: grid;
-  grid-template-rows: 30px auto;
-}
-.chengePassword {
-  margin-left: 20px;
-}
-.changePasswordTitle {
-  color: var(--fontColor);
-  font-size: 16px;
-}
-.passwordField {
-  display: grid;
-  grid-template-columns: 50px 200px;
-  grid-column-gap: 10px;
-  margin: 8px 0;
-}
 @media (max-width: 1500px) {
   .settingsBlock {
     width: calc(360px + (500 - 360) * ((100vw - 480px) / (1500 - 480)));
