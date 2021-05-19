@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import s from "./Settings.module.css"
 import Sun from "./../../assets/images/sun.png"
 import Moon from "./../../assets/images/moon.png"
@@ -9,8 +9,11 @@ import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/P
 import PreloaderW from "./../../assets/images/Rolling-0.9s-31pxW.svg"
 import Preloader from "./../../assets/images/Rolling-0.9s-31px.svg"
 import SaveG from "./../../assets/images/saveG.png"
+import ChangePasswordForm from "./ChangePassword/ChangePassword"
 
 const Settings = props => {
+  let [errorRR, setError] = useState(false)
+
   useEffect(() => {
     for (let property in props.theme) {
       document.documentElement.style.setProperty(
@@ -32,6 +35,14 @@ const Settings = props => {
   }
   const onSubmit = formData => {
     props.saveProfileInfo(formData).then(() => {})
+  }
+  const onSubmitPassword = formData => {
+    if (formData.passwordNew != formData.passwordRepeat) {
+      setError(true)
+    } else {
+      setError(false)
+    }
+    // props.saveProfileInfo(formData).then(() => {})
   }
   return (
     <div className={s.settingsBlock}>
@@ -95,6 +106,11 @@ const Settings = props => {
                 profile={props.profile}
                 Save={props.Save}
                 theme={props.theme}
+              />
+
+              <ChangePasswordForm
+                errorRR={errorRR}
+                onSubmit={onSubmitPassword}
               />
               <div className={s.logOut}>
                 <button className={s.btnLogOut} onClick={props.logOut}>

@@ -132,6 +132,25 @@ input[type="file"] {
 .profileSettings {
   padding: 10px;
 }
+
+/* ! Chenge password */
+.changePasswordBlock {
+  display: grid;
+  grid-template-rows: 30px auto;
+}
+.chengePassword {
+  margin-left: 20px;
+}
+.changePasswordTitle {
+  color: var(--fontColor);
+  font-size: 16px;
+}
+.passwordField {
+  display: grid;
+  grid-template-columns: 50px 200px;
+  grid-column-gap: 10px;
+  margin: 8px 0;
+}
 @media (max-width: 1500px) {
   .settingsBlock {
     width: calc(360px + (500 - 360) * ((100vw - 480px) / (1500 - 480)));

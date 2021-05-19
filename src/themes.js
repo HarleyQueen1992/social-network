@@ -20,6 +20,7 @@ export const lightTheme = {
   HoversaveBut: "#a7a7a7",
   bbLogin: "#000",
   bacInputLogin: "rgb(197, 197, 197)",
+  error: "black",
 }
 
 Object.defineProperty(lightTheme, "toString", {
@@ -45,9 +46,10 @@ export const darkTheme = {
   bacInput: "#25292f",
   bacInputBorder: "#4f5477",
   bacInputForm: "#25292f",
-  HoversaveBut: "gray",
+  HoversaveBut: "rgb(81, 81, 100)",
   bbLogin: "rgb(224, 173, 173)",
   bacInputLogin: "rgb(255, 255, 255)",
+  error: "red",
 }
 
 Object.defineProperty(darkTheme, "toString", {
