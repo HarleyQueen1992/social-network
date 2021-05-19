@@ -3,12 +3,11 @@ import s from "./Settings.module.css"
 import Sun from "./../../assets/images/sun.png"
 import Moon from "./../../assets/images/moon.png"
 import SettingsImg from "./../../assets/images/settings3.png"
-import More from "./../../assets/images/more.png"
 import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
-// import Preloader from "../common/Preloader/Preloader"
 import PreloaderW from "./../../assets/images/Rolling-0.9s-31pxW.svg"
 import Preloader from "./../../assets/images/Rolling-0.9s-31px.svg"
-import SaveG from "./../../assets/images/saveG.png"
+import Save from "./../../assets/images/save.png"
+import Savew from "./../../assets/images/saveWa.png"
 import ChangePasswordForm from "./ChangePassword/ChangePassword"
 
 const Settings = props => {
@@ -56,7 +55,11 @@ const Settings = props => {
             alt='preloader'
           />
         ) : (
-          <img className={s.preloader} src={SaveG} alt='save' />
+          <img
+            className={s.preloader}
+            src={props.theme == "lightTheme" ? Save : Savew}
+            alt='save'
+          />
         )}
       </header>
 
