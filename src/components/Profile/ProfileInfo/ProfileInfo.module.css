@@ -192,6 +192,7 @@
   grid-area: Info;
   display: grid;
   margin-left: 10px;
+  grid-row-gap: 10px;
 }
 
 .detailed {

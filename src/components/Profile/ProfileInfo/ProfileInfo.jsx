@@ -278,12 +278,14 @@ const DetailedInfo = props => {
             {props.profile.lookingForAJob ? "yes" : "no"}{" "}
           </span>
         </div>
-        <div className={s.detailedInformationCenter}>
-          <span className={s.titleInfo}>My professional skills:</span>
-          <span className={s.infoText}>
-            {props.profile.lookingForAJobDescription}
-          </span>
-        </div>
+        {props.profile.lookingForAJobDescription !== "" && (
+          <div className={s.detailedInformationCenter}>
+            <span className={s.titleInfo}>My professional skills:</span>
+            <span className={s.infoText}>
+              {props.profile.lookingForAJobDescription}
+            </span>
+          </div>
+        )}
         <div className={s.detailedInformationBot}>
           <span className={s.titleInfo}>Contacts:</span>
           <div className={s.contactsBlock}>
