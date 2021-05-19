@@ -49,7 +49,21 @@
   margin-left: 5px;
 }
 
+.saveBlock {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 50px;
+  grid-template-areas: "error save";
+  /* justify-self: end; */
+  /* padding-top: 5px; */
+}
+.formSummaryError {
+  grid-area: error;
+  color: red;
+  align-self: center;
+}
 .saveBut {
+  grid-area: save;
   cursor: pointer;
   background-color: var(--bacInputForm);
   border: 1px solid var(--bacInputForm);
@@ -58,14 +72,10 @@
   font-size: 16px;
   width: 50px;
   border-radius: 5px;
-  justify-self: center;
+  justify-self: end;
 }
 .saveBut:hover {
   background-color: var(--HoversaveBut);
-}
-.saveBlock {
-  justify-self: end;
-  padding-top: 5px;
 }
 .logo {
   height: 20px;

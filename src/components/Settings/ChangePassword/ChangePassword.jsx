@@ -30,7 +30,7 @@ const ChangePassword = props => {
           <div></div>
         )}
 
-        <button className={s.chengeBtn}>chenge</button>
+        <button className={s.chengeBtn}>change</button>
       </div>
     </form>
   )
