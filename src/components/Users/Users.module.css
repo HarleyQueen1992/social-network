@@ -47,9 +47,15 @@
 }
 .users {
   display: grid;
-  grid-template-columns: repeat(3, 150px);
+  grid-template-columns: repeat(4, 170px);
   margin-top: 30px;
   justify-self: center;
+}
+
+@media (max-width: 830px) {
+  .users {
+    grid-template-columns: repeat(3, 150px);
+  }
 }
 @media (max-width: 630px) {
   .header {
