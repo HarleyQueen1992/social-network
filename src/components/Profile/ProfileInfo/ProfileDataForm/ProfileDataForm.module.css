@@ -21,21 +21,41 @@
 .inputCheck {
   display: none;
 }
+.inputCheckW {
+  display: none;
+}
+
+.labelCheckbox {
+  position: relative;
+}
+/* .labelCheckbox img {
+  height: 25px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+} */
 .inputCheck:checked + label::before {
   content: "";
   background-size: 100%;
-  background-image: url(https://img.icons8.com/metro/452/checkmark.png);
+  background-image: url(https://img.icons8.com/metro/50/000000/checkmark.png);
+}
+.inputCheckW:checked + label::before {
+  content: "";
+  background-size: 100%;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNTAiIGhlaWdodD0iNTAiCnZpZXdCb3g9IjAgMCAyMjYgMjI2IgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDIyNnYtMjI2aDIyNnYyMjZ6IiBmaWxsPSJub25lIj48L3BhdGg+PGcgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTE5Ni4xNTQxNCw0MS4xMTg2OWwtMTUuNTg1MDMsLTEwLjU5Mzc1Yy00LjMxMjIsLTIuOTIwMDggLTEwLjIyMDI2LC0xLjc5OTU4IC0xMy4xMDYzNywyLjQ3ODY2bC03Ni4zOTcyMywxMTIuNjYwNDZsLTM1LjEwODc4LC0zNS4xMDg3OGMtMy42NjcwNywtMy42NjcwNyAtOS42NDMwMywtMy42NjcwNyAtMTMuMzEwMSwwbC0xMy4zNDQwNSwxMy4zNDQwNWMtMy42NjcwNywzLjY2NzA3IC0zLjY2NzA3LDkuNjQzMDMgMCwxMy4zNDQwNmw1My45ODczOCw1My45ODczOGMzLjAyMTk0LDMuMDIxOTMgNy43NzU1NSw1LjMzMDgzIDEyLjA1Mzc5LDUuMzMwODNjNC4yNzgyNSwwIDguNTkwNDQsLTIuNjgyMzkgMTEuMzc0NywtNi43MjI5NWw5MS45NDgzMiwtMTM1LjY0NzU0YzIuOTIwMDcsLTQuMjc4MjQgMS43OTk1OCwtMTAuMTUyMzUgLTIuNTEyNjIsLTEzLjA3MjQxeiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+);
 }
 .labelCheckbox::before {
   cursor: pointer;
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  left: 1px;
   vertical-align: middle;
   background-color: var(--bacInputForm);
   /* margin-left: -10px; */
-  margin-right: 10px;
   border: 1px solid var(--bacInputForm);
 }
 .fieldInputContacts {
