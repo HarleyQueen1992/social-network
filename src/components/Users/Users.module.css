@@ -1,5 +1,6 @@
 .usersBlock {
   display: grid;
+  width: 680px;
   grid-template-rows: 60px 1fr;
 }
 
@@ -55,6 +56,9 @@
 @media (max-width: 830px) {
   .users {
     grid-template-columns: repeat(3, 150px);
+  }
+  .usersBlock {
+    width: 450px;
   }
 }
 @media (max-width: 630px) {
@@ -194,6 +198,9 @@ button:disabled {
   .header {
     margin-left: 0;
     grid-template-columns: 60px 80px auto;
+  }
+  .usersBlock {
+    width: 100%;
   }
   .search {
     margin-right: 10px;
