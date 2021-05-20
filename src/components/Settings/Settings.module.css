@@ -60,8 +60,8 @@
   grid-template-columns: auto 1fr;
 }
 .changeLabel {
-  width: 34px;
-  height: 10px;
+  width: 45px;
+  height: 18px;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
@@ -72,7 +72,7 @@
   position: absolute;
   height: 4px;
   width: 4px;
-  right: 12px;
+  right: 18px;
   border: 2px solid var(--fontColor);
   border-radius: 50%;
   align-self: center;
@@ -84,7 +84,7 @@
   height: 4px;
   width: 4px;
   /* top: -40%; */
-  right: 0;
+  right: 6px;
   border: 2px solid var(--fontColor);
   border-radius: 50%;
   align-self: center;
@@ -94,7 +94,7 @@
   position: absolute;
   content: "";
   /* top: -40%; */
-  right: 25px;
+  right: 30px;
   height: 4px;
   width: 4px;
   border: 2px solid var(--fontColor);
