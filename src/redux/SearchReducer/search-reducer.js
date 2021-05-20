@@ -1,5 +1,3 @@
-import { search } from "../../utils/search"
-import { toggleIsFetching } from "../AppReducer/app-reducer"
 import { usersAPI } from "./../../API/api"
 const SET_USERS = "app/search-reducer/SET_USERS"
 const SET_TOTAL_USERS_COUNT = "app/search-reducer/SET_TOTAL_USERS_COUNT"

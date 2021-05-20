@@ -7,8 +7,6 @@ import {
 import s from "./ProfileDataForm.module.css"
 import { reduxForm, Field } from "redux-form"
 import { Icons, IconsWhite } from "./../../../../utils/Icons/Icons"
-import Save from "./../../../../assets/images/save.png"
-import SaveW from "./../../../../assets/images/saveWa.png"
 
 const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
   return (
@@ -26,9 +24,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
           component='input'
           type='checkbox'
         />
-        <label htmlFor='check' className={s.labelCheckbox}>
-          {/* <img className={s.d} src={SaveW} alt='checbox' /> */}
-        </label>
+        <label htmlFor='check' className={s.labelCheckbox}></label>
       </div>
 
       <div className={s.fieldInput}>

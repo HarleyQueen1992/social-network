@@ -1,7 +1,7 @@
 import React from "react"
 import s from "./ChangePassword.module.css"
 import { createField, Input } from "./../../common/FromsControls/FormsControls"
-import { reduxForm, Field } from "redux-form"
+import { reduxForm } from "redux-form"
 
 const ChangePassword = props => {
   return (
