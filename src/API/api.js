@@ -1,4 +1,5 @@
 import axios from "axios"
+import { search } from "../utils/search"
 
 axios.defaults.withCredentials = true
 
@@ -28,18 +29,10 @@ export const usersAPI = {
   //     return instance.post(`follow/${id}/`)
   // },
   searchUsers(term, currentPage) {
-    return instance
-      .get(`users/?term=${term}&page=${currentPage}`)
-      .then(response => {
-        return response.data
-      })
+    return search(`users/?term=${term}&page=${currentPage}`)
   },
   searchFriends(term, currentPage) {
-    return instance
-      .get(`users/?term=${term}&page=${currentPage}&friend=true`)
-      .then(response => {
-        return response.data
-      })
+    return search(`users/?term=${term}&page=${currentPage}&friend=true`)
   },
 }
 

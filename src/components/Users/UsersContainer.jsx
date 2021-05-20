@@ -42,7 +42,7 @@ class UsersC extends React.Component {
     this.props.requestUsers(this.props.currentPage)
     // }
   }
-  handleChange = event => {
+  handleChange = async event => {
     if (event.target.value === "" && this.props.value.length === 1) {
       this.props.clearUsers()
       this.props.setCurrentPage(1)
