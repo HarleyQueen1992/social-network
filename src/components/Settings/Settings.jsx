@@ -68,7 +68,7 @@ const Settings = props => {
           <div className={s.settingsTitle}>General:</div>
           <div className={s.generalSettings}>
             <div className={s.themes}>
-              <span className={s.themesTitle}>themes:</span>
+              <span className={s.themesTitle}>Theme:</span>
               <input
                 onClick={() => {
                   themeToggler()
@@ -89,10 +89,10 @@ const Settings = props => {
             </div>
           </div>
           <div className={s.profileBlock}>
-            <div className={s.settingsTitle}>ProfileSettings:</div>
+            <div className={s.settingsTitle}>Profile settings:</div>
             <div className={s.profileSettings}>
               <div className={s.changeAva}>
-                <span className={s.changeTitle}>change ava:</span>
+                <span className={s.changeTitle}>Change avatar:</span>
                 <input
                   onChange={onMainPhotoSelected}
                   type='file'

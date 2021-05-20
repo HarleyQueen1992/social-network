@@ -64,7 +64,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error, theme }) => {
       </div>
       <div className={s.saveBlock}>
         {error && <div className={s.formSummaryError}>{error}</div>}
-        <button className={s.saveBut}>save</button>
+        <button className={s.saveBut}>Save</button>
       </div>
     </form>
   )
