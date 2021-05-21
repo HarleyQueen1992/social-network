@@ -22,6 +22,7 @@ import {
 import { compose } from "redux"
 import Preloader from "../../common/Preloader/Preloader"
 import {
+  getHeaderBlur,
   getIsPostCreation,
   getTheme,
 } from "../../../redux/AppReducer/app-selectors"
@@ -45,6 +46,7 @@ class MyPostsContainer extends React.Component {
             isPostCreation={this.props.isPostCreation}
             toggleIsPostCreation={this.props.toggleIsPostCreation}
             toggleIsHeaderBlur={this.props.toggleIsHeaderBlur}
+            headerBlur={this.props.headerBlur}
           />
         )}
       </>
@@ -58,6 +60,7 @@ let mapStateToProps = state => {
     login: getLogin(state),
     profile: getProfileInfo(state),
     isFatching: getIsFatching(state),
+    headerBlur: getHeaderBlur(state),
     isPostCreation: getIsPostCreation(state),
     theme: getTheme(state),
   }

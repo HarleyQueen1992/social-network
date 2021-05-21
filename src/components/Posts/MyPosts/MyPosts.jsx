@@ -1,7 +1,7 @@
 import React from "react"
 import p from "./MyPosts.module.css"
 import Post from "./Post/Post"
-import PostCreation from "./PostCreation/PostCreation"
+import PostCreationContainer from "./PostCreation/PostCreationContainer"
 import CreatePost from "./../../../assets/images/editWhite.png"
 import CreatePostLight from "./../../../assets/images/edit.png"
 
@@ -47,12 +47,7 @@ const MyPosts = props => {
           <div className={p.posts}>{postElements}</div>
         </div>
       ) : (
-        <PostCreation
-          theme={props.theme}
-          toggleIsHeaderBlur={props.toggleIsHeaderBlur}
-          addPostActionCreator={props.addPostActionCreator}
-          toggleIsPostCreation={props.toggleIsPostCreation}
-        />
+        <PostCreationContainer />
       )}
     </>
   )
