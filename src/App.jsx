@@ -1,5 +1,5 @@
 import React from "react"
-import "./App.css"
+import s from "./App.module.css"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import { HashRouter, Redirect, Route } from "react-router-dom"
 import SettingsContainer from "./components/Settings/SettingsContainer"
@@ -55,13 +55,19 @@ class App extends React.Component {
     } else {
       return (
         <>
-          <div className='app-wrapper'>
-            {!this.props.headerBlur && <Header />}
+          <div className={s.appWrapper}>
+            <Header />
             <Navbar />
             {/* {this.props.isFetching ? (
               <Preloader />
             ) : ( */}
-            <div className='app-wrapper-content'>
+            <div
+              className={
+                s.appWrapperContent +
+                " " +
+                (this.props.headerBlur ? s.headerBlur : "")
+              }
+            >
               <Route
                 path='/profile/:userid?'
                 render={() => <ProfileContainer />}

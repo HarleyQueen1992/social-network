@@ -10,8 +10,10 @@ import Settings from "./../../../../assets/images/settings (1).png"
 import GalleryW from "./../../../../assets/images/galleryW.png"
 import MoreW from "./../../../../assets/images/moreW.png"
 import SettingsW from "./../../../../assets/images/settings (1)W.png"
+import { had } from "../../../Header/Header"
 
 const PostCreation = props => {
+  // had()
   // let setIsHeader = () => props.toggleIsHeaderBlur()
   // useEffect(() => {
   //   // const hab = props.toggleIsHeaderBlur(false)
@@ -24,7 +26,6 @@ const PostCreation = props => {
 
   //   return setIsHeader => {
   //     window.removeEventListener("mousemove", () => {
-  //       props.toggleIsHeaderBlur(false)
   //       // setIsHeader()
   //     })
 
@@ -60,7 +61,6 @@ const PostCreation = props => {
       props.addPostActionCreator(text, title)
       props.toggleIsPostCreation(false)
     }
-    props.toggleIsHeaderBlur(false)
   }
   return (
     <div className={s.PostCreationBlock}>

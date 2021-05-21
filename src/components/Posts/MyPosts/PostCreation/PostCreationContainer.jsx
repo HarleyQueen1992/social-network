@@ -15,7 +15,7 @@ import PostCreation from "./PostCreation"
 class PostCreationContainer extends React.Component {
   componentWillUnmount() {
     this.props.toggleIsHeaderBlur(false)
-    console.log("asdasd")
+    // console.log("asdasd")
   }
   render() {
     return (

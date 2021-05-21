@@ -46,12 +46,14 @@ html {
   display: grid;
 }
 
-.app-wrapper {
+.appWrapper {
   display: grid;
   height: calc(100vh - 60px);
 }
-
-.app-wrapper-content {
+.headerBlur {
+  z-index: 999999;
+}
+.appWrapperContent {
   /* display: grid; */
   justify-self: center;
 }
@@ -90,7 +92,7 @@ html {
 } */
 
 @media (max-width: 480px) {
-  .app-wrapper {
+  .appWrapper {
     display: grid;
     grid-template-areas: "h" "c";
     grid-template-rows: 1fr;

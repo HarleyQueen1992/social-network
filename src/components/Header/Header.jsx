@@ -12,6 +12,9 @@ import Services from "./../../assets/images/add.png"
 const Header = props => {
   let [headerBlur, setHeaderBlur] = useState(false)
   let [height] = useState(window.innerHeight)
+  // export const had = () => {
+  //   setHeaderBlur(true)
+  // }
   window.addEventListener("resize", function () {
     if (height * 0.7 > window.innerHeight) {
       setHeaderBlur(true)
