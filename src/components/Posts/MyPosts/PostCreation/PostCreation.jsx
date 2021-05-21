@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import s from "./PostCreation.module.css"
 import Obelus from "./../../../../assets/images/obelusW.png"
 import save from "./../../../../assets/images/saveW.png"
@@ -12,6 +12,25 @@ import MoreW from "./../../../../assets/images/moreW.png"
 import SettingsW from "./../../../../assets/images/settings (1)W.png"
 
 const PostCreation = props => {
+  // let setIsHeader = () => props.toggleIsHeaderBlur()
+  // useEffect(() => {
+  //   // const hab = props.toggleIsHeaderBlur(false)
+  //   window.addEventListener("mousemove", () => {})
+  //   // function had() {
+  //   //   setIsHeader()
+  //   // }
+
+  //   // returned function will be called on component unmount
+
+  //   return setIsHeader => {
+  //     window.removeEventListener("mousemove", () => {
+  //       props.toggleIsHeaderBlur(false)
+  //       // setIsHeader()
+  //     })
+
+  //     console.log("asd")
+  //   }
+  // }, [])
   let music
   let more
   let settings
