@@ -8,7 +8,7 @@
 .header {
   display: grid;
   grid-template-columns: 30px 1fr 30px 30px;
-  border-bottom: 1px solid rgb(56, 56, 56);
+  border-bottom: 1px solid var(--BorderBottom);
   margin: 0 10px;
 }
 .newsImg {

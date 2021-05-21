@@ -478,7 +478,7 @@ input[type="file"] {
       "bot";
     background-color: transparent;
     border-radius: 0px;
-    border-bottom: 1px solid rgb(53, 53, 53);
+    border-bottom: 1px solid var(--BorderBottom);
   }
   .discriptionBot {
     display: none;
