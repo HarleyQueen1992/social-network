@@ -281,15 +281,15 @@ const DetailedInfo = props => {
             {props.profile.lookingForAJob ? "yes" : "no"}{" "}
           </span>
         </div>
-        {props.profile.lookingForAJobDescription !== "" ||
-          (props.profile.lookingForAJobDescription !== null && (
+        {props.profile.lookingForAJobDescription !== "" &&
+          props.profile.lookingForAJobDescription !== null && (
             <div className={s.detailedInformationCenter}>
               <span className={s.titleInfo}>My professional skills:</span>
               <span className={s.infoText}>
                 {props.profile.lookingForAJobDescription}
               </span>
             </div>
-          ))}
+          )}
         {contacts !== 8 && (
           <div className={s.detailedInformationBot}>
             <span className={s.titleInfo}>Contacts:</span>
