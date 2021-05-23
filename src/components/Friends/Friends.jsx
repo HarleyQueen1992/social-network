@@ -54,8 +54,11 @@ const Friends = props => {
       </header>
       {props.isReceipt ? (
         <Preloader />
-      ) : props.value !== "" && props.friendsSearch.length === 0 ? (
-        <div className={s.errorNoUsers}>No users</div>
+      ) : props.friendsSearch.length === 0 ? (
+        <div className={s.friendsBlockError}>
+          <h2>You are not subscribed to anyone</h2>
+          <NavLink to='/users/'>Let's see who you can subscribe to</NavLink>
+        </div>
       ) : (
         <div className={s.friends}>
           {friends.map(f => (

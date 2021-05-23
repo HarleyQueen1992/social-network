@@ -351,6 +351,7 @@ input[type="file"] {
 .header {
   display: grid;
   margin: 0 10px;
+  grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--BorderBottom);
 }
 .headerTitle {
@@ -360,6 +361,18 @@ input[type="file"] {
   /* font-weight: bold; */
   font-size: 20px;
   color: var(--fontColor);
+}
+.headerTitleRight {
+  text-decoration: none;
+  cursor: pointer;
+  align-self: center;
+  justify-self: end;
+  /* font-weight: bold; */
+  font-size: 20px;
+  color: var(--fontColor);
+}
+.headerTitleRight:hover {
+  font-weight: 500;
 }
 .detailedInformation {
   max-height: 0;
