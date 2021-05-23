@@ -54,7 +54,9 @@ const Friends = props => {
       </header>
       {props.isReceipt ? (
         <Preloader />
-      ) : props.friendsSearch.length === 0 ? (
+      ) : props.value !== "" && props.friendsSearch.length === 0 ? (
+        <div className={s.errorNoUsers}>No users </div>
+      ) : friends.length === 0 ? (
         <div className={s.friendsBlockError}>
           <h2>You are not subscribed to anyone</h2>
           <NavLink to='/users/'>Let's see who you can subscribe to</NavLink>
