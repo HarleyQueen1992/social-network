@@ -119,6 +119,23 @@
   /* border-bottom: 1px solid gray; */
   color: rgb(201, 201, 201);
 }
+.friendsBlockError {
+  display: grid;
+  margin: 0 10px 0 10px;
+}
+.friendsBlockError h2 {
+  justify-self: start;
+  align-self: center;
+  margin: 0 0 10px 0;
+  color: var(--fontColor);
+}
+.friendsBlockError a {
+  text-decoration: none;
+  justify-self: start;
+  align-self: center;
+  font-weight: bold;
+  color: rgb(94, 94, 248);
+}
 
 @media (max-width: 600px) {
   .header {
