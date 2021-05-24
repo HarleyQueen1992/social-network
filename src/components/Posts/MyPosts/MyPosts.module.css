@@ -36,16 +36,16 @@
   height: 100%;
   display: grid;
 }
-input[type="text"] {
+.search {
   box-sizing: border-box;
   height: 100%;
   font-size: 20px;
   display: inline-block;
-  font-family: "Lato";
-  font-weight: 100;
+  /* font-family: "Lato"; */
+  /* font-weight: 100; */
   border: none;
   outline: none;
-  color: rgb(141, 137, 137);
+  color: var(--fontColor);
   padding: 5px 40px 2px 5px;
   /* padding-right: 40px; */
   width: 0px;
@@ -58,14 +58,14 @@ input[type="text"] {
   cursor: pointer;
 }
 
-input[type="text"]:focus:hover {
+.search:focus:hover {
   border-bottom: 1px solid var(--BorderBottom);
 }
 
-input[type="text"]:focus {
+.search:focus {
   width: 100%;
   z-index: 1;
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid var(--BorderBottom);
   cursor: text;
 }
 .searchSubmit {

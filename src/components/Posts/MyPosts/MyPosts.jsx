@@ -5,6 +5,7 @@ import PostCreationContainer from "./PostCreation/PostCreationContainer"
 import CreatePost from "./../../../assets/images/editWhite.png"
 import CreatePostLight from "./../../../assets/images/edit.png"
 import Search from "./../../../assets/images/searchW.png"
+import SearchB from "./../../../assets/images/searchB.png"
 
 const MyPosts = props => {
   const [focus, setFocus] = useState(false)
@@ -45,9 +46,9 @@ const MyPosts = props => {
               //   setFocus(!focus)
               // }}
             >
-              <form className={p.forma} action='' autocomplete='on'>
+              <form className={p.forma} action='' autocomplete='off'>
                 <input
-                  id='search'
+                  className={p.search}
                   name='search'
                   type='text'
                   placeholder='Post search'
@@ -57,9 +58,10 @@ const MyPosts = props => {
                   onBlur={() => {
                     setFocus(!focus)
                   }}
+                  // autocomplete='off'
                 />
                 <img
-                  src={Search}
+                  src={props.theme == "lightTheme" ? SearchB : Search}
                   className={p.searchSubmit}
                   value='Rechercher'
                   type='submit'
