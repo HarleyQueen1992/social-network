@@ -292,18 +292,25 @@
 }
 
 .status:hover {
-  background-color: rgb(192, 192, 192);
+  box-sizing: border-box;
+  background-color: #ffffff49;
+  /* padding: 1px 5px 1px 5px; */
   border-radius: 5px;
-  color: black;
+  /* color: black; */
 }
 
 .input {
   /* margin-top: 7px; */
+  box-sizing: border-box;
   width: 100%;
+  font-size: 15px;
   outline: none;
-  padding: 3px;
+  color: var(--fontColor);
+  /* font-size: 17px; */
+  padding: 2px 5px 2px 5px;
   border-radius: 8px;
   border: 1px solid black;
+  background-color: var(--bacInputBorder);
   /* margin-top: -200px; */
 }
 
@@ -316,24 +323,28 @@ input[type="file"] {
 
 .rightTopDescription {
   display: grid;
-  grid-row-gap: 10px;
   grid-template-areas: "TopName" "Status" "Info" "switcher";
   grid-template-rows: 30px 20px 1fr 30px;
 }
-
+.isSmall {
+  grid-template-rows: 30px 40px 1fr 30px;
+}
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer&display=swap");
 .topName {
   grid-area: TopName;
-  font-size: 25px;
+  font-size: 19px;
   font-weight: 700;
-  align-self: start;
+  align-self: end;
   justify-self: center;
   margin-left: 10px;
-  font-family: "Dancing Script", cursive;
+  font-family: "IM Fell Great Primer", serif;
+  /* font-family: "Dancing Script", cursive; */
   color: var(--fontColor);
 }
 
 .centerStatus {
   grid-area: Status;
+  align-self: center;
   margin-left: 10px;
 }
 

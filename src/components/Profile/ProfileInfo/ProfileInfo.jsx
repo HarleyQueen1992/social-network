@@ -12,6 +12,8 @@ const ProfileInfo = props => {
   let [editMode, setEditMode] = useState(false)
   let [status, setStatus] = useState(props.status)
 
+  const isSmall = window.innerWidth < 480
+
   const deactivateEditMode = () => {
     setEditMode(false)
     props.updateStatus(status)
@@ -71,7 +73,9 @@ const ProfileInfo = props => {
           )}
         </div>
 
-        <div className={s.rightTopDescription}>
+        <div
+          className={s.rightTopDescription + " " + (editMode ? s.isSmall : "")}
+        >
           <div className={s.topName}>{props.profile.fullName}</div>
           <div className={s.centerStatus}>
             <div className={s.info}>
@@ -82,6 +86,7 @@ const ProfileInfo = props => {
                 statusState={status}
                 setStatus={setStatus}
                 setEditMode={setEditMode}
+                isSmall={isSmall}
                 deactivateEditMode={deactivateEditMode}
               />
             </div>
