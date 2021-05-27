@@ -12,6 +12,10 @@ body {
 #root {
   display: grid;
 }
+.isPostCreation {
+  height: 100%;
+  overflow: hidden;
+}
 ::-webkit-scrollbar {
   width: 0;
 }

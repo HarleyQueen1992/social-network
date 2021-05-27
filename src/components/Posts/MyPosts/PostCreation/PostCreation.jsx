@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import s from "./PostCreation.module.css"
 import Obelus from "./../../../../assets/images/obelusW.png"
-import save from "./../../../../assets/images/saveW.png"
+import save from "./../../../../assets/images/send.png"
 import Music from "./../../../../assets/images/music.png"
 import MusicW from "./../../../../assets/images/musicW.png"
 import Gallery from "./../../../../assets/images/gallery.png"
@@ -64,7 +64,7 @@ const PostCreation = props => {
   }
   return (
     <div className={s.PostCreationBlock}>
-      <header className={s.header}>
+      {/* <header className={s.header}>
         <div
           className={s.back}
           onClick={() => {
@@ -78,7 +78,7 @@ const PostCreation = props => {
         <div className={s.save} onClick={addPost}>
           <img className={s.tick} alt='save' src={save} />
         </div>
-      </header>
+      </header> */}
       <div className={s.title}>
         <textarea
           maxLength='62'
@@ -96,19 +96,7 @@ const PostCreation = props => {
         ></textarea>
       </div>
       <div className={s.bot}>
-        <div>
-          <img src={gallery} alt='gallery' />
-        </div>
-        <div className={s.musicBlock}>
-          <img className={s.music} alt='music' src={music} />
-        </div>
-        <div>
-          <img alt='more' src={more} />
-        </div>
-        <div />
-        <div>
-          <img alt='settings' src={settings} />
-        </div>
+        <img src={save} alt='send' />
       </div>
     </div>
   )

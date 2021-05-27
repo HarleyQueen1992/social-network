@@ -23,6 +23,7 @@ import {
   getTheme,
   getHeaderBlur,
   getInnerHeight,
+  getIsPostCreation,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
 import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
@@ -65,7 +66,9 @@ class App extends React.Component {
               className={
                 s.appWrapperContent +
                 " " +
-                (this.props.headerBlur ? s.headerBlur : "")
+                (this.props.headerBlur ? s.headerBlur : "") +
+                " " +
+                (this.props.isPostCreation ? s.isPostCreation : "")
               }
             >
               <Route
@@ -94,7 +97,7 @@ const mapStateToProps = state => {
   return {
     initialized: getInitialized(state),
     isAuth: getIsAuth(state),
-    // isPostCreation: getIsPostCreation(state),
+    isPostCreation: getIsPostCreation(state),
     theme: getTheme(state),
     headerBlur: getHeaderBlur(state),
     Height: getInnerHeight(state),
