@@ -68,14 +68,14 @@ const searchReducer = (state = initialState, action) => {
 }
 // Action Creactor
 
-export const setUsers = users => ({ type: SET_USERS, users })
+export const setUsersSearch = users => ({ type: SET_USERS, users })
 export const setTotalUsersCount = count => ({
   type: SET_TOTAL_USERS_COUNT,
   count,
 })
 export const setValue = value => ({ type: SET_VALUE, value })
-export const clearUsers = () => ({ type: CLEAR_USERS })
-export const setCurrentPage = currentPage => ({
+export const clearUsersSearch = () => ({ type: CLEAR_USERS })
+export const setCurrentPageSearch = currentPage => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 })
@@ -103,10 +103,10 @@ export const requestForUsers = (term, currentPage) => async dispatch => {
   let response = await usersAPI.searchUsers(term, currentPage)
   if (response !== undefined) {
     dispatch(toggleIsFatchingSearch(false))
-    dispatch(setUsers(response.items))
+    dispatch(setUsersSearch(response.items))
     dispatch(setTotalUsersCount(response.totalCount))
     if (initialState.usersSearch.length < response.totalCount) {
-      dispatch(setCurrentPage(currentPage + 1))
+      dispatch(setCurrentPageSearch(currentPage + 1))
     }
     dispatch(setIsFatching(false))
   }
@@ -121,10 +121,10 @@ export const requestForFriends = (term, currentPage) => async dispatch => {
   let response = await usersAPI.searchFriends(term, currentPage)
   if (response !== undefined) {
     dispatch(toggleIsFatchingSearch(false))
-    dispatch(setUsers(response.items))
+    dispatch(setUsersSearch(response.items))
     dispatch(setTotalUsersCount(response.totalCount))
     if (initialState.usersSearch.length < initialState.totalUsersCount) {
-      dispatch(setCurrentPage(currentPage + 1))
+      dispatch(setCurrentPageSearch(currentPage + 1))
     }
     dispatch(setIsFatching(false))
   }

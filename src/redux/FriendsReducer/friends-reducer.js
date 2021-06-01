@@ -6,6 +6,7 @@ const SET_TOTAL_FRIENDS_COUNT = "app/friends-reducer/SET_TOTAL_FRIENDS_COUNT"
 const TOGGLE_IS_FATCHING = "app/friends-reducer/TOGGLE_IS_FATCHING"
 const TOGGLE_IS_FETCHING = "app/friends-reducer/TOGGLE_IS_FETCHING"
 const NEXT_PAGE = "app/friends-reducer/NEXT_PAGE"
+const CLEAR_FRIENDS = "app/friends-reducer/CLEAR_FRIENDS"
 const EARLY_PAGE = "app/friends-reducer/EARLY_PAGE"
 const SET_ALL_FRIENDS = "app/friends-reducer/SET_ALL_FRIENDS"
 
@@ -37,6 +38,12 @@ const friendsReducer = (state = initialState, action) => {
       return {
         ...state,
         totalFriendsCount: action.totalFriendsCount,
+      }
+    }
+    case CLEAR_FRIENDS: {
+      return {
+        ...state,
+        friends: [],
       }
     }
     case TOGGLE_IS_FATCHING: {
@@ -77,6 +84,8 @@ const friendsReducer = (state = initialState, action) => {
 // Action Creator
 
 export const setFriends = friends => ({ type: SET_FRIENDS, friends })
+
+export const clearFriends = () => ({ type: CLEAR_FRIENDS })
 
 export const setCurrentPage = currentPage => ({
   type: SET_CURRENT_PAGE_FRIEND,

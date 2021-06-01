@@ -5,12 +5,14 @@ import {
   toggleIsFatching,
   setFriendsTotalCount,
   requestFriends,
+  clearFriends,
+  setCurrentPage,
 } from "../../redux/FriendsReducer/friends-reducer"
 import {
   requestForFriends,
   setValue,
-  clearUsers,
-  setCurrentPage,
+  clearUsersSearch,
+  setCurrentPageSearch,
   toggleIsFatchingSearch,
 } from "./../../redux/SearchReducer/search-reducer"
 import {
@@ -33,18 +35,18 @@ import Preloader from "../common/Preloader/Preloader"
 
 class FriendsContainer extends React.Component {
   componentDidMount() {
-    if (this.props.isFatching) {
-      this.props.requestFriends(this.props.currentPage)
-    }
+    // if (this.props.isFatching) {
+    this.props.requestFriends(this.props.currentPage)
+    // }
   }
   handleChange = event => {
     if (event.target.value === "" && this.props.value.length === 1) {
-      this.props.clearUsers()
-      this.props.setCurrentPage(1)
+      this.props.clearUsersSearch()
+      this.props.setCurrentPageSearch(1)
       this.props.setValue(event.target.value)
     } else {
-      this.props.clearUsers()
-      this.props.setCurrentPage(1)
+      this.props.clearUsersSearch()
+      this.props.setCurrentPageSearch(1)
       this.props.setValue(event.target.value)
       this.props.requestForFriends(event.target.value, 1)
     }
@@ -69,7 +71,7 @@ class FriendsContainer extends React.Component {
     }
   }
   componentWillUnmount() {
-    this.props.clearUsers()
+    this.props.clearFriends()
     this.props.setCurrentPage(1)
     this.props.setValue("")
   }
@@ -120,9 +122,11 @@ export default connect(mapStateToProps, {
   setFriendsTotalCount,
   toggleIsFatching,
   requestFriends,
+  clearFriends,
   requestForFriends,
   setValue,
+  setCurrentPageSearch,
   setCurrentPage,
-  clearUsers,
+  clearUsersSearch,
   toggleIsFatchingSearch,
 })(FriendsContainer)

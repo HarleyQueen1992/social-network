@@ -4,6 +4,7 @@ import { toggleIsFollow } from "../ProfileReducer/profile-reducer"
 const FOLLOW = "app/user-reducer/FOLLOW"
 const UNFOLLOW = "app/user-reducer/UNFOLLOW"
 const SET_USERS = "app/user-reducer/SET_USERS"
+const CLEAR_USERS = "app/user-reducer/CLEAR_USERS"
 const SET_CURRENT_PAGE_USERS = "app/user-reducer/SET_CURRENT_PAGE_USERS"
 const SET_TOTAL_USERS_COUNT = "app/user-reducer/SET_TOTAL_USERS_COUNT"
 const NEXT_PAGE = "app/user-reducer/NEXT_PAGE"
@@ -69,6 +70,12 @@ const usersReducer = (state = initialState, action) => {
         windowMode: true,
       }
     }
+    case CLEAR_USERS: {
+      return {
+        ...state,
+        users: [],
+      }
+    }
 
     case CLEAR_VALUE: {
       return {
@@ -118,16 +125,18 @@ export const followSuccess = userId => ({ type: FOLLOW, userId })
 
 export const setValue = value => ({ type: SET_VALUE, value })
 
+export const clearUsers = () => ({ type: CLEAR_USERS })
+
 export const clearValue = () => ({ type: CLEAR_VALUE })
 
 export const setWindowMode = isWindow => ({ type: SET_WINDOW_MODE, isWindow })
 
 export const unfollowSuccess = userId => ({ type: UNFOLLOW, userId })
 
-export const setUserSearching = searchUsers => ({
-  type: SET_SEARCH_USERS,
-  searchUsers,
-})
+// export const setUserSearching = searchUsers => ({
+//   type: SET_SEARCH_USERS,
+//   searchUsers,
+// })
 
 export const setUsers = users => ({ type: SET_USERS, users })
 

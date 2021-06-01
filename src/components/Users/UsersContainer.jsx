@@ -6,14 +6,17 @@ import {
   unfollow,
   toggleIsFatching,
   toggleFollowingProgress,
+  setCurrentPage,
+  setUsers,
+  clearUsers,
 } from "../../redux/UsersReducer/user-reducer"
 import {
   requestForUsers,
   setValue,
-  setUsers,
+  setUsersSearch,
   toggleIsFatchingSearch,
-  setCurrentPage,
-  clearUsers,
+  setCurrentPageSearch,
+  clearUsersSearch,
 } from "./../../redux/SearchReducer/search-reducer"
 import {
   getCurrentPageSearch,
@@ -44,12 +47,12 @@ class UsersC extends React.Component {
   }
   handleChange = async event => {
     if (event.target.value === "" && this.props.value.length === 1) {
-      this.props.clearUsers()
-      this.props.setCurrentPage(1)
+      this.props.clearUsersSearch()
+      this.props.setCurrentPageSearch(1)
       this.props.setValue(event.target.value)
     } else {
-      this.props.clearUsers()
-      this.props.setCurrentPage(1)
+      this.props.clearUsersSearch()
+      this.props.setCurrentPageSearch(1)
       this.props.setValue(event.target.value)
       this.props.requestForUsers(event.target.value, 1)
     }
@@ -72,6 +75,7 @@ class UsersC extends React.Component {
     }
   }
   componentWillUnmount() {
+    // this.props.setUsers([])
     this.props.clearUsers()
     this.props.setCurrentPage(1)
     this.props.setValue("")
@@ -140,15 +144,18 @@ export default compose(
   connect(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
+    setUsersSearch,
     toggleFollowingProgress,
     requestUsers,
     toggleIsFatching,
+    setUsers,
     setValue,
     requestForUsers,
     toggleIsFatchingSearch,
     setCurrentPage,
+    setCurrentPageSearch,
     clearUsers,
+    clearUsersSearch,
   }),
   withAuthRedirecr
 )(UsersC)
