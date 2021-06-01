@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { compose } from "redux"
 import { withRouter } from "react-router-dom"
 import Profile from "./../../assets/images/profile.png"
-import News from "./../../assets/images/newspaper.png"
+import News from "./../../assets/images/newsB.png"
 import Posts from "./../../assets/images/chat.png"
 import Services from "./../../assets/images/add.png"
 
