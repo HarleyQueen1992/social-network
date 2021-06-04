@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
-import UsersImg from "./../../assets/images/grou4p.png"
+import UsersImg from "./../../assets/images/groupBig.png"
 import Preloader from "../common/Preloader/Preloader"
 import { Input } from "../common/FromsControls/FormsControls"
 

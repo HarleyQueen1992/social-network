@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import s from "./Friends.module.css"
-import FriendsImg from "./../../assets/images/friends2.png"
+import FriendsImg from "./../../assets/images/friends.png"
 import Preloader from "../common/Preloader/Preloader"
 import { Input } from "../common/FromsControls/FormsControls"
 const Friends = props => {
