@@ -16,11 +16,13 @@ export const lightTheme = {
   followBtnHover: "rgb(247, 179, 179)",
   BorderBottom: "rgb(49, 49, 49)",
   bacInput: "rgb(255, 255, 255)",
+  bacInputBorder: "#cdd1e8",
   bacInputForm: "#c3c3c3",
   HoversaveBut: "#a7a7a7",
   bbLogin: "#000",
   bacInputLogin: "rgb(197, 197, 197)",
   error: "black",
+  statusHover: "#aac1ca8c",
 }
 
 Object.defineProperty(lightTheme, "toString", {
@@ -50,6 +52,7 @@ export const darkTheme = {
   bbLogin: "rgb(224, 173, 173)",
   bacInputLogin: "rgb(255, 255, 255)",
   error: "red",
+  statusHover: "#ffffff49",
 }
 
 Object.defineProperty(darkTheme, "toString", {

@@ -43,6 +43,7 @@ html {
   --bacInputForm: #25292f;
   --HoversaveBut: rgb(81, 81, 100);
   --error: red;
+  --statusHover: #ffffff49;
 }
 
 .loginPage {

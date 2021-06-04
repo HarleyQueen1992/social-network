@@ -293,7 +293,7 @@
 
 .status:hover {
   box-sizing: border-box;
-  background-color: #ffffff49;
+  background-color: var(--statusHover);
   /* padding: 1px 5px 1px 5px; */
   border-radius: 5px;
   /* color: black; */
@@ -309,7 +309,7 @@
   /* font-size: 17px; */
   padding: 2px 5px 2px 5px;
   border-radius: 8px;
-  border: 1px solid black;
+  border: 1px solid var(--bacInputBorder);
   background-color: var(--bacInputBorder);
   /* margin-top: -200px; */
 }
