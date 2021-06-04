@@ -3,9 +3,15 @@ import { compose } from "redux"
 import React, { useState } from "react"
 import s from "./Navbar.module.css"
 import { NavLink } from "react-router-dom"
+import Logout from "./../../assets/images/logout.png"
+import { logOut } from "../../redux/AuthReducer/auth-reducer"
 
 const Navbar = props => {
   const [menuActive, setMenuActive] = useState(false)
+
+  const logout = () => {
+    props.logOut()
+  }
 
   return (
     <div className={s.nav}>
@@ -72,7 +78,11 @@ const Navbar = props => {
         >
           settings
         </NavLink>
+        <div className={s.logoutBlock}>
+          <img onClick={logout} src={Logout} alt='logout' />
+        </div>
       </div>
+
       <div
         onClick={() => {
           setMenuActive(false)
@@ -87,4 +97,4 @@ const mapStateToProps = state => {
   return {}
 }
 
-export default compose(connect(mapStateToProps, {}))(Navbar)
+export default compose(connect(mapStateToProps, { logOut }))(Navbar)

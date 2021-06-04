@@ -10,7 +10,7 @@
 
 .header {
   display: grid;
-  grid-template-columns: 60px 1fr 30px;
+  grid-template-columns: 40px 1fr 30px;
   border-bottom: 1px solid var(--BorderBottom);
 }
 .preloader {

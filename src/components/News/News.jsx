@@ -14,14 +14,12 @@ const News = props => {
   return (
     <div className={s.newsBlock}>
       <header className={s.header + " " + (focus ? s.active : "")}>
-        <div className={s.heading + " " + (focus ? s.action : "")}>
-          <img
-            className={s.newsImg}
-            alt='news'
-            src={props.theme == "lightTheme" ? NewsB : NewsW}
-          />
-          <div className={s.title}>News</div>
-        </div>
+        <img
+          className={s.newsImg}
+          alt='news'
+          src={props.theme == "lightTheme" ? NewsB : NewsW}
+        />
+        <div className={s.title + " " + (focus ? s.action : "")}>News</div>
 
         <div className={s.wrap}>
           <form className={s.forma} action='' autocomplete='off'>
@@ -29,7 +27,7 @@ const News = props => {
               className={s.search}
               name='search'
               type='text'
-              placeholder='News search'
+              placeholder='Search news'
               onFocus={() => {
                 setFocus(!focus)
               }}

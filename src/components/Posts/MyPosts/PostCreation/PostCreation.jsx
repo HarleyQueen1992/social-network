@@ -64,21 +64,6 @@ const PostCreation = props => {
   }
   return (
     <div className={s.PostCreationBlock}>
-      {/* <header className={s.header}>
-        <div
-          className={s.back}
-          onClick={() => {
-            props.toggleIsPostCreation(false)
-            props.toggleIsHeaderBlur(false)
-          }}
-        >
-          <img className={s.obelus} alt='obelus' src={Obelus} />
-        </div>
-        <div className={s.newPost}>New post</div>
-        <div className={s.save} onClick={addPost}>
-          <img className={s.tick} alt='save' src={save} />
-        </div>
-      </header> */}
       <div className={s.title}>
         <textarea
           maxLength='62'

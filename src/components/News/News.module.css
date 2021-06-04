@@ -8,17 +8,13 @@
 
 .header {
   display: grid;
-  grid-template-columns: 1fr 40px 30px;
+  grid-template-columns: 30px 1fr 40px 30px;
   border-bottom: 1px solid var(--BorderBottom);
   margin: 0 20px;
 }
 .active {
-  grid-template-columns: 1fr 30px;
+  grid-template-columns: 30px 1fr 30px;
   transition: all 0.5s;
-}
-.heading {
-  display: grid;
-  grid-template-columns: 30px 1fr;
 }
 .action {
   transition: all 0.5s;
@@ -78,7 +74,7 @@
   border: none;
   outline: none;
   color: var(--fontColor);
-  padding: 5px 22px 2px 5px;
+  padding: 5px 22px 5px 5px;
   padding-right: 40px;
   width: 0px;
   position: absolute;
