@@ -9,7 +9,121 @@
   display: none;
   background-color: var(--headerColor);
 }
+/* Burger */
 
+.menuBlock {
+  position: fixed;
+  height: 60px;
+  width: 60px;
+  display: grid;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgb(202, 69, 69);
+  right: 20px;
+  bottom: 30px;
+  transition: all 0.5s ease 0s;
+}
+.menuBlockActive {
+  height: 500px;
+  width: 500px;
+  right: -150px;
+  bottom: -100px;
+}
+/* @media (max-width: 480px) {
+  .menuBlockActive {
+    height: calc(550px + (600 - 550) * ((100vw - 320px) / (480 - 320)));
+    width: calc(550px + (600 - 550) * ((100vw - 320px) / (480 - 320)));
+  }
+} */
+.menu {
+  position: absolute;
+  display: none;
+  /* opacity: 0; */
+  flex-direction: column;
+  top: 20%;
+  left: 35%;
+  /* transition: all 0.5s; */
+  opacity: 0; /*Элемент полностью прозрачный (невидимый)*/
+  transition: 1s; /*Скорость перехода состояния элемента*/
+  animation: show 0.2s 1; /* Указываем название анимации, её время и количество повторов*/
+  animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+  animation-delay: 0.2s; /* Задержка перед началом */
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.menu.menuActive {
+  display: flex;
+  /* opacity: 1; */
+}
+.menu span {
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 5px;
+}
+.burger {
+  position: fixed;
+  bottom: 47px;
+  right: 33px;
+  height: 23px;
+  width: 35px;
+  cursor: pointer;
+
+  transition: all 0.5s ease 0s;
+}
+.burgerLine {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 3px;
+  top: 10px;
+  border-radius: 2px;
+  transition: all 0.5s ease 0s;
+}
+.burger::before,
+.burger::after {
+  content: "";
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  transition: all 0.5s ease 0s;
+}
+
+.burger::before {
+  top: 0;
+}
+.burger::after {
+  bottom: 0px;
+}
+
+.burger.burgerActive div {
+  transform: scale(0);
+  background-color: white;
+}
+.menuBlock.burgerActive {
+  width: 500px;
+  height: 500px;
+}
+.burger.burgerActive:after {
+  transform: rotate(-45deg);
+  background-color: white;
+  bottom: 10px;
+}
+
+.burger.burgerActive:before {
+  transform: rotate(45deg);
+  top: 10px;
+  background-color: white;
+}
 /* ! NavHead */
 
 .navHead {
