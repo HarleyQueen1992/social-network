@@ -1,100 +1,94 @@
+import React, { useState } from "react"
+import h from "./Navbar.module.css"
+import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import React, { useState } from "react"
-import s from "./Navbar.module.css"
-import { NavLink } from "react-router-dom"
-import Logout from "./../../assets/images/logout.png"
-import { logOut } from "../../redux/AuthReducer/auth-reducer"
+import { withRouter } from "react-router-dom"
+import Profile from "./../../assets/images/profile.png"
+import News from "./../../assets/images/newsB.png"
+import Posts from "./../../assets/images/chat.png"
+import Services from "./../../assets/images/add.png"
 
-const Navbar = props => {
+const Header = props => {
+  let [headerBlur, setHeaderBlur] = useState(false)
+
   const [menuActive, setMenuActive] = useState(false)
 
-  const logout = () => {
-    props.logOut()
-  }
-
+  let [height] = useState(window.innerHeight)
+  // export const had = () => {
+  //   setHeaderBlur(true)
+  // }
+  window.addEventListener("resize", function () {
+    if (height * 0.7 > window.innerHeight) {
+      setHeaderBlur(true)
+    } else {
+      setHeaderBlur(false)
+    }
+  })
   return (
-    <div className={s.nav}>
+    <>
+<div className={h.menuBlock + " " + (menuActive ? h.menuBlockActive : "")}>
+      
+      <div className={h.menu + " " + (menuActive ? h.menuActive : "")}>
+        <NavLink to='/news' onClick={() => {
+          setMenuActive(false)
+        }} >News</NavLink>
+        <NavLink to='/posts' onClick={() => {
+          setMenuActive(false)
+        }}>Posts</NavLink>
+        <NavLink to='/profile' onClick={() => {
+          setMenuActive(false)
+        }}>Profile</NavLink>
+        <NavLink to='/users' onClick={() => {
+          setMenuActive(false)
+        }}>Users</NavLink>
+        <NavLink to='/friends' onClick={() => {
+          setMenuActive(false)
+        }}>Friends</NavLink>
+        <NavLink to='/settings' onClick={() => {
+          setMenuActive(false)
+        }}>Settings</NavLink>
+      </div>
       <div
         onClick={() => {
           setMenuActive(!menuActive)
         }}
-        className={s.HeaderBurger + " " + (menuActive ? s.active : "")}
+        className={h.burger + " " + (menuActive ? h.burgerActive : "")}
       >
-        <span></span>
+        <div className={h.burgerLine} />
       </div>
-      <div className={s.menu + " " + (menuActive ? s.active : "")}>
-        <NavLink
-          to='/profile'
-          onClick={() => {
-            setMenuActive(false)
-          }}
-          className={s.menuLink}
-        >
-          Profile
-        </NavLink>
-        <NavLink
-          to='/news'
-          onClick={() => {
-            setMenuActive(false)
-          }}
-          className={s.menuLink}
-        >
-          news
-        </NavLink>
-        <NavLink
-          to='/posts'
-          onClick={() => {
-            setMenuActive(false)
-          }}
-          className={s.menuLink}
-        >
-          posts
-        </NavLink>
-        <NavLink
-          to='/friends'
-          onClick={() => {
-            setMenuActive(false)
-          }}
-          className={s.menuLink}
-        >
-          subscriptions
-        </NavLink>
-        <NavLink
-          to='/users'
-          onClick={() => {
-            setMenuActive(false)
-          }}
-          className={s.menuLink}
-        >
-          users
-        </NavLink>
-        <NavLink
-          to='/settings'
-          onClick={() => {
-            setMenuActive(false)
-          }}
-          className={s.menuLink}
-        >
-          settings
-        </NavLink>
-        <div className={s.logoutBlock}>
-          <img onClick={logout} src={Logout} alt='logout' />
-        </div>
-      </div>
-
-      <div
-        onClick={() => {
-          setMenuActive(false)
-        }}
-        className={s.overlay + " " + (menuActive ? s.active : "")}
-      ></div>
     </div>
+    <div className={h.allScreen + " " + (menuActive ? h.allScreenActive: "")} onClick={() => {
+        setMenuActive(false)
+      }} ></div>
+    </>
+    
+
+    // <div className={h.header + " " + (headerBlur ? h.active : "")}>
+    //   <div className={h.navHead}>
+    //     <NavLink className={h.linkBlock} to={"/news"}>
+    //       <img alt='news' className={h.imgNews} src={News} />
+    //       <span className={h.headName}>News</span>
+    //     </NavLink>
+    //     <NavLink className={h.linkBlock} to={"/services"}>
+    //       <img alt='services' className={h.imgServices} src={Services} />
+    //       <span className={h.headName}>Services</span>
+    //     </NavLink>
+    //     <NavLink className={h.linkBlock} to={"/posts"}>
+    //       <img alt='posts' className={h.imgPosts} src={Posts} />
+    //       <span className={h.headName}>Posts</span>
+    //     </NavLink>
+    //     <NavLink className={h.linkBlock} to={"/profile"}>
+    //       <img alt='profile' className={h.imgProfile} src={Profile} />
+    //       <span className={h.headName}>Profile</span>
+    //     </NavLink>
+    //   </div>
+    // </div>
   )
 }
 
-const mapStateToProps = state => {
+let mapStateToProps = state => {
   return {}
 }
 
-export default compose(connect(mapStateToProps, { logOut }))(Navbar)
+export default compose(connect(mapStateToProps, {}), withRouter)(Header)

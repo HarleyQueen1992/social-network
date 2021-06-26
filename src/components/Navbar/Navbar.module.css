@@ -1,162 +1,268 @@
-.nav {
-  position: absolute;
-}
+/*! Header */
 
-.HeaderBurger {
-  top: 40px;
-  left: 30px;
-  grid-area: n;
-  display: block;
+.header {
   position: fixed;
-  width: 35px;
-  height: 25px;
-  cursor: pointer;
-  z-index: 21;
-}
-
-.HeaderBurger span {
-  position: absolute;
-  background-color: var(--fontColor);
-  left: 0;
+  height: 60px;
   width: 100%;
-  height: 3px;
-  border-radius: 1px;
-  top: 11px;
-  transition: all 0.5s ease 0s;
+  z-index: 2;
+  grid-area: h;
+  display: none;
+  background-color: var(--headerColor);
 }
+/* Burger */
 
-.HeaderBurger:before,
-.HeaderBurger:after {
-  content: "";
-  background-color: var(--fontColor);
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  border-radius: 1px;
-  left: 0;
-  transition: all 0.5s ease 0s;
-}
-
-.HeaderBurger:before {
-  top: 0;
-}
-
-.HeaderBurger:after {
-  bottom: 0;
-}
-
-.HeaderBurger.active span {
-  transform: scale(0);
-  background-color: white;
-}
-
-.HeaderBurger.active:after {
-  transform: rotate(-45deg);
-  background-color: white;
-  bottom: 11px;
-}
-
-.HeaderBurger.active:before {
-  transform: rotate(45deg);
-  top: 11px;
-  background-color: white;
-}
-
-.menu {
-  padding-top: 100px;
+.menuBlock {
   position: fixed;
-  height: 100vh;
-  width: 400px;
+  height: 60px;
+  width: 60px;
   display: grid;
-  box-sizing: border-box;
-  z-index: 20;
-  grid-template-rows: repeat(6, 70px) auto;
-  left: -390px;
-  background-color: var(--bacMenu);
-  transition: 0.5s ease 0s;
+  z-index: 10;
+  border-radius: 50%;
+  /* cursor: pointer; */
+  background-color: rgb(202, 69, 69);
+  right: 20px;
+  bottom: 30px;
+  transition: all 0.5s ease 0s;
 }
-
-.menu.active {
-  left: 0;
+.menuBlockActive {
+  height: 500px;
+  width: 500px;
+  right: -120px;
+  bottom: -100px;
 }
-
-.menuLink {
-  font-weight: bold;
-  justify-self: center;
-  position: relative;
-  padding: 20px;
-  font-size: 25px;
-  text-transform: uppercase;
-  transition: 0.5s;
-  text-decoration: none;
-  color: white;
+/* @media (max-width: 480px) {
+  .menuBlockActive {
+    height: calc(550px + (600 - 550) * ((100vw - 320px) / (480 - 320)));
+    width: calc(550px + (600 - 550) * ((100vw - 320px) / (480 - 320)));
+  }
+} */
+.menu {
+  position: fixed;
+  display: none;
+  /* opacity: 0; */
+  flex-direction: column;
+  width: 100px;
+  bottom: 80px;
+  right: 110px;
+  /* transition: all 0.5s; */
+  opacity: 0; /*Элемент полностью прозрачный (невидимый)*/
+  transition: 1s; /*Скорость перехода состояния элемента*/
+  animation: show 0.2s 1; /* Указываем название анимации, её время и количество повторов*/
+  animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+  animation-delay: 0.2s; /* Задержка перед началом */
 }
-.menuLink:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 0.2rem;
-  left: 0;
-  bottom: 0;
-  background-color: rgb(255, 255, 255);
-  transform: scale(0, 1);
-  /* transform-origin: 100% 0%; */
-  transition: 0.3s;
-}
-.menuLink:hover:after {
-  transform: scale(1, 1);
-}
-
-.menuLink a {
-  text-decoration: none;
-  color: white;
-}
-
-.overlay {
+.allScreen {
   position: fixed;
   top: 0;
   left: 0;
   display: none;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
-  opacity: 0;
-  background-color: black;
-  transition: opacity 0.7s;
+  z-index: 5;
+}
+.allScreenActive {
+  display: block;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.menu.menuActive {
+  display: flex;
+  /* opacity: 1; */
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 5px;
+}
+.menu a:hover {
+  padding-left: 0;
 }
 
-.overlay.active {
-  display: block;
-  opacity: 0.4;
-}
-.logoutBlock {
-  align-self: end;
-  justify-self: end;
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
-.logoutBlock img {
+.burger {
+  position: fixed;
+  bottom: 47px;
+  right: 33px;
+  height: 23px;
+  width: 35px;
   cursor: pointer;
+
+  transition: all 0.5s ease 0s;
 }
-@media (max-height: 525px) {
-  .menu {
-    padding-top: 0px;
-    overflow-y: scroll;
-  }
+.burgerLine {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 3px;
+  top: 10px;
+  border-radius: 2px;
+  transition: all 0.5s ease 0s;
 }
-@media (max-width: 650px) {
-  .HeaderBurger {
-    top: 25px;
-  }
+.burger::before,
+.burger::after {
+  content: "";
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  transition: all 0.5s ease 0s;
 }
+
+.burger::before {
+  top: 0;
+}
+.burger::after {
+  bottom: 0px;
+}
+
+.burger.burgerActive div {
+  transform: scale(0);
+  background-color: white;
+}
+.menuBlock.burgerActive {
+  width: 500px;
+  height: 500px;
+}
+.burger.burgerActive:after {
+  transform: rotate(-45deg);
+  background-color: white;
+  bottom: 10px;
+}
+
+.burger.burgerActive:before {
+  transform: rotate(45deg);
+  top: 10px;
+  background-color: white;
+}
+/* ! NavHead */
+
+.navHead {
+  display: none;
+  grid-area: navHead;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.navHead div {
+  align-self: center;
+  justify-self: center;
+}
+
+.navHead div a {
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+}
+
+.linkBlock {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+}
+
+.imgHead {
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  justify-self: center;
+}
+
+.imgProfile {
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  justify-self: center;
+}
+
+.imgNews {
+  height: 27px;
+  width: 27px;
+  align-self: center;
+  justify-self: center;
+}
+
+.imgPosts {
+  height: 37px;
+  width: 33px;
+  align-self: start;
+  justify-self: center;
+}
+
+.imgServices {
+  height: 27px;
+  width: 27px;
+  align-self: center;
+  justify-self: center;
+}
+
+.headName {
+  font-size: 13px;
+  align-self: start;
+  justify-self: center;
+  color: var(--colorDeteilInfo);
+}
+
+.linkBlock {
+  position: relative;
+  display: grid;
+  text-decoration: none;
+  transition-duration: 0.9s;
+  height: 100%;
+  width: 100%;
+}
+.linkBlock:after {
+  justify-self: center;
+  align-self: center;
+  content: "";
+  background: #5f5d81;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  /* top: 50; */
+  border-radius: 30%;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.linkBlock:active:after {
+  height: 100%;
+  width: 90%;
+  margin: 0;
+  /* top: 50; */
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/*! SearchBlock */
+
 @media (max-width: 480px) {
-  .overlay.active {
+  .header {
+    display: grid;
+  }
+  .active {
     display: none;
   }
-  .HeaderBurger {
+  .loginBlock {
     display: none;
   }
-  .menu {
-    display: none;
+}
+
+@media (max-width: 480px) {
+  .header {
+    grid-template-areas: "navHead";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100vw;
+    bottom: 0;
+  }
+  .navHead {
+    display: grid;
   }
 }
