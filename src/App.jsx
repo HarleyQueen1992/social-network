@@ -7,7 +7,6 @@ import NewsContainer from "./components/News/NewsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
 import FriendsContainer from "./components/Friends/FriendsContainer"
 import Navbar from "./components/Navbar/Navbar"
-import Header from "./components/Header/Header"
 import Login from "./components/Login/Login"
 import { compose } from "redux"
 import { connect, Provider } from "react-redux"
@@ -57,7 +56,6 @@ class App extends React.Component {
       return (
         <>
           <div className={s.appWrapper}>
-            <Header />
             <Navbar />
             {/* {this.props.isFetching ? (
               <Preloader />

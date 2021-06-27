@@ -9,9 +9,21 @@ import Preloader from "./../../assets/images/Rolling-0.9s-31px.svg"
 import Save from "./../../assets/images/save.png"
 import Savew from "./../../assets/images/saveWa.png"
 import ChangePasswordForm from "./ChangePassword/ChangePassword"
+import SwipeableViews from 'react-swipeable-views';
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const Settings = props => {
   let [errorRR, setError] = useState(false)
+
+  let [index, setIndex] = useState(0)
+
+  const handleChange = (event, value) => {
+    setIndex(value)
+  }
+  const handleChangeIndex = index => {
+    setIndex(index)
+  }
 
   useEffect(() => {
     for (let property in props.theme) {
@@ -21,6 +33,7 @@ const Settings = props => {
       )
     }
   }, [props.theme])
+
   const themeToggler = () => {
     props.theme == "lightTheme"
       ? props.setTheme("dark")
@@ -62,34 +75,45 @@ const Settings = props => {
           />
         )}
       </header>
-
-      <div className={s.settings}>
-        <div className={s.generalBlock}>
-          <div className={s.settingsTitle}>General:</div>
-          <div className={s.generalSettings}>
-            <div className={s.themes}>
-              <span className={s.themesTitle}>Theme:</span>
-              <input
-                onClick={() => {
-                  themeToggler()
-                }}
-                type='checkbox'
-                className={s.checkbox}
-                id='chk'
-              />
-              <label className={s.label} htmlFor='chk'>
-                <img className={s.img} alt='moon' src={Moon} />
-                <img className={s.img} alt='sun' src={Sun} />
-                <div
-                  className={
-                    s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
-                  }
-                ></div>
-              </label>
+      <Tabs value={index} className={s.tabs} onChange={handleChange}>
+          <Tab className={s.tab} label="Themes" />
+          <Tab className={s.tab} label="Profile" />
+          <Tab className={s.tab} label="Password" />
+      </Tabs>
+        <SwipeableViews
+          index={index}
+          enableMouseEvents
+          onChangeIndex={handleChangeIndex}
+        >
+          <div>
+            <div className={s.generalBlock}>
+            <div className={s.generalSettings}>
+              <div className={s.themes}>
+                <span className={s.themesTitle}>Theme:</span>
+                <input
+                  onClick={() => {
+                    themeToggler()
+                  }}
+                  type='checkbox'
+                  className={s.checkbox}
+                  id='chk'
+                />
+                <label className={s.label} htmlFor='chk'>
+                  <img className={s.img} alt='moon' src={Moon} />
+                  <img className={s.img} alt='sun' src={Sun} />
+                  <div
+                    className={
+                      s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
+                    }
+                  ></div>
+                </label>
+              </div>
             </div>
+            
           </div>
-          <div className={s.profileBlock}>
-            <div className={s.settingsTitle}>Profile settings:</div>
+          </div>
+          <div>
+            <div className={s.profileBlock}>
             <div className={s.profileSettings}>
               <div className={s.changeAva}>
                 <span className={s.changeTitle}>Change avatar:</span>
@@ -110,11 +134,6 @@ const Settings = props => {
                 Save={props.Save}
                 theme={props.theme}
               />
-
-              <ChangePasswordForm
-                errorRR={errorRR}
-                onSubmit={onSubmitPassword}
-              />
               <div className={s.logOut}>
                 <button className={s.btnLogOut} onClick={props.logOut}>
                   LogOut
@@ -122,7 +141,15 @@ const Settings = props => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+          <ChangePasswordForm
+                errorRR={errorRR}
+                onSubmit={onSubmitPassword}
+              />
+        </SwipeableViews>
+      
+      <div className={s.settings}>
+        
       </div>
     </div>
   )
