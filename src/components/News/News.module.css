@@ -3,7 +3,6 @@
   width: 700px;
   grid-template-rows: 50px 1fr;
   grid-row-gap: 20px;
-  margin-bottom: 60px;
 }
 
 .header {

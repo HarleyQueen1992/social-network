@@ -27,7 +27,7 @@ const Header = props => {
   })
   return (
     <>
-<div className={h.menuBlock + " " + (menuActive ? h.menuBlockActive : "")}>
+<div className={h.menuBlock + " " + (menuActive ? h.menuBlockActive : headerBlur ? h.activeHederBlur : "")}>
       
       <div className={h.menu + " " + (menuActive ? h.menuActive : "")}>
         <NavLink to='/news' onClick={() => {

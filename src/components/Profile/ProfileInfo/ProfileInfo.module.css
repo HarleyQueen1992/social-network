@@ -444,7 +444,6 @@ input[type="file"] {
     grid-template-rows: 50px auto;
   }
   .descriptionBlock {
-    margin-bottom: 59px;
     grid-template-areas:
       "leftdiscription"
       "rightdescription";

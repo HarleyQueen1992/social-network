@@ -207,7 +207,6 @@ button:disabled {
   }
   .users {
     grid-template-columns: 1fr;
-    margin-bottom: 60px;
   }
   .user {
     display: grid;

@@ -414,7 +414,6 @@ input[type="submit"]:hover {
   .posts {
     grid-row-gap: 10px;
     width: 100%;
-    margin-bottom: 60px;
   }
   .createPost {
     box-sizing: border-box;

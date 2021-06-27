@@ -9,6 +9,7 @@
   display: none;
   background-color: var(--headerColor);
 }
+
 /* Burger */
 
 .menuBlock {
@@ -22,7 +23,7 @@
   background-color: rgb(202, 69, 69);
   right: 20px;
   bottom: 30px;
-  transition: all 0.5s ease 0s;
+  transition: all 0.7s ease 0s;
 }
 .menuBlockActive {
   height: 500px;
@@ -49,7 +50,7 @@
   transition: 1s; /*Скорость перехода состояния элемента*/
   animation: show 0.2s 1; /* Указываем название анимации, её время и количество повторов*/
   animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
-  animation-delay: 0.2s; /* Задержка перед началом */
+  animation-delay: 0.4s; /* Задержка перед началом */
 }
 .allScreen {
   position: fixed;
@@ -92,7 +93,7 @@
   bottom: 47px;
   right: 33px;
   height: 23px;
-  width: 35px;
+  width: 32px;
   cursor: pointer;
 
   transition: all 0.5s ease 0s;
@@ -142,6 +143,9 @@
   transform: rotate(45deg);
   top: 10px;
   background-color: white;
+}
+.activeHederBlur {
+  display: none;
 }
 /* ! NavHead */
 

@@ -2,7 +2,6 @@
   display: grid;
   grid-template-rows: 60px 1fr;
   display: grid;
-  margin-bottom: 60px;
   grid-row-gap: 20px;
 }
 .friends {

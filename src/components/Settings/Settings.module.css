@@ -22,6 +22,7 @@
 .generalBlock {
   display: grid;
   grid-template-rows: 30px 1fr;
+  padding: 5px 10px 5px 10px;
 }
 .generalSettings {
   display: grid;
@@ -163,11 +164,13 @@ input[type="file"] {
   padding: 5px 8px;
   font-weight: bold;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 /*! ProfileSettings */
 .profileBlock {
   display: grid;
-  grid-template-rows: 30px 1fr;
+  grid-template-rows:1fr;
+  padding: 5px 10px 5px 10px;
 }
 .profileSettings {
   padding: 10px;
@@ -182,6 +185,24 @@ input[type="file"] {
   .settingsBlock {
     width: 100vw;
     padding: 0 10px;
-    margin-bottom: 60px;
   }
+}
+.slide1 {
+  background-color: red;
+}
+.slide2 {
+  background-color: gray;
+}
+.tabs div div{
+  display: flex;
+  justify-content: space-evenly;
+  /* background: #fff; */
+}
+  @media (min-width: 600px) {
+    .tab {
+      min-width: 110px !important;
+    }
+}
+.tab span{
+  color: var(--fontColor);
 }
