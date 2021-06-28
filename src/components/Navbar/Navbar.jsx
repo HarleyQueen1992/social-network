@@ -9,7 +9,7 @@ import News from "./../../assets/images/newsB.png"
 import Posts from "./../../assets/images/chat.png"
 import Services from "./../../assets/images/add.png"
 
-const Header = props => {
+const Navbar = props => {
   let [headerBlur, setHeaderBlur] = useState(false)
 
   const [menuActive, setMenuActive] = useState(false)
@@ -91,4 +91,4 @@ let mapStateToProps = state => {
   return {}
 }
 
-export default compose(connect(mapStateToProps, {}), withRouter)(Header)
+export default compose(connect(mapStateToProps, {}), withRouter)(Navbar)

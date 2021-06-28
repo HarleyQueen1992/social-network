@@ -7,12 +7,13 @@
   /* grid-template-rows: minmax(50px, auto) 0%; */
   /* border: 2px solid #138D90; */
   padding: 10px;
-  margin-bottom: 10px;
-  margin: 10px 10px;
+  background-color: #242526;
+  border-radius: 10px;
+  margin: 15px 15px 15px 15px;
 }
-.border {
+/* .border {
   border-bottom: 1px solid var(--BorderBottom);
-}
+} */
 .postTitle {
   color: var(--fontColor);
   font-size: 20px;

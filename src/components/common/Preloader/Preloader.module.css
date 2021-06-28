@@ -1,16 +1,12 @@
-/* .preloader {
+.preloader {
   height: 100vh;
-  position: relative;
-} */
+  display: grid;
+}
 
 .preloader img {
   height: 100px;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  justify-self: center;
+  align-self: center;
 }
 @media (max-width: 480px) {
   .preloader img {

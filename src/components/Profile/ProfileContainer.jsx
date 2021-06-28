@@ -42,6 +42,7 @@ import {
   getTheme,
 } from "../../redux/AppReducer/app-selectors"
 import { getAllFriends } from "../../redux/FriendsReducer/friends-selectors"
+import s from './Profile.module.css'
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
@@ -70,7 +71,7 @@ class ProfileContainer extends React.Component {
     return (
       <>
         {this.props.isFatching || !this.props.userId ? (
-          <Preloader />
+          <Preloader/>
         ) : (
           <Profile
             {...this.props}
@@ -93,6 +94,7 @@ class ProfileContainer extends React.Component {
             theme={this.props.theme}
             addLike={this.props.addLike}
           />
+          
         )}
       </>
     )

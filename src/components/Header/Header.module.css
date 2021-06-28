@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+.header {
+    display: grid;
+    width: 100vw;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0);
+}
+.titleSite {
+    display: grid;
+    grid-template-columns: 1fr 70px;
+}
+.listOfCategories {
+    display: grid;
+    margin-right: 70px;
+    margin-left: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.category {
+    display: grid;
+}
+.categoriesImg {
+    height: 25px;
+    width: 25px;
+    align-self: center;
+    justify-self: center;
+}
+.logo {
+    align-self: center;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Francois One', sans-serif;
+}
+.searchImg {
+    height: 25px;
+    align-self: center;
+    justify-self: end;
+    margin-right: 20px;
+}

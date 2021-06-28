@@ -5,10 +5,12 @@ const IS_POST_CREATION = "app/app-reducer/IS_POST_CREATION"
 const SET_THEME = "app/app-reducer/SET_THEME"
 const HEADER_BLUR = "app/app-reducer/HEADER_BLUR"
 const IS_FETCHING = "app/app-reducer/IS_FETCHING"
+const IS_CHANGE = "app/app-reducer/IS_CHANGE"
 
 let initialState = {
   initialized: false,
   isPostCreation: false,
+  isChange: false,
   theme: darkTheme,
   headerBlur: false,
 }
@@ -34,10 +36,15 @@ const appReducer = (state = initialState, action) => {
       }
     }
     case IS_FETCHING: {
-      debugger
       return {
         ...state,
         isFetching: action.isFetching,
+      }
+    }
+    case IS_CHANGE: {
+      return {
+        ...state,
+        isChange: action.isChange,
       }
     }
     case HEADER_BLUR: {
@@ -63,6 +70,11 @@ export const toggleIsPostCreation = isPostCreation => ({
 export const toggleIsHeaderBlur = headerBlur => ({
   type: HEADER_BLUR,
   headerBlur,
+})
+
+export const toggleIsChange = isChange => ({
+  type: IS_CHANGE,
+  isChange,
 })
 
 export const setTheme = theme => ({ type: SET_THEME, theme })

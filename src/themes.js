@@ -31,7 +31,7 @@ Object.defineProperty(lightTheme, "toString", {
 })
 
 export const darkTheme = {
-  body: "#0f1621",
+  body: "#18191a",
   fontColor: "#fff",
   colorAbouMe: "rgb(197, 197, 197)",
   statusColor: "rgb(140 140 140)",
@@ -44,7 +44,7 @@ export const darkTheme = {
   bacMenu: "rgb(138 24 24)",
   followBtn: "#2f2a56",
   followBtnHover: "#3b3475",
-  BorderBottom: "#343b5f",
+  BorderBottom: "#3e4042",
   bacInput: "#25292f",
   bacInputBorder: "#4f5477",
   bacInputForm: "#25292f",

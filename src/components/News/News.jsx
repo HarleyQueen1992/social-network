@@ -13,7 +13,7 @@ const News = props => {
   const [focus, setFocus] = useState(false)
   return (
     <div className={s.newsBlock}>
-      <header className={s.header + " " + (focus ? s.active : "")}>
+      {/* <header className={s.header + " " + (focus ? s.active : "")}>
         <img
           className={s.newsImg}
           alt='news'
@@ -50,7 +50,7 @@ const News = props => {
           alt='renew'
           src={props.theme == "lightTheme" ? NotificationB : Notification}
         />
-      </header>
+      </header> */}
       <div className={s.news}>
         {props.posts.map(post => (
           <Post

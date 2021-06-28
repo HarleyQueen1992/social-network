@@ -13,3 +13,6 @@ export const getHeaderBlur = state => {
 export const getInnerHeight = state => {
   return state.app.innerHeight
 }
+export const getIsChange = state => {
+  return state.app.isChange
+}
