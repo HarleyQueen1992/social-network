@@ -91,7 +91,10 @@ class App extends React.Component {
   //   });
   // }
   changeIndex = velue => {
+    
     let strUpdate = velue.substr(38)
+    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, '');
+    debugger
     for (let key in urlIndex) {
       if (urlIndex[key] == strUpdate) {
         i = key
@@ -103,6 +106,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     let strUpdate = this.str.substr(38)
+    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, '');
     for (let key in urlIndex) {
       if (urlIndex[key] == strUpdate) {
         i = key
