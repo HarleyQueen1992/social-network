@@ -11,6 +11,11 @@ const MyPosts = props => {
   const [focus, setFocus] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
 
+  let newUrl = window.location.href
+  if (props.strUrlPrev != newUrl) {
+    props.changeIndex(newUrl)
+  }
+
   let toggleFocus = () => {
     setIsFocus(!isFocus)
   }

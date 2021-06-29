@@ -7,6 +7,10 @@ import Preloader from "../common/Preloader/Preloader"
 import { Input } from "../common/FromsControls/FormsControls"
 
 const Users = props => {
+  let newUrl = window.location.href
+  if (props.strUrlPrev != newUrl) {
+    props.changeIndex(newUrl)
+  }
   let users
   let totalCount
   if (props.usersSearch.length === 0) {

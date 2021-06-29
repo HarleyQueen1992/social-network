@@ -94,6 +94,8 @@ class FriendsContainer extends React.Component {
             totalFriendsCountSearch={this.props.totalFriendsCountSearch}
             toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
             isReceipt={this.props.isReceipt}
+            strUrlPrev={this.props.strUrl}
+            changeIndex={this.props.changeIndex}
           />
         )}
       </>
@@ -115,6 +117,7 @@ let mapStateToProps = state => {
     totalFriendsCountSearch: getTotalUsersCountSearch(state),
     isFatchingSearch: getIsFatchingSearch(state),
     isReceipt: getIsReceipt(state),
+    
   }
 }
 

@@ -1,0 +1,115 @@
+.menuBlock {
+  display: grid;
+  grid-template-rows: 50px 60px 1fr;
+  background-color: #1c1e21;
+  padding: 5px 15px 5px 15px;
+  height: calc(100vh - 60px);
+}
+/* ! header */
+.header {
+  display: grid;
+  box-sizing: border-box;
+}
+
+.titleMenu {
+  align-self: center;
+  justify-self: start;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+/* !Profile Block */
+.profileBlock {
+  cursor: pointer;
+  box-sizing: border-box;
+  display: grid;
+  grid-column-gap: 5px;
+  padding: 8px;
+  grid-template-columns: 40px 1fr;
+}
+.profileBlock:hover {
+  background-color: rgba(78, 78, 78, 0.164);
+}
+.ava {
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+}
+.avaImg {
+  justify-self: center;
+  align-self: center;
+  height: 40px;
+  width: 40px;
+}
+.profileInfo {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.nameProfile {
+  align-self: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+.info {
+  color: white;
+  font-size: 14px;
+  align-self: start;
+}
+/* ! Grid menu */
+.gridMenu {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
+.settingsBlock {
+  cursor: pointer;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-column-gap: 5px;
+  box-sizing: border-box;
+  height: 60px;
+  background-color: #3a3b3c;
+  border-radius: 10px;
+}
+.settingsBlock:hover {
+  background-color: rgba(255, 255, 255, 0.178);
+}
+.settingsBlock img {
+  align-self: center;
+  height: 30px;
+}
+.settingsBlock span {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: center;
+  color: rgba(255, 255, 255, 0.637);
+}
+.logOutBlock {
+  cursor: pointer;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-column-gap: 5px;
+  padding: 10px;
+  height: 40px;
+  background-color: #3a3b3c;
+  border-radius: 6px;
+}
+.logOutBlock img {
+  justify-self: center;
+  height: 20px;
+}
+.logOutBlock span {
+  font-size: 18px;
+  font-weight: bold;
+  align-self: center;
+  color: rgba(255, 255, 255, 0.637);
+}
+
+.logOutBlock:hover {
+  background-color: rgba(255, 255, 255, 0.178);
+}

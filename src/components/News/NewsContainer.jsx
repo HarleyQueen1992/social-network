@@ -17,6 +17,8 @@ class NewsContainer extends React.Component {
           profile={this.props.profile}
           deletePost={this.props.deletePost}
           addLike={this.props.addLike}
+          strUrlPrev={this.props.strUrl}
+          changeIndex={this.props.changeIndex}
         />
       </>
     )

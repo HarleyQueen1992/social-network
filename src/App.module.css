@@ -75,17 +75,18 @@ html {
 }
 .listOfCategories div div{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .listOfCategories {
-  margin-right: 120px;
+  /* margin-right: 120px; */
+  margin-right: 10px;
   margin-left: 10px;
 }
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .listOfCategories {
     margin-right: calc(70px + (120 - 70) * ((100vw - 320px) / (480 - 320)));
   }
-}
+} */
 .category {
     display: grid;
     grid-template-columns: 1fr !important;
@@ -125,7 +126,6 @@ html {
   justify-self: center;
   margin-top: 100px;
   width: 100vw;
-  height: 100vh;
 }
 .up {
   margin-top: 50px ;

@@ -107,6 +107,8 @@ class UsersC extends React.Component {
             totalUsersCountSearch={this.props.totalUsersCountSearch}
             toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
             isReceipt={this.props.isReceipt}
+            strUrlPrev={this.props.strUrl}
+            changeIndex={this.props.changeIndex}
           />
         )}
       </>

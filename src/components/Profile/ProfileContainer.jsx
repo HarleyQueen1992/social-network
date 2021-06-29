@@ -93,6 +93,8 @@ class ProfileContainer extends React.Component {
             lastPost={this.props.lastPost}
             theme={this.props.theme}
             addLike={this.props.addLike}
+            strUrlPrev={this.props.strUrl}
+            changeIndex={this.props.changeIndex}
           />
           
         )}

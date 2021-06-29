@@ -47,6 +47,8 @@ class MyPostsContainer extends React.Component {
             toggleIsPostCreation={this.props.toggleIsPostCreation}
             toggleIsHeaderBlur={this.props.toggleIsHeaderBlur}
             headerBlur={this.props.headerBlur}
+            changeIndex={this.props.changeIndex}
+            strUrl={this.props.str}
           />
         )}
       </>

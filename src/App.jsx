@@ -31,29 +31,36 @@ import store from "./redux/redux-store"
 import { useHistory } from "react-router-dom";
 import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
 import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
-import ServicesContainer from "./components/Services/ServicesContainer"
+import ServicesContainer from "./components/Menu/MenuContainer"
 import Registration from "./components/Registration/Registration"
 import Home from './assets/images/homeW.png'
 import Profile from './assets/images/profileW.png'
 import Posts from './assets/images/postsW.png'
 import UsersW from './assets/images/usersW.png'
 import SettingsW from './assets/images/settingsW.png'
+import MenuW from './assets/images/menuW.png'
 import FriendsW from './assets/images/friendsW.png'
 import SearchW from './assets/images/searchW.png'
 import SwipeableViews from 'react-swipeable-views';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Menu from "./components/Menu/Menu"
+import MenuContainer from "./components/Menu/MenuContainer"
 
 const urlIndex =  {
   0: 'news',
   1: 'profile',
   2: 'posts',
   3: 'users',
-  4: 'friends'
+  4: 'friends',
+  5: 'menu'
 
 }
 let i = 0
+debugger
+
 class App extends React.Component {
+  str = window.location.href
   state = {
     index: 0
   };
@@ -67,7 +74,7 @@ class App extends React.Component {
     }
     window.location = '/social-network#/' + urlIndex[i];
     this.setState({
-      index: value,
+      index: Number(value),
     });
   };
   handleChangeIndex = index => {
@@ -83,18 +90,32 @@ class App extends React.Component {
       index,
     });
   };
-  componentDidMount() {
-    let str = window.location.href
-    str = str.substr(38)
+  setIndex = value => { 
+    this.setState({
+      index: Number(value),
+    });
+  }
+  changeIndex = velue => {
+    let strUpdate = velue.substr(38)
     for (let key in urlIndex) {
-      if (urlIndex[key] == str) {
+      if (urlIndex[key] == strUpdate) {
         i = key
         break
       }
     }
-    this.setState({
-      index: Number(i),
-    });
+    this.str = velue
+    this.setIndex(i)
+  }
+  componentDidMount() {
+    
+    let strUpdate = this.str.substr(38)
+    for (let key in urlIndex) {
+      if (urlIndex[key] == strUpdate) {
+        i = key
+        break
+      }
+    }
+    this.setIndex(i)
     this.props.initializeApp()
   }
   themeToggler = () => {
@@ -102,8 +123,31 @@ class App extends React.Component {
       ? this.props.setTheme("dark")
       : this.props.setTheme("light")
   }
+  // componentDidUpdate() {
+  //   let newsUrl = window.location.href
+  //   if (str !=  newsUrl) {
+  //     alert('123')
+  //     let strUpdate = str.substr(38)
+  //     for (let key in urlIndex) {
+  //       if (urlIndex[key] == strUpdate) {
+  //         i = key
+  //         break
+  //       }
+  //     }
+  //   this.setIndex(i)
+
+  //   }
+  // }
+  // componentDidUpdate(prevProps) {
+  //   debugger
+  //   if (this.props.match !== prevProps.location) {
+  //     alert('123')
+  //     this.onRouteChanged();
+  //   }
+  // }
   render() {
     const { index } = this.state;
+    // debugger
     if (!this.props.initialized) {
       return <Preloader />
     }
@@ -127,14 +171,18 @@ class App extends React.Component {
             </div>
             
             {/* <div className={s.listOfCategories} > */}
+            {/* <Route path='/' render={()   => */}
               <Tabs value={index} className={s.listOfCategories} onChange={this.handleChange}>
-                  <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Home} /></div> } />
-                  <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Profile} /></div>} />
-                  <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Posts} /></div>} />
-                  <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={UsersW} /></div>} />
-                  {/* <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={SettingsW} /></div>} /> */}
-                  <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={FriendsW} /></div>} />
+               
+                <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Home} /></div> } />
+                <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Profile} /></div>} />
+                <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Posts} /></div>} />
+                <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={UsersW} /></div>} />
+                <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={FriendsW} /></div>} />
+                <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={MenuW} /></div>} />
+                
               </Tabs>
+            {/* } /> */}
           </div>
             <Navbar />
             {/* {this.props.isFetching ? (
@@ -155,29 +203,30 @@ class App extends React.Component {
                 index={index}
                 enableMouseEvents
                 onChangeIndex={this.handleChangeIndex}>
-                <Route path='/news' render={() => <NewsContainer />} />
+                <Route path='/news' render={() => <NewsContainer changeIndex={this.changeIndex} strUrl={this.str}/>} />
                 
                   
                 <Route
                     path='/profile/:userid?'
-                    render={() => <ProfileContainer />}
+                    render={() => <ProfileContainer changeIndex={this.changeIndex} strUrl={this.str} />}
                   />
                 
-                <Route path='/posts' render={() => <MyPostsContainer />} />
-                <Route path='/users' render={() => <UsersContainer />} />
-                <Route path='/friends' render={() => <FriendsContainer />} />
+                <Route path='/posts' render={() => <MyPostsContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
+                <Route path='/users' render={() => <UsersContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
+                <Route path='/friends' render={() => <FriendsContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
+                <Route path='/menu' render={() => <MenuContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
                 
                 
               </SwipeableViews>
               
-              <Route path='/settings' render={() => <SettingsContainer />} />
+              
               {/* <Route path='/login' render={() => <Login />} />
               
               <Route path='/friends' render={() => <FriendsContainer />} />
               <Route path='/users' render={() => <UsersContainer />} />
               <Route path='/posts' render={() => <MyPostsContainer />} />
               <Route path='/services' render={() => <ServicesContainer />} /> */}
-              {/* <Route path='/news' render={()   => <NewsContainer />} /> */}
+              
               {/* <Route path='/' exact render={() => <ProfileContainer />} /> */}
             </div>
             {/* )} */}

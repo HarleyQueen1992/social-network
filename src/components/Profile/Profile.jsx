@@ -3,6 +3,10 @@ import p from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
 
 const Profile = props => {
+  let newUrl = window.location.href
+  if (props.strUrlPrev != newUrl) {
+    props.changeIndex(newUrl)
+  }
   return (
     <div className={p.profileBlock}>
       <div className={p.profileInfo}>

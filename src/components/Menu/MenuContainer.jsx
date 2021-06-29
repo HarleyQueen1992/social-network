@@ -2,13 +2,13 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { getTheme } from "../../redux/AppReducer/app-selectors"
-import Services from "./Services"
+import Menu from "./Menu"
 
-class ServicesContainer extends React.Component {
+class MenuContainer extends React.Component {
   render() {
     return (
       <>
-        <Services theme={this.props.theme} />
+        <Menu theme={this.props.theme} />
       </>
     )
   }
@@ -19,4 +19,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default compose(connect(mapStateToProps, {}))(ServicesContainer)
+export default compose(connect(mapStateToProps, {}))(MenuContainer)

@@ -11,6 +11,11 @@ import NewsB from "./../../assets/images/newsB.png"
 
 const News = props => {
   const [focus, setFocus] = useState(false)
+  let newUrl = window.location.href
+  if (props.strUrlPrev != newUrl) {
+    props.changeIndex(newUrl)
+  }
+  
   return (
     <div className={s.newsBlock}>
       {/* <header className={s.header + " " + (focus ? s.active : "")}>

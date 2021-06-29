@@ -242,7 +242,7 @@ const ProfileInfo = props => {
       <div className={s.lastPost}>
         <header className={s.header}>
           <div className={s.headerTitle}>LastPost</div>
-          <NavLink to='/posts/' className={s.headerTitleRight}>
+          <NavLink to='/posts' className={s.headerTitleRight}>
             All posts ➤
           </NavLink>
         </header>
