@@ -35,7 +35,7 @@ const Menu = props => {
           <img src={SettingsW} alt="settings img"/>
           <span>Settings</span>
         </NavLink>
-        <div className={s.logOutBlock} >
+        <div onClick={props.logOut} className={s.logOutBlock} >
           <img src={logOut} alt="logount img"/>
           <span>Log Out</span>
         </div>

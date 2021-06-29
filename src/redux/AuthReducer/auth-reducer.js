@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { profileAPI, authAPI } from "../../API/api"
+import { setIndex } from "../AppReducer/app-reducer"
 const SET_USER_DATA = "app/auth-reducer/SET_USER_DATA"
 const SET_PROFILE_DATA = "app/auth-reducer/SET_PROFILE_DATA"
 const SET_PROFILE_PHOTO = "app/auth-reducer/SET_PROFILE_PHOTO"
@@ -91,6 +92,8 @@ export const getAuthMe = () => async dispatch => {
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password, rememberMe)
   if (data.data.resultCode === 0) {
+    window.location = '/social-network#/news';
+    dispatch(setIndex(0))
     dispatch(getAuthMe())
     // let respo = await profileAPI.getProfile(data.data.data.userId)
 

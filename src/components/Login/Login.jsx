@@ -15,7 +15,8 @@ class Login extends React.Component {
 
   render() {
     if (this.props.isAuth) {
-      return <Redirect to={"/profile"} />
+      debugger
+      return <Redirect to="/news" />
     }
     return (
       <div className={s.loginPage}>

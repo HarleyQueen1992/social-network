@@ -15,7 +15,7 @@ import {
   toggleIsPostCreation,
   setTheme,
   toggleIsHeaderBlur,
-  toggleIsChange
+  setIndex
 } from "./redux/AppReducer/app-reducer"
 import Preloader from "./components/common/Preloader/Preloader"
 import {
@@ -24,7 +24,7 @@ import {
   getHeaderBlur,
   getInnerHeight,
   getIsPostCreation,
-  getIsChange,
+  getIndex,
   
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
@@ -57,13 +57,9 @@ const urlIndex =  {
 
 }
 let i = 0
-debugger
 
 class App extends React.Component {
   str = window.location.href
-  state = {
-    index: 0
-  };
   handleChange = (event, value) => {
     for (let key in urlIndex) {
       if (key == value) {
@@ -73,9 +69,10 @@ class App extends React.Component {
       
     }
     window.location = '/social-network#/' + urlIndex[i];
-    this.setState({
-      index: Number(value),
-    });
+    this.props.setIndex(Number(value))
+    // this.setState({
+    //   index: Number(value),
+    // });
   };
   handleChangeIndex = index => {
     for (let key in urlIndex) {
@@ -86,15 +83,13 @@ class App extends React.Component {
       
     }
     window.location = '/social-network#/' + urlIndex[i];
-    this.setState({
-      index,
-    });
+    this.props.setIndex(Number(index))
   };
-  setIndex = value => { 
-    this.setState({
-      index: Number(value),
-    });
-  }
+  // setIndex = value => { 
+  //   this.setState({
+  //     index: Number(value),
+  //   });
+  // }
   changeIndex = velue => {
     let strUpdate = velue.substr(38)
     for (let key in urlIndex) {
@@ -104,10 +99,9 @@ class App extends React.Component {
       }
     }
     this.str = velue
-    this.setIndex(i)
+    this.props.setIndex(Number(i))
   }
   componentDidMount() {
-    
     let strUpdate = this.str.substr(38)
     for (let key in urlIndex) {
       if (urlIndex[key] == strUpdate) {
@@ -115,7 +109,7 @@ class App extends React.Component {
         break
       }
     }
-    this.setIndex(i)
+    this.props.setIndex(Number(i))
     this.props.initializeApp()
   }
   themeToggler = () => {
@@ -146,7 +140,6 @@ class App extends React.Component {
   //   }
   // }
   render() {
-    const { index } = this.state;
     // debugger
     if (!this.props.initialized) {
       return <Preloader />
@@ -164,7 +157,7 @@ class App extends React.Component {
         
         <>
           <div className={s.appWrapper}>
-          <div className={s.header + ' ' + (index != 0 ? s.roll : '')} >
+          <div className={s.header + ' ' + (this.props.index != 0 ? s.roll : '')} >
             <div className={s.titleSite} >
                 <span className={s.logo} >Mosset</span>
                 <img className={s.searchImg} src={SearchW} alt="search"/>
@@ -172,7 +165,7 @@ class App extends React.Component {
             
             {/* <div className={s.listOfCategories} > */}
             {/* <Route path='/' render={()   => */}
-              <Tabs value={index} className={s.listOfCategories} onChange={this.handleChange}>
+              <Tabs value={this.props.index} className={s.listOfCategories} onChange={this.handleChange}>
                
                 <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Home} /></div> } />
                 <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Profile} /></div>} />
@@ -196,15 +189,15 @@ class App extends React.Component {
                 " " +
                 (this.props.isPostCreation ? s.isPostCreation : "") +
                 ' ' + 
-                (index != 0 ? s.up : '')
+                (this.props.index != 0 ? s.up : '')
               }
             >
               <SwipeableViews
-                index={index}
+                index={this.props.index}
                 enableMouseEvents
                 onChangeIndex={this.handleChangeIndex}>
                 <Route 
-                    path='/news' 
+                    path='/' 
                     render={() => <NewsContainer 
                     changeIndex={this.changeIndex} 
                     strUrl={this.str}/>} />
@@ -267,7 +260,7 @@ const mapStateToProps = state => {
     theme: getTheme(state),
     headerBlur: getHeaderBlur(state),
     Height: getInnerHeight(state),
-    isChange: getIsChange(state),
+    index: getIndex(state),
   }
 }
 
@@ -278,7 +271,7 @@ let AppContainer = compose(
     toggleIsPostCreation,
     setTheme,
     toggleIsHeaderBlur,
-    toggleIsChange
+    setIndex
   })
 )(App)
 
