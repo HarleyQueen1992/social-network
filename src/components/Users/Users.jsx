@@ -105,14 +105,11 @@ const Users = props => {
                 </div>
                 <div className={s.rightPart}>
                   <div className={s.name}>{u.name}</div>
-                  {/* <div className={s.status}>
-                    {!u.status ? u.status : <span>status: {u.status}</span>}
-                  </div> */}
                   <div className={s.buttonsBlock} >
                     <NavLink to='#' className={s.subscribers}>
                       {u.followed ? 
-                        <button className={s.subscribeBtn} >Subscribe</button> : 
-                        <button className={s.unsubscribeBtn} >Unsubscribe</button>}
+                        <button onClick={() => {props.unfollow(u.id)}} className={s.subscribeBtn} >Subscribe</button> : 
+                        <button onClick={() => {props.follow(u.id)}} className={s.unsubscribeBtn} >Unsubscribe</button>}
                     </NavLink>
                     <NavLink to='#' className={s.viewPosts} >
                         <button className={s.viewPostsBtn} >View Posts</button>
