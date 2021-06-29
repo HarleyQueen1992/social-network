@@ -1,43 +1,19 @@
 .usersBlock {
   display: grid;
-  width: 680px;
+  width: 100%;
   margin-top: 50px;
   grid-template-rows: 60px 1fr;
 }
+/* ! Header */
 
 .header {
   display: grid;
-  grid-template-columns: 60px 1fr 1fr;
+  grid-template-columns: 1fr 50px;
+  margin: 0 10px 0 10px;
   border-bottom: 1px solid var(--BorderBottom);
 }
-.search {
-  align-self: center;
-  justify-self: end;
-}
-.searchUsers {
-  align-self: center;
-  width: 100%;
-  height: 30px;
-  color: var(--fontColor);
-  box-sizing: border-box;
-  border: 2px solid var(--bacInputBorder);
-  border-radius: 10px;
-  outline: none;
-  font-size: 14px;
-  background-color: var(--bacInput);
-  background-image: url("https://www.freepngimg.com/download/world_wide_web/62434-engine-web-search-wordpress.com-icons-wallpaper-desktop.png");
-  background-size: 17px;
-  background-position: 10px 5px;
-  background-repeat: no-repeat;
-  padding: 5px 10px 5px 35px;
-  /* -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out; */
-}
-.usersImg {
-  height: 50px;
-  width: 50px;
-  justify-self: center;
-  align-self: center;
+.headActive {
+  grid-template-columns: 1fr;
 }
 .title {
   font-size: 25px;
@@ -47,240 +23,192 @@
   color: var(--fontColor);
   margin-left: 10px;
 }
-.users {
-  display: grid;
-  grid-template-columns: repeat(4, 170px);
-  margin-top: 30px;
-  justify-self: center;
-}
-
-@media (max-width: 830px) {
-  .users {
-    grid-template-columns: repeat(3, 150px);
-  }
-  .usersBlock {
-    width: 450px;
-  }
-}
-@media (max-width: 630px) {
-  .header {
-    display: grid;
-    margin-left: 65px;
-    grid-template-columns: 60px 100px auto;
-  }
-}
-.user {
-  padding-bottom: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 90px auto;
-  grid-template-areas: "photo" "name";
-  /* border: 1px solid black; */
-}
-
-.leftPart {
-  grid-area: photoFollowed;
-  display: grid;
-}
-
-.rightPart {
-  justify-self: center;
-  align-self: center;
-  padding: 10px;
-  grid-area: name;
-  display: grid;
-}
-
-.but {
-  border-color: #494949;
-  border-style: solid;
-  border-width: 1px;
-  background-color: #494949;
-  text-align: center;
-  font-size: 13px;
-  width: 74px;
-  height: 30px;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: #3a3a3a;
-  border: 1px solid grey;
-  cursor: default;
-}
-
-.photoUsers {
-  grid-area: photo;
-  justify-self: center;
-  align-self: center;
-}
-
-.selectedPage {
-  font-weight: bold;
-}
-
-.followed {
-  grid-area: followed;
-  justify-self: center;
-}
-
-.status {
-  font-size: 13px;
-  margin-left: 10px;
-  grid-area: status;
-  color: rgb(177, 177, 177);
-  align-self: flex-start;
-  justify-self: start;
-}
-.status span {
+.titleActive {
   display: none;
 }
 
-.name {
-  justify-self: center;
+/*? Search */
+.wrap {
   align-self: center;
-  overflow: hidden;
-  width: 100%;
-  text-overflow: ellipsis;
-  font-size: 20px;
-  grid-area: name;
-  color: var(--fontColor);
-}
-
-.country {
-  font-size: 20px;
-  grid-area: country;
-  align-self: end;
-  justify-self: end;
-}
-
-.city {
-  display: none;
-  grid-area: city;
-  align-self: end;
-  justify-self: end;
-  color: var(--fontColor);
-}
-
-.photo {
-  height: 90px;
-  width: 90px;
-  border-radius: 50px;
-  align-self: center;
-}
-
-.numberPage {
-  /* padding-top: 100px; */
-  margin-left: 0px;
-}
-
-.but_pagination {
-  background-color: #2c8869;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  position: relative;
+  height: 50px;
+  /* width: 50px; */
+  padding: 0;
+}
+.forma {
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+.search {
+  box-sizing: border-box;
+  height: 100%;
+  font-size: 20px;
+  display: inline-block;
+  /* font-family: "Lato"; */
+  /* font-weight: 100; */
+  border: none;
+  outline: none;
+  color: var(--fontColor);
+  padding: 5px 40px 2px 5px;
+  /* padding-right: 40px; */
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  z-index: 3;
+  transition: width 0.5s;
   cursor: pointer;
 }
+.search:focus {
+  width: 100%;
+  z-index: 1;
+  cursor: text;
+}
+.searchSubmit {
+  align-self: center;
+  height: 30px;
+  display: inline-block;
+  border: none;
+  position: absolute;
+  top: 12px;
+  right: 3px;
+  z-index: 2;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+}
+input[type="submit"] {
+  height: 43px;
+  width: 40px;
 
-.pagination {
-  text-align: center;
+  background: url(./../../assets/images/search.png) center center no-repeat;
+  background-size: 30px;
+  text-indent: -10000px;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+
+/*! Users */
+.users {
+  width: 100%;
+  grid-template-columns: 1fr;
+  padding: 10px 0 0 0;
+  box-sizing: border-box;
 }
 .errorNoUsers {
   color: var(--fontColor);
   font-size: 24px;
   font-weight: bold;
 }
-@media (max-width: 480px) {
-  .header {
-    margin-left: 0;
-    grid-template-columns: 60px 80px auto;
-  }
-  .usersBlock {
-    width: 100%;
-  }
-  .search {
-    margin-right: 10px;
-  }
-  .users {
-    grid-template-columns: 1fr;
-  }
-  .user {
-    display: grid;
-    grid-template-areas: "photoFollowed content";
-    grid-template-rows: 75px;
-    grid-template-columns: 80px 245px;
-  }
-  .photo {
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-  }
-  .photoUsers {
-    grid-area: photoFollowed;
-  }
-  .rightPart {
-    padding: 10px;
-    border: 2px solid #138d90;
-    border-radius: 30px;
-    grid-area: content;
-    justify-self: normal;
-    align-self: normal;
-    display: grid;
-    grid-template-areas: "name country" "status city";
-    grid-template-columns: 66% 30%;
-    grid-template-rows: 60% 40%;
-  }
-  .status {
-    display: block;
-    font-size: 13px;
-    color: var(--statusColor);
-  }
-  .name {
-    justify-self: normal;
-    align-self: normal;
-    overflow: hidden;
-    width: 100%;
-    text-overflow: ellipsis;
-  }
-}
-/* @media (max-width: 522px) {
-  .users {
-    margin-top: 20px;
-    align-self: center;
-  }
-  .user {
-    grid-template-columns: 60px 280px;
-    grid-template-rows: 60px;
-    margin-bottom: 10px;
-  }
-  .photo {
-    height: 60px;
-    width: 60px;
-  }
-  .rightPart {
-    border-radius: 15px;
-  }
-  .name {
-    font-size: 15px;
-  }
-  .status {
-    font-size: 12px;
-  }
-  .city {
-    font-size: 13px;
-  }
-  .rightPart {
-    padding: 7px;
-  }
-} */
 
-/* @media (max-width: 1300px) {
-    .user {
-        margin-right: 0;
-    }
-} */
+
+/* ? User */
+.user {
+  display: grid;
+  z-index: 10;
+  grid-template-areas: "photoFollowed content";
+  grid-template-rows: 80px;
+  grid-column-gap: 10px;
+  text-decoration: none;
+  grid-template-columns: 90px 1fr;
+  margin-bottom: 15px;
+}
+.photoUsers {
+  grid-area: photoFollowed;
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+.photo {
+  justify-self: end;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.rightPart {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+.name {
+  font-size: 20px;
+  align-self: center;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.buttonsBlock {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  box-sizing: border-box;
+  
+
+}
+.subscribers {
+  display: grid;
+  margin-right: 5px;
+  text-decoration:none;
+}
+.subscribeBtn {
+  cursor: pointer;
+  z-index: 100;
+  width: 100%;
+  justify-self: center;
+  height: 76%;
+  align-self: center;
+  border-radius:5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #2748ad;
+  transition: all 0.1s;
+}
+.subscribeBtn:hover {
+  background-color: #4e67b1;
+  width: 96%;
+}
+.unsubscribeBtn {
+  cursor: pointer;
+  height: 75%;
+  z-index: 1000;
+  align-self: center;
+  width: 100%;
+  justify-self: center;
+  border-radius:5px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  background-color: #c2c2c2;
+}
+.unsubscribeBtn:hover {
+  background-color: #aaa8a8;
+  width: 96%;
+}
+.viewPosts {
+  display: grid;
+  text-decoration:none;
+  margin-left:5px;
+}
+.viewPostsBtn {
+  cursor: pointer;
+  height: 76%;
+  align-self: center;
+  width: 100%;
+  justify-self: center;
+  border-radius:5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #494949;
+}
+
+.viewPostsBtn:hover {
+  background-color: #5e5e5e;
+  width: 96%;
+}
