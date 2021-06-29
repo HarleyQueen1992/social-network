@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { setTheme } from "./../../redux/AppReducer/app-reducer"
+import { setTheme, setIndex } from "./../../redux/AppReducer/app-reducer"
 import { getTheme } from "../../redux/AppReducer/app-selectors"
 import { logOut } from "./../../redux/AuthReducer/auth-reducer"
 import Settings from "./Settings"
@@ -42,6 +42,7 @@ class SettingsContainer extends React.Component {
             logOut={this.props.logOut}
             Save={this.Save}
             isFetchingSuccess={this.props.isFetchingSuccess}
+            setIndex={this.props.setIndex}
           />
         )}
       </>
@@ -64,6 +65,7 @@ export default compose(
     savePhoto,
     saveProfileInfo,
     logOut,
+    setIndex,
     receiveProfileInfo,
     clearProfileInfo,
   })

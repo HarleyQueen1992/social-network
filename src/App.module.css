@@ -124,12 +124,11 @@ html {
 .appWrapperContent {
   /* display: grid; */
   justify-self: center;
-  margin-top: 100px;
   width: 100vw;
 }
-.up {
+/* .up {
   margin-top: 50px ;
-}
+} */
 
 /* @media (max-width: 1250px) {
     .app-wrapper-content {

@@ -6,7 +6,6 @@
 }
 
 .descriptionBlock {
-  margin-top: 20px;
   display: grid;
   grid-template-columns: 600px;
   grid-template-rows: 1fr auto;
@@ -363,7 +362,7 @@ input[type="file"] {
   display: grid;
   margin: 0 10px;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--BorderBottom);
+  /* border-bottom: 1px solid var(--BorderBottom); */
 }
 .headerTitle {
   align-self: center;

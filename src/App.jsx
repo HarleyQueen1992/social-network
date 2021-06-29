@@ -56,7 +56,7 @@ const urlIndex =  {
   5: 'menu'
 
 }
-let i = 0
+let i = NaN
 
 class App extends React.Component {
   str = window.location.href
@@ -197,7 +197,7 @@ class App extends React.Component {
                 enableMouseEvents
                 onChangeIndex={this.handleChangeIndex}>
                 <Route 
-                    path='/' 
+                    path='/news' 
                     render={() => <NewsContainer 
                     changeIndex={this.changeIndex} 
                     strUrl={this.str}/>} />

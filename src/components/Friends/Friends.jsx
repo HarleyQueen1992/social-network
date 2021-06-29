@@ -1,17 +1,30 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import s from "./Friends.module.css"
 import FriendsImg from "./../../assets/images/friends.png"
 import Preloader from "../common/Preloader/Preloader"
 import { Input } from "../common/FromsControls/FormsControls"
+import Search from "./../../assets/images/searchW.png"
+import SearchB from "./../../assets/images/searchB.png"
+
 const Friends = props => {
+  const [focus, setFocus] = useState(false)
+  const [isFocus, setIsFocus] = useState(false)
+
+  let toggleFocus = () => {
+    setIsFocus(!isFocus)
+  }
+
   let newUrl = window.location.href
+
   if (props.strUrlPrev != newUrl) {
     props.changeIndex(newUrl)
   }
+
   let friends
   let totalCount
+
   if (props.friendsSearch.length === 0) {
     friends = props.friends
     totalCount = props.totalFriendsCount
@@ -19,12 +32,14 @@ const Friends = props => {
     friends = props.friendsSearch
     totalCount = props.totalFriendsCountSearch
   }
+
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler)
     return function () {
       document.removeEventListener("scroll", scrollHandler)
     }
   })
+
   const scrollHandler = e => {
     if (
       e.target.documentElement.scrollHeight -
@@ -42,10 +57,39 @@ const Friends = props => {
 
   return (
     <div className={s.friendsBlock}>
-      <header className={s.header}>
-        <img className={s.friendsImg} alt='friendsLogo' src={FriendsImg} />
-        <div className={s.title}>Subscriptions</div>
-        <div className={s.search}>
+      <header className={s.header + ' ' + (focus ? s.headActive : '')}>
+        {/* <img className={s.friendsImg} alt='friendsLogo' src={FriendsImg} /> */}
+        <div className={s.title + ' ' + (focus ? s.titleActive : '')}>Subscriptions</div>
+        <div
+            className={s.wrap}
+            // onClick={() => {
+            //   setFocus(!focus)
+            // }}
+          >
+            <form className={s.forma} action='' autocomplete='off'>
+              <input
+                className={s.search}
+                name='search'
+                type='text'
+                placeholder='Subscriptions search'
+                onFocus={() => {
+                  setFocus(!focus)
+                }}
+                onBlur={() => {
+                  setFocus(!focus)
+                }}
+                // autocomplete='off'
+              />
+              <img
+                src={props.theme == "lightTheme" ? SearchB : Search}
+                className={s.searchSubmit}
+                alt='searchSubmit'
+                value='Rechercher'
+                type='submit'
+              />
+            </form>
+          </div>
+        {/* <div className={s.search}>
           <form>
             <Input
               onChange={props.handleChange}
@@ -54,7 +98,7 @@ const Friends = props => {
               value={props.value}
             />
           </form>
-        </div>
+        </div> */}
       </header>
       {props.isReceipt ? (
         <Preloader />
@@ -82,8 +126,9 @@ const Friends = props => {
               </div>
               <div className={s.rightPart}>
                 <span className={s.name}>{f.name}</span>
-                <span className={s.writeMessage}>
-                  <span>view posts</span>
+                <span className={s.buttonsBlock} >
+                  <button className={s.viewPosts} >View posts</button>
+                  <button className={s.unfollow} >Unsubscribe</button>
                 </span>
               </div>
             </div>

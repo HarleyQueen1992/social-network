@@ -1,3 +1,6 @@
+.profileBlock {
+  margin-top: 70px;
+}
 @media (max-width: 1355px) {
   .posts {
     margin-left: calc(250px + (380 - 250) * ((100vw - 1250px) / (1355 - 1250)));

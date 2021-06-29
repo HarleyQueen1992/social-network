@@ -1,6 +1,7 @@
 .usersBlock {
   display: grid;
   width: 680px;
+  margin-top: 50px;
   grid-template-rows: 60px 1fr;
 }
 

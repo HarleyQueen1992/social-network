@@ -7,6 +7,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 60px 1fr;
+  margin-top: 50px;
   grid-row-gap: 10px;
   grid-template-areas: "header" "posts";
 }

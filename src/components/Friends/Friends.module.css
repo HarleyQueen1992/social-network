@@ -2,17 +2,18 @@
   display: grid;
   grid-template-rows: 60px 1fr;
   display: grid;
-  grid-row-gap: 20px;
-}
-.friends {
-  justify-self: center;
+  margin-top: 50px;
+  grid-row-gap: 10px;
 }
 .header {
   display: grid;
-  margin-left: 80px;
-  margin: 0 10px;
-  grid-template-columns: 60px 1fr 1fr;
+  /* margin-left: 80px; */
+  margin: 0 15px 0 15px;
+  grid-template-columns: 1fr 50px;
   border-bottom: 1px solid var(--BorderBottom);
+}
+.headActive {
+  grid-template-columns: 1fr;
 }
 
 .friendsImg {
@@ -21,11 +22,15 @@
   height: 50px;
 }
 .title {
+  justify-self: start;
   margin-left: 10px;
   align-self: center;
   font-size: 25px;
   font-weight: bold;
   color: var(--fontColor);
+}
+.titleActive {
+  display: none;
 }
 .search {
   align-self: center;
@@ -58,13 +63,15 @@
     transition: width 0.4s ease-in-out; */
 }
 .friend {
+  width: 100%;
   justify-self: start;
   display: grid;
+  box-sizing: border-box;
   /* margin-right: 600px; */
+  padding: 0 15px 15px 15px;
   grid-template-rows: 100px;
-  grid-template-columns: 100px 370px;
+  grid-template-columns: 90px 1fr;
   grid-template-areas: "left right";
-  margin-bottom: 20px;
 }
 
 .leftPart {
@@ -73,12 +80,10 @@
 
 .rightPart {
   grid-area: right;
-  border: 2px solid #138d90;
-  border-radius: 30px;
   padding: 15px;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "name write";
+  grid-template-rows: 50% 50%;
+  grid-template-areas: "name" "write";
 }
 
 .photo {
@@ -94,7 +99,7 @@
   grid-area: name;
   font-size: 20px;
   color: var(--fontColor);
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .pagination {
@@ -136,16 +141,33 @@
   color: rgb(94, 94, 248);
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .header {
     margin-left: 65px;
   }
+} */
+.buttonsBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
 }
-
+.viewPosts {
+  background-color: rgb(53, 84, 184);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.unfollow {
+  background-color: rgb(172, 172, 172);
+  border: none;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  box-sizing: border-box;
+}
 @media (max-width: 480px) {
-  .header {
-    margin-left: 0;
-  }
   .title {
     margin-left: 0px;
     font-size: 22px;
@@ -153,10 +175,10 @@
     color: var(--fontColor);
   }
   .friend {
-    grid-template-rows: 70px;
-    grid-template-columns: 80px 235px;
-    margin-bottom: 15px;
-    grid-column-gap: 0;
+    box-sizing: border-box;
+    grid-template-rows: 80px;
+    grid-template-columns: 80px 1fr;
+    padding: 0 15px 15px 15px;
   }
   .photo {
     height: 70px;
@@ -166,11 +188,81 @@
     padding: 8px;
   }
   .name {
-    font-size: 15px;
-    margin-left: 8px;
-    margin-top: 5px;
+    font-size: 17px;
+    font-weight: bold;
   }
   .writeMessage {
     font-size: 12px;
   }
+}
+/*! Search */
+.wrap {
+  align-self: center;
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  /* width: 50px; */
+  padding: 0;
+}
+.forma {
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+.search {
+  box-sizing: border-box;
+  height: 100%;
+  font-size: 20px;
+  display: inline-block;
+  /* font-family: "Lato"; */
+  /* font-weight: 100; */
+  border: none;
+  outline: none;
+  color: var(--fontColor);
+  padding: 5px 40px 2px 5px;
+  /* padding-right: 40px; */
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  z-index: 3;
+  transition: width 0.5s;
+  cursor: pointer;
+}
+
+
+.search:focus:hover {
+  /* border-bottom: 1px solid var(--BorderBottom); */
+}
+
+.search:focus {
+  width: 100%;
+  z-index: 1;
+  /* border-bottom: 1px solid var(--BorderBottom); */
+  cursor: text;
+}
+.searchSubmit {
+  align-self: center;
+  height: 30px;
+  display: inline-block;
+  border: none;
+  position: absolute;
+  top: 12px;
+  right: 3px;
+  z-index: 2;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+}
+input[type="submit"] {
+  height: 43px;
+  width: 40px;
+
+  background: url(./../../assets/images/search.png) center center no-repeat;
+  background-size: 30px;
+  text-indent: -10000px;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
 }

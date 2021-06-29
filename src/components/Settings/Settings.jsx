@@ -13,7 +13,7 @@ import ChangePasswordForm from "./ChangePassword/ChangePassword"
 import SwipeableViews from 'react-swipeable-views';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import { NavLink } from "react-router-dom"
+import { NavLink, HashRouter } from "react-router-dom"
 
 const Settings = props => {
   let [errorRR, setError] = useState(false)
@@ -61,7 +61,7 @@ const Settings = props => {
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>
-      <NavLink className={s.back} to='/menu'>
+      <NavLink className={s.back} onClick={() => {props.setIndex(5)}} to='/menu'>
         <img alt='back' className={s.settingsImg} src={Back} />
       </NavLink>
         <div className={s.title}>Settings</div>

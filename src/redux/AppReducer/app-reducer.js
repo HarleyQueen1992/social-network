@@ -7,10 +7,11 @@ const HEADER_BLUR = "app/app-reducer/HEADER_BLUR"
 const IS_FETCHING = "app/app-reducer/IS_FETCHING"
 const SET_INDEX = "app/app-reducer/SET_INDEX"
 
+
 let initialState = {
   initialized: false,
   isPostCreation: false,
-  index: 0,
+  index: null,
   theme: darkTheme,
   headerBlur: false,
 }
