@@ -45,11 +45,15 @@ class UsersC extends React.Component {
     this.props.requestUsers(this.props.currentPage)
     // }
   }
+
+  resetSearchUsers = () => {
+    this.props.clearUsersSearch()
+    this.props.setCurrentPageSearch(1)
+    this.props.setValue('')
+  }
   handleChange = async event => {
     if (event.target.value === "" && this.props.value.length === 1) {
-      this.props.clearUsersSearch()
-      this.props.setCurrentPageSearch(1)
-      this.props.setValue(event.target.value)
+      this.resetSearchUsers()
     } else {
       this.props.clearUsersSearch()
       this.props.setCurrentPageSearch(1)
@@ -103,6 +107,8 @@ class UsersC extends React.Component {
             scrollHandler={this.props.scrollHandler}
             handleChange={this.handleChange}
             value={this.props.value}
+            setValue={this.props.setValue}
+            resetSearchUsers={this.resetSearchUsers}
             usersSearch={this.props.usersSearch}
             totalUsersCountSearch={this.props.totalUsersCountSearch}
             toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}

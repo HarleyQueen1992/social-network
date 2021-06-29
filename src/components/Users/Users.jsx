@@ -68,12 +68,17 @@ const Users = props => {
                 className={s.search}
                 name='search'
                 type='text'
+                onChange={props.handleChange}
+                value={props.value}
                 placeholder='Subscriptions search'
                 onFocus={() => {
                   setFocus(!focus)
                 }}
                 onBlur={() => {
                   setFocus(!focus)
+                  props.resetSearchUsers()
+                
+
                 }}
                 // autocomplete='off'
               />
