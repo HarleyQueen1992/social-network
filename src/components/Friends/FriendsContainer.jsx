@@ -40,11 +40,15 @@ class FriendsContainer extends React.Component {
     this.props.requestFriends(this.props.currentPage)
     // }
   }
+  resetSearchUsers = () => {
+    this.props.clearUsersSearch()
+    this.props.setCurrentPageSearch(1)
+    this.props.setValue('')
+  }
+
   handleChange = event => {
     if (event.target.value === "" && this.props.value.length === 1) {
-      this.props.clearUsersSearch()
-      this.props.setCurrentPageSearch(1)
-      this.props.setValue(event.target.value)
+      this.resetSearchUsers()
     } else {
       this.props.clearUsersSearch()
       this.props.setCurrentPageSearch(1)
@@ -95,6 +99,7 @@ class FriendsContainer extends React.Component {
             totalFriendsCountSearch={this.props.totalFriendsCountSearch}
             toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
             isReceipt={this.props.isReceipt}
+            resetSearchUsers={this.resetSearchUsers}
             strUrlPrev={this.props.strUrl}
             changeIndex={this.props.changeIndex}
             unfollow={this.props.unfollow}

@@ -69,6 +69,8 @@ const Friends = props => {
             <form className={s.forma} action='' autocomplete='off'>
               <input
                 className={s.search}
+                onChange={props.handleChange}
+                value={props.value}
                 name='search'
                 type='text'
                 placeholder='Subscriptions search'
@@ -77,6 +79,7 @@ const Friends = props => {
                 }}
                 onBlur={() => {
                   setFocus(!focus)
+                  props.resetSearchUsers()
                 }}
                 // autocomplete='off'
               />

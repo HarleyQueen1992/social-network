@@ -94,7 +94,6 @@ class App extends React.Component {
     
     let strUpdate = velue.substr(38)
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, '');
-    debugger
     for (let key in urlIndex) {
       if (urlIndex[key] == strUpdate) {
         i = key
