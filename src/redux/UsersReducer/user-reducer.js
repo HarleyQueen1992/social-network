@@ -1,4 +1,5 @@
 import { usersAPI, followAPI } from "../../API/api"
+import { deleteFriend } from "../FriendsReducer/friends-reducer"
 // import { toggleIsFetching } from "../AppReducer/app-reducer"
 import { toggleIsFollow } from "../ProfileReducer/profile-reducer"
 const FOLLOW = "app/user-reducer/FOLLOW"
@@ -203,6 +204,7 @@ export const unfollow = userId => {
     followAPI.deleteFollow(userId).then(response => {
       if (response.data.resultCode === 0) {
         dispatch(unfollowSuccess(userId))
+        dispatch(deleteFriend(userId))
       }
       dispatch(toggleIsFollow(false))
       dispatch(toggleFollowingProgress(false, userId))

@@ -31,6 +31,7 @@ import {
   getUsersSearch,
   getValue,
 } from "../../redux/SearchReducer/search-selectors"
+import {unfollow} from './../../redux/UsersReducer/user-reducer'
 import Preloader from "../common/Preloader/Preloader"
 
 class FriendsContainer extends React.Component {
@@ -96,6 +97,7 @@ class FriendsContainer extends React.Component {
             isReceipt={this.props.isReceipt}
             strUrlPrev={this.props.strUrl}
             changeIndex={this.props.changeIndex}
+            unfollow={this.props.unfollow}
           />
         )}
       </>
@@ -128,6 +130,7 @@ export default connect(mapStateToProps, {
   clearFriends,
   requestForFriends,
   setValue,
+  unfollow,
   setCurrentPageSearch,
   setCurrentPage,
   clearUsersSearch,

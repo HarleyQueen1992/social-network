@@ -128,7 +128,7 @@ const Friends = props => {
                 <span className={s.name}>{f.name}</span>
                 <span className={s.buttonsBlock} >
                   <button className={s.viewPosts} >View posts</button>
-                  <button className={s.unfollow} >Unsubscribe</button>
+                  <button onClick={() => {props.unfollow(f.id)}} className={s.unfollow} >Unsubscribe</button>
                 </span>
               </div>
             </div>

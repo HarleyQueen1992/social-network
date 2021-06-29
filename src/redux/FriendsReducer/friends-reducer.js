@@ -9,6 +9,7 @@ const NEXT_PAGE = "app/friends-reducer/NEXT_PAGE"
 const CLEAR_FRIENDS = "app/friends-reducer/CLEAR_FRIENDS"
 const EARLY_PAGE = "app/friends-reducer/EARLY_PAGE"
 const SET_ALL_FRIENDS = "app/friends-reducer/SET_ALL_FRIENDS"
+const DELETE_FRIEND = "app/friends-reducer/DELETE_FRIEND"
 
 let initialState = {
   friends: [],
@@ -44,6 +45,12 @@ const friendsReducer = (state = initialState, action) => {
       return {
         ...state,
         friends: [],
+      }
+    }
+    case DELETE_FRIEND: {
+      return {
+        ...state,
+        friends: state.friends.filter(f => f.id != action.id)
       }
     }
     case TOGGLE_IS_FATCHING: {
@@ -86,6 +93,11 @@ const friendsReducer = (state = initialState, action) => {
 export const setFriends = friends => ({ type: SET_FRIENDS, friends })
 
 export const clearFriends = () => ({ type: CLEAR_FRIENDS })
+
+export const deleteFriend = (id) => ({
+  type: DELETE_FRIEND,
+  id
+})
 
 export const setCurrentPage = currentPage => ({
   type: SET_CURRENT_PAGE_FRIEND,
