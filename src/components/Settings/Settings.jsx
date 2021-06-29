@@ -6,12 +6,14 @@ import SettingsImg from "./../../assets/images/settings3.png"
 import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
 import PreloaderW from "./../../assets/images/Rolling-0.9s-31pxW.svg"
 import Preloader from "./../../assets/images/Rolling-0.9s-31px.svg"
+import Back from './../../assets/images/backW.png'
 import Save from "./../../assets/images/save.png"
 import Savew from "./../../assets/images/saveWa.png"
 import ChangePasswordForm from "./ChangePassword/ChangePassword"
 import SwipeableViews from 'react-swipeable-views';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { NavLink } from "react-router-dom"
 
 const Settings = props => {
   let [errorRR, setError] = useState(false)
@@ -59,7 +61,9 @@ const Settings = props => {
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>
-        <img alt='SettingsImg' className={s.settingsImg} src={SettingsImg} />
+      <NavLink className={s.back} to='/menu'>
+        <img alt='back' className={s.settingsImg} src={Back} />
+      </NavLink>
         <div className={s.title}>Settings</div>
         {props.isFetchingSuccess ? (
           <img

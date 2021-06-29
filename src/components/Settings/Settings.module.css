@@ -1,17 +1,16 @@
 .settingsBlock {
   width: 500px;
-  margin-top: 20px;
+  margin-top: 10px;
   display: grid;
-  grid-template-rows: 60px 1fr;
-  grid-row-gap: 20px;
+  grid-template-rows: 40px 1fr;
   /* height: 100vh; */
   box-sizing: border-box;
 }
 
 .header {
   display: grid;
-  grid-template-columns: 40px 1fr 30px;
-  border-bottom: 1px solid var(--BorderBottom);
+  grid-template-columns: 30px 1fr 30px;
+  /* border-bottom: 1px solid var(--BorderBottom); */
 }
 .preloader {
   align-self: end;
@@ -107,9 +106,12 @@ input[type="file"] {
   display: none;
 }
 
+.back {
+  display: grid;
+}
 .settingsImg {
-  justify-self: end;
-  height: 40px;
+  justify-self: center;
+  height: 20px;
   align-self: center;
 }
 

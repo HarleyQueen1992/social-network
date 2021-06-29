@@ -203,21 +203,43 @@ class App extends React.Component {
                 index={index}
                 enableMouseEvents
                 onChangeIndex={this.handleChangeIndex}>
-                <Route path='/news' render={() => <NewsContainer changeIndex={this.changeIndex} strUrl={this.str}/>} />
-                
-                  
-                <Route
+                <Route 
+                    path='/news' 
+                    render={() => <NewsContainer 
+                    changeIndex={this.changeIndex} 
+                    strUrl={this.str}/>} />
+                <Route 
                     path='/profile/:userid?'
-                    render={() => <ProfileContainer changeIndex={this.changeIndex} strUrl={this.str} />}
+                    render={() => <ProfileContainer 
+                    changeIndex={this.changeIndex} 
+                    strUrl={this.str} />}
                   />
-                
-                <Route path='/posts' render={() => <MyPostsContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
-                <Route path='/users' render={() => <UsersContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
-                <Route path='/friends' render={() => <FriendsContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
-                <Route path='/menu' render={() => <MenuContainer changeIndex={this.changeIndex} strUrl={this.str} />} />
+                <Route 
+                    path='/posts' 
+                    render={() => <MyPostsContainer 
+                    changeIndex={this.changeIndex} 
+                    strUrl={this.str} />} />
+                <Route 
+                    path='/users' 
+                    render={() => <UsersContainer 
+                    changeIndex={this.changeIndex} 
+                    strUrl={this.str} />} />
+                <Route 
+                    path='/friends' 
+                    render={() => <FriendsContainer 
+                    changeIndex={this.changeIndex} 
+                    strUrl={this.str} />} />
+                <Route 
+                    path='/menu' 
+                    render={() => <MenuContainer 
+                    changeIndex={this.changeIndex} 
+                    strUrl={this.str} />} />
                 
                 
               </SwipeableViews>
+              <Route 
+                    path='/settings' 
+                    render={() => <SettingsContainer  />} />
               
               
               {/* <Route path='/login' render={() => <Login />} />

@@ -69,6 +69,7 @@
   padding: 10px;
   display: grid;
   grid-template-columns: 30px 1fr;
+  text-decoration: none;
   grid-column-gap: 5px;
   box-sizing: border-box;
   height: 60px;

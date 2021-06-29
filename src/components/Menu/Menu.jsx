@@ -9,10 +9,14 @@ import Search from "./../../assets/images/search.png"
 import Ava from './../../assets/images/user.png'
 import SettingsW from './../../assets/images/settingsW.png'
 import logOut from './../../assets/images/logout.png'
-import { NavLink } from "react-router-dom"
+import { HashRouter, Route, NavLink } from "react-router-dom"
+import ProfileContainer from "../Profile/ProfileContainer"
 
 const Menu = props => {
   return (
+    <HashRouter>
+      <Route path='/profile' render={() => <ProfileContainer />} />
+    
     <div className={s.menuBlock} >
       <header className={s.header} >
         <span className={s.titleMenu} >Menu</span>
@@ -27,16 +31,17 @@ const Menu = props => {
         </div>
       </div>
       <div className={s.gridMenu} >
-        <div className={s.settingsBlock}>
+        <NavLink to='/settings' className={s.settingsBlock}>
           <img src={SettingsW} alt="settings img"/>
           <span>Settings</span>
-        </div>
+        </NavLink>
         <div className={s.logOutBlock} >
           <img src={logOut} alt="logount img"/>
           <span>Log Out</span>
         </div>
       </div>
     </div>
+    </HashRouter>
   )
 }
 
