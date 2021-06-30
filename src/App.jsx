@@ -1,7 +1,7 @@
 import React from "react"
 import s from "./App.module.css"
 import ProfileContainer from "./components/Profile/ProfileContainer"
-import { NavLink, HashRouter, Redirect, Route } from "react-router-dom"
+import {withRouter, NavLink, HashRouter, Redirect, Route } from "react-router-dom"
 import SettingsContainer from "./components/Settings/SettingsContainer"
 import NewsContainer from "./components/News/NewsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
@@ -57,9 +57,10 @@ const urlIndex =  {
 
 }
 let i = NaN
-
+debugger
 class App extends React.Component {
   str = window.location.href
+
   handleChange = (event, value) => {
     for (let key in urlIndex) {
       if (key == value) {
@@ -106,15 +107,23 @@ class App extends React.Component {
   componentDidMount() {
     let strUpdate = this.str.substr(38)
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, '');
-    for (let key in urlIndex) {
-      if (urlIndex[key] == strUpdate) {
-        i = key
-        break
+    debugger
+    if (strUpdate == '') {
+      i = 0
+      window.location = '/social-network#/' + urlIndex[i]; 
+    } else {
+      for (let key in urlIndex) {
+        if (urlIndex[key] == strUpdate) {
+          i = key
+          break
+        }
       }
+      
     }
     this.props.setIndex(Number(i))
     this.props.initializeApp()
   }
+
   themeToggler = () => {
     this.props.theme === "light"
       ? this.props.setTheme("dark")
@@ -135,13 +144,13 @@ class App extends React.Component {
 
   //   }
   // }
-  // componentDidUpdate(prevProps) {
-  //   debugger
-  //   if (this.props.match !== prevProps.location) {
-  //     alert('123')
-  //     this.onRouteChanged();
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      if (this.props.location.pathname.length == 1) {
+        window.location = '/social-network#/' + 'news';
+      }
+    }
+}
   render() {
     // debugger
     if (!this.props.initialized) {
@@ -275,7 +284,8 @@ let AppContainer = compose(
     setTheme,
     toggleIsHeaderBlur,
     setIndex
-  })
+  }),
+  withRouter
 )(App)
 
 const SamuraiJSApp = props => {
