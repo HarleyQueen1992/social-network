@@ -45,6 +45,8 @@ import SwipeableViews from 'react-swipeable-views';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Menu from "./components/Menu/Menu"
+import Search from "./assets/images/searchW.png"
+import SearchB from "./assets/images/searchB.png"
 import MenuContainer from "./components/Menu/MenuContainer"
 
 const urlIndex =  {
@@ -59,6 +61,9 @@ const urlIndex =  {
 let i = NaN
 class App extends React.Component {
   str = window.location.href
+  state = {
+    focus: false
+  }
 
   handleChange = (event, value) => {
     for (let key in urlIndex) {
@@ -176,8 +181,34 @@ class App extends React.Component {
           <div className={s.appWrapper}>
           <div className={s.header + ' ' + (this.props.index != 0 ? s.roll : '')} >
             <div className={s.titleSite} >
-                <span className={s.logo} >Mosset</span>
-                <img className={s.searchImg} src={SearchW} alt="search"/>
+              <span className={s.logo} >Mosset</span>
+              <div className={s.wrap}>
+                <form className={s.forma} action='' autocomplete='off'>
+                  <input
+                    className={s.search}
+                    name='search'
+                    type='text'
+                    // onChange={props.handleChange}
+                    // value={props.value}
+                    placeholder='News search'
+                    // onFocus={() => {
+                    //   setFocus(!focus)
+                    // }}
+                    // onBlur={() => {
+                    //   setFocus(!focus)
+                    //   props.resetSearchUsers()
+                    // }}
+                    // autocomplete='off'
+                  />
+                  <img
+                    src={this.props.theme == "lightTheme" ? SearchB : Search}
+                    className={s.searchSubmit}
+                    alt='searchSubmit'
+                    value='Rechercher'
+                    type='submit'
+                  />
+                </form>
+              </div>
             </div>
             
             {/* <div className={s.listOfCategories} > */}

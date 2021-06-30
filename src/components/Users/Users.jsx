@@ -70,7 +70,7 @@ const Users = props => {
                 type='text'
                 onChange={props.handleChange}
                 value={props.value}
-                placeholder='Subscriptions search'
+                placeholder='Users search'
                 onFocus={() => {
                   setFocus(!focus)
                 }}
