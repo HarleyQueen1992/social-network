@@ -57,7 +57,6 @@ const urlIndex =  {
 
 }
 let i = NaN
-debugger
 class App extends React.Component {
   str = window.location.href
 
@@ -107,10 +106,11 @@ class App extends React.Component {
   componentDidMount() {
     let strUpdate = this.str.substr(38)
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, '');
-    debugger
     if (strUpdate == '') {
       i = 0
       window.location = '/social-network#/' + urlIndex[i]; 
+    } else if (strUpdate == 'settings') {
+      i = 5
     } else {
       for (let key in urlIndex) {
         if (urlIndex[key] == strUpdate) {
@@ -148,6 +148,11 @@ class App extends React.Component {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       if (this.props.location.pathname.length == 1) {
         window.location = '/social-network#/' + 'news';
+      }
+      let url = this.props.location.pathname
+      url = url.replace(/[^a-zа-яё]/gi, '') 
+      if (url == 'settings') {
+        this.props.setIndex(Number(5))
       }
     }
 }
