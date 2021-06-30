@@ -3,7 +3,6 @@
 }
 
 .PostsBlock {
-  width: 700px;
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 60px 1fr;
@@ -391,11 +390,6 @@ input[type="submit"]:hover {
 .CloseBtn:hover {
   background-color: rgba(255, 255, 255, 0.13);
   border-radius: 5px;
-}
-@media (max-width: 830px) {
-  .PostsBlock {
-    width: calc(400px + (700 - 400) * ((100vw - 480px) / (830 - 480)));
-  }
 }
 
 @media (max-width: 480px) {

@@ -20,6 +20,7 @@
 }
 /* !Profile Block */
 .profileBlock {
+  text-decoration: none;
   cursor: pointer;
   box-sizing: border-box;
   display: grid;
@@ -41,6 +42,7 @@
   align-self: center;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }
 .profileInfo {
   display: grid;

@@ -119,6 +119,9 @@ input[type="submit"]:hover {
   grid-template-columns: 90px 1fr;
   margin-bottom: 15px;
 }
+.user:hover {
+  background-color: rgba(255, 255, 255, 0.034);
+}
 .photoUsers {
   grid-area: photoFollowed;
   display: grid;

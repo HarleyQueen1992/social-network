@@ -14,22 +14,20 @@ import ProfileContainer from "../Profile/ProfileContainer"
 
 const Menu = props => {
   return (
-    <HashRouter>
-      <Route path='/profile' render={() => <ProfileContainer />} />
     
     <div className={s.menuBlock} >
       <header className={s.header} >
         <span className={s.titleMenu} >Menu</span>
       </header>
-      <div className={s.profileBlock} >
+      <NavLink to='/profile' className={s.profileBlock} >
         <div className={s.ava} >
-          <img className={s.avaImg} src={Ava} alt="ava"/>
+          <img className={s.avaImg} src={props.profileInfo.photo} alt="ava"/>
         </div>
         <div className={s.profileInfo} >
-          <span className={s.nameProfile} >Name</span>
+          <span className={s.nameProfile} >{props.profileInfo.fullName}</span>
           <span className={s.info} >View your profile</span>
         </div>
-      </div>
+      </NavLink>
       <div className={s.gridMenu} >
         <NavLink to='/settings' className={s.settingsBlock}>
           <img src={SettingsW} alt="settings img"/>
@@ -41,7 +39,6 @@ const Menu = props => {
         </div>
       </div>
     </div>
-    </HashRouter>
   )
 }
 
