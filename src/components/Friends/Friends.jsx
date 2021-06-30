@@ -115,26 +115,27 @@ const Friends = props => {
       ) : (
         <div className={s.friends}>
           {friends.map(f => (
-            <div key={f.id} className={s.friend}>
-              <div className={s.leftPart}>
+            <NavLink to={'/profile/' + f.id} key={f.id} className={s.friend}>
                 <div className={s.photoUsers}>
-                  <NavLink to={"/profile/" + f.id}>
                     <img
                       alt='userphoto'
                       src={f.photo != null ? f.photo : userPhoto}
                       className={s.photo}
                     />
-                  </NavLink>
                 </div>
-              </div>
               <div className={s.rightPart}>
                 <span className={s.name}>{f.name}</span>
                 <span className={s.buttonsBlock} >
-                  <button className={s.viewPosts} >View posts</button>
-                  <button onClick={() => {props.unfollow(f.id)}} className={s.unfollow} >Unsubscribe</button>
+                <div className={s.viewPosts} >
+                  <button className={s.viewPostsBtn} >View posts</button>
+                </div>
+                <div className={s.unfollow}>
+                  <button onClick={() => {props.unfollow(f.id)}} className={s.unfollowBtn} >Unsubscribe</button>
+                </div>
+                  
                 </span>
               </div>
-            </div>
+            </NavLink>
           ))}
         </div>
       )}

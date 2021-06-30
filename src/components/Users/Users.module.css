@@ -164,7 +164,7 @@ input[type="submit"]:hover {
   z-index: 100;
   width: 100%;
   justify-self: center;
-  height: 76%;
+  height: 80%;
   align-self: center;
   border-radius:5px;
   border: none;
@@ -179,7 +179,7 @@ input[type="submit"]:hover {
 }
 .unsubscribeBtn {
   cursor: pointer;
-  height: 75%;
+  height: 80%;
   z-index: 1000;
   align-self: center;
   width: 100%;
@@ -201,7 +201,7 @@ input[type="submit"]:hover {
 }
 .viewPostsBtn {
   cursor: pointer;
-  height: 76%;
+  height: 80%;
   align-self: center;
   width: 100%;
   justify-self: center;

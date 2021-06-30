@@ -66,28 +66,34 @@
   width: 100%;
   justify-self: start;
   display: grid;
+  text-decoration: none;
+  z-index: 1;
   box-sizing: border-box;
-  /* margin-right: 600px; */
-  padding: 0 15px 15px 15px;
-  grid-template-rows: 100px;
+  grid-column-gap: 10px;
+  grid-template-rows: 80px;
   grid-template-columns: 90px 1fr;
   grid-template-areas: "left right";
+  margin-bottom: 15px;
 }
-
-.leftPart {
-  grid-area: left;
+.friend:hover {
+  background-color: rgba(255, 255, 255, 0.034);
 }
 
 .rightPart {
   grid-area: right;
-  padding: 15px;
   display: grid;
+  padding-right: 10px;
   grid-template-rows: 50% 50%;
   grid-template-areas: "name" "write";
 }
-
+.photoUsers {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
 .photo {
-  height: 90px;
+  height: 80px;
+  justify-self: end;
   border-radius: 50%;
 }
 
@@ -98,6 +104,7 @@
 .name {
   grid-area: name;
   font-size: 20px;
+  align-self: center;
   color: var(--fontColor);
   font-weight: bold;
 }
@@ -148,18 +155,41 @@
 } */
 .buttonsBlock {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 10px;
-}
-.viewPosts {
-  background-color: #494949;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
+  grid-template-columns: 50% 50%;
   box-sizing: border-box;
 }
+.viewPosts {
+  display: grid;
+  margin-right: 5px;
+  text-decoration:none;
+}
+.viewPostsBtn {
+  cursor: pointer;
+  height: 80%;
+  align-self: center;
+  width: 100%;
+  justify-self: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #494949;
+}
+.viewPostsBtn:hover {
+  background-color: #5e5e5e;
+  width: 96%;
+}
 .unfollow {
+  display: grid;
+  margin-left: 5px;
+  text-decoration:none;
+}
+.unfollowBtn {
+  width: 100%;
+  cursor: pointer;
+  justify-self: center;
+  height: 80%;
+  align-self: center;
   background-color: rgb(172, 172, 172);
   border: none;
   border-radius: 5px;
@@ -167,34 +197,11 @@
   font-weight: bold;
   box-sizing: border-box;
 }
-@media (max-width: 480px) {
-  .title {
-    margin-left: 0px;
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--fontColor);
-  }
-  .friend {
-    box-sizing: border-box;
-    grid-template-rows: 80px;
-    grid-template-columns: 80px 1fr;
-    padding: 0 15px 15px 15px;
-  }
-  .photo {
-    height: 70px;
-  }
-  .rightPart {
-    border-radius: 20px;
-    padding: 8px;
-  }
-  .name {
-    font-size: 17px;
-    font-weight: bold;
-  }
-  .writeMessage {
-    font-size: 12px;
-  }
+.unfollowBtn:hover {
+  width: 96%;
+  background-color: rgb(146, 146, 146);
 }
+
 /*! Search */
 .wrap {
   align-self: center;
