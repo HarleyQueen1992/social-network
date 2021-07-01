@@ -286,6 +286,9 @@
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
   color: var(--fontColor);
 }
@@ -344,6 +347,10 @@ input[type="file"] {
 .centerStatus {
   grid-area: Status;
   align-self: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-left: 10px;
 }
 

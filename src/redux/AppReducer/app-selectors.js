@@ -16,3 +16,6 @@ export const getInnerHeight = state => {
 export const getIndex = state => {
   return state.app.index
 }
+export const getIsBigScreen = state => {
+  return state.app.isBigScreen
+}

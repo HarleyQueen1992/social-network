@@ -1,135 +1,13 @@
-.newsBlock {
+.newsListPage {
   display: grid;
   width: 700px;
+  margin: 0 auto;
   grid-template-rows: 1fr;
   margin-top: 100px;
   grid-row-gap: 20px;
 }
-
-.header {
-  display: grid;
-  grid-template-columns: 30px 1fr 40px 30px;
-  border-bottom: 1px solid var(--BorderBottom);
-  margin: 0 20px;
-}
-.active {
-  grid-template-columns: 30px 1fr 30px;
-  transition: all 0.5s;
-}
-.action {
-  transition: all 0.5s;
-  display: none;
-}
-.newsImg {
-  align-self: center;
-  justify-self: center;
-}
-
-.postBlock {
-  /* width: 500px; */
-  display: grid;
-  /* grid-template-rows: 50px 30px; */
-  grid-template-areas: "photoName" "body" "likes";
-  /* grid-template-rows: minmax(50px, auto) 0%; */
-  /* border: 2px solid #138D90; */
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #242526;
-  border-radius: 10px;
-  border-bottom: 1px solid var(--BorderBottom);
-}
-
-.title {
-  align-self: center;
-  color: var(--fontColor);
-  font-size: 22px;
-  font-weight: 1000;
-  margin-left: 10px;
-}
-
-.renewImg {
-  align-self: center;
-  height: 30px;
-}
-
-/* ! Search */
-.wrap {
-  align-self: center;
-  display: inline-block;
-  position: relative;
-  height: 50px;
-  /* width: 50px; */
-  padding: 0;
-}
-.forma {
-  width: 100%;
-  height: 100%;
-  display: grid;
-}
-.search {
-  box-sizing: border-box;
-  height: 100%;
-  font-size: 20px;
-  display: inline-block;
-  /* font-family: "Lato"; */
-  /* font-weight: 100; */
-  border: none;
-  outline: none;
-  color: var(--fontColor);
-  padding: 5px 22px 5px 5px;
-  padding-right: 40px;
-  width: 0px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  z-index: 3;
-  transition: width 0.5s;
-  cursor: pointer;
-}
-
-.search:focus:hover {
-  border-bottom: 1px solid var(--BorderBottom);
-}
-
-.search:focus {
-  width: 100%;
-  z-index: 10;
-  border-bottom: 1px solid var(--BorderBottom);
-  cursor: text;
-}
-.searchSubmit {
-  align-self: center;
-  height: 30px;
-  display: inline-block;
-  border: none;
-  position: absolute;
-  top: 10px;
-  right: 6px;
-  z-index: 2;
-  cursor: pointer;
-  transition: opacity 0.4s ease;
-}
-input[type="submit"] {
-  height: 43px;
-  width: 40px;
-
-  background: url(./../../assets/images/search.png) center center no-repeat;
-  background-size: 30px;
-  text-indent: -10000px;
-}
-
-input[type="submit"]:hover {
-  opacity: 0.8;
-}
-@media (max-width: 850px) {
-  .newsBlock {
-    width: calc(370px + (700 - 370) * ((100vw - 480px) / (850 - 480)));
-  }
-}
-
-@media (max-width: 480px) {
-  .newsBlock {
+@media (max-width: 700px) {
+  .newsListPage {
     width: 100vw;
   }
 }

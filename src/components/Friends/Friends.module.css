@@ -1,7 +1,8 @@
 .friendsBlock {
   display: grid;
   grid-template-rows: 60px 1fr;
-  display: grid;
+  width: 600px;
+  margin: 0 auto;
   margin-top: 50px;
   grid-row-gap: 10px;
 }
@@ -15,7 +16,11 @@
 .headActive {
   grid-template-columns: 1fr;
 }
-
+.friends {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+}
 .friendsImg {
   align-self: center;
   justify-self: center;
@@ -70,7 +75,7 @@
   z-index: 1;
   box-sizing: border-box;
   grid-column-gap: 10px;
-  grid-template-rows: 80px;
+  grid-template-rows: 90px;
   grid-template-columns: 90px 1fr;
   grid-template-areas: "left right";
   margin-bottom: 15px;
@@ -92,7 +97,8 @@
   width: 100%;
 }
 .photo {
-  height: 80px;
+  height: 90px;
+  width: 90px;
   justify-self: end;
   border-radius: 50%;
 }
@@ -161,7 +167,7 @@
 .viewPosts {
   display: grid;
   margin-right: 5px;
-  text-decoration:none;
+  text-decoration: none;
 }
 .viewPostsBtn {
   cursor: pointer;
@@ -182,7 +188,7 @@
 .unfollow {
   display: grid;
   margin-left: 5px;
-  text-decoration:none;
+  text-decoration: none;
 }
 .unfollowBtn {
   width: 100%;
@@ -238,7 +244,6 @@
   cursor: pointer;
 }
 
-
 .search:focus:hover {
   /* border-bottom: 1px solid var(--BorderBottom); */
 }
@@ -272,4 +277,24 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .friendsBlock {
+    width: 100vw;
+  }
+  .friends {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .friend {
+    grid-template-rows: 80px;
+    grid-template-columns: 80px 1fr;
+  }
+  .photo {
+    height: 80px;
+    width: 80px;
+  }
 }

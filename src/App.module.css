@@ -11,6 +11,9 @@ body {
   background-color: var(--body);
   transition: all 0.3s ease 0s;
 }
+::-webkit-scrollbar {
+  width: 0;
+}
 html {
   --body: #18191a;
   --fontColor: #fff;

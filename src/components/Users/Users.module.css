@@ -1,6 +1,7 @@
-.usersBlock {
+.usersListPage {
   display: grid;
-  width: 100%;
+  width: 600px;
+  margin: 0 auto;
   margin-top: 50px;
   grid-template-rows: 60px 1fr;
 }
@@ -92,72 +93,85 @@ input[type="submit"]:hover {
   opacity: 0.8;
 }
 
-
 /*! Users */
-.users {
+.usersList {
+  display: grid;
   width: 100%;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   padding: 10px 0 0 0;
   box-sizing: border-box;
 }
-.errorNoUsers {
+.usersNotFoundError {
   color: var(--fontColor);
   margin-left: 10px;
   font-size: 24px;
   font-weight: bold;
 }
 
-
 /* ? User */
-.user {
+.usersListItem {
   display: grid;
   z-index: 10;
   grid-template-areas: "photoFollowed content";
-  grid-template-rows: 80px;
+  grid-template-rows: 90px;
   grid-column-gap: 10px;
   text-decoration: none;
   grid-template-columns: 90px 1fr;
   margin-bottom: 15px;
 }
-.user:hover {
+.usersListItem:hover {
   background-color: rgba(255, 255, 255, 0.034);
 }
-.photoUsers {
+.userAvatar {
   grid-area: photoFollowed;
   display: grid;
   height: 100%;
   width: 100%;
 }
-.photo {
+.avatar {
   justify-self: end;
-  height: 80px;
-  width: 80px;
+  height: 90px;
+  width: 90px;
   border-radius: 50%;
 }
 
 .rightPart {
   display: grid;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 30% 20% 50%;
   box-sizing: border-box;
   padding-right: 10px;
 }
+.noStatus {
+  grid-template-rows: 50% 50%;
+}
 .name {
   font-size: 20px;
-  align-self: center;
+  align-self: start;
   font-weight: bold;
   color: var(--fontColor);
+}
+.nameNoStatus {
+  align-self: center;
+}
+.userStatus {
+  color: white;
+  align-self: end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.statusDisable {
+  display: none;
 }
 .buttonsBlock {
   display: grid;
   grid-template-columns: 50% 50%;
   box-sizing: border-box;
-  
-
 }
 .subscribers {
   display: grid;
   margin-right: 5px;
-  text-decoration:none;
+  text-decoration: none;
 }
 .subscribeBtn {
   cursor: pointer;
@@ -166,7 +180,7 @@ input[type="submit"]:hover {
   justify-self: center;
   height: 80%;
   align-self: center;
-  border-radius:5px;
+  border-radius: 5px;
   border: none;
   color: white;
   font-weight: bold;
@@ -184,7 +198,7 @@ input[type="submit"]:hover {
   align-self: center;
   width: 100%;
   justify-self: center;
-  border-radius:5px;
+  border-radius: 5px;
   border: none;
   color: black;
   font-weight: bold;
@@ -196,8 +210,8 @@ input[type="submit"]:hover {
 }
 .viewPosts {
   display: grid;
-  text-decoration:none;
-  margin-left:5px;
+  text-decoration: none;
+  margin-left: 5px;
 }
 .viewPostsBtn {
   cursor: pointer;
@@ -205,7 +219,7 @@ input[type="submit"]:hover {
   align-self: center;
   width: 100%;
   justify-self: center;
-  border-radius:5px;
+  border-radius: 5px;
   border: none;
   color: white;
   font-weight: bold;
@@ -215,4 +229,27 @@ input[type="submit"]:hover {
 .viewPostsBtn:hover {
   background-color: #5e5e5e;
   width: 96%;
+}
+
+@media (max-width: 600px) {
+  .usersListPage {
+    width: 100vw;
+  }
+  .usersList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .usersListItem {
+    grid-template-rows: 80px;
+    grid-template-columns: 80px 1fr;
+  }
+  .avatar {
+    height: 80px;
+    width: 80px;
+  }
+  .userStatus {
+    font-size: 14px;
+  }
 }

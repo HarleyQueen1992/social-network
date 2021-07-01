@@ -54,74 +54,111 @@ const Users = props => {
     }
   }
   return (
-    <div className={s.usersBlock}>
-      <header className={s.header + ' ' + (focus ? s.headActive : '')}>
-        <span className={s.title + ' ' + (focus ? s.titleActive : '')}>Users</span>
+    <div className={s.usersListPage}>
+      <header className={s.header + " " + (focus ? s.headActive : "")}>
+        <span className={s.title + " " + (focus ? s.titleActive : "")}>
+          Users
+        </span>
         <div
-            className={s.wrap}
-            // onClick={() => {
-            //   setFocus(!focus)
-            // }}
-          >
-            <form className={s.forma} action='' autocomplete='off'>
-              <input
-                className={s.search}
-                name='search'
-                type='text'
-                onChange={props.handleChange}
-                value={props.value}
-                placeholder='Users search'
-                onFocus={() => {
-                  setFocus(!focus)
-                }}
-                onBlur={() => {
-                  setFocus(!focus)
-                  props.resetSearchUsers()
-                
-
-                }}
-                // autocomplete='off'
-              />
-              <img
-                src={props.theme == "lightTheme" ? SearchB : Search}
-                className={s.searchSubmit}
-                alt='searchSubmit'
-                value='Rechercher'
-                type='submit'
-              />
-            </form>
-          </div>
+          className={s.wrap}
+          // onClick={() => {
+          //   setFocus(!focus)
+          // }}
+        >
+          <form className={s.forma} action='' autocomplete='off'>
+            <input
+              className={s.search}
+              name='search'
+              type='text'
+              onChange={props.handleChange}
+              value={props.value}
+              placeholder='Users search'
+              onFocus={() => {
+                setFocus(!focus)
+              }}
+              onBlur={() => {
+                setFocus(!focus)
+                props.resetSearchUsers()
+              }}
+              // autocomplete='off'
+            />
+            <img
+              src={props.theme == "lightTheme" ? SearchB : Search}
+              className={s.searchSubmit}
+              alt='searchSubmit'
+              value='Rechercher'
+              type='submit'
+            />
+          </form>
+        </div>
       </header>
       {props.isReceipt ? (
         <Preloader />
       ) : (
-        <div className={s.users}>
+        <div className={s.usersList}>
           {props.value !== "" && props.usersSearch.length === 0 ? (
-            <div className={s.errorNoUsers}>No users</div>
+            <div className={s.usersNotFoundError}>No users</div>
           ) : (
             users.map(u => (
-              <NavLink to={"/profile/" + u.id} className={s.user} key={u.id}>
-                <div className={s.photoUsers}>
-                    <img
-                      alt='userPhoto'
-                      src={u.photo != null ? u.photo : userPhoto}
-                      className={s.photo}
-                    />
+              <NavLink
+                to={"/profile/" + u.id}
+                className={s.usersListItem}
+                key={u.id}
+              >
+                <div className={s.userAvatar}>
+                  <img
+                    alt='userPhoto'
+                    src={u.photo != null ? u.photo : userPhoto}
+                    className={s.avatar}
+                  />
                 </div>
-                <div className={s.rightPart}>
-                  <div className={s.name}>{u.name}</div>
-                  <div className={s.buttonsBlock} >
-                    <NavLink to='#' className={s.subscribers}>
-                      {u.followed ? 
-                        <button onClick={() => {props.unfollow(u.id)}} className={s.subscribeBtn} >Subscribe</button> : 
-                        <button onClick={() => {props.follow(u.id)}} className={s.unsubscribeBtn} >Unsubscribe</button>}
-                    </NavLink>
-                    <NavLink to='#' className={s.viewPosts} >
-                        <button className={s.viewPostsBtn} >View Posts</button>
-                    </NavLink>
-
+                <div
+                  className={
+                    s.rightPart + " " + (u.status == "" ? s.noStatus : "")
+                  }
+                >
+                  <div
+                    className={
+                      s.name + " " + (u.status == "" ? s.nameNoStatus : "")
+                    }
+                  >
+                    {u.name}
                   </div>
-                  
+                  <span
+                    className={
+                      s.userStatus +
+                      " " +
+                      (u.status == "" ? s.statusDisable : "")
+                    }
+                  >
+                    {u.status}
+                  </span>
+                  <div className={s.buttonsBlock}>
+                    <NavLink to='#' className={s.subscribers}>
+                      {u.followed ? (
+                        <button
+                          onClick={() => {
+                            props.unfollow(u.id)
+                          }}
+                          className={s.unsubscribeBtn}
+                        >
+                          Unsubscribe
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            props.follow(u.id)
+                          }}
+                          className={s.subscribeBtn}
+                        >
+                          Subscribe
+                        </button>
+                      )}
+                    </NavLink>
+                    <NavLink to='#' className={s.viewPosts}>
+                      <button className={s.viewPostsBtn}>View Posts</button>
+                    </NavLink>
+                  </div>
                 </div>
               </NavLink>
             ))

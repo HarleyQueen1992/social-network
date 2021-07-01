@@ -1,76 +1,153 @@
-import React, {useState} from "react"
-import s from './Header.module.css'
-import News from './../News/NewsContainer'
-import Home from './../../assets/images/homeW.png'
-import Profile from './../../assets/images/profileW.png'
-import Posts from './../../assets/images/postsW.png'
-import UsersW from './../../assets/images/usersW.png'
-import SettingsW from './../../assets/images/settingsW.png'
-import FriendsW from './../../assets/images/friendsW.png'
-import SearchW from './../../assets/images/searchW.png'
-import SwipeableViews from 'react-swipeable-views';
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import React, { useState } from "react"
+import Home from "../../assets/images/homeW.png"
+import Profile from "../../assets/images/profileW.png"
+import Posts from "../../assets/images/postsW.png"
+import UsersW from "../../assets/images/usersW.png"
+import MenuW from "../../assets/images/menuW.png"
+import FriendsW from "../../assets/images/friendsW.png"
+import Tabs from "@material-ui/core/Tabs"
+import Tab from "@material-ui/core/Tab"
+import Search from "../../assets/images/searchW.png"
+import SearchB from "../../assets/images/searchB.png"
+import s from "./Header.module.css"
 
 const Header = props => {
-    let [index, setIndex] = useState(0)
-    const handleChange = (event, value) => {
-      setIndex(value);
-      
+  const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 800)
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 800) {
+      setIsBigScreen(true)
+    } else {
+      setIsBigScreen(false)
     }
-    const handleChangeIndex = index => {
-      setIndex(index)
-    }
-    
-    return (
-      <div className={s.header} >
-        <div className={s.titleSite} >
-            <span className={s.logo} >Mosset</span>
-            <img className={s.searchImg} src={SearchW} alt="search"/>
+  })
+  return (
+    <div
+      className={
+        s.header + " " + (props.index != 0 && !isBigScreen ? s.roll : "")
+      }
+    >
+      <div className={s.titleSite}>
+        <span className={s.logo}>Mosset</span>
+        <div className={s.wrap + " " + (isBigScreen ? s.disableWran : "")}>
+          <form className={s.forma} action='' autocomplete='off'>
+            <input
+              className={s.search}
+              name='search'
+              type='text'
+              // onChange={props.handleChange}
+              // value={props.value}
+              placeholder='News search'
+              // onFocus={() => {
+              //   setFocus(!focus)
+              // }}
+              // onBlur={() => {
+              //   setFocus(!focus)
+              //   props.resetSearchUsers()
+              // }}
+              // autocomplete='off'
+            />
+            <img
+              src={props.theme == "lightTheme" ? SearchB : Search}
+              className={s.searchSubmit}
+              alt='searchSubmit'
+              value='Rechercher'
+              type='submit'
+            />
+          </form>
         </div>
-        {/* <div className={s.listOfCategories} > */}
-        <Tabs value={index} className={s.listOfCategories} onChange={handleChange}>
-            <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Home} /></div>} />
-            <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Profile} /></div>} />
-            <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={Posts} /></div>} />
-            <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={UsersW} /></div>} />
-            <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={SettingsW} /></div>} />
-            <Tab className={s.tab} label={<div className={s.category} ><img className={s.categoriesImg} src={FriendsW} /></div>} />
-        </Tabs>
+      </div>
 
-        <SwipeableViews
-          index={index}
-          enableMouseEvents
-          onChangeIndex={handleChangeIndex}
-        >
-            <div>1</div>
-            <div>1</div>
-            <div>3</div>
-            <div>2</div>
-            <div>4</div>
-            <div>5</div>
-
-            
-        </SwipeableViews>
-            {/* <div className={s.category}>
-                <img className={s.categoriesImg} src={Profile} alt="profile img"/>
-            </div>
+      <Tabs
+        value={props.index}
+        className={s.listOfCategories}
+        onChange={props.handleChange}
+      >
+        <Tab
+          className={s.tab}
+          label={
             <div className={s.category}>
-                <img className={s.categoriesImg} src={Posts} alt="posts img"/>
+              <img className={s.categoriesImg} alt='home' src={Home} />
             </div>
-            <div className={s.category} >
-                <img className={s.categoriesImg} src={UsersW} alt="users img"/>
+          }
+        />
+        <Tab
+          className={s.tab}
+          label={
+            <div className={s.category}>
+              <img className={s.categoriesImg} alt='profile' src={Profile} />
             </div>
-            <div className={s.category} >
-                <img className={s.categoriesImg} src={SettingsW} alt="settings img"/>
+          }
+        />
+        <Tab
+          className={s.tab}
+          label={
+            <div className={s.category}>
+              <img className={s.categoriesImg} alt='posts' src={Posts} />
             </div>
-            <div className={s.category} >
-                <img className={s.categoriesImg} src={FriendsW} alt="friends img"/>
-            </div> */}
-        {/* </div> */}
-      </div>   
-    )
+          }
+        />
+        <Tab
+          className={s.tab}
+          label={
+            <div className={s.category}>
+              <img className={s.categoriesImg} alt='users' src={UsersW} />
+            </div>
+          }
+        />
+        <Tab
+          className={s.tab}
+          label={
+            <div className={s.category}>
+              <img
+                className={s.categoriesImg}
+                alt='subscribers'
+                src={FriendsW}
+              />
+            </div>
+          }
+        />
+        {!isBigScreen && (
+          <Tab
+            className={s.tab}
+            label={
+              <div className={s.category}>
+                <img className={s.categoriesImg} alt='menu' src={MenuW} />
+              </div>
+            }
+          />
+        )}
+      </Tabs>
+      {isBigScreen && (
+        <div className={s.wrapRight}>
+          <form className={s.forma} action='' autocomplete='off'>
+            <input
+              className={s.search}
+              name='search'
+              type='text'
+              // onChange={props.handleChange}
+              // value={props.value}
+              placeholder='News search'
+              // onFocus={() => {
+              //   setFocus(!focus)
+              // }}
+              // onBlur={() => {
+              //   setFocus(!focus)
+              //   props.resetSearchUsers()
+              // }}
+              // autocomplete='off'
+            />
+            <img
+              src={props.theme == "lightTheme" ? SearchB : Search}
+              className={s.searchSubmit}
+              alt='searchSubmit'
+              value='Rechercher'
+              type='submit'
+            />
+          </form>
+        </div>
+      )}
+    </div>
+  )
 }
 
-export default Header;
+export default Header

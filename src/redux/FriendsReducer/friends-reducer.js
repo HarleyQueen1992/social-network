@@ -14,7 +14,7 @@ const DELETE_FRIEND = "app/friends-reducer/DELETE_FRIEND"
 let initialState = {
   friends: [],
   allFriends: [],
-  pageSize: 9,
+  pageSize: 20,
   totalFriendsCount: 20,
   currentPage: 1,
   isFatching: true,
@@ -50,7 +50,7 @@ const friendsReducer = (state = initialState, action) => {
     case DELETE_FRIEND: {
       return {
         ...state,
-        friends: state.friends.filter(f => f.id != action.id)
+        friends: state.friends.filter(f => f.id != action.id),
       }
     }
     case TOGGLE_IS_FATCHING: {
@@ -94,9 +94,9 @@ export const setFriends = friends => ({ type: SET_FRIENDS, friends })
 
 export const clearFriends = () => ({ type: CLEAR_FRIENDS })
 
-export const deleteFriend = (id) => ({
+export const deleteFriend = id => ({
   type: DELETE_FRIEND,
-  id
+  id,
 })
 
 export const setCurrentPage = currentPage => ({

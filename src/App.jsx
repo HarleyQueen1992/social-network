@@ -15,6 +15,7 @@ import {
   setTheme,
   toggleIsHeaderBlur,
   setIndex,
+  toggleIsBigScreen,
 } from "./redux/AppReducer/app-reducer"
 import Preloader from "./components/common/Preloader/Preloader"
 import {
@@ -24,6 +25,7 @@ import {
   getInnerHeight,
   getIsPostCreation,
   getIndex,
+  getIsBigScreen,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
 import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
@@ -41,6 +43,7 @@ import Tab from "@material-ui/core/Tab"
 import Search from "./assets/images/searchW.png"
 import SearchB from "./assets/images/searchB.png"
 import MenuContainer from "./components/Menu/MenuContainer"
+import Header from "./components/Header/Header"
 
 const urlIndex = {
   0: "news",
@@ -54,6 +57,10 @@ let i = NaN
 class App extends React.Component {
   str = window.location.href
 
+  // location = window.location
+  state = {
+    isBigScreen: window.innerWidth > 600,
+  }
   handleChange = (event, value) => {
     for (let key in urlIndex) {
       if (key == value) {
@@ -130,6 +137,18 @@ class App extends React.Component {
     }
   }
   render() {
+    const toggleIsBigScreen = value => {
+      this.setState({
+        isBigScreen: value,
+      })
+    }
+    // window.addEventListener("resize", function () {
+    //   if (window.innerWidth > 600) {
+    //     toggleIsBigScreen(true)
+    //   } else {
+    //     toggleIsBigScreen(false)
+    //   }
+    // })
     if (!this.props.initialized) {
       return <Preloader />
     }
@@ -145,111 +164,11 @@ class App extends React.Component {
       return (
         <>
           <div className={s.appWrapper}>
-            <div
-              className={s.header + " " + (this.props.index != 0 ? s.roll : "")}
-            >
-              <div className={s.titleSite}>
-                <span className={s.logo}>Mosset</span>
-                <div className={s.wrap}>
-                  <form className={s.forma} action='' autocomplete='off'>
-                    <input
-                      className={s.search}
-                      name='search'
-                      type='text'
-                      // onChange={props.handleChange}
-                      // value={props.value}
-                      placeholder='News search'
-                      // onFocus={() => {
-                      //   setFocus(!focus)
-                      // }}
-                      // onBlur={() => {
-                      //   setFocus(!focus)
-                      //   props.resetSearchUsers()
-                      // }}
-                      // autocomplete='off'
-                    />
-                    <img
-                      src={this.props.theme == "lightTheme" ? SearchB : Search}
-                      className={s.searchSubmit}
-                      alt='searchSubmit'
-                      value='Rechercher'
-                      type='submit'
-                    />
-                  </form>
-                </div>
-              </div>
-
-              <Tabs
-                value={this.props.index}
-                className={s.listOfCategories}
-                onChange={this.handleChange}
-              >
-                <Tab
-                  className={s.tab}
-                  label={
-                    <div className={s.category}>
-                      <img className={s.categoriesImg} alt='home' src={Home} />
-                    </div>
-                  }
-                />
-                <Tab
-                  className={s.tab}
-                  label={
-                    <div className={s.category}>
-                      <img
-                        className={s.categoriesImg}
-                        alt='profile'
-                        src={Profile}
-                      />
-                    </div>
-                  }
-                />
-                <Tab
-                  className={s.tab}
-                  label={
-                    <div className={s.category}>
-                      <img
-                        className={s.categoriesImg}
-                        alt='posts'
-                        src={Posts}
-                      />
-                    </div>
-                  }
-                />
-                <Tab
-                  className={s.tab}
-                  label={
-                    <div className={s.category}>
-                      <img
-                        className={s.categoriesImg}
-                        alt='users'
-                        src={UsersW}
-                      />
-                    </div>
-                  }
-                />
-                <Tab
-                  className={s.tab}
-                  label={
-                    <div className={s.category}>
-                      <img
-                        className={s.categoriesImg}
-                        alt='subscribers'
-                        src={FriendsW}
-                      />
-                    </div>
-                  }
-                />
-                <Tab
-                  className={s.tab}
-                  label={
-                    <div className={s.category}>
-                      <img className={s.categoriesImg} alt='menu' src={MenuW} />
-                    </div>
-                  }
-                />
-              </Tabs>
-            </div>
+            <Header
+              handleChange={this.handleChange}
+              index={this.props.index}
+              theme={this.props.theme}
+            />
             <div
               className={
                 s.appWrapperContent + " " + (this.props.index != 0 ? s.up : "")
@@ -343,6 +262,7 @@ const mapStateToProps = state => {
     headerBlur: getHeaderBlur(state),
     Height: getInnerHeight(state),
     index: getIndex(state),
+    isBigScreen: getIsBigScreen(state),
   }
 }
 
@@ -353,6 +273,7 @@ let AppContainer = compose(
     setTheme,
     toggleIsHeaderBlur,
     setIndex,
+    toggleIsBigScreen,
   }),
   withRouter
 )(App)

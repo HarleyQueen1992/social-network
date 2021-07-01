@@ -6,7 +6,7 @@ const SET_THEME = "app/app-reducer/SET_THEME"
 const HEADER_BLUR = "app/app-reducer/HEADER_BLUR"
 const IS_FETCHING = "app/app-reducer/IS_FETCHING"
 const SET_INDEX = "app/app-reducer/SET_INDEX"
-
+const TOGGLE_IS_BIG_SCREEN = "app/app-reducer/TOGGLE_IS_BIG_SCREEN"
 
 let initialState = {
   initialized: false,
@@ -14,6 +14,7 @@ let initialState = {
   index: null,
   theme: darkTheme,
   headerBlur: false,
+  isBigScreen: window.innerWidth > 600,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -34,6 +35,13 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         theme: action.theme == "light" ? lightTheme : darkTheme,
+      }
+    }
+    case TOGGLE_IS_BIG_SCREEN: {
+      debugger
+      return {
+        ...state,
+        isBigScreen: action.isBigScreen,
       }
     }
     case IS_FETCHING: {
@@ -76,6 +84,10 @@ export const toggleIsHeaderBlur = headerBlur => ({
 export const setIndex = index => ({
   type: SET_INDEX,
   index,
+})
+export const toggleIsBigScreen = isBigScreen => ({
+  type: TOGGLE_IS_BIG_SCREEN,
+  isBigScreen,
 })
 
 export const setTheme = theme => ({ type: SET_THEME, theme })

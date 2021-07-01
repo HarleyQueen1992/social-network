@@ -1,16 +1,19 @@
 * {
   font-family: "Source Sans Pro", sans-serif;
 }
+/*! PostsListPage */
 
-.PostsBlock {
+.postsListPage {
   box-sizing: border-box;
   display: grid;
+  width: 700px;
+  margin: 0 auto;
   grid-template-rows: 60px 1fr;
   margin-top: 50px;
   grid-row-gap: 10px;
   grid-template-areas: "header" "posts";
 }
-
+/*? Header */
 .header {
   grid-area: header;
   display: grid;
@@ -22,13 +25,30 @@
   grid-template-columns: 1fr 40px;
   transition: all 0.5s;
 }
+.heading {
+  color: var(--fontColor);
+  font-size: 25px;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid var(--BorderBottom);
+  transition: all 0.5s;
+}
+.action {
+  transition: all 0.5s;
+  display: none;
+}
 
+.heading span {
+  align-self: center;
+  justify-self: center;
+}
+/*? Search  */
 .wrap {
   align-self: center;
   display: inline-block;
   position: relative;
   height: 50px;
-  /* width: 50px; */
   padding: 0;
 }
 .forma {
@@ -41,8 +61,6 @@
   height: 100%;
   font-size: 20px;
   display: inline-block;
-  /* font-family: "Lato"; */
-  /* font-weight: 100; */
   border: none;
   outline: none;
   color: var(--fontColor);
@@ -92,6 +110,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
   opacity: 0.8;
 }
+/*? Edit block  */
 .editBlock {
   display: grid;
 }
@@ -101,34 +120,6 @@ input[type="submit"]:hover {
   align-self: center;
   justify-self: end;
   height: 35px;
-}
-
-.heading {
-  color: var(--fontColor);
-  font-size: 25px;
-  display: grid;
-  height: 100%;
-  width: 100%;
-  border-bottom: 1px solid var(--BorderBottom);
-  transition: all 0.5s;
-}
-.action {
-  transition: all 0.5s;
-  display: none;
-}
-
-.heading span {
-  align-self: center;
-  justify-self: center;
-}
-
-.createPost {
-  display: none;
-}
-
-.posts {
-  display: grid;
-  grid-column: 200px;
 }
 .all {
   position: fixed;
@@ -147,6 +138,11 @@ input[type="submit"]:hover {
   background-color: rgba(88, 87, 87, 0.349);
   opacity: 0.4;
 }
+
+.createPost {
+  display: none;
+}
+
 /* ! Create post small */
 .PostCreationBlock {
   z-index: 99999999;
@@ -215,13 +211,6 @@ input[type="submit"]:hover {
   grid-template-columns: 1;
 }
 
-/* .musicBlock {
-    align-self: center;
-    justify-self: center;
-    height: 30px;
-    width: 30px;
-} */
-
 .bot img {
   align-self: center;
   justify-self: end;
@@ -229,18 +218,10 @@ input[type="submit"]:hover {
   height: 25px;
   width: 25px;
 }
-@media (max-width: 480px) {
-  .PostCreationBlock {
-    grid-template-rows: 60px auto 50px;
 
-    width: 100vw;
-  }
-
-  .titleField {
-    /* text-overflow: clip; */
-    white-space: normal;
-    margin: 0 10px;
-  }
+.posts {
+  display: grid;
+  grid-column: 200px;
 }
 
 /* ! Create post */
@@ -259,19 +240,11 @@ input[type="submit"]:hover {
   display: grid;
   grid-template-rows: auto 40px;
 }
-@media (max-width: 1500px) {
-  .PostCreationContainer {
-    width: calc(425px + (550 - 425) * ((100vw - 480px) / (1500 - 480)));
-  }
-}
-.PostCreationField {
-  /* box-sizing: border-box; */
-  height: 100%;
-  /* width: 60%; */
 
+.PostCreationField {
+  height: 100%;
   display: grid;
   box-sizing: border-box;
-  /* grid-template-rows: 20% 80%; */
   border: 1px solid #ddd;
   border-radius: 5px;
   grid-row-gap: 10px;
@@ -290,6 +263,34 @@ input[type="submit"]:hover {
   justify-self: center;
   display: grid;
   box-sizing: border-box;
+}
+.titleCreatePost::before {
+  content: "";
+  position: absolute;
+  width: 95%;
+  height: 1px;
+  justify-self: center;
+  bottom: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.342);
+}
+.titleCreatePostField {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  align-self: center;
+  font-size: 15px;
+  text-align: center;
+  min-height: 30px;
+  max-height: auto;
+  overflow: hidden;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+  padding: 7px 5px 5px 5px;
+  color: white;
+  border: none;
+  background-color: #1b1b1b;
+  outline: none;
 }
 .bodyCreatePost {
   width: 100%;
@@ -313,45 +314,32 @@ input[type="submit"]:hover {
   background-color: #1b1b1b;
   outline: none;
 }
-.titleCreatePostField {
-  /* top: 10px;
-  bottom: 10px;
-  position: absolute; */
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  align-self: center;
-  font-size: 15px;
-  text-align: center;
-  min-height: 30px;
-  max-height: auto;
-  overflow: hidden;
-  width: 100%;
-  resize: none;
-  box-sizing: border-box;
-  padding: 7px 5px 5px 5px;
-  color: white;
-  border: none;
-  background-color: #1b1b1b;
-  outline: none;
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.397); */
-}
-.titleCreatePost::before {
-  content: "";
-  position: absolute;
-  width: 95%;
-  height: 1px;
-  justify-self: center;
-  bottom: 0;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.342);
-}
+
 .botCreatePost {
   display: grid;
   grid-template-columns: 70% 30%;
 }
 /* Стилизация кнопок у Create post */
+.CloseBtn {
+  cursor: pointer;
+  height: 80%;
+  width: 70px;
+  justify-self: end;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  background-color: rgba(255, 255, 255, 0);
+  align-self: center;
+  transition: all 0.2s;
+}
+.CloseBtn:hover {
+  background-color: rgba(255, 255, 255, 0.13);
+  border-radius: 5px;
+}
 .CreatePostBtn {
-  /* width: 50px; */
   cursor: pointer;
   height: 80%;
   width: 90%;
@@ -372,43 +360,23 @@ input[type="submit"]:hover {
 .CreatePostBtn:hover {
   background-color: rgba(255, 0, 0, 0.849);
 }
-.CloseBtn {
-  cursor: pointer;
-  height: 80%;
-  width: 70px;
-  justify-self: end;
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
-  border: none;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  background-color: rgba(255, 255, 255, 0);
-  align-self: center;
-  transition: all 0.2s;
-}
-.CloseBtn:hover {
-  background-color: rgba(255, 255, 255, 0.13);
-  border-radius: 5px;
-}
-
-@media (max-width: 480px) {
-  .posts {
-    width: 100%;
+@media (max-width: 700px) {
+  .postsListPage {
+    width: 100vw;
   }
-  .PostsBlock {
-    margin-bottom: 60px;
+}
+@media (max-width: 480px) {
+  .PostCreationBlock {
+    grid-template-rows: 60px auto 50px;
+    width: 100vw;
+  }
+  .titleField {
+    white-space: normal;
+    margin: 0 10px;
   }
 }
 
 @media (max-width: 400px) {
-  .PostsBlock {
-    width: 100vw;
-    margin-bottom: 0;
-  }
-  .posts {
-    width: 100%;
-  }
   .createPost {
     box-sizing: border-box;
     display: grid;

@@ -3,18 +3,12 @@ import s from "./ProfileInfo.module.css"
 import { Input } from "../../common/FromsControls/FormsControls"
 
 const ProfileStatusWithHooks = props => {
-  const width = window.innerWidth
-
   const onStatusChange = e => {
     props.setStatus(e.currentTarget.value)
   }
   const activateEditMode = () => {
-    // alert("asda")
     props.setEditMode(true)
   }
-  // alert(isA)
-  // debugger
-
   return (
     <>
       <div>

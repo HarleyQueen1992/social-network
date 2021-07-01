@@ -19,6 +19,7 @@ const Navbar = props => {
   //   setHeaderBlur(true)
   // }
   window.addEventListener("resize", function () {
+    console.log(window.innerHeight)
     if (height * 0.7 > window.innerHeight) {
       setHeaderBlur(true)
     } else {
@@ -27,42 +28,79 @@ const Navbar = props => {
   })
   return (
     <>
-<div className={h.menuBlock + " " + (menuActive ? h.menuBlockActive : headerBlur ? h.activeHederBlur : "")}>
-      
-      <div className={h.menu + " " + (menuActive ? h.menuActive : "")}>
-        <NavLink to='/news' onClick={() => {
-          setMenuActive(false)
-        }} >News</NavLink>
-        <NavLink to='/posts' onClick={() => {
-          setMenuActive(false)
-        }}>Posts</NavLink>
-        <NavLink to='/profile' onClick={() => {
-          setMenuActive(false)
-        }}>Profile</NavLink>
-        <NavLink to='/users' onClick={() => {
-          setMenuActive(false)
-        }}>Users</NavLink>
-        <NavLink to='/friends' onClick={() => {
-          setMenuActive(false)
-        }}>Friends</NavLink>
-        <NavLink to='/settings' onClick={() => {
-          setMenuActive(false)
-        }}>Settings</NavLink>
+      <div
+        className={
+          h.menuBlock +
+          " " +
+          (menuActive ? h.menuBlockActive : headerBlur ? h.activeHederBlur : "")
+        }
+      >
+        <div className={h.menu + " " + (menuActive ? h.menuActive : "")}>
+          <NavLink
+            to='/news'
+            onClick={() => {
+              setMenuActive(false)
+            }}
+          >
+            News
+          </NavLink>
+          <NavLink
+            to='/posts'
+            onClick={() => {
+              setMenuActive(false)
+            }}
+          >
+            Posts
+          </NavLink>
+          <NavLink
+            to='/profile'
+            onClick={() => {
+              setMenuActive(false)
+            }}
+          >
+            Profile
+          </NavLink>
+          <NavLink
+            to='/users'
+            onClick={() => {
+              setMenuActive(false)
+            }}
+          >
+            Users
+          </NavLink>
+          <NavLink
+            to='/friends'
+            onClick={() => {
+              setMenuActive(false)
+            }}
+          >
+            Friends
+          </NavLink>
+          <NavLink
+            to='/settings'
+            onClick={() => {
+              setMenuActive(false)
+            }}
+          >
+            Settings
+          </NavLink>
+        </div>
+        <div
+          onClick={() => {
+            setMenuActive(!menuActive)
+          }}
+          className={h.burger + " " + (menuActive ? h.burgerActive : "")}
+        >
+          <div className={h.burgerLine} />
+        </div>
       </div>
       <div
+        className={h.allScreen + " " + (menuActive ? h.allScreenActive : "")}
         onClick={() => {
-          setMenuActive(!menuActive)
+          setMenuActive(false)
         }}
-        className={h.burger + " " + (menuActive ? h.burgerActive : "")}
-      >
-        <div className={h.burgerLine} />
-      </div>
-    </div>
-    <div className={h.allScreen + " " + (menuActive ? h.allScreenActive: "")} onClick={() => {
-        setMenuActive(false)
-      }} ></div>
+      ></div>
     </>
-    
 
     // <div className={h.header + " " + (headerBlur ? h.active : "")}>
     //   <div className={h.navHead}>

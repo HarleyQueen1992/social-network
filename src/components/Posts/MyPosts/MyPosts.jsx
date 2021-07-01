@@ -65,7 +65,7 @@ const MyPosts = props => {
 
   return (
     <>
-      <div className={p.PostsBlock}>
+      <div className={p.postsListPage}>
         <header className={p.header + " " + (focus ? p.active : "")}>
           <div className={p.heading + " " + (focus ? p.action : "")}>
             <span>Posts</span>

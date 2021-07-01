@@ -15,47 +15,9 @@ const News = props => {
   if (props.strUrlPrev != newUrl) {
     props.changeIndex(newUrl)
   }
-  
-  return (
-    <div className={s.newsBlock}>
-      {/* <header className={s.header + " " + (focus ? s.active : "")}>
-        <img
-          className={s.newsImg}
-          alt='news'
-          src={props.theme == "lightTheme" ? NewsB : NewsW}
-        />
-        <div className={s.title + " " + (focus ? s.action : "")}>News</div>
 
-        <div className={s.wrap}>
-          <form className={s.forma} action='' autocomplete='off'>
-            <input
-              className={s.search}
-              name='search'
-              type='text'
-              placeholder='Search news'
-              onFocus={() => {
-                setFocus(!focus)
-              }}
-              onBlur={() => {
-                setFocus(!focus)
-              }}
-              // autocomplete='off'
-            />
-            <img
-              src={props.theme == "lightTheme" ? SearchB : Search}
-              className={s.searchSubmit}
-              alt='searchSubmit'
-              value='Rechercher'
-              type='submit'
-            />
-          </form>
-        </div>
-        <img
-          className={s.renewImg}
-          alt='renew'
-          src={props.theme == "lightTheme" ? NotificationB : Notification}
-        />
-      </header> */}
+  return (
+    <div className={s.newsListPage}>
       <div className={s.news}>
         {props.posts.map(post => (
           <Post

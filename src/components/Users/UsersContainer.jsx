@@ -49,7 +49,7 @@ class UsersC extends React.Component {
   resetSearchUsers = () => {
     this.props.clearUsersSearch()
     this.props.setCurrentPageSearch(1)
-    this.props.setValue('')
+    this.props.setValue("")
   }
   handleChange = async event => {
     if (event.target.value === "" && this.props.value.length === 1) {
