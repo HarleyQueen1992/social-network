@@ -9,7 +9,6 @@
   width: 700px;
   margin: 0 auto;
   grid-template-rows: 60px 1fr;
-  margin-top: 50px;
   grid-row-gap: 10px;
   grid-template-areas: "header" "posts";
 }
@@ -36,7 +35,7 @@
 }
 .action {
   transition: all 0.5s;
-  display: none;
+  display: none !important;
 }
 
 .heading span {
@@ -360,8 +359,20 @@ input[type="submit"]:hover {
 .CreatePostBtn:hover {
   background-color: rgba(255, 0, 0, 0.849);
 }
-@media (max-width: 700px) {
+@media (max-width: 1250px) {
   .postsListPage {
+    margin-left: calc(325px + (400 - 325) * ((100vw - 1100px) / (1250 - 1100)));
+  }
+}
+@media (max-width: 1000px) {
+  .postsListPage {
+    width: 600px;
+    margin-left: calc(275px + (325 - 275) * ((100vw - 900px) / (1000 - 900)));
+  }
+}
+@media (max-width: 900px) {
+  .postsListPage {
+    margin: 0;
     width: 100vw;
   }
 }

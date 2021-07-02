@@ -96,6 +96,7 @@ class UsersC extends React.Component {
             pageSize={this.props.pageSize}
             users={this.props.users}
             follow={this.props.follow}
+            isFetching={this.props.isFetching}
             isFatching={this.props.isFatching}
             unfollow={this.props.unfollow}
             onPageChenged={this.onPageChenged}

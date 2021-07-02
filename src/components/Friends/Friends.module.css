@@ -1,9 +1,8 @@
 .friendsBlock {
   display: grid;
   grid-template-rows: 60px 1fr;
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
-  margin-top: 50px;
   grid-row-gap: 10px;
 }
 .header {
@@ -278,11 +277,24 @@ input[type="submit"] {
 input[type="submit"]:hover {
   opacity: 0.8;
 }
-
-@media (max-width: 600px) {
+@media (max-width: 1250px) {
   .friendsBlock {
+    margin-left: calc(325px + (400 - 325) * ((100vw - 1100px) / (1250 - 1100)));
+  }
+}
+@media (max-width: 1000px) {
+  .friendsBlock {
+    width: 600px;
+    margin-left: calc(275px + (325 - 275) * ((100vw - 900px) / (1000 - 900)));
+  }
+}
+@media (max-width: 900px) {
+  .friendsBlock {
+    margin: 0;
     width: 100vw;
   }
+}
+@media (max-width: 600px) {
   .friends {
     grid-template-columns: 1fr;
   }

@@ -6,13 +6,13 @@ import SettingsImg from "./../../assets/images/settings3.png"
 import ProfileDataFormReduxForm from "./../Profile/ProfileInfo/ProfileDataForm/ProfileDataForm"
 import PreloaderW from "./../../assets/images/Rolling-0.9s-31pxW.svg"
 import Preloader from "./../../assets/images/Rolling-0.9s-31px.svg"
-import Back from './../../assets/images/backW.png'
+import Back from "./../../assets/images/backW.png"
 import Save from "./../../assets/images/save.png"
 import Savew from "./../../assets/images/saveWa.png"
 import ChangePasswordForm from "./ChangePassword/ChangePassword"
-import SwipeableViews from 'react-swipeable-views';
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import SwipeableViews from "react-swipeable-views"
+import Tabs from "@material-ui/core/Tabs"
+import Tab from "@material-ui/core/Tab"
 import { NavLink, HashRouter } from "react-router-dom"
 
 const Settings = props => {
@@ -61,9 +61,15 @@ const Settings = props => {
   return (
     <div className={s.settingsBlock}>
       <header className={s.header}>
-      <NavLink className={s.back} onClick={() => {props.setIndex(5)}} to='/menu'>
-        <img alt='back' className={s.settingsImg} src={Back} />
-      </NavLink>
+        <NavLink
+          className={s.back}
+          onClick={() => {
+            props.setIndex(5)
+          }}
+          to='/menu'
+        >
+          <img alt='back' className={s.settingsImg} src={Back} />
+        </NavLink>
         <div className={s.title}>Settings</div>
         {props.isFetchingSuccess ? (
           <img
@@ -80,17 +86,17 @@ const Settings = props => {
         )}
       </header>
       <Tabs value={index} className={s.tabs} onChange={handleChange}>
-          <Tab className={s.tab} label="Themes" />
-          <Tab className={s.tab} label="Profile" />
-          <Tab className={s.tab} label="Password" />
+        <Tab className={s.tab} label='Themes' />
+        <Tab className={s.tab} label='Profile' />
+        <Tab className={s.tab} label='Password' />
       </Tabs>
-        <SwipeableViews
-          index={index}
-          enableMouseEvents
-          onChangeIndex={handleChangeIndex}
-        >
-          <div>
-            <div className={s.generalBlock}>
+      <SwipeableViews
+        index={index}
+        enableMouseEvents
+        onChangeIndex={handleChangeIndex}
+      >
+        <div>
+          <div className={s.generalBlock}>
             <div className={s.generalSettings}>
               <div className={s.themes}>
                 <span className={s.themesTitle}>Theme:</span>
@@ -107,17 +113,18 @@ const Settings = props => {
                   <img className={s.img} alt='sun' src={Sun} />
                   <div
                     className={
-                      s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
+                      s.ball +
+                      " " +
+                      (props.theme == "lightTheme" ? s.active : "")
                     }
                   ></div>
                 </label>
               </div>
             </div>
-            
           </div>
-          </div>
-          <div>
-            <div className={s.profileBlock}>
+        </div>
+        <div>
+          <div className={s.profileBlock}>
             <div className={s.profileSettings}>
               <div className={s.changeAva}>
                 <span className={s.changeTitle}>Change avatar:</span>
@@ -145,16 +152,11 @@ const Settings = props => {
               </div>
             </div>
           </div>
-          </div>
-          <ChangePasswordForm
-                errorRR={errorRR}
-                onSubmit={onSubmitPassword}
-              />
-        </SwipeableViews>
-      
-      <div className={s.settings}>
-        
-      </div>
+        </div>
+        <ChangePasswordForm errorRR={errorRR} onSubmit={onSubmitPassword} />
+      </SwipeableViews>
+
+      <div className={s.settings}></div>
     </div>
   )
 }

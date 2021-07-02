@@ -3,11 +3,23 @@
   width: 700px;
   margin: 0 auto;
   grid-template-rows: 1fr;
-  margin-top: 100px;
   grid-row-gap: 20px;
 }
-@media (max-width: 700px) {
+@media (max-width: 1250px) {
   .newsListPage {
+    margin-left: calc(325px + (400 - 325) * ((100vw - 1100px) / (1250 - 1100)));
+  }
+}
+@media (max-width: 1000px) {
+  .newsListPage {
+    width: 600px;
+    margin-left: calc(275px + (325 - 275) * ((100vw - 900px) / (1000 - 900)));
+  }
+}
+@media (max-width: 900px) {
+  .newsListPage {
+    margin-top: 50px !important ;
+    margin: 0;
     width: 100vw;
   }
 }

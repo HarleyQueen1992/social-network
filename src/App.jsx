@@ -28,7 +28,7 @@ import {
   getIsBigScreen,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
-import { getIsAuth } from "./redux/AuthReducer/auth-selectors"
+import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors"
 import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
 import Registration from "./components/Registration/Registration"
 import Home from "./assets/images/homeW.png"
@@ -37,6 +37,7 @@ import Posts from "./assets/images/postsW.png"
 import UsersW from "./assets/images/usersW.png"
 import MenuW from "./assets/images/menuW.png"
 import FriendsW from "./assets/images/friendsW.png"
+import SettingsW from "./assets/images/settingsW.png"
 import SwipeableViews from "react-swipeable-views"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
@@ -44,6 +45,9 @@ import Search from "./assets/images/searchW.png"
 import SearchB from "./assets/images/searchB.png"
 import MenuContainer from "./components/Menu/MenuContainer"
 import Header from "./components/Header/Header"
+import Sun from "./assets/images/sun.png"
+import Moon from "./assets/images/moon.png"
+import logOut from "./assets/images/logout.png"
 
 const urlIndex = {
   0: "news",
@@ -142,6 +146,11 @@ class App extends React.Component {
         isBigScreen: value,
       })
     }
+    const themeToggler = () => {
+      this.props.theme == "lightTheme"
+        ? this.props.setTheme("dark")
+        : this.props.setTheme("light")
+    }
     // window.addEventListener("resize", function () {
     //   if (window.innerWidth > 600) {
     //     toggleIsBigScreen(true)
@@ -174,10 +183,67 @@ class App extends React.Component {
                 s.appWrapperContent + " " + (this.props.index != 0 ? s.up : "")
               }
             >
+              <div className={s.navBarList}>
+                <div className={s.items}>
+                  <div className={s.avatar}>
+                    <img
+                      className={s.avatarImg}
+                      src={this.props.profileInfo.photo}
+                      alt='user avatar'
+                    />
+                  </div>
+                  <div className={s.name}>
+                    {this.props.profileInfo.fullName}
+                  </div>
+                </div>
+                <div className={s.items}>
+                  <div className={s.settingsLogo}>
+                    <img
+                      className={s.settingsImg}
+                      src={SettingsW}
+                      alt='settings img'
+                    />
+                  </div>
+                  <span className={s.settingsTitle}>Settings</span>
+                </div>
+                <div className={s.themeItems}>
+                  <input
+                    onClick={() => {
+                      themeToggler()
+                    }}
+                    type='checkbox'
+                    className={s.checkbox}
+                    id='chk'
+                  />
+                  <label className={s.label} htmlFor='chk'>
+                    <img className={s.img} alt='moon' src={Moon} />
+                    <img className={s.img} alt='sun' src={Sun} />
+                    <div
+                      className={
+                        s.ball +
+                        " " +
+                        (this.props.theme == "lightTheme" ? s.active : "")
+                      }
+                    ></div>
+                  </label>
+                  <div className={s.themeTitle}>Theme</div>
+                </div>
+                <div className={s.items}>
+                  <div className={s.logOutLogo}>
+                    <img
+                      className={s.logOutImg}
+                      src={logOut}
+                      alt='logOut img'
+                    />
+                  </div>
+                  <span className={s.logOutTitle}>logOut</span>
+                </div>
+              </div>
               <SwipeableViews
                 index={this.props.index}
                 enableMouseEvents
                 onChangeIndex={this.handleChangeIndex}
+                className={s.swipeableViews}
               >
                 <Route
                   path='/news'
@@ -263,6 +329,7 @@ const mapStateToProps = state => {
     Height: getInnerHeight(state),
     index: getIndex(state),
     isBigScreen: getIsBigScreen(state),
+    profileInfo: getProfileInfo(state),
   }
 }
 

@@ -169,52 +169,6 @@ const ProfileInfo = props => {
           ))}
       </div>
 
-      <div className={s.description}>
-        <div className={s.discriptionTop}>
-          <div>{props.profile.fullName}</div>
-          <ProfileStatusWithHooks
-            status={props.status}
-            updateStatus={props.updateStatus}
-          />
-        </div>
-        <DetailedInfo
-          profile={props.profile}
-          deployed={deployed}
-          theme={props.theme}
-        />
-
-        {deployed ? (
-          <div
-            onClick={() => {
-              setdeployed(!deployed)
-            }}
-            className={s.detailed}
-          >
-            roll up
-          </div>
-        ) : (
-          <div
-            onClick={() => {
-              setdeployed(!deployed)
-            }}
-            className={s.detailed}
-          >
-            detailed information
-          </div>
-        )}
-        <div className={s.discriptionBot}>
-          <div className={s.botLeft}>
-            <div className={s.numberOfFriends}>120</div>
-            <div className={s.friends}>Friends</div>
-            <div className={s.numberOfSubscribers}>50</div>
-            <div className={s.subscribers}>Subscriders</div>
-            <div className={s.numberOfPhotos}>2</div>
-            <div className={s.photo}>Photo</div>
-          </div>
-          <div className={s.botRight}>заходил час назад</div>
-        </div>
-      </div>
-
       <div className={s.friendsBlock}>
         <div className={s.friendsC}>
           Subscriptions

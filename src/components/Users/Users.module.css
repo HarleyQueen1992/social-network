@@ -1,8 +1,7 @@
 .usersListPage {
   display: grid;
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
-  margin-top: 50px;
   grid-template-rows: 60px 1fr;
 }
 /* ! Header */
@@ -230,16 +229,37 @@ input[type="submit"]:hover {
   background-color: #5e5e5e;
   width: 96%;
 }
-
-@media (max-width: 600px) {
+@media (max-width: 1250px) {
   .usersListPage {
+    margin-left: calc(325px + (400 - 325) * ((100vw - 1100px) / (1250 - 1100)));
+  }
+}
+@media (max-width: 1000px) {
+  .usersListPage {
+    width: 600px;
+    margin-left: calc(275px + (325 - 275) * ((100vw - 900px) / (1000 - 900)));
+  }
+}
+@media (max-width: 900px) {
+  .usersListPage {
+    margin: 0;
     width: 100vw;
   }
+}
+/* @media (max-width: 1150px) {
+  .usersList {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 10px 0 0 0;
+    box-sizing: border-box;
+  }
+} */
+@media (max-width: 600px) {
   .usersList {
     grid-template-columns: 1fr;
   }
 }
-
 @media (max-width: 480px) {
   .usersListItem {
     grid-template-rows: 80px;

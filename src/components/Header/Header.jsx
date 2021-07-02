@@ -15,7 +15,7 @@ const Header = props => {
   const [focus, setFocus] = useState(false)
   const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 800)
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 800) {
+    if (window.innerWidth > 900) {
       setIsBigScreen(true)
     } else {
       setIsBigScreen(false)
