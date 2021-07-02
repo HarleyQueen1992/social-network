@@ -12,6 +12,7 @@ import SearchB from "../../assets/images/searchB.png"
 import s from "./Header.module.css"
 
 const Header = props => {
+  const [focus, setFocus] = useState(false)
   const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 800)
   window.addEventListener("resize", function () {
     if (window.innerWidth > 800) {
@@ -23,7 +24,11 @@ const Header = props => {
   return (
     <div
       className={
-        s.header + " " + (props.index != 0 && !isBigScreen ? s.roll : "")
+        s.header +
+        " " +
+        (props.index != 0 && !isBigScreen ? s.roll : "") +
+        " " +
+        (focus && isBigScreen ? s.inputActive : "")
       }
     >
       <div className={s.titleSite}>
@@ -40,11 +45,11 @@ const Header = props => {
               // onFocus={() => {
               //   setFocus(!focus)
               // }}
-              // onBlur={() => {
-              //   setFocus(!focus)
-              //   props.resetSearchUsers()
-              // }}
-              // autocomplete='off'
+              onBlur={() => {
+                setFocus(!focus)
+                // props.resetSearchUsers()
+              }}
+              autocomplete='off'
             />
             <img
               src={props.theme == "lightTheme" ? SearchB : Search}
@@ -59,7 +64,11 @@ const Header = props => {
 
       <Tabs
         value={props.index}
-        className={s.listOfCategories}
+        className={
+          s.listOfCategories +
+          " " +
+          (focus && isBigScreen ? s.listOfCategoriesSmall : "")
+        }
         onChange={props.handleChange}
       >
         <Tab
@@ -118,7 +127,12 @@ const Header = props => {
         )}
       </Tabs>
       {isBigScreen && (
-        <div className={s.wrapRight}>
+        <div
+          className={s.wrapRight}
+          // onClick={() => {
+          //   setFocus(!focus)
+          // }}
+        >
           <form className={s.forma} action='' autocomplete='off'>
             <input
               className={s.search}
@@ -127,14 +141,14 @@ const Header = props => {
               // onChange={props.handleChange}
               // value={props.value}
               placeholder='News search'
-              // onFocus={() => {
-              //   setFocus(!focus)
-              // }}
-              // onBlur={() => {
-              //   setFocus(!focus)
-              //   props.resetSearchUsers()
-              // }}
-              // autocomplete='off'
+              onFocus={() => {
+                setFocus(!focus)
+              }}
+              onBlur={() => {
+                setFocus(!focus)
+                // props.resetSearchUsers()
+              }}
+              autocomplete='off'
             />
             <img
               src={props.theme == "lightTheme" ? SearchB : Search}
