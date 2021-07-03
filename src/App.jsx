@@ -183,62 +183,6 @@ class App extends React.Component {
                 s.appWrapperContent + " " + (this.props.index != 0 ? s.up : "")
               }
             >
-              <div className={s.navBarList}>
-                <div className={s.items}>
-                  <div className={s.avatar}>
-                    <img
-                      className={s.avatarImg}
-                      src={this.props.profileInfo.photo}
-                      alt='user avatar'
-                    />
-                  </div>
-                  <div className={s.name}>
-                    {this.props.profileInfo.fullName}
-                  </div>
-                </div>
-                <div className={s.items}>
-                  <div className={s.settingsLogo}>
-                    <img
-                      className={s.settingsImg}
-                      src={SettingsW}
-                      alt='settings img'
-                    />
-                  </div>
-                  <span className={s.settingsTitle}>Settings</span>
-                </div>
-                <div className={s.themeItems}>
-                  <input
-                    onClick={() => {
-                      themeToggler()
-                    }}
-                    type='checkbox'
-                    className={s.checkbox}
-                    id='chk'
-                  />
-                  <label className={s.label} htmlFor='chk'>
-                    <img className={s.img} alt='moon' src={Moon} />
-                    <img className={s.img} alt='sun' src={Sun} />
-                    <div
-                      className={
-                        s.ball +
-                        " " +
-                        (this.props.theme == "lightTheme" ? s.active : "")
-                      }
-                    ></div>
-                  </label>
-                  <div className={s.themeTitle}>Theme</div>
-                </div>
-                <div className={s.items}>
-                  <div className={s.logOutLogo}>
-                    <img
-                      className={s.logOutImg}
-                      src={logOut}
-                      alt='logOut img'
-                    />
-                  </div>
-                  <span className={s.logOutTitle}>logOut</span>
-                </div>
-              </div>
               <SwipeableViews
                 index={this.props.index}
                 enableMouseEvents

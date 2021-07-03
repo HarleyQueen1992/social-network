@@ -10,10 +10,13 @@ import Tab from "@material-ui/core/Tab"
 import Search from "../../assets/images/searchW.png"
 import SearchB from "../../assets/images/searchB.png"
 import s from "./Header.module.css"
+import arrowDown from "./../../assets/images/arrowDown.png"
+import Navbar from "../Navbar/Navbar"
 
 const Header = props => {
   const [focus, setFocus] = useState(false)
-  const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 800)
+  const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900)
+  const [isMenuActive, setIsMenuActive] = useState(false)
   window.addEventListener("resize", function () {
     if (window.innerWidth > 900) {
       setIsBigScreen(true)
@@ -159,6 +162,21 @@ const Header = props => {
             />
           </form>
         </div>
+      )}
+      {isBigScreen && (
+        <div
+          className={
+            s.menuBlock + " " + (isMenuActive ? s.activeMenublock : "")
+          }
+          onClick={() => {
+            setIsMenuActive(!isMenuActive)
+          }}
+        >
+          <img className={s.menuImg} src={arrowDown} alt='menu img' />
+        </div>
+      )}
+      {isBigScreen && isMenuActive && (
+        <Navbar setIsMenuActive={setIsMenuActive} isMenuActive={isMenuActive} />
       )}
     </div>
   )
