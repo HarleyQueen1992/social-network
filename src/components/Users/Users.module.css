@@ -1,7 +1,8 @@
 .usersListPage {
   display: grid;
-  width: 700px;
+  width: 900px;
   margin: 0 auto;
+  padding: 0 10px;
   grid-template-rows: 60px 1fr;
 }
 /* ! Header */
@@ -9,7 +10,6 @@
 .header {
   display: grid;
   grid-template-columns: 1fr 50px;
-  margin: 0 10px 0 10px;
   border-bottom: 1px solid var(--BorderBottom);
 }
 .headActive {
@@ -96,8 +96,9 @@ input[type="submit"]:hover {
 .usersList {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
-  padding: 10px 0 0 0;
+  padding-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+
   box-sizing: border-box;
 }
 .usersNotFoundError {
@@ -115,8 +116,9 @@ input[type="submit"]:hover {
   grid-template-rows: 90px;
   grid-column-gap: 10px;
   text-decoration: none;
+  padding: 5px;
   grid-template-columns: 90px 1fr;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .usersListItem:hover {
   background-color: rgba(255, 255, 255, 0.034);
@@ -138,7 +140,6 @@ input[type="submit"]:hover {
   display: grid;
   grid-template-rows: 30% 20% 50%;
   box-sizing: border-box;
-  padding-right: 10px;
 }
 .noStatus {
   grid-template-rows: 50% 50%;
@@ -229,32 +230,19 @@ input[type="submit"]:hover {
   background-color: #5e5e5e;
   width: 96%;
 }
-@media (max-width: 1250px) {
-  .usersListPage {
-    margin-left: calc(325px + (400 - 325) * ((100vw - 1100px) / (1250 - 1100)));
-  }
-}
-@media (max-width: 1000px) {
-  .usersListPage {
-    width: 600px;
-    margin-left: calc(275px + (325 - 275) * ((100vw - 900px) / (1000 - 900)));
-  }
-}
 @media (max-width: 900px) {
   .usersListPage {
-    margin: 0;
+    width: 100vw;
+  }
+  .usersList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .usersListPage {
     width: 100vw;
   }
 }
-/* @media (max-width: 1150px) {
-  .usersList {
-    display: grid;
-    width: 100%;
-    grid-template-columns: 1fr;
-    padding: 10px 0 0 0;
-    box-sizing: border-box;
-  }
-} */
 @media (max-width: 600px) {
   .usersList {
     grid-template-columns: 1fr;

@@ -21,7 +21,7 @@ const TOGGLE_IS_FETCHING = "app/user-reducer/TOGGLE_IS_FETCHING"
 
 let initialState = {
   users: [],
-  pageSize: 30,
+  pageSize: 40,
   totalUsersCount: 20,
   currentPage: 1,
   isFatching: true,

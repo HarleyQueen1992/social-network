@@ -14,7 +14,7 @@ const DELETE_FRIEND = "app/friends-reducer/DELETE_FRIEND"
 let initialState = {
   friends: [],
   allFriends: [],
-  pageSize: 20,
+  pageSize: 40,
   totalFriendsCount: 20,
   currentPage: 1,
   isFatching: true,
