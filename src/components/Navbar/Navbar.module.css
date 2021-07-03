@@ -32,6 +32,7 @@
 }
 .items {
   cursor: pointer;
+  text-decoration: none;
   display: grid;
   grid-template-columns: 60px 1fr;
   border-radius: 10px;
