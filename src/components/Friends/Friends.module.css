@@ -1,14 +1,13 @@
 .friendsBlock {
   display: grid;
   grid-template-rows: 60px 1fr;
-  width: 700px;
+  width: 900px;
   margin: 0 auto;
-  grid-row-gap: 10px;
+  padding: 0 10px;
 }
 .header {
   display: grid;
   /* margin-left: 80px; */
-  margin: 0 15px 0 15px;
   grid-template-columns: 1fr 50px;
   border-bottom: 1px solid var(--BorderBottom);
 }
@@ -18,7 +17,8 @@
 .friends {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
+  padding-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .friendsImg {
   align-self: center;
@@ -75,9 +75,10 @@
   box-sizing: border-box;
   grid-column-gap: 10px;
   grid-template-rows: 90px;
+  padding: 5px;
   grid-template-columns: 90px 1fr;
   grid-template-areas: "left right";
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .friend:hover {
   background-color: rgba(255, 255, 255, 0.034);
@@ -277,21 +278,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
   opacity: 0.8;
 }
-@media (max-width: 1250px) {
-  .friendsBlock {
-    margin-left: calc(325px + (400 - 325) * ((100vw - 1100px) / (1250 - 1100)));
-  }
-}
-@media (max-width: 1000px) {
-  .friendsBlock {
-    width: 600px;
-    margin-left: calc(275px + (325 - 275) * ((100vw - 900px) / (1000 - 900)));
-  }
-}
+
 @media (max-width: 900px) {
   .friendsBlock {
-    margin: 0;
     width: 100vw;
+  }
+  .friends {
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media (max-width: 600px) {
