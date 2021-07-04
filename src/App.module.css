@@ -22,7 +22,9 @@ html {
   --bacPost: #242526;
   --bacSearch: #ffffff1a;
   --bacSearchHover: #ffffff2e;
-  --logo: #fff;
+  --logo: rgb(255, 255, 255);
+  --menuItemBac: #3a3b3c;
+  --menuItemBacHover: rgba(255, 255, 255, 0.178);
   --navBarBac: #242526;
   --bacNavBarImg: #ffffff1a;
   --headItem: rgb(65, 64, 64);

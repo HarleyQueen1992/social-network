@@ -13,7 +13,7 @@
 .titleMenu {
   align-self: center;
   justify-self: start;
-  color: white;
+  color: var(--fontColor);
   font-size: 25px;
   font-weight: bold;
 }
@@ -48,12 +48,12 @@
 }
 .nameProfile {
   align-self: center;
-  color: white;
+  color: var(--fontColor);
   font-weight: bold;
   font-size: 16px;
 }
 .info {
-  color: white;
+  color: var(--fontColor);
   font-size: 14px;
   align-self: start;
 }
@@ -73,21 +73,22 @@
   grid-column-gap: 5px;
   box-sizing: border-box;
   height: 60px;
-  background-color: #3a3b3c;
+  background-color: var(--menuItemBac);
   border-radius: 10px;
 }
 .settingsBlock:hover {
-  background-color: rgba(255, 255, 255, 0.178);
+  background-color: var(--menuItemBacHover);
 }
 .settingsBlock img {
   align-self: center;
   height: 30px;
+  /* color: rgb(199, 199, 199); */
 }
 .settingsBlock span {
   font-size: 20px;
   font-weight: bold;
   align-self: center;
-  color: rgba(255, 255, 255, 0.637);
+  color: var(--fontColor);
 }
 .logOutBlock {
   cursor: pointer;
@@ -97,7 +98,7 @@
   grid-column-gap: 5px;
   padding: 10px;
   height: 40px;
-  background-color: #3a3b3c;
+  background-color: var(--menuItemBac);
   border-radius: 6px;
 }
 .logOutBlock img {
@@ -108,9 +109,9 @@
   font-size: 18px;
   font-weight: bold;
   align-self: center;
-  color: rgba(255, 255, 255, 0.637);
+  color: var(--fontColor);
 }
 
 .logOutBlock:hover {
-  background-color: rgba(255, 255, 255, 0.178);
+  background-color: var(--menuItemBacHover);
 }
