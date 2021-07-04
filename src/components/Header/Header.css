@@ -1,0 +1,10 @@
+.PrivateTabIndicator-colorSecondary-3 {
+  background-color: #1877f2 !important;
+}
+.PrivateTabIndicator-root-1 {
+  height: 3px !important;
+  border-radius: 1px;
+}
+.MuiTouchRipple-root span {
+  display: none;
+}

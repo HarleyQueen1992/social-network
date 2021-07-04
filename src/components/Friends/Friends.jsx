@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import s from "./Friends.module.css"
-import FriendsImg from "./../../assets/images/friends.png"
 import Preloader from "../common/Preloader/Preloader"
 import { Input } from "../common/FromsControls/FormsControls"
 import Search from "./../../assets/images/searchW.png"
@@ -57,41 +56,43 @@ const Friends = props => {
 
   return (
     <div className={s.friendsBlock}>
-      <header className={s.header + ' ' + (focus ? s.headActive : '')}>
+      <header className={s.header + " " + (focus ? s.headActive : "")}>
         {/* <img className={s.friendsImg} alt='friendsLogo' src={FriendsImg} /> */}
-        <div className={s.title + ' ' + (focus ? s.titleActive : '')}>Subscriptions</div>
+        <div className={s.title + " " + (focus ? s.titleActive : "")}>
+          Subscriptions
+        </div>
         <div
-            className={s.wrap}
-            // onClick={() => {
-            //   setFocus(!focus)
-            // }}
-          >
-            <form className={s.forma} action='' autocomplete='off'>
-              <input
-                className={s.search}
-                onChange={props.handleChange}
-                value={props.value}
-                name='search'
-                type='text'
-                placeholder='Subscriptions search'
-                onFocus={() => {
-                  setFocus(!focus)
-                }}
-                onBlur={() => {
-                  setFocus(!focus)
-                  props.resetSearchUsers()
-                }}
-                // autocomplete='off'
-              />
-              <img
-                src={props.theme == "lightTheme" ? SearchB : Search}
-                className={s.searchSubmit}
-                alt='searchSubmit'
-                value='Rechercher'
-                type='submit'
-              />
-            </form>
-          </div>
+          className={s.wrap}
+          // onClick={() => {
+          //   setFocus(!focus)
+          // }}
+        >
+          <form className={s.forma} action='' autocomplete='off'>
+            <input
+              className={s.search}
+              onChange={props.handleChange}
+              value={props.value}
+              name='search'
+              type='text'
+              placeholder='Subscriptions search'
+              onFocus={() => {
+                setFocus(!focus)
+              }}
+              onBlur={() => {
+                setFocus(!focus)
+                props.resetSearchUsers()
+              }}
+              // autocomplete='off'
+            />
+            <img
+              src={props.theme == "lightTheme" ? SearchB : Search}
+              className={s.searchSubmit}
+              alt='searchSubmit'
+              value='Rechercher'
+              type='submit'
+            />
+          </form>
+        </div>
         {/* <div className={s.search}>
           <form>
             <Input
@@ -115,24 +116,30 @@ const Friends = props => {
       ) : (
         <div className={s.friends}>
           {friends.map(f => (
-            <NavLink to={'/profile/' + f.id} key={f.id} className={s.friend}>
-                <div className={s.photoUsers}>
-                    <img
-                      alt='userphoto'
-                      src={f.photo != null ? f.photo : userPhoto}
-                      className={s.photo}
-                    />
-                </div>
+            <NavLink to={"/profile/" + f.id} key={f.id} className={s.friend}>
+              <div className={s.photoUsers}>
+                <img
+                  alt='userphoto'
+                  src={f.photo != null ? f.photo : userPhoto}
+                  className={s.photo}
+                />
+              </div>
               <div className={s.rightPart}>
                 <span className={s.name}>{f.name}</span>
-                <span className={s.buttonsBlock} >
-                <div className={s.viewPosts} >
-                  <button className={s.viewPostsBtn} >View posts</button>
-                </div>
-                <NavLink to='#' className={s.unfollow}>
-                  <button onClick={() => {props.unfollow(f.id)}} className={s.unfollowBtn} >Unsubscribe</button>
-                </NavLink>
-                  
+                <span className={s.buttonsBlock}>
+                  <div className={s.viewPosts}>
+                    <button className={s.viewPostsBtn}>View posts</button>
+                  </div>
+                  <NavLink to='#' className={s.unfollow}>
+                    <button
+                      onClick={() => {
+                        props.unfollow(f.id)
+                      }}
+                      className={s.unfollowBtn}
+                    >
+                      Unsubscribe
+                    </button>
+                  </NavLink>
                 </span>
               </div>
             </NavLink>

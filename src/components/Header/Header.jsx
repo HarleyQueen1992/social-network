@@ -1,22 +1,26 @@
 import React, { useState } from "react"
-import Home from "../../assets/images/homeW.png"
-import Profile from "../../assets/images/profileW.png"
-import Posts from "../../assets/images/postsW.png"
-import UsersW from "../../assets/images/usersW.png"
+// import Home from "../../assets/images/homeBlue.png"
+// import Profile from "../../assets/images/profileW.png"
 import MenuW from "../../assets/images/menuW.png"
-import FriendsW from "../../assets/images/friendsW.png"
+import "./Header.css"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Search from "../../assets/images/searchW.png"
 import SearchB from "../../assets/images/searchB.png"
 import s from "./Header.module.css"
-import arrowDown from "./../../assets/images/arrowDown.png"
 import Navbar from "../Navbar/Navbar"
-
+import { Icons } from "./../../utils/Icons/Icons"
 const Header = props => {
+  let res = Icons(props.theme, props.index)
   const [focus, setFocus] = useState(false)
   const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900)
   const [isMenuActive, setIsMenuActive] = useState(false)
+  // let border = (document.querySelector(
+  //   "PrivateTabIndicator-colorSecondary-3"
+  // ).style.background = "blue")
+  let Check = () => {}
+  // #1877f2
+
   window.addEventListener("resize", function () {
     if (window.innerWidth > 900) {
       setIsBigScreen(true)
@@ -34,8 +38,20 @@ const Header = props => {
         (focus && isBigScreen ? s.inputActive : "")
       }
     >
+      {/* {
+        (document.querySelector(
+          ".PrivateTabIndicator-colorSecondary-3"
+        ).style.background = "#1877f2")
+      } */}
       <div className={s.titleSite}>
-        <span className={s.logo}>Mosset</span>
+        <span
+          className={s.logo}
+          onClick={() => {
+            Check()
+          }}
+        >
+          Mosset
+        </span>
         <div className={s.wrap + " " + (isBigScreen ? s.disableWran : "")}>
           <form className={s.forma} action='' autocomplete='off'>
             <input
@@ -78,7 +94,7 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='home' src={Home} />
+              <img className={s.categoriesImg} alt='home' src={res["home"]} />
             </div>
           }
         />
@@ -86,7 +102,11 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='profile' src={Profile} />
+              <img
+                className={s.categoriesImg}
+                alt='profile'
+                src={res["profile"]}
+              />
             </div>
           }
         />
@@ -94,7 +114,7 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='posts' src={Posts} />
+              <img className={s.categoriesImg} alt='posts' src={res["posts"]} />
             </div>
           }
         />
@@ -102,7 +122,7 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='users' src={UsersW} />
+              <img className={s.categoriesImg} alt='users' src={res["users"]} />
             </div>
           }
         />
@@ -113,7 +133,7 @@ const Header = props => {
               <img
                 className={s.categoriesImg}
                 alt='subscribers'
-                src={FriendsW}
+                src={res["friends"]}
               />
             </div>
           }
@@ -172,7 +192,8 @@ const Header = props => {
             setIsMenuActive(!isMenuActive)
           }}
         >
-          <img className={s.menuImg} src={arrowDown} alt='menu img' />
+          {/* <i class='fa fa-play'></i> */}
+          <img className={s.menuImg} src={res["arrowDown"]} alt='menu img' />
         </div>
       )}
       {isBigScreen && isMenuActive && (

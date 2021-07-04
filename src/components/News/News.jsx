@@ -6,8 +6,6 @@ import Notification from "./../../assets/images/notification.png"
 import NotificationB from "./../../assets/images/notificationB.png"
 
 import Post from "./../Posts/MyPosts/Post/Post"
-import NewsW from "./../../assets/images/news.png"
-import NewsB from "./../../assets/images/newsB.png"
 
 const News = props => {
   const [focus, setFocus] = useState(false)

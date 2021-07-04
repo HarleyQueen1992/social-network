@@ -1,6 +1,5 @@
 .menuBlock {
   display: grid;
-  margin-top: 50px;
   grid-template-rows: 50px 60px 1fr;
   padding: 5px 15px 5px 15px;
   height: calc(100vh - 60px);
@@ -35,7 +34,6 @@
   display: grid;
   height: 100%;
   width: 100%;
-
 }
 .avaImg {
   justify-self: center;

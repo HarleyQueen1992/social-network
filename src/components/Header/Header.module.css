@@ -6,9 +6,8 @@
   top: 0;
   position: fixed;
   z-index: 999999999;
-  background-color: #242526;
-
-  border-bottom: 1px solid var(--BorderBottom);
+  background-color: var(--header);
+  border-bottom: 1px solid var(--borderHeader);
   transition: all 0.6s;
 }
 
@@ -25,7 +24,7 @@
   padding: 5px;
   font-size: 25px;
   font-weight: bold;
-  color: white;
+  color: var(--logo);
   font-family: "Francois One", sans-serif;
 }
 /* ! Search */
@@ -98,9 +97,11 @@ input[type="submit"]:hover {
 }
 .tab {
   min-width: auto !important;
+  transition: all 0.2s;
 }
 .tab:hover {
-  background-color: rgb(65, 64, 64) !important;
+  background-color: var(--headItem) !important;
+  background-color: var(--headItem);
   box-sizing: border-box !important;
   border-radius: 5px;
 }
@@ -214,15 +215,15 @@ input[type="submit"]:hover {
   display: grid;
   border-radius: 50%;
   height: 40px;
-  background-color: #ffffff1a;
+  background-color: var(--bacMenu);
   width: 40px;
 }
 .menuBlock:hover {
-  background-color: #ffffff3a;
+  background-color: var(--hoverBacMenu);
 }
-.activeMenublock {
+/* .activeMenublock {
   background-color: #ffffff3a;
-}
+} */
 .menuImg {
   align-self: center;
   justify-self: center;

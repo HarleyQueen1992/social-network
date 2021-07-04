@@ -355,11 +355,11 @@ input[type="file"] {
 }
 
 .friendsBlock {
-  display: none !important;
+  display: none;
 }
 
 .editBlock {
-  display: none !important;
+  display: none;
 }
 .lastPost {
   display: grid;

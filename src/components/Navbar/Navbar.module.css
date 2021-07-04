@@ -1,16 +1,20 @@
 /*! Navbar */
 .navBarList {
   position: fixed;
-  background-color: #242526;
-  top: 50px;
-  right: 10px;
-  border: 1px solid var(--BorderBottom);
-  border-radius: 10px;
-  width: 300px;
+  background-color: var(--navBarBac);
+  top: 51px;
+  right: 20px;
+  border: 1px solid var(--borderHeader);
+  border-radius: 8px;
+  width: 350px;
+  padding: 5px;
   z-index: 9999999999999999999999;
   display: grid;
-  grid-template-rows: repeat(4, 60px);
+  grid-template-rows: 90px 80px 132px;
+  grid-row-gap: 7px;
 }
+
+/*! Profile */
 .avatar {
   display: grid;
   height: 100%;
@@ -19,67 +23,150 @@
 .avatarImg {
   align-self: center;
   justify-self: end;
-  height: 40px;
-  width: 40px;
+  height: 55px;
+  width: 55px;
   border-radius: 50%;
 }
+.profileInfo {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
 .name {
-  align-self: center;
+  align-self: end;
   margin-left: 10px;
-  color: white;
+  color: var(--fontColor);
   font-weight: bold;
   font-size: 20px;
 }
-.items {
+.viewProfile {
+  color: var(--fontColor);
+  margin-left: 10px;
+}
+.itemProfile {
+  text-decoration: none;
+  display: grid;
+  grid-template-rows: 80px 10px;
+
+  /* border-bottom: 1px solid var(--BorderBottom); */
+}
+.profileBlock {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-radius: 8px;
+
+  transition: all 0.2s;
+}
+.borderBottom {
+  align-self: end;
+  justify-self: center;
+  background-color: var(--BorderBottom);
+  height: 1px;
+  width: 95%;
+}
+.profileBlock:hover {
+  background-color: var(--headItem);
+}
+
+/*! GiveFeedback  */
+.itemGiveFeedback {
+  display: grid;
+  grid-template-rows: 70px 10px;
+}
+.giveFeedbackBlock {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-radius: 8px;
+}
+.giveFeedbackBlock:hover {
+  background-color: var(--headItem);
+}
+.giveFeedback {
+  justify-self: center;
+  align-self: center;
+  height: 36px;
+  display: grid;
+  width: 36px;
+  background-color: var(--bacNavBarImg);
+  border-radius: 50%;
+}
+.giveFeedbackImg {
+  align-self: center;
+  justify-self: center;
+  height: 20px;
+  width: 20px;
+}
+.giveFeedbackInfoBlock {
+  display: grid;
+  grid-template-rows: 40% 60%;
+}
+.giveFeedbackTitle {
+  color: var(--fontColor);
+  font-size: 18px;
+  margin-left: 5px;
+  font-weight: bold;
+  align-self: end;
+}
+.giveFeedbackText {
+  color: var(--fontColor);
+  margin-left: 5px;
+}
+/*! Navbar  */
+.navBar {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+/*? Settings */
+.itemSettings {
   cursor: pointer;
   text-decoration: none;
   display: grid;
   grid-template-columns: 60px 1fr;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.2s;
 }
-.items:hover {
-  background-color: rgb(70, 68, 68);
+.itemSettings:hover {
+  background-color: var(--headItem);
 }
 .settingsLogo {
   display: grid;
-  height: 100%;
-  width: 100%;
+  align-self: center;
+  justify-self: center;
+  height: 36px;
+  background-color: var(--bacNavBarImg);
+  border-radius: 50%;
+  width: 36px;
 }
 .settingsImg {
-  justify-self: end;
+  justify-self: center;
   align-self: center;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+  height: 20px;
+  width: 20px;
 }
 .settingsTitle {
-  color: white;
-  font-size: 20px;
+  color: var(--fontColor);
+  font-size: 18px;
   align-self: center;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
-/*!Theme  */
+/*? Theme  */
 .themeItems {
   cursor: pointer;
   display: grid;
-  grid-template-columns: 100px 1fr;
-  border-radius: 10px;
+  grid-template-columns: 80px 1fr;
+  border-radius: 8px;
   transition: all 0.2s;
 }
 .themeItems:hover {
-  background-color: rgb(70, 68, 68);
+  background-color: var(--headItem);
 }
 .themes {
   display: grid;
   padding: 10px;
   grid-template-columns: auto 1fr;
-}
-.themesTitle {
-  color: var(--fontColor);
-  font-size: 17px;
 }
 
 .checkbox {
@@ -98,7 +185,7 @@
   align-self: center;
   justify-self: center;
   box-sizing: border-box;
-  background-color: var(--bacInputForm);
+  background-color: var(--bacNavBarImg);
   border-radius: 50px;
   cursor: pointer;
   display: flex;
@@ -107,11 +194,11 @@
   position: relative;
   height: 26px;
   width: 50px;
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 .themeTitle {
-  color: white;
-  font-size: 20px;
+  color: var(--fontColor);
+  font-size: 18px;
   align-self: center;
   justify-self: start;
   font-weight: bold;
@@ -142,24 +229,41 @@
   border-radius: 5px;
   margin-bottom: 20px;
 }
-/*! LogOut */
+
+/*? LogOut */
+
+.itemLogOut {
+  cursor: pointer;
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.itemLogOut:hover {
+  background-color: var(--headItem);
+}
 .logOutLogo {
   display: grid;
-  height: 100%;
-  width: 100%;
+  align-self: center;
+  justify-self: center;
+  height: 36px;
+  width: 36px;
+  background-color: var(--bacNavBarImg);
+  border-radius: 50%;
 }
 .logOutImg {
   align-self: center;
-  justify-self: end;
-  height: 35px;
-  width: 35px;
+  justify-self: center;
+  height: 20px;
+  width: 20px;
 }
 .logOutTitle {
-  color: white;
-  font-size: 20px;
+  color: var(--fontColor);
+  font-size: 18px;
   align-self: center;
   justify-self: start;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
 }
 @media (max-width: 900px) {

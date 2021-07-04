@@ -31,23 +31,9 @@ import store from "./redux/redux-store"
 import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors"
 import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
 import Registration from "./components/Registration/Registration"
-import Home from "./assets/images/homeW.png"
-import Profile from "./assets/images/profileW.png"
-import Posts from "./assets/images/postsW.png"
-import UsersW from "./assets/images/usersW.png"
-import MenuW from "./assets/images/menuW.png"
-import FriendsW from "./assets/images/friendsW.png"
-import SettingsW from "./assets/images/settingsW.png"
 import SwipeableViews from "react-swipeable-views"
-import Tabs from "@material-ui/core/Tabs"
-import Tab from "@material-ui/core/Tab"
-import Search from "./assets/images/searchW.png"
-import SearchB from "./assets/images/searchB.png"
 import MenuContainer from "./components/Menu/MenuContainer"
 import Header from "./components/Header/Header"
-import Sun from "./assets/images/sun.png"
-import Moon from "./assets/images/moon.png"
-import logOut from "./assets/images/logout.png"
 
 const urlIndex = {
   0: "news",
@@ -88,7 +74,7 @@ class App extends React.Component {
   }
 
   changeIndex = velue => {
-    let strUpdate = velue.substr(38)
+    let strUpdate = velue.substr(45)
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "")
 
     for (let key in urlIndex) {
@@ -103,7 +89,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let strUpdate = this.str.substr(38)
+    let strUpdate = this.str.substr(45)
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "")
 
     if (strUpdate == "") {

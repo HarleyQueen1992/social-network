@@ -17,6 +17,7 @@ export const usersAPI = {
         return response.data
       })
   },
+
   // deleteFollow(id) {
   //     return instance.delete(`follow/${id}/`)
   // },

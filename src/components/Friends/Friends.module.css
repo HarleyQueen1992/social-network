@@ -244,10 +244,6 @@
   cursor: pointer;
 }
 
-.search:focus:hover {
-  /* border-bottom: 1px solid var(--BorderBottom); */
-}
-
 .search:focus {
   width: 100%;
   z-index: 1;
