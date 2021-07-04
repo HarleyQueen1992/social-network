@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import s from "./News.module.css"
-import Search from "./../../assets/images/search.png"
-import SearchB from "./../../assets/images/searchB.png"
 import Notification from "./../../assets/images/notification.png"
 import NotificationB from "./../../assets/images/notificationB.png"
 

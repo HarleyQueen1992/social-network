@@ -5,11 +5,10 @@ import MenuW from "../../assets/images/menuW.png"
 import "./Header.css"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
-import Search from "../../assets/images/searchW.png"
-import SearchB from "../../assets/images/searchB.png"
 import s from "./Header.module.css"
 import Navbar from "../Navbar/Navbar"
 import { Icons } from "./../../utils/Icons/Icons"
+import searchWhite from "./../../assets/images/searchWhite.png"
 const Header = props => {
   let res = Icons(props.theme, props.index)
   const [focus, setFocus] = useState(false)
@@ -70,13 +69,15 @@ const Header = props => {
               }}
               autocomplete='off'
             />
-            <img
-              src={props.theme == "lightTheme" ? SearchB : Search}
-              className={s.searchSubmit}
-              alt='searchSubmit'
-              value='Rechercher'
-              type='submit'
-            />
+            <div className={s.searchSubmitBlockSmall}>
+              <img
+                src={searchWhite}
+                className={s.searchSubmit}
+                alt='searchSubmit'
+                value='Rechercher'
+                type='submit'
+              />
+            </div>
           </form>
         </div>
       </div>
@@ -143,7 +144,7 @@ const Header = props => {
             className={s.tab}
             label={
               <div className={s.category}>
-                <img className={s.categoriesImg} alt='menu' src={MenuW} />
+                <img className={s.categoriesImg} alt='menu' src={res["menu"]} />
               </div>
             }
           />
@@ -158,7 +159,7 @@ const Header = props => {
         >
           <form className={s.forma} action='' autocomplete='off'>
             <input
-              className={s.search}
+              className={s.search + " " + (focus ? s.searchActive : "")}
               name='search'
               type='text'
               // onChange={props.handleChange}
@@ -173,13 +174,15 @@ const Header = props => {
               }}
               autocomplete='off'
             />
-            <img
-              src={props.theme == "lightTheme" ? SearchB : Search}
-              className={s.searchSubmit}
-              alt='searchSubmit'
-              value='Rechercher'
-              type='submit'
-            />
+            <div className={s.searchSubmitBlock}>
+              <img
+                src={res["search"]}
+                className={s.searchSubmit}
+                alt='searchSubmit'
+                value='Rechercher'
+                type='submit'
+              />
+            </div>
           </form>
         </div>
       )}

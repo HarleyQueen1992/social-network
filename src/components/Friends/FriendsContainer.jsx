@@ -31,8 +31,9 @@ import {
   getUsersSearch,
   getValue,
 } from "../../redux/SearchReducer/search-selectors"
-import {unfollow} from './../../redux/UsersReducer/user-reducer'
+import { unfollow } from "./../../redux/UsersReducer/user-reducer"
 import Preloader from "../common/Preloader/Preloader"
+import { getTheme } from "../../redux/AppReducer/app-selectors"
 
 class FriendsContainer extends React.Component {
   componentDidMount() {
@@ -43,7 +44,7 @@ class FriendsContainer extends React.Component {
   resetSearchUsers = () => {
     this.props.clearUsersSearch()
     this.props.setCurrentPageSearch(1)
-    this.props.setValue('')
+    this.props.setValue("")
   }
 
   handleChange = event => {
@@ -103,6 +104,7 @@ class FriendsContainer extends React.Component {
             strUrlPrev={this.props.strUrl}
             changeIndex={this.props.changeIndex}
             unfollow={this.props.unfollow}
+            theme={this.props.theme}
           />
         )}
       </>
@@ -118,13 +120,13 @@ let mapStateToProps = state => {
     pageSize: getPageSize(state),
     totalFriendsCount: getTotalFriendsCount(state),
     currentPage: getCurrentPage(state),
+    theme: getTheme(state),
     value: getValue(state),
     friendsSearch: getUsersSearch(state),
     currentPageSearch: getCurrentPageSearch(state),
     totalFriendsCountSearch: getTotalUsersCountSearch(state),
     isFatchingSearch: getIsFatchingSearch(state),
     isReceipt: getIsReceipt(state),
-    
   }
 }
 

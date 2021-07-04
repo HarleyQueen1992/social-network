@@ -39,6 +39,7 @@ import {
   getIsFetching,
 } from "../../redux/UsersReducer/users-selectors"
 import Preloader from "../common/Preloader/Preloader"
+import { getTheme } from "../../redux/AppReducer/app-selectors"
 class UsersC extends React.Component {
   componentDidMount() {
     // if (this.props.isFatching) {
@@ -116,6 +117,7 @@ class UsersC extends React.Component {
             isReceipt={this.props.isReceipt}
             strUrlPrev={this.props.strUrl}
             changeIndex={this.props.changeIndex}
+            theme={this.props.theme}
           />
         )}
       </>
@@ -129,6 +131,7 @@ let mapStateToProps = state => {
     currentPage: getCurrentPage(state),
     currentPageSearch: getCurrentPageSearch(state),
     pageSize: getPageSize(state),
+    theme: getTheme(state),
     totalUsersCount: getTotalUsersCount(state),
     totalUsersCountSearch: getTotalUsersCountSearch(state),
     isFatching: getIsFatching(state),

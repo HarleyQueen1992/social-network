@@ -3,11 +3,11 @@ import p from "./MyPosts.module.css"
 import Post from "./Post/Post"
 import CreatePost from "./../../../assets/images/editWhite.png"
 import CreatePostLight from "./../../../assets/images/edit.png"
-import Search from "./../../../assets/images/searchW.png"
-import SearchB from "./../../../assets/images/searchB.png"
-import PostCreationContainer from "./PostCreation/PostCreationContainer"
 import save from "./../../../assets/images/send.png"
+import { Icons } from "./../../../utils/Icons/Icons"
+
 const MyPosts = props => {
+  let res = Icons(props.theme)
   const [focus, setFocus] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
 
@@ -91,7 +91,7 @@ const MyPosts = props => {
                 // autocomplete='off'
               />
               <img
-                src={props.theme == "lightTheme" ? SearchB : Search}
+                src={res["search"]}
                 className={p.searchSubmit}
                 alt='searchSubmit'
                 value='Rechercher'

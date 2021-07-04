@@ -46,35 +46,59 @@
 }
 .search {
   box-sizing: border-box;
-  height: 100%;
+  height: 34px;
   font-size: 20px;
   display: inline-block;
   border: none;
   outline: none;
   color: var(--fontColor);
-  padding: 5px 40px 2px 5px;
+  padding: 3px 31px 3px 3px;
+  border-radius: 25px;
   width: 0px;
   position: absolute;
-  top: 0;
+  top: 8px;
+  bottom: 8px;
   right: 0;
   background: none;
   z-index: 3;
   transition: width 0.5s;
   cursor: pointer;
 }
+.searchActive {
+  padding: 3px 40px 3px 3px;
+}
 .search:focus {
   width: 100%;
   z-index: 1;
   cursor: text;
 }
-.searchSubmit {
+.searchSubmitBlock {
   align-self: center;
-  height: 30px;
+  height: 34px;
+  background-color: var(--bacMenu);
+  border-radius: 50%;
+  width: 34px;
+  display: grid;
+  justify-self: end;
+}
+.searchSubmitBlockSmall {
+  align-self: center;
+  height: 34px;
+  background-color: var(--bacSearch);
+  border-radius: 50%;
+  width: 34px;
+  display: grid;
+  justify-self: end;
+}
+.searchSubmitBlock:hover {
+  background-color: var(--bacSearchHover);
+}
+.searchSubmit {
+  justify-self: center;
+  align-self: center;
+  height: 18px;
   display: inline-block;
   border: none;
-  position: absolute;
-  top: 12px;
-  right: 3px;
   z-index: 2;
   cursor: pointer;
   transition: opacity 0.4s ease;
@@ -128,58 +152,6 @@ input[type="submit"]:hover {
   margin-right: 10px;
   padding: 0;
 }
-.forma {
-  width: 100%;
-  height: 100%;
-  display: grid;
-}
-.search {
-  box-sizing: border-box;
-  height: 100%;
-  font-size: 20px;
-  display: inline-block;
-  border: none;
-  outline: none;
-  color: var(--fontColor);
-  padding: 5px 40px 2px 5px;
-  width: 0px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  z-index: 3;
-  transition: width 0.5s;
-  cursor: pointer;
-}
-.search:focus {
-  width: 100%;
-  z-index: 1;
-  cursor: text;
-}
-.searchSubmit {
-  align-self: center;
-  height: 30px;
-  display: inline-block;
-  border: none;
-  position: absolute;
-  top: 12px;
-  right: 3px;
-  z-index: 2;
-  cursor: pointer;
-  transition: opacity 0.4s ease;
-}
-input[type="submit"] {
-  height: 43px;
-  width: 40px;
-
-  background: url(./../../assets/images/search.png) center center no-repeat;
-  background-size: 30px;
-  text-indent: -10000px;
-}
-
-input[type="submit"]:hover {
-  opacity: 0.8;
-}
 @media (max-width: 1200px) {
   .header {
     grid-template-columns: 250px 1fr 200px 50px;
@@ -214,9 +186,9 @@ input[type="submit"]:hover {
   align-self: center;
   display: grid;
   border-radius: 50%;
-  height: 40px;
+  height: 34px;
   background-color: var(--bacMenu);
-  width: 40px;
+  width: 34px;
 }
 .menuBlock:hover {
   background-color: var(--hoverBacMenu);
@@ -234,7 +206,7 @@ input[type="submit"]:hover {
   .header {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
-    background-color: #18191a;
+    background-color: var(--headerSmall);
     width: 100vw;
   }
   .tab:hover {

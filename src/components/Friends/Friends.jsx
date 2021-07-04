@@ -3,11 +3,10 @@ import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import s from "./Friends.module.css"
 import Preloader from "../common/Preloader/Preloader"
-import { Input } from "../common/FromsControls/FormsControls"
-import Search from "./../../assets/images/searchW.png"
-import SearchB from "./../../assets/images/searchB.png"
+import { Icons } from "./../../utils/Icons/Icons"
 
 const Friends = props => {
+  let res = Icons(props.theme)
   const [focus, setFocus] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
 
@@ -85,7 +84,7 @@ const Friends = props => {
               // autocomplete='off'
             />
             <img
-              src={props.theme == "lightTheme" ? SearchB : Search}
+              src={res["search"]}
               className={s.searchSubmit}
               alt='searchSubmit'
               value='Rechercher'

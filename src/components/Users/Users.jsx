@@ -3,11 +3,10 @@ import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
 import Preloader from "../common/Preloader/Preloader"
-import Search from "./../../assets/images/searchW.png"
-import SearchB from "./../../assets/images/searchB.png"
-import { Input } from "../common/FromsControls/FormsControls"
+import { Icons } from "./../../utils/Icons/Icons"
 
 const Users = props => {
+  let res = Icons(props.theme)
   const [focus, setFocus] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
 
@@ -82,7 +81,7 @@ const Users = props => {
               // autocomplete='off'
             />
             <img
-              src={props.theme == "lightTheme" ? SearchB : Search}
+              src={res["search"]}
               className={s.searchSubmit}
               alt='searchSubmit'
               value='Rechercher'

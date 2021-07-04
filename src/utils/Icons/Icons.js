@@ -39,6 +39,13 @@ import LogOutBlack from "./../../assets/images/logOutBlack.png"
 import ErrorMessageWhite from "./../../assets/images/errorMessageWhite.png"
 import ErrorMessageBlack from "./../../assets/images/errorMessageBlack.png"
 
+import MenuWhite from "./../../assets/images/menuWhite.png"
+import MenuBlack from "./../../assets/images/menuBlack.png"
+import MenuBlueActive from "./../../assets/images/menuBlueActive.png"
+
+import SearchBlack from "./../../assets/images/searchBlack.png"
+import SearchWhite from "./../../assets/images/searchWhite.png"
+
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
 import facebook from "./../../assets/images/facebook.png"
@@ -94,6 +101,15 @@ export const Icons = (theme, index = NaN) => {
     settings: theme == "lightTheme" ? SettingsBlack : SettingsWhite,
     logOut: theme == "lightTheme" ? LogOutBlack : LogOutWhite,
     giveFeedback: theme == "lightTheme" ? ErrorMessageBlack : ErrorMessageWhite,
+    menu:
+      theme == "lightTheme"
+        ? index == 5
+          ? MenuBlueActive
+          : MenuBlack
+        : index == 5
+        ? MenuBlueActive
+        : MenuWhite,
+    search: theme == "lightTheme" ? SearchBlack : SearchWhite,
   }
 }
 // export const Icons = {
