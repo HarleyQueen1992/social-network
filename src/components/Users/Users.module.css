@@ -117,11 +117,12 @@ input[type="submit"]:hover {
   grid-column-gap: 10px;
   text-decoration: none;
   padding: 5px;
+  border-radius: 5px;
   grid-template-columns: 90px 1fr;
   margin-bottom: 10px;
 }
 .usersListItem:hover {
-  background-color: rgba(255, 255, 255, 0.034);
+  background-color: var(--usersListItemHover);
 }
 .userAvatar {
   grid-area: photoFollowed;
@@ -154,7 +155,7 @@ input[type="submit"]:hover {
   align-self: center;
 }
 .userStatus {
-  color: white;
+  color: var(--fontColor);
   align-self: end;
   white-space: nowrap;
   overflow: hidden;
@@ -206,7 +207,7 @@ input[type="submit"]:hover {
 }
 .unsubscribeBtn:hover {
   background-color: #aaa8a8;
-  width: 96%;
+  width: 98%;
 }
 .viewPosts {
   display: grid;
@@ -228,7 +229,7 @@ input[type="submit"]:hover {
 
 .viewPostsBtn:hover {
   background-color: #5e5e5e;
-  width: 96%;
+  width: 98%;
 }
 @media (max-width: 900px) {
   .usersListPage {

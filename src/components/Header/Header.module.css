@@ -89,9 +89,7 @@
   width: 34px;
   display: grid;
   justify-self: end;
-}
-.searchSubmitBlock:hover {
-  background-color: var(--bacSearchHover);
+  /* background-color: #0000000d; */
 }
 .searchSubmit {
   justify-self: center;
@@ -115,6 +113,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
   opacity: 0.8;
 }
+
 .listOfCategories {
   width: 500px;
   justify-self: center;
@@ -193,9 +192,6 @@ input[type="submit"]:hover {
 .menuBlock:hover {
   background-color: var(--hoverBacMenu);
 }
-/* .activeMenublock {
-  background-color: #ffffff3a;
-} */
 .menuImg {
   align-self: center;
   justify-self: center;

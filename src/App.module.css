@@ -50,6 +50,7 @@ html {
   --HoversaveBut: rgb(81, 81, 100);
   --error: red;
   --statusHover: #ffffff49;
+  --usersListItemHover: rgba(255, 255, 255, 0.068);
 }
 .loginPage {
   height: 100vh;

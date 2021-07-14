@@ -24,7 +24,7 @@ export const lightTheme = {
   bacSearch: "#1877f2",
   bacSearchHover: "#1877f2bf",
   bacMenu: "#e4e6eb",
-  hoverBacMenu: "#0000000d",
+  hoverBacMenu: "#ced1d8",
   followBtn: "rgb(255 164 164)",
   followBtnHover: "rgb(247, 179, 179)",
   BorderBottom: "#ced0d4",
@@ -36,6 +36,7 @@ export const lightTheme = {
   bacInputLogin: "rgb(197, 197, 197)",
   error: "black",
   statusHover: "#aac1ca8c",
+  usersListItemHover: "#dde0e2",
 }
 
 Object.defineProperty(lightTheme, "toString", {
@@ -79,6 +80,7 @@ export const darkTheme = {
   bacInputLogin: "rgb(255, 255, 255)",
   error: "red",
   statusHover: "#ffffff49",
+  usersListItemHover: "rgba(255, 255, 255, 0.068)",
 }
 
 Object.defineProperty(darkTheme, "toString", {

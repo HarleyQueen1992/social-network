@@ -1,7 +1,13 @@
 import React from "react"
 import s from "./App.module.css"
 import ProfileContainer from "./components/Profile/ProfileContainer"
-import { withRouter, HashRouter, Redirect, Route } from "react-router-dom"
+import {
+  withRouter,
+  HashRouter,
+  Switch,
+  Redirect,
+  Route,
+} from "react-router-dom"
 import SettingsContainer from "./components/Settings/SettingsContainer"
 import NewsContainer from "./components/News/NewsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
@@ -34,6 +40,7 @@ import Registration from "./components/Registration/Registration"
 import SwipeableViews from "react-swipeable-views"
 import MenuContainer from "./components/Menu/MenuContainer"
 import Header from "./components/Header/Header"
+import PageNotFound from "./components/PageNotFound/PageNotFound"
 
 const urlIndex = {
   0: "news",
@@ -169,76 +176,93 @@ class App extends React.Component {
                 s.appWrapperContent + " " + (this.props.index != 0 ? s.up : "")
               }
             >
-              <SwipeableViews
-                index={this.props.index}
-                enableMouseEvents
-                onChangeIndex={this.handleChangeIndex}
-                className={s.swipeableViews}
-              >
-                <Route
-                  path='/news'
-                  render={() => (
-                    <NewsContainer
-                      changeIndex={this.changeIndex}
-                      strUrl={this.str}
+              {(this.props.location.pathname === "/news") |
+              (this.props.location.pathname.substr(0, 8) === "/profile") |
+              (this.props.location.pathname === "/posts") |
+              (this.props.location.pathname === "/users") |
+              (window.innerWidth < 900 &&
+                this.props.location.pathname === "/menu") |
+              (this.props.location.pathname === "/friends") ? (
+                <SwipeableViews
+                  index={this.props.index}
+                  enableMouseEvents
+                  onChangeIndex={this.handleChangeIndex}
+                  className={s.swipeableViews}
+                >
+                  <Route
+                    path='/news'
+                    render={() => (
+                      <NewsContainer
+                        changeIndex={this.changeIndex}
+                        strUrl={this.str}
+                      />
+                    )}
+                  />
+                  <Route
+                    path='/profile/:userid?'
+                    render={() => (
+                      <ProfileContainer
+                        changeIndex={this.changeIndex}
+                        strUrl={this.str}
+                      />
+                    )}
+                  />
+                  <Route
+                    path='/posts'
+                    render={() => (
+                      <MyPostsContainer
+                        changeIndex={this.changeIndex}
+                        strUrl={this.str}
+                      />
+                    )}
+                  />
+                  <Route
+                    path='/users'
+                    render={() => (
+                      <UsersContainer
+                        changeIndex={this.changeIndex}
+                        strUrl={this.str}
+                      />
+                    )}
+                  />
+                  <Route
+                    path='/friends'
+                    render={() => (
+                      <FriendsContainer
+                        changeIndex={this.changeIndex}
+                        strUrl={this.str}
+                      />
+                    )}
+                  />
+                  {window.innerWidth < 900 && (
+                    <Route
+                      path='/menu'
+                      render={() => (
+                        <MenuContainer
+                          changeIndex={this.changeIndex}
+                          strUrl={this.str}
+                        />
+                      )}
                     />
                   )}
-                />
-                <Route
-                  path='/profile/:userid?'
-                  render={() => (
-                    <ProfileContainer
-                      changeIndex={this.changeIndex}
-                      strUrl={this.str}
-                    />
-                  )}
-                />
-                <Route
-                  path='/posts'
-                  render={() => (
-                    <MyPostsContainer
-                      changeIndex={this.changeIndex}
-                      strUrl={this.str}
-                    />
-                  )}
-                />
-                <Route
-                  path='/users'
-                  render={() => (
-                    <UsersContainer
-                      changeIndex={this.changeIndex}
-                      strUrl={this.str}
-                    />
-                  )}
-                />
-                <Route
-                  path='/friends'
-                  render={() => (
-                    <FriendsContainer
-                      changeIndex={this.changeIndex}
-                      strUrl={this.str}
-                    />
-                  )}
-                />
-                <Route
-                  path='/menu'
-                  render={() => (
-                    <MenuContainer
-                      changeIndex={this.changeIndex}
-                      strUrl={this.str}
-                    />
-                  )}
-                />
-              </SwipeableViews>
-              <Route path='/settings' render={() => <SettingsContainer />} />
+                </SwipeableViews>
+              ) : (
+                <Switch>
+                  <Route
+                    path='/settings'
+                    render={() => <SettingsContainer />}
+                  />
+
+                  <Route render={() => <PageNotFound />} />
+                </Switch>
+              )}
 
               {/* <Route path='/login' render={() => <Login />} />
               
               <Route path='/friends' render={() => <FriendsContainer />} />
               <Route path='/users' render={() => <UsersContainer />} />
-              <Route path='/posts' render={() => <MyPostsContainer />} />
+              <Route path='/posts' r  ender={() => <MyPostsContainer />} />
               <Route path='/services' render={() => <ServicesContainer />} /> */}
-
               {/* <Route path='/' exact render={() => <ProfileContainer />} /> */}
             </div>
             {/* )} */}

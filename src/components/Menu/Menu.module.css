@@ -29,6 +29,7 @@
 }
 .profileBlock:hover {
   background-color: rgba(78, 78, 78, 0.164);
+  /* color: ; */
 }
 .ava {
   display: grid;
