@@ -36,6 +36,7 @@ const MyPosts = props => {
       dislike={post.dislike}
       isDisable={post.isDisable}
       title={post.title}
+      margin={true}
     />
   ))
   let addPost = () => {

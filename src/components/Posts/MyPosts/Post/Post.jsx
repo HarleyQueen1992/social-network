@@ -11,7 +11,13 @@ import CommentsLight from "./../../../../assets/images/commentsLight.png"
 const Post = props => {
   return (
     <div
-      className={p.postBlock + " " + (props.border ? p.border : "")}
+      className={
+        p.postBlock +
+        " " +
+        (props.border ? p.border : "") +
+        " " +
+        (props.margin ? p.margin : "")
+      }
       key={props.id}
     >
       <div className={p.postTitle}>{props.title}</div>

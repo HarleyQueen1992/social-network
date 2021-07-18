@@ -26,6 +26,7 @@ const Profile = props => {
           lastPost={props.lastPost}
           addLike={props.addLike}
           theme={props.theme}
+          posts={props.posts}
         />
       </div>
     </div>

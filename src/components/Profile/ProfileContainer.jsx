@@ -28,7 +28,10 @@ import {
 import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer"
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer"
 import Profile from "./Profile"
-import { getLastPost } from "./../../redux/PostsReducer/posts-selectors"
+import {
+  getLastPost,
+  getPosts,
+} from "./../../redux/PostsReducer/posts-selectors"
 import {
   getIsAuth,
   getProfileInfo,
@@ -42,7 +45,7 @@ import {
   getTheme,
 } from "../../redux/AppReducer/app-selectors"
 import { getAllFriends } from "../../redux/FriendsReducer/friends-selectors"
-import s from './Profile.module.css'
+import s from "./Profile.module.css"
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
@@ -71,7 +74,7 @@ class ProfileContainer extends React.Component {
     return (
       <>
         {this.props.isFatching || !this.props.userId ? (
-          <Preloader/>
+          <Preloader />
         ) : (
           <Profile
             {...this.props}
@@ -92,11 +95,11 @@ class ProfileContainer extends React.Component {
             toggleIsPostCreation={this.props.toggleIsPostCreation}
             lastPost={this.props.lastPost}
             theme={this.props.theme}
+            posts={this.props.posts}
             addLike={this.props.addLike}
             strUrlPrev={this.props.strUrl}
             changeIndex={this.props.changeIndex}
           />
-          
         )}
       </>
     )
@@ -115,6 +118,7 @@ const mapStateToProps = state => ({
   lastPost: getLastPost(state),
   theme: getTheme(state),
   friends: getAllFriends(state),
+  posts: getPosts(state),
 })
 
 export default compose(

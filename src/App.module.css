@@ -58,7 +58,7 @@ html {
 }
 .appWrapper {
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 51px 1fr;
   grid-template-areas: "h" "c";
 }
 .appWrapperContent {

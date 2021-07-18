@@ -1,643 +1,399 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 
-.profileInfoBlock {
+.profilePage {
+  display: grid;
+  grid-template-rows: 485px 1fr;
+}
+
+.profileHead {
+  display: grid;
+  grid-template-rows: 350px 1fr 60px;
+  background: linear-gradient(180deg, #ffffff17, var(--navBarBac));
+}
+/*! CoverPhoto */
+.coverBlock {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 350px;
+}
+.coverPhoto {
+  justify-self: center;
+  width: 940px;
+  position: relative;
   display: grid;
 }
-
-.descriptionBlock {
+.cover {
+  justify-self: center;
+  width: 100%;
+  height: 350px;
+}
+.avatarBlock {
+  position: absolute;
+  top: 200px;
   display: grid;
-  grid-template-columns: 600px;
-  grid-template-rows: 1fr auto;
-  grid-template-areas: "leftdiscription" "rightdescription";
-  grid-column-gap: 21px;
+  justify-self: center;
+  background-color: white;
+  padding: 5px;
+  border-radius: 50%;
 }
-
-.description {
-  display: none;
-  grid-area: rightdescription;
-  /* height: 600px; */
-  /* margin-left: 20px; */
-  border: 2px solid white;
-  border-radius: 20px;
-  padding: 16px;
-  grid-template-rows: 100px 100px 100px;
-  grid-template-areas: "top" "center" "bot";
-  background-color: rgb(43, 43, 43);
-  transition: all 0.5s;
+.avatar {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
 }
-
-.descriptionEditModeTrue {
-  grid-area: rightdescription;
-  height: 950px;
-  /* margin-left: 20px; */
-  border: 2px solid white;
-  border-radius: 20px;
-  padding: 16px;
-  display: grid;
-  grid-template-rows: 100px 100px 650px 100px;
-  grid-template-areas: "top" "center" "editMode" "bot";
-  background-color: rgb(43, 43, 43);
-}
-
-.preloader {
-  margin-top: -100px;
-}
-
-.descriptionDeployed {
-  grid-area: rightdescription;
-  height: 950px;
-  /* margin-left: 20px; */
-  border: 2px solid white;
-  border-radius: 20px;
-  padding: 16px;
-  display: grid;
-  grid-template-rows: 100px 100px 650px 100px;
-  grid-template-areas: "top" "center" "editMode" "bot";
-  background-color: rgb(43, 43, 43);
-}
-
-.deploy {
-  grid-area: editMode;
-}
-
-.deploy div {
-  color: rgb(212, 212, 212);
-  margin-bottom: 5px;
-}
-
-.saveBut {
-  width: 60px;
+/* ? Edit avatar */
+.editAvatarBlock {
+  position: absolute;
   cursor: pointer;
-  height: 30px;
-  margin-top: 10px;
-  background-color: rgb(99, 99, 99);
-  border: 1px solid rgb(99, 99, 99);
-}
-
-.saveBut:hover {
-  background-color: rgb(201, 200, 200);
-}
-
-.contactsBlock {
-  word-break: break-all;
-  margin-left: 20px;
-  margin-top: 5px;
-}
-.contactTitle {
-  color: var(--fontColor);
-}
-.contactsBody {
-  color: var(--statusColor);
-}
-.contacts {
-  color: white;
-}
-.field {
-  height: auto;
-  color: var(--fontColor);
+  background-color: rgb(51, 51, 51);
+  border-radius: 50%;
   display: grid;
-  grid-template-columns: 20px 1fr;
-  grid-column-gap: 2px;
-  margin-bottom: 5px;
+  padding: 5px;
+  bottom: 5px;
+  right: 5px;
 }
-.logo {
-  margin-top: 2px;
-  height: 18px;
+.editAvatarBlock:hover {
+  background-color: rgb(90, 90, 90);
+}
+.editAvatarCamera {
+  align-self: center;
   justify-self: center;
 }
-.linkField {
-  color: var(--statusColor);
-  text-decoration: none;
-}
-.titleField {
-  font-size: 15px;
-  font-weight: bold;
-  text-transform: capitalize;
-}
 
-.topBlock {
-  grid-area: leftdiscription;
-  display: grid;
-  grid-template-columns: 300px 300px;
-}
-
-.topDescriptionLeft {
-  display: grid;
-  grid-template-columns: 260px 40px;
-}
-
-.setPhoto {
-  align-self: flex-end;
-  display: none;
-}
-
-.followed {
-  display: none;
-  width: 100%;
-  justify-self: center;
-  align-self: end;
-}
-.followedBlock {
-  width: 100%;
-  justify-self: center;
-  align-self: end;
-}
-
-.followBut {
-  height: 30px;
-  width: 100%;
-  background-color: var(--followBtn);
-  border: 1px solid var(--followBtn);
+/* ? Edit photo cover block */
+.editPhotoCoverBlock {
+  position: absolute;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 17px;
+  bottom: 20px;
+  right: 30px;
+  width: 200px;
+  height: 34px;
+  background-color: white;
   border-radius: 5px;
-  color: var(--fontColor);
-}
-.followBut:hover {
-  background-color: var(--followBtnHover);
-  border: 1px solid var(--followBtnHover);
-}
-
-.ava {
-  grid-area: ava;
-  width: 300px;
-  height: 400px;
-}
-.aboutMeTopTitle {
-  margin-left: 10px;
-  font-size: 17px;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-weight: bold;
-  color: var(--fontColor);
-}
-
-.icon {
-  grid-area: icon;
-  align-self: flex-end;
-  cursor: pointer;
-}
-
-.discriptionTop {
-  grid-area: top;
-}
-
-.discriptionTop {
-  color: rgb(173, 173, 173);
-}
-
-.descriptionCenter {
-  grid-area: Info;
   display: grid;
-  margin-left: 10px;
-  grid-row-gap: 10px;
+  grid-template-columns: 30% 70%;
 }
-
-.detailed {
-  display: block;
-  color: var(--fontColor);
+.editPhotoCoverBlock:hover {
+  background-color: rgb(245, 245, 245);
+}
+.editPhotoCoverImg {
   align-self: center;
   justify-self: center;
-  cursor: pointer;
 }
-.aboutMeTopText {
-  color: var(--fontColor);
-  font-size: 15px;
-  margin-left: 15px;
-}
-.statusTitle {
-  font-weight: bold;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-size: 17px;
-  color: var(--fontColor);
-}
-.discriptionBot {
-  grid-area: bot;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: "left right";
-}
-
-.name {
-  font-size: 22px;
-  font-weight: 600;
-  color: white;
-  /* margin-bottom: 10px; */
-}
-
-.botLeft {
-  grid-area: left;
+.editPhotoCover {
   align-self: center;
+  font-weight: bold;
+}
+@media (max-width: 940px) {
+  .coverPhoto {
+    width: 100%;
+  }
+}
+/*! Profile Name and Status  */
+.profileNameAndStatus {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "nf sf pf" "f s p";
+  grid-template-rows: 45px 1fr;
 }
-
-.botLeft div {
-  color: white;
-}
-
-.numberOfFriends {
-  grid-area: nf;
+.profileNameAndStatus::after {
+  content: "";
+  width: 876px;
   justify-self: center;
+  height: 1px;
+  background-color: var(--BorderBottom);
 }
-
-.friends {
-  grid-area: f;
+.profileName {
   justify-self: center;
-}
-
-.numberOfSubscribers {
-  grid-area: sf;
-  justify-self: center;
-}
-
-.subscribers {
-  grid-area: s;
-  justify-self: center;
-}
-
-.numberOfPhotos {
-  grid-area: pf;
-  justify-self: center;
-}
-
-.photo {
-  grid-area: p;
-  justify-self: center;
-}
-
-.botRight {
-  font-size: 14px;
-  grid-area: right;
-  align-self: flex-end;
-  justify-self: flex-end;
-  color: white;
-}
-
-.imgHeader {
-  width: 100%;
-  height: 400px;
-}
-
-.status {
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-  color: var(--fontColor);
-}
-
-.status:hover {
-  box-sizing: border-box;
-  background-color: var(--statusHover);
-  /* padding: 1px 5px 1px 5px; */
-  border-radius: 5px;
-  /* color: black; */
-}
-
-.input {
-  /* margin-top: 7px; */
-  box-sizing: border-box;
-  width: 100%;
-  font-size: 15px;
-  outline: none;
-  color: var(--fontColor);
-  /* font-size: 17px; */
-  padding: 2px 5px 2px 5px;
-  border-radius: 8px;
-  border: 1px solid var(--bacInputBorder);
-  background-color: var(--bacInputBorder);
-  /* margin-top: -200px; */
-}
-
-input[type="file"] {
-  outline: 0;
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-}
-
-.rightTopDescription {
-  display: grid;
-  grid-template-areas: "TopName" "Status" "Info" "switcher";
-  grid-template-rows: 30px 20px 1fr 30px;
-}
-.isSmall {
-  grid-template-rows: 30px 40px 1fr 30px;
-}
-@import url("https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer&display=swap");
-.topName {
-  grid-area: TopName;
-  font-size: 19px;
-  font-weight: 700;
   align-self: end;
-  justify-self: center;
-  margin-left: 10px;
-  font-family: "IM Fell Great Primer", serif;
-  /* font-family: "Dancing Script", cursive; */
+  font-family: "Patua One", cursive;
   color: var(--fontColor);
+  font-size: 28px;
 }
-
-.centerStatus {
-  grid-area: Status;
-  align-self: center;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-left: 10px;
+.profileStatus {
+  justify-self: center;
+  color: blue;
 }
-
-.friendsBlock {
-  display: none;
+@media (max-width: 908px) {
+  .profileNameAndStatus::after {
+    width: 100%;
+  }
 }
-
-.editBlock {
-  display: none;
-}
-.lastPost {
+/*! Profile description  */
+.profileDescription {
+  justify-self: center;
+  width: 876px;
   display: grid;
-  grid-template-rows: 70px auto;
-}
-.header {
-  display: grid;
-  margin: 0 10px;
   grid-template-columns: 1fr 1fr;
-  /* border-bottom: 1px solid var(--BorderBottom); */
 }
-.headerTitle {
-  align-self: center;
-  justify-self: start;
-  margin-left: 20px;
-  /* font-weight: bold; */
-  font-size: 20px;
-  color: var(--fontColor);
-}
-.headerTitleRight {
-  text-decoration: none;
+.publicationsBlock {
   cursor: pointer;
+  position: relative;
+  justify-self: start;
+  width: 120px;
+  display: grid;
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+.publicationsBlock::after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #1877f2;
+}
+.publications {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-weight: bold;
+  font-size: 18px;
+}
+.editProfileBlock {
+  justify-self: end;
+  width: 150px;
+  align-self: center;
+  height: 60%;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 5px;
+  background-color: #ffffff1a;
+}
+.editProfileImg {
   align-self: center;
   justify-self: end;
-  /* font-weight: bold; */
-  font-size: 20px;
-  color: var(--fontColor);
+  margin-right: 5px;
 }
-.headerTitleRight:hover {
-  font-weight: 500;
+.editProfileBlock:hover {
+  background-color: #ffffff36;
 }
-.detailedInformation {
-  max-height: 0;
-  overflow: hidden;
-  width: auto;
-  display: grid;
-  grid-row-gap: 10px;
-  grid-template-rows: auto auto 1fr;
-  transition: max-height 0.4s ease-out;
-}
-.active {
-  max-height: 600px;
-  transition: max-height 0.35s ease-in;
-}
-.detailedInformationCenter {
-  word-break: break-all;
-}
-.titleInfo {
-  font-size: 16px;
+.editProfile {
+  align-self: center;
+  justify-self: start;
   font-weight: bold;
-  color: var(--descriptionColor);
-}
-.infoText {
-  margin-left: 5px;
-  color: var(--descriptionColor);
-}
-.deployedBlock {
-  justify-self: center;
-}
-.postBlock {
-  /* width: 500px; */
-  display: grid;
-  grid-template-areas: "title" "body";
-  /* grid-row-gap: 10px; */
-  padding: 10px;
-  margin: 0 10px;
-}
-.postTitle {
-  justify-self: center;
   color: white;
+}
+@media (max-width: 900px) {
+  .profileDescription {
+    width: 100%;
+    padding: 0 16px;
+  }
+}
+/*! Profile body */
+.profileBody {
+  justify-self: center;
+  width: 892px;
+  margin: 8px 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+/*? Left column  */
+.leftColumn {
+  display: grid;
+  margin: 8px;
+  grid-row-gap: 16px;
+}
+/*?  Profile info block */
+.profileInfoBlock {
+  display: grid;
+  grid-template-rows: 30px 1fr 50px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+}
+.briefInformationTitle {
+  color: var(--fontColor);
+  align-self: center;
   font-size: 20px;
+  font-family: "Patua One", cursive;
 }
-@media (max-width: 750px) {
-  .descriptionBlock {
-    grid-template-columns: 450px;
-  }
-  .topBlock {
-    grid-template-columns: 240px 210px;
-  }
-  .ava {
-    height: 300px;
-    width: 240px;
-  }
+.editInformation {
+  cursor: pointer;
+  width: 100%;
+  align-self: center;
+  height: 70%;
+  display: grid;
+  background-color: #ffffff18;
+  border-radius: 5px;
+}
+.editInformation:hover {
+  background-color: #ffffff21;
+}
+.editInformation span {
+  align-self: center;
+  justify-self: center;
+  color: var(--fontColor);
+  font-size: 17px;
+  font-weight: bold;
+  /* font-family: "Patua One", cursive; */
+}
+.listOfInformation {
+  display: grid;
+  grid-template-rows: 40px 40px 1fr;
+}
+.listItems {
+  align-self: center;
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+.birthdayImg {
+  width: 25px;
+  align-self: center;
+}
+.birthdayTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.birthdayTitle span {
+  color: #1877f2;
+  cursor: pointer;
+}
+.placeOfResidenceBlockTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.placeOfResidenceBlockTitle span {
+  color: #1877f2;
+  cursor: pointer;
+}
+.aboutMe {
+  margin-top: 3px;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.aboutMe span {
+  color: #1877f2;
+}
+/*? Friends Block  */
+.friendsBlock {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  padding: 15px;
+  height: 400px;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+}
+.friendsTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+  font-family: "Patua One", cursive;
+}
+.friendsList {
+  display: grid;
+  overflow: scroll;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.friendsListItem {
+  display: grid;
+  grid-template-rows: 70px 25px;
+  text-decoration: none;
 }
 
-@media (max-width: 480px) {
-  .lastPost {
-    grid-template-rows: 50px auto;
-  }
-  .descriptionBlock {
-    grid-template-areas:
-      "leftdiscription"
-      "rightdescription";
-    display: grid;
-    margin-top: 20px;
-    grid-template-rows: 150px 1fr auto;
-    grid-row-gap: 20px;
-    grid-template-columns: 1fr;
-  }
-  .descriptionCenter {
-    grid-area: center;
-  }
-  .deployedBlock {
-    display: none;
-  }
-  .topName {
-    justify-self: start;
-  }
-  .rightTopDescription {
-    display: grid;
-    grid-area: descriotion;
-  }
-  .detailedInfoBlock {
-    display: none;
-  }
-
-  .discriptionTop {
-    display: none;
-  }
-  .description {
-    grid-template-rows: 84px 84px;
-    grid-template-areas: "center" "bot";
-  }
-  .topDescriptionLeft {
-    grid-template-columns: 90px;
-    align-self: center;
-    grid-area: photo;
-  }
-  .setPhoto {
-    display: none;
-  }
-  .editBlock {
-    cursor: pointer;
-    grid-area: edit;
-    display: block;
-  }
-  .description {
-    display: grid;
-    grid-template-rows: 1fr 40px;
-    border: 0px;
-    padding-top: 0;
-    margin: 0 10px;
-    grid-template-areas:
-      "center"
-      "bot";
-    background-color: transparent;
-    border-radius: 0px;
-    border-bottom: 1px solid var(--BorderBottom);
-  }
-  .discriptionBot {
-    display: none;
-  }
-  .detailed {
-    display: block;
-    color: var(--fontColor);
-  }
-  /* .descriptionCenter div {} */
-  input[type="file"] {
-    display: none;
-  }
-  .edit {
-    width: 100%;
-    height: 100%;
-    background-color: var(--EditBack);
-    display: grid;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  .edit span {
-    color: var(--fontColor);
-    justify-self: center;
-    align-self: center;
-  }
-  .avatar {
-    grid-area: ava;
-  }
-  .rightTopDescription {
-    grid-area: profileInfo;
-    grid-template-rows: 1fr 1fr 1fr;
-  }
-  .centerStatus {
-    align-self: center;
-  }
-  .friendsAva {
-    height: 50px;
-    border-radius: 50%;
-  }
-  .topBlock {
-    grid-template-rows: 100px 30px;
-    grid-template-columns: 100px;
-    margin: 0 10px;
-    grid-template-areas:
-      "ava profileInfo"
-      "edit edit";
-    border-bottom: 1px solid var(--Fcolor);
-  }
-  .friendsList {
-    display: inline-flex;
-    overflow-x: scroll;
-  }
-  .aboutMeTop {
-    display: none;
-  }
-  .friendsC {
-    display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    padding-left: 10px;
-    font-size: 16px;
-    color: var(--fontColor);
-  }
-  .rToFriends {
-    margin-right: 10px;
-    justify-self: center;
-    color: white;
-    text-decoration: none;
-    justify-self: end;
-  }
-  .countFriends {
-    margin-left: 5px;
-  }
-  .friend {
-    display: grid;
-    text-decoration: none;
-    grid-template-columns: 70px;
-  }
-  .friendsPhoto {
-    justify-self: center;
-  }
-  .friendsName {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--fontColor);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 90%;
-    justify-self: center;
-    text-align: center;
-  }
-  .friendsBlock {
-    display: grid;
-    grid-template-rows: 20px 1fr;
-    grid-row-gap: 10px;
-  }
-  .ava {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-  }
-  .followed {
-    display: grid;
-    grid-area: edit;
-    height: 100%;
-    width: 100%;
-  }
-  .followedBlock {
-    display: none;
-  }
-  .followBut {
-    height: 100%;
-    width: 100%;
-  }
+.friendsImg {
+  height: 70px;
+  width: 70px;
+  border-radius: 10px;
+  align-self: center;
+  justify-self: center;
 }
-/* @media (max-width: 400px) {
-        .leftDescription {
-            grid-template-columns: 180px 180px;
-        }
-        .ava {
-            width: 180px;
-        }
-        .topDescriptionLeft {
-            grid-template-columns: 160px 20px;
-        }
-        .setPhoto {
-            margin-bottom: 20px;
-        }
-        .description {
-            width: 310px;
-            justify-self: center;
-        }
-    } */
+.friendsName {
+  color: var(--fontColor);
+  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: bold;
+}
+/*! Right column  */
+.rightColumn {
+  display: grid;
+  margin: 8px;
+  grid-row-gap: 16px;
+  grid-template-rows: 100px 1fr;
+}
+/*? publications block */
+.publicationsBlockAll {
+  display: grid;
+  height: 100px;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+  grid-template-rows: 60% 40%;
+}
+.publicationsTitleAndFilter {
+  border-bottom: 1px solid var(--BorderBottom);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.publicationsTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+  align-self: center;
+  padding-left: 10px;
+  font-family: "Patua One", cursive;
+}
+.publicationsFilter {
+  margin-right: 10px;
+  align-self: center;
+  justify-self: end;
+  cursor: pointer;
+  width: 90px;
+  height: 60%;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.096);
+  align-self: center;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+.publicationsFilter:hover {
+  background-color: rgba(255, 255, 255, 0.123);
+}
+.publicationsFilterImg {
+  height: 20px;
+  align-self: center;
+  justify-self: center;
+}
+.publicationsFilterTitle {
+  color: var(--fontColor);
+  font-size: 16px;
+  align-self: center;
+  justify-self: start;
+  font-weight: bold;
+}
+.listBlock {
+  position: relative;
+  margin: 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.listBlock::after {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  height: 3px;
+  border-radius: 1px;
+  width: 100%;
+  background-color: #1877f2;
+}
+.listImg {
+  align-self: center;
+  justify-self: end;
+  padding-right: 5px;
+  height: 20px;
+}
+.listTitle {
+  padding-left: 2px;
+  color: #1877f2;
+  letter-spacing: 1px;
+  align-self: center;
+  font-size: 18px;
+  font-weight: bold;
+}
