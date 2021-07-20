@@ -2,7 +2,7 @@
 
 .profilePage {
   display: grid;
-  grid-template-rows: 485px 1fr;
+  grid-template-rows: 505px 1fr;
 }
 .allScreen {
   width: 100vw;
@@ -21,7 +21,7 @@
   position: relative;
   display: grid;
   width: 100vw;
-  grid-template-rows: 350px 1fr 60px;
+  grid-template-rows: 350px 85px 60px;
   background: linear-gradient(180deg, #ffffff17, var(--navBarBac));
 }
 /*! CoverPhoto */
@@ -92,6 +92,7 @@
   background-color: rgb(245, 245, 245);
 }
 .editPhotoCoverImg {
+  height: 20px;
   align-self: center;
   justify-self: center;
 }
@@ -99,19 +100,55 @@
   align-self: center;
   font-weight: bold;
 }
+@media (max-width: 900px) {
+  .editPhotoCoverBlock {
+    width: 40px;
+    grid-template-columns: 1fr;
+  }
+  .editPhotoCover {
+    display: none;
+  }
+}
 @media (max-width: 940px) {
   .coverPhoto {
     width: 100%;
   }
 }
+@media (max-width: 900px) {
+  .coverBlock {
+    height: calc(150px + (350 - 150) * ((100vw - 320px) / (900 - 320)));
+  }
+  .cover {
+    height: calc(150px + (350 - 150) * ((100vw - 320px) / (900 - 320)));
+  }
+  .profileHead {
+    grid-template-rows:
+      calc(150px + (350 - 150) * ((100vw - 320px) / (900 - 320)))
+      1fr 60px;
+  }
+  .profilePage {
+    grid-template-rows: calc(
+      295px + (505 - 295) * ((100vw - 320px) / (900 - 320))
+    );
+  }
+  .avatarBlock {
+    top: calc(3px + (200 - 3) * ((100vw - 320px) / (900 - 320)));
+  }
+  /* .coverPhoto {
+    width: calc();
+  } */
+}
 /*! Profile Name and Status  */
 .profileNameAndStatus {
   display: grid;
-  grid-template-rows: 45px 1fr;
+  position: relative;
+  grid-template-rows: 45px 40px;
 }
 .profileNameAndStatus::after {
   content: "";
+  position: absolute;
   width: 876px;
+  bottom: 0;
   justify-self: center;
   height: 1px;
   background-color: var(--BorderBottom);
@@ -203,6 +240,19 @@
   display: grid;
   grid-template-columns: 45% 55%;
 }
+@media (max-width: 892px) {
+  .profileBody {
+    width: 100vw;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .leftColumn {
+    margin: 8px 8px 0 8px !important;
+  }
+  .rightColumn {
+    margin: 0 8px 8px 8px !important;
+  }
+}
 /*? Left column  */
 .leftColumn {
   display: grid;
@@ -250,7 +300,7 @@
 .listItems {
   align-self: center;
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 40px 1fr;
 }
 .birthdayImg {
   width: 25px;
@@ -285,9 +335,9 @@
 /*? Friends Block  */
 .friendsBlock {
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 30px 1fr;
   padding: 15px;
-  height: 400px;
+  height: 380px;
   border-radius: 10px;
   background-color: var(--navBarBac);
 }
@@ -304,6 +354,11 @@
   grid-column-gap: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+@media (max-width: 380px) {
+  .friendsList {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 .friendsListItem {
   display: grid;
