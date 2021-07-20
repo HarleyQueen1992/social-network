@@ -2,7 +2,7 @@
 
 .profilePage {
   display: grid;
-  grid-template-rows: 505px 1fr;
+  grid-template-rows: 495px 1fr;
 }
 .allScreen {
   width: 100vw;

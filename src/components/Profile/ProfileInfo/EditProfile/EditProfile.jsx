@@ -11,6 +11,8 @@ import { setEditMode } from "./../../../../redux/AppReducer/app-reducer"
 import { withRouter } from "react-router-dom"
 
 const EditProfile = props => {
+  const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
+    useState(false)
   const onMainPhotoSelected = e => {
     if (e.target.files.length) {
       props.savePhoto(e.target.files[0])
@@ -76,21 +78,44 @@ const EditProfile = props => {
           <div className={s.TellUsMoreAboutYourself}>
             Tell us more about yourself
           </div>
-          <div className={s.editInfo}>
-            <span className={s.edit}>Edit</span>
+          <div
+            onClick={() => {
+              setEditTellusMoreAboutYourself(!editTellusMoreAboutYourself)
+            }}
+            className={s.editInfo}
+          >
+            {editTellusMoreAboutYourself ? (
+              <span className={s.edit}>Save</span>
+            ) : (
+              <span className={s.edit}>Edit</span>
+            )}
           </div>
         </div>
         <div className={s.moreAboutMyself}>
           <div className={s.birthdayBlock}>
             <img className={s.birthdayImg} src={BirthdayWhite} alt='birthday' />
-            <span className={s.birthdayTitle}>
-              Birthday <span className={s.birthday}>August 25</span>
+            <span className={s.birthdayTitleAndText}>
+              <div className={s.birthdayTitle}>Birthday</div>
+              {editTellusMoreAboutYourself ? (
+                <span className={s.birthdayEditBlock}>
+                  <input className={s.editBirthday} type='date' />
+                </span>
+              ) : (
+                <span className={s.birthday}>August 25</span>
+              )}
             </span>
           </div>
           <div className={s.locationBlock}>
             <img className={s.cityImg} src={CityWhite} alt='location' />
-            <span className={s.locationTitle}>
-              Location <span className={s.location}>Ukraine, Lugansk</span>
+            <span className={s.locationTitleAndText}>
+              <div className={s.locationTitle}>Location</div>
+              {editTellusMoreAboutYourself ? (
+                <span className={s.locationEditBlock}>
+                  <input className={s.editLocation} type='text' />
+                </span>
+              ) : (
+                <span className={s.location}>Ukraine, Lugansk</span>
+              )}
             </span>
           </div>
         </div>

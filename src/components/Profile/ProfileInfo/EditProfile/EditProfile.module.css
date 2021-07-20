@@ -173,6 +173,25 @@
   grid-template-columns: 30px 1fr;
   padding: 0 15px;
 }
+.birthdayEditBlock {
+  margin-left: 5px;
+  display: grid;
+}
+.editBirthday {
+  align-self: center;
+  width: 150px;
+  height: 25px;
+  background-color: var(--navBarBac);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+  outline: none;
+  color: #ffffff;
+  padding: 5px;
+}
+.birthdayTitleAndText {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
 .birthdayTitle {
   align-self: center;
   color: var(--fontColor);
@@ -183,7 +202,9 @@
   align-self: center;
 }
 .birthday {
+  align-self: center;
   color: #1877f2;
+  font-weight: bold;
   cursor: pointer;
 }
 .locationBlock {
@@ -191,14 +212,36 @@
   grid-template-columns: 30px 1fr;
   padding: 0 15px;
 }
+.locationTitleAndText {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
 .locationTitle {
   align-self: center;
-  color: var(--fontColor);
   font-weight: bold;
+  color: var(--fontColor);
 }
 .location {
   color: #1877f2;
   cursor: pointer;
+  font-weight: bold;
+  align-self: center;
+}
+.locationEditBlock {
+  margin-left: 5px;
+  display: grid;
+}
+.editLocation {
+  align-self: center;
+  width: 150px;
+  height: 25px;
+  background-color: var(--navBarBac);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+  outline: none;
+  color: white;
+  padding: 5px;
 }
 .cityImg {
   align-self: center;
