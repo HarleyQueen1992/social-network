@@ -7,6 +7,7 @@ const HEADER_BLUR = "app/app-reducer/HEADER_BLUR"
 const IS_FETCHING = "app/app-reducer/IS_FETCHING"
 const SET_INDEX = "app/app-reducer/SET_INDEX"
 const TOGGLE_IS_BIG_SCREEN = "app/app-reducer/TOGGLE_IS_BIG_SCREEN"
+const SET_EDITMODE = "app/app-reducer/SET_EDITMODE"
 
 let initialState = {
   initialized: false,
@@ -14,6 +15,7 @@ let initialState = {
   index: null,
   theme: darkTheme,
   headerBlur: false,
+  editMode: false,
   isBigScreen: window.innerWidth > 600,
 }
 
@@ -62,6 +64,12 @@ const appReducer = (state = initialState, action) => {
         headerBlur: action.headerBlur,
       }
     }
+    case SET_EDITMODE: {
+      return {
+        ...state,
+        editMode: action.editMode,
+      }
+    }
     default:
       return state
   }
@@ -70,6 +78,9 @@ const appReducer = (state = initialState, action) => {
 // Action Creator
 export const initializedSuccess = () => {
   return { type: INITIALIZED_SUCCESS }
+}
+export const setEditMode = editMode => {
+  return { type: SET_EDITMODE, editMode }
 }
 export const toggleIsPostCreation = isPostCreation => ({
   type: IS_POST_CREATION,

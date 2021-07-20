@@ -4,9 +4,23 @@
   display: grid;
   grid-template-rows: 485px 1fr;
 }
-
+.allScreen {
+  width: 100vw;
+  display: none;
+  position: fixed;
+  height: 100vh;
+  z-index: 99999999999999999;
+  overflow-y: scroll;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.507);
+}
+.allScreenActive {
+  display: block;
+}
 .profileHead {
+  position: relative;
   display: grid;
+  width: 100vw;
   grid-template-rows: 350px 1fr 60px;
   background: linear-gradient(180deg, #ffffff17, var(--navBarBac));
 }

@@ -27,6 +27,8 @@ const Profile = props => {
           addLike={props.addLike}
           theme={props.theme}
           posts={props.posts}
+          editMode={props.editMode}
+          setEditMode={props.setEditMode}
         />
       </div>
     </div>

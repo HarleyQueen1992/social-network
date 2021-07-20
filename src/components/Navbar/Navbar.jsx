@@ -29,6 +29,7 @@ const Navbar = props => {
   }, [props.theme])
 
   document.onclick = function (e) {
+    debugger
     if (
       e.target.className
         .replace(/[^a-zA-Z ]/g, " ")

@@ -1,0 +1,205 @@
+.editProfileMenu {
+  z-index: 999999999999999999999999999999999999999;
+  width: 600px;
+  display: grid;
+  margin-top: 40px;
+  justify-self: center;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+  padding-bottom: 10px;
+}
+
+.editProfileTitleBlock {
+  height: 50px;
+  display: grid;
+  position: relative;
+}
+.editProfileTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+  align-self: center;
+  justify-self: center;
+  font-family: "Patua One", cursive;
+}
+.editProfileTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--BorderBottom);
+  height: 1px;
+  width: 100%;
+}
+.editPhotoProfileBlock {
+  display: grid;
+  grid-template-rows: 50px 210px;
+}
+.editPhotoProfile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.editPhotoTitle {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.editPhoto {
+  width: 70px;
+  height: 70%;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: grid;
+  margin-right: 10px;
+}
+.editPhoto:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+.edit {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-family: "Patua One", cursive;
+  font-size: 16px;
+}
+.photoProfile {
+  display: grid;
+}
+.photoProfile img {
+  height: 180px;
+  width: 180px;
+  align-self: center;
+  justify-self: center;
+  border-radius: 50%;
+}
+.CoverPhotoProfile {
+  display: grid;
+}
+.CoverPhotoProfile img {
+  width: 500px;
+  height: 180px;
+  align-self: center;
+  justify-self: center;
+}
+.editAboutMeBlock {
+  display: grid;
+  grid-template-rows: 50px 60px;
+}
+.editAboutMeProfile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.editAboutMeTitle {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.addToAboutMe {
+  width: 70px;
+  height: 70%;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: grid;
+  margin-right: 10px;
+}
+.addToAboutMe:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+.edit {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-family: "Patua One", cursive;
+  font-size: 16px;
+}
+.aboutMeText {
+  color: rgb(197, 197, 197);
+  align-self: center;
+  justify-self: center;
+  font-size: 18px;
+}
+
+.editTellUsMoreAboutYourselfBlock {
+  display: grid;
+  grid-template-rows: 50px 80px;
+}
+.editTellUsMoreAboutYourselfAndEdit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.TellUsMoreAboutYourself {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.editInfo {
+  width: 70px;
+  height: 70%;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: grid;
+  margin-right: 10px;
+}
+.editInfo:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+.edit {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-family: "Patua One", cursive;
+  font-size: 16px;
+}
+.moreAboutMyself {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.birthdayBlock {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  padding: 0 15px;
+}
+.birthdayTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.birthdayImg {
+  width: 25px;
+  align-self: center;
+}
+.birthday {
+  color: #1877f2;
+  cursor: pointer;
+}
+.locationBlock {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  padding: 0 15px;
+}
+.locationTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.location {
+  color: #1877f2;
+  cursor: pointer;
+}
+.cityImg {
+  align-self: center;
+}

@@ -38,9 +38,13 @@ import {
   getUserId,
 } from "../../redux/AuthReducer/auth-selectors"
 import Preloader from "../common/Preloader/Preloader"
-import { toggleIsPostCreation } from "./../../redux/AppReducer/app-reducer"
+import {
+  toggleIsPostCreation,
+  setEditMode,
+} from "./../../redux/AppReducer/app-reducer"
 import { follow, unfollow } from "../../redux/UsersReducer/user-reducer"
 import {
+  getEditMode,
   getIsPostCreation,
   getTheme,
 } from "../../redux/AppReducer/app-selectors"
@@ -99,6 +103,8 @@ class ProfileContainer extends React.Component {
             addLike={this.props.addLike}
             strUrlPrev={this.props.strUrl}
             changeIndex={this.props.changeIndex}
+            editMode={this.props.editMode}
+            setEditMode={this.props.setEditMode}
           />
         )}
       </>
@@ -119,6 +125,7 @@ const mapStateToProps = state => ({
   theme: getTheme(state),
   friends: getAllFriends(state),
   posts: getPosts(state),
+  editMode: getEditMode(state),
 })
 
 export default compose(
@@ -140,6 +147,7 @@ export default compose(
     getTheLastPost,
     addLike,
     requestAllFriends,
+    setEditMode,
   }),
   withRouter,
   withAuthRedirecr

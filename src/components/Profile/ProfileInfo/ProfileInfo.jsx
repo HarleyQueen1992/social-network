@@ -15,6 +15,7 @@ import CityWhite from "./../../../assets/images/cityWhite.png"
 import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png"
 import FilterWhite from "./../../../assets/images/filterWhite.png"
 import List from "./../../../assets/images/menuBlueActive.png"
+import EditProfile from "./EditProfile/EditProfile"
 
 const ProfileInfo = props => {
   let [deployed, setdeployed] = useState(false)
@@ -85,7 +86,12 @@ const ProfileInfo = props => {
           <div className={s.publicationsBlock}>
             <div className={s.publications}>Publications</div>
           </div>
-          <div className={s.editProfileBlock}>
+          <div
+            onClick={() => {
+              props.setEditMode(!props.editMode)
+            }}
+            className={s.editProfileBlock}
+          >
             <img
               className={s.editProfileImg}
               src={EditWhite}

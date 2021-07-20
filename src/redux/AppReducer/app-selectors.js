@@ -19,3 +19,6 @@ export const getIndex = state => {
 export const getIsBigScreen = state => {
   return state.app.isBigScreen
 }
+export const getEditMode = state => {
+  return state.app.editMode
+}

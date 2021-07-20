@@ -32,6 +32,7 @@ import {
   getIsPostCreation,
   getIndex,
   getIsBigScreen,
+  getEditMode,
 } from "./redux/AppReducer/app-selectors"
 import store from "./redux/redux-store"
 import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors"
@@ -41,6 +42,7 @@ import SwipeableViews from "react-swipeable-views"
 import MenuContainer from "./components/Menu/MenuContainer"
 import Header from "./components/Header/Header"
 import PageNotFound from "./components/PageNotFound/PageNotFound"
+import EditProfile from "./components/Profile/ProfileInfo/EditProfile/EditProfile"
 
 const urlIndex = {
   0: "news",
@@ -171,9 +173,25 @@ class App extends React.Component {
               index={this.props.index}
               theme={this.props.theme}
             />
+            {this.props.editMode && (
+              <div
+                className={
+                  s.editProfileMenuBlock +
+                  " " +
+                  (this.props.editMode ? s.activeEditProfileMenuBlock : " ")
+                }
+              >
+                <EditProfile />
+                <div className={s.editProfileMenuBottom}></div>
+              </div>
+            )}
             <div
               className={
-                s.appWrapperContent + " " + (this.props.index != 0 ? s.up : "")
+                s.appWrapperContent +
+                " " +
+                (this.props.index != 0 ? s.up : " ") +
+                " " +
+                (this.props.editMode ? s.appWrapperContentEditMode : " ")
               }
             >
               {(this.props.location.pathname === "/news") |
@@ -284,6 +302,7 @@ const mapStateToProps = state => {
     index: getIndex(state),
     isBigScreen: getIsBigScreen(state),
     profileInfo: getProfileInfo(state),
+    editMode: getEditMode(state),
   }
 }
 
