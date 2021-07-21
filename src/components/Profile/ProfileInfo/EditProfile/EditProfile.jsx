@@ -36,16 +36,21 @@ const EditProfile = props => {
   }
   return (
     <div className={s.editProfileMenu}>
-      <div className={s.allScreen}></div>
       <div className={s.editProfileTitleBlock}>
         <span className={s.editProfileTitle}>Edit profile</span>
+        <div
+          onClick={() => {
+            props.setEditMode(false)
+          }}
+          className={s.backBlock}
+        ></div>
       </div>
       <div className={s.editPhotoProfileBlock}>
         <div className={s.editPhotoProfile}>
           <div className={s.editPhotoTitle}>Photo profile</div>
           <input onChange={onMainPhotoSelected} type='file' id='input__file' />
           <label className={s.editPhoto} htmlFor='input__file'>
-            <span className={s.edit}>edit</span>
+            <span className={s.edit}>Edit</span>
           </label>
         </div>
         <div className={s.photoProfile}>

@@ -5,6 +5,7 @@
   margin-top: 40px;
   justify-self: center;
   border-radius: 10px;
+  grid-template-rows: 50px 260px 260px 1fr 130px;
   background-color: var(--navBarBac);
   padding-bottom: 10px;
 }
@@ -12,6 +13,7 @@
 .editProfileTitleBlock {
   height: 50px;
   display: grid;
+  grid-template-columns: 1fr 50px;
   position: relative;
 }
 .editProfileTitle {
@@ -19,7 +21,42 @@
   font-size: 20px;
   align-self: center;
   justify-self: center;
+  margin-left: 50px;
   font-family: "Patua One", cursive;
+}
+.backBlock {
+  cursor: pointer;
+  height: 34px;
+  width: 34px;
+  position: relative;
+  align-self: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.158);
+}
+.backBlock:hover {
+  background-color: rgba(255, 255, 255, 0.267);
+}
+.backBlock::before {
+  content: "";
+  height: 2px;
+  width: 20px;
+  left: 7px;
+  bottom: 15px;
+  /* border-radius: 50%; */
+  position: absolute;
+  background-color: white;
+  transform: rotate(45deg);
+}
+.backBlock::after {
+  content: "";
+  height: 2px;
+  width: 20px;
+  /* border-radius: 50%; */
+  left: 7px;
+  bottom: 15px;
+  position: absolute;
+  background-color: white;
+  transform: rotate(-45deg);
 }
 .editProfileTitle::after {
   content: "";
@@ -134,7 +171,7 @@
 }
 .editTellUsMoreAboutYourselfAndEdit {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 .TellUsMoreAboutYourself {
   align-self: center;
@@ -245,4 +282,26 @@
 }
 .cityImg {
   align-self: center;
+}
+@media (max-width: 600px) {
+  .editProfileMenu {
+    width: 100vw;
+    grid-template-rows:
+      50px calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
+      calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
+      1fr 130px;
+  }
+  .editPhotoProfileBlock {
+    grid-template-rows: 50px calc(
+        180px + (210 - 180) * ((100vw - 320px) / (600 - 320))
+      );
+  }
+  .CoverPhotoProfile img {
+    width: calc(280px + (500 - 280) * ((100vw - 320px) / (600 - 320)));
+    height: calc(140px + (180 - 140) * ((100vw - 320px) / (600 - 320)));
+  }
+  .photoProfile img {
+    width: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
+    height: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
+  }
 }
