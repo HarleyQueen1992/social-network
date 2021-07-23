@@ -6,6 +6,7 @@ import { getPosts } from "../../redux/PostsReducer/posts-selectors"
 import { deletePost, addLike } from "./../../redux/PostsReducer/posts-reducer"
 import News from "./News"
 import { getProfile } from "../../redux/ProfileReducer/profile-selectors"
+import Preloader from "./../../components/common/Preloader/Preloader"
 
 class NewsContainer extends React.Component {
   render() {

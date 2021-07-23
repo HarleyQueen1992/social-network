@@ -14,9 +14,9 @@ const Post = props => {
       className={
         p.postBlock +
         " " +
-        (props.border ? p.border : "") +
+        (props.border ? p.border : " ") +
         " " +
-        (props.margin ? p.margin : "")
+        (props.margin ? p.margin : " ")
       }
       key={props.id}
     >

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import s from "./News.module.css"
 import Notification from "./../../assets/images/notification.png"
 import NotificationB from "./../../assets/images/notificationB.png"
-
+import ProfilePhoto from "./../../assets/images/user.png"
 import Post from "./../Posts/MyPosts/Post/Post"
 
 const News = props => {
@@ -14,6 +14,18 @@ const News = props => {
 
   return (
     <div className={s.newsListPage}>
+      <div className={s.anythingNewBlock}>
+        <div className={s.anythingNewProfilePhotoBlock}>
+          <img
+            className={s.anythingNewProfilePhoto}
+            src={ProfilePhoto}
+            alt='profile photo'
+          />
+        </div>
+        <div className={s.anythingNew}>
+          <span>Anything new?</span>
+        </div>
+      </div>
       <div className={s.news}>
         {props.posts.map(post => (
           <Post

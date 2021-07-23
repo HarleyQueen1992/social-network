@@ -73,7 +73,6 @@ export const profileAPI = {
   //     return instance.get(`/follow/${id}`)
   // }
 }
-
 export const friendsAPI = {
   getFriends(currentPage = 1, pageSize = 6) {
     return instance.get(
