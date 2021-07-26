@@ -5,9 +5,10 @@ axios.defaults.withCredentials = true
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: `https://social-network-api-1.herokuapp.com/api/1.0`,
-  // baseURL: `https://mosset.pagekite.me/api/1.0`,
-})
+  baseURL: `https://mosset.herokuapp.com/api/v1`,
+  //  baseURL: `https://social-network-api-1.herokuapp.com/api/1.0`,
+  //  baseURL: `https://mosset.pagekite.me/api/1.0`,
+ })
 
 export const usersAPI = {
   getUsers(currentPage, pageSize) {
@@ -34,39 +35,52 @@ export const usersAPI = {
 
 export const authAPI = {
   getAuthMe() {
-    return instance.get(`auth/me/`).then(response => {
+    return instance.get(`/profile/`).then(response => {
       return response.data
     })
+    .catch(response => response.response.data)
   },
-  loginIn(email, password, rememberMe = false) {
-    return instance.post(`auth/login/`, { email, password, rememberMe })
+  loginIn(email, password) {
+
+    return instance.put(`auth/`, { email, password }).then(response => {
+      
+      return response.data
+    })
+    .catch(response => response.data)
   },
   logOut() {
-    return instance.delete(`auth/login/`)
+    return instance.delete(`auth/`)
   },
 }
 
 export const profileAPI = {
   getProfile(id) {
-    return instance.get(`profile/${id}/`)
+    return instance.get(`profile/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
   },
-  getStatus(userId) {
-    return instance.get(`/profile/status/` + userId)
-  },
+
+
   updateStatus(status) {
     return instance.put(`/profile/status/`, { status })
   },
   saveProfileInfo(profileInfo) {
     return instance.put(`/profile/`, profileInfo)
   },
-  savePhoto(photoFile) {
+  updateProfileAvatar(photoFile) {
     const formData = new FormData()
-    formData.append("image", photoFile)
+    formData.append("avatar", photoFile)
 
-    return instance.put(`/profile/photo/`, formData, {
+    return instance.put(`/profile/avatar/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
+    }).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
     })
   },
   // getFollow(id) {

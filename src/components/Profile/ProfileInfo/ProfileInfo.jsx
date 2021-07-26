@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Preloader from "../../common/Preloader/Preloader"
+// import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import profileImg from "../../../assets/images/user.png"
 import { NavLink } from "react-router-dom"
@@ -17,7 +17,7 @@ import FilterWhite from "./../../../assets/images/filterWhite.png"
 import List from "./../../../assets/images/menuBlueActive.png"
 import EditProfile from "./EditProfile/EditProfile"
 
-const ProfileInfo = props => {
+const ProfileInfo = (props) => {
   let [deployed, setdeployed] = useState(false)
   let [editMode, setEditMode] = useState(false)
   let [status, setStatus] = useState(props.status)
@@ -28,20 +28,23 @@ const ProfileInfo = props => {
     setEditMode(false)
     props.updateStatus(status)
   }
-  const onMainPhotoSelected = e => {
+  const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
       props.savePhoto(e.target.files[0])
     }
   }
-  useEffect(() => {
-    setStatus(props.status)
-  }, [props.status])
-  if (props.profile == null) {
-    return <Preloader />
-  }
-  let srcImg = props.profile.photo
-  if (props.profile.photo == null) {
+  // useEffect(() => {
+  //   setStatus(props.status)
+  // }, [props.status])
+  // if (props.profile == null) {
+  //   return <Preloader />
+  // }
+  let srcImg
+
+  if (props.profile.avatar == "") {
     srcImg = profileImg
+  } else {
+    srcImg = props.profile.avatar
   }
 
   return (
@@ -53,33 +56,34 @@ const ProfileInfo = props => {
               <img
                 className={s.editPhotoCoverImg}
                 src={CameraBlack}
-                alt='camera'
+                alt="camera"
               />
               <span className={s.editPhotoCover}>Edit photo cover</span>
             </div>
-            <img className={s.cover} src={Cover} alt='Cover' />
+            <img className={s.cover} src={Cover} alt="Cover" />
           </div>
           <div className={s.avatarBlock}>
             <input
               onChange={onMainPhotoSelected}
-              type='file'
-              id='input__file'
+              type="file"
+              id="input__file"
             />
-            <label className={s.changeLabel} htmlFor='input__file'>
+            <label className={s.changeLabel} htmlFor="input__file">
               <div className={s.editAvatarBlock}>
                 <img
                   className={s.editAvatarCamera}
                   src={CameraWhite}
-                  alt='camera'
+                  alt="camera"
                 />
               </div>
             </label>
-
-            <img className={s.avatar} src={props.profile.photo} alt='avatar' />
+            <div className={s.avatarSubblock}>
+              <img className={s.avatar} src={srcImg} alt="avatar" />
+            </div>
           </div>
         </div>
         <div className={s.profileNameAndStatus}>
-          <div className={s.profileName}>{props.profile.fullName}</div>
+          <div className={s.profileName}>{props.profile.fullname}</div>
           <div className={s.profileStatus}>Status</div>
         </div>
         <div className={s.profileDescription}>
@@ -95,7 +99,7 @@ const ProfileInfo = props => {
             <img
               className={s.editProfileImg}
               src={EditWhite}
-              alt='edit profile'
+              alt="edit profile"
             />
             <div className={s.editProfile}>Edit profile</div>
           </div>
@@ -110,20 +114,20 @@ const ProfileInfo = props => {
                 <img
                   className={s.birthdayImg}
                   src={BirthdayWhite}
-                  alt='birthday'
+                  alt="birthday"
                 />
                 <span className={s.birthdayTitle}>
                   Birthday <span>August 25</span>
                 </span>
               </div>
               <div className={s.listItems}>
-                <img src={CityWhite} alt='city' />
+                <img src={CityWhite} alt="city" />
                 <span className={s.placeOfResidenceBlockTitle}>
                   Location <span>Ukraine, Lugansk</span>
                 </span>
               </div>
               <div className={s.listItems}>
-                <img className={s.person} src={AboutMeWhite} alt='person' />
+                <img className={s.person} src={AboutMeWhite} alt="person" />
                 <div className={s.aboutMe}>
                   About me:{" "}
                   <span>
@@ -143,7 +147,7 @@ const ProfileInfo = props => {
               Friends <span>{props.friends.length}</span>
             </div>
             <div className={s.friendsList}>
-              {props.friends.map(f => (
+              {props.friends.map((f) => (
                 <NavLink
                   to={"/profile/" + f.id}
                   className={s.friendsListItem}
@@ -152,7 +156,7 @@ const ProfileInfo = props => {
                   <img
                     className={s.friendsImg}
                     src={f.photo ? f.photo : profileImg}
-                    alt='user photo'
+                    alt="user photo"
                   />
                   <div className={s.friendsName}>{f.name}</div>
                 </NavLink>
@@ -169,18 +173,18 @@ const ProfileInfo = props => {
                 <img
                   className={s.publicationsFilterImg}
                   src={FilterWhite}
-                  alt='filter'
+                  alt="filter"
                 />
                 <span className={s.publicationsFilterTitle}>Filters</span>
               </div>
             </div>
             <div className={s.listBlock}>
-              <img className={s.listImg} src={List} alt='list img' />
+              <img className={s.listImg} src={List} alt="list img" />
               <span className={s.listTitle}>List</span>
             </div>
           </div>
           <div className={s.postsList}>
-            {props.posts.map(post => (
+            {props.posts.map((post) => (
               <Post
                 border={false}
                 key={post.id}

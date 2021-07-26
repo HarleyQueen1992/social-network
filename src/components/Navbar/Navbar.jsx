@@ -8,11 +8,12 @@ import { getTheme } from "./../../redux/AppReducer/app-selectors"
 import { logOut } from "./../../redux/AuthReducer/auth-reducer"
 import { withRouter } from "react-router-dom"
 import Sun from "./../../assets/images/sunW.png"
+import UserProfile from "./../../assets/images/user.png"
 import Moon from "./../../assets/images/moon.png"
 import { Icons } from "./../../utils/Icons/Icons"
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors"
 
-const Navbar = props => {
+const Navbar = (props) => {
   let res = Icons(props.theme)
   const themeToggler = () => {
     props.theme == "lightTheme"
@@ -34,7 +35,7 @@ const Navbar = props => {
         .replace(/[^a-zA-Z ]/g, " ")
         .split(/\s+|\./)
         .filter(
-          word =>
+          (word) =>
             (word === "Navbar") | (word === "menuBlock") | (word === "menuImg")
         ).length == 0
     ) {
@@ -45,7 +46,7 @@ const Navbar = props => {
   return (
     <div className={s.navBarList}>
       <NavLink
-        to='/profile'
+        to="/profile"
         onClick={() => {
           props.setIsMenuActive(false)
         }}
@@ -55,12 +56,16 @@ const Navbar = props => {
           <div className={s.avatar}>
             <img
               className={s.avatarImg}
-              src={props.profileInfo.photo}
-              alt='user avatar'
+              src={
+                props.profileInfo.avatar == ""
+                  ? UserProfile
+                  : props.profileInfo.avatar
+              }
+              alt="user avatar"
             />
           </div>
           <div className={s.profileInfo}>
-            <div className={s.name}>{props.profileInfo.fullName}</div>
+            <div className={s.name}>{props.profileInfo.fullname}</div>
             <div className={s.viewProfile}>View your profile</div>
           </div>
         </div>
@@ -72,7 +77,7 @@ const Navbar = props => {
             <img
               className={s.giveFeedbackImg}
               src={res["giveFeedback"]}
-              alt='giveFeedback'
+              alt="giveFeedback"
             />
           </div>
           <div className={s.giveFeedbackInfoBlock}>
@@ -87,7 +92,7 @@ const Navbar = props => {
       </div>
       <div className={s.navBar}>
         <NavLink
-          to='/settings'
+          to="/settings"
           onClick={() => {
             props.setIsMenuActive(false)
           }}
@@ -97,7 +102,7 @@ const Navbar = props => {
             <img
               className={s.settingsImg}
               src={res["settings"]}
-              alt='settings img'
+              alt="settings img"
             />
           </div>
           <span className={s.settingsTitle}>Settings</span>
@@ -107,15 +112,15 @@ const Navbar = props => {
             onClick={() => {
               themeToggler()
             }}
-            type='checkbox'
+            type="checkbox"
             className={s.checkbox}
-            id='chk'
+            id="chk"
           />
-          <label className={s.label} htmlFor='chk'>
+          <label className={s.label} htmlFor="chk">
             {/* <i class='fas fa-moon'></i> */}
             {/* <i class='hu5pjgll lzf7d6o1 sp_voiDzL01CrP sx_e9dc21'></i> */}
-            <img className={s.img} alt='moon' src={Moon} />
-            <img className={s.img} alt='sun' src={Sun} />
+            <img className={s.img} alt="moon" src={Moon} />
+            <img className={s.img} alt="sun" src={Sun} />
             <div
               className={
                 s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
@@ -132,7 +137,7 @@ const Navbar = props => {
           }}
         >
           <div className={s.logOutLogo}>
-            <img className={s.logOutImg} src={res["logOut"]} alt='logOut img' />
+            <img className={s.logOutImg} src={res["logOut"]} alt="logOut img" />
           </div>
           <span className={s.logOutTitle}>Log out</span>
         </div>
@@ -140,7 +145,7 @@ const Navbar = props => {
     </div>
   )
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
     profileInfo: getProfileInfo(state),

@@ -10,7 +10,7 @@ const TOGGLE_IS_FOLLOW = "app/profile-reducer/TOGGLE_IS_FOLLOW"
 const SAVING_IN_PHOTO_PROGRESS = "app/profile-reducer/SAVING_IN_PHOTO_PROGRESS"
 
 let initialState = {
-  isFatching: false,
+  isFatching: true,
   isSavingPhoto: false,
   profile: null,
   status: null,
@@ -33,7 +33,7 @@ const profileReducer = (state = initialState, action) => {
     case SAVE_PHOTO_SUCCESS:
       return {
         ...state,
-        profile: { ...state.profile, photo: action.photo },
+        profile: { ...state.profile, avatar: action.photo },
       }
     case TOGGLE_IS_FATCHING:
       return {
@@ -93,11 +93,9 @@ export const setStatus = status => {
 export const getUserProfile = userId => async dispatch => {
   dispatch(toggleIsFatching(true))
   // dispatch(toggleIsFetching(true))
-  let response = await profileAPI.getProfile(userId)
-  dispatch(setUserProfile(response.data))
-  let resp = await profileAPI.getStatus(userId)
-  dispatch(setStatus(resp.data))
-  dispatch(getTheLastPost())
+  
+  let response = await profileAPI.getProfile()
+  dispatch(setUserProfile(response))
   dispatch(toggleIsFatching(false))
   // dispatch(toggleIsFetching(false))
 }

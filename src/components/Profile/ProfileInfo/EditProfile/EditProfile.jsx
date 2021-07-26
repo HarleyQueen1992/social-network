@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import s from "./EditProfile.module.css"
+import PhotoProfile from "./../../../../assets/images/user.png"
 import BirthdayWhite from "./../../../../assets/images/birthdayWhite.png"
 import CityWhite from "./../../../../assets/images/cityWhite.png"
 import Cover from "./../../../../assets/images/356200_h1ec7Aokt5_1.jpg"
@@ -10,10 +11,10 @@ import { getEditMode } from "./../../../../redux/AppReducer/app-selectors"
 import { setEditMode } from "./../../../../redux/AppReducer/app-reducer"
 import { withRouter } from "react-router-dom"
 
-const EditProfile = props => {
+const EditProfile = (props) => {
   const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
     useState(false)
-  const onMainPhotoSelected = e => {
+  const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
       props.savePhoto(e.target.files[0])
     }
@@ -24,7 +25,7 @@ const EditProfile = props => {
         .replace(/[^a-zA-Z ]/g, " ")
         .split(/\s+|\./)
         .filter(
-          word =>
+          (word) =>
             (word === "EditProfile") |
             (word === "editProfileImg") |
             (word === "editProfile") |
@@ -48,13 +49,18 @@ const EditProfile = props => {
       <div className={s.editPhotoProfileBlock}>
         <div className={s.editPhotoProfile}>
           <div className={s.editPhotoTitle}>Photo profile</div>
-          <input onChange={onMainPhotoSelected} type='file' id='input__file' />
-          <label className={s.editPhoto} htmlFor='input__file'>
+          <input onChange={onMainPhotoSelected} type="file" id="input__file" />
+          <label className={s.editPhoto} htmlFor="input__file">
             <span className={s.edit}>Edit</span>
           </label>
         </div>
         <div className={s.photoProfile}>
-          <img src={props.profile.photo} alt='profile photo' />
+          <img
+            src={
+              props.profile.avatar == "" ? PhotoProfile : props.profile.avatar
+            }
+            alt="profile photo"
+          />
         </div>
       </div>
       <div className={s.editPhotoProfileBlock}>
@@ -66,7 +72,7 @@ const EditProfile = props => {
           </div>
         </div>
         <div className={s.CoverPhotoProfile}>
-          <img src={Cover} alt='profile photo' />
+          <img src={Cover} alt="profile photo" />
         </div>
       </div>
       <div className={s.editAboutMeBlock}>
@@ -98,12 +104,12 @@ const EditProfile = props => {
         </div>
         <div className={s.moreAboutMyself}>
           <div className={s.birthdayBlock}>
-            <img className={s.birthdayImg} src={BirthdayWhite} alt='birthday' />
+            <img className={s.birthdayImg} src={BirthdayWhite} alt="birthday" />
             <span className={s.birthdayTitleAndText}>
               <div className={s.birthdayTitle}>Birthday</div>
               {editTellusMoreAboutYourself ? (
                 <span className={s.birthdayEditBlock}>
-                  <input className={s.editBirthday} type='date' />
+                  <input className={s.editBirthday} type="date" />
                 </span>
               ) : (
                 <span className={s.birthday}>August 25</span>
@@ -111,12 +117,12 @@ const EditProfile = props => {
             </span>
           </div>
           <div className={s.locationBlock}>
-            <img className={s.cityImg} src={CityWhite} alt='location' />
+            <img className={s.cityImg} src={CityWhite} alt="location" />
             <span className={s.locationTitleAndText}>
               <div className={s.locationTitle}>Location</div>
               {editTellusMoreAboutYourself ? (
                 <span className={s.locationEditBlock}>
-                  <input className={s.editLocation} type='text' />
+                  <input className={s.editLocation} type="text" />
                 </span>
               ) : (
                 <span className={s.location}>Ukraine, Lugansk</span>
@@ -128,7 +134,7 @@ const EditProfile = props => {
     </div>
   )
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     profile: getProfileInfo(state),
     editMode: getEditMode(state),

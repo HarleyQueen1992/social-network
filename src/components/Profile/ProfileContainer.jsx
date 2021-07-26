@@ -77,7 +77,7 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFatching || !this.props.userId ? (
+        {this.props.isFatching ? (
           <Preloader />
         ) : (
           <Profile
@@ -111,7 +111,7 @@ class ProfileContainer extends React.Component {
     )
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: getProfile(state),
   isAuth: getIsAuth(state),
   isFatching: getIsFatching(state),

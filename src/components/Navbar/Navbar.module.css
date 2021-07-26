@@ -16,16 +16,25 @@
 
 /*! Profile */
 .avatar {
-  display: grid;
-  height: 100%;
-  width: 100%;
-}
-.avatarImg {
   align-self: center;
-  justify-self: end;
+  justify-self: center;
   height: 55px;
   width: 55px;
+  position: relative;
+  overflow: hidden;
+}
+.avatarImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 .profileInfo {
   display: grid;

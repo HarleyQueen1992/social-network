@@ -71,7 +71,7 @@ class App extends React.Component {
     this.props.setIndex(Number(value))
   }
 
-  handleChangeIndex = index => {
+  handleChangeIndex = (index) => {
     for (let key in urlIndex) {
       if (key == index) {
         i = key
@@ -82,7 +82,7 @@ class App extends React.Component {
     this.props.setIndex(Number(index))
   }
 
-  changeIndex = velue => {
+  changeIndex = (velue) => {
     let strUpdate = velue.substr(38)
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "")
 
@@ -136,7 +136,7 @@ class App extends React.Component {
     }
   }
   render() {
-    const toggleIsBigScreen = value => {
+    const toggleIsBigScreen = (value) => {
       this.setState({
         isBigScreen: value,
       })
@@ -158,10 +158,10 @@ class App extends React.Component {
     }
     if (!this.props.isAuth) {
       return (
-        <div className='loginPage'>
-          <Redirect to='/login/' />
-          <Route path='/login' render={() => <Login />} />
-          <Route path='/register' render={() => <Registration />} />
+        <div className="loginPage">
+          <Redirect to="/login/" />
+          <Route path="/login" render={() => <Login />} />
+          <Route path="/register" render={() => <Registration />} />
         </div>
       )
     } else {
@@ -208,7 +208,7 @@ class App extends React.Component {
                   className={s.swipeableViews}
                 >
                   <Route
-                    path='/news'
+                    path="/news"
                     render={() => (
                       <NewsContainer
                         changeIndex={this.changeIndex}
@@ -217,7 +217,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path='/profile/:userid?'
+                    path="/profile/:userid?"
                     render={() => (
                       <ProfileContainer
                         changeIndex={this.changeIndex}
@@ -226,7 +226,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path='/posts'
+                    path="/posts"
                     render={() => (
                       <MyPostsContainer
                         changeIndex={this.changeIndex}
@@ -235,7 +235,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path='/users'
+                    path="/users"
                     render={() => (
                       <UsersContainer
                         changeIndex={this.changeIndex}
@@ -244,7 +244,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path='/friends'
+                    path="/friends"
                     render={() => (
                       <FriendsContainer
                         changeIndex={this.changeIndex}
@@ -254,7 +254,7 @@ class App extends React.Component {
                   />
                   {window.innerWidth < 900 && (
                     <Route
-                      path='/menu'
+                      path="/menu"
                       render={() => (
                         <MenuContainer
                           changeIndex={this.changeIndex}
@@ -267,7 +267,7 @@ class App extends React.Component {
               ) : (
                 <Switch>
                   <Route
-                    path='/settings'
+                    path="/settings"
                     render={() => <SettingsContainer />}
                   />
 
@@ -291,7 +291,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     initialized: getInitialized(state),
     isAuth: getIsAuth(state),
@@ -318,7 +318,7 @@ let AppContainer = compose(
   withRouter
 )(App)
 
-const SamuraiJSApp = props => {
+const SamuraiJSApp = (props) => {
   return (
     <HashRouter>
       <Provider store={store}>

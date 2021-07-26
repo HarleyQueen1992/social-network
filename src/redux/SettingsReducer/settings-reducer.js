@@ -114,10 +114,10 @@ export const saveProfileInfo = profileData => async dispatch => {
 }
 export const savePhoto = file => async dispatch => {
   dispatch(toggleIsFetchingSuccess(true))
-  let response = await profileAPI.savePhoto(file)
-  if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.data.data.photo))
-  }
+  let response = await profileAPI.updateProfileAvatar(file)
+  // if (response.data.resultCode === 0) {
+    dispatch(savePhotoSuccess(response.avatar))
+  // }
   dispatch(toggleIsFetchingSuccess(false))
 }
 
