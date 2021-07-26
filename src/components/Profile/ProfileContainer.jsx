@@ -11,6 +11,7 @@ import {
   toggleIsFollow,
   updateStatus,
   getFollow,
+  setProfileBanner,
 } from "../../redux/ProfileReducer/profile-reducer"
 import {
   deletePost,
@@ -105,6 +106,7 @@ class ProfileContainer extends React.Component {
             changeIndex={this.props.changeIndex}
             editMode={this.props.editMode}
             setEditMode={this.props.setEditMode}
+            setProfileBanner={this.props.setProfileBanner}
           />
         )}
       </>
@@ -148,6 +150,7 @@ export default compose(
     addLike,
     requestAllFriends,
     setEditMode,
+    setProfileBanner,
   }),
   withRouter,
   withAuthRedirecr

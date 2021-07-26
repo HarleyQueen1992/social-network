@@ -2,7 +2,7 @@ import React from "react"
 import p from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
 
-const Profile = props => {
+const Profile = (props) => {
   let newUrl = window.location.href
   if (props.strUrlPrev != newUrl) {
     props.changeIndex(newUrl)
@@ -29,6 +29,7 @@ const Profile = props => {
           posts={props.posts}
           editMode={props.editMode}
           setEditMode={props.setEditMode}
+          setProfileBanner={props.setProfileBanner}
         />
       </div>
     </div>

@@ -6,7 +6,9 @@ import CityWhite from "./../../../../assets/images/cityWhite.png"
 import Cover from "./../../../../assets/images/356200_h1ec7Aokt5_1.jpg"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { getProfileInfo } from "../../../../redux/AuthReducer/auth-selectors"
+import { setProfileBanner } from "./../../../../redux/ProfileReducer/profile-reducer"
+import { getProfile } from "../../../../redux/ProfileReducer/profile-selectors"
+import { savePhoto } from "./../../../../redux/SettingsReducer/settings-reducer"
 import { getEditMode } from "./../../../../redux/AppReducer/app-selectors"
 import { setEditMode } from "./../../../../redux/AppReducer/app-reducer"
 import { withRouter } from "react-router-dom"
@@ -19,20 +21,27 @@ const EditProfile = (props) => {
       props.savePhoto(e.target.files[0])
     }
   }
+  const onMainBannerSelected = (e) => {
+    if (e.target.files.length) {
+      props.setProfileBanner(e.target.files[0])
+    }
+  }
   document.onclick = function (e) {
-    if (
-      e.target.className
-        .replace(/[^a-zA-Z ]/g, " ")
-        .split(/\s+|\./)
-        .filter(
-          (word) =>
-            (word === "EditProfile") |
-            (word === "editProfileImg") |
-            (word === "editProfile") |
-            (word === "editProfileBlock")
-        ).length == 0
-    ) {
-      props.setEditMode(false)
+    if (e.target.className !== "") {
+      if (
+        e.target.className
+          .replace(/[^a-zA-Z ]/g, " ")
+          .split(/\s+|\./)
+          .filter(
+            (word) =>
+              (word === "EditProfile") |
+              (word === "editProfileImg") |
+              (word === "editProfile") |
+              (word === "editProfileBlock")
+          ).length == 0
+      ) {
+        props.setEditMode(false)
+      }
     }
   }
   return (
@@ -48,31 +57,42 @@ const EditProfile = (props) => {
       </div>
       <div className={s.editPhotoProfileBlock}>
         <div className={s.editPhotoProfile}>
-          <div className={s.editPhotoTitle}>Photo profile</div>
-          <input onChange={onMainPhotoSelected} type="file" id="input__file" />
-          <label className={s.editPhoto} htmlFor="input__file">
+          <div className={s.editPhotoTitle}>Avatar</div>
+          <input
+            onChange={onMainPhotoSelected}
+            type="file"
+            id="input__file__ava"
+          />
+          <label className={s.editPhoto} htmlFor="input__file__ava">
             <span className={s.edit}>Edit</span>
           </label>
         </div>
         <div className={s.photoProfile}>
-          <img
-            src={
-              props.profile.avatar == "" ? PhotoProfile : props.profile.avatar
-            }
-            alt="profile photo"
-          />
+          <div className={s.avatar}>
+            <img
+              src={
+                props.profile.avatar == "" ? PhotoProfile : props.profile.avatar
+              }
+              alt="profile photo"
+            />
+          </div>
         </div>
       </div>
       <div className={s.editPhotoProfileBlock}>
         <div className={s.editPhotoProfile}>
           <div className={s.editPhotoTitle}>Cover photo</div>
 
-          <div className={s.editPhoto}>
+          <input
+            onChange={onMainBannerSelected}
+            type="file"
+            id="input__file__banner"
+          />
+          <label className={s.editPhoto} htmlFor="input__file__banner">
             <span className={s.edit}>Edit</span>
-          </div>
+          </label>
         </div>
         <div className={s.CoverPhotoProfile}>
-          <img src={Cover} alt="profile photo" />
+          <img src={props.profile.banner} alt="profile photo" />
         </div>
       </div>
       <div className={s.editAboutMeBlock}>
@@ -136,11 +156,11 @@ const EditProfile = (props) => {
 }
 let mapStateToProps = (state) => {
   return {
-    profile: getProfileInfo(state),
+    profile: getProfile(state),
     editMode: getEditMode(state),
   }
 }
 export default compose(
-  connect(mapStateToProps, { setEditMode }),
+  connect(mapStateToProps, { setEditMode, savePhoto, setProfileBanner }),
   withRouter
 )(EditProfile)

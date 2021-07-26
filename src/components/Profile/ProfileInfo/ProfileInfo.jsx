@@ -33,6 +33,12 @@ const ProfileInfo = (props) => {
       props.savePhoto(e.target.files[0])
     }
   }
+
+  const onMainBannerSelected = (e) => {
+    if (e.target.files.length) {
+      props.setProfileBanner(e.target.files[0])
+    }
+  }
   // useEffect(() => {
   //   setStatus(props.status)
   // }, [props.status])
@@ -52,16 +58,25 @@ const ProfileInfo = (props) => {
       <div className={s.profileHead}>
         <div className={s.coverBlock}>
           <div className={s.coverPhoto}>
-            <div className={s.editPhotoCoverBlock}>
-              <img
-                className={s.editPhotoCoverImg}
-                src={CameraBlack}
-                alt="camera"
-              />
-              <span className={s.editPhotoCover}>Edit photo cover</span>
-            </div>
-            <img className={s.cover} src={Cover} alt="Cover" />
+            <input
+              onChange={onMainBannerSelected}
+              type="file"
+              id="banner"
+              className={s.inputFile}
+            />
+            <label className={s.editBannerBlock} htmlFor="banner">
+              <div className={s.editPhotoCoverBlock}>
+                <img
+                  className={s.editPhotoCoverImg}
+                  src={CameraBlack}
+                  alt="camera"
+                />
+                <span className={s.editPhotoCover}>Edit photo cover</span>
+              </div>
+            </label>
+            <img className={s.cover} src={props.profile.banner} alt="Cover" />
           </div>
+
           <div className={s.avatarBlock}>
             <input
               onChange={onMainPhotoSelected}

@@ -4,6 +4,7 @@ import { getTheLastPost } from "./../PostsReducer/posts-reducer"
 const SET_USER_PROFILE = "app/profile-reducer/SET_USER_PROFILE"
 const SET_STATUS = "app/profile-reducer/SET_STATUS"
 const SAVE_PHOTO_SUCCESS = "app/profile-reducer/SAVE_PHOTO_SUCCESS"
+const UPDATE_PROFILE_BANNER = "app/profile-reducer/UPDATE_PROFILE_BANNER"
 const TOGGLE_IS_FATCHING = "app/profile-reducer/TOGGLE_IS_FATCHING"
 const TOGGLE_IS_FOLLOW = "app/profile-reducer/TOGGLE_IS_FOLLOW"
 
@@ -34,6 +35,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: { ...state.profile, avatar: action.photo },
+      }
+    case UPDATE_PROFILE_BANNER:
+      return {
+        ...state,
+        profile: { ...state.profile, banner: action.banner },
       }
     case TOGGLE_IS_FATCHING:
       return {
@@ -80,6 +86,12 @@ export const savePhotoSuccess = photo => {
     photo,
   }
 }
+export const updateProfileBanner = banner => {
+  return {
+    type: UPDATE_PROFILE_BANNER,
+    banner,
+  }
+}
 
 export const setStatus = status => {
   return {
@@ -100,6 +112,10 @@ export const getUserProfile = userId => async dispatch => {
   // dispatch(toggleIsFetching(false))
 }
 
+export const setProfileBanner = file => async dispatch => {
+  let response = await profileAPI.updateProfileBanner(file)
+  dispatch(updateProfileBanner(response.banner))
+}
 // export const requestStatus = (userId) => async(dispatch) => {
 //     let response = await profileAPI.getStatus(userId)
 //     dispatch(setStatus(response.data));

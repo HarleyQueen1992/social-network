@@ -41,7 +41,7 @@ const authReducer = (state = initialState, action) => {
     case SET_PROFILE_PHOTO: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, photo: action.profilePhoto },
+        profileInfo: { ...state.profileInfo, avatar: action.profilePhoto },
       }
     }
     default:
@@ -65,7 +65,7 @@ export const setProfileData = (profileInfo, isAuth) => {
   }
 }
 
-export const setProfilePhoto = profilePhoto => {
+export const setProfileInfoPhoto = profilePhoto => {
   return {
     type: SET_PROFILE_PHOTO,
     profilePhoto,

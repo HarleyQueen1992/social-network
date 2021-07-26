@@ -106,12 +106,23 @@
 .photoProfile {
   display: grid;
 }
-.photoProfile img {
-  height: 180px;
-  width: 180px;
+.avatar {
   align-self: center;
   justify-self: center;
+  position: relative;
+  overflow: hidden;
+  height: 180px;
+  width: 180px;
+}
+.avatar img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .CoverPhotoProfile {
   display: grid;

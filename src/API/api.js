@@ -83,6 +83,20 @@ export const profileAPI = {
       return response.data
     })
   },
+  updateProfileBanner(bannerFile) {
+    const formData = new FormData()
+    formData.append("banner", bannerFile)
+
+    return instance.put(`/profile/banner/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
   // getFollow(id) {
   //     return instance.get(`/follow/${id}`)
   // }
