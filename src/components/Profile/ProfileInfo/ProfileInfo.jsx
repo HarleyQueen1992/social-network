@@ -16,8 +16,24 @@ import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png"
 import FilterWhite from "./../../../assets/images/filterWhite.png"
 import List from "./../../../assets/images/menuBlueActive.png"
 import EditProfile from "./EditProfile/EditProfile"
-
+let month = {
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  10: "October",
+  11: "November",
+  12: "December",
+}
 const ProfileInfo = (props) => {
+  let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "")
+  birthdayMonth = birthdayMonth.replace(/.{3}$/, "")
+
   let [deployed, setdeployed] = useState(false)
   let [editMode, setEditMode] = useState(false)
   let [status, setStatus] = useState(props.status)
@@ -132,13 +148,17 @@ const ProfileInfo = (props) => {
                   alt="birthday"
                 />
                 <span className={s.birthdayTitle}>
-                  Birthday <span>August 25</span>
+                  Birthday{" "}
+                  <span>
+                    {month[birthdayMonth]}{" "}
+                    {props.profile.birthday.replace(/^.{8}/, "")}
+                  </span>
                 </span>
               </div>
               <div className={s.listItems}>
                 <img src={CityWhite} alt="city" />
                 <span className={s.placeOfResidenceBlockTitle}>
-                  Location <span>Ukraine, Lugansk</span>
+                  Location <span>{props.profile.location}</span>
                 </span>
               </div>
               <div className={s.listItems}>

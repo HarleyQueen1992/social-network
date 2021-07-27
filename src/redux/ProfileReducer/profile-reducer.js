@@ -115,12 +115,19 @@ export const getUserProfile = userId => async dispatch => {
 export const setProfileBanner = file => async dispatch => {
   let response = await profileAPI.updateProfileBanner(file)
   dispatch(updateProfileBanner(response.banner))
+
 }
 // export const requestStatus = (userId) => async(dispatch) => {
 //     let response = await profileAPI.getStatus(userId)
 //     dispatch(setStatus(response.data));
 
 // }
+
+export const updateProfileInfo = (birthday, location) => async dispatch => {
+  let response = await profileAPI.updateProfileInfo(birthday, location)
+  dispatch(setUserProfile(response))
+
+}
 
 export const updateStatus = status => async dispatch => {
   let response = await profileAPI.updateStatus(status)

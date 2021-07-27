@@ -83,6 +83,13 @@ export const profileAPI = {
       return response.data
     })
   },
+  updateProfileInfo(birthday, location) {
+    return instance.patch('/profile', {birthday, location}).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
   updateProfileBanner(bannerFile) {
     const formData = new FormData()
     formData.append("banner", bannerFile)

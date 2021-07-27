@@ -6,16 +6,46 @@ import CityWhite from "./../../../../assets/images/cityWhite.png"
 import Cover from "./../../../../assets/images/356200_h1ec7Aokt5_1.jpg"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { setProfileBanner } from "./../../../../redux/ProfileReducer/profile-reducer"
+import {
+  setProfileBanner,
+  updateProfileInfo,
+} from "./../../../../redux/ProfileReducer/profile-reducer"
 import { getProfile } from "../../../../redux/ProfileReducer/profile-selectors"
 import { savePhoto } from "./../../../../redux/SettingsReducer/settings-reducer"
 import { getEditMode } from "./../../../../redux/AppReducer/app-selectors"
 import { setEditMode } from "./../../../../redux/AppReducer/app-reducer"
 import { withRouter } from "react-router-dom"
-
+let month = {
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  10: "October",
+  11: "November",
+  12: "December",
+}
 const EditProfile = (props) => {
+  let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "")
+  birthdayMonth = birthdayMonth.replace(/.{3}$/, "")
+
   const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
     useState(false)
+  const [editAboutMe, setEditAboutMe] = useState(false)
+  const [valueBirthday, setValueBirthday] = useState(props.profile.birthday)
+  const [valueLocation, setValueLocation] = useState(props.profile.location)
+
+  const handleChangeBirthday = (event) => {
+    setValueBirthday(event.target.value)
+  }
+  const handleChangeLocation = (event) => {
+    setValueLocation(event.target.value)
+  }
+
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
       props.savePhoto(e.target.files[0])
@@ -100,11 +130,22 @@ const EditProfile = (props) => {
       <div className={s.editAboutMeBlock}>
         <div className={s.editAboutMeProfile}>
           <div className={s.editAboutMeTitle}>About me</div>
-          <div className={s.addToAboutMe}>
+          <div
+            onClick={() => {
+              setEditAboutMe(!editAboutMe)
+            }}
+            className={s.addToAboutMe}
+          >
             <span className={s.edit}>Add to</span>
           </div>
         </div>
-        <div className={s.aboutMeText}>Tell about yourself...</div>
+        <div className={s.aboutMeText}>
+          {props.profile.aboutMe == "" ? (
+            <span>Tell about yourself...</span>
+          ) : (
+            <span>{props.profile.aboutMe}</span>
+          )}
+        </div>
       </div>
       <div className={s.editTellUsMoreAboutYourselfBlock}>
         <div className={s.editTellUsMoreAboutYourselfAndEdit}>
@@ -114,6 +155,10 @@ const EditProfile = (props) => {
           <div
             onClick={() => {
               setEditTellusMoreAboutYourself(!editTellusMoreAboutYourself)
+              {
+                editTellusMoreAboutYourself &&
+                  props.updateProfileInfo(valueBirthday, valueLocation)
+              }
             }}
             className={s.editInfo}
           >
@@ -131,10 +176,18 @@ const EditProfile = (props) => {
               <div className={s.birthdayTitle}>Birthday</div>
               {editTellusMoreAboutYourself ? (
                 <span className={s.birthdayEditBlock}>
-                  <input className={s.editBirthday} type="date" />
+                  <input
+                    value={valueBirthday}
+                    onChange={handleChangeBirthday}
+                    className={s.editBirthday}
+                    type="date"
+                  />
                 </span>
               ) : (
-                <span className={s.birthday}>August 25</span>
+                <span className={s.birthday}>
+                  {month[birthdayMonth]}{" "}
+                  {props.profile.birthday.replace(/^.{8}/, "")}
+                </span>
               )}
             </span>
           </div>
@@ -144,10 +197,15 @@ const EditProfile = (props) => {
               <div className={s.locationTitle}>Location</div>
               {editTellusMoreAboutYourself ? (
                 <span className={s.locationEditBlock}>
-                  <input className={s.editLocation} type="text" />
+                  <input
+                    value={valueLocation}
+                    onChange={handleChangeLocation}
+                    className={s.editLocation}
+                    type="text"
+                  />
                 </span>
               ) : (
-                <span className={s.location}>Ukraine, Lugansk</span>
+                <span className={s.location}>{props.profile.location}</span>
               )}
             </span>
           </div>
@@ -163,6 +221,11 @@ let mapStateToProps = (state) => {
   }
 }
 export default compose(
-  connect(mapStateToProps, { setEditMode, savePhoto, setProfileBanner }),
+  connect(mapStateToProps, {
+    setEditMode,
+    savePhoto,
+    setProfileBanner,
+    updateProfileInfo,
+  }),
   withRouter
 )(EditProfile)
