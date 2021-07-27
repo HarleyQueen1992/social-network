@@ -92,7 +92,9 @@ const EditProfile = (props) => {
           </label>
         </div>
         <div className={s.CoverPhotoProfile}>
-          <img src={props.profile.banner} alt="profile photo" />
+          <div className={s.banner}>
+            <img src={props.profile.banner} alt="profile photo" />
+          </div>
         </div>
       </div>
       <div className={s.editAboutMeBlock}>

@@ -127,11 +127,23 @@
 .CoverPhotoProfile {
   display: grid;
 }
-.CoverPhotoProfile img {
-  width: 500px;
-  height: 180px;
+.banner {
   align-self: center;
   justify-self: center;
+  width: 500px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+.banner img {
+  position: absolute;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 180px;
+  object-fit: cover;
 }
 .editAboutMeBlock {
   display: grid;
@@ -307,7 +319,11 @@
         180px + (210 - 180) * ((100vw - 320px) / (600 - 320))
       );
   }
-  .CoverPhotoProfile img {
+  .banner img {
+    width: calc(280px + (500 - 280) * ((100vw - 320px) / (600 - 320)));
+    height: calc(140px + (180 - 140) * ((100vw - 320px) / (600 - 320)));
+  }
+  .banner {
     width: calc(280px + (500 - 280) * ((100vw - 320px) / (600 - 320)));
     height: calc(140px + (180 - 140) * ((100vw - 320px) / (600 - 320)));
   }

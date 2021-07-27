@@ -292,12 +292,13 @@
 .leftColumn {
   display: grid;
   margin: 8px;
+  grid-template-rows: 1fr 380px 380px;
   grid-row-gap: 16px;
 }
 /*?  Profile info block */
 .profileInfoBlock {
   display: grid;
-  grid-template-rows: 30px 1fr 50px;
+  grid-template-rows: 30px 1fr;
   padding: 15px;
   border-radius: 10px;
   background-color: var(--navBarBac);
@@ -372,7 +373,8 @@
   display: grid;
   grid-template-rows: 30px 1fr;
   padding: 15px;
-  height: 380px;
+  height: auto;
+  max-height: 380px;
   border-radius: 10px;
   background-color: var(--navBarBac);
 }
@@ -384,6 +386,7 @@
 .friendsList {
   display: grid;
   overflow: scroll;
+  grid-template-rows: 95px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-row-gap: 10px;
   grid-column-gap: 10px;

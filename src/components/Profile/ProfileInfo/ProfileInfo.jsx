@@ -153,9 +153,6 @@ const ProfileInfo = (props) => {
                 </div>
               </div>
             </div>
-            <div className={s.editInformation}>
-              <span>Edit information</span>
-            </div>
           </div>
           <div className={s.friendsBlock}>
             <div className={s.friendsTitle}>
@@ -173,7 +170,7 @@ const ProfileInfo = (props) => {
                     src={f.photo ? f.photo : profileImg}
                     alt="user photo"
                   />
-                  <div className={s.friendsName}>{f.name}</div>
+                  <div className={s.friendsName}>{f.login}</div>
                 </NavLink>
               ))}
             </div>
