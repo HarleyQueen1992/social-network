@@ -5,7 +5,7 @@
   margin-top: 40px;
   justify-self: center;
   border-radius: 10px;
-  grid-template-rows: 50px 260px 260px 1fr 130px;
+  grid-template-rows: 50px 100px 260px 260px 1fr 130px;
   background-color: var(--navBarBac);
   padding-bottom: 10px;
 }
@@ -66,6 +66,52 @@
   background-color: var(--BorderBottom);
   height: 1px;
   width: 100%;
+}
+.editProfileFullNameBlock {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+}
+.editProfileFullNameTitleBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.editProfileFullNameTitle {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.editProfileFullName {
+  display: grid;
+}
+.fullName {
+  width: 100%;
+  color: var(--fontColor);
+  text-align: center;
+  font-size: 20px;
+  align-self: center;
+  font-family: "Patua One", cursive;
+  white-space: nowrap; /* Текст не переносится */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis;
+}
+.editFullName {
+  height: 90%;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  outline: none;
+  padding: 5px 10px;
+  background-color: #00000027;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: "Patua One", cursive;
+  justify-self: center;
+}
+.editFullName:focus {
+  border: 1px solid #1877f2;
 }
 .editPhotoProfileBlock {
   display: grid;

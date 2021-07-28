@@ -68,6 +68,7 @@ export const profileAPI = {
   saveProfileInfo(profileInfo) {
     return instance.put(`/profile/`, profileInfo)
   },
+  
   updateProfileAvatar(photoFile) {
     const formData = new FormData()
     formData.append("avatar", photoFile)
@@ -83,7 +84,14 @@ export const profileAPI = {
     })
   },
   updateAboutMe(aboutMe) {
-    return instance.patch('/profile', { aboutMe }).then(response => {
+    return instance.patch('/profile/', { aboutMe }).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  updateFullName(fullname) {
+    return instance.patch('/profile/', { fullname }).then(response => {
       return response.data
     }).catch(response => {
       return response.data

@@ -10,6 +10,7 @@ import {
   setProfileBanner,
   updateProfileInfo,
   updateAboutMe,
+  updateFullName,
 } from "./../../../../redux/ProfileReducer/profile-reducer";
 import { getProfile } from "../../../../redux/ProfileReducer/profile-selectors";
 import { savePhoto } from "./../../../../redux/SettingsReducer/settings-reducer";
@@ -36,8 +37,9 @@ const EditProfile = (props) => {
 
   const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
     useState(false);
-  // const [disable, setDisable] = useState();
   const [editAboutMe, setEditAboutMe] = useState(false);
+  const [editFullName, setEditFullName] = useState(false);
+  const [valueFullName, setValueFullName] = useState(props.profile.fullname);
   const [valueAboutMe, setValueAboutMe] = useState(props.profile.aboutMe);
   const [valueBirthday, setValueBirthday] = useState(props.profile.birthday);
   const [valueLocation, setValueLocation] = useState(props.profile.location);
@@ -46,6 +48,9 @@ const EditProfile = (props) => {
   const cancelEditAboutMe = () => {
     setEditAboutMe(false);
     setValueAboutMe(props.profile.aboutMe);
+  };
+  const handleChangeFullName = (event) => {
+    setValueFullName(event.target.value);
   };
 
   const handleChangeBirthday = (event) => {
@@ -101,6 +106,38 @@ const EditProfile = (props) => {
           }}
           className={s.backBlock}
         ></div>
+      </div>
+      <div className={s.editProfileFullNameBlock}>
+        <div className={s.editProfileFullNameTitleBlock}>
+          <div className={s.editProfileFullNameTitle}>Fullname</div>
+          <div
+            onClick={() => {
+              setEditFullName(!editFullName);
+              {
+                editFullName && props.updateFullName(valueFullName);
+              }
+            }}
+            className={s.editInfo}
+          >
+            {editFullName ? (
+              <span className={s.edit}>Save</span>
+            ) : (
+              <span className={s.edit}>Edit</span>
+            )}
+          </div>
+        </div>
+        <div className={s.editProfileFullName}>
+          {editFullName ? (
+            <input
+              className={s.editFullName}
+              value={valueFullName}
+              onChange={handleChangeFullName}
+              maxLength="50"
+            ></input>
+          ) : (
+            <span className={s.fullName}>{props.profile.fullname}</span>
+          )}
+        </div>
       </div>
       <div className={s.editPhotoProfileBlock}>
         <div className={s.editPhotoProfile}>
@@ -284,6 +321,7 @@ export default compose(
     setProfileBanner,
     updateProfileInfo,
     updateAboutMe,
+    updateFullName,
   }),
   withRouter
 )(EditProfile);

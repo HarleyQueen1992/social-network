@@ -132,7 +132,12 @@ export const updateProfileInfo = (birthday, location) => async dispatch => {
 export const updateAboutMe = aboutMe => async dispatch => {
   
   let response = await profileAPI.updateAboutMe(aboutMe)
-  debugger
+  dispatch(setUserProfile(response))
+}
+
+
+export const updateFullName = fullname => async dispatch => {
+  let response = await profileAPI.updateFullName(fullname)
   dispatch(setUserProfile(response))
 }
 

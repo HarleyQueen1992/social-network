@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 // import Preloader from "../../common/Preloader/Preloader"
-import s from "./ProfileInfo.module.css"
-import profileImg from "../../../assets/images/user.png"
-import { NavLink } from "react-router-dom"
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
-import { Icons, IconsWhite } from "./../../../utils/Icons/Icons"
-import Post from "./../../Posts/MyPosts/Post/Post"
-import Cover from "./../../../assets/images/356200_h1ec7Aokt5_1.jpg"
-import EditWhite from "./../../../assets/images/editWhite.png"
-import CameraWhite from "./../../../assets/images/cameraWhite.png"
-import CameraBlack from "./../../../assets/images/cameraBlack.png"
-import BirthdayWhite from "./../../../assets/images/birthdayWhite.png"
-import CityWhite from "./../../../assets/images/cityWhite.png"
-import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png"
-import FilterWhite from "./../../../assets/images/filterWhite.png"
-import List from "./../../../assets/images/menuBlueActive.png"
-import EditProfile from "./EditProfile/EditProfile"
+import s from "./ProfileInfo.module.css";
+import profileImg from "../../../assets/images/user.png";
+import { NavLink } from "react-router-dom";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import { Icons, IconsWhite } from "./../../../utils/Icons/Icons";
+import Post from "./../../Posts/MyPosts/Post/Post";
+import Cover from "./../../../assets/images/356200_h1ec7Aokt5_1.jpg";
+import EditWhite from "./../../../assets/images/editWhite.png";
+import CameraWhite from "./../../../assets/images/cameraWhite.png";
+import CameraBlack from "./../../../assets/images/cameraBlack.png";
+import BirthdayWhite from "./../../../assets/images/birthdayWhite.png";
+import CityWhite from "./../../../assets/images/cityWhite.png";
+import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png";
+import FilterWhite from "./../../../assets/images/filterWhite.png";
+import List from "./../../../assets/images/menuBlueActive.png";
+import EditProfile from "./EditProfile/EditProfile";
 let month = {
   "01": "January",
   "02": "February",
@@ -29,44 +29,44 @@ let month = {
   10: "October",
   11: "November",
   12: "December",
-}
+};
 const ProfileInfo = (props) => {
-  let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "")
-  birthdayMonth = birthdayMonth.replace(/.{3}$/, "")
+  let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
+  birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
 
-  let [deployed, setdeployed] = useState(false)
-  let [editMode, setEditMode] = useState(false)
-  let [status, setStatus] = useState(props.status)
+  let [deployed, setdeployed] = useState(false);
+  let [editMode, setEditMode] = useState(false);
+  let [status, setStatus] = useState(props.status);
 
-  const isSmall = window.innerWidth < 480
+  const isSmall = window.innerWidth < 480;
 
   const deactivateEditMode = () => {
-    setEditMode(false)
-    props.updateStatus(status)
-  }
+    setEditMode(false);
+    props.updateStatus(status);
+  };
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
-      props.savePhoto(e.target.files[0])
+      props.savePhoto(e.target.files[0]);
     }
-  }
+  };
 
   const onMainBannerSelected = (e) => {
     if (e.target.files.length) {
-      props.setProfileBanner(e.target.files[0])
+      props.setProfileBanner(e.target.files[0]);
     }
-  }
+  };
   // useEffect(() => {
   //   setStatus(props.status)
   // }, [props.status])
   // if (props.profile == null) {
   //   return <Preloader />
   // }
-  let srcImg
+  let srcImg;
 
   if (props.profile.avatar == "") {
-    srcImg = profileImg
+    srcImg = profileImg;
   } else {
-    srcImg = props.profile.avatar
+    srcImg = props.profile.avatar;
   }
 
   return (
@@ -123,7 +123,7 @@ const ProfileInfo = (props) => {
           </div>
           <div
             onClick={() => {
-              props.setEditMode(!props.editMode)
+              props.setEditMode(!props.editMode);
             }}
             className={s.editProfileBlock}
           >
@@ -164,12 +164,7 @@ const ProfileInfo = (props) => {
               <div className={s.listItems}>
                 <img className={s.person} src={AboutMeWhite} alt="person" />
                 <div className={s.aboutMe}>
-                  About me:{" "}
-                  <span>
-                    Выбор города в выпадающем списке HTML, CSS Ответ. ... что
-                    при нажатии на город в выпадающем списке, был переход на
-                    поддомен, искал в гугле, ...
-                  </span>
+                  About me: <span>{props.profile.aboutMe}</span>
                 </div>
               </div>
             </div>
@@ -236,7 +231,7 @@ const ProfileInfo = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileInfo
+export default ProfileInfo;
