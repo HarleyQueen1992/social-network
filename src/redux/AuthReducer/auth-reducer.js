@@ -82,7 +82,7 @@ export const getAuthMe = () => async dispatch => {
     dispatch(setProfileData(data, true))
     // dispatch(isSavePhoto(false))
   } else {
-    dispatch(setProfileData(data, true))
+    dispatch(setIsAuth( false))
   }
 }
 

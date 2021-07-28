@@ -149,6 +149,9 @@
   display: grid;
   grid-template-rows: 50px 1fr;
 }
+.editAboutMeBlockActive {
+  grid-template-rows: 50px 150px 40px;
+}
 .editAboutMeProfile {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -171,6 +174,9 @@
   display: grid;
   margin-right: 10px;
 }
+.addToAboutMeDisable {
+  pointer-events: none;
+}
 .addToAboutMe:hover {
   background-color: rgba(255, 255, 255, 0.11);
 }
@@ -187,8 +193,50 @@
   align-self: center;
   justify-self: center;
   font-size: 18px;
+  word-break: break-word;
 }
-
+.aboutMeTextarea {
+  height: 100%;
+  width: 300px;
+  justify-self: center;
+  color: var(--fontColor);
+  background-color: rgba(0, 0, 0, 0.151);
+  outline: none;
+  padding: 10px;
+  resize: none;
+  text-align: center;
+  border: none;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.charactersRemaining {
+  display: grid;
+  grid-template-columns: 220px 80px;
+  width: 300px;
+  margin-left: 10px;
+  color: #cacaca;
+  font-size: 15px !important;
+  justify-self: center;
+  font-size: 18px;
+}
+.moreCharacters {
+  color: red;
+}
+.cancelAboutMeButton {
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: red;
+  display: grid;
+  border-radius: 5px;
+  height: 80%;
+  align-self: center;
+}
+.cancelAboutMe {
+  color: rgb(255, 255, 255);
+  font-family: "Patua One", cursive;
+  align-self: center;
+  justify-self: center;
+}
 .editTellUsMoreAboutYourselfBlock {
   display: grid;
   grid-template-rows: 50px 80px;

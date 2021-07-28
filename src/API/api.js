@@ -61,11 +61,10 @@ export const profileAPI = {
       return response.data
     })
   },
-
-
   updateStatus(status) {
     return instance.put(`/profile/status/`, { status })
   },
+  
   saveProfileInfo(profileInfo) {
     return instance.put(`/profile/`, profileInfo)
   },
@@ -78,6 +77,13 @@ export const profileAPI = {
         "Content-Type": "multipart/form-data",
       },
     }).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  updateAboutMe(aboutMe) {
+    return instance.patch('/profile', { aboutMe }).then(response => {
       return response.data
     }).catch(response => {
       return response.data
