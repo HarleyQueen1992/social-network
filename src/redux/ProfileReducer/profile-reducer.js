@@ -143,10 +143,7 @@ export const updateFullName = fullname => async dispatch => {
 
 export const updateStatus = status => async dispatch => {
   let response = await profileAPI.updateStatus(status)
-
-  if (response.data.resultCode === 0) {
-    dispatch(setStatus(status))
-  }
+  dispatch(setUserProfile(response))
 }
 
 export const getFollow = id => async dispatch => {

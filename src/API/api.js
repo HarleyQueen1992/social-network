@@ -61,9 +61,6 @@ export const profileAPI = {
       return response.data
     })
   },
-  updateStatus(status) {
-    return instance.put(`/profile/status/`, { status })
-  },
   
   saveProfileInfo(profileInfo) {
     return instance.put(`/profile/`, profileInfo)
@@ -92,6 +89,13 @@ export const profileAPI = {
   },
   updateFullName(fullname) {
     return instance.patch('/profile/', { fullname }).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  updateStatus(status) {
+    return instance.patch('/profile/', { status }).then(response => {
       return response.data
     }).catch(response => {
       return response.data

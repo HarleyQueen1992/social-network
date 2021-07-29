@@ -33,16 +33,18 @@ let month = {
 const ProfileInfo = (props) => {
   let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
   birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
-
+  let [editStatus, setEditStatus] = useState(false);
+  let [valueStatus, setValueStatus] = useState(props.profile.status);
   let [deployed, setdeployed] = useState(false);
-  let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
 
   const isSmall = window.innerWidth < 480;
 
-  const deactivateEditMode = () => {
-    setEditMode(false);
-    props.updateStatus(status);
+  const SetEditStatus = () => {
+    setEditStatus(true);
+  };
+  const handleChangeStatus = (event) => {
+    setValueStatus(event.target.value);
   };
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
@@ -67,6 +69,22 @@ const ProfileInfo = (props) => {
     srcImg = profileImg;
   } else {
     srcImg = props.profile.avatar;
+  }
+  if (props.editMode == false) {
+    document.onclick = function (e) {
+      if (e.target.className !== "") {
+        if (
+          e.target.className
+            .replace(/[^a-zA-Z ]/g, " ")
+            .split(/\s+|\./)
+            .filter((word) => (word === "editStatus") | (word === "setStatus"))
+            .length == 0
+        ) {
+          props.updateStatus(valueStatus);
+          setEditStatus(false);
+        }
+      }
+    };
   }
 
   return (
@@ -115,7 +133,33 @@ const ProfileInfo = (props) => {
         </div>
         <div className={s.profileNameAndStatus}>
           <div className={s.profileName}>{props.profile.fullname}</div>
-          <div className={s.profileStatus}>Status</div>
+          {editStatus ? (
+            <input
+              className={s.editStatus}
+              onChange={handleChangeStatus}
+              value={valueStatus}
+              placeholder="Set status"
+              maxLength="70"
+            ></input>
+          ) : props.profile.status == "" ? (
+            <div
+              onClick={() => {
+                setEditStatus(true);
+              }}
+              className={s.setStatus}
+            >
+              Set status
+            </div>
+          ) : (
+            <div
+              onDoubleClick={() => {
+                setEditStatus(true);
+              }}
+              className={s.profileStatus}
+            >
+              {valueStatus}
+            </div>
+          )}
         </div>
         <div className={s.profileDescription}>
           <div className={s.publicationsBlock}>

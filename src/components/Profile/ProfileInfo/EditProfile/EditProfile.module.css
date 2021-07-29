@@ -69,7 +69,7 @@
 }
 .editProfileFullNameBlock {
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px minmax(40px, auto);
 }
 .editProfileFullNameTitleBlock {
   display: grid;

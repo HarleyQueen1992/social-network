@@ -2,7 +2,7 @@
 
 .profilePage {
   display: grid;
-  grid-template-rows: 495px 1fr;
+  grid-template-rows: auto 1fr;
 }
 .allScreen {
   width: 100vw;
@@ -21,7 +21,7 @@
   position: relative;
   display: grid;
   width: 100vw;
-  grid-template-rows: 350px 85px 60px;
+  grid-template-rows: 350px 1fr 60px;
   background: linear-gradient(180deg, #ffffff17, var(--navBarBac));
 }
 /*! CoverPhoto */
@@ -161,11 +161,6 @@
       calc(150px + (350 - 150) * ((100vw - 320px) / (900 - 320)))
       1fr 60px;
   }
-  .profilePage {
-    grid-template-rows: calc(
-      295px + (505 - 295) * ((100vw - 320px) / (900 - 320))
-    );
-  }
   .avatarBlock {
     top: calc(3px + (200 - 3) * ((100vw - 320px) / (900 - 320)));
   }
@@ -176,8 +171,16 @@
 /*! Profile Name and Status  */
 .profileNameAndStatus {
   display: grid;
+  width: 892px;
+  justify-self: center;
   position: relative;
-  grid-template-rows: 45px 40px;
+  padding: 0 10px;
+  grid-template-rows: 45px 1fr;
+}
+@media (max-width: 892px) {
+  .profileNameAndStatus {
+    width: 100%;
+  }
 }
 .profileNameAndStatus::after {
   content: "";
@@ -197,7 +200,34 @@
 }
 .profileStatus {
   justify-self: center;
-  color: blue;
+  color: rgba(255, 255, 255, 0.623);
+  margin-bottom: 10px;
+}
+.editStatus {
+  margin-top: 5px;
+  text-align: center;
+  justify-self: center;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  height: 26px;
+  color: white;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0.233);
+  outline: none;
+}
+.setStatus {
+  margin-bottom: 10px;
+  color: #1877f2;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  justify-self: center;
+}
+.editStatus:focus {
+  border: 1px solid #1877f2;
 }
 @media (max-width: 908px) {
   .profileNameAndStatus::after {

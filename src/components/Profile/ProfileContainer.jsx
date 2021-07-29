@@ -1,8 +1,8 @@
-import React from "react"
-import { connect } from "react-redux"
-import { withRouter } from "react-router-dom"
-import { compose } from "redux"
-import { withAuthRedirecr } from "../../Hoc/withAuthRedirect"
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 import {
   getUserProfile,
   toggleIsFatching,
@@ -12,67 +12,67 @@ import {
   updateStatus,
   getFollow,
   setProfileBanner,
-} from "../../redux/ProfileReducer/profile-reducer"
+} from "../../redux/ProfileReducer/profile-reducer";
 import {
   deletePost,
   addPostActionCreator,
   addLike,
   getTheLastPost,
-} from "./../../redux/PostsReducer/posts-reducer"
+} from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
   getIsFollow,
   getProfile,
   getIsSavingPhoto,
   getStatus,
-} from "../../redux/ProfileReducer/profile-selectors"
-import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer"
-import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer"
-import Profile from "./Profile"
+} from "../../redux/ProfileReducer/profile-selectors";
+import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer";
+import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer";
+import Profile from "./Profile";
 import {
   getLastPost,
   getPosts,
-} from "./../../redux/PostsReducer/posts-selectors"
+} from "./../../redux/PostsReducer/posts-selectors";
 import {
   getIsAuth,
   getProfileInfo,
   getUserId,
-} from "../../redux/AuthReducer/auth-selectors"
-import Preloader from "../common/Preloader/Preloader"
+} from "../../redux/AuthReducer/auth-selectors";
+import Preloader from "../common/Preloader/Preloader";
 import {
   toggleIsPostCreation,
   setEditMode,
-} from "./../../redux/AppReducer/app-reducer"
-import { follow, unfollow } from "../../redux/UsersReducer/user-reducer"
+} from "./../../redux/AppReducer/app-reducer";
+import { follow, unfollow } from "../../redux/UsersReducer/user-reducer";
 import {
   getEditMode,
   getIsPostCreation,
   getTheme,
-} from "../../redux/AppReducer/app-selectors"
-import { getAllFriends } from "../../redux/FriendsReducer/friends-selectors"
-import s from "./Profile.module.css"
+} from "../../redux/AppReducer/app-selectors";
+import { getAllFriends } from "../../redux/FriendsReducer/friends-selectors";
+import s from "./Profile.module.css";
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
-    let userid = this.props.match.params.userid
-    this.props.requestAllFriends()
+    let userid = this.props.match.params.userid;
+    this.props.requestAllFriends();
 
     if (!userid || userid == this.props.userId) {
-      userid = this.props.userId
-      this.props.getUserProfile(userid)
+      userid = this.props.userId;
+      this.props.getUserProfile(userid);
     } else {
-      this.props.getUserProfile(userid)
+      this.props.getUserProfile(userid);
 
-      this.props.getFollow(userid)
+      this.props.getFollow(userid);
     }
   }
 
   componentDidMount() {
-    this.refreshProfile()
+    this.refreshProfile();
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.userid !== prevProps.match.params.userid) {
-      this.refreshProfile()
+      this.refreshProfile();
     }
   }
   render() {
@@ -110,7 +110,7 @@ class ProfileContainer extends React.Component {
           />
         )}
       </>
-    )
+    );
   }
 }
 const mapStateToProps = (state) => ({
@@ -128,7 +128,7 @@ const mapStateToProps = (state) => ({
   friends: getAllFriends(state),
   posts: getPosts(state),
   editMode: getEditMode(state),
-})
+});
 
 export default compose(
   connect(mapStateToProps, {
@@ -151,7 +151,8 @@ export default compose(
     requestAllFriends,
     setEditMode,
     setProfileBanner,
+    updateStatus,
   }),
   withRouter,
   withAuthRedirecr
-)(ProfileContainer)
+)(ProfileContainer);
