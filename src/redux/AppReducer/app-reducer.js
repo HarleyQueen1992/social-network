@@ -8,6 +8,7 @@ const IS_FETCHING = "app/app-reducer/IS_FETCHING"
 const SET_INDEX = "app/app-reducer/SET_INDEX"
 const TOGGLE_IS_BIG_SCREEN = "app/app-reducer/TOGGLE_IS_BIG_SCREEN"
 const SET_EDITMODE = "app/app-reducer/SET_EDITMODE"
+const IS_MENU_ACTIVE = 'app/app-reducer/IS_MENU_ACTIVE'
 
 let initialState = {
   initialized: false,
@@ -16,6 +17,7 @@ let initialState = {
   theme: darkTheme,
   headerBlur: false,
   editMode: false,
+  isMenuActive: false,
   isBigScreen: window.innerWidth > 600,
 }
 
@@ -31,6 +33,12 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isPostCreation: action.isPostCreation,
+      }
+    }
+    case IS_MENU_ACTIVE: {
+      return {
+        ...state,
+        isMenuActive: action.isMenuActive,
       }
     }
     case SET_THEME: {
@@ -87,6 +95,10 @@ export const toggleIsPostCreation = isPostCreation => ({
   isPostCreation,
 })
 
+export const setMenuActive = isMenuActive => ({
+  type: IS_MENU_ACTIVE,
+  isMenuActive,
+})
 export const toggleIsHeaderBlur = headerBlur => ({
   type: HEADER_BLUR,
   headerBlur,

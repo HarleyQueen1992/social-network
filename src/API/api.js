@@ -11,23 +11,40 @@ const instance = axios.create({
  })
 
 export const usersAPI = {
-  getUsers(currentPage, pageSize) {
+  getUsers(pageNumber, pageSize) {
     return instance
-      .get(`users/?page=${currentPage}&count=${pageSize}`)
+      .get(`users/?page=${pageNumber}&limit=${pageSize}`)
       .then(response => {
+        return response.data
+      }).catch(response => {
         return response.data
       })
   },
 
+  searchUsers(q, page) {
+    return instance.get(`users/?q=${q}&page=${page}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  
+  getUsersFollowingAll(login) {
+    return instance.get(`users/${login}/following/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
   // deleteFollow(id) {
   //     return instance.delete(`follow/${id}/`)
   // },
   // postFollow(id) {
   //     return instance.post(`follow/${id}/`)
   // },
-  searchUsers(term, currentPage) {
-    return search(`users/?term=${term}&page=${currentPage}`)
-  },
+  // searchUsers(term, currentPage) {
+  //   return search(`users/?term=${term}&page=${currentPage}`)
+  // },
   searchFriends(term, currentPage) {
     return search(`users/?term=${term}&page=${currentPage}&friend=true`)
   },

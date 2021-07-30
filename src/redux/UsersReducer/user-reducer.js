@@ -18,10 +18,12 @@ const SET_VALUE = "app/user-reducer/SET_VALUE"
 const CLEAR_VALUE = "app/user-reducer/CLEAR_VALUE"
 const SET_WINDOW_MODE = "app/user-reducer/SET_WINDOW_MODE"
 const TOGGLE_IS_FETCHING = "app/user-reducer/TOGGLE_IS_FETCHING"
+const USERS_LISTS_FOLLOWING = "app/user-reducer/USERS_LISTS_FOLLOWING"
 
 let initialState = {
   users: [],
-  pageSize: 40,
+  usersListFollowing: null,
+  pageSize: 18,
   totalUsersCount: 20,
   currentPage: 1,
   isFatching: true,
@@ -55,6 +57,12 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: [...state.users, ...action.users],
+      }
+    }
+    case USERS_LISTS_FOLLOWING: {
+      return {
+        ...state,
+        usersListFollowing: action.users
       }
     }
 
@@ -134,6 +142,8 @@ export const setWindowMode = isWindow => ({ type: SET_WINDOW_MODE, isWindow })
 
 export const unfollowSuccess = userId => ({ type: UNFOLLOW, userId })
 
+export const setUsersFollowing = users => ({ type: USERS_LISTS_FOLLOWING, users})
+
 // export const setUserSearching = searchUsers => ({
 //   type: SET_SEARCH_USERS,
 //   searchUsers,
@@ -177,11 +187,11 @@ export const requestUsers = currentPage => async dispatch => {
   if (currentPage === 1) {
     dispatch(toggleIsFetching(true))
   }
-  let data = await usersAPI.getUsers(currentPage, initialState.pageSize)
+  let response = await usersAPI.getUsers(currentPage, initialState.pageSize)
   dispatch(toggleIsFatching(false))
-  dispatch(setUsers(data.items))
+  dispatch(setUsers(response.items))
   dispatch(setCurrentPage(currentPage + 1))
-  dispatch(setUsersTotalCount(data.totalCount))
+  dispatch(setUsersTotalCount(response.totalItems))
   dispatch(toggleIsFetching(false))
 }
 
@@ -197,6 +207,14 @@ export const follow = userId => {
     })
   }
 }
+
+export const getUsersListFollowing = login => async dispatch => {
+  let response = usersAPI.getUsersFollowingAll(login)
+  dispatch(setUsersFollowing(response.items))
+}
+
+
+
 
 export const unfollow = userId => {
   return dispatch => {

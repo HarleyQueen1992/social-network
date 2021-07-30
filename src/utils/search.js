@@ -2,7 +2,7 @@ import axios from "axios"
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: `https://social-network-api-1.herokuapp.com/api/1.0`,
+  baseURL: `https://mosset.herokuapp.com/api/v1`,
 })
 
 export const truncStr = (string, limit) => {

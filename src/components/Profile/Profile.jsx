@@ -1,11 +1,11 @@
-import React from "react"
-import p from "./Profile.module.css"
-import ProfileInfo from "./ProfileInfo/ProfileInfo"
+import React from "react";
+import p from "./Profile.module.css";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
-  let newUrl = window.location.href
+  let newUrl = window.location.href;
   if (props.strUrlPrev != newUrl) {
-    props.changeIndex(newUrl)
+    props.changeIndex(newUrl);
   }
   return (
     <div className={p.profileBlock}>
@@ -30,10 +30,12 @@ const Profile = (props) => {
           editMode={props.editMode}
           setEditMode={props.setEditMode}
           setProfileBanner={props.setProfileBanner}
+          isMenuActive={props.isMenuActive}
+          usersListFollowing={props.usersListFollowing}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

@@ -1,5 +1,5 @@
-import React from "react"
-import { connect } from "react-redux"
+import React from "react";
+import { connect } from "react-redux";
 import {
   requestUsers,
   follow,
@@ -9,7 +9,7 @@ import {
   setCurrentPage,
   setUsers,
   clearUsers,
-} from "../../redux/UsersReducer/user-reducer"
+} from "../../redux/UsersReducer/user-reducer";
 import {
   requestForUsers,
   setValue,
@@ -17,7 +17,7 @@ import {
   toggleIsFatchingSearch,
   setCurrentPageSearch,
   clearUsersSearch,
-} from "./../../redux/SearchReducer/search-reducer"
+} from "./../../redux/SearchReducer/search-reducer";
 import {
   getCurrentPageSearch,
   getTotalUsersCountSearch,
@@ -25,10 +25,10 @@ import {
   getUsersSearch,
   getIsFatchingSearch,
   getIsReceipt,
-} from "./../../redux/SearchReducer/search-selectors"
-import Users from "./Users"
-import { withAuthRedirecr } from "../../Hoc/withAuthRedirect"
-import { compose } from "redux"
+} from "./../../redux/SearchReducer/search-selectors";
+import Users from "./Users";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
+import { compose } from "redux";
 import {
   getUsers,
   getCurrentPage,
@@ -37,31 +37,31 @@ import {
   getIsFatching,
   getFollowingInProgress,
   getIsFetching,
-} from "../../redux/UsersReducer/users-selectors"
-import Preloader from "../common/Preloader/Preloader"
-import { getTheme } from "../../redux/AppReducer/app-selectors"
+} from "../../redux/UsersReducer/users-selectors";
+import Preloader from "../common/Preloader/Preloader";
+import { getTheme } from "../../redux/AppReducer/app-selectors";
 class UsersC extends React.Component {
   componentDidMount() {
     // if (this.props.isFatching) {
-    this.props.requestUsers(this.props.currentPage)
+    this.props.requestUsers(this.props.currentPage);
     // }
   }
 
   resetSearchUsers = () => {
-    this.props.clearUsersSearch()
-    this.props.setCurrentPageSearch(1)
-    this.props.setValue("")
-  }
-  handleChange = async event => {
+    this.props.clearUsersSearch();
+    this.props.setCurrentPageSearch(1);
+    this.props.setValue("");
+  };
+  handleChange = async (event) => {
     if (event.target.value === "" && this.props.value.length === 1) {
-      this.resetSearchUsers()
+      this.resetSearchUsers();
     } else {
-      this.props.clearUsersSearch()
-      this.props.setCurrentPageSearch(1)
-      this.props.setValue(event.target.value)
-      this.props.requestForUsers(event.target.value, 1)
+      this.props.clearUsersSearch();
+      this.props.setCurrentPageSearch(1);
+      this.props.setValue(event.target.value);
+      this.props.requestForUsers(event.target.value, 1);
     }
-  }
+  };
 
   componentDidUpdate() {
     if (
@@ -69,21 +69,24 @@ class UsersC extends React.Component {
       this.props.value !== "" &&
       !this.props.isReceipt
     ) {
-      this.props.requestForUsers(this.props.value, this.props.currentPageSearch)
+      this.props.requestForUsers(
+        this.props.value,
+        this.props.currentPageSearch
+      );
     }
     if (
       this.props.isFatching &&
       this.props.value === "" &&
       !this.props.isFetching
     ) {
-      this.props.requestUsers(this.props.currentPage)
+      this.props.requestUsers(this.props.currentPage);
     }
   }
   componentWillUnmount() {
     // this.props.setUsers([])
-    this.props.clearUsers()
-    this.props.setCurrentPage(1)
-    this.props.setValue("")
+    this.props.clearUsers();
+    this.props.setCurrentPage(1);
+    this.props.setValue("");
   }
   render() {
     return (
@@ -121,11 +124,11 @@ class UsersC extends React.Component {
           />
         )}
       </>
-    )
+    );
   }
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     users: getUsers(state),
     currentPage: getCurrentPage(state),
@@ -141,8 +144,8 @@ let mapStateToProps = state => {
     usersSearch: getUsersSearch(state),
     isFatchingSearch: getIsFatchingSearch(state),
     isReceipt: getIsReceipt(state),
-  }
-}
+  };
+};
 
 // let withRedirect = withAuthRedirecr(UsersC)
 
@@ -170,4 +173,4 @@ export default compose(
     clearUsersSearch,
   }),
   withAuthRedirecr
-)(UsersC)
+)(UsersC);

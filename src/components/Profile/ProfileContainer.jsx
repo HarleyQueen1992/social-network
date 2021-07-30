@@ -43,10 +43,15 @@ import {
   toggleIsPostCreation,
   setEditMode,
 } from "./../../redux/AppReducer/app-reducer";
-import { follow, unfollow } from "../../redux/UsersReducer/user-reducer";
+import {
+  follow,
+  unfollow,
+  getUsersListFollowing,
+} from "../../redux/UsersReducer/user-reducer";
 import {
   getEditMode,
   getIsPostCreation,
+  getMenuActive,
   getTheme,
 } from "../../redux/AppReducer/app-selectors";
 import { getAllFriends } from "../../redux/FriendsReducer/friends-selectors";
@@ -56,6 +61,7 @@ class ProfileContainer extends React.Component {
   refreshProfile() {
     let userid = this.props.match.params.userid;
     this.props.requestAllFriends();
+    // this.props.getUsersListFollowing(this.props.profileInfo.login);
 
     if (!userid || userid == this.props.userId) {
       userid = this.props.userId;
@@ -107,6 +113,8 @@ class ProfileContainer extends React.Component {
             editMode={this.props.editMode}
             setEditMode={this.props.setEditMode}
             setProfileBanner={this.props.setProfileBanner}
+            isMenuActive={this.props.isMenuActive}
+            usersListFollowing={this.props.usersListFollowing}
           />
         )}
       </>
@@ -128,6 +136,8 @@ const mapStateToProps = (state) => ({
   friends: getAllFriends(state),
   posts: getPosts(state),
   editMode: getEditMode(state),
+  isMenuActive: getMenuActive(state),
+  // usersListFollowing: getUsersListFollowing(state),
 });
 
 export default compose(
@@ -152,6 +162,7 @@ export default compose(
     setEditMode,
     setProfileBanner,
     updateStatus,
+    // getUsersListFollowing,
   }),
   withRouter,
   withAuthRedirecr

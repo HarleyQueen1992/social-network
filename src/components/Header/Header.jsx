@@ -1,32 +1,52 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 // import Home from "../../assets/images/homeBlue.png"
 // import Profile from "../../assets/images/profileW.png"
-import MenuW from "../../assets/images/menuW.png"
-import "./Header.css"
-import Tabs from "@material-ui/core/Tabs"
-import Tab from "@material-ui/core/Tab"
-import s from "./Header.module.css"
-import Navbar from "../Navbar/Navbar"
-import { Icons } from "./../../utils/Icons/Icons"
-import searchWhite from "./../../assets/images/searchWhite.png"
-const Header = props => {
-  let res = Icons(props.theme, props.index)
-  const [focus, setFocus] = useState(false)
-  const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900)
-  const [isMenuActive, setIsMenuActive] = useState(false)
+import MenuW from "../../assets/images/menuW.png";
+import "./Header.css";
+import Tabs from "@material-ui/core/Tabs";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
+import Tab from "@material-ui/core/Tab";
+import s from "./Header.module.css";
+import Navbar from "../Navbar/Navbar";
+import { Icons } from "./../../utils/Icons/Icons";
+import searchWhite from "./../../assets/images/searchWhite.png";
+import { getMenuActive } from "../../redux/AppReducer/app-selectors";
+import { setMenuActive } from "../../redux/AppReducer/app-reducer";
+
+const Header = (props) => {
+  let res = Icons(props.theme, props.index);
+  const [focus, setFocus] = useState(false);
+  const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900);
+
   // let border = (document.querySelector(
   //   "PrivateTabIndicator-colorSecondary-3"
   // ).style.background = "blue")
-  let Check = () => {}
+  let Check = () => {};
   // #1877f2
 
   window.addEventListener("resize", function () {
     if (window.innerWidth > 900) {
-      setIsBigScreen(true)
+      setIsBigScreen(true);
     } else {
-      setIsBigScreen(false)
+      setIsBigScreen(false);
     }
-  })
+  });
+  document.onclick = function (e) {
+    if (
+      e.target.className
+        .replace(/[^a-zA-Z ]/g, " ")
+        .split(/\s+|\./)
+        .filter(
+          (word) =>
+            (word === "Navbar") | (word === "menuBlock") | (word === "menuImg")
+        ).length == 0
+    ) {
+      props.setMenuActive(false);
+    }
+  };
+
   return (
     <div
       className={
@@ -46,36 +66,36 @@ const Header = props => {
         <span
           className={s.logo}
           onClick={() => {
-            Check()
+            Check();
           }}
         >
           Mosset
         </span>
         <div className={s.wrap + " " + (isBigScreen ? s.disableWran : "")}>
-          <form className={s.forma} action='' autocomplete='off'>
+          <form className={s.forma} action="" autocomplete="off">
             <input
               className={s.search}
-              name='search'
-              type='text'
+              name="search"
+              type="text"
               // onChange={props.handleChange}
               // value={props.value}
-              placeholder='News search'
+              placeholder="News search"
               // onFocus={() => {
               //   setFocus(!focus)
               // }}
               onBlur={() => {
-                setFocus(!focus)
+                setFocus(!focus);
                 // props.resetSearchUsers()
               }}
-              autocomplete='off'
+              autocomplete="off"
             />
             <div className={s.searchSubmitBlockSmall}>
               <img
                 src={searchWhite}
                 className={s.searchSubmit}
-                alt='searchSubmit'
-                value='Rechercher'
-                type='submit'
+                alt="searchSubmit"
+                value="Rechercher"
+                type="submit"
               />
             </div>
           </form>
@@ -95,7 +115,7 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='home' src={res["home"]} />
+              <img className={s.categoriesImg} alt="home" src={res["home"]} />
             </div>
           }
         />
@@ -105,7 +125,7 @@ const Header = props => {
             <div className={s.category}>
               <img
                 className={s.categoriesImg}
-                alt='profile'
+                alt="profile"
                 src={res["profile"]}
               />
             </div>
@@ -115,7 +135,7 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='posts' src={res["posts"]} />
+              <img className={s.categoriesImg} alt="posts" src={res["posts"]} />
             </div>
           }
         />
@@ -123,7 +143,7 @@ const Header = props => {
           className={s.tab}
           label={
             <div className={s.category}>
-              <img className={s.categoriesImg} alt='users' src={res["users"]} />
+              <img className={s.categoriesImg} alt="users" src={res["users"]} />
             </div>
           }
         />
@@ -133,7 +153,7 @@ const Header = props => {
             <div className={s.category}>
               <img
                 className={s.categoriesImg}
-                alt='subscribers'
+                alt="subscribers"
                 src={res["friends"]}
               />
             </div>
@@ -144,7 +164,7 @@ const Header = props => {
             className={s.tab}
             label={
               <div className={s.category}>
-                <img className={s.categoriesImg} alt='menu' src={res["menu"]} />
+                <img className={s.categoriesImg} alt="menu" src={res["menu"]} />
               </div>
             }
           />
@@ -157,30 +177,30 @@ const Header = props => {
           //   setFocus(!focus)
           // }}
         >
-          <form className={s.forma} action='' autocomplete='off'>
+          <form className={s.forma} action="" autocomplete="off">
             <input
               className={s.search + " " + (focus ? s.searchActive : "")}
-              name='search'
-              type='text'
+              name="search"
+              type="text"
               // onChange={props.handleChange}
               // value={props.value}
-              placeholder='News search'
+              placeholder="News search"
               onFocus={() => {
-                setFocus(!focus)
+                setFocus(!focus);
               }}
               onBlur={() => {
-                setFocus(!focus)
+                setFocus(!focus);
                 // props.resetSearchUsers()
               }}
-              autocomplete='off'
+              autocomplete="off"
             />
             <div className={s.searchSubmitBlock}>
               <img
                 src={res["search"]}
                 className={s.searchSubmit}
-                alt='searchSubmit'
-                value='Rechercher'
-                type='submit'
+                alt="searchSubmit"
+                value="Rechercher"
+                type="submit"
               />
             </div>
           </form>
@@ -189,21 +209,31 @@ const Header = props => {
       {isBigScreen && (
         <div
           className={
-            s.menuBlock + " " + (isMenuActive ? s.activeMenublock : "")
+            s.menuBlock + " " + (props.isMenuActive ? s.activeMenublock : "")
           }
           onClick={() => {
-            setIsMenuActive(!isMenuActive)
+            props.setMenuActive(!props.isMenuActive);
           }}
         >
           {/* <i class='fa fa-play'></i> */}
-          <img className={s.menuImg} src={res["arrowDown"]} alt='menu img' />
+          <img className={s.menuImg} src={res["arrowDown"]} alt="menu img" />
         </div>
       )}
-      {isBigScreen && isMenuActive && (
-        <Navbar setIsMenuActive={setIsMenuActive} isMenuActive={isMenuActive} />
+      {isBigScreen && props.isMenuActive && (
+        <Navbar
+          setIsMenuActive={props.setMenuActive}
+          isMenuActive={props.isMenuActive}
+        />
       )}
     </div>
-  )
-}
-
-export default Header
+  );
+};
+let mapStateToProps = (state) => {
+  return {
+    isMenuActive: getMenuActive(state),
+  };
+};
+export default compose(
+  connect(mapStateToProps, { setMenuActive }),
+  withRouter
+)(Header);

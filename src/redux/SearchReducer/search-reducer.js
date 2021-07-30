@@ -104,8 +104,8 @@ export const requestForUsers = (term, currentPage) => async dispatch => {
   if (response !== undefined) {
     dispatch(toggleIsFatchingSearch(false))
     dispatch(setUsersSearch(response.items))
-    dispatch(setTotalUsersCount(response.totalCount))
-    if (initialState.usersSearch.length < response.totalCount) {
+    dispatch(setTotalUsersCount(response.totalItems))
+    if (initialState.usersSearch.length < response.totalItems) {
       dispatch(setCurrentPageSearch(currentPage + 1))
     }
     dispatch(setIsFatching(false))

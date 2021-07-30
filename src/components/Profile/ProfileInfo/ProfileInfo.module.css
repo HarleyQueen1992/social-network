@@ -202,6 +202,7 @@
   justify-self: center;
   color: rgba(255, 255, 255, 0.623);
   margin-bottom: 10px;
+  word-break: break-all;
 }
 .editStatus {
   margin-top: 5px;
@@ -309,7 +310,8 @@
   .profileBody {
     width: 100vw;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 16px;
+    grid-template-rows: auto 1fr;
   }
   .leftColumn {
     margin: 8px 8px 0 8px !important;
@@ -322,7 +324,6 @@
 .leftColumn {
   display: grid;
   margin: 8px;
-  grid-template-rows: 1fr 380px 380px;
   grid-row-gap: 16px;
 }
 /*?  Profile info block */
@@ -394,12 +395,15 @@
   margin-top: 3px;
   color: var(--fontColor);
   font-weight: bold;
+  min-width: 0px;
+  max-width: 100%;
 }
 .aboutMe span {
   color: #1877f2;
+  word-wrap: break-word;
 }
 /*? Friends Block  */
-.friendsBlock {
+.subscriptionSubscribersBlock {
   display: grid;
   grid-template-rows: 30px 1fr;
   padding: 15px;
@@ -408,12 +412,12 @@
   border-radius: 10px;
   background-color: var(--navBarBac);
 }
-.friendsTitle {
+.subscriptionSubscribersTitle {
   color: var(--fontColor);
   font-size: 20px;
   font-family: "Patua One", cursive;
 }
-.friendsList {
+.subscriptionSubscribersList {
   display: grid;
   overflow: scroll;
   grid-template-rows: 95px;
@@ -424,24 +428,24 @@
   text-overflow: ellipsis;
 }
 @media (max-width: 380px) {
-  .friendsList {
+  .subscriptionSubscribersList {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-.friendsListItem {
+.subscriptionSubscribersListItem {
   display: grid;
   grid-template-rows: 70px 25px;
   text-decoration: none;
 }
 
-.friendsImg {
+.subscriptionSubscribersImg {
   height: 70px;
   width: 70px;
   border-radius: 10px;
   align-self: center;
   justify-self: center;
 }
-.friendsName {
+.subscriptionSubscribersName {
   color: var(--fontColor);
   font-size: 17px;
   white-space: nowrap;
@@ -533,4 +537,17 @@
   align-self: center;
   font-size: 18px;
   font-weight: bold;
+}
+
+.test {
+  position: -webkit-sticky;
+  top: 1px;
+  align-self: start;
+  display: grid;
+  grid-template-rows: 1fr 380px 380px;
+  grid-row-gap: 16px;
+}
+.wrapper {
+  height: 100%;
+  background-color: red;
 }

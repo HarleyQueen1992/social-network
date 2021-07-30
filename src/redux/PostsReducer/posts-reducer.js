@@ -23,6 +23,42 @@ let initialState = {
       dislike: 99,
       isDisable: false,
     },
+    {
+      id: 2,
+      title: "Redux!",
+      message:
+        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
+      like: 52,
+      dislike: 99,
+      isDisable: false,
+    },
+    {
+      id: 3,
+      title: "Redux!",
+      message:
+        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
+      like: 52,
+      dislike: 99,
+      isDisable: false,
+    },
+    {
+      id: 4,
+      title: "Redux!",
+      message:
+        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
+      like: 52,
+      dislike: 99,
+      isDisable: false,
+    },
+    {
+      id: 5,
+      title: "Redux!",
+      message:
+        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
+      like: 52,
+      dislike: 99,
+      isDisable: false,
+    },
   ],
   newPostText: "mops.com",
   lastPost: null,

@@ -1,43 +1,43 @@
-import React, { useEffect, useState } from "react"
-import s from "./Users.module.css"
-import userPhoto from "../../assets/images/user.png"
-import { NavLink } from "react-router-dom"
-import Preloader from "../common/Preloader/Preloader"
-import { Icons } from "./../../utils/Icons/Icons"
+import React, { useEffect, useState } from "react";
+import s from "./Users.module.css";
+import userPhoto from "../../assets/images/user.png";
+import { NavLink } from "react-router-dom";
+import Preloader from "../common/Preloader/Preloader";
+import { Icons } from "./../../utils/Icons/Icons";
 
-const Users = props => {
-  let res = Icons(props.theme)
-  const [focus, setFocus] = useState(false)
-  const [isFocus, setIsFocus] = useState(false)
+const Users = (props) => {
+  let res = Icons(props.theme);
+  const [focus, setFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
   let toggleFocus = () => {
-    setIsFocus(!isFocus)
-  }
+    setIsFocus(!isFocus);
+  };
 
-  let newUrl = window.location.href
+  let newUrl = window.location.href;
 
   if (props.strUrlPrev != newUrl) {
-    props.changeIndex(newUrl)
+    props.changeIndex(newUrl);
   }
 
-  let users
-  let totalCount
+  let users;
+  let totalCount;
 
   if (props.usersSearch.length === 0) {
-    users = props.users
-    totalCount = props.totalUsersCount
-  } else {
-    users = props.usersSearch
-    totalCount = props.totalUsersCountSearch
-  }
+    users = props.users;
 
+    totalCount = props.totalUsersCount;
+  } else {
+    users = props.usersSearch;
+    totalCount = props.totalUsersCountSearch;
+  }
   useEffect(() => {
-    document.addEventListener("scroll", scrollHandler)
+    document.addEventListener("scroll", scrollHandler);
     return function () {
-      document.removeEventListener("scroll", scrollHandler)
-    }
-  })
-  const scrollHandler = e => {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
+  const scrollHandler = (e) => {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
@@ -45,12 +45,12 @@ const Users = props => {
       users.length < totalCount
     ) {
       if (props.usersSearch.length === 0) {
-        props.toggleIsFatching(true)
+        props.toggleIsFatching(true);
       } else {
-        props.toggleIsFatchingSearch(true)
+        props.toggleIsFatchingSearch(true);
       }
     }
-  }
+  };
   return (
     <div className={s.usersListPage}>
       <header className={s.header + " " + (focus ? s.headActive : "")}>
@@ -63,29 +63,29 @@ const Users = props => {
           //   setFocus(!focus)
           // }}
         >
-          <form className={s.forma} action='' autocomplete='off'>
+          <form className={s.forma} action="" autocomplete="off">
             <input
               className={s.search}
-              name='search'
-              type='text'
+              name="search"
+              type="text"
               onChange={props.handleChange}
               value={props.value}
-              placeholder='Users search'
+              placeholder="Users search"
               onFocus={() => {
-                setFocus(!focus)
+                setFocus(!focus);
               }}
               onBlur={() => {
-                setFocus(!focus)
-                props.resetSearchUsers()
+                setFocus(!focus);
+                props.resetSearchUsers();
               }}
               // autocomplete='off'
             />
             <img
               src={res["search"]}
               className={s.searchSubmit}
-              alt='searchSubmit'
-              value='Rechercher'
-              type='submit'
+              alt="searchSubmit"
+              value="Rechercher"
+              type="submit"
             />
           </form>
         </div>
@@ -97,7 +97,7 @@ const Users = props => {
           {props.value !== "" && props.usersSearch.length === 0 ? (
             <div className={s.usersNotFoundError}>No users</div>
           ) : (
-            users.map(u => (
+            users.map((u) => (
               <NavLink
                 to={"/profile/" + u.id}
                 className={s.usersListItem}
@@ -105,8 +105,8 @@ const Users = props => {
               >
                 <div className={s.userAvatar}>
                   <img
-                    alt='userPhoto'
-                    src={u.photo != null ? u.photo : userPhoto}
+                    alt="userPhoto"
+                    src={u.avatar != "" ? u.avatar : userPhoto}
                     className={s.avatar}
                   />
                 </div>
@@ -120,7 +120,7 @@ const Users = props => {
                       s.name + " " + (u.status == "" ? s.nameNoStatus : "")
                     }
                   >
-                    {u.name}
+                    {u.login}
                   </div>
                   <span
                     className={
@@ -132,11 +132,11 @@ const Users = props => {
                     {u.status}
                   </span>
                   <div className={s.buttonsBlock}>
-                    <NavLink to='#' className={s.subscribers}>
+                    <NavLink to="#" className={s.subscribers}>
                       {u.followed ? (
                         <button
                           onClick={() => {
-                            props.unfollow(u.id)
+                            props.unfollow(u.id);
                           }}
                           className={s.unsubscribeBtn}
                         >
@@ -145,7 +145,7 @@ const Users = props => {
                       ) : (
                         <button
                           onClick={() => {
-                            props.follow(u.id)
+                            props.follow(u.id);
                           }}
                           className={s.subscribeBtn}
                         >
@@ -153,7 +153,7 @@ const Users = props => {
                         </button>
                       )}
                     </NavLink>
-                    <NavLink to='#' className={s.viewPosts}>
+                    <NavLink to="#" className={s.viewPosts}>
                       <button className={s.viewPostsBtn}>View Posts</button>
                     </NavLink>
                   </div>
@@ -164,7 +164,7 @@ const Users = props => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

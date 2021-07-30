@@ -1,20 +1,20 @@
-import React from "react"
-import s from "./App.module.css"
-import ProfileContainer from "./components/Profile/ProfileContainer"
+import React from "react";
+import s from "./App.module.css";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import {
   withRouter,
   HashRouter,
   Switch,
   Redirect,
   Route,
-} from "react-router-dom"
-import SettingsContainer from "./components/Settings/SettingsContainer"
-import NewsContainer from "./components/News/NewsContainer"
-import UsersContainer from "./components/Users/UsersContainer"
-import FriendsContainer from "./components/Friends/FriendsContainer"
-import Login from "./components/Login/Login"
-import { compose } from "redux"
-import { connect, Provider } from "react-redux"
+} from "react-router-dom";
+import SettingsContainer from "./components/Settings/SettingsContainer";
+import NewsContainer from "./components/News/NewsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import FriendsContainer from "./components/Friends/FriendsContainer";
+import Login from "./components/Login/Login";
+import { compose } from "redux";
+import { connect, Provider } from "react-redux";
 import {
   initializeApp,
   toggleIsPostCreation,
@@ -22,8 +22,9 @@ import {
   toggleIsHeaderBlur,
   setIndex,
   toggleIsBigScreen,
-} from "./redux/AppReducer/app-reducer"
-import Preloader from "./components/common/Preloader/Preloader"
+  setMenuActive,
+} from "./redux/AppReducer/app-reducer";
+import Preloader from "./components/common/Preloader/Preloader";
 import {
   getInitialized,
   getTheme,
@@ -33,16 +34,17 @@ import {
   getIndex,
   getIsBigScreen,
   getEditMode,
-} from "./redux/AppReducer/app-selectors"
-import store from "./redux/redux-store"
-import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors"
-import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer"
-import Registration from "./components/Registration/Registration"
-import SwipeableViews from "react-swipeable-views"
-import MenuContainer from "./components/Menu/MenuContainer"
-import Header from "./components/Header/Header"
-import PageNotFound from "./components/PageNotFound/PageNotFound"
-import EditProfile from "./components/Profile/ProfileInfo/EditProfile/EditProfile"
+  getMenuActive,
+} from "./redux/AppReducer/app-selectors";
+import store from "./redux/redux-store";
+import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors";
+import MyPostsContainer from "./components/Posts/MyPosts/MyPostsContainer";
+import Registration from "./components/Registration/Registration";
+import SwipeableViews from "react-swipeable-views";
+import MenuContainer from "./components/Menu/MenuContainer";
+import Header from "./components/Header/Header";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
+import EditProfile from "./components/Profile/ProfileInfo/EditProfile/EditProfile";
 
 const urlIndex = {
   0: "news",
@@ -51,101 +53,107 @@ const urlIndex = {
   3: "users",
   4: "friends",
   5: "menu",
-}
-let i = NaN
+};
+let i = NaN;
 class App extends React.Component {
-  str = window.location.href
+  str = window.location.href;
 
   // location = window.location
   state = {
     isBigScreen: window.innerWidth > 600,
-  }
+  };
   handleChange = (event, value) => {
     for (let key in urlIndex) {
       if (key == value) {
-        i = key
-        break
+        i = key;
+        break;
       }
     }
-    window.location = "/social-network#/" + urlIndex[i]
-    this.props.setIndex(Number(value))
-  }
+    window.location = "/social-network#/" + urlIndex[i];
+    this.props.setIndex(Number(value));
+    window.scroll(0, 0);
+  };
 
   handleChangeIndex = (index) => {
     for (let key in urlIndex) {
       if (key == index) {
-        i = key
-        break
+        i = key;
+        break;
       }
     }
-    window.location = "/social-network#/" + urlIndex[i]
-    this.props.setIndex(Number(index))
-  }
+    window.location = "/social-network#/" + urlIndex[i];
+    this.props.setIndex(Number(index));
+    window.scroll(0, 0);
+  };
 
   changeIndex = (velue) => {
-    let strUpdate = velue.substr(38)
-    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "")
+    let strUpdate = velue.substr(38);
+    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
 
     for (let key in urlIndex) {
       if (urlIndex[key] == strUpdate) {
-        i = key
-        break
+        i = key;
+        break;
       }
     }
 
-    this.str = velue
-    this.props.setIndex(Number(i))
-  }
+    this.str = velue;
+    this.props.setIndex(Number(i));
+    window.scroll(0, 0);
+  };
 
   componentDidMount() {
-    let strUpdate = this.str.substr(38)
-    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "")
+    let strUpdate = this.str.substr(38);
+    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
 
     if (strUpdate == "") {
-      i = 0
-      window.location = "/social-network#/" + urlIndex[i]
+      i = 0;
+      window.location = "/social-network#/" + urlIndex[i];
     } else if (strUpdate == "settings") {
-      i = 5
+      i = 5;
     } else {
       for (let key in urlIndex) {
         if (urlIndex[key] == strUpdate) {
-          i = key
-          break
+          i = key;
+          break;
         }
       }
     }
-    this.props.setIndex(Number(i))
-    this.props.initializeApp()
+    window.scroll(0, 0);
+    this.props.setIndex(Number(i));
+    this.props.initializeApp();
   }
 
   themeToggler = () => {
     this.props.theme === "light"
       ? this.props.setTheme("dark")
-      : this.props.setTheme("light")
-  }
+      : this.props.setTheme("light");
+  };
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       if (this.props.location.pathname.length == 1) {
-        window.location = "/social-network#/news"
+        window.location = "/social-network#/news";
       }
-      let url = this.props.location.pathname
-      url = url.replace(/[^a-zа-яё]/gi, "")
+      let url = this.props.location.pathname;
+      url = url.replace(/[^a-zа-яё]/gi, "");
       if (url == "settings") {
-        this.props.setIndex(Number(5))
+        this.props.setIndex(Number(5));
       }
     }
+    window.scroll(0, 0);
   }
+
   render() {
     const toggleIsBigScreen = (value) => {
       this.setState({
         isBigScreen: value,
-      })
-    }
+      });
+    };
     const themeToggler = () => {
       this.props.theme == "lightTheme"
         ? this.props.setTheme("dark")
-        : this.props.setTheme("light")
-    }
+        : this.props.setTheme("light");
+    };
     // window.addEventListener("resize", function () {
     //   if (window.innerWidth > 600) {
     //     toggleIsBigScreen(true)
@@ -154,7 +162,7 @@ class App extends React.Component {
     //   }
     // })
     if (!this.props.initialized) {
-      return <Preloader />
+      return <Preloader />;
     }
     if (!this.props.isAuth) {
       return (
@@ -163,7 +171,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <Login />} />
           <Route path="/register" render={() => <Registration />} />
         </div>
-      )
+      );
     } else {
       return (
         <>
@@ -286,7 +294,7 @@ class App extends React.Component {
             {/* )} */}
           </div>
         </>
-      )
+      );
     }
   }
 }
@@ -303,8 +311,9 @@ const mapStateToProps = (state) => {
     isBigScreen: getIsBigScreen(state),
     profileInfo: getProfileInfo(state),
     editMode: getEditMode(state),
-  }
-}
+    isMenuActive: getMenuActive(state),
+  };
+};
 
 let AppContainer = compose(
   connect(mapStateToProps, {
@@ -314,9 +323,10 @@ let AppContainer = compose(
     toggleIsHeaderBlur,
     setIndex,
     toggleIsBigScreen,
+    setMenuActive,
   }),
   withRouter
-)(App)
+)(App);
 
 const SamuraiJSApp = (props) => {
   return (
@@ -325,7 +335,7 @@ const SamuraiJSApp = (props) => {
         <AppContainer />
       </Provider>
     </HashRouter>
-  )
-}
+  );
+};
 
-export default SamuraiJSApp
+export default SamuraiJSApp;

@@ -35,14 +35,9 @@ const ProfileInfo = (props) => {
   birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
   let [editStatus, setEditStatus] = useState(false);
   let [valueStatus, setValueStatus] = useState(props.profile.status);
-  let [deployed, setdeployed] = useState(false);
-  let [status, setStatus] = useState(props.status);
 
   const isSmall = window.innerWidth < 480;
 
-  const SetEditStatus = () => {
-    setEditStatus(true);
-  };
   const handleChangeStatus = (event) => {
     setValueStatus(event.target.value);
   };
@@ -57,12 +52,6 @@ const ProfileInfo = (props) => {
       props.setProfileBanner(e.target.files[0]);
     }
   };
-  // useEffect(() => {
-  //   setStatus(props.status)
-  // }, [props.status])
-  // if (props.profile == null) {
-  //   return <Preloader />
-  // }
   let srcImg;
 
   if (props.profile.avatar == "") {
@@ -70,21 +59,24 @@ const ProfileInfo = (props) => {
   } else {
     srcImg = props.profile.avatar;
   }
-  if (props.editMode == false) {
-    document.onclick = function (e) {
-      if (e.target.className !== "") {
-        if (
-          e.target.className
-            .replace(/[^a-zA-Z ]/g, " ")
-            .split(/\s+|\./)
-            .filter((word) => (word === "editStatus") | (word === "setStatus"))
-            .length == 0
-        ) {
-          props.updateStatus(valueStatus);
-          setEditStatus(false);
+  if (props.isMenuActive === false) {
+    if (props.editMode === false) {
+      document.onclick = function (e) {
+        if (e.target.className !== "") {
+          if (
+            e.target.className
+              .replace(/[^a-zA-Z ]/g, " ")
+              .split(/\s+|\./)
+              .filter(
+                (word) => (word === "editStatus") | (word === "setStatus")
+              ).length == 0
+          ) {
+            props.updateStatus(valueStatus);
+            setEditStatus(false);
+          }
         }
-      }
-    };
+      };
+    }
   }
 
   return (
@@ -182,59 +174,85 @@ const ProfileInfo = (props) => {
       </div>
       <div className={s.profileBody}>
         <div className={s.leftColumn}>
-          <div className={s.profileInfoBlock}>
-            <div className={s.briefInformationTitle}>Brief information</div>
-            <div className={s.listOfInformation}>
-              <div className={s.listItems}>
-                <img
-                  className={s.birthdayImg}
-                  src={BirthdayWhite}
-                  alt="birthday"
-                />
-                <span className={s.birthdayTitle}>
-                  Birthday{" "}
-                  <span>
-                    {month[birthdayMonth]}{" "}
-                    {props.profile.birthday.replace(/^.{8}/, "")}
+          <div className={s.test}>
+            <div className={s.profileInfoBlock}>
+              <div className={s.briefInformationTitle}>Brief information</div>
+              <div className={s.listOfInformation}>
+                <div className={s.listItems}>
+                  <img
+                    className={s.birthdayImg}
+                    src={BirthdayWhite}
+                    alt="birthday"
+                  />
+                  <span className={s.birthdayTitle}>
+                    Birthday{" "}
+                    <span>
+                      {month[birthdayMonth]}{" "}
+                      {props.profile.birthday.replace(/^.{8}/, "")}
+                    </span>
                   </span>
-                </span>
-              </div>
-              <div className={s.listItems}>
-                <img src={CityWhite} alt="city" />
-                <span className={s.placeOfResidenceBlockTitle}>
-                  Location <span>{props.profile.location}</span>
-                </span>
-              </div>
-              <div className={s.listItems}>
-                <img className={s.person} src={AboutMeWhite} alt="person" />
-                <div className={s.aboutMe}>
-                  About me: <span>{props.profile.aboutMe}</span>
+                </div>
+                <div className={s.listItems}>
+                  <img src={CityWhite} alt="city" />
+                  <span className={s.placeOfResidenceBlockTitle}>
+                    Location <span>{props.profile.location}</span>
+                  </span>
+                </div>
+                <div className={s.listItems}>
+                  <img className={s.person} src={AboutMeWhite} alt="person" />
+                  <div className={s.aboutMe}>
+                    About me: <span>{props.profile.aboutMe}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={s.friendsBlock}>
-            <div className={s.friendsTitle}>
-              Friends <span>{props.friends.length}</span>
+            <div className={s.subscriptionSubscribersBlock}>
+              <div className={s.subscriptionSubscribersTitle}>
+                Friends <span>{props.friends.length}</span>
+              </div>
+              <div className={s.subscriptionSubscribersList}>
+                {props.friends.map((f) => (
+                  <NavLink
+                    to={"/profile/" + f.id}
+                    className={s.subscriptionSubscribersListItem}
+                    key={f.id}
+                  >
+                    <img
+                      className={s.subscriptionSubscribersImg}
+                      src={f.photo ? f.photo : profileImg}
+                      alt="user photo"
+                    />
+                    <div className={s.subscriptionSubscribersName}>
+                      {f.login}
+                    </div>
+                  </NavLink>
+                ))}
+              </div>
             </div>
-            <div className={s.friendsList}>
-              {props.friends.map((f) => (
-                <NavLink
-                  to={"/profile/" + f.id}
-                  className={s.friendsListItem}
-                  key={f.id}
-                >
-                  <img
-                    className={s.friendsImg}
-                    src={f.photo ? f.photo : profileImg}
-                    alt="user photo"
-                  />
-                  <div className={s.friendsName}>{f.login}</div>
-                </NavLink>
-              ))}
+            <div className={s.subscriptionSubscribersBlock}>
+              <div className={s.subscriptionSubscribersTitle}>
+                Subscribers <span>{props.friends.length}</span>
+              </div>
+              <div className={s.subscriptionSubscribersList}>
+                {props.friends.map((f) => (
+                  <NavLink
+                    to={"/profile/" + f.id}
+                    className={s.subscriptionSubscribersListItem}
+                    key={f.id}
+                  >
+                    <img
+                      className={s.subscriptionSubscribersImg}
+                      src={f.photo ? f.photo : profileImg}
+                      alt="user photo"
+                    />
+                    <div className={s.subscriptionSubscribersName}>
+                      {f.login}
+                    </div>
+                  </NavLink>
+                ))}
+              </div>
             </div>
           </div>
-          <div className={s.subscriptionBlock}></div>
         </div>
         <div className={s.rightColumn}>
           <div className={s.publicationsBlockAll}>

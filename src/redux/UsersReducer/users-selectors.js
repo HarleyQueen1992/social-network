@@ -28,3 +28,7 @@ export const getFollowingInProgress = state => {
 export const getValue = state => {
   return state.usersPage.value
 }
+
+export const getUsersListFollowing = state => {
+  return state.usersPage.usersListFollowing
+}

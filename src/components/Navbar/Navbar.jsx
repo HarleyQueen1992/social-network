@@ -1,54 +1,40 @@
-import React, { useState, useEffect } from "react"
-import s from "./Navbar.module.css"
-import { NavLink } from "react-router-dom"
-import { connect } from "react-redux"
-import { compose } from "redux"
-import { setTheme } from "./../../redux/AppReducer/app-reducer"
-import { getTheme } from "./../../redux/AppReducer/app-selectors"
-import { logOut } from "./../../redux/AuthReducer/auth-reducer"
-import { withRouter } from "react-router-dom"
-import Sun from "./../../assets/images/sunW.png"
-import UserProfile from "./../../assets/images/user.png"
-import Moon from "./../../assets/images/moon.png"
-import { Icons } from "./../../utils/Icons/Icons"
-import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors"
+import React, { useState, useEffect } from "react";
+import s from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { setTheme } from "./../../redux/AppReducer/app-reducer";
+import { getTheme } from "./../../redux/AppReducer/app-selectors";
+import { logOut } from "./../../redux/AuthReducer/auth-reducer";
+import { withRouter } from "react-router-dom";
+import Sun from "./../../assets/images/sunW.png";
+import UserProfile from "./../../assets/images/user.png";
+import Moon from "./../../assets/images/moon.png";
+import { Icons } from "./../../utils/Icons/Icons";
+import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 
 const Navbar = (props) => {
-  let res = Icons(props.theme)
+  let res = Icons(props.theme);
   const themeToggler = () => {
     props.theme == "lightTheme"
       ? props.setTheme("dark")
-      : props.setTheme("light")
-  }
+      : props.setTheme("light");
+  };
   useEffect(() => {
     for (let property in props.theme) {
       document.documentElement.style.setProperty(
         "--" + property,
         props.theme[property]
-      )
+      );
     }
-  }, [props.theme])
-
-  document.onclick = function (e) {
-    if (
-      e.target.className
-        .replace(/[^a-zA-Z ]/g, " ")
-        .split(/\s+|\./)
-        .filter(
-          (word) =>
-            (word === "Navbar") | (word === "menuBlock") | (word === "menuImg")
-        ).length == 0
-    ) {
-      props.setIsMenuActive(false)
-    }
-  }
+  }, [props.theme]);
 
   return (
     <div className={s.navBarList}>
       <NavLink
         to="/profile"
         onClick={() => {
-          props.setIsMenuActive(false)
+          props.setIsMenuActive(false);
         }}
         className={s.itemProfile}
       >
@@ -94,7 +80,7 @@ const Navbar = (props) => {
         <NavLink
           to="/settings"
           onClick={() => {
-            props.setIsMenuActive(false)
+            props.setIsMenuActive(false);
           }}
           className={s.itemSettings}
         >
@@ -110,7 +96,7 @@ const Navbar = (props) => {
         <div className={s.themeItems}>
           <input
             onClick={() => {
-              themeToggler()
+              themeToggler();
             }}
             type="checkbox"
             className={s.checkbox}
@@ -132,8 +118,8 @@ const Navbar = (props) => {
         <div
           className={s.itemLogOut}
           onClick={() => {
-            props.logOut()
-            props.setIsMenuActive(false)
+            props.logOut();
+            props.setIsMenuActive(false);
           }}
         >
           <div className={s.logOutLogo}>
@@ -143,15 +129,15 @@ const Navbar = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 let mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
     profileInfo: getProfileInfo(state),
-  }
-}
+  };
+};
 export default compose(
   connect(mapStateToProps, { setTheme, logOut }),
   withRouter
-)(Navbar)
+)(Navbar);
