@@ -15,7 +15,6 @@ import CityWhite from "./../../../assets/images/cityWhite.png";
 import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png";
 import FilterWhite from "./../../../assets/images/filterWhite.png";
 import List from "./../../../assets/images/menuBlueActive.png";
-import EditProfile from "./EditProfile/EditProfile";
 let month = {
   "01": "January",
   "02": "February",
@@ -40,6 +39,15 @@ const ProfileInfo = (props) => {
 
   const handleChangeStatus = (event) => {
     setValueStatus(event.target.value);
+  };
+
+  let openPoupup = (e) => {
+    e.preventDefault();
+
+    document.getElementById("root").style.cssText =
+      "margin-top: " + String(window.scrollY * -1) + "px;";
+
+    props.setEditMode(!props.editMode);
   };
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
@@ -157,12 +165,7 @@ const ProfileInfo = (props) => {
           <div className={s.publicationsBlock}>
             <div className={s.publications}>Publications</div>
           </div>
-          <div
-            onClick={() => {
-              props.setEditMode(!props.editMode);
-            }}
-            className={s.editProfileBlock}
-          >
+          <div onClick={openPoupup} className={s.editProfileBlock}>
             <img
               className={s.editProfileImg}
               src={EditWhite}

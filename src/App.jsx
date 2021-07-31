@@ -23,6 +23,7 @@ import {
   setIndex,
   toggleIsBigScreen,
   setMenuActive,
+  setEditMode,
 } from "./redux/AppReducer/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {
@@ -44,7 +45,8 @@ import SwipeableViews from "react-swipeable-views";
 import MenuContainer from "./components/Menu/MenuContainer";
 import Header from "./components/Header/Header";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
-import EditProfile from "./components/Profile/ProfileInfo/EditProfile/EditProfile";
+import EditProfile from "./components/Profile/EditProfile/EditProfile";
+import { getValue } from "./redux/SearchReducer/search-selectors";
 
 const urlIndex = {
   0: "news",
@@ -61,6 +63,7 @@ class App extends React.Component {
   // location = window.location
   state = {
     isBigScreen: window.innerWidth > 600,
+    editMode: false,
   };
   handleChange = (event, value) => {
     for (let key in urlIndex) {
@@ -142,13 +145,10 @@ class App extends React.Component {
     }
     window.scroll(0, 0);
   }
-
+  setEitMode = (value) => {
+    this.props.setEitMode(getValue);
+  };
   render() {
-    const toggleIsBigScreen = (value) => {
-      this.setState({
-        isBigScreen: value,
-      });
-    };
     const themeToggler = () => {
       this.props.theme == "lightTheme"
         ? this.props.setTheme("dark")
@@ -175,24 +175,24 @@ class App extends React.Component {
     } else {
       return (
         <>
+          <div
+            className={
+              s.editProfileMenuBlock +
+              " " +
+              (this.props.editMode && s.activeEditProfileMenuBlock)
+            }
+          >
+            {this.props.editMode && <EditProfile />}
+            <div className={s.editProfileMenuBottom}></div>
+          </div>
           <div className={s.appWrapper}>
             <Header
+              isBigScreen={this.isBigScreen}
               handleChange={this.handleChange}
               index={this.props.index}
               theme={this.props.theme}
             />
-            {this.props.editMode && (
-              <div
-                className={
-                  s.editProfileMenuBlock +
-                  " " +
-                  (this.props.editMode ? s.activeEditProfileMenuBlock : " ")
-                }
-              >
-                <EditProfile />
-                <div className={s.editProfileMenuBottom}></div>
-              </div>
-            )}
+
             <div
               className={
                 s.appWrapperContent +
@@ -323,6 +323,7 @@ let AppContainer = compose(
     toggleIsHeaderBlur,
     setIndex,
     toggleIsBigScreen,
+    setEditMode,
     setMenuActive,
   }),
   withRouter

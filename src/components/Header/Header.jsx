@@ -4,22 +4,16 @@ import React, { useState } from "react";
 import MenuW from "../../assets/images/menuW.png";
 import "./Header.css";
 import Tabs from "@material-ui/core/Tabs";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { withRouter } from "react-router-dom";
 import Tab from "@material-ui/core/Tab";
 import s from "./Header.module.css";
 import Navbar from "../Navbar/Navbar";
 import { Icons } from "./../../utils/Icons/Icons";
 import searchWhite from "./../../assets/images/searchWhite.png";
-import { getMenuActive } from "../../redux/AppReducer/app-selectors";
-import { setMenuActive } from "../../redux/AppReducer/app-reducer";
-
 const Header = (props) => {
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
   const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900);
-
+  const [isMenuActive, setIsMenuActive] = useState(false);
   // let border = (document.querySelector(
   //   "PrivateTabIndicator-colorSecondary-3"
   // ).style.background = "blue")
@@ -33,20 +27,6 @@ const Header = (props) => {
       setIsBigScreen(false);
     }
   });
-  document.onclick = function (e) {
-    if (
-      e.target.className
-        .replace(/[^a-zA-Z ]/g, " ")
-        .split(/\s+|\./)
-        .filter(
-          (word) =>
-            (word === "Navbar") | (word === "menuBlock") | (word === "menuImg")
-        ).length == 0
-    ) {
-      props.setMenuActive(false);
-    }
-  };
-
   return (
     <div
       className={
@@ -209,31 +189,21 @@ const Header = (props) => {
       {isBigScreen && (
         <div
           className={
-            s.menuBlock + " " + (props.isMenuActive ? s.activeMenublock : "")
+            s.menuBlock + " " + (isMenuActive ? s.activeMenublock : "")
           }
           onClick={() => {
-            props.setMenuActive(!props.isMenuActive);
+            setIsMenuActive(!isMenuActive);
           }}
         >
           {/* <i class='fa fa-play'></i> */}
           <img className={s.menuImg} src={res["arrowDown"]} alt="menu img" />
         </div>
       )}
-      {isBigScreen && props.isMenuActive && (
-        <Navbar
-          setIsMenuActive={props.setMenuActive}
-          isMenuActive={props.isMenuActive}
-        />
+      {isBigScreen && isMenuActive && (
+        <Navbar setIsMenuActive={setIsMenuActive} isMenuActive={isMenuActive} />
       )}
     </div>
   );
 };
-let mapStateToProps = (state) => {
-  return {
-    isMenuActive: getMenuActive(state),
-  };
-};
-export default compose(
-  connect(mapStateToProps, { setMenuActive }),
-  withRouter
-)(Header);
+
+export default Header;

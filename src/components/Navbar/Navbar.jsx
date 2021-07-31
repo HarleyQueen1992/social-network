@@ -29,6 +29,20 @@ const Navbar = (props) => {
     }
   }, [props.theme]);
 
+  document.onclick = function (e) {
+    if (
+      e.target.className
+        .replace(/[^a-zA-Z ]/g, " ")
+        .split(/\s+|\./)
+        .filter(
+          (word) =>
+            (word === "Navbar") | (word === "menuBlock") | (word === "menuImg")
+        ).length == 0
+    ) {
+      props.setIsMenuActive(false);
+    }
+  };
+
   return (
     <div className={s.navBarList}>
       <NavLink

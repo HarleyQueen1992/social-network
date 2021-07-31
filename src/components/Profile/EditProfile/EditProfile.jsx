@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import s from "./EditProfile.module.css";
-import PhotoProfile from "./../../../../assets/images/user.png";
-import BirthdayWhite from "./../../../../assets/images/birthdayWhite.png";
-import CityWhite from "./../../../../assets/images/cityWhite.png";
-import Cover from "./../../../../assets/images/356200_h1ec7Aokt5_1.jpg";
+import PhotoProfile from "./../../../assets/images/user.png";
+import BirthdayWhite from "./../../../assets/images/birthdayWhite.png";
+import CityWhite from "./../../../assets/images/cityWhite.png";
+import Cover from "./../../../assets/images/356200_h1ec7Aokt5_1.jpg";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import {
@@ -11,11 +11,11 @@ import {
   updateProfileInfo,
   updateAboutMe,
   updateFullName,
-} from "./../../../../redux/ProfileReducer/profile-reducer";
-import { getProfile } from "../../../../redux/ProfileReducer/profile-selectors";
-import { savePhoto } from "./../../../../redux/SettingsReducer/settings-reducer";
-import { getEditMode } from "./../../../../redux/AppReducer/app-selectors";
-import { setEditMode } from "./../../../../redux/AppReducer/app-reducer";
+} from "./../../../redux/ProfileReducer/profile-reducer";
+import { getProfile } from "../../../redux/ProfileReducer/profile-selectors";
+import { savePhoto } from "./../../../redux/SettingsReducer/settings-reducer";
+import { getEditMode } from "./../../../redux/AppReducer/app-selectors";
+import { setEditMode } from "./../../../redux/AppReducer/app-reducer";
 import { withRouter } from "react-router-dom";
 let month = {
   "01": "January",
@@ -79,7 +79,12 @@ const EditProfile = (props) => {
   }, [valueAboutMe]);
 
   document.onclick = function (e) {
-    if (e.target.className !== "") {
+    if (e.target.className === "EditProfile_backBlock__2YZ6u") {
+      props.setEditMode(false);
+      let scroll = document.querySelector("#root").style.marginTop;
+      document.querySelector("#root").style.cssText = "margin-top: 0;";
+      window.scroll(0, Number(scroll.substring(0, scroll.length - 2)) * -1);
+    } else if (e.target.className !== "") {
       if (
         e.target.className
           .replace(/[^a-zA-Z ]/g, " ")
@@ -93,6 +98,11 @@ const EditProfile = (props) => {
           ).length == 0
       ) {
         props.setEditMode(false);
+        let scroll = document.querySelector("#root").style.marginTop;
+        document.querySelector("#root").style.cssText = "margin-top: 0;";
+        window.scroll(0, Number(scroll.substring(0, scroll.length - 2)) * -1);
+
+        // document.querySelector("body").style.marginTop = 0;
       }
     }
   };
@@ -100,12 +110,7 @@ const EditProfile = (props) => {
     <div className={s.editProfileMenu}>
       <div className={s.editProfileTitleBlock}>
         <span className={s.editProfileTitle}>Edit profile</span>
-        <div
-          onClick={() => {
-            props.setEditMode(false);
-          }}
-          className={s.backBlock}
-        ></div>
+        <div className={s.backBlock}></div>
       </div>
       <div className={s.editProfileFullNameBlock}>
         <div className={s.editProfileFullNameTitleBlock}>
