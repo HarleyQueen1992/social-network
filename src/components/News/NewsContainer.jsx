@@ -8,6 +8,7 @@ import {
   addLike,
   addPostActionCreator,
 } from "./../../redux/PostsReducer/posts-reducer";
+import { getProfileInfo } from "./../../redux/AuthReducer/auth-selectors";
 import News from "./News";
 import { getProfile } from "../../redux/ProfileReducer/profile-selectors";
 import Preloader from "./../../components/common/Preloader/Preloader";
@@ -34,7 +35,7 @@ const mapStateToProps = (state) => {
   return {
     posts: getPosts(state),
     theme: getTheme(state),
-    profile: getProfile(state),
+    profile: getProfileInfo(state),
   };
 };
 

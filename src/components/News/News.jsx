@@ -9,8 +9,10 @@ import Gallery from "./../../assets/images/gallery.png";
 const News = (props) => {
   const [focus, setFocus] = useState(false);
   const [isCreatePost, setIsCreatePost] = useState(false);
+  const [isWriteHashTag, setIsWriteHashTag] = useState(false);
   const [valuePostText, setValuePostText] = useState("");
   const [valuePostTitle, setValuePostTitle] = useState("");
+  const [valueHashTag, setValueHashTag] = useState("");
   let newUrl = window.location.href;
   if (props.strUrlPrev != newUrl) {
     props.changeIndex(newUrl);
@@ -21,18 +23,27 @@ const News = (props) => {
     setIsCreatePost(true);
   };
   const closePopup = () => {
+    document.querySelector(".react-swipeable-view-container").style.cssText =
+      "will-change: transform; !important" +
+      "flex-direction: row;" +
+      "transition: all 0s ease 0s;" +
+      "direction: ltr;" +
+      "display: flex;" +
+      "transform: translate(0px, 0px);";
     setIsCreatePost(false);
     setValuePostText("");
     setValuePostTitle("");
+    setValueHashTag("");
   };
   const submitPost = () => {
     props.addPostActionCreator(valuePostText, valuePostTitle);
-    setIsCreatePost(false);
-    setValuePostText("");
-    setValuePostTitle("");
+    closePopup();
   };
   const handleChangePostText = (event) => {
     setValuePostText(event.target.value);
+  };
+  const handleChangeHashTag = (event) => {
+    setValueHashTag(event.target.value);
   };
   const handleChangePostTitle = (event) => {
     setValuePostTitle(event.target.value);
@@ -99,17 +110,55 @@ const News = (props) => {
           onMouseDown={(e) => {
             e.stopPropagation();
           }}
+          onClick={() => {
+            isWriteHashTag && setIsWriteHashTag(false);
+          }}
         >
           <div className={s.popupContentHader}>
             <div className={s.popupContentHeaderTitle}>Create post</div>
             <div className={s.popupContentHeaderOff} onClick={closePopup}></div>
           </div>
           <div className={s.popupContentBody}>
-            <div className={s.popupContentBodyAuthor}></div>
+            <div className={s.popupContentBodyAuthor}>
+              <div className={s.popupContentBodyAuthorAvatarBlock}>
+                <img
+                  className={s.popupContentBodyAuthorAvatar}
+                  src={props.profile.avatar}
+                  alt="avatar"
+                />
+              </div>
+              <div className={s.popupContentBodyAuthorNameAndHashtag}>
+                <div className={s.popupContentBodyAuthorName}>
+                  {props.profile.fullname}
+                </div>
+
+                {isWriteHashTag ? (
+                  <input
+                    className={s.popupContentBodyHashTagInput}
+                    type="text"
+                    value={valueHashTag}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={handleChangeHashTag}
+                    autoFocus
+                  />
+                ) : (
+                  <div onDoubleClick={() => setIsWriteHashTag(true)}>
+                    {valueHashTag == "" ? (
+                      <div className={s.addHashtag}>
+                        HashTag example, <span>#sport #study</span>
+                      </div>
+                    ) : (
+                      <div className={s.hashTag}>{valueHashTag}</div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
             <textarea
               className={s.popupContentTitleTextarea}
               id="textareaTitle"
               value={valuePostTitle}
+              maxLength="70"
               placeholder="Title post!"
               onChange={handleChangePostTitle}
             ></textarea>
@@ -134,7 +183,9 @@ const News = (props) => {
             />
           </div>
           <div
-            onClick={submitPost}
+            onClick={
+              (valuePostText !== "") & (valuePostTitle !== "") && submitPost
+            }
             className={
               s.popupContentAddPost +
               " " +
