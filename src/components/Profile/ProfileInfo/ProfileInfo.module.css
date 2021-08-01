@@ -459,7 +459,7 @@
   display: grid;
   margin: 8px;
   grid-row-gap: 16px;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 60px 100px 1fr;
 }
 /*? publications block */
 .publicationsBlockAll {
@@ -550,12 +550,4 @@
 .wrapper {
   height: 100%;
   background-color: red;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(255, 0, 0, 0.397);
 }

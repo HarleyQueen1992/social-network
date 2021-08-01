@@ -8,6 +8,7 @@
   display: grid;
   width: 800px;
   margin: 0 auto;
+  padding: 10px;
   grid-template-rows: 60px 1fr;
   grid-row-gap: 10px;
   grid-template-areas: "header" "posts";
@@ -17,7 +18,6 @@
   grid-area: header;
   display: grid;
   grid-template-columns: 1fr 60px 40px;
-  margin: 0 20px;
   transition: all 0.5s;
 }
 .active {

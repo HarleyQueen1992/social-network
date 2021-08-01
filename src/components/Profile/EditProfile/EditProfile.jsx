@@ -79,7 +79,7 @@ const EditProfile = (props) => {
   }, [valueAboutMe]);
   if (props.editMode) {
     document.onclick = function (e) {
-      if (e.target.className === "EditProfile_backBlock__H4ZpF") {
+      if (e.target.id === "backBlock") {
         props.setEditMode(false);
         let scroll = document.querySelector("#root").style.marginTop;
         document.querySelector("#root").style.cssText = "margin-top: 0;";
@@ -117,7 +117,7 @@ const EditProfile = (props) => {
       <div className={s.editProfileMenu}>
         <div className={s.editProfileTitleBlock}>
           <span className={s.editProfileTitle}>Edit profile</span>
-          <div className={s.backBlock}></div>
+          <div className={s.backBlock} id="backBlock"></div>
         </div>
         <div className={s.editProfileFullNameBlock}>
           <div className={s.editProfileFullNameTitleBlock}>

@@ -15,6 +15,7 @@ import CityWhite from "./../../../assets/images/cityWhite.png";
 import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png";
 import FilterWhite from "./../../../assets/images/filterWhite.png";
 import List from "./../../../assets/images/menuBlueActive.png";
+import PostCreation from "../../Posts/MyPosts/PostCreation/PostCreation";
 let month = {
   "01": "January",
   "02": "February",
@@ -255,6 +256,7 @@ const ProfileInfo = (props) => {
           </div>
         </div>
         <div className={s.rightColumn}>
+          <PostCreation translate="-100%" />
           <div className={s.publicationsBlockAll}>
             <div className={s.publicationsTitleAndFilter}>
               <span className={s.publicationsTitle}>Publications</span>
