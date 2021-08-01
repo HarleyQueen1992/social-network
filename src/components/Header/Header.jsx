@@ -3,12 +3,16 @@ import React, { useState } from "react";
 // import Profile from "../../assets/images/profileW.png"
 import MenuW from "../../assets/images/menuW.png";
 import "./Header.css";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import s from "./Header.module.css";
+import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { Icons } from "./../../utils/Icons/Icons";
 import searchWhite from "./../../assets/images/searchWhite.png";
+import { getTheme } from "../../redux/AppReducer/app-selectors";
 const Header = (props) => {
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
@@ -206,4 +210,9 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+let mapStateToProps = (state) => {
+  return {
+    theme: getTheme(state),
+  };
+};
+export default compose(connect(mapStateToProps, {}), withRouter)(Header);

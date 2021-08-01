@@ -67,24 +67,21 @@ const ProfileInfo = (props) => {
   } else {
     srcImg = props.profile.avatar;
   }
-  if (props.isMenuActive === false) {
-    if (props.editMode === false) {
-      document.onclick = function (e) {
-        if (e.target.className !== "") {
-          if (
-            e.target.className
-              .replace(/[^a-zA-Z ]/g, " ")
-              .split(/\s+|\./)
-              .filter(
-                (word) => (word === "editStatus") | (word === "setStatus")
-              ).length == 0
-          ) {
-            props.updateStatus(valueStatus);
-            setEditStatus(false);
-          }
+  if (editStatus) {
+    document.onclick = function (e) {
+      if (e.target.className !== "") {
+        if (
+          e.target.className
+            .replace(/[^a-zA-Z ]/g, " ")
+            .split(/\s+|\./)
+            .filter((word) => (word === "editStatus") | (word === "setStatus"))
+            .length == 0
+        ) {
+          props.updateStatus(valueStatus);
+          setEditStatus(false);
         }
-      };
-    }
+      }
+    };
   }
 
   return (

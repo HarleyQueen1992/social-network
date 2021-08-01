@@ -182,7 +182,11 @@ class App extends React.Component {
               (this.props.editMode && s.activeEditProfileMenuBlock)
             }
           >
-            {this.props.editMode && <EditProfile />}
+            <EditProfile
+              editMode={this.props.editMode}
+              setEditMode={this.props.setEditMode}
+              profile={this.props.profileInfo}
+            />
             <div className={s.editProfileMenuBottom}></div>
           </div>
           <div className={s.appWrapper}>
@@ -190,7 +194,7 @@ class App extends React.Component {
               isBigScreen={this.isBigScreen}
               handleChange={this.handleChange}
               index={this.props.index}
-              theme={this.props.theme}
+              theme={"adasd"}
             />
 
             <div
@@ -304,7 +308,7 @@ const mapStateToProps = (state) => {
     initialized: getInitialized(state),
     isAuth: getIsAuth(state),
     isPostCreation: getIsPostCreation(state),
-    theme: getTheme(state),
+    // theme: getTheme(state),
     headerBlur: getHeaderBlur(state),
     Height: getInnerHeight(state),
     index: getIndex(state),
