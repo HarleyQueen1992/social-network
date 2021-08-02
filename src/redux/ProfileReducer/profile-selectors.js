@@ -22,3 +22,9 @@ export const getIsSavingPhoto = state => {
 export const getLastPost = state => {
   return state.profilePage.lastPost
 }
+export const getSubscriptions = state => {
+  return state.profilePage.subscriptions
+}
+export const getSubscribers = state => {
+  return state.profilePage.subscribers
+}

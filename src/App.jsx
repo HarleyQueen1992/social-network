@@ -122,7 +122,6 @@ class App extends React.Component {
         }
       }
     }
-    window.scroll(0, 0);
     this.props.setIndex(Number(i));
     this.props.initializeApp();
   }
@@ -143,7 +142,6 @@ class App extends React.Component {
         this.props.setIndex(Number(5));
       }
     }
-    window.scroll(0, 0);
   }
   setEitMode = (value) => {
     this.props.setEitMode(getValue);
@@ -175,20 +173,6 @@ class App extends React.Component {
     } else {
       return (
         <>
-          <div
-            className={
-              s.editProfileMenuBlock +
-              " " +
-              (this.props.editMode && s.activeEditProfileMenuBlock)
-            }
-          >
-            <EditProfile
-              editMode={this.props.editMode}
-              setEditMode={this.props.setEditMode}
-              profile={this.props.profileInfo}
-            />
-            <div className={s.editProfileMenuBottom}></div>
-          </div>
           <div className={s.appWrapper}>
             <Header
               isBigScreen={this.isBigScreen}

@@ -22,7 +22,7 @@ const PostCreation = (props) => {
   const openPopup = () => {
     document.querySelector(".react-swipeable-view-container").style.cssText =
       "transform: translate(50) !important;" + "will-change: auto !important;";
-    // document.getElementById("root").style.cssText = "overflow: hidden;";
+    document.querySelector("body").style.cssText = "overflow: hidden;";
     setIsCreatePost(true);
   };
   const closePopup = () => {
@@ -35,7 +35,7 @@ const PostCreation = (props) => {
       "transform: translate(" +
       props.translate +
       ", 0px);";
-    // document.getElementById("root").style.cssText = "position: static;";
+    document.querySelector("body").style.cssText = "overflow: scroll;";
     setIsCreatePost(false);
     setValuePostText("");
     setValuePostTitle("");

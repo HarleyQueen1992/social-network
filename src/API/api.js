@@ -78,7 +78,22 @@ export const profileAPI = {
       return response.data
     })
   },
-  
+  following() {
+    return instance.get(`/following/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  followers() {
+    return instance.get(`/followers/`).then(response => {
+      
+      return response.data
+    
+    }).catch(response => {
+      return response.data
+    })
+  },
   saveProfileInfo(profileInfo) {
     return instance.put(`/profile/`, profileInfo)
   },

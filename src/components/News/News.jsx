@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import s from "./News.module.css";
-import Notification from "./../../assets/images/notification.png";
-import NotificationB from "./../../assets/images/notificationB.png";
-import ProfilePhoto from "./../../assets/images/user.png";
 import Post from "./../Posts/MyPosts/Post/Post";
-import Gallery from "./../../assets/images/gallery.png";
 import PostCreation from "../Posts/MyPosts/PostCreation/PostCreation";
 
 const News = (props) => {

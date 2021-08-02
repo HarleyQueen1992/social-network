@@ -12,33 +12,11 @@ const MyPosts = (props) => {
   const [focus, setFocus] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
 
-  let newUrl = window.location.href;
-  if (props.strUrlPrev != newUrl) {
-    props.changeIndex(newUrl);
-  }
-
   let toggleFocus = () => {
     setIsFocus(!isFocus);
   };
   let isSmall = window.innerWidth < 480;
 
-  let postElements = props.posts.map((post) => (
-    <Post
-      border={true}
-      key={post.id}
-      theme={props.theme}
-      profile={props.profile}
-      login={props.login}
-      deletePost={props.deletePost}
-      addLike={props.addLike}
-      id={post.id}
-      message={post.message}
-      like={post.like}
-      dislike={post.dislike}
-      isDisable={post.isDisable}
-      title={post.title}
-    />
-  ));
   let addPost = () => {
     let text = newPostElementText.current.value;
     let title = newPostElementTitle.current.value;
@@ -115,7 +93,25 @@ const MyPosts = (props) => {
         </header>
 
         <PostCreation translate="-200%" />
-        <div className={p.posts}>{postElements}</div>
+        <div className={p.posts}>
+          {props.posts.map((post) => (
+            <Post
+              border={true}
+              key={post.id}
+              theme={props.theme}
+              profile={props.profile}
+              login={props.login}
+              deletePost={props.deletePost}
+              addLike={props.addLike}
+              id={post.id}
+              message={post.message}
+              like={post.like}
+              dislike={post.dislike}
+              isDisable={post.isDisable}
+              title={post.title}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

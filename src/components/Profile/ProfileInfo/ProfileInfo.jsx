@@ -16,6 +16,7 @@ import AboutMeWhite from "./../../../assets/images/aboutMeWhite.png";
 import FilterWhite from "./../../../assets/images/filterWhite.png";
 import List from "./../../../assets/images/menuBlueActive.png";
 import PostCreation from "../../Posts/MyPosts/PostCreation/PostCreation";
+import EditProfile from "./../EditProfile/EditProfile";
 let month = {
   "01": "January",
   "02": "February",
@@ -34,6 +35,7 @@ const ProfileInfo = (props) => {
   let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
   birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
   let [editStatus, setEditStatus] = useState(false);
+  let [editMode, setEditMode] = useState(false);
   let [valueStatus, setValueStatus] = useState(props.profile.status);
 
   const isSmall = window.innerWidth < 480;
@@ -44,11 +46,23 @@ const ProfileInfo = (props) => {
 
   let openPoupup = (e) => {
     e.preventDefault();
+    document.querySelector(".react-swipeable-view-container").style.cssText =
+      "transform: translate(50) !important;" + "will-change: auto !important;";
+    document.querySelector("body").style.cssText = "overflow: hidden;";
 
-    document.getElementById("root").style.cssText =
-      "margin-top: " + String(window.scrollY * -1) + "px;";
-
-    props.setEditMode(!props.editMode);
+    setEditMode(!editMode);
+  };
+  let closePopup = (e) => {
+    e.preventDefault();
+    document.querySelector(".react-swipeable-view-container").style.cssText =
+      "will-change: transform; !important" +
+      "flex-direction: row;" +
+      "transition: all 0s ease 0s;" +
+      "direction: ltr;" +
+      "display: flex;" +
+      "transform: translate(-100%, 0px);";
+    document.querySelector("body").style.cssText = "overflow: scroll;";
+    setEditMode(false);
   };
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
@@ -87,6 +101,22 @@ const ProfileInfo = (props) => {
 
   return (
     <div className={s.profilePage}>
+      <div
+        onMouseDown={closePopup}
+        className={
+          s.editProfileMenuBlock +
+          " " +
+          (editMode && s.activeEditProfileMenuBlock)
+        }
+      >
+        <EditProfile
+          closePopup={closePopup}
+          editMode={editMode}
+          setEditMode={setEditMode}
+          profile={props.profile}
+        />
+        <div className={s.editProfileMenuBottom}></div>
+      </div>
       <div className={s.profileHead}>
         <div className={s.coverBlock}>
           <div className={s.coverPhoto}>
@@ -175,7 +205,7 @@ const ProfileInfo = (props) => {
       </div>
       <div className={s.profileBody}>
         <div className={s.leftColumn}>
-          <div className={s.test}>
+          <div className={s.inTheLeftColumn}>
             <div className={s.profileInfoBlock}>
               <div className={s.briefInformationTitle}>Brief information</div>
               <div className={s.listOfInformation}>
@@ -209,10 +239,10 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.subscriptionSubscribersBlock}>
               <div className={s.subscriptionSubscribersTitle}>
-                Friends <span>{props.friends.length}</span>
+                Friends <span>{props.subscriptions.length}</span>
               </div>
               <div className={s.subscriptionSubscribersList}>
-                {props.friends.map((f) => (
+                {props.subscriptions.map((f) => (
                   <NavLink
                     to={"/profile/" + f.id}
                     className={s.subscriptionSubscribersListItem}
@@ -235,22 +265,23 @@ const ProfileInfo = (props) => {
                 Subscribers <span>{props.friends.length}</span>
               </div>
               <div className={s.subscriptionSubscribersList}>
-                {props.friends.map((f) => (
-                  <NavLink
-                    to={"/profile/" + f.id}
-                    className={s.subscriptionSubscribersListItem}
-                    key={f.id}
-                  >
-                    <img
-                      className={s.subscriptionSubscribersImg}
-                      src={f.photo ? f.photo : profileImg}
-                      alt="user photo"
-                    />
-                    <div className={s.subscriptionSubscribersName}>
-                      {f.login}
-                    </div>
-                  </NavLink>
-                ))}
+                {props.subscribers &&
+                  props.subscribers.map((f) => (
+                    <NavLink
+                      to={"/profile/" + f.id}
+                      className={s.subscriptionSubscribersListItem}
+                      key={f.id}
+                    >
+                      <img
+                        className={s.subscriptionSubscribersImg}
+                        src={f.photo ? f.photo : profileImg}
+                        alt="user photo"
+                      />
+                      <div className={s.subscriptionSubscribersName}>
+                        {f.login}
+                      </div>
+                    </NavLink>
+                  ))}
               </div>
             </div>
           </div>

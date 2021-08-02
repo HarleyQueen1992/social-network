@@ -7,11 +7,12 @@ import {
   getUserProfile,
   toggleIsFatching,
   setUserProfile,
-  setStatus,
   toggleIsFollow,
   updateStatus,
   getFollow,
   setProfileBanner,
+  requestSubscriptions,
+  requestSubscribers,
 } from "../../redux/ProfileReducer/profile-reducer";
 import {
   deletePost,
@@ -25,6 +26,8 @@ import {
   getProfile,
   getIsSavingPhoto,
   getStatus,
+  getSubscribers,
+  getSubscriptions,
 } from "../../redux/ProfileReducer/profile-selectors";
 import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer";
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer";
@@ -60,7 +63,7 @@ import s from "./Profile.module.css";
 class ProfileContainer extends React.Component {
   refreshProfile() {
     let userid = this.props.match.params.userid;
-    this.props.requestAllFriends();
+
     // this.props.getUsersListFollowing(this.props.profileInfo.login);
 
     if (!userid || userid == this.props.userId) {
@@ -75,6 +78,8 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     this.refreshProfile();
+    this.props.requestSubscribers();
+    this.props.requestSubscriptions();
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.userid !== prevProps.match.params.userid) {
@@ -115,6 +120,8 @@ class ProfileContainer extends React.Component {
             setProfileBanner={this.props.setProfileBanner}
             isMenuActive={this.props.isMenuActive}
             usersListFollowing={this.props.usersListFollowing}
+            subscribers={this.props.subscribers}
+            subscriptions={this.props.subscriptions}
           />
         )}
       </>
@@ -137,6 +144,8 @@ const mapStateToProps = (state) => ({
   posts: getPosts(state),
   editMode: getEditMode(state),
   isMenuActive: getMenuActive(state),
+  subscribers: getSubscribers(state),
+  subscriptions: getSubscriptions(state),
   // usersListFollowing: getUsersListFollowing(state),
 });
 
@@ -145,14 +154,14 @@ export default compose(
     getUserProfile,
     updateStatus,
     deletePost,
-    savePhoto,
+    requestSubscriptions,
+    requestSubscribers,
     follow,
     getFollow,
     unfollow,
     toggleIsFollow,
     toggleIsFatching,
     setUserProfile,
-    setStatus,
     getIsSavingPhoto,
     addPostActionCreator,
     toggleIsPostCreation,

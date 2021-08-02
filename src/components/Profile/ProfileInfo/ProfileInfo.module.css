@@ -538,16 +538,26 @@
   font-size: 18px;
   font-weight: bold;
 }
-
-.test {
-  position: -webkit-sticky;
-  top: 1px;
+.inTheLeftColumn {
   align-self: start;
   display: grid;
-  grid-template-rows: 1fr 380px 380px;
-  grid-row-gap: 16px;
+  grid-row-gap: 10px;
 }
-.wrapper {
-  height: 100%;
-  background-color: red;
+.editProfileMenuBlock {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.425);
+  display: none;
+  z-index: 99999999999999999999999999;
+}
+.editProfileMenuBottom {
+  height: 40px;
+  bottom: 0;
+}
+.activeEditProfileMenuBlock {
+  display: grid;
 }

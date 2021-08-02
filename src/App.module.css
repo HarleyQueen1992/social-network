@@ -7,12 +7,12 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  height: 100vh;
   background-color: var(--body);
   transition: all 0.3s ease 0s;
 }
 ::-webkit-scrollbar {
   width: 0;
+  display: none;
 }
 html {
   --body: #18191a;

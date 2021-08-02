@@ -77,47 +77,56 @@ const EditProfile = (props) => {
   useEffect(() => {
     disable = valueAboutMe.length <= 70;
   }, [valueAboutMe]);
-  if (props.editMode) {
-    document.onclick = function (e) {
-      if (e.target.id === "backBlock") {
-        props.setEditMode(false);
-        let scroll = document.querySelector("#root").style.marginTop;
-        document.querySelector("#root").style.cssText = "margin-top: 0;";
-        window.scroll(0, Number(scroll.substring(0, scroll.length - 2)) * -1);
-      } else if (e.target.className !== "") {
-        if (
-          e.target.className
-            .replace(/[^a-zA-Z ]/g, " ")
-            .split(/\s+|\./)
-            .filter(
-              (word) =>
-                (word === "EditProfile") |
-                (word === "editProfileImg") |
-                (word === "editProfile") |
-                (word === "editProfileBlock")
-            ).length == 0
-        ) {
-          props.setEditMode(false);
-          let scroll = document.querySelector("#root").style.marginTop;
-          if (scroll != "0px") {
-            document.querySelector("#root").style.cssText = "margin-top: 0;";
-            window.scroll(
-              0,
-              Number(scroll.substring(0, scroll.length - 2)) * -1
-            );
-          }
+  // if (props.editMode) {
+  //   document.onclick = function (e) {
+  //     if (e.target.id === "backBlock") {
+  //       props.setEditMode(false);
+  //       let scroll = document.querySelector("#root").style.marginTop;
+  //       document.querySelector("#root").style.cssText = "margin-top: 0;";
+  //       window.scroll(0, Number(scroll.substring(0, scroll.length - 2)) * -1);
+  //     } else if (e.target.className !== "") {
+  //       if (
+  //         e.target.className
+  //           .replace(/[^a-zA-Z ]/g, " ")
+  //           .split(/\s+|\./)
+  //           .filter(
+  //             (word) =>
+  //               (word === "EditProfile") |
+  //               (word === "editProfileImg") |
+  //               (word === "editProfile") |
+  //               (word === "editProfileBlock")
+  //           ).length == 0
+  //       ) {
+  //         props.setEditMode(false);
+  //         let scroll = document.querySelector("#root").style.marginTop;
+  //         if (scroll != "0px") {
+  //           document.querySelector("#root").style.cssText = "margin-top: 0;";
+  //           window.scroll(
+  //             0,
+  //             Number(scroll.substring(0, scroll.length - 2)) * -1
+  //           );
+  //         }
 
-          // document.querySelector("body").style.marginTop = 0;
-        }
-      }
-    };
-  }
+  //         // document.querySelector("body").style.marginTop = 0;
+  //       }
+  //     }
+  //   };
+  // }
   return (
     props.editMode && (
-      <div className={s.editProfileMenu}>
+      <div
+        className={s.editProfileMenu}
+        onMouseDown={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <div className={s.editProfileTitleBlock}>
           <span className={s.editProfileTitle}>Edit profile</span>
-          <div className={s.backBlock} id="backBlock"></div>
+          <div
+            className={s.backBlock}
+            onClick={props.closePopup}
+            id="backBlock"
+          ></div>
         </div>
         <div className={s.editProfileFullNameBlock}>
           <div className={s.editProfileFullNameTitleBlock}>

@@ -1,0 +1,164 @@
+.usersList {
+  display: grid;
+  width: 100%;
+  padding-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  box-sizing: border-box;
+}
+.usersNotFoundError {
+  color: var(--fontColor);
+  margin-left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ? User */
+.usersListItem {
+  display: grid;
+  z-index: 10;
+  grid-template-areas: "photoFollowed content";
+  grid-template-rows: 90px;
+  grid-column-gap: 10px;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+  grid-template-columns: 90px 1fr;
+  margin-bottom: 10px;
+}
+.usersListItem:hover {
+  background-color: var(--usersListItemHover);
+}
+.userAvatar {
+  grid-area: photoFollowed;
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+.avatar {
+  justify-self: end;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+}
+
+.rightPart {
+  display: grid;
+  grid-template-rows: 30% 20% 50%;
+  box-sizing: border-box;
+}
+.noStatus {
+  grid-template-rows: 50% 50%;
+}
+.name {
+  font-size: 20px;
+  align-self: start;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.nameNoStatus {
+  align-self: center;
+}
+.userStatus {
+  color: var(--fontColor);
+  align-self: end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.statusDisable {
+  display: none;
+}
+.buttonsBlock {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  box-sizing: border-box;
+}
+.subscribers {
+  display: grid;
+  margin-right: 5px;
+  text-decoration: none;
+}
+.subscribeBtn {
+  cursor: pointer;
+  z-index: 100;
+  width: 100%;
+  justify-self: center;
+  height: 80%;
+  align-self: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #2748ad;
+  transition: all 0.1s;
+}
+.subscribeBtn:hover {
+  background-color: #4e67b1;
+  width: 96%;
+}
+.unsubscribeBtn {
+  cursor: pointer;
+  height: 80%;
+  z-index: 1000;
+  align-self: center;
+  width: 100%;
+  justify-self: center;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  background-color: #c2c2c2;
+}
+.unsubscribeBtn:hover {
+  background-color: #aaa8a8;
+  width: 98%;
+}
+.viewPosts {
+  display: grid;
+  text-decoration: none;
+  margin-left: 5px;
+}
+.viewPostsBtn {
+  cursor: pointer;
+  height: 80%;
+  align-self: center;
+  width: 100%;
+  justify-self: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #494949;
+}
+
+.viewPostsBtn:hover {
+  background-color: #5e5e5e;
+  width: 98%;
+}
+@media (max-width: 900px) {
+  .usersListPage {
+    width: 100vw;
+  }
+  .usersList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .usersList {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .usersListItem {
+    grid-template-rows: 80px;
+    grid-template-columns: 80px 1fr;
+  }
+  .avatar {
+    height: 80px;
+    width: 80px;
+  }
+  .userStatus {
+    font-size: 14px;
+  }
+}

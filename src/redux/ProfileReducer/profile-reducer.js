@@ -7,14 +7,16 @@ const SAVE_PHOTO_SUCCESS = "app/profile-reducer/SAVE_PHOTO_SUCCESS"
 const UPDATE_PROFILE_BANNER = "app/profile-reducer/UPDATE_PROFILE_BANNER"
 const TOGGLE_IS_FATCHING = "app/profile-reducer/TOGGLE_IS_FATCHING"
 const TOGGLE_IS_FOLLOW = "app/profile-reducer/TOGGLE_IS_FOLLOW"
-
+const SET_SUBSCRIBERS = 'app/profile-reducer/SET_SUBSCRIBERS'
+const SET_SUBSCRIPTIONS = 'app/profile-reducer/SET_SUBSCRIPTIONS'
 const SAVING_IN_PHOTO_PROGRESS = "app/profile-reducer/SAVING_IN_PHOTO_PROGRESS"
 
 let initialState = {
   isFatching: true,
   isSavingPhoto: false,
   profile: null,
-  status: null,
+  subscriptions: null,
+  subscribers: null,
   isFollow: null,
 }
 
@@ -24,12 +26,6 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.profile,
-      }
-
-    case SET_STATUS:
-      return {
-        ...state,
-        status: action.status,
       }
     case SAVE_PHOTO_SUCCESS:
       return {
@@ -51,7 +47,18 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         isFollow: action.isFollow,
       }
+    case SET_SUBSCRIBERS:
+      return {
+        ...state,
+        subscribers: action.subscribers
 
+      }
+      case SET_SUBSCRIPTIONS:
+      return {
+        ...state,
+        subscriptions: action.subscriptions
+
+      }
     case SAVING_IN_PHOTO_PROGRESS:
       return {
         ...state,
@@ -73,6 +80,20 @@ export const isSavePhoto = isSaving => ({
   type: SAVING_IN_PHOTO_PROGRESS,
   isSaving,
 })
+export const setSubscribers = subscribers => ({
+  type: SET_SUBSCRIBERS,
+  subscribers,
+})
+
+export const setSubscriptions = subscriptions => ({
+  type: SET_SUBSCRIPTIONS,
+  subscriptions,
+})
+
+// export const isSavePhoto = isSaving => ({
+//   type: SAVING_IN_PHOTO_PROGRESS,
+//   isSaving,
+// })
 
 export const setUserProfile = profile => {
   return {
@@ -93,12 +114,6 @@ export const updateProfileBanner = banner => {
   }
 }
 
-export const setStatus = status => {
-  return {
-    type: SET_STATUS,
-    status,
-  }
-}
 
 // Thunk Creator
 
@@ -117,11 +132,10 @@ export const setProfileBanner = file => async dispatch => {
   dispatch(updateProfileBanner(response.banner))
 
 }
-// export const requestStatus = (userId) => async(dispatch) => {
-//     let response = await profileAPI.getStatus(userId)
-//     dispatch(setStatus(response.data));
-
-// }
+export const savePhoto = file => async dispatch => {
+  let response = await profileAPI.updateProfileAvatar(file)
+  dispatch(setUserProfile(response))
+}
 
 export const updateProfileInfo = (birthday, location) => async dispatch => {
   let response = await profileAPI.updateProfileInfo(birthday, location)
@@ -130,7 +144,6 @@ export const updateProfileInfo = (birthday, location) => async dispatch => {
 }
 
 export const updateAboutMe = aboutMe => async dispatch => {
-  
   let response = await profileAPI.updateAboutMe(aboutMe)
   dispatch(setUserProfile(response))
 }
@@ -150,4 +163,13 @@ export const getFollow = id => async dispatch => {
   let response = await followAPI.getFollow(id)
   dispatch(toggleIsFollow(response.data))
 }
+export const requestSubscribers = () => async dispatch => {
+  let response = await profileAPI.followers()
+  dispatch(setSubscribers(response.items))
+}
+export const requestSubscriptions = () => async dispatch => {
+  let response = await profileAPI.following()
+  dispatch(setSubscriptions(response.items))
+}
+
 export default profileReducer
