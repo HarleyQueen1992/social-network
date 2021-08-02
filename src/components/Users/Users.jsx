@@ -133,10 +133,10 @@ const Users = (props) => {
                   </span>
                   <div className={s.buttonsBlock}>
                     <NavLink to="#" className={s.subscribers}>
-                      {u.followed ? (
+                      {u.isFollowed ? (
                         <button
                           onClick={() => {
-                            props.unfollow(u.id);
+                            props.unfollow(u.login);
                           }}
                           className={s.unsubscribeBtn}
                         >
@@ -145,7 +145,7 @@ const Users = (props) => {
                       ) : (
                         <button
                           onClick={() => {
-                            props.follow(u.id);
+                            props.follow(u.login);
                           }}
                           className={s.subscribeBtn}
                         >

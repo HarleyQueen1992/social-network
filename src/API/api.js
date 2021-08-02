@@ -164,13 +164,25 @@ export const friendsAPI = {
 //         })
 // }
 export const followAPI = {
-  getFollow(id) {
-    return instance.get(`/follow/${id}`)
+  subscription(login) {
+    return instance.get(`/following/${login}/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
   },
-  deleteFollow(id) {
-    return instance.delete(`follow/${id}/`)
+  unsubscribe(login) {
+    return instance.delete(`following/${login}/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
   },
-  postFollow(id) {
-    return instance.post(`follow/${id}/`)
+  subscribe(login) {
+    return instance.put(`following/${login}/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
   },
 }

@@ -42,8 +42,8 @@ const PostCreation = (props) => {
     setValueHashTag("");
   };
   const submitPost = () => {
-    props.addPostActionCreator(valuePostText, valuePostTitle);
     closePopup();
+    props.addPostActionCreator(valuePostText, valuePostTitle);
   };
   const handleChangePostText = (event) => {
     setValuePostText(event.target.value);

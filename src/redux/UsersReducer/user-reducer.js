@@ -23,7 +23,7 @@ const USERS_LISTS_FOLLOWING = "app/user-reducer/USERS_LISTS_FOLLOWING"
 let initialState = {
   users: [],
   usersListFollowing: null,
-  pageSize: 18,
+  pageSize: 40,
   totalUsersCount: 20,
   currentPage: 1,
   isFatching: true,
@@ -37,8 +37,8 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: true }
+          if (u.login === action.login) {
+            return { ...u, isFollowed: true }
           }
           return u
         }),
@@ -47,8 +47,8 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: false }
+          if (u.login === action.login) {
+            return { ...u, isFollowed: false }
           }
           return u
         }),
@@ -130,7 +130,7 @@ const usersReducer = (state = initialState, action) => {
 }
 // Action Creater
 
-export const followSuccess = userId => ({ type: FOLLOW, userId })
+export const followSuccess = login => ({ type: FOLLOW, login })
 
 export const setValue = value => ({ type: SET_VALUE, value })
 
@@ -140,7 +140,7 @@ export const clearValue = () => ({ type: CLEAR_VALUE })
 
 export const setWindowMode = isWindow => ({ type: SET_WINDOW_MODE, isWindow })
 
-export const unfollowSuccess = userId => ({ type: UNFOLLOW, userId })
+export const unfollowSuccess = login => ({ type: UNFOLLOW, login })
 
 export const setUsersFollowing = users => ({ type: USERS_LISTS_FOLLOWING, users})
 
@@ -195,17 +195,15 @@ export const requestUsers = currentPage => async dispatch => {
   dispatch(toggleIsFetching(false))
 }
 
-export const follow = userId => {
-  return dispatch => {
-    dispatch(toggleFollowingProgress(true, userId))
-    followAPI.postFollow(userId).then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(followSuccess(userId))
-      }
-      dispatch(toggleIsFollow(true))
-      dispatch(toggleFollowingProgress(false, userId))
-    })
-  }
+export const follow = login => async dispatch => {
+    dispatch(toggleFollowingProgress(true, login))
+    let response = followAPI.subscribe(login)
+    dispatch(followSuccess(login))
+    
+    dispatch(toggleIsFollow(true))
+    dispatch(toggleFollowingProgress(false, login))
+    
+  
 }
 
 export const getUsersListFollowing = login => async dispatch => {
@@ -216,17 +214,14 @@ export const getUsersListFollowing = login => async dispatch => {
 
 
 
-export const unfollow = userId => {
-  return dispatch => {
-    dispatch(toggleFollowingProgress(true, userId))
-    followAPI.deleteFollow(userId).then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(unfollowSuccess(userId))
-        dispatch(deleteFriend(userId))
-      }
-      dispatch(toggleIsFollow(false))
-      dispatch(toggleFollowingProgress(false, userId))
-    })
-  }
+export const unfollow = login => async dispatch => {
+    dispatch(toggleFollowingProgress(true, login))
+    let response = await followAPI.unsubscribe(login)
+    dispatch(unfollowSuccess(login))
+    dispatch(deleteFriend(login))
+    dispatch(toggleIsFollow(false))
+    dispatch(toggleFollowingProgress(false, login))
+    
+  
 }
 export default usersReducer
