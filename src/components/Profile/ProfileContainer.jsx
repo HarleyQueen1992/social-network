@@ -71,8 +71,6 @@ class ProfileContainer extends React.Component {
       this.props.getUserProfile(userid);
     } else {
       this.props.getUserProfile(userid);
-
-      this.props.getFollow(userid);
     }
   }
 
@@ -157,7 +155,6 @@ export default compose(
     requestSubscriptions,
     requestSubscribers,
     follow,
-    getFollow,
     unfollow,
     toggleIsFollow,
     toggleIsFatching,

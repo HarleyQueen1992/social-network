@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./News.module.css";
 import Post from "./../Posts/MyPosts/Post/Post";
 import PostCreation from "../Posts/MyPosts/PostCreation/PostCreation";
 
 const News = (props) => {
+  useEffect(() => {
+    props.changeIndex(window.location.href);
+  }, [window.location.href]);
   return (
     <div className={s.newsListPage}>
       <PostCreation translate="0%" />

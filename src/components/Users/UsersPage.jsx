@@ -10,6 +10,9 @@ const Users = (props) => {
   let res = Icons(props.theme);
   const [focus, setFocus] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  useEffect(() => {
+    props.changeIndex(window.location.href);
+  }, [window.location.href]);
 
   return (
     <div className={s.usersListPage}>

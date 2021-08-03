@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import p from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
+  useEffect(() => {
+    props.changeIndex(window.location.href);
+  }, [window.location.href]);
   return (
     <div className={p.profileBlock}>
       <div className={p.profileInfo}>

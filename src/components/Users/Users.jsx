@@ -13,6 +13,9 @@ const Users = (props) => {
   let toggleFocus = () => {
     setIsFocus(!isFocus);
   };
+  useEffect(() => {
+    props.changeIndex(window.location.href);
+  }, [window.location.href]);
 
   let newUrl = window.location.href;
 

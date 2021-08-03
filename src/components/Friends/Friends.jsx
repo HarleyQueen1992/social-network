@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from "react"
-import userPhoto from "../../assets/images/user.png"
-import { NavLink } from "react-router-dom"
-import s from "./Friends.module.css"
-import Preloader from "../common/Preloader/Preloader"
-import { Icons } from "./../../utils/Icons/Icons"
+import React, { useEffect, useState } from "react";
+import userPhoto from "../../assets/images/user.png";
+import { NavLink } from "react-router-dom";
+import s from "./Friends.module.css";
+import Preloader from "../common/Preloader/Preloader";
+import { Icons } from "./../../utils/Icons/Icons";
 
-const Friends = props => {
-  let res = Icons(props.theme)
-  const [focus, setFocus] = useState(false)
-  const [isFocus, setIsFocus] = useState(false)
+const Friends = (props) => {
+  let res = Icons(props.theme);
+  const [focus, setFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
   let toggleFocus = () => {
-    setIsFocus(!isFocus)
-  }
+    setIsFocus(!isFocus);
+  };
 
-  let newUrl = window.location.href
+  useEffect(() => {
+    props.changeIndex(window.location.href);
+  }, [window.location.href]);
 
-  if (props.strUrlPrev != newUrl) {
-    props.changeIndex(newUrl)
-  }
-
-  let friends
-  let totalCount
+  let friends;
+  let totalCount;
 
   if (props.friendsSearch.length === 0) {
-    friends = props.friends
-    totalCount = props.totalFriendsCount
+    friends = props.friends;
+    totalCount = props.totalFriendsCount;
   } else {
-    friends = props.friendsSearch
-    totalCount = props.totalFriendsCountSearch
+    friends = props.friendsSearch;
+    totalCount = props.totalFriendsCountSearch;
   }
 
   useEffect(() => {
-    document.addEventListener("scroll", scrollHandler)
+    document.addEventListener("scroll", scrollHandler);
     return function () {
-      document.removeEventListener("scroll", scrollHandler)
-    }
-  })
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
 
-  const scrollHandler = e => {
+  const scrollHandler = (e) => {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) ===
@@ -46,12 +44,12 @@ const Friends = props => {
       friends.length < totalCount
     ) {
       if (props.friendsSearch.length === 0) {
-        props.toggleIsFatching(true)
+        props.toggleIsFatching(true);
       } else {
-        props.toggleIsFatchingSearch(true)
+        props.toggleIsFatchingSearch(true);
       }
     }
-  }
+  };
 
   return (
     <div className={s.friendsBlock}>
@@ -66,29 +64,29 @@ const Friends = props => {
           //   setFocus(!focus)
           // }}
         >
-          <form className={s.forma} action='' autocomplete='off'>
+          <form className={s.forma} action="" autocomplete="off">
             <input
               className={s.search}
               onChange={props.handleChange}
               value={props.value}
-              name='search'
-              type='text'
-              placeholder='Subscriptions search'
+              name="search"
+              type="text"
+              placeholder="Subscriptions search"
               onFocus={() => {
-                setFocus(!focus)
+                setFocus(!focus);
               }}
               onBlur={() => {
-                setFocus(!focus)
-                props.resetSearchUsers()
+                setFocus(!focus);
+                props.resetSearchUsers();
               }}
               // autocomplete='off'
             />
             <img
               src={res["search"]}
               className={s.searchSubmit}
-              alt='searchSubmit'
-              value='Rechercher'
-              type='submit'
+              alt="searchSubmit"
+              value="Rechercher"
+              type="submit"
             />
           </form>
         </div>
@@ -110,15 +108,15 @@ const Friends = props => {
       ) : friends.length === 0 ? (
         <div className={s.friendsBlockError}>
           <h2>You are not subscribed to anyone</h2>
-          <NavLink to='/users/'>Let's see who you can subscribe to</NavLink>
+          <NavLink to="/users/">Let's see who you can subscribe to</NavLink>
         </div>
       ) : (
         <div className={s.friends}>
-          {friends.map(f => (
+          {friends.map((f) => (
             <NavLink to={"/profile/" + f.id} key={f.id} className={s.friend}>
               <div className={s.photoUsers}>
                 <img
-                  alt='userphoto'
+                  alt="userphoto"
                   src={f.photo != null ? f.photo : userPhoto}
                   className={s.photo}
                 />
@@ -129,10 +127,10 @@ const Friends = props => {
                   <div className={s.viewPosts}>
                     <button className={s.viewPostsBtn}>View posts</button>
                   </div>
-                  <NavLink to='#' className={s.unfollow}>
+                  <NavLink to="#" className={s.unfollow}>
                     <button
                       onClick={() => {
-                        props.unfollow(f.id)
+                        props.unfollow(f.id);
                       }}
                       className={s.unfollowBtn}
                     >
@@ -146,6 +144,6 @@ const Friends = props => {
         </div>
       )}
     </div>
-  )
-}
-export default Friends
+  );
+};
+export default Friends;

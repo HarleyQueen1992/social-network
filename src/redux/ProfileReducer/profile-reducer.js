@@ -123,7 +123,7 @@ export const getUserProfile = userId => async dispatch => {
   
   let response = await profileAPI.getProfile()
   dispatch(setUserProfile(response))
-  dispatch(toggleIsFatching(false))
+  
   // dispatch(toggleIsFetching(false))
 }
 
@@ -159,10 +159,10 @@ export const updateStatus = status => async dispatch => {
   dispatch(setUserProfile(response))
 }
 
-export const getFollow = id => async dispatch => {
-  let response = await followAPI.getFollow(id)
-  dispatch(toggleIsFollow(response.data))
-}
+// export const getFollow = id => async dispatch => {
+//   let response = await followAPI.getFollow(id)
+//   dispatch(toggleIsFollow(response.data))
+// }
 export const requestSubscribers = () => async dispatch => {
   let response = await profileAPI.followers()
   dispatch(setSubscribers(response.items))
@@ -170,6 +170,7 @@ export const requestSubscribers = () => async dispatch => {
 export const requestSubscriptions = () => async dispatch => {
   let response = await profileAPI.following()
   dispatch(setSubscriptions(response.items))
+  dispatch(toggleIsFatching(false))
 }
 
 export default profileReducer
