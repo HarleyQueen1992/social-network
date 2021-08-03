@@ -405,7 +405,7 @@
 /*? Friends Block  */
 .subscriptionSubscribersBlock {
   display: grid;
-  grid-template-rows: 30px 1fr;
+  grid-template-rows: 40px 200px 40px;
   padding: 15px;
   height: auto;
   max-height: 380px;
@@ -453,6 +453,30 @@
   text-overflow: ellipsis;
   text-align: center;
   font-weight: bold;
+}
+.seeAllSubscriptionsBlock {
+  display: grid;
+}
+.seeAllSubscriptions {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Patua One", cursive;
+}
+.seeAllSubscribersBlock {
+  display: grid;
+}
+.seeAllSubscribers {
+  text-decoration: none;
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Patua One", cursive;
 }
 /*! Right column  */
 .rightColumn {

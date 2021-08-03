@@ -28,6 +28,8 @@ import {
   getStatus,
   getSubscribers,
   getSubscriptions,
+  getTotalSubscriptionsItems,
+  getTotalSubscribersItems,
 } from "../../redux/ProfileReducer/profile-selectors";
 import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer";
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer";
@@ -120,6 +122,10 @@ class ProfileContainer extends React.Component {
             usersListFollowing={this.props.usersListFollowing}
             subscribers={this.props.subscribers}
             subscriptions={this.props.subscriptions}
+            requestSubscribers={this.props.requestSubscribers}
+            requestSubscriptions={this.props.requestSubscriptions}
+            totalSubscriptionsItems={this.props.totalSubscriptionsItems}
+            totalSubscribersItems={this.props.totalSubscribersItems}
           />
         )}
       </>
@@ -144,6 +150,8 @@ const mapStateToProps = (state) => ({
   isMenuActive: getMenuActive(state),
   subscribers: getSubscribers(state),
   subscriptions: getSubscriptions(state),
+  totalSubscriptionsItems: getTotalSubscriptionsItems(state),
+  totalSubscribersItems: getTotalSubscribersItems(state),
   // usersListFollowing: getUsersListFollowing(state),
 });
 

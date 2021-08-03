@@ -239,7 +239,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.subscriptionSubscribersBlock}>
               <div className={s.subscriptionSubscribersTitle}>
-                Friends <span>{props.subscriptions.length}</span>
+                Subscriptions <span>{props.totalSubscriptionsItems}</span>
               </div>
               <div className={s.subscriptionSubscribersList}>
                 {props.subscriptions.map((f) => (
@@ -259,10 +259,15 @@ const ProfileInfo = (props) => {
                   </NavLink>
                 ))}
               </div>
+              <div className={s.seeAllSubscriptionsBlock}>
+                <NavLink to="/friends" className={s.seeAllSubscriptions}>
+                  See all subscriptions
+                </NavLink>
+              </div>
             </div>
             <div className={s.subscriptionSubscribersBlock}>
               <div className={s.subscriptionSubscribersTitle}>
-                Subscribers <span>{props.friends.length}</span>
+                Subscribers <span>{props.totalSubscribersItems}</span>
               </div>
               <div className={s.subscriptionSubscribersList}>
                 {props.subscribers &&
@@ -282,6 +287,11 @@ const ProfileInfo = (props) => {
                       </div>
                     </NavLink>
                   ))}
+              </div>
+              <div className={s.seeAllSubscribersBlock}>
+                <NavLink to="#" className={s.seeAllSubscribers}>
+                  See all subscribers
+                </NavLink>
               </div>
             </div>
           </div>

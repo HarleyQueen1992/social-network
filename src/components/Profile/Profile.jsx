@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { requestSubscriptions } from "../../redux/ProfileReducer/profile-reducer";
 import p from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
@@ -6,6 +7,7 @@ const Profile = (props) => {
   useEffect(() => {
     props.changeIndex(window.location.href);
   }, [window.location.href]);
+
   return (
     <div className={p.profileBlock}>
       <div className={p.profileInfo}>
@@ -33,6 +35,8 @@ const Profile = (props) => {
           usersListFollowing={props.usersListFollowing}
           subscribers={props.subscribers}
           subscriptions={props.subscriptions}
+          totalSubscriptionsItems={props.totalSubscriptionsItems}
+          totalSubscribersItems={props.totalSubscribersItems}
         />
       </div>
     </div>

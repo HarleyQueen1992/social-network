@@ -10,13 +10,24 @@ const TOGGLE_IS_FOLLOW = "app/profile-reducer/TOGGLE_IS_FOLLOW"
 const SET_SUBSCRIBERS = 'app/profile-reducer/SET_SUBSCRIBERS'
 const SET_SUBSCRIPTIONS = 'app/profile-reducer/SET_SUBSCRIPTIONS'
 const SAVING_IN_PHOTO_PROGRESS = "app/profile-reducer/SAVING_IN_PHOTO_PROGRESS"
+const SET_TOTAL_SUBSCRIBERS_ITEMS = "app/profile-reducer/SET_TOTAL_SUBSCRIBERS_ITEMS"
+const SET_TOTAL_SUBSCRIPTIONS_ITEMS = "app/profile-reducer/SET_TOTAL_SUBSCRIPTIONS_ITEMS"
+const SET_PAGE_SUBSCRIBERS = 'app/profile-reducer/SET_PAGE_SUBSCRIBERS'
+const SET_PAGE_SUBSCRIPTIONS = 'app/profile-reducer/SET_PAGE_SUBSCRIPTIONS'
+ 
 
 let initialState = {
   isFatching: true,
   isSavingPhoto: false,
   profile: null,
+  pageSize: 8,
+
   subscriptions: null,
+  totalSubscriptionsItems: null,
+
   subscribers: null,
+  totalSubscribersItems: null,
+  
   isFollow: null,
 }
 
@@ -26,6 +37,26 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.profile,
+      }
+    case SET_TOTAL_SUBSCRIBERS_ITEMS:
+      return {
+        ...state,
+        totalSubscribersItems: action.totalItems,
+      }
+    case SET_TOTAL_SUBSCRIPTIONS_ITEMS:
+      return {
+        ...state,
+        totalSubscriptionsItems: action.totalItems,
+      }
+    case SET_PAGE_SUBSCRIBERS:
+      return {
+        ...state,
+        pageSubscribers: action.pageNumber,
+      }
+      case SET_PAGE_SUBSCRIPTIONS:
+      return {
+        ...state,
+        pageSubscriptions: action.pageNumber,
       }
     case SAVE_PHOTO_SUCCESS:
       return {
@@ -75,6 +106,20 @@ export const toggleIsFatching = isFatching => ({
 })
 
 export const toggleIsFollow = isFollow => ({ type: TOGGLE_IS_FOLLOW, isFollow })
+
+
+
+
+export const setTotalSubscribersItems = totalItems => ({ type: SET_TOTAL_SUBSCRIBERS_ITEMS, totalItems })
+
+export const setTotalSubscriptionsItems = totalItems => ({ type: SET_TOTAL_SUBSCRIPTIONS_ITEMS, totalItems })
+
+export const setPageSubscribers = pageNumber => ({ type: SET_PAGE_SUBSCRIBERS, pageNumber })
+
+export const setPageSubscriptions = pageNumber => ({ type: SET_PAGE_SUBSCRIPTIONS, pageNumber })
+
+
+
 
 export const isSavePhoto = isSaving => ({
   type: SAVING_IN_PHOTO_PROGRESS,
@@ -164,11 +209,13 @@ export const updateStatus = status => async dispatch => {
 //   dispatch(toggleIsFollow(response.data))
 // }
 export const requestSubscribers = () => async dispatch => {
-  let response = await profileAPI.followers()
+  let response = await profileAPI.followers(initialState.pageSize)
+  dispatch(setTotalSubscribersItems(response.totalItems))
   dispatch(setSubscribers(response.items))
 }
 export const requestSubscriptions = () => async dispatch => {
-  let response = await profileAPI.following()
+  let response = await profileAPI.following(initialState.pageSize)
+  dispatch(setTotalSubscriptionsItems(response.totalItems))
   dispatch(setSubscriptions(response.items))
   dispatch(toggleIsFatching(false))
 }

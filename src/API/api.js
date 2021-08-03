@@ -78,15 +78,15 @@ export const profileAPI = {
       return response.data
     })
   },
-  following() {
-    return instance.get(`/following/`).then(response => {
+  following(limit) {
+    return instance.get(`/following/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
-  followers() {
-    return instance.get(`/followers/`).then(response => {
+  followers(limit) {
+    return instance.get(`/followers/?limit=${limit}`).then(response => {
       
       return response.data
     

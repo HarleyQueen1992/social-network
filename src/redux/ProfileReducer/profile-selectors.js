@@ -28,3 +28,9 @@ export const getSubscriptions = state => {
 export const getSubscribers = state => {
   return state.profilePage.subscribers
 }
+export const getTotalSubscribersItems = state => {
+  return state.profilePage.totalSubscribersItems
+}
+export const getTotalSubscriptionsItems = state => {
+  return state.profilePage.totalSubscriptionsItems
+}
