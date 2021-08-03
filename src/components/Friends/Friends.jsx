@@ -117,12 +117,12 @@ const Friends = (props) => {
               <div className={s.photoUsers}>
                 <img
                   alt="userphoto"
-                  src={f.photo != null ? f.photo : userPhoto}
+                  src={f.avatar != "" ? f.avatar : userPhoto}
                   className={s.photo}
                 />
               </div>
               <div className={s.rightPart}>
-                <span className={s.name}>{f.name}</span>
+                <span className={s.name}>{f.login}</span>
                 <span className={s.buttonsBlock}>
                   <div className={s.viewPosts}>
                     <button className={s.viewPostsBtn}>View posts</button>

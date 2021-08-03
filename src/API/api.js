@@ -46,7 +46,7 @@ export const usersAPI = {
   //   return search(`users/?term=${term}&page=${currentPage}`)
   // },
   searchFriends(term, currentPage) {
-    return search(`users/?term=${term}&page=${currentPage}&friend=true`)
+    return search(`following/?q=${term}&page=${currentPage}`)
   },
 }
 
@@ -87,9 +87,7 @@ export const profileAPI = {
   },
   followers(limit) {
     return instance.get(`/followers/?limit=${limit}`).then(response => {
-      
       return response.data
-    
     }).catch(response => {
       return response.data
     })
@@ -161,7 +159,7 @@ export const profileAPI = {
 export const friendsAPI = {
   getFriends(currentPage = 1, pageSize = 6) {
     return instance.get(
-      `users/?friend=true&page=${currentPage}&count=${pageSize}`
+      `following/?page=${currentPage}&limit=${pageSize}`
     )
     // .then(response => {
     //     return response.data;
