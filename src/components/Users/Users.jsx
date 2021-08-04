@@ -102,7 +102,7 @@ const Users = (props) => {
           ) : (
             users.map((u) => (
               <NavLink
-                to={"/profile/" + u.id}
+                to={"/profile/" + u.login}
                 className={s.usersListItem}
                 key={u.id}
               >
