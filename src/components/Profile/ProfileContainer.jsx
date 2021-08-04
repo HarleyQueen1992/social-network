@@ -7,11 +7,12 @@ import {
   getProfileData,
   toggleIsFatching,
   setUserProfile,
-  toggleIsFollow,
   updateStatus,
   getFollow,
   setProfileBanner,
   getUsersProfileData,
+  subscribe,
+  unsubscribe,
 } from "../../redux/ProfileReducer/profile-reducer";
 import {
   deletePost,
@@ -21,7 +22,7 @@ import {
 } from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
-  getIsFollow,
+  getIsFollowed,
   getProfile,
   getIsSavingPhoto,
   getStatus,
@@ -74,15 +75,21 @@ class ProfileContainer extends React.Component {
       this.props.getUsersProfileData(login);
     }
   }
-
+  unSubscribe = (login) => {
+    this.props.unsubscribe(login);
+  };
+  Subscribe = (login) => {
+    this.props.subscribe(login);
+  };
   componentDidMount() {
     this.refreshProfile();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.match.params.userid !== prevProps.match.params.userid) {
+    if (this.props.match.params.login !== prevProps.match.params.login) {
       this.refreshProfile();
     }
   }
+
   render() {
     return (
       <>
@@ -92,8 +99,8 @@ class ProfileContainer extends React.Component {
           <Profile
             {...this.props}
             isOwner={
-              !this.props.match.params.userid ||
-              this.props.match.params.userid == this.props.profileInfo.userId
+              !this.props.match.params.login ||
+              this.props.match.params.login == this.props.profileInfo.login
             }
             profile={this.props.profile}
             status={this.props.status}
@@ -101,7 +108,7 @@ class ProfileContainer extends React.Component {
             savePhoto={this.props.savePhoto}
             follow={this.props.follow}
             unfollow={this.props.unfollow}
-            isFollow={this.props.isFollow}
+            isFollowed={this.props.isFollowed}
             isSavingPhoto={this.props.isSavingPhoto}
             friends={this.props.friends}
             isPostCreation={this.props.isPostCreation}
@@ -121,6 +128,8 @@ class ProfileContainer extends React.Component {
             subscriptions={this.props.subscriptions}
             totalSubscriptionsItems={this.props.totalSubscriptionsItems}
             totalSubscribersItems={this.props.totalSubscribersItems}
+            unSubscribe={this.unSubscribe}
+            Subscribe={this.Subscribe}
           />
         )}
       </>
@@ -134,7 +143,7 @@ const mapStateToProps = (state) => ({
   status: getStatus(state),
   profileInfo: getProfileInfo(state),
   userId: getUserId(state),
-  isFollow: getIsFollow(state),
+  isFollowed: getIsFollowed(state),
   isSavingPhoto: getIsSavingPhoto(state),
   isPostCreation: getIsPostCreation(state),
   lastPost: getLastPost(state),
@@ -156,7 +165,6 @@ export default compose(
     deletePost,
     follow,
     unfollow,
-    toggleIsFollow,
     toggleIsFatching,
     setUserProfile,
     getIsSavingPhoto,
@@ -170,6 +178,9 @@ export default compose(
     getUsersProfileData,
     updateStatus,
     getProfileData,
+    subscribe,
+    unsubscribe,
+
     // getUsersListFollowing,
   }),
   withRouter,

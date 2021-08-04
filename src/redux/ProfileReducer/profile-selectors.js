@@ -13,8 +13,8 @@ export const getPosts = state => {
 export const getIsFatching = state => {
   return state.profilePage.isFatching
 }
-export const getIsFollow = state => {
-  return state.profilePage.isFollow
+export const getIsFollowed = state => {
+  return state.profilePage.isFollowed
 }
 export const getIsSavingPhoto = state => {
   return state.profilePage.isSavingPhoto

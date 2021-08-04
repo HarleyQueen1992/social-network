@@ -15,7 +15,7 @@ const Profile = (props) => {
           friends={props.friends}
           isSavingPhoto={props.isSavingPhoto}
           saveProfileInfo={props.saveProfileInfo}
-          isFollow={props.isFollow}
+          isFollowed={props.isFollowed}
           unfollow={props.unfollow}
           follow={props.follow}
           savePhoto={props.savePhoto}
@@ -37,6 +37,8 @@ const Profile = (props) => {
           subscriptions={props.subscriptions}
           totalSubscriptionsItems={props.totalSubscriptionsItems}
           totalSubscribersItems={props.totalSubscribersItems}
+          unSubscribe={props.unSubscribe}
+          Subscribe={props.Subscribe}
         />
       </div>
     </div>

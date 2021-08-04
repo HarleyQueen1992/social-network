@@ -6,7 +6,7 @@ const SET_STATUS = "app/profile-reducer/SET_STATUS"
 const SAVE_PHOTO_SUCCESS = "app/profile-reducer/SAVE_PHOTO_SUCCESS"
 const UPDATE_PROFILE_BANNER = "app/profile-reducer/UPDATE_PROFILE_BANNER"
 const TOGGLE_IS_FATCHING = "app/profile-reducer/TOGGLE_IS_FATCHING"
-const TOGGLE_IS_FOLLOW = "app/profile-reducer/TOGGLE_IS_FOLLOW"
+const TOGGLE_IS_FOLLOWED = "app/profile-reducer/TOGGLE_IS_FOLLOWED"
 const SET_SUBSCRIBERS = 'app/profile-reducer/SET_SUBSCRIBERS'
 const SET_SUBSCRIPTIONS = 'app/profile-reducer/SET_SUBSCRIPTIONS'
 const SAVING_IN_PHOTO_PROGRESS = "app/profile-reducer/SAVING_IN_PHOTO_PROGRESS"
@@ -28,7 +28,7 @@ let initialState = {
   subscribers: null,
   totalSubscribersItems: null,
   
-  isFollow: null,
+  isFollowed: null,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -73,10 +73,10 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         isFatching: action.isFatching,
       }
-    case TOGGLE_IS_FOLLOW:
+    case TOGGLE_IS_FOLLOWED:
       return {
         ...state,
-        isFollow: action.isFollow,
+        isFollowed: action.isFollowed,
       }
     case SET_SUBSCRIBERS:
       return {
@@ -105,7 +105,7 @@ export const toggleIsFatching = isFatching => ({
   isFatching,
 })
 
-export const toggleIsFollow = isFollow => ({ type: TOGGLE_IS_FOLLOW, isFollow })
+export const toggleIsFollowed = isFollowed => ({ type: TOGGLE_IS_FOLLOWED, isFollowed })
 
 
 
@@ -191,6 +191,9 @@ export const getUsersProfileData = login => async dispatch => {
   let responseFollowing = await profileAPI.usersFollowing(login, initialState.pageSize)
   dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
   dispatch(setSubscriptions(responseFollowing.items))
+  
+  let responseIsFollowed = await followAPI.followed(login)
+  dispatch(toggleIsFollowed(responseIsFollowed.isFollowed))
   dispatch(toggleIsFatching(false))
 
 }
@@ -226,7 +229,19 @@ export const updateStatus = status => async dispatch => {
   let response = await profileAPI.updateStatus(status)
   dispatch(setUserProfile(response))
 }
-
+export const subscribe = login => async dispatch => {
+  
+  let response = await followAPI.subscribe(login)
+  dispatch(toggleIsFollowed(true))
+  
+  
+}
+export const unsubscribe = login => async dispatch => {
+ 
+  let response = await followAPI.unsubscribe(login)
+  dispatch(toggleIsFollowed(false))
+  
+}
 // export const getFollow = id => async dispatch => {
 //   let response = await followAPI.getFollow(id)
 //   dispatch(toggleIsFollow(response.data))

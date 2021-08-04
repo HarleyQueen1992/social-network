@@ -17,6 +17,8 @@ import FilterWhite from "./../../../assets/images/filterWhite.png";
 import List from "./../../../assets/images/menuBlueActive.png";
 import PostCreation from "../../Posts/MyPosts/PostCreation/PostCreation";
 import EditProfile from "./../EditProfile/EditProfile";
+import ProfileBannerDefault from "./../../../assets/images/wp2655395.jpg";
+
 let month = {
   "01": "January",
   "02": "February",
@@ -126,17 +128,28 @@ const ProfileInfo = (props) => {
               id="banner"
               className={s.inputFile}
             />
-            <label className={s.editBannerBlock} htmlFor="banner">
-              <div className={s.editPhotoCoverBlock}>
-                <img
-                  className={s.editPhotoCoverImg}
-                  src={CameraBlack}
-                  alt="camera"
-                />
-                <span className={s.editPhotoCover}>Edit photo cover</span>
-              </div>
-            </label>
-            <img className={s.cover} src={props.profile.banner} alt="Cover" />
+            {props.isOwner && (
+              <label className={s.editBannerBlock} htmlFor="banner">
+                <div className={s.editPhotoCoverBlock}>
+                  <img
+                    className={s.editPhotoCoverImg}
+                    src={CameraBlack}
+                    alt="camera"
+                  />
+                  <span className={s.editPhotoCover}>Edit photo cover</span>
+                </div>
+              </label>
+            )}
+
+            <img
+              className={s.cover}
+              src={
+                props.profile.banner == ""
+                  ? ProfileBannerDefault
+                  : props.profile.banner
+              }
+              alt="Cover"
+            />
           </div>
 
           <div className={s.avatarBlock}>
@@ -145,15 +158,17 @@ const ProfileInfo = (props) => {
               type="file"
               id="input__file"
             />
-            <label className={s.changeLabel} htmlFor="input__file">
-              <div className={s.editAvatarBlock}>
-                <img
-                  className={s.editAvatarCamera}
-                  src={CameraWhite}
-                  alt="camera"
-                />
-              </div>
-            </label>
+            {props.isOwner && (
+              <label className={s.changeLabel} htmlFor="input__file">
+                <div className={s.editAvatarBlock}>
+                  <img
+                    className={s.editAvatarCamera}
+                    src={CameraWhite}
+                    alt="camera"
+                  />
+                </div>
+              </label>
+            )}
             <div className={s.avatarSubblock}>
               <img className={s.avatar} src={srcImg} alt="avatar" />
             </div>
@@ -161,31 +176,37 @@ const ProfileInfo = (props) => {
         </div>
         <div className={s.profileNameAndStatus}>
           <div className={s.profileName}>{props.profile.fullname}</div>
-          {editStatus ? (
-            <input
-              className={s.editStatus}
-              onChange={handleChangeStatus}
-              value={valueStatus}
-              placeholder="Set status"
-              maxLength="70"
-            ></input>
-          ) : props.profile.status == "" ? (
-            <div
-              onClick={() => {
-                setEditStatus(true);
-              }}
-              className={s.setStatus}
-            >
-              Set status
-            </div>
+          {props.isOwner ? (
+            editStatus ? (
+              <input
+                className={s.editStatus}
+                onChange={handleChangeStatus}
+                value={valueStatus}
+                placeholder="Set status"
+                maxLength="70"
+              ></input>
+            ) : props.profile.status == "" ? (
+              <div
+                onClick={() => {
+                  setEditStatus(true);
+                }}
+                className={s.setStatus}
+              >
+                Set status
+              </div>
+            ) : (
+              <div
+                onDoubleClick={() => {
+                  setEditStatus(true);
+                }}
+                className={s.profileStatus}
+              >
+                {valueStatus}
+              </div>
+            )
           ) : (
-            <div
-              onDoubleClick={() => {
-                setEditStatus(true);
-              }}
-              className={s.profileStatus}
-            >
-              {valueStatus}
+            <div className={s.profileStatus}>
+              {<props className="profile status"></props>}
             </div>
           )}
         </div>
@@ -193,14 +214,34 @@ const ProfileInfo = (props) => {
           <div className={s.publicationsBlock}>
             <div className={s.publications}>Publications</div>
           </div>
-          <div onClick={openPoupup} className={s.editProfileBlock}>
-            <img
-              className={s.editProfileImg}
-              src={EditWhite}
-              alt="edit profile"
-            />
-            <div className={s.editProfile}>Edit profile</div>
-          </div>
+          {props.isOwner ? (
+            <div onClick={openPoupup} className={s.editProfileBlock}>
+              <img
+                className={s.editProfileImg}
+                src={EditWhite}
+                alt="edit profile"
+              />
+              <div className={s.editProfile}>Edit profile</div>
+            </div>
+          ) : (
+            <div className={s.subscribeUnsubscribeBlock}>
+              {props.isFollowed ? (
+                <div
+                  className={s.unsubscribeBlock}
+                  onClick={() => props.unSubscribe(props.profile.login)}
+                >
+                  <span className={s.unsubscribe}>Unsubscribe</span>
+                </div>
+              ) : (
+                <div
+                  className={s.subscribeBlock}
+                  onClick={() => props.Subscribe(props.profile.login)}
+                >
+                  <span className={s.subscribe}>Subscribe</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
       <div className={s.profileBody}>
@@ -296,8 +337,12 @@ const ProfileInfo = (props) => {
             </div>
           </div>
         </div>
-        <div className={s.rightColumn}>
-          <PostCreation translate="-100%" />
+        <div
+          className={
+            s.rightColumn + " " + (!props.isOwner ? s.rightColumnNoOwner : "")
+          }
+        >
+          {props.isOwner && <PostCreation translate="-100%" />}
           <div className={s.publicationsBlockAll}>
             <div className={s.publicationsTitleAndFilter}>
               <span className={s.publicationsTitle}>Publications</span>

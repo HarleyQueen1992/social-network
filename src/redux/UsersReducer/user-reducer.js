@@ -200,7 +200,6 @@ export const follow = login => async dispatch => {
     let response = followAPI.subscribe(login)
     dispatch(followSuccess(login))
     
-    dispatch(toggleIsFollow(true))
     dispatch(toggleFollowingProgress(false, login))
     
   
@@ -219,7 +218,6 @@ export const unfollow = login => async dispatch => {
     let response = await followAPI.unsubscribe(login)
     dispatch(unfollowSuccess(login))
     dispatch(deleteFriend(login))
-    dispatch(toggleIsFollow(false))
     dispatch(toggleFollowingProgress(false, login))
     
   

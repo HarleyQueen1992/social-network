@@ -206,15 +206,15 @@ export const friendsAPI = {
 //         })
 // }
 export const followAPI = {
-  subscription(login) {
-    return instance.get(`/following/${login}/`).then(response => {
-      return response.data
+  unsubscribe(login) {
+    return instance.delete(`/following/${login}/`).then(response => {
+      return response
     }).catch(response => {
-      return response.data
+      return response
     })
   },
-  unsubscribe(login) {
-    return instance.delete(`following/${login}/`).then(response => {
+  followed(login) {
+    return instance.get(`following/${login}/`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -222,9 +222,9 @@ export const followAPI = {
   },
   subscribe(login) {
     return instance.put(`following/${login}/`).then(response => {
-      return response.data
+      return response
     }).catch(response => {
-      return response.data
+      return response
     })
   },
 }

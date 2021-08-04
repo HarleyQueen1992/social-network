@@ -200,6 +200,7 @@
 }
 .profileStatus {
   justify-self: center;
+  min-height: 18px;
   color: rgba(255, 255, 255, 0.623);
   margin-bottom: 10px;
   word-break: break-all;
@@ -291,6 +292,50 @@
   justify-self: start;
   font-weight: bold;
   color: white;
+}
+.subscribeUnsubscribeBlock {
+  display: grid;
+}
+.unsubscribeBlock {
+  justify-self: end;
+  width: 150px;
+  align-self: center;
+  height: 60%;
+  display: grid;
+  cursor: pointer;
+
+  transition: all 0.2s;
+  border-radius: 5px;
+  background-color: #c2c2c2;
+}
+.unsubscribeBlock:hover {
+  background-color: #aaa8a8;
+}
+.unsubscribe {
+  align-self: center;
+  color: black;
+  font-weight: bold;
+  justify-self: center;
+}
+.subscribeBlock {
+  justify-self: end;
+  width: 150px;
+  align-self: center;
+  height: 60%;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 5px;
+  background-color: #2748ad;
+}
+.subscribeBlock:hover {
+  background-color: #4e67b1;
+}
+.subscribe {
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  justify-self: center;
 }
 @media (max-width: 900px) {
   .profileDescription {
@@ -484,6 +529,9 @@
   margin: 8px;
   grid-row-gap: 16px;
   grid-template-rows: 60px 100px 1fr;
+}
+.rightColumnNoOwner {
+  grid-template-rows: 100px 1fr;
 }
 /*? publications block */
 .publicationsBlockAll {
