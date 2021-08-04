@@ -99,6 +99,11 @@ export const loginIn = (email, password, rememberMe) => async dispatch => {
     dispatch(stopSubmit("login", { _error: message }))
   }
 }
+export const register = (email, login, password1, password2, aboutMe, birthday, location) => async dispatch => {
+  // debugger
+  let response = authAPI.register(email, login, password1, password2, aboutMe, birthday, location)
+  
+}
 
 export const logOut = () => async dispatch => {
   let data = await authAPI.logOut()

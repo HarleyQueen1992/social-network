@@ -91,8 +91,9 @@ class App extends React.Component {
 
   changeIndex = (velue) => {
     let strUpdate = velue.substr(38);
-    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
+    strUpdate = strUpdate.split("/")[0];
 
+    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
     for (let key in urlIndex) {
       if (urlIndex[key] == strUpdate) {
         i = key;
@@ -213,7 +214,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path="/profile/:userid?"
+                    path="/profile/:login?"
                     render={() => (
                       <ProfileContainer
                         changeIndex={this.changeIndex}

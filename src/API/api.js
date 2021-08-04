@@ -65,14 +65,28 @@ export const authAPI = {
     })
     .catch(response => response.data)
   },
+  register(email, login, password1, password2, aboutMe, birthday, location) {
+    return instance.post(`/auth/`, {email, login, password1, password2, aboutMe, birthday, location}).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
   logOut() {
     return instance.delete(`auth/`)
   },
 }
 
 export const profileAPI = {
-  getProfile(id) {
+  getProfile() {
     return instance.get(`profile/`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  getUsersProfile(login) {
+    return instance.get(`/users/${login}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -92,6 +106,21 @@ export const profileAPI = {
       return response.data
     })
   },
+  usersFollowing(login, limit) {
+    return instance.get(`/users/${login}/following?limit=${limit}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+  usersFollowers(login, limit) {
+    return instance.get(`/users/${login}/followers?limit=${limit}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+
   saveProfileInfo(profileInfo) {
     return instance.put(`/profile/`, profileInfo)
   },

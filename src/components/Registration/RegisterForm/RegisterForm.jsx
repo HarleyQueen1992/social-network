@@ -1,16 +1,14 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
+import React from "react";
+import { Field, reduxForm } from "redux-form";
 import {
   maxLengthCreator,
   required,
-} from "../../../utils/validators/validators"
-import s from "./../../common/FromsControls/FormContainer.module.css"
-import l from "./RegisterForm.module.css"
-import { NavLink } from "react-router-dom"
+} from "../../../utils/validators/validators";
+import s from "./../../common/FromsControls/FormContainer.module.css";
+import l from "./RegisterForm.module.css";
+import { NavLink } from "react-router-dom";
 
-let maxLength = maxLengthCreator(25)
-
-const RegisterForm = props => {
+const RegisterForm = (props) => {
   // let history = useHistory()
   // if (props.isAuth) {
   //   history.push("/profile")
@@ -29,8 +27,8 @@ const RegisterForm = props => {
             className={l.inputField}
             placeholder={"Email"}
             name={"email"}
-            component='input'
-            validate={[required, maxLength]}
+            component="input"
+            validate={[required]}
           />
         </div>
         <div className={l.emailField}>
@@ -38,28 +36,28 @@ const RegisterForm = props => {
             className={l.inputField}
             placeholder={"login"}
             name={"login"}
-            component='input'
-            validate={[required, maxLength]}
+            component="input"
+            validate={[required]}
           />
         </div>{" "}
         <div className={l.passwordField}>
           <Field
             className={l.inputField}
             placeholder={"Password"}
-            name={"password"}
-            component='input'
-            type='password'
-            validate={[required, maxLength]}
+            name={"password1"}
+            component="input"
+            type="password"
+            validate={[required]}
           />
         </div>
         <div className={l.passwordField}>
           <Field
             className={l.inputField}
             placeholder={"Repeat password"}
-            name={"password"}
-            component='input'
-            type='password'
-            validate={[required, maxLength]}
+            name={"password2"}
+            component="input"
+            type="password"
+            validate={[required]}
           />
         </div>
         <div className={l.emailField}>
@@ -67,8 +65,28 @@ const RegisterForm = props => {
             className={l.textareaField}
             placeholder={"AboutMe"}
             name={"aboutMe"}
-            component='textarea'
-            validate={[required, maxLength]}
+            component="textarea"
+            validate={[required]}
+          />
+        </div>
+        <div className={l.emailField}>
+          <Field
+            className={l.inputField}
+            placeholder={"date"}
+            name={"birthday"}
+            component="input"
+            type="date"
+            validate={[required]}
+          />
+        </div>
+        <div className={l.emailField}>
+          <Field
+            className={l.inputField}
+            placeholder={"location"}
+            name={"location"}
+            component="input"
+            type="text"
+            validate={[required]}
           />
         </div>
       </div>
@@ -84,9 +102,9 @@ const RegisterForm = props => {
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 let RegisterReduxForm = reduxForm({
   form: "register",
-})(RegisterForm)
-export default RegisterReduxForm
+})(RegisterForm);
+export default RegisterReduxForm;

@@ -162,14 +162,37 @@ export const updateProfileBanner = banner => {
 
 // Thunk Creator
 
-export const getUserProfile = userId => async dispatch => {
+export const getProfileData = login => async dispatch => {
   dispatch(toggleIsFatching(true))
   // dispatch(toggleIsFetching(true))
-  
-  let response = await profileAPI.getProfile()
+  let response = await profileAPI.getProfile(login)
   dispatch(setUserProfile(response))
+
+  let responseFollowers = await profileAPI.followers(initialState.pageSize)
+  dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
+  dispatch(setSubscribers(responseFollowers.items))
+
+  let responseFollowing = await profileAPI.following(initialState.pageSize)
+  dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
+  dispatch(setSubscriptions(responseFollowing.items))
+  dispatch(toggleIsFatching(false))
   
   // dispatch(toggleIsFetching(false))
+}
+export const getUsersProfileData = login => async dispatch => {
+  dispatch(toggleIsFatching(true))
+  let response = await profileAPI.getUsersProfile(login)
+  dispatch(setUserProfile(response))
+
+  let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
+  dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
+  dispatch(setSubscribers(responseFollowers.items))
+
+  let responseFollowing = await profileAPI.usersFollowing(login, initialState.pageSize)
+  dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
+  dispatch(setSubscriptions(responseFollowing.items))
+  dispatch(toggleIsFatching(false))
+
 }
 
 export const setProfileBanner = file => async dispatch => {
@@ -208,16 +231,16 @@ export const updateStatus = status => async dispatch => {
 //   let response = await followAPI.getFollow(id)
 //   dispatch(toggleIsFollow(response.data))
 // }
-export const requestSubscribers = () => async dispatch => {
-  let response = await profileAPI.followers(initialState.pageSize)
-  dispatch(setTotalSubscribersItems(response.totalItems))
-  dispatch(setSubscribers(response.items))
-}
-export const requestSubscriptions = () => async dispatch => {
-  let response = await profileAPI.following(initialState.pageSize)
-  dispatch(setTotalSubscriptionsItems(response.totalItems))
-  dispatch(setSubscriptions(response.items))
-  dispatch(toggleIsFatching(false))
-}
+// export const requestSubscribers = () => async dispatch => {
+//   let response = await profileAPI.followers(initialState.pageSize)
+//   dispatch(setTotalSubscribersItems(response.totalItems))
+//   dispatch(setSubscribers(response.items))
+// }
+// export const requestSubscriptions = () => async dispatch => {
+//   let response = await profileAPI.following(initialState.pageSize)
+//   dispatch(setTotalSubscriptionsItems(response.totalItems))
+//   dispatch(setSubscriptions(response.items))
+//   dispatch(toggleIsFatching(false))
+// }
 
 export default profileReducer

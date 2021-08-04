@@ -4,15 +4,14 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 import {
-  getUserProfile,
+  getProfileData,
   toggleIsFatching,
   setUserProfile,
   toggleIsFollow,
   updateStatus,
   getFollow,
   setProfileBanner,
-  requestSubscriptions,
-  requestSubscribers,
+  getUsersProfileData,
 } from "../../redux/ProfileReducer/profile-reducer";
 import {
   deletePost,
@@ -64,22 +63,20 @@ import s from "./Profile.module.css";
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
-    let userid = this.props.match.params.userid;
+    let login = this.props.match.params.login;
 
     // this.props.getUsersListFollowing(this.props.profileInfo.login);
 
-    if (!userid || userid == this.props.userId) {
-      userid = this.props.userId;
-      this.props.getUserProfile(userid);
+    if (!login || login == this.props.profileInfo.login) {
+      login = this.props.profileInfo.login;
+      this.props.getProfileData(login);
     } else {
-      this.props.getUserProfile(userid);
+      this.props.getUsersProfileData(login);
     }
   }
 
   componentDidMount() {
     this.refreshProfile();
-    this.props.requestSubscribers();
-    this.props.requestSubscriptions();
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.userid !== prevProps.match.params.userid) {
@@ -122,8 +119,6 @@ class ProfileContainer extends React.Component {
             usersListFollowing={this.props.usersListFollowing}
             subscribers={this.props.subscribers}
             subscriptions={this.props.subscriptions}
-            requestSubscribers={this.props.requestSubscribers}
-            requestSubscriptions={this.props.requestSubscriptions}
             totalSubscriptionsItems={this.props.totalSubscriptionsItems}
             totalSubscribersItems={this.props.totalSubscribersItems}
           />
@@ -157,11 +152,8 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   connect(mapStateToProps, {
-    getUserProfile,
     updateStatus,
     deletePost,
-    requestSubscriptions,
-    requestSubscribers,
     follow,
     unfollow,
     toggleIsFollow,
@@ -175,7 +167,9 @@ export default compose(
     requestAllFriends,
     setEditMode,
     setProfileBanner,
+    getUsersProfileData,
     updateStatus,
+    getProfileData,
     // getUsersListFollowing,
   }),
   withRouter,
