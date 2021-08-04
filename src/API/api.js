@@ -186,7 +186,7 @@ export const profileAPI = {
   // }
 }
 export const friendsAPI = {
-  getFriends(currentPage = 1, pageSize = 6) {
+  getFriends(currentPage, pageSize) {
     return instance.get(
       `following/?page=${currentPage}&limit=${pageSize}`
     )

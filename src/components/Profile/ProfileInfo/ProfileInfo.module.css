@@ -450,12 +450,14 @@
 /*? Friends Block  */
 .subscriptionSubscribersBlock {
   display: grid;
-  grid-template-rows: 40px 200px 40px;
+  grid-template-rows: 40px 1fr 40px;
   padding: 15px;
   height: auto;
-  max-height: 380px;
   border-radius: 10px;
   background-color: var(--navBarBac);
+}
+.subscriptionSubscribersBlockEmpty {
+  grid-template-rows: 40px 40px;
 }
 .subscriptionSubscribersTitle {
   color: var(--fontColor);
@@ -471,6 +473,9 @@
   grid-column-gap: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.subscriptionSubscribersListNone {
+  display: none;
 }
 @media (max-width: 380px) {
   .subscriptionSubscribersList {

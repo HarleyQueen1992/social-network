@@ -278,11 +278,27 @@ const ProfileInfo = (props) => {
                 </div>
               </div>
             </div>
-            <div className={s.subscriptionSubscribersBlock}>
+            <div
+              className={
+                s.subscriptionSubscribersBlock +
+                " " +
+                (props.subscriptions.length == 0
+                  ? s.subscriptionSubscribersBlockEmpty
+                  : " ")
+              }
+            >
               <div className={s.subscriptionSubscribersTitle}>
                 Subscriptions <span>{props.totalSubscriptionsItems}</span>
               </div>
-              <div className={s.subscriptionSubscribersList}>
+              <div
+                className={
+                  s.subscriptionSubscribersList +
+                  " " +
+                  (props.subscriptions.length == 0
+                    ? s.subscriptionSubscribersListNone
+                    : "")
+                }
+              >
                 {props.subscriptions.map((f) => (
                   <NavLink
                     to={"/profile/" + f.id}
@@ -306,11 +322,27 @@ const ProfileInfo = (props) => {
                 </NavLink>
               </div>
             </div>
-            <div className={s.subscriptionSubscribersBlock}>
+            <div
+              className={
+                s.subscriptionSubscribersBlock +
+                " " +
+                (props.subscribers.length == 0
+                  ? s.subscriptionSubscribersBlockEmpty
+                  : " ")
+              }
+            >
               <div className={s.subscriptionSubscribersTitle}>
                 Subscribers <span>{props.totalSubscribersItems}</span>
               </div>
-              <div className={s.subscriptionSubscribersList}>
+              <div
+                className={
+                  s.subscriptionSubscribersList +
+                  " " +
+                  (props.subscribers.length == 0
+                    ? s.subscriptionSubscribersListNone
+                    : "")
+                }
+              >
                 {props.subscribers &&
                   props.subscribers.map((f) => (
                     <NavLink
