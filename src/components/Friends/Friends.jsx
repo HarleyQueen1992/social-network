@@ -113,7 +113,11 @@ const Friends = (props) => {
       ) : (
         <div className={s.friends}>
           {friends.map((f) => (
-            <NavLink to={"/profile/" + f.id} key={f.id} className={s.friend}>
+            <NavLink
+              to={"/profile/" + f.login}
+              key={f.login}
+              className={s.friend}
+            >
               <div className={s.photoUsers}>
                 <img
                   alt="userphoto"

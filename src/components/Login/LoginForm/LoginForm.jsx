@@ -1,39 +1,42 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
+import React from "react";
+import { Field, reduxForm } from "redux-form";
 import {
   maxLengthCreator,
   required,
-} from "../../../utils/validators/validators"
-import s from "./LoginForm.module.css"
-import { NavLink } from "react-router-dom"
+} from "../../../utils/validators/validators";
+import { createField, Input } from "./../../common/FromsControls/FormsControls";
+import s from "./LoginForm.module.css";
+import { NavLink } from "react-router-dom";
 
-let maxLength = maxLengthCreator(25)
+let maxLength = maxLengthCreator(25);
 
-const LoginForm = props => {
+const LoginForm = (props) => {
   return (
     <form className={s.loginForm} onSubmit={props.handleSubmit}>
       <header className={s.header}>
         <span className={s.title}>Mosset</span>
       </header>
       <div className={s.inputsBlock}>
-        <div className={s.emailField}>
+        {/* <div className={s.emailField}>
           <Field
             className={s.inputField}
             placeholder={"Email"}
             name={"email"}
-            component='input'
-            validate={[required, maxLength]}
-          />
-        </div>
+            component="input"
+          /> */}
+        {createField("Email", "email", [], Input, { error: props.error })}
+        {/* </div> */}
         <div className={s.passwordField}>
-          <Field
+          {/* <Field
             className={s.inputField}
             placeholder={"Password"}
             name={"password"}
-            component='input'
-            type='password'
-            validate={[required, maxLength]}
-          />
+            component="input"
+            type="password"
+          /> */}
+          {createField("Password", "password", [], Input, {
+            error: props.error,
+          })}
         </div>
       </div>
       <div className={s.bottomBlock}>
@@ -43,7 +46,7 @@ const LoginForm = props => {
         </div>
 
         <div className={s.forgotYourPassword}>
-          <NavLink to='#'>Forgot your password?</NavLink>
+          <NavLink to="#">Forgot your password?</NavLink>
         </div>
         {props.error && <div className={s.formSummaryError}>{props.error}</div>}
         <div className={s.register}>
@@ -54,9 +57,9 @@ const LoginForm = props => {
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 let LoginReduxForm = reduxForm({
   form: "login",
-})(LoginForm)
-export default LoginReduxForm
+})(LoginForm);
+export default LoginReduxForm;

@@ -14,7 +14,7 @@ const DELETE_FRIEND = "app/friends-reducer/DELETE_FRIEND"
 let initialState = {
   friends: [],
   allFriends: [],
-  pageSize: 40,
+  pageSize: 20,
   totalFriendsCount: 20,
   currentPage: 1,
   isFatching: true,
@@ -125,21 +125,20 @@ export const nextPage = () => ({ type: NEXT_PAGE })
 export const earlyPage = () => ({ type: EARLY_PAGE })
 
 // Thunk Creator
-export const requestFriends = currentPage => {
-  return dispatch => {
+export const requestFriends = currentPage => async dispatch => {
     if (currentPage === 1) {
       dispatch(toggleIsFetching(true))
     }
 
     // dispatch(toggleIsFatching(true))
-    friendsAPI.getFriends(currentPage, initialState.pageSize).then(data => {
+    let data = await friendsAPI.getFriends(currentPage, initialState.pageSize)
       dispatch(toggleIsFatching(false))
-      dispatch(setFriends(data.data.items))
+      dispatch(setFriends(data.items))
       dispatch(setCurrentPage(currentPage + 1))
-      dispatch(setFriendsTotalCount(data.data.totalCount))
+      dispatch(setFriendsTotalCount(data.totalItems))
       dispatch(toggleIsFetching(false))
-    })
-  }
+    
+  
 }
 export const requestAllFriends = () => {
   return dispatch => {

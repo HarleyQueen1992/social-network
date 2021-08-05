@@ -88,7 +88,6 @@ export const getAuthMe = () => async dispatch => {
 
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password)
-  
   if (data.code !== "invalid") {
     window.location = '/social-network#/news';
     dispatch(setIndex(0))
@@ -100,9 +99,15 @@ export const loginIn = (email, password, rememberMe) => async dispatch => {
   }
 }
 export const register = (email, login, password1, password2, aboutMe, birthday, location) => async dispatch => {
-  // debugger
-  let response = authAPI.register(email, login, password1, password2, aboutMe, birthday, location)
-  
+
+  let response = await authAPI.register(email, login, password1, password2, aboutMe, birthday, location)
+
+  if (response.code == "invalid") {
+    let message =
+    response.messages.length > 0 ? response.messages[0] : "Some error"
+
+    dispatch(stopSubmit("register", { _error: message }))
+  }
 }
 
 export const logOut = () => async dispatch => {

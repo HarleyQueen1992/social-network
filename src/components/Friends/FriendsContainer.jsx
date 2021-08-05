@@ -1,20 +1,20 @@
-import React from "react"
-import { connect } from "react-redux"
-import Friends from "./Friends"
+import React from "react";
+import { connect } from "react-redux";
+import Friends from "./Friends";
 import {
   toggleIsFatching,
   setFriendsTotalCount,
   requestFriends,
   clearFriends,
   setCurrentPage,
-} from "../../redux/FriendsReducer/friends-reducer"
+} from "../../redux/FriendsReducer/friends-reducer";
 import {
   requestForFriends,
   setValue,
   clearUsersSearch,
   setCurrentPageSearch,
   toggleIsFatchingSearch,
-} from "./../../redux/SearchReducer/search-reducer"
+} from "./../../redux/SearchReducer/search-reducer";
 import {
   getCurrentPage,
   getFriends,
@@ -22,7 +22,7 @@ import {
   getIsFetching,
   getPageSize,
   getTotalFriendsCount,
-} from "../../redux/FriendsReducer/friends-selectors"
+} from "../../redux/FriendsReducer/friends-selectors";
 import {
   getCurrentPageSearch,
   getIsFatchingSearch,
@@ -30,33 +30,33 @@ import {
   getTotalUsersCountSearch,
   getUsersSearch,
   getValue,
-} from "../../redux/SearchReducer/search-selectors"
-import { unfollow } from "./../../redux/UsersReducer/user-reducer"
-import Preloader from "../common/Preloader/Preloader"
-import { getTheme } from "../../redux/AppReducer/app-selectors"
+} from "../../redux/SearchReducer/search-selectors";
+import { unfollow } from "./../../redux/UsersReducer/user-reducer";
+import Preloader from "../common/Preloader/Preloader";
+import { getTheme } from "../../redux/AppReducer/app-selectors";
 
 class FriendsContainer extends React.Component {
   componentDidMount() {
     // if (this.props.isFatching) {
-    this.props.requestFriends(this.props.currentPage)
+    this.props.requestFriends(this.props.currentPage);
     // }
   }
   resetSearchUsers = () => {
-    this.props.clearUsersSearch()
-    this.props.setCurrentPageSearch(1)
-    this.props.setValue("")
-  }
+    this.props.clearUsersSearch();
+    this.props.setCurrentPageSearch(1);
+    this.props.setValue("");
+  };
 
-  handleChange = event => {
+  handleChange = (event) => {
     if (event.target.value === "" && this.props.value.length === 1) {
-      this.resetSearchUsers()
+      this.resetSearchUsers();
     } else {
-      this.props.clearUsersSearch()
-      this.props.setCurrentPageSearch(1)
-      this.props.setValue(event.target.value)
-      this.props.requestForFriends(event.target.value, 1)
+      this.props.clearUsersSearch();
+      this.props.setCurrentPageSearch(1);
+      this.props.setValue(event.target.value);
+      this.props.requestForFriends(event.target.value, 1);
     }
-  }
+  };
   componentDidUpdate() {
     if (
       this.props.isFatchingSearch &&
@@ -66,20 +66,20 @@ class FriendsContainer extends React.Component {
       this.props.requestForFriends(
         this.props.value,
         this.props.currentPageSearch
-      )
+      );
     }
     if (
       this.props.isFatching &&
       this.props.value === "" &&
       !this.props.isFetching
     ) {
-      this.props.requestFriends(this.props.currentPage)
+      this.props.requestFriends(this.props.currentPage);
     }
   }
   componentWillUnmount() {
-    this.props.clearFriends()
-    this.props.setCurrentPage(1)
-    this.props.setValue("")
+    this.props.clearFriends();
+    this.props.setCurrentPage(1);
+    this.props.setValue("");
   }
   render() {
     return (
@@ -108,11 +108,11 @@ class FriendsContainer extends React.Component {
           />
         )}
       </>
-    )
+    );
   }
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     friends: getFriends(state),
     isFatching: getIsFatching(state),
@@ -127,8 +127,8 @@ let mapStateToProps = state => {
     totalFriendsCountSearch: getTotalUsersCountSearch(state),
     isFatchingSearch: getIsFatchingSearch(state),
     isReceipt: getIsReceipt(state),
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, {
   setFriendsTotalCount,
@@ -142,4 +142,4 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   clearUsersSearch,
   toggleIsFatchingSearch,
-})(FriendsContainer)
+})(FriendsContainer);

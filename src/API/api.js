@@ -1,4 +1,5 @@
 import axios from "axios"
+import { loginIn } from "../redux/AuthReducer/auth-reducer"
 import { search } from "../utils/search"
 
 axios.defaults.withCredentials = true
@@ -28,7 +29,48 @@ export const usersAPI = {
       return response.data
     })
   },
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  userFollowings(login, page, limit) {
+    return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+
+  searchUserFollowings(login, page, limit, q) {
+    return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}&q=${q}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
+
+
+
+
+
+
+
+
+
+
+
+
   getUsersFollowingAll(login) {
     return instance.get(`users/${login}/following/`).then(response => {
       return response.data
@@ -36,17 +78,12 @@ export const usersAPI = {
       return response.data
     })
   },
-  // deleteFollow(id) {
-  //     return instance.delete(`follow/${id}/`)
-  // },
-  // postFollow(id) {
-  //     return instance.post(`follow/${id}/`)
-  // },
-  // searchUsers(term, currentPage) {
-  //   return search(`users/?term=${term}&page=${currentPage}`)
-  // },
-  searchFriends(term, currentPage) {
-    return search(`following/?q=${term}&page=${currentPage}`)
+  searchFriends(term, currentPage, limit) {
+    return search(`following/?q=${term}&page=${currentPage}&limit=${limit}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
   },
 }
 
@@ -58,18 +95,17 @@ export const authAPI = {
     .catch(response => response.response.data)
   },
   loginIn(email, password) {
-
     return instance.put(`auth/`, { email, password }).then(response => {
-      
       return response.data
-    })
-    .catch(response => response.data)
+    }).catch(error => {
+      return error.response.data
+    })  
   },
   register(email, login, password1, password2, aboutMe, birthday, location) {
     return instance.post(`/auth/`, {email, login, password1, password2, aboutMe, birthday, location}).then(response => {
       return response.data
-    }).catch(response => {
-      return response.data
+    }).catch(error => {
+      return error.response.data
     })
   },
   logOut() {
@@ -186,17 +222,38 @@ export const profileAPI = {
   // }
 }
 export const friendsAPI = {
-  getFriends(currentPage, pageSize) {
+  followings(currentPage, pageSize) {
     return instance.get(
       `following/?page=${currentPage}&limit=${pageSize}`
-    )
+    ).then(response => {
+      debugger
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
     // .then(response => {
     //     return response.data;
     // })
   },
-  getAllFriends() {
-    return instance.get(`users/?friend=true&count=100`)
-  },
+    getFriends(currentPage, pageSize) {
+      debugger
+      return instance.get(
+        `following/?page=${currentPage}&limit=${pageSize}`
+      ).then(response => {
+        
+        return response.data
+      }).catch(response => {
+      debugger
+        return response.data
+      })
+      // .then(response => {
+      //     return response.data;
+      // })
+    },
+    getAllFriends() {
+      return instance.get(`users/?friend=true&count=100`)
+    },
+  
 }
 // export const getUsers = (currentPage = 1, pageSize = 10) => {
 //     debugger;

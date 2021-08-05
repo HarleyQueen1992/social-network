@@ -7,12 +7,13 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-rows: 150px auto auto;
+  grid-template-rows: 150px 420px 110px;
   grid-template-areas:
     "title"
     "block"
     "bottom";
-  grid-row-gap: 40px;
+
+  transition: all 0.5s;
 }
 .header {
   box-sizing: border-box;
@@ -39,6 +40,7 @@
   color: var(--fontColor);
 }
 .inputsBlock {
+  margin-top: 40px;
   grid-area: block;
   width: 100%;
   /* height: 200px; */
@@ -80,6 +82,7 @@
 }
 
 .bottomBlock {
+  margin-top: 20px;
   display: grid;
   grid-template-rows: 30px 30px 30px;
   grid-template-areas: "loginBut" "error" "register";

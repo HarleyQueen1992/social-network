@@ -1,60 +1,27 @@
 .formControl.error input,
 .formControl.error textarea {
-  border: 2px solid red;
+  border: solid red 2px;
 }
 
-/* .formControl.error div {
-    color: red;
+.formControl.error span {
+  color: red;
 }
-
-.inputFalie {
-    background-color: red;
-} */
-
-/* .formControl {
-    grid-template-rows: 1fr 1fr;
-} */
-
-.input {
-  /* margin-left: 5px; */
-  box-sizing: border-box;
-  background-color: var(--bacInputForm);
-  border: 1px solid var(--bacInputForm);
-  border-radius: 5px;
-  color: var(--fontColor);
-  font-size: 16px;
-  outline: none;
-  width: 100%;
-  /* height: 20px; */
-  padding: 4px;
-}
-
-.input[type="checkbox" i] {
-  background-color: red;
-  overflow: hidden;
-}
-.textarea {
-  box-sizing: border-box;
-  margin-left: 5px;
-  background-color: var(--bacInputForm);
-  border: 1px solid var(--bacInputForm);
-  border-radius: 5px;
-  width: 100%;
-  height: 100px;
-  padding: 7px;
-  color: var(--fontColor);
-  resize: none;
-  box-sizing: border-box;
-  outline: none;
+.formControl {
+  display: grid;
 }
 .formSummaryError {
-  box-sizing: border-box;
-  justify-self: center;
-  align-self: center;
-  color: rgb(211, 33, 20);
+  text-align: center;
+  padding: 5px;
+  color: red;
 }
-@media (max-width: 360px) {
-  .input {
-    width: 100%;
-  }
+.inputField {
+  outline: none;
+  box-sizing: border-box;
+  background-color: var(--bacInputLogin);
+  border: 2px solid var(--bacInputLogin);
+  border-radius: 5px;
+  padding: 5px;
+  grid-template-rows: 1fr 1fr;
+  justify-self: center;
+  width: 80%;
 }

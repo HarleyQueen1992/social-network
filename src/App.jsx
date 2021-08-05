@@ -197,7 +197,7 @@ class App extends React.Component {
               (this.props.location.pathname === "/users") |
               (window.innerWidth < 900 &&
                 this.props.location.pathname === "/menu") |
-              (this.props.location.pathname === "/friends") ? (
+              (this.props.location.pathname.substr(0, 8) === "/friends") ? (
                 <SwipeableViews
                   index={this.props.index}
                   enableMouseEvents
@@ -241,7 +241,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path="/friends"
+                    path="/friends/:login?"
                     render={() => (
                       <FriendsContainer
                         changeIndex={this.changeIndex}
