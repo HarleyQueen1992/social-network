@@ -172,7 +172,6 @@ export default compose(
     toggleIsPostCreation,
     getTheLastPost,
     addLike,
-    requestAllFriends,
     setEditMode,
     setProfileBanner,
     getUsersProfileData,

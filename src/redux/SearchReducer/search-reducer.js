@@ -1,4 +1,4 @@
-import { usersAPI } from "./../../API/api"
+import { friendsAPI, usersAPI } from "./../../API/api"
 const SET_USERS = "app/search-reducer/SET_USERS"
 const SET_TOTAL_USERS_COUNT = "app/search-reducer/SET_TOTAL_USERS_COUNT"
 const SET_VALUE = "app/search-reducer/SET_VALUE"
@@ -10,7 +10,7 @@ const SET_LOADING = "app/search-reducer/SET_LOADING"
 
 let initialState = {
   usersSearch: [],
-  pageSize: 20,
+  pageSize: 10,
   totalUsersCount: null,
   currentPage: 1,
   value: "",
@@ -118,7 +118,7 @@ export const requestForFriends = (term, currentPage) => async dispatch => {
   if (currentPage === 1) {
     dispatch(setIsFatching(true))
   }
-  let response = await usersAPI.searchFriends(term, currentPage, initialState.pageSize)
+  let response = await friendsAPI.searchFriends(term, currentPage, initialState.pageSize)
   if (response !== undefined) { 
   dispatch(toggleIsFatchingSearch(false))
     dispatch(setUsersSearch(response.items))

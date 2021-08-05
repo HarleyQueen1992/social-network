@@ -23,53 +23,12 @@ export const usersAPI = {
   },
 
   searchUsers(q, page) {
-    return instance.get(`users/?q=${q}&page=${page}`).then(response => {
-      return response.data
+    return search(`users/?q=${q}&page=${page}`).then(response => {
+      return response
     }).catch(response => {
-      return response.data
+      return response
     })
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  userFollowings(login, page, limit) {
-    return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
-      return response.data
-    }).catch(response => {
-      return response.data
-    })
-  },
-
-  searchUserFollowings(login, page, limit, q) {
-    return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}&q=${q}`).then(response => {
-      return response.data
-    }).catch(response => {
-      return response.data
-    })
-  },
-
-
-
-
-
-
-
-
-
-
-
 
   getUsersFollowingAll(login) {
     return instance.get(`users/${login}/following/`).then(response => {
@@ -78,13 +37,7 @@ export const usersAPI = {
       return response.data
     })
   },
-  searchFriends(term, currentPage, limit) {
-    return search(`following/?q=${term}&page=${currentPage}&limit=${limit}`).then(response => {
-      return response.data
-    }).catch(response => {
-      return response.data
-    })
-  },
+
 }
 
 export const authAPI = {
@@ -128,6 +81,7 @@ export const profileAPI = {
       return response.data
     })
   },
+
   following(limit) {
     return instance.get(`/following/?limit=${limit}`).then(response => {
       return response.data
@@ -226,7 +180,6 @@ export const friendsAPI = {
     return instance.get(
       `following/?page=${currentPage}&limit=${pageSize}`
     ).then(response => {
-      debugger
       return response.data
     }).catch(response => {
       return response.data
@@ -236,24 +189,45 @@ export const friendsAPI = {
     // })
   },
     getFriends(currentPage, pageSize) {
-      debugger
       return instance.get(
         `following/?page=${currentPage}&limit=${pageSize}`
       ).then(response => {
-        
         return response.data
       }).catch(response => {
-      debugger
         return response.data
       })
       // .then(response => {
       //     return response.data;
       // })
     },
-    getAllFriends() {
-      return instance.get(`users/?friend=true&count=100`)
+    searchFriends(term, currentPage, limit) {
+      return search(`following/?q=${term}&page=${currentPage}&limit=${limit}`).then(response => {
+        return response
+      }).catch(response => {
+        return response
+      })
     },
-  
+
+
+
+    userFollowings(login, page, limit) {
+      return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
+        debugger
+        return response.data
+      }).catch(response => {
+        return response.data
+      })
+    },
+    searchUserFollowings(login, page, limit, q) {
+      return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}&q=${q}`).then(response => {
+        return response.data
+      }).catch(response => {
+        return response.data
+      })
+    },
+
+
+
 }
 // export const getUsers = (currentPage = 1, pageSize = 10) => {
 //     debugger;
@@ -277,6 +251,7 @@ export const followAPI = {
       return response.data
     })
   },
+  
   subscribe(login) {
     return instance.put(`following/${login}/`).then(response => {
       return response

@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import Friends from "./Friends";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import {
   toggleIsFatching,
   setFriendsTotalCount,
-  requestFriends,
+  requestFollowings,
   clearFriends,
   setCurrentPage,
+  requestUserFollowings,
 } from "../../redux/FriendsReducer/friends-reducer";
 import {
   requestForFriends,
@@ -34,11 +37,27 @@ import {
 import { unfollow } from "./../../redux/UsersReducer/user-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import { getTheme } from "../../redux/AppReducer/app-selectors";
+import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 
 class FriendsContainer extends React.Component {
+  refreshFollowings() {
+    let login = this.props.match.params.login;
+    debugger;
+    // this.props.getUsersListFollowing(this.props.profileInfo.login);
+
+    if (!login || login == this.props.profileInfo.login) {
+      login = this.props.profileInfo.login;
+      this.props.requestFollowings(this.props.currentPage);
+    } else {
+      this.props.requestUserFollowings(login, this.props.currentPage);
+    }
+  }
   componentDidMount() {
+    this.refreshFollowings();
     // if (this.props.isFatching) {
-    this.props.requestFriends(this.props.currentPage);
+    // this.props.requestFollowings(this.props.currentPage);
+    // this.props.requesUserFollowings(login, this.props.currentPage);
+
     // }
   }
   resetSearchUsers = () => {
@@ -73,7 +92,14 @@ class FriendsContainer extends React.Component {
       this.props.value === "" &&
       !this.props.isFetching
     ) {
-      this.props.requestFriends(this.props.currentPage);
+      if (this.props.match.params.login) {
+        this.props.requestUserFollowings(
+          this.props.match.params.login,
+          this.props.currentPage
+        );
+      } else {
+        this.props.requestUserFollowings(this.props.currentPage);
+      }
     }
   }
   componentWillUnmount() {
@@ -114,6 +140,7 @@ class FriendsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
+    profileInfo: getProfileInfo(state),
     friends: getFriends(state),
     isFatching: getIsFatching(state),
     isFetching: getIsFetching(state),
@@ -130,16 +157,20 @@ let mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  setFriendsTotalCount,
-  toggleIsFatching,
-  requestFriends,
-  clearFriends,
-  requestForFriends,
-  setValue,
-  unfollow,
-  setCurrentPageSearch,
-  setCurrentPage,
-  clearUsersSearch,
-  toggleIsFatchingSearch,
-})(FriendsContainer);
+export default compose(
+  connect(mapStateToProps, {
+    setFriendsTotalCount,
+    requestUserFollowings,
+    toggleIsFatching,
+    requestFollowings,
+    clearFriends,
+    requestForFriends,
+    setValue,
+    unfollow,
+    setCurrentPageSearch,
+    setCurrentPage,
+    clearUsersSearch,
+    toggleIsFatchingSearch,
+  }),
+  withRouter
+)(FriendsContainer);
