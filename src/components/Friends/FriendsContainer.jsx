@@ -12,11 +12,12 @@ import {
   requestUserFollowings,
 } from "../../redux/FriendsReducer/friends-reducer";
 import {
-  requestForFriends,
+  requestForFollowings,
   setValue,
   clearUsersSearch,
   setCurrentPageSearch,
   toggleIsFatchingSearch,
+  requestForUserFollowings,
 } from "./../../redux/SearchReducer/search-reducer";
 import {
   getCurrentPage,
@@ -42,7 +43,6 @@ import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 class FriendsContainer extends React.Component {
   refreshFollowings() {
     let login = this.props.match.params.login;
-    debugger;
     // this.props.getUsersListFollowing(this.props.profileInfo.login);
 
     if (!login || login == this.props.profileInfo.login) {
@@ -67,38 +67,49 @@ class FriendsContainer extends React.Component {
   };
 
   handleChange = (event) => {
+    let login = this.props.match.params.login;
     if (event.target.value === "" && this.props.value.length === 1) {
       this.resetSearchUsers();
     } else {
       this.props.clearUsersSearch();
       this.props.setCurrentPageSearch(1);
       this.props.setValue(event.target.value);
-      this.props.requestForFriends(event.target.value, 1);
+      if (login) {
+        this.props.requestForUserFollowings(login, event.target.value, 1);
+      } else {
+        this.props.requestForFollowings(event.target.value, 1);
+      }
     }
   };
   componentDidUpdate() {
+    let login = this.props.match.params.login;
     if (
       this.props.isFatchingSearch &&
       this.props.value !== "" &&
       !this.props.isReceipt
     ) {
-      this.props.requestForFriends(
-        this.props.value,
-        this.props.currentPageSearch
-      );
+      if (login) {
+        this.props.requestForUserFollowings(
+          login,
+          this.props.value,
+          this.props.currentPageSearch
+        );
+      } else {
+        this.props.requestForFollowings(
+          this.props.value,
+          this.props.currentPageSearch
+        );
+      }
     }
     if (
       this.props.isFatching &&
       this.props.value === "" &&
       !this.props.isFetching
     ) {
-      if (this.props.match.params.login) {
-        this.props.requestUserFollowings(
-          this.props.match.params.login,
-          this.props.currentPage
-        );
+      if (login) {
+        this.props.requestUserFollowings(login, this.props.currentPage);
       } else {
-        this.props.requestUserFollowings(this.props.currentPage);
+        this.props.requestFollowings(this.props.currentPage);
       }
     }
   }
@@ -164,11 +175,12 @@ export default compose(
     toggleIsFatching,
     requestFollowings,
     clearFriends,
-    requestForFriends,
+    requestForFollowings,
     setValue,
     unfollow,
     setCurrentPageSearch,
     setCurrentPage,
+    requestForUserFollowings,
     clearUsersSearch,
     toggleIsFatchingSearch,
   }),

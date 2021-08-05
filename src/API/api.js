@@ -212,17 +212,19 @@ export const friendsAPI = {
 
     userFollowings(login, page, limit) {
       return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
-        debugger
         return response.data
       }).catch(response => {
         return response.data
       })
     },
+
+
+
     searchUserFollowings(login, page, limit, q) {
-      return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}&q=${q}`).then(response => {
-        return response.data
+      return search(`/users/${login}/following/?page=${page}&limit=${limit}&q=${q}`).then(response => {
+        return response
       }).catch(response => {
-        return response.data
+        return response
       })
     },
 

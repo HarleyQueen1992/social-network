@@ -317,7 +317,10 @@ const ProfileInfo = (props) => {
                 ))}
               </div>
               <div className={s.seeAllSubscriptionsBlock}>
-                <NavLink to="/friends" className={s.seeAllSubscriptions}>
+                <NavLink
+                  to={"/friends/" + props.profile.login}
+                  className={s.seeAllSubscriptions}
+                >
                   See all subscriptions
                 </NavLink>
               </div>
@@ -346,7 +349,7 @@ const ProfileInfo = (props) => {
                 {props.subscribers &&
                   props.subscribers.map((f) => (
                     <NavLink
-                      to={"/profile/" + f.id}
+                      to={"/profile/" + f.login}
                       className={s.subscriptionSubscribersListItem}
                       key={f.id}
                     >

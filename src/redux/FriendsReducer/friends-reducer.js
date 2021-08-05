@@ -144,10 +144,8 @@ export const requestUserFollowings = (login, currentPage) => async dispatch => {
   if (currentPage === 1) {
     dispatch(toggleIsFetching(true))
   }
-
   // dispatch(toggleIsFatching(true))
   let data = await friendsAPI.userFollowings(login, currentPage, initialState.pageSize)
-  debugger
   dispatch(toggleIsFatching(false))
   dispatch(setFriends(data.items))
   dispatch(setCurrentPage(currentPage + 1))

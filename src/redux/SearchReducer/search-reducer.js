@@ -10,7 +10,7 @@ const SET_LOADING = "app/search-reducer/SET_LOADING"
 
 let initialState = {
   usersSearch: [],
-  pageSize: 10,
+  pageSize:40,
   totalUsersCount: null,
   currentPage: 1,
   value: "",
@@ -114,7 +114,7 @@ export const requestForUsers = (term, currentPage) => async dispatch => {
   dispatch(setLoading(false))
 }
 
-export const requestForFriends = (term, currentPage) => async dispatch => {
+export const requestForFollowings = (term, currentPage) => async dispatch => {
   if (currentPage === 1) {
     dispatch(setIsFatching(true))
   }
@@ -128,7 +128,20 @@ export const requestForFriends = (term, currentPage) => async dispatch => {
     }
     dispatch(setIsFatching(false))
   }}
-
+  export const requestForUserFollowings = (login, term, currentPage) => async dispatch => {
+    if (currentPage === 1) {
+      dispatch(setIsFatching(true))
+    }
+    let response = await friendsAPI.searchUserFollowings(login,currentPage, initialState.pageSize, term,  )
+    if (response !== undefined) { 
+    dispatch(toggleIsFatchingSearch(false))
+      dispatch(setUsersSearch(response.items))
+      dispatch(setTotalUsersCount(response.totalItems))
+      if (initialState.usersSearch.length < response.totalItems) {
+        dispatch(setCurrentPageSearch(currentPage + 1))
+      }
+      dispatch(setIsFatching(false))
+    }}
 // export const getAllFriends = () => async(dispatch) => {
 //     let data = await friendsAPI.getAllFriends()
 
