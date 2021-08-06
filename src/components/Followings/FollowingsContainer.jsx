@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Friends from "./Friends";
+import Friends from "./Followings";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import {
@@ -18,7 +18,7 @@ import {
   setCurrentPageSearch,
   toggleIsFatchingSearch,
   requestForUserFollowings,
-} from "./../../redux/SearchReducer/search-reducer";
+} from "../../redux/SearchReducer/search-reducer";
 import {
   getCurrentPage,
   getFriends,
@@ -35,7 +35,7 @@ import {
   getUsersSearch,
   getValue,
 } from "../../redux/SearchReducer/search-selectors";
-import { unfollow } from "./../../redux/UsersReducer/user-reducer";
+import { unfollow } from "../../redux/UsersReducer/user-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import { getTheme } from "../../redux/AppReducer/app-selectors";
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";

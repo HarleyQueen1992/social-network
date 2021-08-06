@@ -318,7 +318,7 @@ const ProfileInfo = (props) => {
               </div>
               <div className={s.seeAllSubscriptionsBlock}>
                 <NavLink
-                  to={"/friends/" + props.profile.login}
+                  to={"/followings/" + props.profile.login}
                   className={s.seeAllSubscriptions}
                 >
                   See all subscriptions
@@ -365,7 +365,10 @@ const ProfileInfo = (props) => {
                   ))}
               </div>
               <div className={s.seeAllSubscribersBlock}>
-                <NavLink to="#" className={s.seeAllSubscribers}>
+                <NavLink
+                  to={"/followers/" + props.profile.login}
+                  className={s.seeAllSubscribers}
+                >
                   See all subscribers
                 </NavLink>
               </div>

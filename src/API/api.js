@@ -184,9 +184,6 @@ export const friendsAPI = {
     }).catch(response => {
       return response.data
     })
-    // .then(response => {
-    //     return response.data;
-    // })
   },
     getFriends(currentPage, pageSize) {
       return instance.get(
@@ -196,9 +193,6 @@ export const friendsAPI = {
       }).catch(response => {
         return response.data
       })
-      // .then(response => {
-      //     return response.data;
-      // })
     },
     searchFriends(term, currentPage, limit) {
       return search(`following/?q=${term}&page=${currentPage}&limit=${limit}`).then(response => {
@@ -207,9 +201,6 @@ export const friendsAPI = {
         return response
       })
     },
-
-
-
     userFollowings(login, page, limit) {
       return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
         return response.data
@@ -217,9 +208,6 @@ export const friendsAPI = {
         return response.data
       })
     },
-
-
-
     searchUserFollowings(login, page, limit, q) {
       return search(`/users/${login}/following/?page=${page}&limit=${limit}&q=${q}`).then(response => {
         return response
@@ -227,9 +215,38 @@ export const friendsAPI = {
         return response
       })
     },
+}
+export const followersAPI = {
+  followers(page, limit) {
+    return instance.get(`/followers?page=${page}&limit=${limit}`).then(response => {
 
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  searchFollowers(q, page, limit) {
+    return search(`/followers?q=${q}&page=${page}&limit=${limit}/`).then(response => {
 
-
+      return response
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  userFollowers(login,page, limit) {
+    return instance.get(`/users/${login}/followers?page=${page}&limit=${limit}`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  searchUserFollowers(login,page, limit, q) {
+    return search(`/users/${login}/followers?q=${q}&page=${page}&limit=${limit}`).then(response => {
+      return response
+    }).catch(error => {
+      return error.response.data
+    })
+  },
 }
 // export const getUsers = (currentPage = 1, pageSize = 10) => {
 //     debugger;

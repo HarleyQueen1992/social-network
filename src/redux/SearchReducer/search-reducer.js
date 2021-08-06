@@ -1,4 +1,4 @@
-import { friendsAPI, usersAPI } from "./../../API/api"
+import { followAPI, followersAPI, friendsAPI, usersAPI } from "./../../API/api"
 const SET_USERS = "app/search-reducer/SET_USERS"
 const SET_TOTAL_USERS_COUNT = "app/search-reducer/SET_TOTAL_USERS_COUNT"
 const SET_VALUE = "app/search-reducer/SET_VALUE"
@@ -142,6 +142,34 @@ export const requestForFollowings = (term, currentPage) => async dispatch => {
       }
       dispatch(setIsFatching(false))
     }}
+    export const requestForFollowers = (term, currentPage) => async dispatch => {
+      if (currentPage === 1) {
+        dispatch(setIsFatching(true))
+      }
+      let response = await followersAPI.searchFollowers(term, currentPage, initialState.pageSize)
+      if (response !== undefined) { 
+      dispatch(toggleIsFatchingSearch(false))
+        dispatch(setUsersSearch(response.items))
+        dispatch(setTotalUsersCount(response.totalItems))
+        if (initialState.usersSearch.length < response.totalItems) {
+          dispatch(setCurrentPageSearch(currentPage + 1))
+        }
+        dispatch(setIsFatching(false))
+      }}
+      export const requestForUserFollowers = (login, term, currentPage) => async dispatch => {
+        if (currentPage === 1) {
+          dispatch(setIsFatching(true))
+        }
+        let response = await followersAPI.searchUserFollowers(login,currentPage, initialState.pageSize, term,  )
+        if (response !== undefined) { 
+        dispatch(toggleIsFatchingSearch(false))
+          dispatch(setUsersSearch(response.items))
+          dispatch(setTotalUsersCount(response.totalItems))
+          if (initialState.usersSearch.length < response.totalItems) {
+            dispatch(setCurrentPageSearch(currentPage + 1))
+          }
+          dispatch(setIsFatching(false))
+        }}
 // export const getAllFriends = () => async(dispatch) => {
 //     let data = await friendsAPI.getAllFriends()
 

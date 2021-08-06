@@ -11,7 +11,7 @@ import {
 import SettingsContainer from "./components/Settings/SettingsContainer";
 import NewsContainer from "./components/News/NewsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import FriendsContainer from "./components/Friends/FriendsContainer";
+import FollowingsContainer from "./components/Followings/FollowingsContainer";
 import Login from "./components/Login/Login";
 import { compose } from "redux";
 import { connect, Provider } from "react-redux";
@@ -47,13 +47,14 @@ import Header from "./components/Header/Header";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import { getValue } from "./redux/SearchReducer/search-selectors";
+import FollowersContainer from "./components/Followers/FollowersContainer";
 
 const urlIndex = {
   0: "news",
   1: "profile",
   2: "posts",
   3: "users",
-  4: "friends",
+  4: "followings",
   5: "menu",
 };
 let i = NaN;
@@ -197,7 +198,7 @@ class App extends React.Component {
               (this.props.location.pathname === "/users") |
               (window.innerWidth < 900 &&
                 this.props.location.pathname === "/menu") |
-              (this.props.location.pathname.substr(0, 8) === "/friends") ? (
+              (this.props.location.pathname.substr(0, 11) === "/followings") ? (
                 <SwipeableViews
                   index={this.props.index}
                   enableMouseEvents
@@ -241,9 +242,9 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path="/friends/:login?"
+                    path="/followings/:login?"
                     render={() => (
-                      <FriendsContainer
+                      <FollowingsContainer
                         changeIndex={this.changeIndex}
                         strUrl={this.str}
                       />
@@ -267,7 +268,10 @@ class App extends React.Component {
                     path="/settings"
                     render={() => <SettingsContainer />}
                   />
-
+                  <Route
+                    path="/followers/:login?"
+                    render={() => <FollowersContainer />}
+                  />
                   <Route render={() => <PageNotFound />} />
                 </Switch>
               )}

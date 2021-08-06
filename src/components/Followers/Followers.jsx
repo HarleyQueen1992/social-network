@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from "react";
-import userPhoto from "../../assets/images/user.png";
-import { NavLink } from "react-router-dom";
-import s from "./Friends.module.css";
+import React, { useState, useEffect } from "react";
 import Preloader from "../common/Preloader/Preloader";
-import { Icons } from "./../../utils/Icons/Icons";
+import { Icons } from "../../utils/Icons/Icons";
+import { NavLink } from "react-router-dom";
+import userPhoto from "./../../assets/images/user.png";
 
-const Friends = (props) => {
-  let res = Icons(props.theme);
+import s from "./Followers.module.css";
+
+const Followers = (props) => {
   const [focus, setFocus] = useState(false);
-  const [isFocus, setIsFocus] = useState(false);
-
-  let toggleFocus = () => {
-    setIsFocus(!isFocus);
-  };
-
-  useEffect(() => {
-    props.changeIndex(window.location.href);
-  }, [window.location.href]);
-
-  let friends;
+  let res = Icons(props.theme);
+  let followers;
   let totalCount;
-
-  if (props.friendsSearch.length === 0) {
-    friends = props.friends;
-    totalCount = props.totalFriendsCount;
-  } else {
-    friends = props.friendsSearch;
-    totalCount = props.totalFriendsCountSearch;
-  }
+  const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -35,22 +19,27 @@ const Friends = (props) => {
       document.removeEventListener("scroll", scrollHandler);
     };
   });
-
   const scrollHandler = (e) => {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) ===
         0 &&
-      friends.length < totalCount
+      followers.length < totalCount
     ) {
-      if (props.friendsSearch.length === 0) {
+      if (props.followersSearch.length === 0) {
         props.toggleIsFatching(true);
       } else {
         props.toggleIsFatchingSearch(true);
       }
     }
   };
-
+  if (props.followersSearch.length === 0) {
+    followers = props.followers;
+    totalCount = props.totalFollowersCount;
+  } else {
+    followers = props.followersSearch;
+    totalCount = props.totalFollowersCountSearch;
+  }
   return (
     <div className={s.friendsBlock}>
       <header className={s.header + " " + (focus ? s.headActive : "")}>
@@ -103,16 +92,16 @@ const Friends = (props) => {
       </header>
       {props.isReceipt ? (
         <Preloader />
-      ) : props.value !== "" && props.friendsSearch.length === 0 ? (
+      ) : props.value !== "" && props.followersSearch.length === 0 ? (
         <div className={s.errorNoUsers}>No users </div>
-      ) : friends.length === 0 ? (
+      ) : props.followers.length === 0 ? (
         <div className={s.friendsBlockError}>
           <h2>You are not subscribed to anyone</h2>
           <NavLink to="/users/">Let's see who you can subscribe to</NavLink>
         </div>
       ) : (
         <div className={s.friends}>
-          {friends.map((f) => (
+          {followers.map((f) => (
             <NavLink
               to={"/profile/" + f.login}
               key={f.login}
@@ -150,4 +139,4 @@ const Friends = (props) => {
     </div>
   );
 };
-export default Friends;
+export default Followers;
