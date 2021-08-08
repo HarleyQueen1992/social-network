@@ -40,6 +40,14 @@ const ProfileInfo = (props) => {
   let [editStatus, setEditStatus] = useState(false);
   let [editMode, setEditMode] = useState(false);
   let [valueStatus, setValueStatus] = useState(props.profile.status);
+  const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
+    useState(false);
+  const [editAboutMe, setEditAboutMe] = useState(false);
+  const [editFullName, setEditFullName] = useState(false);
+  const [valueFullName, setValueFullName] = useState(props.profile.fullname);
+  const [valueAboutMe, setValueAboutMe] = useState(props.profile.aboutMe);
+  const [valueBirthday, setValueBirthday] = useState(props.profile.birthday);
+  const [valueLocation, setValueLocation] = useState(props.profile.location);
 
   const isSmall = window.innerWidth < 480;
 
@@ -56,6 +64,13 @@ const ProfileInfo = (props) => {
     setEditMode(!editMode);
   };
   let closePopup = (e) => {
+    setEditTellusMoreAboutYourself(false);
+    setEditAboutMe(false);
+    setEditFullName(false);
+    setValueFullName(props.profile.fullname);
+    setValueAboutMe(props.profile.aboutMe);
+    setValueBirthday(props.profile.birthday);
+    setValueLocation(props.profile.location);
     e.preventDefault();
     document.querySelector(".react-swipeable-view-container").style.cssText =
       "will-change: transform; !important" +
@@ -113,6 +128,20 @@ const ProfileInfo = (props) => {
         }
       >
         <EditProfile
+          editAboutMe={editAboutMe}
+          setEditAboutMe={setEditAboutMe}
+          editTellusMoreAboutYourself={editTellusMoreAboutYourself}
+          setEditTellusMoreAboutYourself={setEditTellusMoreAboutYourself}
+          editFullName={editFullName}
+          setEditFullName={setEditFullName}
+          valueFullName={valueFullName}
+          setValueFullName={setValueFullName}
+          valueAboutMe={valueAboutMe}
+          setValueAboutMe={setValueAboutMe}
+          valueBirthday={valueBirthday}
+          setValueBirthday={setValueBirthday}
+          valueLocation={valueLocation}
+          setValueLocation={setValueLocation}
           closePopup={closePopup}
           editMode={editMode}
           setEditMode={setEditMode}

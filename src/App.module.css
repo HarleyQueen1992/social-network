@@ -41,7 +41,7 @@ html {
   --followBtn: #2f2a56;
   --followBtnHover: #3b3475;
   --BorderBottom: #3e4042;
-  --bacInput: #25292f;
+  --bacInput: #242526;
   --bacInputBorder: #333333;
   --bbLogin: rgb(224, 173, 173);
   --bacInputLogin: rgb(255, 255, 255);
@@ -56,6 +56,7 @@ html {
   --anythingNewHover: rgba(255, 255, 255, 0.151);
   --editProfileBlock: #ffffff1a;
   --editProfileBlockHover: #ffffff36;
+  --editInfo: rgba(255, 255, 255, 0.11);
 }
 .loginPage {
   height: 100vh;

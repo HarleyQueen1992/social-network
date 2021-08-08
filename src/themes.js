@@ -12,7 +12,7 @@ export const lightTheme = {
   bacNavBarImg: "#e4e6eb",
   fontColor: "#000",
   navBarBac: "#ffffff",
-  colorAbouMe: "rgb(197, 197, 197)",
+  colorAbouMe: "#000",
   colorDeteilInfo: "#000",
   statusColor: "#000",
   descriptionColor: "#000",
@@ -28,7 +28,7 @@ export const lightTheme = {
   followBtn: "rgb(255 164 164)",
   followBtnHover: "rgb(247, 179, 179)",
   BorderBottom: "#ced0d4",
-  bacInput: "rgb(255, 255, 255)",
+  bacInput: "#cecece",
   bacInputBorder: "#cdd1e8",
   bacInputForm: "#c3c3c3",
   HoversaveBut: "#a7a7a7",
@@ -40,7 +40,8 @@ export const lightTheme = {
   anythingNew: "rgba(0, 0, 0, 0.075)",
   anythingNewHover: "rgba(0, 0, 0, 0.116)",
   editProfileBlock: "#0000001a",
-  editProfileBlockHover: "rgba(0, 0, 0, 0.151)"
+  editProfileBlockHover: "rgba(0, 0, 0, 0.151)",
+  editInfo: "rgba(0, 0, 0, 0.11)",
 }
 
 Object.defineProperty(lightTheme, "toString", {
@@ -76,7 +77,7 @@ export const darkTheme = {
   followBtn: "#2f2a56",
   followBtnHover: "#3b3475",
   BorderBottom: "#3e4042",
-  bacInput: "#25292f",
+  bacInput: "#242526",
   bacInputBorder: "#333333",
   bacInputForm: "#25292f",
   HoversaveBut: "rgb(81, 81, 100)",
@@ -88,7 +89,10 @@ export const darkTheme = {
   anythingNew: "rgba(255, 255, 255, 0.075)",
   anythingNewHover: "rgba(255, 255, 255, 0.151)",
   editProfileBlock: "#ffffff1a",
-  editProfileBlockHover: "#ffffff36"
+  editProfileBlockHover: "#ffffff36",
+  editInfo: "rgba(255, 255, 255, 0.11)",
+  exitEditMenu: "rgba(255, 255, 255, 0.158)",
+  exitEditMenuHover: "rgba(255, 255, 255, 0.267)"
 }
 
 Object.defineProperty(darkTheme, "toString", {

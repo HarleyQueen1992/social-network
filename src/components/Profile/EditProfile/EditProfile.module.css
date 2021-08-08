@@ -24,38 +24,34 @@
   margin-left: 50px;
   font-family: "Patua One", cursive;
 }
-.backBlock {
+.popupContentHeaderOff {
   cursor: pointer;
-  height: 34px;
-  width: 34px;
+  height: 30px;
+  width: 30px;
   position: relative;
-  align-self: center;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.158);
+  align-self: center;
+  justify-self: center;
+  background-color: red;
+  transition: 0.5s all;
 }
-.backBlock:hover {
-  background-color: rgba(255, 255, 255, 0.267);
+.popupContentHeaderOff:hover {
+  background-color: rgba(255, 0, 0, 0.664);
 }
-.backBlock::before {
-  content: "";
-  height: 2px;
-  width: 20px;
-  left: 7px;
-  bottom: 15px;
-  /* border-radius: 50%; */
+.popupContentHeaderOff:before,
+.popupContentHeaderOff:after {
   position: absolute;
-  background-color: white;
+  left: 14px;
+  content: " ";
+  top: 5px;
+  height: 20px;
+  width: 2px;
+  background-color: rgb(255, 255, 255);
+}
+.popupContentHeaderOff:before {
   transform: rotate(45deg);
 }
-.backBlock::after {
-  content: "";
-  height: 2px;
-  width: 20px;
-  /* border-radius: 50%; */
-  left: 7px;
-  bottom: 15px;
-  position: absolute;
-  background-color: white;
+.popupContentHeaderOff:after {
   transform: rotate(-45deg);
 }
 .editProfileTitle::after {
@@ -98,15 +94,17 @@
   text-overflow: ellipsis;
 }
 .editFullName {
-  height: 90%;
+  height: 70%;
   width: 250px;
+  align-self: center;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: 1px solid var(--editInfo);
   outline: none;
   padding: 5px 10px;
+  text-align: center;
   background-color: #00000027;
-  color: rgb(255, 255, 255);
-  font-size: 16px;
+  color: var(--fontColor);
+  font-size: 18px;
   font-family: "Patua One", cursive;
   justify-self: center;
 }
@@ -140,7 +138,7 @@
   margin-right: 10px;
 }
 .editPhoto:hover {
-  background-color: rgba(255, 255, 255, 0.11);
+  background-color: var(--editInfo);
 }
 .edit {
   align-self: center;
@@ -224,7 +222,7 @@
   pointer-events: none;
 }
 .addToAboutMe:hover {
-  background-color: rgba(255, 255, 255, 0.11);
+  background-color: var(--editInfo);
 }
 .edit {
   align-self: center;
@@ -235,7 +233,7 @@
 }
 .aboutMeText {
   padding: 0 15px;
-  color: rgb(197, 197, 197);
+  color: var(--colorAbouMe);
   align-self: center;
   justify-self: center;
   font-size: 18px;
@@ -313,7 +311,7 @@
   margin-right: 10px;
 }
 .editInfo:hover {
-  background-color: rgba(255, 255, 255, 0.11);
+  background-color: var(--editInfo);
 }
 .edit {
   align-self: center;
@@ -338,12 +336,13 @@
 .editBirthday {
   align-self: center;
   width: 150px;
+  /* #cecece */
   height: 25px;
-  background-color: var(--navBarBac);
+  background-color: var(--bacInput);
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.199);
   outline: none;
-  color: #ffffff;
+  color: var(--fontColor);
   padding: 5px;
 }
 .birthdayTitleAndText {
@@ -394,11 +393,11 @@
   align-self: center;
   width: 150px;
   height: 25px;
-  background-color: var(--navBarBac);
+  background-color: var(--bacInput);
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.199);
   outline: none;
-  color: white;
+  color: var(--fontColor);
   padding: 5px;
 }
 .cityImg {
@@ -408,7 +407,7 @@
   .editProfileMenu {
     width: 100vw;
     grid-template-rows:
-      50px calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
+      50px 100px calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
       calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
       1fr 130px;
   }
