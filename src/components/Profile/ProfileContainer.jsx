@@ -179,6 +179,7 @@ export default compose(
     getProfileData,
     subscribe,
     unsubscribe,
+    savePhoto,
 
     // getUsersListFollowing,
   }),

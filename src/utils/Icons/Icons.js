@@ -46,6 +46,23 @@ import MenuBlueActive from "./../../assets/images/menuBlueActive.png"
 import SearchBlack from "./../../assets/images/searchBlack.png"
 import SearchWhite from "./../../assets/images/searchWhite.png"
 
+import EditBlack from './../../assets/images/editBlack.png'
+import EditWhite from './../../assets/images/editWhite.png'
+
+import FilterBlack from './../../assets/images/filterBlack.png'
+import FilterWhite from './../../assets/images/filterWhite.png'
+
+import BirthdayWhite from './../../assets/images/birthdayWhite.png'
+import BirthdayBlack from './../../assets/images/birthdayBlack.png'
+
+import LocationWhite from './../../assets/images/cityWhite.png'
+import LocationBlack from './../../assets/images/cityBlack.png'
+
+import AboutMeWhite from './../../assets/images/aboutMeWhite.png'
+import AboutMeBlack from './../../assets/images/aboutMeBlack.png'
+
+
+
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
 import facebook from "./../../assets/images/facebook.png"
@@ -56,9 +73,10 @@ import website from "./../../assets/images/website.png"
 import mainLink from "./../../assets/images/mainLink.png"
 
 export const Icons = (theme, index = NaN) => {
+  let themeLight = 'lightTheme'
   return {
     home:
-      theme == "lightTheme"
+      theme == themeLight
         ? index == 0
           ? HomeBlueActive
           : HomeBlack
@@ -66,7 +84,7 @@ export const Icons = (theme, index = NaN) => {
         ? HomeBlueActive
         : HomeWhite,
     profile:
-      theme == "lightTheme"
+      theme == themeLight
         ? index == 1
           ? ProfileBlueActive
           : ProfileBlack
@@ -74,7 +92,7 @@ export const Icons = (theme, index = NaN) => {
         ? ProfileBlueActive
         : ProfileWhite,
     posts:
-      theme == "lightTheme"
+      theme == themeLight
         ? index == 2
           ? PostsBlueActive
           : PostsBlack
@@ -82,7 +100,7 @@ export const Icons = (theme, index = NaN) => {
         ? PostsBlueActive
         : PostsWhite,
     users:
-      theme == "lightTheme"
+      theme == themeLight
         ? index == 3
           ? UsersBlueActive
           : UsersBlack
@@ -90,26 +108,31 @@ export const Icons = (theme, index = NaN) => {
         ? UsersBlueActive
         : UsersWhite,
     friends:
-      theme == "lightTheme"
+      theme == themeLight
         ? index == 4
           ? FriendsBlueActive
           : FriendsBlack
         : index == 4
         ? FriendsBlueActive
         : FriendsWhite,
-    arrowDown: theme == "lightTheme" ? ArrowDownBlack : ArrowDownWhite,
-    settings: theme == "lightTheme" ? SettingsBlack : SettingsWhite,
-    logOut: theme == "lightTheme" ? LogOutBlack : LogOutWhite,
-    giveFeedback: theme == "lightTheme" ? ErrorMessageBlack : ErrorMessageWhite,
+    arrowDown: theme == themeLight ? ArrowDownBlack : ArrowDownWhite,
+    settings: theme == themeLight ? SettingsBlack : SettingsWhite,
+    logOut: theme == themeLight ? LogOutBlack : LogOutWhite,
+    giveFeedback: theme == themeLight ? ErrorMessageBlack : ErrorMessageWhite,
     menu:
-      theme == "lightTheme"
+      theme == themeLight
         ? index == 5
           ? MenuBlueActive
           : MenuBlack
         : index == 5
         ? MenuBlueActive
         : MenuWhite,
-    search: theme == "lightTheme" ? SearchBlack : SearchWhite,
+    search: theme == themeLight ? SearchBlack : SearchWhite,
+    edit: theme == themeLight ? EditBlack : EditWhite,
+    filter: theme == themeLight ? FilterBlack : FilterWhite,
+    birthday: theme == themeLight ? BirthdayBlack : BirthdayWhite ,
+    location: theme == themeLight ? LocationBlack : LocationWhite,
+    aboutMe: theme == themeLight ? AboutMeBlack : AboutMeWhite
   }
 }
 // export const Icons = {

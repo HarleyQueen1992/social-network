@@ -30,11 +30,12 @@ html {
   --headItem: rgb(65, 64, 64);
   --fontColor: #fff;
   --colorAbouMe: rgb(197, 197, 197);
-  --statusColor: rgb(140, 140, 140);
+  --statusColor: rgba(255, 255, 255, 0.623);
   --colorDeteilInfo: #fff;
   --descriptionColor: #fff;
   --headerColor: #2e353e;
   --EditBack: #4a4a4a;
+  --anythingNew: rgba(255, 255, 255, 0.075);
   --bacMenu: #ffffff1a;
   --hoverBacMenu: #535353;
   --followBtn: #2f2a56;
@@ -51,6 +52,10 @@ html {
   --error: red;
   --statusHover: #ffffff49;
   --usersListItemHover: rgba(255, 255, 255, 0.068);
+  --anythingNew: rgba(255, 255, 255, 0.075);
+  --anythingNewHover: rgba(255, 255, 255, 0.151);
+  --editProfileBlock: #ffffff1a;
+  --editProfileBlockHover: #ffffff36;
 }
 .loginPage {
   height: 100vh;

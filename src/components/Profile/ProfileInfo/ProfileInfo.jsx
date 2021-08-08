@@ -34,6 +34,7 @@ let month = {
   12: "December",
 };
 const ProfileInfo = (props) => {
+  let res = Icons(props.theme, props.index);
   let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
   birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
   let [editStatus, setEditStatus] = useState(false);
@@ -218,7 +219,7 @@ const ProfileInfo = (props) => {
             <div onClick={openPoupup} className={s.editProfileBlock}>
               <img
                 className={s.editProfileImg}
-                src={EditWhite}
+                src={res["edit"]}
                 alt="edit profile"
               />
               <div className={s.editProfile}>Edit profile</div>
@@ -253,7 +254,7 @@ const ProfileInfo = (props) => {
                 <div className={s.listItems}>
                   <img
                     className={s.birthdayImg}
-                    src={BirthdayWhite}
+                    src={res["birthday"]}
                     alt="birthday"
                   />
                   <span className={s.birthdayTitle}>
@@ -265,13 +266,13 @@ const ProfileInfo = (props) => {
                   </span>
                 </div>
                 <div className={s.listItems}>
-                  <img src={CityWhite} alt="city" />
+                  <img src={res["location"]} alt="city" />
                   <span className={s.placeOfResidenceBlockTitle}>
                     Location <span>{props.profile.location}</span>
                   </span>
                 </div>
                 <div className={s.listItems}>
-                  <img className={s.person} src={AboutMeWhite} alt="person" />
+                  <img className={s.person} src={res["aboutMe"]} alt="person" />
                   <div className={s.aboutMe}>
                     About me: <span>{props.profile.aboutMe}</span>
                   </div>
@@ -387,7 +388,7 @@ const ProfileInfo = (props) => {
               <div className={s.publicationsFilter}>
                 <img
                   className={s.publicationsFilterImg}
-                  src={FilterWhite}
+                  src={res["filter"]}
                   alt="filter"
                 />
                 <span className={s.publicationsFilterTitle}>Filters</span>

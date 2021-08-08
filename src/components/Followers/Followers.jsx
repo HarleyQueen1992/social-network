@@ -45,7 +45,7 @@ const Followers = (props) => {
       <header className={s.header + " " + (focus ? s.headActive : "")}>
         {/* <img className={s.friendsImg} alt='friendsLogo' src={FriendsImg} /> */}
         <div className={s.title + " " + (focus ? s.titleActive : "")}>
-          Subscriptions
+          Followers
         </div>
         <div
           className={s.wrap}
@@ -60,7 +60,7 @@ const Followers = (props) => {
               value={props.value}
               name="search"
               type="text"
-              placeholder="Subscriptions search"
+              placeholder="Followers search"
               onFocus={() => {
                 setFocus(!focus);
               }}

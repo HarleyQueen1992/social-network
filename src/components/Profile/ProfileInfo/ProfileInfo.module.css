@@ -201,7 +201,7 @@
 .profileStatus {
   justify-self: center;
   min-height: 18px;
-  color: rgba(255, 255, 255, 0.623);
+  color: var(--statusColor);
   margin-bottom: 10px;
   word-break: break-all;
 }
@@ -214,7 +214,7 @@
   border-radius: 5px;
   padding: 2px 5px;
   height: 26px;
-  color: white;
+  color: var(--statusColor);
   margin-bottom: 10px;
   border: 1px solid rgba(255, 255, 255, 0);
   background-color: rgba(0, 0, 0, 0.233);
@@ -277,7 +277,7 @@
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 5px;
-  background-color: #ffffff1a;
+  background-color: var(--editProfileBlock);
 }
 .editProfileImg {
   align-self: center;
@@ -285,13 +285,13 @@
   margin-right: 5px;
 }
 .editProfileBlock:hover {
-  background-color: #ffffff36;
+  background-color: var(--editProfileBlockHover);
 }
 .editProfile {
   align-self: center;
   justify-self: start;
   font-weight: bold;
-  color: white;
+  color: var(--fontColor);
 }
 .subscribeUnsubscribeBlock {
   display: grid;
@@ -566,13 +566,13 @@
   width: 90px;
   height: 60%;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.096);
+  background-color: var(--anythingNew);
   align-self: center;
   display: grid;
   grid-template-columns: 40% 60%;
 }
 .publicationsFilter:hover {
-  background-color: rgba(255, 255, 255, 0.123);
+  background-color: var(--anythingNewHover);
 }
 .publicationsFilterImg {
   height: 20px;

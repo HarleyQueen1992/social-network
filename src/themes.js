@@ -37,6 +37,10 @@ export const lightTheme = {
   error: "black",
   statusHover: "#aac1ca8c",
   usersListItemHover: "#dde0e2",
+  anythingNew: "rgba(0, 0, 0, 0.075)",
+  anythingNewHover: "rgba(0, 0, 0, 0.116)",
+  editProfileBlock: "#0000001a",
+  editProfileBlockHover: "rgba(0, 0, 0, 0.151)"
 }
 
 Object.defineProperty(lightTheme, "toString", {
@@ -60,7 +64,7 @@ export const darkTheme = {
   fontColor: "#fff",
   bacPost: "#242526",
   colorAbouMe: "rgb(197, 197, 197)",
-  statusColor: "rgb(140 140 140)",
+  statusColor: "rgba(255, 255, 255, 0.623)",
   colorDeteilInfo: "#fff",
   descriptionColor: "#fff",
   headerColor: "#2e353e",
@@ -81,6 +85,10 @@ export const darkTheme = {
   error: "red",
   statusHover: "#ffffff49",
   usersListItemHover: "rgba(255, 255, 255, 0.068)",
+  anythingNew: "rgba(255, 255, 255, 0.075)",
+  anythingNewHover: "rgba(255, 255, 255, 0.151)",
+  editProfileBlock: "#ffffff1a",
+  editProfileBlockHover: "#ffffff36"
 }
 
 Object.defineProperty(darkTheme, "toString", {
