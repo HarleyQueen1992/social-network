@@ -1,7 +1,7 @@
-.PrivateTabIndicator-colorSecondary-3 {
+.MuiTabs-indicator {
   background-color: #1877f2 !important;
 }
-.PrivateTabIndicator-root-1 {
+.MuiTabs-indicator {
   height: 3px !important;
   border-radius: 1px;
 }

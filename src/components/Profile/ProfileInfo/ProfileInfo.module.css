@@ -9,7 +9,7 @@
   display: none;
   position: fixed;
   height: 100vh;
-  z-index: 99999999999999999;
+  z-index: 1000;
   overflow-y: scroll;
   top: 0;
   background-color: rgba(0, 0, 0, 0.507);
@@ -629,7 +629,7 @@
   overflow-y: scroll;
   background-color: rgba(0, 0, 0, 0.425);
   display: none;
-  z-index: 99999999999999999999999999;
+  z-index: 999;
 }
 .editProfileMenuBottom {
   height: 40px;

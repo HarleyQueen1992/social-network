@@ -35,6 +35,7 @@
   grid-area: body;
   color: var(--fontColor);
   font-weight: 400;
+  word-break: break-all;
   white-space: pre-wrap;
   max-width: 100%;
   padding-top: 20px;

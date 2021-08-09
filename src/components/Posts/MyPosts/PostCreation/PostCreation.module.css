@@ -110,7 +110,7 @@
 .popupContentHeaderTitle {
   align-self: center;
   justify-self: center;
-  color: white;
+  color: var(--fontColor);
   letter-spacing: 1px;
   font-size: 25px;
   margin-left: 50px;
@@ -220,7 +220,7 @@
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid rgba(255, 255, 255, 0);
   resize: none;
-  color: white;
+  color: var(--fontColor);
   font-size: 22px;
   outline: none;
 }
@@ -231,7 +231,7 @@
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid rgba(255, 255, 255, 0);
   resize: none;
-  color: white;
+  color: var(--fontColor);
   font-size: 20px;
   outline: none;
 }
@@ -242,10 +242,10 @@
   margin: 0 16px;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(255, 255, 255, 0.141);
+  border: 1px solid var(--anythingNewHover);
 }
 .popupContentAddToYourPostBlock:hover {
-  background-color: rgba(255, 255, 255, 0.13);
+  background-color: var(--anythingNew);
   border: 1px solid rgba(255, 255, 255, 0);
 }
 .popupContentAddToYourPost {

@@ -60,6 +60,7 @@ const urlIndex = {
 let i = NaN;
 class App extends React.Component {
   str = window.location.href;
+  url = window.location.origin + "/social-network/#/";
 
   // location = window.location
   state = {
@@ -73,7 +74,7 @@ class App extends React.Component {
         break;
       }
     }
-    window.location = "/social-network#/" + urlIndex[i];
+    window.location = "/social-network/#/" + urlIndex[i];
     this.props.setIndex(Number(value));
     window.scroll(0, 0);
   };
@@ -85,13 +86,13 @@ class App extends React.Component {
         break;
       }
     }
-    window.location = "/social-network#/" + urlIndex[i];
+    window.location = "/social-network/#/" + urlIndex[i];
     this.props.setIndex(Number(index));
     window.scroll(0, 0);
   };
 
   changeIndex = (velue) => {
-    let strUpdate = velue.substr(38);
+    let strUpdate = velue.substr(this.url.length);
     strUpdate = strUpdate.split("/")[0];
 
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
@@ -108,12 +109,12 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    let strUpdate = this.str.substr(38);
+    let strUpdate = this.str.substr(this.url.length);
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
 
     if (strUpdate == "") {
       i = 0;
-      window.location = "/social-network#/" + urlIndex[i];
+      window.location = "/social-network/#/" + urlIndex[i];
     } else if (strUpdate == "settings") {
       i = 5;
     } else {
@@ -136,7 +137,7 @@ class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       if (this.props.location.pathname.length == 1) {
-        window.location = "/social-network#/news";
+        window.location = "/social-network/#/news";
       }
       let url = this.props.location.pathname;
       url = url.replace(/[^a-zа-яё]/gi, "");

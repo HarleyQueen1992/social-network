@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import p from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import CreatePost from "./../../../assets/images/editWhite.png";
@@ -15,6 +15,9 @@ const MyPosts = (props) => {
   let toggleFocus = () => {
     setIsFocus(!isFocus);
   };
+  useEffect(() => {
+    props.changeIndex(window.location.href);
+  }, [window.location.href]);
   let isSmall = window.innerWidth < 480;
 
   let addPost = () => {

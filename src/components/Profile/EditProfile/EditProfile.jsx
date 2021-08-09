@@ -31,6 +31,7 @@ let month = {
   12: "December",
 };
 const EditProfile = (props) => {
+  // window.scroll(0, 0);
   let res = Icons(props.theme);
   let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
   birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
