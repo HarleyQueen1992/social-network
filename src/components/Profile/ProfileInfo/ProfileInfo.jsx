@@ -331,13 +331,13 @@ const ProfileInfo = (props) => {
               >
                 {props.subscriptions.map((f) => (
                   <NavLink
-                    to={"/profile/" + f.id}
+                    to={"/profile/" + f.login}
                     className={s.subscriptionSubscribersListItem}
                     key={f.id}
                   >
                     <img
                       className={s.subscriptionSubscribersImg}
-                      src={f.photo ? f.photo : profileImg}
+                      src={f.avatar ? f.avatar : profileImg}
                       alt="user photo"
                     />
                     <div className={s.subscriptionSubscribersName}>
@@ -385,7 +385,7 @@ const ProfileInfo = (props) => {
                     >
                       <img
                         className={s.subscriptionSubscribersImg}
-                        src={f.photo ? f.photo : profileImg}
+                        src={f.avatar ? f.avatar : profileImg}
                         alt="user photo"
                       />
                       <div className={s.subscriptionSubscribersName}>
