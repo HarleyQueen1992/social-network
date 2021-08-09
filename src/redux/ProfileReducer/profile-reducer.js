@@ -1,4 +1,5 @@
 import { profileAPI, followAPI } from "../../API/api"
+import { stopSubmit } from "redux-form"
 import { toggleIsFetching } from "../AppReducer/app-reducer"
 import { getTheLastPost } from "./../PostsReducer/posts-reducer"
 const SET_USER_PROFILE = "app/profile-reducer/SET_USER_PROFILE"
@@ -14,21 +15,19 @@ const SET_TOTAL_SUBSCRIBERS_ITEMS = "app/profile-reducer/SET_TOTAL_SUBSCRIBERS_I
 const SET_TOTAL_SUBSCRIPTIONS_ITEMS = "app/profile-reducer/SET_TOTAL_SUBSCRIPTIONS_ITEMS"
 const SET_PAGE_SUBSCRIBERS = 'app/profile-reducer/SET_PAGE_SUBSCRIBERS'
 const SET_PAGE_SUBSCRIPTIONS = 'app/profile-reducer/SET_PAGE_SUBSCRIPTIONS'
- 
+const IS_SUCCESSFUL_PASSWORD_CHANGE = 'app/profile-reducer/IS_SUCCESSFUL_PASSWORD_CHANGE'
 
 let initialState = {
   isFatching: true,
   isSavingPhoto: false,
   profile: null,
   pageSize: 8,
-
   subscriptions: null,
   totalSubscriptionsItems: null,
-
   subscribers: null,
   totalSubscribersItems: null,
-  
   isFollowed: null,
+  isSuccessfulPasswordChange: false,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -57,6 +56,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         pageSubscriptions: action.pageNumber,
+      }
+    case IS_SUCCESSFUL_PASSWORD_CHANGE:
+      return {
+        ...state,
+        isSuccessfulPasswordChange: action.isComplite
       }
     case SAVE_PHOTO_SUCCESS:
       return {
@@ -118,7 +122,7 @@ export const setPageSubscribers = pageNumber => ({ type: SET_PAGE_SUBSCRIBERS, p
 
 export const setPageSubscriptions = pageNumber => ({ type: SET_PAGE_SUBSCRIPTIONS, pageNumber })
 
-
+export const setIsSuccessfulPasswordChange = isComplite => ({type: IS_SUCCESSFUL_PASSWORD_CHANGE, isComplite})
 
 
 export const isSavePhoto = isSaving => ({
@@ -241,6 +245,15 @@ export const unsubscribe = login => async dispatch => {
   let response = await followAPI.unsubscribe(login)
   dispatch(toggleIsFollowed(false))
   
+}
+export const changePassword = (oldPassword, newPassword1, newPassword2) => async dispatch => {
+  let response = await profileAPI.changePassword(oldPassword, newPassword1, newPassword2)
+  if (response.code == "invalid") {
+    let message =
+    response.messages.length > 0 ? response.messages[0] : "Some error"
+
+    dispatch(stopSubmit("password", { _error: message }))
+  }
 }
 // export const getFollow = id => async dispatch => {
 //   let response = await followAPI.getFollow(id)

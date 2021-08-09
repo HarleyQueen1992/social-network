@@ -61,7 +61,8 @@ import LocationBlack from './../../assets/images/cityBlack.png'
 import AboutMeWhite from './../../assets/images/aboutMeWhite.png'
 import AboutMeBlack from './../../assets/images/aboutMeBlack.png'
 
-
+import PasswordWhite from "./../../assets/images/passwordWhite.png"
+import PasswordBlack from "./../../assets/images/passwordBlack.png"
 
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
@@ -132,7 +133,8 @@ export const Icons = (theme, index = NaN) => {
     filter: theme == themeLight ? FilterBlack : FilterWhite,
     birthday: theme == themeLight ? BirthdayBlack : BirthdayWhite ,
     location: theme == themeLight ? LocationBlack : LocationWhite,
-    aboutMe: theme == themeLight ? AboutMeBlack : AboutMeWhite
+    aboutMe: theme == themeLight ? AboutMeBlack : AboutMeWhite,
+    password: theme == themeLight ? PasswordBlack :PasswordWhite,
   }
 }
 // export const Icons = {

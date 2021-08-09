@@ -89,7 +89,7 @@ export const getAuthMe = () => async dispatch => {
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password)
   if (data.code !== "invalid") {
-    window.location = '/social-network#/news';
+    window.location = '/social-network/#/news';
     dispatch(setIndex(0))
     dispatch(setProfileData(data, true))
   } else {

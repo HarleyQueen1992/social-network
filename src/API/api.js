@@ -171,6 +171,15 @@ export const profileAPI = {
       return response.data
     })
   },
+  changePassword(oldPassword, newPassword1, newPassword2) {
+    return instance.put(
+      `/profile/password/`, {oldPassword, newPassword1, newPassword2}
+    ).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  }
   // getFollow(id) {
   //     return instance.get(`/follow/${id}`)
   // }

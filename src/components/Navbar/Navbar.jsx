@@ -94,22 +94,23 @@ const Navbar = (props) => {
         <div className={s.borderBottom}></div>
       </div>
       <div className={s.navBar}>
-        <NavLink
-          to="/settings"
+        <div
           onClick={() => {
             props.setIsMenuActive(false);
+            props.setIsPassword(true);
+            document.querySelector("body").style.cssText = "overflow: hidden;";
           }}
           className={s.itemSettings}
         >
           <div className={s.settingsLogo}>
             <img
               className={s.settingsImg}
-              src={res["settings"]}
-              alt="settings img"
+              src={res["password"]}
+              alt="password img"
             />
           </div>
-          <span className={s.settingsTitle}>Settings</span>
-        </NavLink>
+          <span className={s.settingsTitle}>Change Password</span>
+        </div>
         <div className={s.themeItems}>
           <input
             onClick={() => {
