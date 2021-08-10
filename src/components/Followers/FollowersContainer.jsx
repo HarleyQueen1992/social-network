@@ -52,6 +52,8 @@ class FollowersContainer extends React.Component {
     }
   };
   componentDidMount() {
+    this.props.clearFollowers();
+    this.props.setCurrentPage(1);
     this.refreshFollowings();
   }
   resetSearchUsers = () => {

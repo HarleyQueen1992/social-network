@@ -43,6 +43,7 @@ const Friends = (props) => {
         0 &&
       friends.length < totalCount
     ) {
+      debugger;
       if (props.friendsSearch.length === 0) {
         props.toggleIsFatching(true);
       } else {

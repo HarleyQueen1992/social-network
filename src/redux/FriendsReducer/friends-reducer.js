@@ -27,7 +27,6 @@ const friendsReducer = (state = initialState, action) => {
         friends: [...state.friends, ...action.friends],
       }
     }
-
     case SET_CURRENT_PAGE_FRIEND: {
       return {
         ...state,
@@ -91,6 +90,7 @@ const friendsReducer = (state = initialState, action) => {
 
 export const setFriends = friends => ({ type: SET_FRIENDS, friends })
 
+
 export const clearFriends = () => ({ type: CLEAR_FRIENDS })
 
 export const deleteFriend = id => ({
@@ -112,7 +112,6 @@ export const toggleIsFatching = isFatching => ({
   type: TOGGLE_IS_FATCHING,
   isFatching,
 })
-
 export const toggleIsFetching = isFetching => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
@@ -124,22 +123,25 @@ export const nextPage = () => ({ type: NEXT_PAGE })
 export const earlyPage = () => ({ type: EARLY_PAGE })
 
 // Thunk Creator
-export const requestFollowings = currentPage => async dispatch => {
-    if (currentPage === 1) {
-      dispatch(toggleIsFetching(true))
-    }
 
-    // dispatch(toggleIsFatching(true))
-    let data = await friendsAPI.getFriends(currentPage, initialState.pageSize)
-      dispatch(toggleIsFatching(false))
-      dispatch(setFriends(data.items))
-      dispatch(setCurrentPage(currentPage + 1))
-      dispatch(setFriendsTotalCount(data.totalItems))
-      dispatch(toggleIsFetching(false))
-    
+export const requestFollowings = (currentPage) => async dispatch => {
+  if (currentPage === 1) {
+    dispatch(toggleIsFetching(true))
+  }
+  let data = await friendsAPI.getFriends(currentPage, initialState.pageSize)
+    dispatch(toggleIsFatching(false))
+    dispatch(setFriends(data.items))
+    dispatch(setCurrentPage(currentPage + 1))
+    dispatch(setFriendsTotalCount(data.totalItems))
+    dispatch(toggleIsFetching(false))
+ } 
   
+    
+   
+  
+    
       
-}
+
 export const requestUserFollowings = (login, currentPage) => async dispatch => {
   if (currentPage === 1) {
     dispatch(toggleIsFetching(true))

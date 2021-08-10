@@ -16,6 +16,3 @@ export const getTotalFriendsCount = state => {
 export const getCurrentPage = state => {
   return state.friendsPage.currentPage
 }
-export const getAllFriends = state => {
-  return state.friendsPage.allFriends
-}

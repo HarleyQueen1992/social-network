@@ -47,12 +47,14 @@ class FriendsContainer extends React.Component {
 
     if (!login || login == this.props.profileInfo.login) {
       login = this.props.profileInfo.login;
-      this.props.requestFollowings(this.props.currentPage);
+      this.props.requestFollowings(1);
     } else {
-      this.props.requestUserFollowings(login, this.props.currentPage);
+      this.props.requestUserFollowings(login, 1);
     }
   }
   componentDidMount() {
+    this.props.setCurrentPage(1);
+    this.props.clearFriends();
     this.refreshFollowings();
     // if (this.props.isFatching) {
     // this.props.requestFollowings(this.props.currentPage);
@@ -109,13 +111,14 @@ class FriendsContainer extends React.Component {
       if (login) {
         this.props.requestUserFollowings(login, this.props.currentPage);
       } else {
+        debugger;
         this.props.requestFollowings(this.props.currentPage);
       }
     }
   }
   componentWillUnmount() {
-    this.props.clearFriends();
     this.props.setCurrentPage(1);
+    this.props.clearFriends();
     this.props.setValue("");
   }
   render() {

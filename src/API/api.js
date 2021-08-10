@@ -184,6 +184,7 @@ export const profileAPI = {
   //     return instance.get(`/follow/${id}`)
   // }
 }
+ 
 export const friendsAPI = {
   followings(currentPage, pageSize) {
     return instance.get(
@@ -194,9 +195,10 @@ export const friendsAPI = {
       return response.data
     })
   },
+  
     getFriends(currentPage, pageSize) {
       return instance.get(
-        `following/?page=${currentPage}&limit=${pageSize}`
+        `following/?page=${currentPage}&limit=${pageSize}`,
       ).then(response => {
         return response.data
       }).catch(response => {

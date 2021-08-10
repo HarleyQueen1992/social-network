@@ -148,7 +148,6 @@ const mapStateToProps = (state) => ({
   isPostCreation: getIsPostCreation(state),
   lastPost: getLastPost(state),
   theme: getTheme(state),
-  friends: getAllFriends(state),
   posts: getPosts(state),
   editMode: getEditMode(state),
   isMenuActive: getMenuActive(state),

@@ -42,6 +42,8 @@ import Preloader from "../common/Preloader/Preloader";
 import { getTheme } from "../../redux/AppReducer/app-selectors";
 class UsersC extends React.Component {
   componentDidMount() {
+    this.props.clearUsers();
+    this.props.setCurrentPage(1);
     // if (this.props.isFatching) {
     this.props.requestUsers(this.props.currentPage);
     // }
