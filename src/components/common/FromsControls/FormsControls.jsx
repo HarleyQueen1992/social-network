@@ -33,7 +33,7 @@ export const createField = (
   props = {},
   text = ""
 ) => (
-  <div>
+  <div className={styles.div}>
     <Field
       placeholder={placeholder}
       name={name}

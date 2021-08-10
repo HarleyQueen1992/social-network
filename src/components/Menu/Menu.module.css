@@ -32,16 +32,20 @@
   /* color: ; */
 }
 .ava {
-  display: grid;
-  height: 100%;
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .avaImg {
-  justify-self: center;
-  align-self: center;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 .profileInfo {
   display: grid;
@@ -62,8 +66,20 @@
 .gridMenu {
   margin-top: 10px;
   display: grid;
+  grid-template-rows: 70px auto;
+  grid-gap: 8px;
+}
+.columns {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
+  grid-gap: 8px;
+}
+/* Left Column */
+.leftColumn {
+  /* display: grid; */
+}
+.rightColumn {
+  /* display: grid; */
 }
 .settingsBlock {
   cursor: pointer;
@@ -74,6 +90,7 @@
   grid-column-gap: 5px;
   box-sizing: border-box;
   height: 60px;
+  margin-bottom: 8px;
   background-color: var(--menuItemBac);
   border-radius: 10px;
 }
@@ -83,10 +100,11 @@
 .settingsBlock img {
   align-self: center;
   height: 30px;
+
   /* color: rgb(199, 199, 199); */
 }
 .settingsBlock span {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   align-self: center;
   color: var(--fontColor);
@@ -99,6 +117,7 @@
   grid-column-gap: 5px;
   padding: 10px;
   height: 40px;
+  margin-bottom: 8px;
   background-color: var(--menuItemBac);
   border-radius: 6px;
 }
@@ -115,4 +134,138 @@
 
 .logOutBlock:hover {
   background-color: var(--menuItemBacHover);
+}
+/* giveFeedbackBlock */
+.giveFeedbackItemsBlock {
+  display: grid;
+  height: 70px;
+  background-color: var(--menuItemBac);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.itemGiveFeedback {
+  display: grid;
+}
+.giveFeedbackBlock {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-radius: 8px;
+}
+.giveFeedbackItemsBlock:hover {
+  background-color: var(--menuItemBacHover);
+}
+.giveFeedback {
+  justify-self: center;
+  align-self: center;
+  height: 36px;
+  display: grid;
+  width: 36px;
+  background-color: var(--bacNavBarImg);
+  border-radius: 50%;
+}
+.giveFeedbackImg {
+  align-self: center;
+  justify-self: center;
+  height: 20px;
+  width: 20px;
+}
+.giveFeedbackInfoBlock {
+  display: grid;
+  align-self: center;
+}
+.giveFeedbackTitle {
+  color: var(--fontColor);
+  font-size: 18px;
+  margin-left: 5px;
+  font-weight: bold;
+  align-self: end;
+}
+.giveFeedbackText {
+  color: var(--fontColor);
+  margin-left: 5px;
+}
+/* Theme */
+.themeBlock {
+  height: 50px;
+  display: grid;
+  background-color: var(--menuItemBac);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.themeItems {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.themeBlock:hover {
+  background-color: var(--menuItemBacHover);
+}
+.themes {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: auto 1fr;
+}
+
+.checkbox {
+  display: none;
+  margin-top: 50px;
+  opacity: 0;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.img {
+  height: 16px;
+}
+
+.label {
+  align-self: center;
+  justify-self: center;
+  box-sizing: border-box;
+  background-color: var(--bacNavBarImg);
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 26px;
+  width: 50px;
+  transform: scale(1.2);
+}
+.themeTitle {
+  color: var(--fontColor);
+  font-size: 18px;
+  align-self: center;
+  justify-self: start;
+  font-weight: bold;
+}
+
+.label .ball {
+  background-color: var(--swithThemeBall);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  transform: translateX(0px);
+  transition: transform 0.3s linear;
+}
+
+.ball.active {
+  transform: translateX(24px);
+}
+.btnLogOut {
+  cursor: pointer;
+  background-color: var(--followBtn);
+  border: 1px solid var(--followBtn);
+  color: var(--fontColor);
+  padding: 5px 8px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
