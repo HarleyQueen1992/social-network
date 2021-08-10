@@ -25,3 +25,6 @@ export const getEditMode = state => {
 export const getMenuActive = state => {
   return state.app.isMenuActive
 }
+export const getIsPassword = state => {
+  return state.app.isPassword
+}

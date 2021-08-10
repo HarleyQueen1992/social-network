@@ -41,8 +41,8 @@ html {
   --followBtn: #2f2a56;
   --followBtnHover: #3b3475;
   --BorderBottom: #3e4042;
-  --bacInput: #242526;
-  --bacInputBorder: #333333;
+  --bacInput: rgba(255, 255, 255, 0.267);
+  --bacInputBorder: rgba(255, 255, 255, 0.267);
   --bbLogin: rgb(224, 173, 173);
   --bacInputLogin: rgb(255, 255, 255);
   --swithThemeBac: #4e4e4e;

@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Password.module.css";
 import { Field, reduxForm } from "redux-form";
+import { setIsPassword } from "./../../redux/AppReducer/app-reducer";
 import { createField, Input } from "../common/FromsControls/FormsControls";
 import { connect } from "react-redux";
 import { changePassword } from "./../../redux/ProfileReducer/profile-reducer";
@@ -64,4 +65,6 @@ const PasswordForm = ({ handleSubmit, error }) => {
 
 const PasswordReduxForm = reduxForm({ form: "password" })(PasswordForm);
 const mapStateToProps = (state) => ({});
-export default connect(mapStateToProps, { changePassword })(Password);
+export default connect(mapStateToProps, { changePassword, setIsPassword })(
+  Password
+);

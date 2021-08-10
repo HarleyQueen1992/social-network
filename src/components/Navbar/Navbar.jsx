@@ -3,7 +3,7 @@ import s from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { setTheme } from "./../../redux/AppReducer/app-reducer";
+import { setTheme, setIsPassword } from "./../../redux/AppReducer/app-reducer";
 import { getTheme } from "./../../redux/AppReducer/app-selectors";
 import { logOut } from "./../../redux/AuthReducer/auth-reducer";
 import { withRouter } from "react-router-dom";
@@ -156,6 +156,6 @@ let mapStateToProps = (state) => {
   };
 };
 export default compose(
-  connect(mapStateToProps, { setTheme, logOut }),
+  connect(mapStateToProps, { setTheme, logOut, setIsPassword }),
   withRouter
 )(Navbar);

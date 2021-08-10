@@ -487,13 +487,22 @@
   grid-template-rows: 70px 25px;
   text-decoration: none;
 }
-
-.subscriptionSubscribersImg {
-  height: 70px;
+.subscriptionSubscribersBlockImg {
+  position: relative;
+  overflow: hidden;
   width: 70px;
-  border-radius: 10px;
-  align-self: center;
   justify-self: center;
+  height: 70px;
+}
+.subscriptionSubscribersImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .subscriptionSubscribersName {
   color: var(--fontColor);

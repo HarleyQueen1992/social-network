@@ -12,14 +12,14 @@ import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { Icons } from "./../../utils/Icons/Icons";
 import searchWhite from "./../../assets/images/searchWhite.png";
-import { getTheme } from "../../redux/AppReducer/app-selectors";
+import { getIsPassword, getTheme } from "../../redux/AppReducer/app-selectors";
 import Password from "../Password/Password";
 const Header = (props) => {
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
   const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900);
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [isPassword, setIsPassword] = useState(false);
+  // const [isPassword, setIsPassword] = useState(false);
   // let border = (document.querySelector(
   //   "PrivateTabIndicator-colorSecondary-3"
   // ).style.background = "blue")
@@ -206,16 +206,9 @@ const Header = (props) => {
         </div>
       )}
       {isBigScreen && isMenuActive && (
-        <Navbar
-          isPassword={isPassword}
-          setIsPassword={setIsPassword}
-          setIsMenuActive={setIsMenuActive}
-          isMenuActive={isMenuActive}
-        />
+        <Navbar setIsMenuActive={setIsMenuActive} isMenuActive={isMenuActive} />
       )}
-      {isPassword && (
-        <Password isPassword={isPassword} setIsPassword={setIsPassword} />
-      )}
+      {props.isPassword && <Password />}
     </div>
   );
 };
@@ -223,6 +216,7 @@ const Header = (props) => {
 let mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
+    isPassword: getIsPassword(state),
   };
 };
 export default compose(connect(mapStateToProps, {}), withRouter)(Header);

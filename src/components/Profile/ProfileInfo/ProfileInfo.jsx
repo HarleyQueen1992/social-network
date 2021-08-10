@@ -335,11 +335,13 @@ const ProfileInfo = (props) => {
                     className={s.subscriptionSubscribersListItem}
                     key={f.id}
                   >
-                    <img
-                      className={s.subscriptionSubscribersImg}
-                      src={f.avatar ? f.avatar : profileImg}
-                      alt="user photo"
-                    />
+                    <div className={s.subscriptionSubscribersBlockImg}>
+                      <img
+                        className={s.subscriptionSubscribersImg}
+                        src={f.avatar ? f.avatar : profileImg}
+                        alt="user photo"
+                      />
+                    </div>
                     <div className={s.subscriptionSubscribersName}>
                       {f.login}
                     </div>
@@ -383,11 +385,13 @@ const ProfileInfo = (props) => {
                       className={s.subscriptionSubscribersListItem}
                       key={f.id}
                     >
-                      <img
-                        className={s.subscriptionSubscribersImg}
-                        src={f.avatar ? f.avatar : profileImg}
-                        alt="user photo"
-                      />
+                      <div className={s.subscriptionSubscribersBlockImg}>
+                        <img
+                          className={s.subscriptionSubscribersImg}
+                          src={f.avatar ? f.avatar : profileImg}
+                          alt="user photo"
+                        />
+                      </div>
                       <div className={s.subscriptionSubscribersName}>
                         {f.login}
                       </div>

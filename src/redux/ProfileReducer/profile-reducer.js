@@ -1,6 +1,6 @@
 import { profileAPI, followAPI } from "../../API/api"
 import { stopSubmit } from "redux-form"
-import { toggleIsFetching } from "../AppReducer/app-reducer"
+import { setIsPassword, toggleIsFetching } from "../AppReducer/app-reducer"
 import { getTheLastPost } from "./../PostsReducer/posts-reducer"
 const SET_USER_PROFILE = "app/profile-reducer/SET_USER_PROFILE"
 const SET_STATUS = "app/profile-reducer/SET_STATUS"
@@ -253,6 +253,8 @@ export const changePassword = (oldPassword, newPassword1, newPassword2) => async
     response.messages.length > 0 ? response.messages[0] : "Some error"
 
     dispatch(stopSubmit("password", { _error: message }))
+  } else {
+    dispatch(setIsPassword(false))
   }
 }
 // export const getFollow = id => async dispatch => {

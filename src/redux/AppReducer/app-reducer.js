@@ -9,6 +9,7 @@ const SET_INDEX = "app/app-reducer/SET_INDEX"
 const TOGGLE_IS_BIG_SCREEN = "app/app-reducer/TOGGLE_IS_BIG_SCREEN"
 const SET_EDITMODE = "app/app-reducer/SET_EDITMODE"
 const IS_MENU_ACTIVE = 'app/app-reducer/IS_MENU_ACTIVE'
+const IS_PASSWORD = 'app/app-reducer/IS_PASSWORD'
 
 let initialState = {
   initialized: false,
@@ -19,6 +20,7 @@ let initialState = {
   editMode: false,
   isMenuActive: false,
   isBigScreen: window.innerWidth > 600,
+  isPassword: false
 }
 
 const appReducer = (state = initialState, action) => {
@@ -39,6 +41,12 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isMenuActive: action.isMenuActive,
+      }
+    }
+    case IS_PASSWORD: {
+      return {
+        ...state,
+        isPassword: action.isPassword
       }
     }
     case SET_THEME: {
@@ -112,6 +120,11 @@ export const setIndex = index => ({
 export const toggleIsBigScreen = isBigScreen => ({
   type: TOGGLE_IS_BIG_SCREEN,
   isBigScreen,
+})
+
+export const setIsPassword = isPassword => ({
+  type: IS_PASSWORD,
+  isPassword
 })
 
 export const setTheme = theme => ({ type: SET_THEME, theme })

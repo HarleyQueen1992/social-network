@@ -126,14 +126,19 @@ input[type="submit"]:hover {
 }
 .userAvatar {
   grid-area: photoFollowed;
-  display: grid;
-  height: 100%;
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+  width: 90px;
+  height: 90px;
 }
 .avatar {
-  justify-self: end;
-  height: 90px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 90px;
+  height: 90px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
