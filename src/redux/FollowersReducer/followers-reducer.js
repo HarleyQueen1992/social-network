@@ -9,6 +9,8 @@ const NEXT_PAGE = "app/friends-reducer/NEXT_PAGE"
 const CLEAR_FOLLOWERS = "app/friends-reducer/CLEAR_FOLLOWERS"
 const EARLY_PAGE = "app/friends-reducer/EARLY_PAGE"
 const DELETE_FOLLOWER = "app/friends-reducer/DELETE_FOLLOWER"
+const FOLLOW = 'app/followers-reducer/FOLLOW'
+const UNFOLLOW = 'app/followers-reducer/UNFOLLOW'
 
 let initialState = {
   followers: [],
@@ -26,7 +28,26 @@ const friendsReducer = (state = initialState, action) => {
         followers: [...state.followers, ...action.followers],
       }
     }
-
+    case FOLLOW:
+      return {
+        ...state,
+        followers: state.followers.map(u => {
+          if (u.login === action.login) {
+            return { ...u, isFollowed: true }
+          }
+          return u
+        }),
+      }
+      case UNFOLLOW:
+        return {
+          ...state,
+          followers: state.followers.map(u => {
+            if (u.login === action.login) {
+              return { ...u, isFollowed: false }
+            }
+            return u
+          }),
+        }
     case SET_CURRENT_PAGE_FOLLOWERS: {
       return {
         ...state,
@@ -114,6 +135,10 @@ export const toggleIsFetching = isFetching => ({
 export const nextPage = () => ({ type: NEXT_PAGE })
 
 export const earlyPage = () => ({ type: EARLY_PAGE })
+
+export const followFollowersSuccess = login => ({ type: FOLLOW, login })
+
+export const unfollowFollowersSuccess = login => ({ type: UNFOLLOW, login })
 
 // Thunk Creator
 export const requestFollowers = currentPage => async dispatch => {

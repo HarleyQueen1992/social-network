@@ -120,11 +120,29 @@ const Users = (props) => {
                 >
                   <div
                     className={
-                      s.name + " " + (u.status == "" ? s.nameNoStatus : "")
+                      s.nameAndChekMark +
+                      " " +
+                      (u.isAdmin && s.nameAndChekMarkAdmin)
                     }
                   >
-                    {u.login}
+                    <div
+                      className={
+                        s.name + " " + (u.status == "" ? s.nameNoStatus : "")
+                      }
+                    >
+                      {u.login}
+                    </div>
+                    <div
+                      className={
+                        s.chekMarkBlock +
+                        " " +
+                        (u.isAdmin && s.chekMarkBlockActive)
+                      }
+                    >
+                      <img src={res["checkMark"]} alt="" />
+                    </div>
                   </div>
+
                   <span
                     className={
                       s.userStatus +

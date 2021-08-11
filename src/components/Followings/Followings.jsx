@@ -109,7 +109,7 @@ const Friends = (props) => {
       ) : friends.length === 0 ? (
         <div className={s.friendsBlockError}>
           <h2>You are not subscribed to anyone</h2>
-          <NavLink to="/users/">Let's see who you can subscribe to</NavLink>
+          <NavLink to="/users">Let's see who you can subscribe to</NavLink>
         </div>
       ) : (
         <div className={s.friends}>
@@ -135,7 +135,7 @@ const Friends = (props) => {
                   <NavLink to="#" className={s.unfollow}>
                     <button
                       onClick={() => {
-                        props.unfollow(f.id);
+                        props.unfollow(f.login);
                       }}
                       className={s.unfollowBtn}
                     >

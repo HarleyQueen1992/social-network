@@ -48,7 +48,7 @@ const friendsReducer = (state = initialState, action) => {
     case DELETE_FRIEND: {
       return {
         ...state,
-        friends: state.friends.filter(f => f.id != action.id),
+        friends: state.friends.filter(f => f.login != action.login),
       }
     }
     case TOGGLE_IS_FATCHING: {
@@ -93,9 +93,9 @@ export const setFriends = friends => ({ type: SET_FRIENDS, friends })
 
 export const clearFriends = () => ({ type: CLEAR_FRIENDS })
 
-export const deleteFriend = id => ({
+export const deleteFriend = login => ({
   type: DELETE_FRIEND,
-  id,
+  login,
 })
 
 export const setCurrentPage = currentPage => ({

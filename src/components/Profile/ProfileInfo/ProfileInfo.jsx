@@ -205,7 +205,25 @@ const ProfileInfo = (props) => {
           </div>
         </div>
         <div className={s.profileNameAndStatus}>
-          <div className={s.profileName}>{props.profile.fullname}</div>
+          <div
+            className={
+              s.profileNameAndCheckMark +
+              " " +
+              (props.profile.isAdmin && s.profileNameAndCheckMarkIsAdmin)
+            }
+          >
+            <span>{props.profile.fullname}</span>
+            <div
+              className={
+                s.checkMarkBlock +
+                " " +
+                (props.profile.isAdmin && s.checkMarkBlockActive)
+              }
+            >
+              <img src={res["checkMark"]} alt="checkMark" />
+            </div>
+          </div>
+
           {props.isOwner ? (
             editStatus ? (
               <input
@@ -235,9 +253,7 @@ const ProfileInfo = (props) => {
               </div>
             )
           ) : (
-            <div className={s.profileStatus}>
-              {<props className="profile status"></props>}
-            </div>
+            <div className={s.profileStatus}>{props.profile.status}</div>
           )}
         </div>
         <div className={s.profileDescription}>

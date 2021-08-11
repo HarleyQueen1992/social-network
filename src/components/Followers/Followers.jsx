@@ -116,21 +116,32 @@ const Followers = (props) => {
               </div>
               <div className={s.rightPart}>
                 <span className={s.name}>{f.login}</span>
-                <span className={s.buttonsBlock}>
-                  <div className={s.viewPosts}>
-                    <button className={s.viewPostsBtn}>View posts</button>
-                  </div>
-                  <NavLink to="#" className={s.unfollow}>
-                    <button
-                      onClick={() => {
-                        props.unfollow(f.id);
-                      }}
-                      className={s.unfollowBtn}
-                    >
-                      Unsubscribe
-                    </button>
+                <div className={s.buttonsBlock}>
+                  <NavLink to="#" className={s.subscribers}>
+                    {f.isFollowed ? (
+                      <button
+                        onClick={() => {
+                          props.unfollow(f.login);
+                        }}
+                        className={s.unsubscribeBtn}
+                      >
+                        Unsubscribe
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          props.follow(f.login);
+                        }}
+                        className={s.subscribeBtn}
+                      >
+                        Subscribe
+                      </button>
+                    )}
                   </NavLink>
-                </span>
+                  <NavLink to="#" className={s.viewPosts}>
+                    <button className={s.viewPostsBtn}>View Posts</button>
+                  </NavLink>
+                </div>
               </div>
             </NavLink>
           ))}

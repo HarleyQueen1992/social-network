@@ -16,6 +16,7 @@ import {
   setCurrentPage,
   toggleIsFatching,
 } from "../../redux/FollowersReducer/followers-reducer";
+import { follow, unfollow } from "./../../redux/UsersReducer/user-reducer";
 import {
   requestForFollowers,
   setValue,
@@ -131,6 +132,8 @@ class FollowersContainer extends React.Component {
         value={this.props.value}
         resetSearchUsers={this.resetSearchUsers}
         isReceipt={this.props.isReceipt}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}
       />
     );
   }
@@ -165,6 +168,8 @@ export default compose(
     setCurrentPageSearch,
     toggleIsFatchingSearch,
     requestForUserFollowers,
+    follow,
+    unfollow,
   }),
   withRouter
 )(FollowersContainer);

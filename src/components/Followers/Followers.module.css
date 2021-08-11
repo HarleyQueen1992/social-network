@@ -170,10 +170,50 @@
   grid-template-columns: 50% 50%;
   box-sizing: border-box;
 }
-.viewPosts {
+.subscribers {
   display: grid;
   margin-right: 5px;
   text-decoration: none;
+}
+.subscribeBtn {
+  cursor: pointer;
+  z-index: 100;
+  width: 100%;
+  justify-self: center;
+  height: 80%;
+  align-self: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #2748ad;
+  transition: all 0.1s;
+}
+.subscribeBtn:hover {
+  background-color: #4e67b1;
+  width: 96%;
+}
+.unsubscribeBtn {
+  cursor: pointer;
+  height: 80%;
+  z-index: 1000;
+  align-self: center;
+  width: 100%;
+  justify-self: center;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  background-color: #c2c2c2;
+}
+.unsubscribeBtn:hover {
+  background-color: #aaa8a8;
+  width: 98%;
+}
+.viewPosts {
+  display: grid;
+  text-decoration: none;
+  margin-left: 5px;
 }
 .viewPostsBtn {
   cursor: pointer;
@@ -187,31 +227,10 @@
   font-weight: bold;
   background-color: #494949;
 }
+
 .viewPostsBtn:hover {
   background-color: #5e5e5e;
   width: 98%;
-}
-.unfollow {
-  display: grid;
-  margin-left: 5px;
-  text-decoration: none;
-}
-.unfollowBtn {
-  width: 100%;
-  cursor: pointer;
-  justify-self: center;
-  height: 80%;
-  align-self: center;
-  background-color: rgb(172, 172, 172);
-  border: none;
-  border-radius: 5px;
-  color: rgb(0, 0, 0);
-  font-weight: bold;
-  box-sizing: border-box;
-}
-.unfollowBtn:hover {
-  width: 98%;
-  background-color: rgb(146, 146, 146);
 }
 
 /*! Search */

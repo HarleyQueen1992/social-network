@@ -64,6 +64,11 @@ import AboutMeBlack from './../../assets/images/aboutMeBlack.png'
 import PasswordWhite from "./../../assets/images/passwordWhite.png"
 import PasswordBlack from "./../../assets/images/passwordBlack.png"
 
+import CheckMarkWhite from './../../assets/images/checkMarkWhite.png'
+import CheckMarkBlack from './../../assets/images/checkMarkBlack.png'
+import CheckMarkBlue from './../../assets/images/checkMarkBlue.png'
+
+
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
 import facebook from "./../../assets/images/facebook.png"
@@ -135,6 +140,7 @@ export const Icons = (theme, index = NaN) => {
     location: theme == themeLight ? LocationBlack : LocationWhite,
     aboutMe: theme == themeLight ? AboutMeBlack : AboutMeWhite,
     password: theme == themeLight ? PasswordBlack :PasswordWhite,
+    checkMark:CheckMarkBlue
   }
 }
 // export const Icons = {

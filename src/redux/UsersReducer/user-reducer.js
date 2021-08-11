@@ -1,4 +1,5 @@
 import { usersAPI, followAPI } from "../../API/api"
+import { followFollowersSuccess, unfollowFollowersSuccess } from "../FollowersReducer/followers-reducer"
 import { deleteFriend } from "../FriendsReducer/friends-reducer"
 // import { toggleIsFetching } from "../AppReducer/app-reducer"
 import { toggleIsFollow } from "../ProfileReducer/profile-reducer"
@@ -199,6 +200,7 @@ export const follow = login => async dispatch => {
     dispatch(toggleFollowingProgress(true, login))
     let response = followAPI.subscribe(login)
     dispatch(followSuccess(login))
+    dispatch(followFollowersSuccess(login))
     
     dispatch(toggleFollowingProgress(false, login))
     
@@ -217,6 +219,7 @@ export const unfollow = login => async dispatch => {
     dispatch(toggleFollowingProgress(true, login))
     let response = await followAPI.unsubscribe(login)
     dispatch(unfollowSuccess(login))
+    dispatch(unfollowFollowersSuccess(login))
     dispatch(deleteFriend(login))
     dispatch(toggleFollowingProgress(false, login))
     
