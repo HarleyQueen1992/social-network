@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import s from "./Followings.module.css";
 import Preloader from "../common/Preloader/Preloader";
 import { Icons } from "../../utils/Icons/Icons";
+import User from "../Users/Users/User";
 
 const Friends = (props) => {
   let res = Icons(props.theme);
@@ -114,37 +115,16 @@ const Friends = (props) => {
       ) : (
         <div className={s.friends}>
           {friends.map((f) => (
-            <NavLink
-              to={"/profile/" + f.login}
-              key={f.login}
-              className={s.friend}
-            >
-              <div className={s.photoUsers}>
-                <img
-                  alt="userphoto"
-                  src={f.avatar != "" ? f.avatar : userPhoto}
-                  className={s.photo}
-                />
-              </div>
-              <div className={s.rightPart}>
-                <span className={s.name}>{f.login}</span>
-                <span className={s.buttonsBlock}>
-                  <div className={s.viewPosts}>
-                    <button className={s.viewPostsBtn}>View posts</button>
-                  </div>
-                  <NavLink to="#" className={s.unfollow}>
-                    <button
-                      onClick={() => {
-                        props.unfollow(f.login);
-                      }}
-                      className={s.unfollowBtn}
-                    >
-                      Unsubscribe
-                    </button>
-                  </NavLink>
-                </span>
-              </div>
-            </NavLink>
+            <User
+              login={f.login}
+              isAdmin={f.isAdmin}
+              profileInfo={props.profileInfo}
+              isFollowed={f.isFollowed}
+              avatar={f.avatar}
+              follow={props.follow}
+              unfollow={props.unfollow}
+              status={f.status}
+            />
           ))}
         </div>
       )}

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import userPhoto from "./../../assets/images/user.png";
 
 import s from "./Followers.module.css";
+import User from "../Users/Users/User";
 
 const Followers = (props) => {
   const [focus, setFocus] = useState(false);
@@ -102,48 +103,16 @@ const Followers = (props) => {
       ) : (
         <div className={s.friends}>
           {followers.map((f) => (
-            <NavLink
-              to={"/profile/" + f.login}
-              key={f.login}
-              className={s.friend}
-            >
-              <div className={s.photoUsers}>
-                <img
-                  alt="userphoto"
-                  src={f.avatar != "" ? f.avatar : userPhoto}
-                  className={s.photo}
-                />
-              </div>
-              <div className={s.rightPart}>
-                <span className={s.name}>{f.login}</span>
-                <div className={s.buttonsBlock}>
-                  <NavLink to="#" className={s.subscribers}>
-                    {f.isFollowed ? (
-                      <button
-                        onClick={() => {
-                          props.unfollow(f.login);
-                        }}
-                        className={s.unsubscribeBtn}
-                      >
-                        Unsubscribe
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          props.follow(f.login);
-                        }}
-                        className={s.subscribeBtn}
-                      >
-                        Subscribe
-                      </button>
-                    )}
-                  </NavLink>
-                  <NavLink to="#" className={s.viewPosts}>
-                    <button className={s.viewPostsBtn}>View Posts</button>
-                  </NavLink>
-                </div>
-              </div>
-            </NavLink>
+            <User
+              login={f.login}
+              isAdmin={f.isAdmin}
+              profileInfo={props.profileInfo}
+              isFollowed={f.isFollowed}
+              avatar={f.avatar}
+              follow={props.follow}
+              unfollow={props.unfollow}
+              status={f.status}
+            />
           ))}
         </div>
       )}

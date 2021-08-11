@@ -122,6 +122,7 @@ class FollowersContainer extends React.Component {
     ) : (
       <Followers
         theme={this.props.theme}
+        profileInfo={this.props.profileInfo}
         followersSearch={this.props.followersSearch}
         toggleIsFatchingSearch={this.props.toggleIsFatchingSearch}
         toggleIsFatching={this.props.toggleIsFatching}

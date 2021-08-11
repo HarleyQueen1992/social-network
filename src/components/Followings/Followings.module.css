@@ -89,8 +89,15 @@
   grid-area: right;
   display: grid;
   padding-right: 10px;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 30% 20% 50%;
   grid-template-areas: "name" "write";
+}
+.status {
+  color: var(--fontColor);
+  align-self: end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .photoUsers {
   position: relative;
@@ -112,9 +119,25 @@
 .selectedPage {
   font-weight: bold;
 }
-
+.nameAndChekMark {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.nameAndChekMarkAdmin {
+  grid-template-columns: 1fr 40px;
+}
+.checkMarkBlock {
+  display: none;
+}
+.checkMarkBlock img {
+  height: 23px;
+  align-self: center;
+  justify-self: center;
+}
+.checkMarkBlockActive {
+  display: grid;
+}
 .name {
-  grid-area: name;
   font-size: 20px;
   align-self: center;
   color: var(--fontColor);

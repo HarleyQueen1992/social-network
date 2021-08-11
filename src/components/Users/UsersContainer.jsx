@@ -40,6 +40,7 @@ import {
 } from "../../redux/UsersReducer/users-selectors";
 import Preloader from "../common/Preloader/Preloader";
 import { getTheme } from "../../redux/AppReducer/app-selectors";
+import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 class UsersC extends React.Component {
   componentDidMount() {
     this.props.clearUsers();
@@ -97,6 +98,7 @@ class UsersC extends React.Component {
           <Preloader />
         ) : (
           <Users
+            profileInfo={this.props.profileInfo}
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
             pageSize={this.props.pageSize}
@@ -132,6 +134,7 @@ class UsersC extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
+    profileInfo: getProfileInfo(state),
     users: getUsers(state),
     currentPage: getCurrentPage(state),
     currentPageSearch: getCurrentPageSearch(state),

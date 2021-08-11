@@ -129,6 +129,7 @@ class FriendsContainer extends React.Component {
           <Preloader />
         ) : (
           <Friends
+            profileInfo={this.props.profileInfo}
             friends={this.props.friends}
             isFatching={this.props.isFatching}
             totalFriendsCount={this.props.totalFriendsCount}

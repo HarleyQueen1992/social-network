@@ -4,6 +4,7 @@ import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
 import { Icons } from "./../../utils/Icons/Icons";
+import User from "./Users/User";
 
 const Users = (props) => {
   let res = Icons(props.theme);
@@ -101,85 +102,16 @@ const Users = (props) => {
             <div className={s.usersNotFoundError}>No users</div>
           ) : (
             users.map((u) => (
-              <NavLink
-                to={"/profile/" + u.login}
-                className={s.usersListItem}
-                key={u.id}
-              >
-                <div className={s.userAvatar}>
-                  <img
-                    alt="userPhoto"
-                    src={u.avatar != "" ? u.avatar : userPhoto}
-                    className={s.avatar}
-                  />
-                </div>
-                <div
-                  className={
-                    s.rightPart + " " + (u.status == "" ? s.noStatus : "")
-                  }
-                >
-                  <div
-                    className={
-                      s.nameAndChekMark +
-                      " " +
-                      (u.isAdmin && s.nameAndChekMarkAdmin)
-                    }
-                  >
-                    <div
-                      className={
-                        s.name + " " + (u.status == "" ? s.nameNoStatus : "")
-                      }
-                    >
-                      {u.login}
-                    </div>
-                    <div
-                      className={
-                        s.chekMarkBlock +
-                        " " +
-                        (u.isAdmin && s.chekMarkBlockActive)
-                      }
-                    >
-                      <img src={res["checkMark"]} alt="" />
-                    </div>
-                  </div>
-
-                  <span
-                    className={
-                      s.userStatus +
-                      " " +
-                      (u.status == "" ? s.statusDisable : "")
-                    }
-                  >
-                    {u.status}
-                  </span>
-                  <div className={s.buttonsBlock}>
-                    <NavLink to="#" className={s.subscribers}>
-                      {u.isFollowed ? (
-                        <button
-                          onClick={() => {
-                            props.unfollow(u.login);
-                          }}
-                          className={s.unsubscribeBtn}
-                        >
-                          Unsubscribe
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => {
-                            props.follow(u.login);
-                          }}
-                          className={s.subscribeBtn}
-                        >
-                          Subscribe
-                        </button>
-                      )}
-                    </NavLink>
-                    <NavLink to="#" className={s.viewPosts}>
-                      <button className={s.viewPostsBtn}>View Posts</button>
-                    </NavLink>
-                  </div>
-                </div>
-              </NavLink>
+              <User
+                login={u.login}
+                isAdmin={u.isAdmin}
+                profileInfo={props.profileInfo}
+                isFollowed={u.isFollowed}
+                avatar={u.avatar}
+                follow={props.follow}
+                unfollow={props.unfollow}
+                status={u.status}
+              />
             ))
           )}
         </div>

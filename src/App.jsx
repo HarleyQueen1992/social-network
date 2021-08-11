@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./App.module.css";
+import "./App.css";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {
   withRouter,
