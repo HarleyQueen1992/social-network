@@ -74,8 +74,12 @@ const Navbar = (props) => {
         </div>
         <div className={s.borderBottom}></div>
       </NavLink>
-      <div className={s.itemGiveFeedback}>
-        <div className={s.giveFeedbackBlock}>
+      <form
+        action="mailto:artemosadach@gmail.com"
+        className={s.itemGiveFeedback}
+      >
+        <input className={s.inputSubmit} type="submit" id="submit" />
+        <label htmlFor="submit" className={s.giveFeedbackBlock}>
           <div className={s.giveFeedback}>
             <img
               className={s.giveFeedbackImg}
@@ -90,9 +94,9 @@ const Navbar = (props) => {
               Help us improve the latest version of Mosset.
             </div>
           </div>
-        </div>
+        </label>
         <div className={s.borderBottom}></div>
-      </div>
+      </form>
       <div className={s.navBar}>
         <div
           onClick={() => {

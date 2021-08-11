@@ -36,8 +36,12 @@ const Menu = (props) => {
       </NavLink>
       <div className={s.gridMenu}>
         <div className={s.giveFeedbackItemsBlock}>
-          <div className={s.itemGiveFeedback}>
-            <div className={s.giveFeedbackBlock}>
+          <form
+            action="mailto:artemosadach@gmail.com"
+            className={s.itemGiveFeedback}
+          >
+            <input className={s.inputSubmit} type="submit" id="submit" />
+            <label htmlFor="submit" className={s.giveFeedbackBlock}>
               <div className={s.giveFeedback}>
                 <img
                   className={s.giveFeedbackImg}
@@ -52,8 +56,8 @@ const Menu = (props) => {
                   Help us improve the latest version of Mosset.
                 </div>
               </div>
-            </div>
-          </div>
+            </label>
+          </form>
         </div>
         <div className={s.columns}>
           <div className={s.leftColumn}>

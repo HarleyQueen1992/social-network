@@ -280,3 +280,6 @@
     display: none !important;
   }
 }
+.inputSubmit {
+  display: none;
+}
