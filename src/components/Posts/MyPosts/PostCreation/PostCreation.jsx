@@ -77,21 +77,23 @@ const PostCreation = (props) => {
   }, [valuePostText]);
 
   useEffect(() => {
-    var tx = document.getElementById("textareaTitle");
-    let height = tx.style.height;
-    let heightNumber = Number(height.substring(0, height.length - 2));
-    if (heightNumber > 60) {
-      tx.setAttribute("style", "height: 60px;" + "overflow-y:scroll;");
-    } else {
-      tx.setAttribute(
-        "style",
-        "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
-      );
-      tx.addEventListener("input", OnInput, false);
+    if (window.innerWidth > 500) {
+      var tx = document.getElementById("textareaTitle");
+      let height = tx.style.height;
+      let heightNumber = Number(height.substring(0, height.length - 2));
+      if (heightNumber > 60) {
+        tx.setAttribute("style", "height: 60px;" + "overflow-y:scroll;");
+      } else {
+        tx.setAttribute(
+          "style",
+          "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
+        );
+        tx.addEventListener("input", OnInput, false);
 
-      function OnInput(e) {
-        this.style.height = "auto";
-        this.style.height = this.scrollHeight + "px";
+        function OnInput(e) {
+          this.style.height = "auto";
+          this.style.height = this.scrollHeight + "px";
+        }
       }
     }
   }, [valuePostTitle]);

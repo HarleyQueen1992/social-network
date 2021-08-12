@@ -286,8 +286,11 @@
 
 @media (max-width: 500px) {
   .popupContent {
-    height: 100vh;
+    height: 100%;
     max-height: auto;
     border-radius: 0;
+  }
+  .popupContentBodyTextarea {
+    min-height: 50px;
   }
 }
