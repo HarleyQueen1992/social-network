@@ -145,6 +145,7 @@
 }
 .itemGiveFeedback {
   display: grid;
+  text-decoration: none;
 }
 .giveFeedbackBlock {
   cursor: pointer;

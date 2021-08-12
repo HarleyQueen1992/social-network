@@ -406,10 +406,15 @@
 @media (max-width: 600px) {
   .editProfileMenu {
     width: 100vw;
+    margin-top: 0;
+    border-radius: 0;
     grid-template-rows:
       50px 100px calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
       calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
       1fr 130px;
+  }
+  .editProfileMenuBottom {
+    height: 0;
   }
   .editPhotoProfileBlock {
     grid-template-rows: 50px calc(

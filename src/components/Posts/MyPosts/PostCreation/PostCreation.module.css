@@ -283,3 +283,11 @@
   align-self: center;
   justify-self: center;
 }
+
+@media (max-width: 500px) {
+  .popupContent {
+    height: 100vh;
+    max-height: auto;
+    border-radius: 0;
+  }
+}

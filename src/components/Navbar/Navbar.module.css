@@ -79,6 +79,7 @@
 
 /*! GiveFeedback  */
 .itemGiveFeedback {
+  text-decoration: none;
   display: grid;
   grid-template-rows: 70px 10px;
 }
