@@ -1,82 +1,57 @@
+import { postsAPI } from "../../API/api"
+
 const ADD_POST = "app/posts-reducer/ADD-POST"
+const ADD_POSTS = "app/posts-reducer/ADD-POSTS"
 const ADD_LIKES = "app/posts-reducer/ADD_LIKES"
 const DELETE_POST = "app/posts-reducer/DELETE_POST"
 const GET_LAST_POST = "app/posts-reducer/GET_LAST_POST"
+const SET_PAGE = "app/posts-reducer/SET_PAGE"
+const UPLOAD_POSTS = "app/posts-reducer/UPLOAD_POSTS"
+const SET_TOTAL_ITEMS = 'app/posts-reducer/SET_TOTAL_ITEMS'
+const SET_LOADING_POSTS = 'app/post-reducer/SET_LOADING_POSTS'
 
 let initialState = {
   posts: [
-    {
-      id: 0,
-      title: "React!",
-      message:
-        "React изначально был спроектирован так, чтобы его можно было внедрять постепенно. Другими словами, вы можете начать с малого и использовать только ту функциональность React, которая необходима вам в данный момент. Информация в этом разделе будет полезна в любой ситуации: при первом знакомстве с React, при создании простой динамической HTML-страницы и даже при проектировании сложного React-приложения.",
-      like: 50,
-      dislike: 100,
-      isDisable: false,
-    },
-    {
-      id: 1,
-      title: "Redux!",
-      message:
-        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
-      like: 52,
-      dislike: 99,
-      isDisable: false,
-    },
-    {
-      id: 2,
-      title: "Redux!",
-      message:
-        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
-      like: 52,
-      dislike: 99,
-      isDisable: false,
-    },
-    {
-      id: 3,
-      title: "Redux!",
-      message:
-        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
-      like: 52,
-      dislike: 99,
-      isDisable: false,
-    },
-    {
-      id: 4,
-      title: "Redux!",
-      message:
-        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
-      like: 52,
-      dislike: 99,
-      isDisable: false,
-    },
-    {
-      id: 5,
-      title: "Redux!",
-      message:
-        "This property is applied by first translating the element by the value of the property, then applying the element's transform, then translating by the negated property value. This means, this definition",
-      like: 52,
-      dislike: 99,
-      isDisable: false,
-    },
   ],
   newPostText: "mops.com",
   lastPost: null,
+  limit:2,
+  totalItems: null,
+  page: 1,  
+  uploadPosts: true,
+  loadingPosts: false
 }
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
-      const newPost = {
-        id: state.posts.length,
-        message: action.newPostText,
-        title: action.title,
-        like: 0,
-        dislike: 0,
-      }
       return {
         ...state,
-        posts: [...state.posts, newPost],
+        posts: [...state.posts, action.post],
+      }
+    }
+    case ADD_POSTS: {
+      return {
+        ...state,
+        posts: [...state.posts, ...action.posts]
+      }
+    }
+    case UPLOAD_POSTS: {
+      return {
+        ...state,
+        uploadPosts: action.uploadPosts
+      }
+    }
+    case SET_TOTAL_ITEMS: {
+      return {
+        ...state,
+        totalItems: action.totalItems
+      }
+    }
+    case SET_LOADING_POSTS: {
+      return {
+        ...state,
+        loadingPosts: action.loadingPosts
       }
     }
     case ADD_LIKES:
@@ -98,6 +73,11 @@ const postsReducer = (state = initialState, action) => {
           return p
         }),
       }
+    case SET_PAGE:
+      return {
+        ...state,
+        page: action.page
+      }
     case DELETE_POST:
       return {
         ...state,
@@ -114,11 +94,22 @@ const postsReducer = (state = initialState, action) => {
 }
 // Action Creactor
 
-export const addPostActionCreator = (newPostText, title) => {
+export const addPostActionCreator = (post) => {
   return {
     type: ADD_POST,
-    newPostText,
-    title,
+    post
+  }
+}
+export const setPage = (page) => {
+  return {
+    type: SET_PAGE,
+    page
+  }
+}
+export const setPosts = (posts) => {
+  return {
+    type: ADD_POSTS,
+    posts
   }
 }
 export const addLike = postId => {
@@ -137,12 +128,38 @@ export const getTheLastPost = () => ({
   type: GET_LAST_POST,
 })
 
+export const setUploadPost = (uploadPosts) => ({
+  type: UPLOAD_POSTS,
+  uploadPosts
+})
+
+export const setTotalItems = (totalItems) => ({
+  type: SET_TOTAL_ITEMS,
+  totalItems
+})
+export const setLoadingPosts = (loadingPosts) => ({
+  type: SET_LOADING_POSTS,
+  loadingPosts
+})
 // ? Thunk Creator
 
-// export const getAllFriends = () => async(dispatch) => {
-//     let data = await friendsAPI.getAllFriends()
+export const requestPosts = (page) => async dispatch => {
+  if (page === 1) {
+    dispatch(setLoadingPosts(true))
+  }
+  let response = await postsAPI.getPosts(initialState.limit, page)
+  dispatch(setUploadPost(false))
+  dispatch(setPosts(response.items))
+  dispatch(setPage(page + 1))
+  dispatch(setTotalItems(response.totalItems))
+  dispatch(setLoadingPosts(false))
+}
 
-//     dispatch(setFriends(data.data.items));
-// }
+export
+ const createPost = (title, body) => async dispatch => {
+  let response = await postsAPI.createPost(title, body)
+  dispatch(addPostActionCreator(response))
+  debugger
+}
 
 export default postsReducer

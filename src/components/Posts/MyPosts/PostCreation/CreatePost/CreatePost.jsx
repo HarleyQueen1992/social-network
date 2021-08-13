@@ -25,7 +25,7 @@ const CreatePost = (props) => {
   };
   const submitPost = () => {
     closePopup();
-    props.addPostActionCreator(valuePostText, valuePostTitle);
+    props.createPost(valuePostTitle, valuePostText);
   };
   const handleChangePostText = (event) => {
     setValuePostText(event.target.value);

@@ -6,7 +6,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import CreatePost from "./CreatePost/CreatePost";
 import { getTheme } from "./../../../../redux/AppReducer/app-selectors";
-import { addPostActionCreator } from "./../../../../redux/PostsReducer/posts-reducer";
+import {
+  addPostActionCreator,
+  createPost,
+} from "./../../../../redux/PostsReducer/posts-reducer";
 import { getProfileInfo } from "./../../../../redux/AuthReducer/auth-selectors";
 
 const PostCreation = (props) => {
@@ -47,6 +50,7 @@ const PostCreation = (props) => {
           profile={props.profile}
           translate={props.translate}
           addPostActionCreator={props.addPostActionCreator}
+          createPost={props.createPost}
         />
       )}
     </div>
@@ -60,6 +64,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default compose(connect(mapStateToProps, { addPostActionCreator }))(
-  PostCreation
-);
+export default compose(
+  connect(mapStateToProps, { addPostActionCreator, createPost })
+)(PostCreation);

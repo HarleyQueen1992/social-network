@@ -8,9 +8,7 @@ import Sun from "./../../assets/images/sunW.png";
 const Menu = (props) => {
   let res = Icons(props.theme);
   const themeToggler = () => {
-    props.theme == "lightTheme"
-      ? props.setTheme("dark")
-      : props.setTheme("light");
+    props.theme == "light" ? props.setTheme("dark") : props.setTheme("light");
   };
   useEffect(() => {
     for (let property in props.theme) {
@@ -78,9 +76,7 @@ const Menu = (props) => {
                   <img className={s.img} alt="sun" src={Sun} />
                   <div
                     className={
-                      s.ball +
-                      " " +
-                      (props.theme == "lightTheme" ? s.active : "")
+                      s.ball + " " + (props.theme == "light" ? s.active : "")
                     }
                   ></div>
                 </label>

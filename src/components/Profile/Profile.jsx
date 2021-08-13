@@ -7,7 +7,22 @@ const Profile = (props) => {
   useEffect(() => {
     props.changeIndex(window.location.href);
   }, [window.location.href]);
-
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
+  const scrollHandler = (e) => {
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+        100 &&
+      props.posts.length < props.totalPostsItems
+    ) {
+      props.setUploadPost(true);
+    }
+  };
   return (
     <div className={p.profileBlock}>
       <div className={p.profileInfo}>

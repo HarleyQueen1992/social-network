@@ -1,14 +1,14 @@
-import React from "react"
-import p from "./Post.module.css"
-import heart from "./../../../../assets/images/heart.png"
-import heartDisable from "./../../../../assets/images/heartDisable.png"
-import heartDark from "./../../../../assets/images/heartDark.png"
-import heartDisableDark from "./../../../../assets/images/heartDisableDark.png"
-import avaInPosts from "./../../../../assets/images/user.png"
-import Comments from "./../../../../assets/images/comments.png"
-import CommentsLight from "./../../../../assets/images/commentsLight.png"
+import React from "react";
+import p from "./Post.module.css";
+import heart from "./../../../../assets/images/heart.png";
+import heartDisable from "./../../../../assets/images/heartDisable.png";
+import heartDark from "./../../../../assets/images/heartDark.png";
+import heartDisableDark from "./../../../../assets/images/heartDisableDark.png";
+import avaInPosts from "./../../../../assets/images/user.png";
+import Comments from "./../../../../assets/images/comments.png";
+import CommentsLight from "./../../../../assets/images/commentsLight.png";
 
-const Post = props => {
+const Post = (props) => {
   return (
     <div
       className={
@@ -20,13 +20,13 @@ const Post = props => {
       }
       key={props.id}
     >
-      <div className={p.postTitle}>{props.title}</div>
-      <div className={p.postText}>{props.message}</div>
+      <div className={p.postTitle}>{props.post.title}</div>
+      <div className={p.postText}>{props.post.body}</div>
       <div className={p.botBlock}>
         <div className={p.leftBlock}>
           <div className={p.commentsBlock}>
             <img
-              alt='comments'
+              alt="comments"
               className={p.commentsImg}
               src={props.theme == "lightTheme" ? CommentsLight : Comments}
             />
@@ -34,9 +34,9 @@ const Post = props => {
           <div className={p.likeBlock}>
             {props.isDisable ? (
               <img
-                alt='heart disable'
+                alt="heart disable"
                 onClick={() => {
-                  props.addLike(props.id)
+                  props.addLike(props.id);
                 }}
                 className={p.heart}
                 src={
@@ -45,28 +45,30 @@ const Post = props => {
               />
             ) : (
               <img
-                alt='heart'
+                alt="heart"
                 onClick={() => {
-                  props.addLike(props.id)
+                  props.addLike(props.id);
                 }}
                 className={p.heart}
                 src={props.theme == "lightTheme" ? heart : heartDark}
               />
             )}
-            <span>{props.like}</span>
+            <span>{props.post.likes}</span>
           </div>
         </div>
         <div className={p.photoName}>
           <img
             className={p.postImg}
-            alt='post'
-            src={!props.profile.photo ? avaInPosts : props.profile.photo}
+            alt="post"
+            src={
+              !props.post.author.avatar ? avaInPosts : props.post.author.avatar
+            }
           />
-          <span className={p.userName}>{props.profile.fullName}</span>
+          <span className={p.userName}>{props.post.author.login}</span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;

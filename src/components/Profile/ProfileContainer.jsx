@@ -19,6 +19,8 @@ import {
   addPostActionCreator,
   addLike,
   getTheLastPost,
+  requestPosts,
+  setUploadPost,
 } from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
@@ -36,7 +38,11 @@ import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer"
 import Profile from "./Profile";
 import {
   getLastPost,
+  getLoadingPosts,
+  getPagePosts,
   getPosts,
+  getTotalPostsItems,
+  getUploadPosts,
 } from "./../../redux/PostsReducer/posts-selectors";
 import {
   getIsAuth,
@@ -64,6 +70,7 @@ import s from "./Profile.module.css";
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
+    this.props.requestPosts(1);
     let login = this.props.match.params.login;
 
     // this.props.getUsersListFollowing(this.props.profileInfo.login);
@@ -85,6 +92,9 @@ class ProfileContainer extends React.Component {
     this.refreshProfile();
   }
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.uploadPosts && !this.props.loadingPosts) {
+      this.props.requestPosts(this.props.postsPage);
+    }
     if (this.props.match.params.login !== prevProps.match.params.login) {
       this.refreshProfile();
     }
@@ -130,6 +140,8 @@ class ProfileContainer extends React.Component {
             totalSubscribersItems={this.props.totalSubscribersItems}
             unSubscribe={this.unSubscribe}
             Subscribe={this.Subscribe}
+            totalPostsItems={this.props.totalPostsItems}
+            setUploadPost={this.props.setUploadPost}
           />
         )}
       </>
@@ -155,6 +167,10 @@ const mapStateToProps = (state) => ({
   subscriptions: getSubscriptions(state),
   totalSubscriptionsItems: getTotalSubscriptionsItems(state),
   totalSubscribersItems: getTotalSubscribersItems(state),
+  uploadPosts: getUploadPosts(state),
+  loadingPosts: getLoadingPosts(state),
+  totalPostsItems: getTotalPostsItems(state),
+  postsPage: getPagePosts(state),
   // usersListFollowing: getUsersListFollowing(state),
 });
 
@@ -167,10 +183,7 @@ export default compose(
     toggleIsFatching,
     setUserProfile,
     getIsSavingPhoto,
-    addPostActionCreator,
-    toggleIsPostCreation,
     getTheLastPost,
-    addLike,
     setEditMode,
     setProfileBanner,
     getUsersProfileData,
@@ -178,8 +191,8 @@ export default compose(
     getProfileData,
     subscribe,
     unsubscribe,
-    savePhoto,
-
+    requestPosts,
+    setUploadPost,
     // getUsersListFollowing,
   }),
   withRouter,

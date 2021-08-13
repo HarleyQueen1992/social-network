@@ -7,3 +7,15 @@ export const getPosts = state => {
 export const getLastPost = state => {
   return state.posts.lastPost
 }
+export const getUploadPosts = state => {
+  return state.posts.uploadPosts
+}
+export const getLoadingPosts = state => {
+  return state.posts.loadingPosts
+}
+export const getTotalPostsItems = state => {
+  return state.posts.totalItems
+}
+export const getPagePosts = state => {
+  return state.posts.page
+}

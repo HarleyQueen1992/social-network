@@ -56,7 +56,7 @@ const urlIndex = {
   2: "posts",
   3: "users",
   4: "followings",
-  // 5: "menu",
+  5: "menu",
 };
 let i = NaN;
 class App extends React.Component {
@@ -248,7 +248,7 @@ class App extends React.Component {
                       />
                     )}
                   />
-                  {false && (
+                  {window.innerWidth < 900 && (
                     <Route
                       path="/menu"
                       render={() => (

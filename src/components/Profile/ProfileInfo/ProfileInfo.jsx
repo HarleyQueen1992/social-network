@@ -457,15 +457,7 @@ const ProfileInfo = (props) => {
                 border={false}
                 key={post.id}
                 theme={props.theme}
-                profile={{ fullName: "Artem", photo: null }}
-                deletePost={props.deletePost}
-                addLike={props.addLike}
-                id={post.id}
-                title={post.title}
-                message={post.message}
-                like={post.like}
-                dislike={post.dislike}
-                isDisable={post.isDisable}
+                post={post}
               />
             ))}
           </div>

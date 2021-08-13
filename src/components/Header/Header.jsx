@@ -145,7 +145,7 @@ const Header = (props) => {
             </div>
           }
         />
-        {!isBigScreen && (
+        {window.innerWidth < 900 && (
           <Tab
             className={s.tab}
             label={

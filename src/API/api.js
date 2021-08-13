@@ -297,3 +297,20 @@ export const followAPI = {
     })
   },
 }
+
+export const postsAPI = {
+  createPost(title, body) {
+    return instance.post(`posts/`, {title, body}).then(response => {
+      return response.data
+    }).catch(response => {
+      return response
+    })
+  },
+  getPosts(limit, page) {
+    return instance.get(`/posts?page=${page}&limit=${limit}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response
+    })
+  },
+}
