@@ -1,0 +1,232 @@
+.popupCreatePost {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.438);
+  z-index: 999999999;
+}
+.popupContent {
+  align-self: center;
+  display: grid;
+  grid-template-rows: 50px 1fr 50px 70px;
+  justify-self: center;
+  width: 500px;
+  max-height: 100%;
+  padding: 0 0 5px 0;
+  border-radius: 20px;
+  background-color: var(--navBarBac);
+  z-index: 999999999999999;
+}
+@media (max-width: 500px) {
+  .popupContent {
+    width: 100vw;
+  }
+}
+.popupContentHader {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 50px;
+  /* border-bottom: 1px solid red; */
+}
+.popupContentHader::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  bottom: 0;
+  background-color: var(--BorderBottom);
+}
+.popupContentHeaderTitle {
+  align-self: center;
+  justify-self: center;
+  color: var(--fontColor);
+  letter-spacing: 1px;
+  font-size: 25px;
+  margin-left: 50px;
+  font-family: "Patua One", cursive;
+}
+.popupContentHeaderOff {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+  background-color: red;
+  transition: 0.5s all;
+}
+.popupContentHeaderOff:hover {
+  background-color: rgba(255, 0, 0, 0.664);
+}
+.popupContentHeaderOff:before,
+.popupContentHeaderOff:after {
+  position: absolute;
+  left: 14px;
+  content: " ";
+  top: 5px;
+  height: 20px;
+  width: 2px;
+  background-color: rgb(255, 255, 255);
+}
+.popupContentHeaderOff:before {
+  transform: rotate(45deg);
+}
+.popupContentHeaderOff:after {
+  transform: rotate(-45deg);
+}
+.active {
+  display: grid;
+}
+.popupContentBodyAuthorNameAndHashtag {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.popupContentBodyAuthorName {
+  color: var(--fontColor);
+  font-size: 20px;
+  align-self: center;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.popupContentBodyHashTagInput {
+  height: 90%;
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0);
+  outline: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 2px 5px;
+  color: #1178f2;
+}
+.popupContentBodyHashTagInput:focus {
+  border: 1px solid #e4e4e463;
+}
+.addHashtag {
+  color: var(--fontColor);
+  margin-left: 5px;
+}
+.addHashtag span {
+  color: #1178f2;
+}
+.hashTag {
+  color: #1178f2;
+  margin-left: 5px;
+}
+.popupContentBodyAuthor {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+.popupContentBodyAuthorAvatarBlock {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+}
+.popupContentBodyAuthorAvatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.popupContentBody {
+  display: grid;
+  grid-template-rows: 50px 70px 1fr;
+  padding: 16px;
+}
+.popupContentTitleTextarea {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  min-height: 40px;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0);
+  resize: none;
+  color: var(--fontColor);
+  font-size: 22px;
+  outline: none;
+}
+.popupContentBodyTextarea {
+  width: 100%;
+  min-height: 200px;
+  max-height: 500px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0);
+  resize: none;
+  color: var(--fontColor);
+  font-size: 20px;
+  outline: none;
+}
+.popupContentAddToYourPostBlock {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  margin: 0 16px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid var(--anythingNewHover);
+}
+.popupContentAddToYourPostBlock:hover {
+  background-color: var(--anythingNew);
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.popupContentAddToYourPost {
+  align-self: center;
+  justify-self: start;
+  margin-left: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.popupContentAddToYourPostGallery {
+  align-self: center;
+  justify-self: center;
+  height: 25px;
+  width: 25px;
+}
+.popupContentAddPost {
+  height: 36px;
+  align-self: center;
+  border-radius: 8px;
+  background-color: rgb(104, 104, 104);
+  margin: 0 16px;
+  display: grid;
+  font-weight: bold;
+  color: white;
+}
+.popupContentAddPostSubmit {
+  background-color: #1178f2;
+  cursor: pointer;
+}
+.popupContentAddPostSubmit:hover {
+  background-color: #0059c5;
+}
+.popupContentAddPost span {
+  align-self: center;
+  justify-self: center;
+}
+
+@media (max-width: 500px) {
+  .popupContent {
+    height: 100%;
+    max-height: auto;
+    border-radius: 0;
+  }
+  .popupContentBodyTextarea {
+    min-height: 50px;
+  }
+}
