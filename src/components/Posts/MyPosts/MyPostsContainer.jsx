@@ -1,33 +1,49 @@
-import React from "react"
+import React from "react";
 import {
   addPostActionCreator,
   addLike,
   deletePost,
-} from "../../../redux/PostsReducer/posts-reducer"
-import { getPosts } from "../../../redux/PostsReducer/posts-selectors"
+  requestPosts,
+  setUploadPost,
+} from "../../../redux/PostsReducer/posts-reducer";
+import {
+  getPosts,
+  getUploadPosts,
+  getLoadingPosts,
+  getPagePosts,
+  getTotalPostsItems,
+} from "../../../redux/PostsReducer/posts-selectors";
 import {
   getNewPostText,
   getIsFatching,
-} from "../../../redux/ProfileReducer/profile-selectors"
+} from "../../../redux/ProfileReducer/profile-selectors";
 import {
   toggleIsPostCreation,
   toggleIsHeaderBlur,
-} from "../../../redux/AppReducer/app-reducer"
-import MyPosts from "./MyPosts"
-import { connect } from "react-redux"
+} from "../../../redux/AppReducer/app-reducer";
+import MyPosts from "./MyPosts";
+import { connect } from "react-redux";
 import {
   getLogin,
   getProfileInfo,
-} from "../../../redux/AuthReducer/auth-selectors"
-import { compose } from "redux"
-import Preloader from "../../common/Preloader/Preloader"
+} from "../../../redux/AuthReducer/auth-selectors";
+import { compose } from "redux";
+import Preloader from "../../common/Preloader/Preloader";
 import {
   getHeaderBlur,
   getIsPostCreation,
   getTheme,
-} from "../../../redux/AppReducer/app-selectors"
+} from "../../../redux/AppReducer/app-selectors";
 
 class MyPostsContainer extends React.Component {
+  componentDidMount() {
+    this.props.requestPosts(1);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.uploadPosts && !this.props.loadingPosts) {
+      this.props.requestPosts(this.props.postsPage);
+    }
+  }
   render() {
     return (
       <>
@@ -49,13 +65,15 @@ class MyPostsContainer extends React.Component {
             headerBlur={this.props.headerBlur}
             changeIndex={this.props.changeIndex}
             strUrl={this.props.str}
+            totalPostsItems={this.props.totalPostsItems}
+            setUploadPost={this.props.setUploadPost}
           />
         )}
       </>
-    )
+    );
   }
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     posts: getPosts(state),
     newPostText: getNewPostText(state),
@@ -65,8 +83,12 @@ let mapStateToProps = state => {
     headerBlur: getHeaderBlur(state),
     isPostCreation: getIsPostCreation(state),
     theme: getTheme(state),
-  }
-}
+    uploadPosts: getUploadPosts(state),
+    loadingPosts: getLoadingPosts(state),
+    totalPostsItems: getTotalPostsItems(state),
+    postsPage: getPagePosts(state),
+  };
+};
 export default compose(
   connect(mapStateToProps, {
     deletePost,
@@ -74,5 +96,8 @@ export default compose(
     addPostActionCreator,
     toggleIsPostCreation,
     toggleIsHeaderBlur,
+
+    requestPosts,
+    setUploadPost,
   })
-)(MyPostsContainer)
+)(MyPostsContainer);

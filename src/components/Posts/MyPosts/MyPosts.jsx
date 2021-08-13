@@ -18,6 +18,22 @@ const MyPosts = (props) => {
   useEffect(() => {
     props.changeIndex(window.location.href);
   }, [window.location.href]);
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
+  const scrollHandler = (e) => {
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+        100 &&
+      props.posts.length < props.totalPostsItems
+    ) {
+      props.setUploadPost(true);
+    }
+  };
   let isSmall = window.innerWidth < 480;
 
   let addPost = () => {
@@ -98,21 +114,7 @@ const MyPosts = (props) => {
         <PostCreation translate="-200%" />
         <div className={p.posts}>
           {props.posts.map((post) => (
-            <Post
-              border={true}
-              key={post.id}
-              theme={props.theme}
-              profile={props.profile}
-              login={props.login}
-              deletePost={props.deletePost}
-              addLike={props.addLike}
-              id={post.id}
-              message={post.message}
-              like={post.like}
-              dislike={post.dislike}
-              isDisable={post.isDisable}
-              title={post.title}
-            />
+            <Post border={true} key={post.id} theme={props.theme} post={post} />
           ))}
         </div>
       </div>
