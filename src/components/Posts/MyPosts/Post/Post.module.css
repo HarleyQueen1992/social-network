@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+
 .postBlock {
   /* width: 500px; */
   display: grid;
   /* grid-template-rows: 50px 30px; */
-  grid-template-areas: "title" "body" "bot";
+  grid-template-areas: "header" "title" "body" "bot";
   /* grid-row-gap: 20px; */
   /* grid-template-rows: minmax(50px, auto) 0%; */
   /* border: 2px solid #138D90; */
@@ -10,6 +12,86 @@
   background-color: var(--navBarBac);
   border-radius: 10px;
   margin: 0 0 15px 0;
+}
+.header {
+  grid-area: "header";
+  height: 50px;
+  display: grid;
+  padding-bottom: 10px;
+  grid-template-columns: 50px 1fr 60px;
+}
+.avatarBlock {
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+.avatarBlock img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nameAndDate {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.authorName {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.morePost {
+  position: relative;
+  height: 37px;
+  width: 37px;
+  align-self: center;
+  cursor: pointer;
+  justify-self: center;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+.morePost:hover {
+  background-color: rgba(255, 255, 255, 0.123);
+}
+.morePost::after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  top: 17px;
+  right: 6px;
+}
+.morePost::before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  top: 17px;
+  left: 6px;
+}
+.more {
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  top: 17px;
+  left: 16px;
+}
+.datePost {
+  color: #1877f2;
+  font-size: 14px;
+  font-weight: bold;
 }
 .margin {
   margin: 15px 15px 15px 15px;
@@ -21,12 +103,23 @@
   color: var(--fontColor);
   font-size: 20px;
   text-align: center;
+  font-weight: bold;
   word-break: break-all;
 }
-.postImg {
-  /* align-self: stretch; */
+.authorImegeBlock {
+  position: relative;
+  overflow: hidden;
   width: 40px;
   height: 40px;
+}
+.postImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
   border-radius: 50%;
 }
 

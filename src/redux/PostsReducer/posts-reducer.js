@@ -15,7 +15,7 @@ let initialState = {
   ],
   newPostText: "mops.com",
   lastPost: null,
-  limit:2,
+  limit:5,
   totalItems: null,
   page: 1,  
   uploadPosts: true,
@@ -27,13 +27,13 @@ const postsReducer = (state = initialState, action) => {
     case ADD_POST: {
       return {
         ...state,
-        posts: [...state.posts, action.post],
+        posts: [action.post, ...state.posts ],
       }
     }
     case ADD_POSTS: {
       return {
         ...state,
-        posts: [...state.posts, ...action.posts]
+        posts: [...state.posts, ...action.posts, ]
       }
     }
     case UPLOAD_POSTS: {

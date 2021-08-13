@@ -9,6 +9,13 @@ import Comments from "./../../../../assets/images/comments.png";
 import CommentsLight from "./../../../../assets/images/commentsLight.png";
 
 const Post = (props) => {
+  let date = new Date(props.post.createdAt);
+  date = date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return (
     <div
       className={
@@ -20,6 +27,23 @@ const Post = (props) => {
       }
       key={props.id}
     >
+      <header className={p.header}>
+        <div className={p.avatarBlock}>
+          <img
+            src={
+              props.post.author.avatar ? props.post.author.avatar : avaInPosts
+            }
+            alt="user avatar"
+          />
+        </div>
+        <div className={p.nameAndDate}>
+          <div className={p.authorName}>{props.post.author.login}</div>
+          <div className={p.datePost}>{date}</div>
+        </div>
+        <div className={p.morePost}>
+          <span className={p.more}></span>
+        </div>
+      </header>
       <div className={p.postTitle}>{props.post.title}</div>
       <div className={p.postText}>{props.post.body}</div>
       <div className={p.botBlock}>
@@ -57,13 +81,17 @@ const Post = (props) => {
           </div>
         </div>
         <div className={p.photoName}>
-          <img
-            className={p.postImg}
-            alt="post"
-            src={
-              !props.post.author.avatar ? avaInPosts : props.post.author.avatar
-            }
-          />
+          <div className={p.authorImegeBlock}>
+            <img
+              className={p.postImg}
+              alt="post"
+              src={
+                !props.post.author.avatar
+                  ? avaInPosts
+                  : props.post.author.avatar
+              }
+            />
+          </div>
           <span className={p.userName}>{props.post.author.login}</span>
         </div>
       </div>
