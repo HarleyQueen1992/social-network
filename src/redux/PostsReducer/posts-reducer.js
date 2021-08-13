@@ -27,7 +27,7 @@ const postsReducer = (state = initialState, action) => {
     case ADD_POST: {
       return {
         ...state,
-        posts: [action.post, ...state.posts ],
+        posts: [action.post, ...state.posts, ],
       }
     }
     case ADD_POSTS: {
@@ -159,7 +159,6 @@ export
  const createPost = (title, body) => async dispatch => {
   let response = await postsAPI.createPost(title, body)
   dispatch(addPostActionCreator(response))
-  debugger
 }
 
 export default postsReducer
