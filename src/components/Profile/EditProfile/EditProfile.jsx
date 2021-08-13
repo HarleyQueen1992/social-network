@@ -70,240 +70,252 @@ const EditProfile = (props) => {
   useEffect(() => {
     disable = props.valueAboutMe.length <= 70;
   }, [props.valueAboutMe]);
-  useEffect(() => () => console.log("unmount"), []);
+  useEffect(() => {
+    return () => {
+      props.setEditTellusMoreAboutYourself(false);
+      props.setEditAboutMe(false);
+      props.setEditFullName(false);
+      props.setValueFullName(props.profile.fullname);
+      props.setValueAboutMe(props.profile.aboutMe);
+      props.setValueBirthday(props.profile.birthday);
+      props.setValueLocation(props.profile.location);
+      document.querySelector(".react-swipeable-view-container").style.cssText =
+        "will-change: transform; !important" +
+        "flex-direction: row;" +
+        "transition: all 0s ease 0s;" +
+        "direction: ltr;" +
+        "display: flex;" +
+        "transform: translate(-100%, 0px);";
+      document.querySelector("body").style.cssText = "overflow: scroll;";
+      props.setEditMode(false);
+      console.log("exit");
+    };
+  }, []);
   return (
-    props.editMode && (
-      <div
-        className={s.editProfileMenu}
-        onMouseDown={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <div className={s.editProfileTitleBlock}>
-          <span className={s.editProfileTitle}>Edit profile</span>
+    <div
+      className={s.editProfileMenu}
+      onMouseDown={(e) => {
+        e.stopPropagation();
+      }}
+    >
+      <div className={s.editProfileTitleBlock}>
+        <span className={s.editProfileTitle}>Edit profile</span>
+        <div
+          className={s.popupContentHeaderOff}
+          onClick={props.closePopup}
+          id="backBlock"
+        ></div>
+      </div>
+      <div className={s.editProfileFullNameBlock}>
+        <div className={s.editProfileFullNameTitleBlock}>
+          <div className={s.editProfileFullNameTitle}>Fullname</div>
           <div
-            className={s.popupContentHeaderOff}
-            onClick={props.closePopup}
-            id="backBlock"
-          ></div>
-        </div>
-        <div className={s.editProfileFullNameBlock}>
-          <div className={s.editProfileFullNameTitleBlock}>
-            <div className={s.editProfileFullNameTitle}>Fullname</div>
-            <div
-              onClick={() => {
-                props.setEditFullName(!props.editFullName);
-                {
-                  props.editFullName &&
-                    props.updateFullName(props.valueFullName);
-                }
-              }}
-              className={s.editInfo}
-            >
-              {props.editFullName ? (
-                <span className={s.edit}>Save</span>
-              ) : (
-                <span className={s.edit}>Edit</span>
-              )}
-            </div>
-          </div>
-          <div className={s.editProfileFullName}>
+            onClick={() => {
+              props.setEditFullName(!props.editFullName);
+              {
+                props.editFullName && props.updateFullName(props.valueFullName);
+              }
+            }}
+            className={s.editInfo}
+          >
             {props.editFullName ? (
-              <input
-                className={s.editFullName}
-                value={props.valueFullName}
-                onChange={handleChangeFullName}
-                maxLength="50"
-              ></input>
+              <span className={s.edit}>Save</span>
             ) : (
-              <span className={s.fullName}>{props.profile.fullname}</span>
+              <span className={s.edit}>Edit</span>
             )}
           </div>
         </div>
-        <div className={s.editPhotoProfileBlock}>
-          <div className={s.editPhotoProfile}>
-            <div className={s.editPhotoTitle}>Avatar</div>
+        <div className={s.editProfileFullName}>
+          {props.editFullName ? (
             <input
-              onChange={onMainPhotoSelected}
-              type="file"
-              id="input__file__ava"
-            />
-            <label className={s.editPhoto} htmlFor="input__file__ava">
-              <span className={s.edit}>Edit</span>
-            </label>
-          </div>
-          <div className={s.photoProfile}>
-            <div className={s.avatar}>
-              <img
-                src={
-                  props.profile.avatar == ""
-                    ? PhotoProfile
-                    : props.profile.avatar
-                }
-                alt="profile photo"
-              />
-            </div>
-          </div>
-        </div>
-        <div className={s.editPhotoProfileBlock}>
-          <div className={s.editPhotoProfile}>
-            <div className={s.editPhotoTitle}>Cover photo</div>
-
-            <input
-              onChange={onMainBannerSelected}
-              type="file"
-              id="input__file__banner"
-            />
-            <label className={s.editPhoto} htmlFor="input__file__banner">
-              <span className={s.edit}>Edit</span>
-            </label>
-          </div>
-          <div className={s.CoverPhotoProfile}>
-            <div className={s.banner}>
-              <img src={props.profile.banner} alt="profile photo" />
-            </div>
-          </div>
-        </div>
-        <div
-          className={
-            s.editAboutMeBlock +
-            " " +
-            (props.editAboutMe ? s.editAboutMeBlockActive : " ")
-          }
-        >
-          <div className={s.editAboutMeProfile}>
-            <div className={s.editAboutMeTitle}>About me</div>
-            <div
-              onClick={() => {
-                props.setEditAboutMe(!props.editAboutMe);
-                {
-                  props.editAboutMe && props.updateAboutMe(props.valueAboutMe);
-                }
-              }}
-              className={
-                s.addToAboutMe + " " + (disable ? s.addToAboutMeDisable : "")
-              }
-            >
-              {props.editAboutMe ? (
-                <span className={s.edit}>Save</span>
-              ) : (
-                <span className={s.edit}>Add to</span>
-              )}
-            </div>
-          </div>
-          {props.editAboutMe ? (
-            <textarea
-              value={props.valueAboutMe}
-              onChange={handleChangeAboutMe}
-              className={s.aboutMeTextarea}
-              minLength="70"
-              maxLength="400"
-            ></textarea>
+              className={s.editFullName}
+              value={props.valueFullName}
+              onChange={handleChangeFullName}
+              maxLength="50"
+            ></input>
           ) : (
-            <div className={s.aboutMeText}>
-              {props.profile.aboutMe == "" ? (
-                <span>Tell about yourself...</span>
-              ) : (
-                <span>{props.profile.aboutMe}</span>
-              )}
-            </div>
-          )}
-          {props.editAboutMe && (
-            <div className={s.charactersRemaining}>
-              {props.valueAboutMe.length < 70 ? (
-                <span className={s.moreCharacters}>
-                  {70 - props.valueAboutMe.length} more characters
-                </span>
-              ) : (
-                <span>
-                  Remaining {400 - props.valueAboutMe.length} characters
-                </span>
-              )}
-              <div
-                onClick={cancelEditAboutMe}
-                className={s.cancelAboutMeButton}
-              >
-                {" "}
-                <span className={s.cancelAboutMe}>Cancel</span>{" "}
-              </div>
-            </div>
+            <span className={s.fullName}>{props.profile.fullname}</span>
           )}
         </div>
-        <div className={s.editTellUsMoreAboutYourselfBlock}>
-          <div className={s.editTellUsMoreAboutYourselfAndEdit}>
-            <div className={s.TellUsMoreAboutYourself}>
-              Tell us more about yourself
-            </div>
-            <div
-              onClick={() => {
-                props.setEditTellusMoreAboutYourself(
-                  !props.editTellusMoreAboutYourself
-                );
-                {
-                  props.editTellusMoreAboutYourself &&
-                    props.updateProfileInfo(
-                      props.valueBirthday,
-                      props.valueLocation
-                    );
-                }
-              }}
-              className={s.editInfo}
-            >
-              {props.editTellusMoreAboutYourself ? (
-                <span className={s.edit}>Save</span>
-              ) : (
-                <span className={s.edit}>Edit</span>
-              )}
-            </div>
-          </div>
-          <div className={s.moreAboutMyself}>
-            <div className={s.birthdayBlock}>
-              <img
-                className={s.birthdayImg}
-                src={res["birthday"]}
-                alt="birthday"
-              />
-              <span className={s.birthdayTitleAndText}>
-                <div className={s.birthdayTitle}>Birthday</div>
-                {props.editTellusMoreAboutYourself ? (
-                  <span className={s.birthdayEditBlock}>
-                    <input
-                      value={props.valueBirthday}
-                      onChange={handleChangeBirthday}
-                      className={s.editBirthday}
-                      type="date"
-                    />
-                  </span>
-                ) : (
-                  <span className={s.birthday}>
-                    {month[birthdayMonth]}{" "}
-                    {props.profile.birthday.replace(/^.{8}/, "")}
-                  </span>
-                )}
-              </span>
-            </div>
-            <div className={s.locationBlock}>
-              <img className={s.cityImg} src={res["location"]} alt="location" />
-              <span className={s.locationTitleAndText}>
-                <div className={s.locationTitle}>Location</div>
-                {props.editTellusMoreAboutYourself ? (
-                  <span className={s.locationEditBlock}>
-                    <input
-                      value={props.valueLocation}
-                      onChange={handleChangeLocation}
-                      className={s.editLocation}
-                      type="text"
-                    />
-                  </span>
-                ) : (
-                  <span className={s.location}>{props.profile.location}</span>
-                )}
-              </span>
-            </div>
+      </div>
+      <div className={s.editPhotoProfileBlock}>
+        <div className={s.editPhotoProfile}>
+          <div className={s.editPhotoTitle}>Avatar</div>
+          <input
+            onChange={onMainPhotoSelected}
+            type="file"
+            id="input__file__ava"
+          />
+          <label className={s.editPhoto} htmlFor="input__file__ava">
+            <span className={s.edit}>Edit</span>
+          </label>
+        </div>
+        <div className={s.photoProfile}>
+          <div className={s.avatar}>
+            <img
+              src={
+                props.profile.avatar == "" ? PhotoProfile : props.profile.avatar
+              }
+              alt="profile photo"
+            />
           </div>
         </div>
       </div>
-    )
+      <div className={s.editPhotoProfileBlock}>
+        <div className={s.editPhotoProfile}>
+          <div className={s.editPhotoTitle}>Cover photo</div>
+
+          <input
+            onChange={onMainBannerSelected}
+            type="file"
+            id="input__file__banner"
+          />
+          <label className={s.editPhoto} htmlFor="input__file__banner">
+            <span className={s.edit}>Edit</span>
+          </label>
+        </div>
+        <div className={s.CoverPhotoProfile}>
+          <div className={s.banner}>
+            <img src={props.profile.banner} alt="profile photo" />
+          </div>
+        </div>
+      </div>
+      <div
+        className={
+          s.editAboutMeBlock +
+          " " +
+          (props.editAboutMe ? s.editAboutMeBlockActive : " ")
+        }
+      >
+        <div className={s.editAboutMeProfile}>
+          <div className={s.editAboutMeTitle}>About me</div>
+          <div
+            onClick={() => {
+              props.setEditAboutMe(!props.editAboutMe);
+              {
+                props.editAboutMe && props.updateAboutMe(props.valueAboutMe);
+              }
+            }}
+            className={
+              s.addToAboutMe + " " + (disable ? s.addToAboutMeDisable : "")
+            }
+          >
+            {props.editAboutMe ? (
+              <span className={s.edit}>Save</span>
+            ) : (
+              <span className={s.edit}>Add to</span>
+            )}
+          </div>
+        </div>
+        {props.editAboutMe ? (
+          <textarea
+            value={props.valueAboutMe}
+            onChange={handleChangeAboutMe}
+            className={s.aboutMeTextarea}
+            minLength="70"
+            maxLength="400"
+          ></textarea>
+        ) : (
+          <div className={s.aboutMeText}>
+            {props.profile.aboutMe == "" ? (
+              <span>Tell about yourself...</span>
+            ) : (
+              <span>{props.profile.aboutMe}</span>
+            )}
+          </div>
+        )}
+        {props.editAboutMe && (
+          <div className={s.charactersRemaining}>
+            {props.valueAboutMe.length < 70 ? (
+              <span className={s.moreCharacters}>
+                {70 - props.valueAboutMe.length} more characters
+              </span>
+            ) : (
+              <span>
+                Remaining {400 - props.valueAboutMe.length} characters
+              </span>
+            )}
+            <div onClick={cancelEditAboutMe} className={s.cancelAboutMeButton}>
+              {" "}
+              <span className={s.cancelAboutMe}>Cancel</span>{" "}
+            </div>
+          </div>
+        )}
+      </div>
+      <div className={s.editTellUsMoreAboutYourselfBlock}>
+        <div className={s.editTellUsMoreAboutYourselfAndEdit}>
+          <div className={s.TellUsMoreAboutYourself}>
+            Tell us more about yourself
+          </div>
+          <div
+            onClick={() => {
+              props.setEditTellusMoreAboutYourself(
+                !props.editTellusMoreAboutYourself
+              );
+              {
+                props.editTellusMoreAboutYourself &&
+                  props.updateProfileInfo(
+                    props.valueBirthday,
+                    props.valueLocation
+                  );
+              }
+            }}
+            className={s.editInfo}
+          >
+            {props.editTellusMoreAboutYourself ? (
+              <span className={s.edit}>Save</span>
+            ) : (
+              <span className={s.edit}>Edit</span>
+            )}
+          </div>
+        </div>
+        <div className={s.moreAboutMyself}>
+          <div className={s.birthdayBlock}>
+            <img
+              className={s.birthdayImg}
+              src={res["birthday"]}
+              alt="birthday"
+            />
+            <span className={s.birthdayTitleAndText}>
+              <div className={s.birthdayTitle}>Birthday</div>
+              {props.editTellusMoreAboutYourself ? (
+                <span className={s.birthdayEditBlock}>
+                  <input
+                    value={props.valueBirthday}
+                    onChange={handleChangeBirthday}
+                    className={s.editBirthday}
+                    type="date"
+                  />
+                </span>
+              ) : (
+                <span className={s.birthday}>
+                  {month[birthdayMonth]}{" "}
+                  {props.profile.birthday.replace(/^.{8}/, "")}
+                </span>
+              )}
+            </span>
+          </div>
+          <div className={s.locationBlock}>
+            <img className={s.cityImg} src={res["location"]} alt="location" />
+            <span className={s.locationTitleAndText}>
+              <div className={s.locationTitle}>Location</div>
+              {props.editTellusMoreAboutYourself ? (
+                <span className={s.locationEditBlock}>
+                  <input
+                    value={props.valueLocation}
+                    onChange={handleChangeLocation}
+                    className={s.editLocation}
+                    type="text"
+                  />
+                </span>
+              ) : (
+                <span className={s.location}>{props.profile.location}</span>
+              )}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 let mapStateToProps = (state) => {

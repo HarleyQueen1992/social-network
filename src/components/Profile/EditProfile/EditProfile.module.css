@@ -241,7 +241,7 @@
 }
 .aboutMeTextarea {
   height: 100%;
-  width: 300px;
+  width: 450px;
   justify-self: center;
   color: var(--fontColor);
   background-color: rgba(0, 0, 0, 0.151);
@@ -415,6 +415,9 @@
   }
   .editProfileMenuBottom {
     height: 0;
+  }
+  .aboutMeTextarea {
+    width: calc(300px + (450 - 300) * ((100vw - 320px) / (600 - 320)));
   }
   .editPhotoProfileBlock {
     grid-template-rows: 50px calc(
