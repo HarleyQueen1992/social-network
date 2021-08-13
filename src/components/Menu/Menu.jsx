@@ -8,7 +8,9 @@ import Sun from "./../../assets/images/sunW.png";
 const Menu = (props) => {
   let res = Icons(props.theme);
   const themeToggler = () => {
-    props.theme == "light" ? props.setTheme("dark") : props.setTheme("light");
+    props.theme == "light"
+      ? props.updateTheme("dark")
+      : props.updateTheme("light");
   };
   useEffect(() => {
     for (let property in props.theme) {
