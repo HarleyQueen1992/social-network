@@ -3,7 +3,11 @@ import s from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { setTheme, setIsPassword } from "./../../redux/AppReducer/app-reducer";
+import {
+  setTheme,
+  setIsPassword,
+  updateTheme,
+} from "./../../redux/AppReducer/app-reducer";
 import { getTheme } from "./../../redux/AppReducer/app-selectors";
 import { logOut } from "./../../redux/AuthReducer/auth-reducer";
 import { withRouter } from "react-router-dom";
@@ -14,11 +18,12 @@ import { Icons } from "./../../utils/Icons/Icons";
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 
 const Navbar = (props) => {
+  localStorage.setItem("theme", props.theme);
   let res = Icons(props.theme);
   const themeToggler = () => {
-    props.theme == "lightTheme"
-      ? props.setTheme("dark")
-      : props.setTheme("light");
+    props.theme == "light"
+      ? props.updateTheme("dark")
+      : props.updateTheme("light");
   };
   useEffect(() => {
     for (let property in props.theme) {
@@ -28,6 +33,7 @@ const Navbar = (props) => {
       );
     }
   }, [props.theme]);
+
   if (props.isMenuActive) {
     document.onclick = function (e) {
       if (
@@ -132,7 +138,7 @@ const Navbar = (props) => {
             <img className={s.img} alt="sun" src={Sun} />
             <div
               className={
-                s.ball + " " + (props.theme == "lightTheme" ? s.active : "")
+                s.ball + " " + (props.theme == "light" ? s.active : "")
               }
             ></div>
           </label>
@@ -161,6 +167,6 @@ let mapStateToProps = (state) => {
   };
 };
 export default compose(
-  connect(mapStateToProps, { setTheme, logOut, setIsPassword }),
+  connect(mapStateToProps, { setTheme, logOut, setIsPassword, updateTheme }),
   withRouter
 )(Navbar);

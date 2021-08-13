@@ -56,7 +56,7 @@ const urlIndex = {
   2: "posts",
   3: "users",
   4: "followings",
-  5: "menu",
+  // 5: "menu",
 };
 let i = NaN;
 class App extends React.Component {
@@ -151,11 +151,6 @@ class App extends React.Component {
     this.props.setEitMode(getValue);
   };
   render() {
-    const themeToggler = () => {
-      this.props.theme == "lightTheme"
-        ? this.props.setTheme("dark")
-        : this.props.setTheme("light");
-    };
     // window.addEventListener("resize", function () {
     //   if (window.innerWidth > 600) {
     //     toggleIsBigScreen(true)
@@ -163,6 +158,7 @@ class App extends React.Component {
     //     toggleIsBigScreen(false)
     //   }
     // })
+
     if (!this.props.initialized) {
       return <Preloader />;
     }
@@ -252,7 +248,7 @@ class App extends React.Component {
                       />
                     )}
                   />
-                  {window.innerWidth < 900 && (
+                  {false && (
                     <Route
                       path="/menu"
                       render={() => (

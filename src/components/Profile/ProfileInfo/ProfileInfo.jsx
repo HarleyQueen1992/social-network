@@ -117,27 +117,7 @@ const ProfileInfo = (props) => {
       }
     };
   }
-  useEffect(() => {
-    return () => {
-      setEditTellusMoreAboutYourself(false);
-      setEditAboutMe(false);
-      setEditFullName(false);
-      setValueFullName(props.profile.fullname);
-      setValueAboutMe(props.profile.aboutMe);
-      setValueBirthday(props.profile.birthday);
-      setValueLocation(props.profile.location);
-      document.querySelector(".react-swipeable-view-container").style.cssText =
-        "will-change: transform; !important" +
-        "flex-direction: row;" +
-        "transition: all 0s ease 0s;" +
-        "direction: ltr;" +
-        "display: flex;" +
-        "transform: translate(-100%, 0px);";
-      document.querySelector("body").style.cssText = "overflow: scroll;";
-      setEditMode(false);
-      console.log("exit");
-    };
-  }, []);
+
   return (
     <div className={s.profilePage}>
       <div
@@ -148,26 +128,28 @@ const ProfileInfo = (props) => {
           (editMode && s.activeEditProfileMenuBlock)
         }
       >
-        <EditProfile
-          editAboutMe={editAboutMe}
-          setEditAboutMe={setEditAboutMe}
-          editTellusMoreAboutYourself={editTellusMoreAboutYourself}
-          setEditTellusMoreAboutYourself={setEditTellusMoreAboutYourself}
-          editFullName={editFullName}
-          setEditFullName={setEditFullName}
-          valueFullName={valueFullName}
-          setValueFullName={setValueFullName}
-          valueAboutMe={valueAboutMe}
-          setValueAboutMe={setValueAboutMe}
-          valueBirthday={valueBirthday}
-          setValueBirthday={setValueBirthday}
-          valueLocation={valueLocation}
-          setValueLocation={setValueLocation}
-          closePopup={closePopup}
-          editMode={editMode}
-          setEditMode={setEditMode}
-          profile={props.profile}
-        />
+        {editMode && (
+          <EditProfile
+            editAboutMe={editAboutMe}
+            setEditAboutMe={setEditAboutMe}
+            editTellusMoreAboutYourself={editTellusMoreAboutYourself}
+            setEditTellusMoreAboutYourself={setEditTellusMoreAboutYourself}
+            editFullName={editFullName}
+            setEditFullName={setEditFullName}
+            valueFullName={valueFullName}
+            setValueFullName={setValueFullName}
+            valueAboutMe={valueAboutMe}
+            setValueAboutMe={setValueAboutMe}
+            valueBirthday={valueBirthday}
+            setValueBirthday={setValueBirthday}
+            valueLocation={valueLocation}
+            setValueLocation={setValueLocation}
+            closePopup={closePopup}
+            editMode={editMode}
+            setEditMode={setEditMode}
+            profile={props.profile}
+          />
+        )}
         <div className={s.editProfileMenuBottom}></div>
       </div>
       <div className={s.profileHead}>

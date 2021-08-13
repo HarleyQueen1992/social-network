@@ -14,50 +14,6 @@ body {
   width: 0;
   display: none;
 }
-html {
-  --body: #18191a;
-  --header: #242526;
-  --headerSmall: #18191a;
-  --borderHeader: #3e4042;
-  --bacPost: #242526;
-  --bacSearch: #ffffff1a;
-  --bacSearchHover: #ffffff2e;
-  --logo: rgb(255, 255, 255);
-  --menuItemBac: #3a3b3c;
-  --menuItemBacHover: rgba(255, 255, 255, 0.178);
-  --navBarBac: #242526;
-  --bacNavBarImg: #ffffff1a;
-  --headItem: rgb(65, 64, 64);
-  --fontColor: #fff;
-  --colorAbouMe: rgb(197, 197, 197);
-  --statusColor: rgba(255, 255, 255, 0.623);
-  --colorDeteilInfo: #fff;
-  --descriptionColor: #fff;
-  --headerColor: #2e353e;
-  --EditBack: #4a4a4a;
-  --anythingNew: rgba(255, 255, 255, 0.075);
-  --bacMenu: #ffffff1a;
-  --hoverBacMenu: #535353;
-  --followBtn: #2f2a56;
-  --followBtnHover: #3b3475;
-  --BorderBottom: #3e4042;
-  --bacInput: rgba(255, 255, 255, 0.267);
-  --bacInputBorder: rgba(255, 255, 255, 0.267);
-  --bbLogin: rgb(224, 173, 173);
-  --bacInputLogin: rgb(255, 255, 255);
-  --swithThemeBac: #4e4e4e;
-  --swithThemeBall: #fff;
-  --bacInputForm: #25292f;
-  --HoversaveBut: rgb(81, 81, 100);
-  --error: red;
-  --statusHover: #ffffff49;
-  --usersListItemHover: rgba(255, 255, 255, 0.068);
-  --anythingNew: rgba(255, 255, 255, 0.075);
-  --anythingNewHover: rgba(255, 255, 255, 0.151);
-  --editProfileBlock: #ffffff1a;
-  --editProfileBlockHover: #ffffff36;
-  --editInfo: rgba(255, 255, 255, 0.11);
-}
 .loginPage {
   height: 100vh;
   display: grid;

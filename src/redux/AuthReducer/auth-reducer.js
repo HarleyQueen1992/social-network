@@ -1,6 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { profileAPI, authAPI } from "../../API/api"
-import { setIndex } from "../AppReducer/app-reducer"
+import { setIndex, setTheme, setThemeStyle } from "../AppReducer/app-reducer"
 const SET_USER_DATA = "app/auth-reducer/SET_USER_DATA"
 const SET_PROFILE_DATA = "app/auth-reducer/SET_PROFILE_DATA"
 const SET_PROFILE_PHOTO = "app/auth-reducer/SET_PROFILE_PHOTO"
@@ -80,6 +80,8 @@ export const getAuthMe = () => async dispatch => {
   let data = await authAPI.getAuthMe()
   if (data.code !== 'notAuthenticated') {
     dispatch(setProfileData(data, true))
+    dispatch(setTheme(data.theme))
+    dispatch(setThemeStyle())
     // dispatch(isSavePhoto(false))
   } else {
     dispatch(setIsAuth( false))

@@ -157,6 +157,13 @@ export const profileAPI = {
       return response.data
     })
   },
+  updateTheme(theme) {
+    return instance.patch('/profile', {theme}).then(response => {
+      return response.data
+    }).catch(response => {
+      return response.data
+    })
+  },
   updateProfileBanner(bannerFile) {
     const formData = new FormData()
     formData.append("banner", bannerFile)

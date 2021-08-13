@@ -1,5 +1,6 @@
-import { lightTheme, darkTheme } from "./../../themes"
-import { getAuthMe } from "./../AuthReducer/auth-reducer"
+import { profileAPI } from "../../API/api"
+import { light, dark } from "./../../themes"
+import { getAuthMe, setProfileData } from "./../AuthReducer/auth-reducer"
 const INITIALIZED_SUCCESS = "app/app-reducer/INITIALIZED_SUCCESS"
 const IS_POST_CREATION = "app/app-reducer/IS_POST_CREATION"
 const SET_THEME = "app/app-reducer/SET_THEME"
@@ -10,12 +11,13 @@ const TOGGLE_IS_BIG_SCREEN = "app/app-reducer/TOGGLE_IS_BIG_SCREEN"
 const SET_EDITMODE = "app/app-reducer/SET_EDITMODE"
 const IS_MENU_ACTIVE = 'app/app-reducer/IS_MENU_ACTIVE'
 const IS_PASSWORD = 'app/app-reducer/IS_PASSWORD'
+const SET_THEME_STYLE = 'app/app-reducer/SET_THEME_STYLE'
 
 let initialState = {
   initialized: false,
   isPostCreation: false,
   index: null,
-  theme: darkTheme,
+  theme: localStorage.getItem('theme') == "light" ? light : dark,
   headerBlur: false,
   editMode: false,
   isMenuActive: false,
@@ -50,13 +52,26 @@ const appReducer = (state = initialState, action) => {
       }
     }
     case SET_THEME: {
+
       return {
         ...state,
-        theme: action.theme == "light" ? lightTheme : darkTheme,
+        theme: action.theme == "light" ? light : dark,
       }
+      
+    }
+    case SET_THEME_STYLE: {
+      for (let property in state.theme) {
+        document.documentElement.style.setProperty(
+          "--" + property,
+          state.theme[property]
+        );
+      }
+      return {
+        ...state
+      }
+      
     }
     case TOGGLE_IS_BIG_SCREEN: {
-      debugger
       return {
         ...state,
         isBigScreen: action.isBigScreen,
@@ -129,6 +144,8 @@ export const setIsPassword = isPassword => ({
 
 export const setTheme = theme => ({ type: SET_THEME, theme })
 
+export const setThemeStyle = theme => ({ type: SET_THEME_STYLE })
+
 // Thunk Creator
 
 export const initializeApp = () => dispatch => {
@@ -136,6 +153,12 @@ export const initializeApp = () => dispatch => {
 
   Promise.all([promiseGetAuthMe]).then(() => {
     dispatch(initializedSuccess())
+    
   })
+}
+export const updateTheme = theme => async dispatch => {
+  let response = await profileAPI.updateTheme(theme)
+  dispatch(setTheme(response.theme))
+  dispatch(setProfileData(response, true))
 }
 export default appReducer

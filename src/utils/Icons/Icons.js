@@ -79,7 +79,7 @@ import website from "./../../assets/images/website.png"
 import mainLink from "./../../assets/images/mainLink.png"
 
 export const Icons = (theme, index = NaN) => {
-  let themeLight = 'lightTheme'
+  let themeLight = 'light'
   return {
     home:
       theme == themeLight

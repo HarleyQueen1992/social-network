@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 
-export const lightTheme = {
+export const light = {
   body: "#f0f2f5",
   headItem: "#0000000d",
   header: "#fff",
@@ -44,12 +44,12 @@ export const lightTheme = {
   editInfo: "rgba(0, 0, 0, 0.11)",
 }
 
-Object.defineProperty(lightTheme, "toString", {
-  value: () => "lightTheme",
+Object.defineProperty(light, "toString", {
+  value: () => "light",
   enumerable: false,
 })
 
-export const darkTheme = {
+export const dark = {
   body: "#18191a",
   headItem: "rgb(65, 64, 64)",
   header: "#242526",
@@ -95,8 +95,8 @@ export const darkTheme = {
   exitEditMenuHover: "rgba(255, 255, 255, 0.267)"
 }
 
-Object.defineProperty(darkTheme, "toString", {
-  value: () => "darkTheme",
+Object.defineProperty(dark, "toString", {
+  value: () => "dark",
   enumerable: false,
 })
 
