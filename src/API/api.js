@@ -313,4 +313,11 @@ export const postsAPI = {
       return response
     })
   },
+  deletePost(id) {
+    return instance.delete(`/posts/${id}/`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  }
 }

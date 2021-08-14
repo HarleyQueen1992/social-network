@@ -32,7 +32,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunkMiddleware))
 )
 
-// let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 window.store = store
 

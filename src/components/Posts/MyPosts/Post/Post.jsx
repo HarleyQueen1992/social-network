@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import p from "./Post.module.css";
+import { deletePost } from "./../../../../redux/PostsReducer/posts-reducer";
 import heart from "./../../../../assets/images/heart.png";
 import heartDisable from "./../../../../assets/images/heartDisable.png";
 import heartDark from "./../../../../assets/images/heartDark.png";
@@ -8,6 +9,8 @@ import avaInPosts from "./../../../../assets/images/user.png";
 import Comments from "./../../../../assets/images/comments.png";
 import CommentsLight from "./../../../../assets/images/commentsLight.png";
 import DropdownMenus from "./DropdownMenus/DropdownMenus";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { useEffect } from "react";
 
 const Post = (props) => {
@@ -77,6 +80,8 @@ const Post = (props) => {
         <DropdownMenus
           setDropdownMenus={setDropdownMenus}
           theme={props.theme}
+          deletePost={props.deletePost}
+          post={props.post}
         />
       )}
       <div className={p.postTitle}>{props.post.title}</div>
@@ -134,4 +139,11 @@ const Post = (props) => {
   );
 };
 
-export default Post;
+let mapStateToProps = (state) => {
+  return {};
+};
+export default compose(
+  connect(mapStateToProps, {
+    deletePost,
+  })
+)(Post);

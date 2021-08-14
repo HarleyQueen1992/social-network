@@ -117,4 +117,5 @@ export const logOut = () => async dispatch => {
     dispatch(setProfileData(null, false))
   
 }
+
 export default authReducer

@@ -189,6 +189,7 @@ class App extends React.Component {
                 " " +
                 (this.props.editMode ? s.appWrapperContentEditMode : " ")
               }
+              id="appWraperContent"
             >
               {(this.props.location.pathname === "/news") |
               (this.props.location.pathname.substr(0, 8) === "/profile") |

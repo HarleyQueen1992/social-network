@@ -99,17 +99,3 @@ Object.defineProperty(dark, "toString", {
   value: () => "dark",
   enumerable: false,
 })
-
-// darkTheme.prototype.toString = () => {
-//     return 'darkTheme'
-// }
-
-// export const GlobalStyles = createGlobalStyle `
-
-// 	body {
-
-// 		background-color: ${(props) => props.theme.body};
-
-// 	}
-
-// `;

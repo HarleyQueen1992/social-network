@@ -118,7 +118,7 @@ export const addLike = postId => {
     postId,
   }
 }
-export const deletePost = pId => {
+export const deletePostAC = pId => {
   return {
     type: DELETE_POST,
     pId,
@@ -155,10 +155,14 @@ export const requestPosts = (page) => async dispatch => {
   dispatch(setLoadingPosts(false))
 }
 
-export
- const createPost = (title, body) => async dispatch => {
+export const createPost = (title, body) => async dispatch => {
   let response = await postsAPI.createPost(title, body)
   dispatch(addPostActionCreator(response))
 }
 
+export const deletePost = (id) => async dispatch => {
+  let response = await postsAPI.deletePost(id)
+    dispatch(deletePostAC(id))
+  
+}
 export default postsReducer

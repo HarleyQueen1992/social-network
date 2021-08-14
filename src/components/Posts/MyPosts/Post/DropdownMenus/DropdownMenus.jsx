@@ -29,7 +29,12 @@ const DropdownMenus = (props) => {
           <img src={res["update"]} alt="update" />
           <span>Upadte Post</span>
         </div>
-        <div className={s.menuItem}>
+        <div
+          className={s.menuItem}
+          onClick={() => {
+            props.deletePost(props.post.id);
+          }}
+        >
           <img src={res["delete"]} alt="delete" />
           <span>Delete Post</span>
         </div>
