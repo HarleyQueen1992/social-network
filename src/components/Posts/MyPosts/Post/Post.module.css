@@ -3,6 +3,7 @@
 .postBlock {
   /* width: 500px; */
   display: grid;
+  position: relative;
   /* grid-template-rows: 50px 30px; */
   grid-template-areas: "header" "title" "body" "bot";
   /* grid-row-gap: 20px; */
@@ -20,11 +21,15 @@
   padding-bottom: 10px;
   grid-template-columns: 50px 1fr 60px;
 }
+
 .avatarBlock {
   position: relative;
   overflow: hidden;
   width: 40px;
   height: 40px;
+}
+.dropdownMenusActive {
+  display: grid;
 }
 .avatarBlock img {
   position: absolute;
@@ -47,8 +52,9 @@
 }
 .morePost {
   position: relative;
-  height: 37px;
-  width: 37px;
+  height: 36px;
+  width: 36px;
+  padding: 8px;
   align-self: center;
   cursor: pointer;
   justify-self: center;
@@ -59,35 +65,68 @@
 .morePost:hover {
   background-color: rgba(255, 255, 255, 0.123);
 }
+.more {
+  position: relative;
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  top: 16px;
+  left: 16px;
+  transition: all 0.1s;
+  background-color: rgba(255, 255, 255, 0.308);
+}
 .morePost::after {
   content: "";
   position: absolute;
-  height: 5px;
-  width: 5px;
+  height: 4px;
+  transition: all 0.1s;
+  width: 4px;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255);
-  top: 17px;
-  right: 6px;
+  background-color: rgba(255, 255, 255, 0.308);
+  top: 16px;
+  right: 9px;
 }
 .morePost::before {
   content: "";
   position: absolute;
-  height: 5px;
-  width: 5px;
+  transition: all 0.1s;
+  height: 4px;
+  width: 4px;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255);
-  top: 17px;
-  left: 6px;
+  background-color: rgba(255, 255, 255, 0.308);
+  top: 16px;
+  left: 9px;
 }
-.more {
+.moreClose {
+  display: none;
+  position: relative;
   position: absolute;
-  height: 5px;
-  width: 5px;
+  height: 4px;
+  width: 4px;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255);
-  top: 17px;
+  top: 16px;
   left: 16px;
+  background-color: rgba(255, 255, 255, 0.308);
 }
+.morePostClose:before,
+.morePostClose:after {
+  position: absolute;
+  left: 17px;
+  top: 12px;
+  content: " ";
+  height: 15px;
+  width: 2px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0;
+}
+.morePostClose:before {
+  transform: rotate(45deg);
+}
+.morePostClose:after {
+  transform: rotate(-45deg);
+}
+
 .datePost {
   color: #1877f2;
   font-size: 14px;
