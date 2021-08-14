@@ -4,6 +4,12 @@ import p from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
+  document.getElementById("appWraperContent").firstChild.style.cssText =
+    "overflow-x: none;";
+  document.querySelector(
+    ".react-swipeable-view-container"
+  ).childNodes[1].style.cssText =
+    "overflow: initial; width: 100%; flex-shrink: 0;";
   useEffect(() => {
     props.changeIndex(window.location.href);
   }, [window.location.href]);

@@ -466,6 +466,7 @@
 }
 .aboutMe span {
   color: #1877f2;
+  white-space: break-spaces;
   word-wrap: break-word;
 }
 /*? Friends Block  */
@@ -646,8 +647,10 @@
   font-weight: bold;
 }
 .inTheLeftColumn {
+  position: sticky;
   align-self: start;
   display: grid;
+  top: 61px;
   grid-row-gap: 10px;
 }
 .editProfileMenuBlock {

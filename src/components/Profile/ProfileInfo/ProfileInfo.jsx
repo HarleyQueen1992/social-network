@@ -19,24 +19,17 @@ import PostCreation from "../../Posts/MyPosts/PostCreation/PostCreation";
 import EditProfile from "./../EditProfile/EditProfile";
 import ProfileBannerDefault from "./../../../assets/images/wp2655395.jpg";
 
-let month = {
-  "01": "January",
-  "02": "February",
-  "03": "March",
-  "04": "April",
-  "05": "May",
-  "06": "June",
-  "07": "July",
-  "08": "August",
-  "09": "September",
-  10: "October",
-  11: "November",
-  12: "December",
-};
 const ProfileInfo = (props) => {
   let res = Icons(props.theme, props.index);
-  let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
-  birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
+
+  let birthdayMonth = new Date(props.profile.birthday).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+      day: "2-digit",
+    }
+  );
+
   let [editStatus, setEditStatus] = useState(false);
   let [editMode, setEditMode] = useState(false);
   let [valueStatus, setValueStatus] = useState(props.profile.status);
@@ -50,6 +43,19 @@ const ProfileInfo = (props) => {
   const [valueLocation, setValueLocation] = useState(props.profile.location);
 
   const isSmall = window.innerWidth < 480;
+
+  useEffect(() => {
+    if (
+      window.innerHeight <
+      document.getElementById("inTheLeftColumn").clientHeight + 71 // 51px - header height
+    ) {
+      let height = document.getElementById("inTheLeftColumn").clientHeight;
+      document.getElementById("inTheLeftColumn").style.cssText =
+        "top:" + (window.innerHeight - height - 20) + "px;"; // 20px padding-top
+    } else {
+      document.getElementById("inTheLeftColumn").style.cssText = "top: 61px;"; // 61px = 51px(header height) + 10px (padding-top)
+    }
+  }, [editMode]);
 
   const handleChangeStatus = (event) => {
     setValueStatus(event.target.value);
@@ -295,7 +301,7 @@ const ProfileInfo = (props) => {
       </div>
       <div className={s.profileBody}>
         <div className={s.leftColumn}>
-          <div className={s.inTheLeftColumn}>
+          <div className={s.inTheLeftColumn} id="inTheLeftColumn">
             <div className={s.profileInfoBlock}>
               <div className={s.briefInformationTitle}>Brief information</div>
               <div className={s.listOfInformation}>
@@ -306,11 +312,7 @@ const ProfileInfo = (props) => {
                     alt="birthday"
                   />
                   <span className={s.birthdayTitle}>
-                    Birthday{" "}
-                    <span>
-                      {month[birthdayMonth]}{" "}
-                      {props.profile.birthday.replace(/^.{8}/, "")}
-                    </span>
+                    Birthday <span>{birthdayMonth}</span>
                   </span>
                 </div>
                 <div className={s.listItems}>

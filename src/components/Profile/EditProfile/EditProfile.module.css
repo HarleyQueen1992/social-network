@@ -248,6 +248,7 @@
   outline: none;
   padding: 10px;
   resize: none;
+  white-space: break-spaces;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0);
   font-size: 18px;

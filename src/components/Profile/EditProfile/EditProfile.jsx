@@ -16,25 +16,15 @@ import { withRouter } from "react-router-dom";
 import { Icons } from "./../../../utils/Icons/Icons";
 import { getTheme } from "../../../redux/AppReducer/app-selectors";
 
-let month = {
-  "01": "January",
-  "02": "February",
-  "03": "March",
-  "04": "April",
-  "05": "May",
-  "06": "June",
-  "07": "July",
-  "08": "August",
-  "09": "September",
-  10: "October",
-  11: "November",
-  12: "December",
-};
 const EditProfile = (props) => {
-  // window.scroll(0, 0);
+  let birthdayMonth = new Date(props.profile.birthday).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+      day: "2-digit",
+    }
+  );
   let res = Icons(props.theme);
-  let birthdayMonth = props.profile.birthday.replace(/^.{5}/, "");
-  birthdayMonth = birthdayMonth.replace(/.{3}$/, "");
 
   let disable = props.valueAboutMe.length < 70;
 
@@ -75,10 +65,10 @@ const EditProfile = (props) => {
       props.setEditTellusMoreAboutYourself(false);
       props.setEditAboutMe(false);
       props.setEditFullName(false);
-      props.setValueFullName(props.profile.fullname);
-      props.setValueAboutMe(props.profile.aboutMe);
-      props.setValueBirthday(props.profile.birthday);
-      props.setValueLocation(props.profile.location);
+      // props.setValueFullName(props.profile.fullname);
+      // props.setValueAboutMe(props.profile.aboutMe);
+      // props.setValueBirthday(props.profile.birthday);
+      // props.setValueLocation(props.profile.location);
       document.querySelector(".react-swipeable-view-container").style.cssText =
         "will-change: transform; !important" +
         "flex-direction: row;" +
@@ -288,10 +278,7 @@ const EditProfile = (props) => {
                   />
                 </span>
               ) : (
-                <span className={s.birthday}>
-                  {month[birthdayMonth]}{" "}
-                  {props.profile.birthday.replace(/^.{8}/, "")}
-                </span>
+                <span className={s.birthday}>{birthdayMonth} </span>
               )}
             </span>
           </div>
