@@ -113,14 +113,6 @@ export const saveProfileInfo = profileData => async dispatch => {
   }
   dispatch(toggleIsFetchingSuccess(false))
 }
-export const savePhoto = file => async dispatch => {
-  dispatch(toggleIsFetchingSuccess(true))
-  let response = await profileAPI.updateProfileAvatar(file)
-  // if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.avatar))
-    dispatch(setProfileInfoPhoto(response.avatar))
-  // }
-  dispatch(toggleIsFetchingSuccess(false))
-}
+
 
 export default settingsReducer

@@ -90,7 +90,6 @@
   display: grid;
   padding-right: 10px;
   grid-template-rows: 30% 20% 50%;
-  grid-template-areas: "name" "write";
 }
 .status {
   color: var(--fontColor);

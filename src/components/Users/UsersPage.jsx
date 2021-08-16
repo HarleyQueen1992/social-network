@@ -4,7 +4,7 @@ import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
 import { Icons } from "../../utils/Icons/Icons";
-import UsersList from "./Users/Users";
+import UsersList from "./Users/User";
 
 const Users = (props) => {
   let res = Icons(props.theme);

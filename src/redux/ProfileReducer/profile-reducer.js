@@ -209,7 +209,7 @@ export const setProfileBanner = file => async dispatch => {
 }
 export const savePhoto = file => async dispatch => {
   let response = await profileAPI.updateProfileAvatar(file)
-  dispatch(setUserProfile(response))
+  dispatch(savePhotoSuccess(response.avatar))
 }
 
 export const updateProfileInfo = (birthday, location) => async dispatch => {
