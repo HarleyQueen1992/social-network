@@ -59,14 +59,12 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         posts: state.posts.map(p => {
           if (p.id === action.postId) {
-            if (p.isDisable === true) {
-              let likes = p.like - 1
-              p.isDisable = false
-              return { ...p, like: likes }
+            if (p.isLiked === true) {
+              let likes = p.likes - 1
+              return { ...p, isLiked: false, likes: likes }
             } else {
-              let likes = p.like + 1
-              p.isDisable = true
-              return { ...p, like: likes }
+              let likes = p.likes + 1
+              return { ...p, isLiked: true, likes: likes  }
             }
           }
 
@@ -155,14 +153,26 @@ export const requestPosts = (page) => async dispatch => {
   dispatch(setLoadingPosts(false))
 }
 
-export const createPost = (title, body) => async dispatch => {
-  let response = await postsAPI.createPost(title, body)
+export const createPost = (title, body, attachments) => async dispatch => {
+
+  let response = await postsAPI.createPost(title, body, attachments)
   dispatch(addPostActionCreator(response))
 }
 
 export const deletePost = (id) => async dispatch => {
   let response = await postsAPI.deletePost(id)
     dispatch(deletePostAC(id))
+    dispatch(setTotalItems(initialState.totalItems - 1))
+  
+}
+export const likePost = (id) => async dispatch => {
+  let response = await postsAPI.likePost(id)
+    dispatch(addLike(id))
+  
+}
+export const unlikePost = (id) => async dispatch => {
+  let response = await postsAPI.unlikePost(id)
+    dispatch(addLike(id))
   
 }
 export default postsReducer
