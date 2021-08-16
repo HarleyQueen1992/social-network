@@ -395,8 +395,8 @@
 /*?  Profile info block */
 .profileInfoBlock {
   display: grid;
-  grid-template-rows: 30px 1fr;
-  padding: 15px;
+  grid-template-rows: 1fr;
+  padding: 10px 15px 15px 15px;
   border-radius: 10px;
   background-color: var(--navBarBac);
 }
@@ -435,6 +435,9 @@
   display: grid;
   grid-template-columns: 40px 1fr;
 }
+.person {
+  margin-top: 3px;
+}
 .birthdayImg {
   width: 25px;
   align-self: center;
@@ -458,7 +461,7 @@
   cursor: pointer;
 }
 .aboutMe {
-  margin-top: 3px;
+  margin-top: 5px;
   color: var(--fontColor);
   font-weight: bold;
   min-width: 0px;
@@ -472,7 +475,7 @@
 /*? Friends Block  */
 .subscriptionSubscribersBlock {
   display: grid;
-  grid-template-rows: 40px 1fr 40px;
+  grid-template-rows: 40px 1fr;
   padding: 15px;
   height: auto;
   border-radius: 10px;
@@ -482,9 +485,23 @@
   grid-template-rows: 40px 40px;
 }
 .subscriptionSubscribersTitle {
+  display: grid;
   color: var(--fontColor);
   font-size: 20px;
   font-family: "Patua One", cursive;
+}
+.subscriptionSubscribersTitle a {
+  color: var(--fontColor);
+  text-decoration: none;
+  transition: all 0.1s;
+  font-size: 20px;
+  justify-self: start;
+  align-self: start;
+  font-family: "Patua One", cursive;
+}
+.subscriptionSubscribersTitle a:hover {
+  color: #1877f2;
+  cursor: pointer;
 }
 .subscriptionSubscribersList {
   display: grid;

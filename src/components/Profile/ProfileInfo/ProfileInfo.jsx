@@ -303,7 +303,7 @@ const ProfileInfo = (props) => {
         <div className={s.leftColumn}>
           <div className={s.inTheLeftColumn} id="inTheLeftColumn">
             <div className={s.profileInfoBlock}>
-              <div className={s.briefInformationTitle}>Brief information</div>
+              {/* <div className={s.briefInformationTitle}>Brief information</div> */}
               <div className={s.listOfInformation}>
                 <div className={s.listItems}>
                   <img
@@ -339,7 +339,9 @@ const ProfileInfo = (props) => {
               }
             >
               <div className={s.subscriptionSubscribersTitle}>
-                Subscriptions <span>{props.totalSubscriptionsItems}</span>
+                <NavLink to={"/followings/" + props.profile.login}>
+                  Subscriptions {props.totalSubscriptionsItems}
+                </NavLink>
               </div>
               <div
                 className={
@@ -369,14 +371,14 @@ const ProfileInfo = (props) => {
                   </NavLink>
                 ))}
               </div>
-              <div className={s.seeAllSubscriptionsBlock}>
+              {/* <div className={s.seeAllSubscriptionsBlock}>
                 <NavLink
                   to={"/followings/" + props.profile.login}
                   className={s.seeAllSubscriptions}
                 >
                   See all subscriptions
                 </NavLink>
-              </div>
+              </div> */}
             </div>
             <div
               className={
@@ -388,7 +390,9 @@ const ProfileInfo = (props) => {
               }
             >
               <div className={s.subscriptionSubscribersTitle}>
-                Subscribers <span>{props.totalSubscribersItems}</span>
+                <NavLink to={"/followers/" + props.profile.login}>
+                  Subscribers {props.totalSubscribersItems}
+                </NavLink>
               </div>
               <div
                 className={
@@ -419,14 +423,14 @@ const ProfileInfo = (props) => {
                     </NavLink>
                   ))}
               </div>
-              <div className={s.seeAllSubscribersBlock}>
+              {/* <div className={s.seeAllSubscribersBlock}>
                 <NavLink
                   to={"/followers/" + props.profile.login}
                   className={s.seeAllSubscribers}
                 >
                   See all subscribers
                 </NavLink>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
