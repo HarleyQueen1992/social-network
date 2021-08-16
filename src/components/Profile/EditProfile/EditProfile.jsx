@@ -10,8 +10,9 @@ import {
   updateProfileInfo,
   updateAboutMe,
   updateFullName,
+  savePhoto,
 } from "./../../../redux/ProfileReducer/profile-reducer";
-import { savePhoto } from "./../../../redux/SettingsReducer/settings-reducer";
+// import { savePhoto } from "./../../../redux/SettingsReducer/settings-reducer";
 import { withRouter } from "react-router-dom";
 import { Icons } from "./../../../utils/Icons/Icons";
 import { getTheme } from "../../../redux/AppReducer/app-selectors";

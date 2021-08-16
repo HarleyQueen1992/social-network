@@ -9,6 +9,7 @@ const SET_PAGE = "app/posts-reducer/SET_PAGE"
 const UPLOAD_POSTS = "app/posts-reducer/UPLOAD_POSTS"
 const SET_TOTAL_ITEMS = 'app/posts-reducer/SET_TOTAL_ITEMS'
 const SET_LOADING_POSTS = 'app/post-reducer/SET_LOADING_POSTS'
+const CLEAR_POSTS = 'app/post-reducer/CLEAR_POSTS'
 
 let initialState = {
   posts: [
@@ -46,6 +47,12 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         totalItems: action.totalItems
+      }
+    }
+    case CLEAR_POSTS: {
+      return {
+      ...state,
+      posts: []
       }
     }
     case SET_LOADING_POSTS: {
@@ -138,6 +145,10 @@ export const setTotalItems = (totalItems) => ({
 export const setLoadingPosts = (loadingPosts) => ({
   type: SET_LOADING_POSTS,
   loadingPosts
+})
+
+export const clearPosts = () => ({
+  type: CLEAR_POSTS,
 })
 // ? Thunk Creator
 

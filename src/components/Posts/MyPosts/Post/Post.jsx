@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import p from "./Post.module.css";
-import { deletePost } from "./../../../../redux/PostsReducer/posts-reducer";
-import heart from "./../../../../assets/images/heart.png";
-import heartDisable from "./../../../../assets/images/heartDisable.png";
-import heartDark from "./../../../../assets/images/heartDark.png";
-import heartDisableDark from "./../../../../assets/images/heartDisableDark.png";
+import {
+  deletePost,
+  likePost,
+  unlikePost,
+} from "./../../../../redux/PostsReducer/posts-reducer";
+import heartActive from "./../../../../assets/images/heartActive.png";
 import avaInPosts from "./../../../../assets/images/user.png";
 import Comments from "./../../../../assets/images/comments.png";
 import CommentsLight from "./../../../../assets/images/commentsLight.png";
@@ -12,8 +13,10 @@ import DropdownMenus from "./DropdownMenus/DropdownMenus";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { useEffect } from "react";
+import { Icons } from "./../../../../utils/Icons/Icons";
 
 const Post = (props) => {
+  let res = Icons(props.theme);
   let [dropdownMenus, setDropdownMenus] = useState(false);
   let date = new Date(props.post.createdAt);
   date = date.toLocaleDateString("en-US", {
@@ -22,25 +25,14 @@ const Post = (props) => {
     hour: "2-digit",
     minute: "2-digit",
   });
-  // if (dropdownMenus) {
-  //   document.onmousedown = function (e) {
-  //     if (e.target.className !== "") {
-  //       if (
-  //         e.target.className
-  //           .replace(/[^a-zA-Z ]/g, " ")
-  //           .split(/\s+|\./)
-  //           .filter(
-  //             (word) =>
-  //               (word === "DropdownMenus") |
-  //               (word === "morePost") |
-  //               (word === "more")
-  //           ).length == 0
-  //       ) {
-  //         setDropdownMenus(false);
-  //       }
-  //     }
-  //   };
-  // }
+  useEffect(() => {
+    let element = document.getElementById("image__list_items").lastChild;
+    if (element && props.post.attachments.length % 2 == 1) {
+      document.getElementById("image__list_items").lastChild.style.cssText =
+        "grid-column-start: 1; grid-column-end: 3;";
+    }
+  });
+
   return (
     <div
       className={
@@ -67,7 +59,9 @@ const Post = (props) => {
         </div>
         <div
           className={p.morePost + " " + (dropdownMenus && p.morePostClose)}
-          onClick={() => {
+          onClick={(e) => {
+            let height = e.pageY;
+            // document.getElementById("active__dropdown").remove();
             setDropdownMenus(!dropdownMenus);
           }}
         >
@@ -86,53 +80,42 @@ const Post = (props) => {
       )}
       <div className={p.postTitle}>{props.post.title}</div>
       <div className={p.postText}>{props.post.body}</div>
-      <div className={p.botBlock}>
-        <div className={p.leftBlock}>
-          <div className={p.commentsBlock}>
-            <img
-              alt="comments"
-              className={p.commentsImg}
-              src={props.theme == "lightTheme" ? CommentsLight : Comments}
-            />
-          </div>
-          <div className={p.likeBlock}>
-            {props.isDisable ? (
-              <img
-                alt="heart disable"
-                onClick={() => {
-                  props.addLike(props.id);
-                }}
-                className={p.heart}
-                src={
-                  props.theme == "lightTheme" ? heartDisable : heartDisableDark
-                }
-              />
-            ) : (
-              <img
-                alt="heart"
-                onClick={() => {
-                  props.addLike(props.id);
-                }}
-                className={p.heart}
-                src={props.theme == "lightTheme" ? heart : heartDark}
-              />
-            )}
-            <span>{props.post.likes}</span>
-          </div>
+      <div
+        className={
+          p.popupPostImages +
+          " " +
+          (props.post.attachments.length > 0 ? p.popupPostImagesActive : "")
+        }
+      >
+        <div className={p.imagesListItems} id="image__list_items">
+          {props.post.attachments &&
+            props.post.attachments.map((img) => (
+              <div className={p.imagesItem}>
+                <img src={img} alt="images post" />
+              </div>
+            ))}
         </div>
-        <div className={p.photoName}>
-          <div className={p.authorImegeBlock}>
-            <img
-              className={p.postImg}
-              alt="post"
-              src={
-                !props.post.author.avatar
-                  ? avaInPosts
-                  : props.post.author.avatar
-              }
-            />
-          </div>
-          <span className={p.userName}>{props.post.author.login}</span>
+      </div>
+      <div className={p.botBlock}>
+        <div className={p.likeCountBlock}>
+          <span>{props.post.likes}</span>
+        </div>
+        <div
+          className={p.likedBlock}
+          id="likedBlock"
+          onClick={() => {
+            props.post.isLiked
+              ? props.unlikePost(props.post.id)
+              : props.likePost(props.post.id);
+          }}
+        >
+          <img
+            alt="heart"
+            id="heart"
+            className={p.heart}
+            src={props.post.isLiked ? heartActive : res["heart"]}
+          />
+          <spna className={p.likeTitle}>Like</spna>
         </div>
       </div>
     </div>
@@ -145,5 +128,7 @@ let mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps, {
     deletePost,
+    likePost,
+    unlikePost,
   })
 )(Post);

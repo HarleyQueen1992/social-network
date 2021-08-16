@@ -5,8 +5,10 @@ import Gallery from "./../../../../../assets/images/gallery.png";
 const CreatePost = (props) => {
   const [isWriteHashTag, setIsWriteHashTag] = useState(false);
   const [valuePostText, setValuePostText] = useState("");
+  const [valuePostImages, setValuePostImages] = useState([]);
   const [valuePostTitle, setValuePostTitle] = useState("");
   const [valueHashTag, setValueHashTag] = useState("");
+  const [uploadImages, setUploadImages] = useState(true);
   const closePopup = () => {
     document.querySelector(".react-swipeable-view-container").style.cssText =
       "will-change: transform; !important" +
@@ -23,15 +25,23 @@ const CreatePost = (props) => {
     setValuePostTitle("");
     setValueHashTag("");
   };
+
   const submitPost = () => {
     closePopup();
-    props.createPost(valuePostTitle, valuePostText);
+    props.createPost(valuePostTitle, valuePostText, valuePostImages);
   };
   const handleChangePostText = (event) => {
     setValuePostText(event.target.value);
   };
   const handleChangeHashTag = (event) => {
     setValueHashTag(event.target.value);
+  };
+  const uploadAPhoto = (event) => {
+    let arr = [];
+    for (let i = 0; i < event.target.files.length; i++) {
+      arr.push(event.target.files[i]);
+    }
+    setValuePostImages(arr);
   };
   const handleChangePostTitle = (event) => {
     setValuePostTitle(event.target.value);
@@ -57,6 +67,46 @@ const CreatePost = (props) => {
       }
     }
   }, [valuePostText]);
+  useEffect(() => {
+    valuePostImages.forEach((img, index) => {
+      var preview = document.getElementById("img-" + index);
+      let first = document.getElementById("imagesListItems").childNodes;
+      if (document.getElementById("imagesListItems")) {
+        for (
+          let i = 0;
+          i < document.getElementById("imagesListItems").childNodes.length;
+          i++
+        ) {
+          document.getElementById("imagesListItems").childNodes[
+            i
+          ].style.cssText = "grid-column: auto;"; // Text, DIV, Text, UL, ..., SCRIPT
+        }
+      }
+
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        let test = reader.result;
+        preview.src = test;
+      };
+      if (img) {
+        reader.readAsDataURL(img);
+      } else {
+        preview.src = "";
+      }
+    });
+
+    let element = document.getElementById("imagesListItems").lastChild;
+    if (element && valuePostImages.length % 2 == 1) {
+      document.getElementById("imagesListItems").lastChild.style.cssText =
+        "grid-column-start: 1; grid-column-end: 3;";
+    }
+    // if (!upload) {
+    //   debugger;
+    //   document.getElementById("imagesListItems").style.cssText =
+    //     "display: grid;";
+    // }
+  }, [valuePostImages]);
   useEffect(() => {
     if (window.innerWidth > 500) {
       var tx = document.getElementById("textareaTitle");
@@ -169,14 +219,40 @@ const CreatePost = (props) => {
             <span></span>
           </textarea>
         </div>
-        <div className={s.popupContentAddToYourPostBlock}>
+        <div
+          className={
+            s.popupPostImages +
+            " " +
+            (valuePostImages ? s.popupPostImagesActive : "")
+          }
+        >
+          <div className={s.imagesListItems} id="imagesListItems">
+            {valuePostImages &&
+              valuePostImages.map((img, index) => (
+                <div className={s.imagesItem}>
+                  {/* <span>123123</span> */}
+                  <img id={"img-" + index} src="" alt="images post" />
+                </div>
+              ))}
+          </div>
+        </div>
+        <input
+          type="file"
+          multiple
+          id="input__images"
+          onChange={uploadAPhoto}
+        />
+        <label
+          htmlFor="input__images"
+          className={s.popupContentAddToYourPostBlock}
+        >
           <span className={s.popupContentAddToYourPost}>Add to your post</span>
           <img
             className={s.popupContentAddToYourPostGallery}
             src={Gallery}
             alt="gallery icon"
           />
-        </div>
+        </label>
         <div
           onClick={
             (valuePostText !== "") & (valuePostTitle !== "") && submitPost

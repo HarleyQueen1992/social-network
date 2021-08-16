@@ -23,7 +23,7 @@ const DropdownMenus = (props) => {
   };
 
   return (
-    <div className={s.dropdownMenusBlock}>
+    <div className={s.dropdownMenusBlock} id="active__dropdown">
       <div className={s.dropdownMenus}>
         <div className={s.menuItem}>
           <img src={res["update"]} alt="update" />

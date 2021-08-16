@@ -5,6 +5,7 @@ import {
   deletePost,
   requestPosts,
   setUploadPost,
+  clearPosts,
 } from "../../../redux/PostsReducer/posts-reducer";
 import {
   getPosts,
@@ -43,6 +44,9 @@ class MyPostsContainer extends React.Component {
     if (this.props.uploadPosts && !this.props.loadingPosts) {
       this.props.requestPosts(this.props.postsPage);
     }
+  }
+  componentWillUnmount() {
+    this.props.clearPosts();
   }
   render() {
     return (
@@ -96,7 +100,7 @@ export default compose(
     addPostActionCreator,
     toggleIsPostCreation,
     toggleIsHeaderBlur,
-
+    clearPosts,
     requestPosts,
     setUploadPost,
   })

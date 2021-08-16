@@ -21,6 +21,7 @@ import {
   getTheLastPost,
   requestPosts,
   setUploadPost,
+  clearPosts,
 } from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
@@ -98,6 +99,9 @@ class ProfileContainer extends React.Component {
     if (this.props.match.params.login !== prevProps.match.params.login) {
       this.refreshProfile();
     }
+  }
+  componentWillUnmount() {
+    this.props.clearPosts();
   }
 
   render() {
@@ -193,6 +197,7 @@ export default compose(
     unsubscribe,
     requestPosts,
     setUploadPost,
+    clearPosts,
     // getUsersListFollowing,
   }),
   withRouter,
