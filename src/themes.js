@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 
 export const light = {
-  body: "#f0f2f5",
+  body: "#dedede",
   headItem: "#0000000d",
   header: "#fff",
   headerSmall: "#fff",
@@ -42,6 +42,14 @@ export const light = {
   editProfileBlock: "#0000001a",
   editProfileBlockHover: "rgba(0, 0, 0, 0.151)",
   editInfo: "rgba(0, 0, 0, 0.11)",
+  like: "#0000009d",
+  likeBlock: "#00000017",
+  likeBlockHover: "rgba(0, 0, 0, 0.116)",
+  more: "rgb(0 0 0 / 68%)",
+  moreHover: "rgba(0, 0, 0, 0.108)",
+  dropDown: "#eaeaea",
+  menuItemDropDown: "rgba(0, 0, 0, 0.103)"
+  
 }
 
 Object.defineProperty(light, "toString", {
@@ -92,7 +100,15 @@ export const dark = {
   editProfileBlockHover: "#ffffff36",
   editInfo: "rgba(255, 255, 255, 0.11)",
   exitEditMenu: "rgba(255, 255, 255, 0.158)",
-  exitEditMenuHover: "rgba(255, 255, 255, 0.267)"
+  exitEditMenuHover: "rgba(255, 255, 255, 0.267)",
+  like: "#ffffff9d",
+  likeBlock: "#ffffff17",
+  likeBlockHover: "rgba(255, 255, 255, 0.116)",
+  more: "rgba(255, 255, 255, 0.308)",
+  moreHover: "rgba(255, 255, 255, 0.123)",
+  dropDown: "#2b2b2b",
+  menuItemDropDown: "rgba(255, 255, 255, 0.103)"
+
 }
 
 Object.defineProperty(dark, "toString", {
