@@ -63,6 +63,8 @@ const Profile = (props) => {
           totalSubscribersItems={props.totalSubscribersItems}
           unSubscribe={props.unSubscribe}
           Subscribe={props.Subscribe}
+          avatarIsLoading={props.avatarIsLoading}
+          bannerIsLoading={props.bannerIsLoading}
         />
       </div>
     </div>

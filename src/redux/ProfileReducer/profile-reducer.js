@@ -16,6 +16,8 @@ const SET_TOTAL_SUBSCRIPTIONS_ITEMS = "app/profile-reducer/SET_TOTAL_SUBSCRIPTIO
 const SET_PAGE_SUBSCRIBERS = 'app/profile-reducer/SET_PAGE_SUBSCRIBERS'
 const SET_PAGE_SUBSCRIPTIONS = 'app/profile-reducer/SET_PAGE_SUBSCRIPTIONS'
 const IS_SUCCESSFUL_PASSWORD_CHANGE = 'app/profile-reducer/IS_SUCCESSFUL_PASSWORD_CHANGE'
+const SET_BANNER_IS_LOADING = 'app/profile-reducer/SET_BANNER_IS_LOADING'
+const SET_AVATAR_IS_LOADING = 'app/profile-reducer/SET_AVATAR_IS_LOADING'
 
 let initialState = {
   isFatching: true,
@@ -28,6 +30,9 @@ let initialState = {
   totalSubscribersItems: null,
   isFollowed: null,
   isSuccessfulPasswordChange: false,
+  bannerIsLoading: null,
+  avatarIsLoading: null
+
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -41,6 +46,16 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         totalSubscribersItems: action.totalItems,
+      }
+    case SET_AVATAR_IS_LOADING: 
+      return {
+        ...state,
+        avatarIsLoading: action.avatarIsLoading
+      }
+    case SET_BANNER_IS_LOADING: 
+      return {
+        ...state,
+        bannerIsLoading: action.bannerIsLoading
       }
     case SET_TOTAL_SUBSCRIPTIONS_ITEMS:
       return {
@@ -163,6 +178,20 @@ export const updateProfileBanner = banner => {
   }
 }
 
+export const setAvatarIsLoading = avatarIsLoading => {
+  return {
+    type: SET_AVATAR_IS_LOADING,
+    avatarIsLoading,
+  }
+}
+
+
+export const setBannerIsLoading = bannerIsLoading => {
+  return {
+    type: SET_BANNER_IS_LOADING,
+    bannerIsLoading,
+  }
+}
 
 // Thunk Creator
 
@@ -203,13 +232,17 @@ export const getUsersProfileData = login => async dispatch => {
 }
 
 export const setProfileBanner = file => async dispatch => {
+  dispatch(setBannerIsLoading(true))
   let response = await profileAPI.updateProfileBanner(file)
   dispatch(updateProfileBanner(response.banner))
+  dispatch(setBannerIsLoading(false))
 
 }
 export const savePhoto = file => async dispatch => {
+  dispatch(setAvatarIsLoading(true))
   let response = await profileAPI.updateProfileAvatar(file)
   dispatch(savePhotoSuccess(response.avatar))
+  dispatch(setAvatarIsLoading(false))
 }
 
 export const updateProfileInfo = (birthday, location) => async dispatch => {

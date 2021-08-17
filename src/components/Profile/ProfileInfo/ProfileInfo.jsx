@@ -18,6 +18,7 @@ import List from "./../../../assets/images/menuBlueActive.png";
 import PostCreation from "../../Posts/MyPosts/PostCreation/PostCreation";
 import EditProfile from "./../EditProfile/EditProfile";
 import ProfileBannerDefault from "./../../../assets/images/wp2655395.jpg";
+import LoadingAvatar from "./../../../assets/images/loadingAvatar.svg";
 
 const ProfileInfo = (props) => {
   let res = Icons(props.theme, props.index);
@@ -179,16 +180,25 @@ const ProfileInfo = (props) => {
                 </div>
               </label>
             )}
-
-            <img
-              className={s.cover}
-              src={
-                props.profile.banner == ""
-                  ? ProfileBannerDefault
-                  : props.profile.banner
-              }
-              alt="Cover"
-            />
+            {props.bannerIsLoading ? (
+              <div className={s.loadingBanner}>
+                <img
+                  src={res["loading"]}
+                  // className={s.loadingBanner}
+                  alt="loading banner"
+                />
+              </div>
+            ) : (
+              <img
+                className={s.cover}
+                src={
+                  props.profile.banner == ""
+                    ? ProfileBannerDefault
+                    : props.profile.banner
+                }
+                alt="Cover"
+              />
+            )}
           </div>
 
           <div className={s.avatarBlock}>
@@ -209,7 +219,21 @@ const ProfileInfo = (props) => {
               </label>
             )}
             <div className={s.avatarSubblock}>
-              <img className={s.avatar} src={srcImg} alt="avatar" />
+              {props.avatarIsLoading ? (
+                <div className={s.loadingAvatar}>
+                  <img src={LoadingAvatar} alt="loading avatar" />
+                </div>
+              ) : (
+                <img
+                  className={s.avatar}
+                  src={
+                    props.profile.avatar == ""
+                      ? profileImg
+                      : props.profile.avatar
+                  }
+                  alt="avatar"
+                />
+              )}
             </div>
           </div>
         </div>

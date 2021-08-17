@@ -75,6 +75,10 @@ import DeleteBlack from './../../assets/images/deleteBlack.png'
 import HeartWhite from './../../assets/images/heartWhite.png'
 import HeartBlack from './../../assets/images/heartBlack.png'
 
+import LoadingWhite from './../../assets/images/loadingBanner.svg'
+import LoadingBlack from './../../assets/images/loadingAvatar.svg'
+
+
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
 import facebook from "./../../assets/images/facebook.png"
@@ -158,7 +162,8 @@ export const Icons = (theme, index = NaN) => {
     checkMark:CheckMarkBlue,
     delete  : theme == themeLight ? DeleteBlack : DeleteWhite,
     update: theme == themeLight ? UpdateBlack : UpdateWhite,
-    heart: theme == themeLight ?  HeartBlack : HeartWhite
+    heart: theme == themeLight ?  HeartBlack : HeartWhite,
+    loading: theme == themeLight ? LoadingBlack : LoadingWhite
   }
 }
 // export const Icons = {

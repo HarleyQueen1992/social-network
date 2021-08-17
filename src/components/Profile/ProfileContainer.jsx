@@ -9,6 +9,7 @@ import {
   setUserProfile,
   updateStatus,
   getFollow,
+  savePhoto,
   setProfileBanner,
   getUsersProfileData,
   subscribe,
@@ -34,8 +35,9 @@ import {
   getSubscriptions,
   getTotalSubscriptionsItems,
   getTotalSubscribersItems,
+  getAvatarIsLoading,
+  getBannerIsLoading,
 } from "../../redux/ProfileReducer/profile-selectors";
-import { savePhoto } from "./../../redux/SettingsReducer/settings-reducer";
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer";
 import Profile from "./Profile";
 import {
@@ -156,6 +158,8 @@ class ProfileContainer extends React.Component {
             Subscribe={this.Subscribe}
             totalPostsItems={this.props.totalPostsItems}
             setUploadPost={this.props.setUploadPost}
+            avatarIsLoading={this.props.avatarIsLoading}
+            bannerIsLoading={this.props.bannerIsLoading}
           />
         )}
       </>
@@ -185,6 +189,8 @@ const mapStateToProps = (state) => ({
   loadingPosts: getLoadingPosts(state),
   totalPostsItems: getTotalPostsItems(state),
   postsPage: getPagePosts(state),
+  avatarIsLoading: getAvatarIsLoading(state),
+  bannerIsLoading: getBannerIsLoading(state),
   // usersListFollowing: getUsersListFollowing(state),
 });
 
@@ -209,6 +215,7 @@ export default compose(
     setUploadPost,
     clearPosts,
     requestUserPosts,
+    savePhoto,
     // getUsersListFollowing,
   }),
   withRouter,
