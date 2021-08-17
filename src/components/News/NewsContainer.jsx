@@ -2,18 +2,33 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { getTheme } from "./../../redux/AppReducer/app-selectors";
-import { getPosts } from "../../redux/PostsReducer/posts-selectors";
 import {
-  deletePost,
-  addLike,
-  addPostActionCreator,
+  getPosts,
+  getUploadPosts,
+  getLoadingPosts,
+  getPagePosts,
+  getTotalPostsItems,
+} from "../../redux/PostsReducer/posts-selectors";
+import {
+  requestAllPosts,
+  clearPosts,
+  setUploadPost,
 } from "./../../redux/PostsReducer/posts-reducer";
 import { getProfileInfo } from "./../../redux/AuthReducer/auth-selectors";
 import News from "./News";
-import { getProfile } from "../../redux/ProfileReducer/profile-selectors";
-import Preloader from "./../../components/common/Preloader/Preloader";
 
 class NewsContainer extends React.Component {
+  componentDidMount() {
+    this.props.requestAllPosts(1);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.uploadPosts && !this.props.loadingPosts) {
+      this.props.requestAllPosts(this.props.postsPage);
+    }
+  }
+  componentWillUnmount() {
+    this.props.clearPosts();
+  }
   render() {
     return (
       <>
@@ -21,11 +36,10 @@ class NewsContainer extends React.Component {
           posts={this.props.posts}
           theme={this.props.theme}
           profile={this.props.profile}
-          deletePost={this.props.deletePost}
-          addLike={this.props.addLike}
           strUrlPrev={this.props.strUrl}
           changeIndex={this.props.changeIndex}
-          addPostActionCreator={this.props.addPostActionCreator}
+          totalPostsItems={this.props.totalPostsItems}
+          setUploadPost={this.props.setUploadPost}
         />
       </>
     );
@@ -36,9 +50,17 @@ const mapStateToProps = (state) => {
     posts: getPosts(state),
     theme: getTheme(state),
     profile: getProfileInfo(state),
+    uploadPosts: getUploadPosts(state),
+    loadingPosts: getLoadingPosts(state),
+    totalPostsItems: getTotalPostsItems(state),
+    postsPage: getPagePosts(state),
   };
 };
 
 export default compose(
-  connect(mapStateToProps, { deletePost, addLike, addPostActionCreator })
+  connect(mapStateToProps, {
+    clearPosts,
+    requestAllPosts,
+    setUploadPost,
+  })
 )(NewsContainer);

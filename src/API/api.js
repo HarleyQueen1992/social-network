@@ -324,6 +324,13 @@ export const postsAPI = {
       return response
     })
   },
+  getAllPosts(limit, page, q) {
+    return instance.get(`/posts?page=${page}&limit=${limit}&q=${q}`).then(response => {
+      return response.data
+    }).catch(response => {
+      return response
+    })
+  },
   getUserPosts(login, limit, page) {
     return instance.get(`users/${login}/posts/?page=${page}&limit=${limit}`).then(response => {
       return response.data

@@ -6,6 +6,8 @@ import {
   requestPosts,
   setUploadPost,
   clearPosts,
+  setPageSelection,
+  requestAllPosts,
 } from "../../../redux/PostsReducer/posts-reducer";
 import {
   getPosts,
@@ -13,6 +15,8 @@ import {
   getLoadingPosts,
   getPagePosts,
   getTotalPostsItems,
+  getPageSelection,
+  getQ,
 } from "../../../redux/PostsReducer/posts-selectors";
 import {
   getNewPostText,
@@ -38,12 +42,32 @@ import {
 
 class MyPostsContainer extends React.Component {
   componentDidMount() {
-    this.props.requestPosts(1);
+    if (this.props.pageSelection === "posts") {
+      this.props.requestPosts(1);
+    } else {
+      this.props.requestAllPosts(1);
+    }
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.uploadPosts && !this.props.loadingPosts) {
-      this.props.requestPosts(this.props.postsPage);
+    if (prevProps.pageSelection !== this.props.pageSelection) {
+      this.props.clearPosts();
+      if (this.props.pageSelection === "posts") {
+        this.props.requestPosts(1);
+      } else {
+        this.props.requestAllPosts(1);
+      }
+    } else {
+      if (this.props.uploadPosts && !this.props.loadingPosts) {
+        if (this.props.pageSelection === "posts") {
+          this.props.requestPosts(this.props.postsPage);
+        } else {
+          this.props.requestAllPosts(this.props.postsPage, this.props.q);
+        }
+      }
     }
+    // if (this.props.uploadPosts && !this.props.loadingPosts) {
+    //   this.props.requestPosts(this.props.postsPage);
+    // }
   }
   componentWillUnmount() {
     this.props.clearPosts();
@@ -71,6 +95,8 @@ class MyPostsContainer extends React.Component {
             strUrl={this.props.str}
             totalPostsItems={this.props.totalPostsItems}
             setUploadPost={this.props.setUploadPost}
+            setPageSelection={this.props.setPageSelection}
+            pageSelection={this.props.pageSelection}
           />
         )}
       </>
@@ -91,6 +117,8 @@ let mapStateToProps = (state) => {
     loadingPosts: getLoadingPosts(state),
     totalPostsItems: getTotalPostsItems(state),
     postsPage: getPagePosts(state),
+    pageSelection: getPageSelection(state),
+    q: getQ(state),
   };
 };
 export default compose(
@@ -103,5 +131,7 @@ export default compose(
     clearPosts,
     requestPosts,
     setUploadPost,
+    setPageSelection,
+    requestAllPosts,
   })
 )(MyPostsContainer);

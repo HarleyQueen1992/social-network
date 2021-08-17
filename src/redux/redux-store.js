@@ -11,6 +11,7 @@ import postsReducer from "./PostsReducer/posts-reducer"
 import searchReducer from "./SearchReducer/search-reducer"
 import settingsReducer from "./SettingsReducer/settings-reducer"
 import followersReducer from './FollowersReducer/followers-reducer'
+import newsReducer from "./NewsPeducer/news-reducer"
 
 let reducers = combineReducers({
   profilePage: profileReducer,
@@ -23,7 +24,8 @@ let reducers = combineReducers({
   posts: postsReducer,
   search: searchReducer,
   settings: settingsReducer,
-  followers: followersReducer
+  followers: followersReducer,
+  news: newsReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

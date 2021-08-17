@@ -19,3 +19,9 @@ export const getTotalPostsItems = state => {
 export const getPagePosts = state => {
   return state.posts.page
 }
+export const getPageSelection = state => {
+    return state.posts.pageSelection
+  }
+  export const getQ = state => {
+    return state.posts.q
+  }

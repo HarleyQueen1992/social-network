@@ -15,7 +15,72 @@
 }
 /*? Header */
 .header {
-  grid-area: header;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  padding: 5px;
+  background-color: var(--navBarBac);
+  border-radius: 10px;
+}
+.header::after {
+  content: " ";
+  width: 46%;
+  height: 3px;
+  bottom: 0;
+  position: absolute;
+  background-color: #1178f2;
+  transform: translate(5%, 0%);
+  transition: all 0.3s;
+}
+.headerBorderBottomRight::after {
+  transform: translate(112%, 0%);
+  transition: all 0.3s;
+}
+.newsItemBlock {
+  cursor: pointer;
+  display: grid;
+  transition: all 0.2s;
+}
+.newsItemBlock:hover {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  align-self: center;
+  justify-self: center;
+  background-color: var(--headItem);
+}
+.allPostsItemBlock {
+  cursor: pointer;
+  display: grid;
+  transition: all 0.2s;
+}
+.allPostsItemBlock:hover {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  align-self: center;
+  justify-self: center;
+  background-color: var(--headItem);
+}
+.itemActive {
+  color: #1178f2 !important;
+}
+.newsItem {
+  align-self: center;
+  justify-self: center;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+}
+.allPostsItem {
+  align-self: center;
+  justify-self: center;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+}
+/* header2 */
+.header2 {
+  grid-area: header2;
   display: grid;
   grid-template-columns: 1fr 60px 40px;
   transition: all 0.5s;

@@ -64,7 +64,47 @@ const MyPosts = (props) => {
   return (
     <>
       <div className={p.postsListPage}>
-        <header className={p.header + " " + (focus ? p.active : "")}>
+        <header
+          className={
+            p.header +
+            " " +
+            (props.pageSelection == "allPosts" && p.headerBorderBottomRight)
+          }
+        >
+          <div
+            className={p.newsItemBlock}
+            onClick={() => {
+              props.setPageSelection("posts");
+            }}
+          >
+            <span
+              className={
+                p.newsItem +
+                " " +
+                (props.pageSelection == "posts" && p.itemActive)
+              }
+            >
+              My Posts
+            </span>
+          </div>
+          <div
+            className={p.allPostsItemBlock}
+            onClick={() => {
+              props.setPageSelection("allPosts");
+            }}
+          >
+            <span
+              className={
+                p.allPostsItem +
+                " " +
+                (props.pageSelection == "allPosts" && p.itemActive)
+              }
+            >
+              All Posts
+            </span>
+          </div>
+        </header>
+        {/* <header className={p.header2 + " " + (focus ? p.active : "")}>
           <div className={p.heading + " " + (focus ? p.action : "")}>
             <span>Posts</span>
           </div>
@@ -109,7 +149,7 @@ const MyPosts = (props) => {
               }}
             />
           </div>
-        </header>
+        </header> */}
 
         <PostCreation translate="-200%" />
         <div className={p.posts}>

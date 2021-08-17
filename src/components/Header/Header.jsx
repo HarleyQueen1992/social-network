@@ -8,12 +8,17 @@ import { compose } from "redux";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import s from "./Header.module.css";
-import { withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { Icons } from "./../../utils/Icons/Icons";
 import searchWhite from "./../../assets/images/searchWhite.png";
 import { getIsPassword, getTheme } from "../../redux/AppReducer/app-selectors";
 import Password from "../Password/Password";
+import {
+  setPageSelection,
+  requestAllPosts,
+} from "./../../redux/PostsReducer/posts-reducer";
+import { getPageSelection } from "../../redux/PostsReducer/posts-selectors";
 const Header = (props) => {
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
@@ -33,6 +38,13 @@ const Header = (props) => {
       setIsBigScreen(false);
     }
   });
+  let handleChangeSearchPosts = (e) => {
+    if (props.pageSelection == "posts") {
+      // запрос на поиск по моим постам
+    } else {
+      props.requestAllPosts(1, e.target.value);
+    }
+  };
   return (
     <div
       className={
@@ -65,10 +77,13 @@ const Header = (props) => {
               type="text"
               // onChange={props.handleChange}
               // value={props.value}
-              placeholder="News search"
+              placeholder="Posts search"
               // onFocus={() => {
               //   setFocus(!focus)
               // }}
+              onChange={() => {
+                props.setPageSelection("allPosts");
+              }}
               onBlur={() => {
                 setFocus(!focus);
                 // props.resetSearchUsers()
@@ -170,10 +185,11 @@ const Header = (props) => {
               type="text"
               // onChange={props.handleChange}
               // value={props.value}
-              placeholder="News search"
+              placeholder="Posts search"
               onFocus={() => {
                 setFocus(!focus);
               }}
+              onChange={handleChangeSearchPosts}
               onBlur={() => {
                 setFocus(!focus);
                 // props.resetSearchUsers()
@@ -217,6 +233,10 @@ let mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
     isPassword: getIsPassword(state),
+    pageSelection: getPageSelection(state),
   };
 };
-export default compose(connect(mapStateToProps, {}), withRouter)(Header);
+export default compose(
+  connect(mapStateToProps, { setPageSelection, requestAllPosts }),
+  withRouter
+)(Header);

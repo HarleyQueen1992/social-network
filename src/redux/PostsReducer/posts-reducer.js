@@ -1,6 +1,7 @@
 import { postsAPI } from "../../API/api"
 
 const ADD_POST = "app/posts-reducer/ADD-POST"
+const SET_SEARCH_POSTS = 'app/posts-reducer/SET_SEARCH_POSTS'
 const ADD_POSTS = "app/posts-reducer/ADD-POSTS"
 const ADD_LIKES = "app/posts-reducer/ADD_LIKES"
 const DELETE_POST = "app/posts-reducer/DELETE_POST"
@@ -10,6 +11,8 @@ const UPLOAD_POSTS = "app/posts-reducer/UPLOAD_POSTS"
 const SET_TOTAL_ITEMS = 'app/posts-reducer/SET_TOTAL_ITEMS'
 const SET_LOADING_POSTS = 'app/post-reducer/SET_LOADING_POSTS'
 const CLEAR_POSTS = 'app/post-reducer/CLEAR_POSTS'
+const SET_PAGE_SELECTION = 'app/post-reducer/SET_PAGE_SELECTION';
+const SET_Q = 'app/post-reducer/SET_Q'
 
 let initialState = {
   posts: [
@@ -20,7 +23,9 @@ let initialState = {
   totalItems: null,
   page: 1,  
   uploadPosts: true,
-  loadingPosts: false
+  loadingPosts: false,
+  pageSelection: 'posts',
+  q: ''
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -37,12 +42,28 @@ const postsReducer = (state = initialState, action) => {
         posts: [...state.posts, ...action.posts, ]
       }
     }
+    case SET_SEARCH_POSTS: {
+      return {
+        ...state,
+        posts: [...action.posts]
+      }
+    }
     case UPLOAD_POSTS: {
       return {
         ...state,
         uploadPosts: action.uploadPosts
       }
     }
+    case SET_PAGE_SELECTION:
+      return {
+        ...state,
+        pageSelection: action.pageSelection,
+      }
+      case SET_Q:
+        return {
+          ...state,
+          q: action.q
+        }
     case SET_TOTAL_ITEMS: {
       return {
         ...state,
@@ -117,6 +138,12 @@ export const setPosts = (posts) => {
     posts
   }
 }
+export const setSearchPosts = (posts) => {
+  return {
+    type: SET_SEARCH_POSTS,
+    posts
+  }
+}
 export const addLike = postId => {
   return {
     type: ADD_LIKES,
@@ -150,6 +177,13 @@ export const setLoadingPosts = (loadingPosts) => ({
 export const clearPosts = () => ({
   type: CLEAR_POSTS,
 })
+export const setQ = (q) => ({
+  type: SET_Q,
+  q
+})
+export const setPageSelection = (pageSelection) => {
+  return { type: SET_PAGE_SELECTION, pageSelection }
+}
 // ? Thunk Creator
 
 export const requestPosts = (page) => async dispatch => {
@@ -164,6 +198,27 @@ export const requestPosts = (page) => async dispatch => {
   dispatch(setLoadingPosts(false))
 }
 
+export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
+  let state = getState()
+  dispatch(setQ(q))
+  if (page === 1) {
+    dispatch(setLoadingPosts(true))
+  }
+  let response = await postsAPI.getAllPosts(initialState.limit, page, q)
+  dispatch(setUploadPost(false))
+  if (q === '' && state.posts.q !== '') {
+    dispatch(setSearchPosts(response.items))
+    
+  } else if (q == '' || q == state.posts.q) {
+    dispatch(setPosts(response.items))
+  } else {
+    dispatch(setSearchPosts(response.items))
+  }
+  
+  dispatch(setPage(page + 1))
+  dispatch(setTotalItems(response.totalItems))
+  dispatch(setLoadingPosts(false))
+}
 
 export const requestUserPosts = (login, page) => async dispatch => {
   if (page === 1) {
