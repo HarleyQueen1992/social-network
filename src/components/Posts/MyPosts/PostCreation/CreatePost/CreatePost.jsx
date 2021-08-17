@@ -260,8 +260,7 @@ const CreatePost = (props) => {
           className={
             s.popupContentAddPost +
             " " +
-            ((valuePostText !== "") & (valuePostTitle !== "") &&
-              s.popupContentAddPostSubmit)
+            (valuePostTitle !== "" && s.popupContentAddPostSubmit)
           }
         >
           <span>Post</span>

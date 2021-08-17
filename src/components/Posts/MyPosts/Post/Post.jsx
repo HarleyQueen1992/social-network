@@ -26,10 +26,13 @@ const Post = (props) => {
     minute: "2-digit",
   });
   useEffect(() => {
-    let element = document.getElementById("image__list_items").lastChild;
+    let element = document.getElementById(
+      "image__list_items__" + props.post.id
+    ).lastChild;
     if (element && props.post.attachments.length % 2 == 1) {
-      document.getElementById("image__list_items").lastChild.style.cssText =
-        "grid-column-start: 1; grid-column-end: 3;";
+      document.getElementById(
+        "image__list_items__" + props.post.id
+      ).lastChild.style.cssText = "grid-column-start: 1; grid-column-end: 3;";
     }
   });
 
@@ -87,7 +90,10 @@ const Post = (props) => {
           (props.post.attachments.length > 0 ? p.popupPostImagesActive : "")
         }
       >
-        <div className={p.imagesListItems} id="image__list_items">
+        <div
+          className={p.imagesListItems}
+          id={"image__list_items__" + props.post.id}
+        >
           {props.post.attachments &&
             props.post.attachments.map((img) => (
               <div className={p.imagesItem}>
