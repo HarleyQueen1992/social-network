@@ -136,6 +136,9 @@
   font-weight: bold;
 }
 @media (max-width: 900px) {
+  .editBannerBlock {
+    width: auto;
+  }
   .editPhotoCoverBlock {
     width: 40px;
     grid-template-columns: 1fr;

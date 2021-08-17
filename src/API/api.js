@@ -167,7 +167,6 @@ export const profileAPI = {
   updateProfileBanner(bannerFile) {
     const formData = new FormData()
     formData.append("banner", bannerFile)
-
     return instance.put(`/profile/banner/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -299,22 +298,55 @@ export const followAPI = {
 }
 
 export const postsAPI = {
-  createPost(title, body) {
-    return instance.post(`posts/`, {title, body}).then(response => {
+  createPost(title, body, attachments) {
+    const formData = new FormData()
+    for (let img of attachments) {
+      formData.append("attachments", img)
+    }
+     
+      formData.append('title', title)
+      formData.append('body', body)
+    
+    return instance.post(`posts/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }).then(response => {
       return response.data
     }).catch(response => {
       return response
     })
   },
   getPosts(limit, page) {
-    return instance.get(`/posts?page=${page}&limit=${limit}`).then(response => {
+    return instance.get(`/profile/posts?page=${page}&limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response
     })
   },
-  deletePost(id) {
-    return instance.delete(`/posts/${id}/`).then(response => {
+  getUserPosts(login, limit, page) {
+    return instance.get(`users/${login}/posts/?page=${page}&limit=${limit}`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  deletePost(postId) {
+    return instance.delete(`/posts/${postId}/`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  likePost(postId) {
+    return instance.put(`/profile/liked/${postId}/`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  unlikePost(postId) {
+    return instance.delete(`/profile/liked/${postId}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data

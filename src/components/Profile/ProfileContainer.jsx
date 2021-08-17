@@ -22,6 +22,7 @@ import {
   requestPosts,
   setUploadPost,
   clearPosts,
+  requestUserPosts,
 } from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
@@ -71,7 +72,6 @@ import s from "./Profile.module.css";
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
-    this.props.requestPosts(1);
     let login = this.props.match.params.login;
 
     // this.props.getUsersListFollowing(this.props.profileInfo.login);
@@ -79,8 +79,10 @@ class ProfileContainer extends React.Component {
     if (!login || login == this.props.profileInfo.login) {
       login = this.props.profileInfo.login;
       this.props.getProfileData(login);
+      this.props.requestPosts(1);
     } else {
       this.props.getUsersProfileData(login);
+      this.props.requestUserPosts(login, 1);
     }
   }
   unSubscribe = (login) => {
@@ -94,9 +96,17 @@ class ProfileContainer extends React.Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.uploadPosts && !this.props.loadingPosts) {
-      this.props.requestPosts(this.props.postsPage);
+      if (this.props.match.params.login) {
+        this.props.requestUserPosts(
+          this.props.match.params.login,
+          this.props.postsPage
+        );
+      } else {
+        this.props.requestPosts(this.props.postsPage);
+      }
     }
     if (this.props.match.params.login !== prevProps.match.params.login) {
+      this.props.clearPosts();
       this.refreshProfile();
     }
   }
@@ -198,6 +208,7 @@ export default compose(
     requestPosts,
     setUploadPost,
     clearPosts,
+    requestUserPosts,
     // getUsersListFollowing,
   }),
   withRouter,

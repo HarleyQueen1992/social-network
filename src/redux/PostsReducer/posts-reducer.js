@@ -164,6 +164,19 @@ export const requestPosts = (page) => async dispatch => {
   dispatch(setLoadingPosts(false))
 }
 
+
+export const requestUserPosts = (login, page) => async dispatch => {
+  if (page === 1) {
+    dispatch(setLoadingPosts(true))
+  }
+  let response = await postsAPI.getUserPosts(login,  initialState.limit, page)
+  dispatch(setUploadPost(false))
+  dispatch(setPosts(response.items))
+  dispatch(setPage(page + 1))
+  dispatch(setTotalItems(response.totalItems))
+  dispatch(setLoadingPosts(false))
+}
+
 export const createPost = (title, body, attachments) => async dispatch => {
 
   let response = await postsAPI.createPost(title, body, attachments)
