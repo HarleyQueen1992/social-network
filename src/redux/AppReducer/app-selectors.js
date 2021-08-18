@@ -4,6 +4,12 @@ export const getInitialized = state => {
 export const getIsPostCreation = state => {
   return state.app.isPostCreation
 }
+export const getIsPostUpdate = state => {
+  return state.app.isUpdatePost
+}
+export const getUpdatePost = state => {
+  return state.app.updatePostData
+}
 export const getTheme = state => {
   return state.app.theme
 }

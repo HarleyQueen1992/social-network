@@ -12,17 +12,21 @@ const SET_EDITMODE = "app/app-reducer/SET_EDITMODE"
 const IS_MENU_ACTIVE = 'app/app-reducer/IS_MENU_ACTIVE'
 const IS_PASSWORD = 'app/app-reducer/IS_PASSWORD'
 const SET_THEME_STYLE = 'app/app-reducer/SET_THEME_STYLE'
+const SET_UPDATE_POST = 'app/app-reducer/SET_UPDATEPOST'
+const SET_IS_UPDATE_POST = 'app/app-reducer/SET_IS_UPDATE_POST'
 
 let initialState = {
   initialized: false,
   isPostCreation: false,
+  updatePostData: null,
+  isUpdatePost: false,
   index: null,
   theme: localStorage.getItem('theme') == "light" ? light : dark,
   headerBlur: false,
   editMode: false,
   isMenuActive: false,
   isBigScreen: window.innerWidth > 600,
-  isPassword: false
+  isPassword: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -43,6 +47,18 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isMenuActive: action.isMenuActive,
+      }
+    }
+    case SET_UPDATE_POST: {
+      return {
+        ...state,
+        updatePostData: action.updatePost
+      }
+    }
+    case SET_IS_UPDATE_POST: {
+      return {
+        ...state,
+        isUpdatePost: action.isUpdatePost
       }
     }
     case IS_PASSWORD: {
@@ -141,7 +157,15 @@ export const setIsPassword = isPassword => ({
   type: IS_PASSWORD,
   isPassword
 })
+export const setIsUpdatePost = isUpdatePost => ({
+  type: SET_IS_UPDATE_POST,
+  isUpdatePost
+})
 
+export const setUpdatePost = updatePost => ({
+  type: SET_UPDATE_POST,
+  updatePost
+})
 export const setTheme = theme => ({ type: SET_THEME, theme })
 
 export const setThemeStyle = theme => ({ type: SET_THEME_STYLE })

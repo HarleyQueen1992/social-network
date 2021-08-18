@@ -48,9 +48,13 @@ const PostCreation = (props) => {
           setIsCreatePost={setIsCreatePost}
           isCreatePost={isCreatePost}
           profile={props.profile}
+          valueText={""}
+          valueTitle={""}
+          valueImages={[]}
           translate={props.translate}
           addPostActionCreator={props.addPostActionCreator}
           createPost={props.createPost}
+          button={"Post"}
         />
       )}
     </div>
@@ -65,5 +69,8 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-  connect(mapStateToProps, { addPostActionCreator, createPost })
+  connect(mapStateToProps, {
+    addPostActionCreator,
+    createPost,
+  })
 )(PostCreation);

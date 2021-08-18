@@ -13,6 +13,7 @@ const SET_LOADING_POSTS = 'app/post-reducer/SET_LOADING_POSTS'
 const CLEAR_POSTS = 'app/post-reducer/CLEAR_POSTS'
 const SET_PAGE_SELECTION = 'app/post-reducer/SET_PAGE_SELECTION';
 const SET_Q = 'app/post-reducer/SET_Q'
+const UPDATE_POST = 'app/posts-reducer/UPDATE_POST'
 
 let initialState = {
   posts: [
@@ -40,6 +41,18 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, ...action.posts, ]
+      }
+    }
+    case UPDATE_POST: {
+      return {
+        ...state,
+        posts: state.posts.map(p => {
+          if (p.id === action.post.id) {
+            return { ...action.post}
+          }
+
+          return p
+        })
       }
     }
     case SET_SEARCH_POSTS: {
@@ -185,6 +198,9 @@ export const setQ = (q) => ({
 export const setPageSelection = (pageSelection) => {
   return { type: SET_PAGE_SELECTION, pageSelection }
 }
+export const updatePostAC = (post) => {
+  return { type: UPDATE_POST, post }
+}
 // ? Thunk Creator
 
 export const requestPosts = (page, q = '') => async (dispatch, getState) => {
@@ -246,6 +262,13 @@ export const createPost = (title, body, attachments) => async dispatch => {
 
   let response = await postsAPI.createPost(title, body, attachments)
   dispatch(addPostActionCreator(response))
+}
+
+
+export const updatePost = (title, body, attachments, id) => async dispatch => {
+
+  let response = await postsAPI.updatePost(title, body, attachments, id)
+  dispatch(updatePostAC(response))
 }
 
 export const deletePost = (id) => async dispatch => {

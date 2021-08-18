@@ -25,7 +25,10 @@ import {
   toggleIsBigScreen,
   setMenuActive,
   setEditMode,
+  setUpdatePost,
+  setIsUpdatePost,
 } from "./redux/AppReducer/app-reducer";
+import { updatePost } from "./redux/PostsReducer/posts-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {
   getInitialized,
@@ -37,6 +40,8 @@ import {
   getIsBigScreen,
   getEditMode,
   getMenuActive,
+  getIsPostUpdate,
+  getUpdatePost,
 } from "./redux/AppReducer/app-selectors";
 import store from "./redux/redux-store";
 import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors";
@@ -49,6 +54,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import { getValue } from "./redux/SearchReducer/search-selectors";
 import FollowersContainer from "./components/Followers/FollowersContainer";
+import CreatePost from "./components/Posts/MyPosts/PostCreation/CreatePost/CreatePost";
 
 const urlIndex = {
   0: "news",
@@ -158,7 +164,6 @@ class App extends React.Component {
     //     toggleIsBigScreen(false)
     //   }
     // })
-
     if (!this.props.initialized) {
       return <Preloader />;
     }
@@ -180,7 +185,24 @@ class App extends React.Component {
               index={this.props.index}
               theme={"adasd"}
             />
-
+            {this.props.isUpdatePost ? (
+              <CreatePost
+                setIsCreatePost={this.props.setIsUpdatePost}
+                isCreatePost={this.props.isUpdatePost}
+                profile={this.props.updatePostData.author}
+                valueText={this.props.updatePostData.body}
+                valueTitle={this.props.updatePostData.title}
+                valueImages={this.props.updatePostData.attachments}
+                postId={this.props.updatePostData.id}
+                translate={"-200%"}
+                button={"Update"}
+                updatePost={this.props.isUpdatePost}
+                // addPostActionCreator={props.addPostActionCreator}
+                createPost={this.props.updatePost}
+              />
+            ) : (
+              ""
+            )}
             <div
               className={
                 s.appWrapperContent +
@@ -304,6 +326,8 @@ const mapStateToProps = (state) => {
     profileInfo: getProfileInfo(state),
     editMode: getEditMode(state),
     isMenuActive: getMenuActive(state),
+    updatePostData: getUpdatePost(state),
+    isUpdatePost: getIsPostUpdate(state),
   };
 };
 
@@ -317,6 +341,9 @@ let AppContainer = compose(
     toggleIsBigScreen,
     setEditMode,
     setMenuActive,
+    setUpdatePost,
+    setIsUpdatePost,
+    updatePost,
   }),
   withRouter
 )(App);

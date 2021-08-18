@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import p from "./Post.module.css";
 import {
+  setUpdatePost,
+  setIsUpdatePost,
+} from "./../../../../redux/AppReducer/app-reducer";
+import {
   deletePost,
   likePost,
   unlikePost,
@@ -81,10 +85,12 @@ const Post = (props) => {
       </header>
       {dropdownMenus && (
         <DropdownMenus
+          setUpdatePost={props.setUpdatePost}
           setDropdownMenus={setDropdownMenus}
           theme={props.theme}
           deletePost={props.deletePost}
           post={props.post}
+          setIsUpdatePost={props.setIsUpdatePost}
         />
       )}
       <div className={p.postTitle}>{props.post.title}</div>
@@ -144,5 +150,7 @@ export default compose(
     deletePost,
     likePost,
     unlikePost,
+    setUpdatePost,
+    setIsUpdatePost,
   })
 )(Post);

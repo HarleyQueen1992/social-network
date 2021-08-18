@@ -317,6 +317,36 @@ export const postsAPI = {
       return response
     })
   },
+  updatePost(title, body, attachments, id) {
+    if (attachments) {
+      const formData = new FormData()
+      for (let img of attachments) {
+        formData.append("attachments", img)
+      }
+       
+        formData.append('title', title)
+        formData.append('body', body)
+      
+      return instance.patch(`posts/${id}/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      }).then(response => {
+        return response.data
+      }).catch(response => {
+        return response
+      })
+    } else {
+      return instance.patch(`posts/${id}/`, {title, body}).then(response => {
+        return response.data
+      }).catch(response => {
+        return response
+      })
+    }
+      
+     
+    
+  },
   getPosts(limit, page, q) {
     return instance.get(`/profile/posts?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
@@ -324,6 +354,7 @@ export const postsAPI = {
       return response
     })
   },
+  
   getAllPosts(limit, page, q) {
     return instance.get(`/posts?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data

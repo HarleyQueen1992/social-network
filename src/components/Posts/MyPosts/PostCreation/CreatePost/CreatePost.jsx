@@ -4,9 +4,10 @@ import Gallery from "./../../../../../assets/images/gallery.png";
 
 const CreatePost = (props) => {
   const [isWriteHashTag, setIsWriteHashTag] = useState(false);
-  const [valuePostText, setValuePostText] = useState("");
-  const [valuePostImages, setValuePostImages] = useState([]);
-  const [valuePostTitle, setValuePostTitle] = useState("");
+  const [valuePostText, setValuePostText] = useState(props.valueText);
+  const [valuePostImages, setValuePostImages] = useState(props.valueImages);
+  const [uploadedTheFile, setUploadedTheFile] = useState(false);
+  const [valuePostTitle, setValuePostTitle] = useState(props.valueTitle);
   const [valueHashTag, setValueHashTag] = useState("");
   const [uploadImages, setUploadImages] = useState(true);
   const closePopup = () => {
@@ -28,7 +29,16 @@ const CreatePost = (props) => {
 
   const submitPost = () => {
     closePopup();
-    props.createPost(valuePostTitle, valuePostText, valuePostImages);
+    if (props.updatePost) {
+      props.createPost(
+        valuePostTitle,
+        valuePostText,
+        typeof valuePostImages[0] !== "string" && valuePostImages,
+        props.postId
+      );
+    } else {
+      props.createPost(valuePostTitle, valuePostText, valuePostImages);
+    }
   };
   const handleChangePostText = (event) => {
     setValuePostText(event.target.value);
@@ -37,6 +47,7 @@ const CreatePost = (props) => {
     setValueHashTag(event.target.value);
   };
   const uploadAPhoto = (event) => {
+    setUploadedTheFile(true);
     let arr = [];
     for (let i = 0; i < event.target.files.length; i++) {
       arr.push(event.target.files[i]);
@@ -67,46 +78,50 @@ const CreatePost = (props) => {
       }
     }
   }, [valuePostText]);
+
   useEffect(() => {
-    valuePostImages.forEach((img, index) => {
-      var preview = document.getElementById("img-" + index);
-      let first = document.getElementById("imagesListItems").childNodes;
-      if (document.getElementById("imagesListItems")) {
-        for (
-          let i = 0;
-          i < document.getElementById("imagesListItems").childNodes.length;
-          i++
-        ) {
-          document.getElementById("imagesListItems").childNodes[
-            i
-          ].style.cssText = "grid-column: auto;"; // Text, DIV, Text, UL, ..., SCRIPT
+    if (!props.updatePost || uploadedTheFile) {
+      valuePostImages.forEach((img, index) => {
+        var preview = document.getElementById("img-" + index);
+        let first = document.getElementById("imagesListItems").childNodes;
+        if (document.getElementById("imagesListItems")) {
+          for (
+            let i = 0;
+            i < document.getElementById("imagesListItems").childNodes.length;
+            i++
+          ) {
+            document.getElementById("imagesListItems").childNodes[
+              i
+            ].style.cssText = "grid-column: auto;"; // Text, DIV, Text, UL, ..., SCRIPT
+          }
         }
-      }
 
-      var reader = new FileReader();
+        var reader = new FileReader();
 
-      reader.onload = function () {
-        let test = reader.result;
-        preview.src = test;
-      };
-      if (img) {
-        reader.readAsDataURL(img);
-      } else {
-        preview.src = "";
-      }
-    });
-
+        reader.onload = function () {
+          let test = reader.result;
+          preview.src = test;
+        };
+        if (img) {
+          reader.readAsDataURL(img);
+        } else {
+          preview.src = "";
+        }
+      });
+    }
     let element = document.getElementById("imagesListItems").lastChild;
     if (element && valuePostImages.length % 2 == 1) {
       document.getElementById("imagesListItems").lastChild.style.cssText =
         "grid-column-start: 1; grid-column-end: 3;";
     }
-    // if (!upload) {
-    //   debugger;
-    //   document.getElementById("imagesListItems").style.cssText =
-    //     "display: grid;";
-    // }
   }, [valuePostImages]);
+
+  // if (!upload) {
+  //   debugger;
+  //   document.getElementById("imagesListItems").style.cssText =
+  //     "display: grid;";
+  // }
+
   useEffect(() => {
     if (window.innerWidth > 500) {
       var tx = document.getElementById("textareaTitle");
@@ -148,10 +163,7 @@ const CreatePost = (props) => {
     };
   }, []);
   return (
-    <div
-      className={s.popupCreatePost + " " + (props.isCreatePost && s.active)}
-      onMouseDown={closePopup}
-    >
+    <div className={s.popupCreatePost} onMouseDown={closePopup}>
       <div
         className={s.popupContent}
         onMouseDown={(e) => {
@@ -162,7 +174,12 @@ const CreatePost = (props) => {
         }}
       >
         <div className={s.popupContentHader}>
-          <div className={s.popupContentHeaderTitle}>Create post</div>
+          {props.button == "Update" ? (
+            <div className={s.popupContentHeaderTitle}>Update post</div>
+          ) : (
+            <div className={s.popupContentHeaderTitle}>Create post</div>
+          )}
+
           <div className={s.popupContentHeaderOff} onClick={closePopup}></div>
         </div>
         <div className={s.popupContentBody}>
@@ -176,7 +193,7 @@ const CreatePost = (props) => {
             </div>
             <div className={s.popupContentBodyAuthorNameAndHashtag}>
               <div className={s.popupContentBodyAuthorName}>
-                {props.profile.fullname}
+                {props.profile.login}
               </div>
 
               {isWriteHashTag ? (
@@ -231,7 +248,11 @@ const CreatePost = (props) => {
               valuePostImages.map((img, index) => (
                 <div className={s.imagesItem}>
                   {/* <span>123123</span> */}
-                  <img id={"img-" + index} src="" alt="images post" />
+                  {!props.updatePost || uploadedTheFile ? (
+                    <img id={"img-" + index} src="Gallery" alt="images post" />
+                  ) : (
+                    <img src={img} alt="images post" />
+                  )}
                 </div>
               ))}
           </div>
@@ -263,7 +284,7 @@ const CreatePost = (props) => {
             (valuePostTitle !== "" && s.popupContentAddPostSubmit)
           }
         >
-          <span>Post</span>
+          <span>{props.button}</span>
         </div>
       </div>
     </div>

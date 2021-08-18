@@ -25,7 +25,13 @@ const DropdownMenus = (props) => {
   return (
     <div className={s.dropdownMenusBlock} id="active__dropdown">
       <div className={s.dropdownMenus}>
-        <div className={s.menuItem}>
+        <div
+          className={s.menuItem}
+          onClick={() => {
+            props.setUpdatePost(props.post);
+            props.setIsUpdatePost(true);
+          }}
+        >
           <img src={res["update"]} alt="update" />
           <span>Upadte Post</span>
         </div>
