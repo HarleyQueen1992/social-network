@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { useEffect } from "react";
 import { Icons } from "./../../../../utils/Icons/Icons";
+import { getProfileInfo } from "../../../../redux/AuthReducer/auth-selectors";
 
 const Post = (props) => {
   let res = Icons(props.theme);
@@ -60,18 +61,23 @@ const Post = (props) => {
           <div className={p.authorName}>{props.post.author.login}</div>
           <div className={p.datePost}>{date}</div>
         </div>
-        <div
-          className={p.morePost + " " + (dropdownMenus && p.morePostClose)}
-          onClick={(e) => {
-            let height = e.pageY;
-            // document.getElementById("active__dropdown").remove();
-            setDropdownMenus(!dropdownMenus);
-          }}
-        >
-          <span
-            className={p.more + " " + (dropdownMenus && p.moreClose)}
-          ></span>
-        </div>
+        {props.profileInfo.isAdmin ||
+        props.post.author.login == props.profileInfo.login ? (
+          <div
+            className={p.morePost + " " + (dropdownMenus && p.morePostClose)}
+            onClick={(e) => {
+              let height = e.pageY;
+              // document.getElementById("active__dropdown").remove();
+              setDropdownMenus(!dropdownMenus);
+            }}
+          >
+            <span
+              className={p.more + " " + (dropdownMenus && p.moreClose)}
+            ></span>
+          </div>
+        ) : (
+          ""
+        )}
       </header>
       {dropdownMenus && (
         <DropdownMenus
@@ -129,7 +135,9 @@ const Post = (props) => {
 };
 
 let mapStateToProps = (state) => {
-  return {};
+  return {
+    profileInfo: getProfileInfo(state),
+  };
 };
 export default compose(
   connect(mapStateToProps, {
