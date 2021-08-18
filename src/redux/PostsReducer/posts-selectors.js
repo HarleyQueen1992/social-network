@@ -25,3 +25,6 @@ export const getPageSelection = state => {
   export const getQ = state => {
     return state.posts.q
   }
+  export const getDropdownMenus = state => {
+    return state.posts.dropdownMenus
+  }

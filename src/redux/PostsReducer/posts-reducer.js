@@ -14,6 +14,7 @@ const CLEAR_POSTS = 'app/post-reducer/CLEAR_POSTS'
 const SET_PAGE_SELECTION = 'app/post-reducer/SET_PAGE_SELECTION';
 const SET_Q = 'app/post-reducer/SET_Q'
 const UPDATE_POST = 'app/posts-reducer/UPDATE_POST'
+const DROPDOWN_MENUS = 'app/posts-reducer/DROPDOWN_MENUS'
 
 let initialState = {
   posts: [
@@ -26,7 +27,8 @@ let initialState = {
   uploadPosts: true,
   loadingPosts: false,
   pageSelection: 'posts',
-  q: ''
+  q: '',
+  dropdownMenus: false,
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -59,6 +61,12 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...action.posts]
+      }
+    }
+    case DROPDOWN_MENUS: {
+      return {
+        ...state,
+        dropdownMenus: action.dropdownMenus
       }
     }
     case UPLOAD_POSTS: {
@@ -144,6 +152,12 @@ export const setPage = (page) => {
   return {
     type: SET_PAGE,
     page
+  }
+}
+export const setDropdownMenus = (dropdownMenus) => {
+  return {
+    type: DROPDOWN_MENUS,
+    dropdownMenus
   }
 }
 export const setPosts = (posts) => {

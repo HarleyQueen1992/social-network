@@ -55,6 +55,7 @@ import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import { getValue } from "./redux/SearchReducer/search-selectors";
 import FollowersContainer from "./components/Followers/FollowersContainer";
 import CreatePost from "./components/Posts/MyPosts/PostCreation/CreatePost/CreatePost";
+import UpdatePost from "./components/Posts/MyPosts/PostCreation/UpdatePost/UpdatePost";
 
 const urlIndex = {
   0: "news",
@@ -186,19 +187,24 @@ class App extends React.Component {
               theme={"adasd"}
             />
             {this.props.isUpdatePost ? (
-              <CreatePost
-                setIsCreatePost={this.props.setIsUpdatePost}
-                isCreatePost={this.props.isUpdatePost}
+              <UpdatePost
+                setIsUpdatePost={this.props.setIsUpdatePost}
+                isUpdatePost={this.props.isUpdatePost}
                 profile={this.props.updatePostData.author}
                 valueText={this.props.updatePostData.body}
                 valueTitle={this.props.updatePostData.title}
                 valueImages={this.props.updatePostData.attachments}
                 postId={this.props.updatePostData.id}
-                translate={"-200%"}
-                button={"Update"}
+                translate={
+                  this.props.index == 0
+                    ? "0%"
+                    : this.props.index == 1
+                    ? "-100%"
+                    : this.props.index == 2 && "-200%"
+                }
                 updatePost={this.props.isUpdatePost}
                 // addPostActionCreator={props.addPostActionCreator}
-                createPost={this.props.updatePost}
+                updatePost={this.props.updatePost}
               />
             ) : (
               ""
