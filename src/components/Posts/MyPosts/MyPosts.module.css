@@ -1,6 +1,10 @@
 * {
   font-family: "Source Sans Pro", sans-serif;
 }
+.newsPage {
+  width: 100%;
+  height: 100%;
+}
 /*! PostsListPage */
 
 .postsListPage {

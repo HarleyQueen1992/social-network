@@ -317,8 +317,8 @@ export const postsAPI = {
       return response
     })
   },
-  getPosts(limit, page) {
-    return instance.get(`/profile/posts?page=${page}&limit=${limit}`).then(response => {
+  getPosts(limit, page, q) {
+    return instance.get(`/profile/posts?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
     }).catch(response => {
       return response

@@ -186,13 +186,22 @@ export const setPageSelection = (pageSelection) => {
 }
 // ? Thunk Creator
 
-export const requestPosts = (page) => async dispatch => {
+export const requestPosts = (page, q = '') => async (dispatch, getState) => {
+  let state = getState()
+  dispatch(setQ(q))
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }
-  let response = await postsAPI.getPosts(initialState.limit, page)
+  let response = await postsAPI.getPosts(initialState.limit, page, q)
   dispatch(setUploadPost(false))
-  dispatch(setPosts(response.items))
+  if (q === '' && state.posts.q !== '') {
+    dispatch(setSearchPosts(response.items))
+    
+  } else if (q == '' || q == state.posts.q) {
+    dispatch(setPosts(response.items))
+  } else {
+    dispatch(setSearchPosts(response.items))
+  }
   dispatch(setPage(page + 1))
   dispatch(setTotalItems(response.totalItems))
   dispatch(setLoadingPosts(false))

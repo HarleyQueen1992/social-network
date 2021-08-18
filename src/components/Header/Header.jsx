@@ -17,6 +17,7 @@ import Password from "../Password/Password";
 import {
   setPageSelection,
   requestAllPosts,
+  requestPosts,
 } from "./../../redux/PostsReducer/posts-reducer";
 import { getPageSelection } from "../../redux/PostsReducer/posts-selectors";
 const Header = (props) => {
@@ -40,7 +41,7 @@ const Header = (props) => {
   });
   let handleChangeSearchPosts = (e) => {
     if (props.pageSelection == "posts") {
-      // запрос на поиск по моим постам
+      props.requestPosts(1, e.target.value);
     } else {
       props.requestAllPosts(1, e.target.value);
     }
@@ -237,6 +238,6 @@ let mapStateToProps = (state) => {
   };
 };
 export default compose(
-  connect(mapStateToProps, { setPageSelection, requestAllPosts }),
+  connect(mapStateToProps, { setPageSelection, requestAllPosts, requestPosts }),
   withRouter
 )(Header);

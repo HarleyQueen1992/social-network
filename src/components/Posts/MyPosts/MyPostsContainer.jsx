@@ -39,6 +39,7 @@ import {
   getIsPostCreation,
   getTheme,
 } from "../../../redux/AppReducer/app-selectors";
+import s from "./MyPosts.module.css";
 
 class MyPostsContainer extends React.Component {
   componentDidMount() {
@@ -59,7 +60,7 @@ class MyPostsContainer extends React.Component {
     } else {
       if (this.props.uploadPosts && !this.props.loadingPosts) {
         if (this.props.pageSelection === "posts") {
-          this.props.requestPosts(this.props.postsPage);
+          this.props.requestPosts(this.props.postsPage, this.props.q);
         } else {
           this.props.requestAllPosts(this.props.postsPage, this.props.q);
         }
@@ -74,7 +75,7 @@ class MyPostsContainer extends React.Component {
   }
   render() {
     return (
-      <>
+      <div className={s.newsPage}>
         {this.props.profile === null ? (
           <Preloader />
         ) : (
@@ -99,7 +100,7 @@ class MyPostsContainer extends React.Component {
             pageSelection={this.props.pageSelection}
           />
         )}
-      </>
+      </div>
     );
   }
 }
