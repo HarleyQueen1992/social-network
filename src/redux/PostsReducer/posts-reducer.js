@@ -58,6 +58,7 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         pageSelection: action.pageSelection,
+        q: ''
       }
       case SET_Q:
         return {

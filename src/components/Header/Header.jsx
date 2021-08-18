@@ -19,7 +19,10 @@ import {
   requestAllPosts,
   requestPosts,
 } from "./../../redux/PostsReducer/posts-reducer";
-import { getPageSelection } from "../../redux/PostsReducer/posts-selectors";
+import {
+  getPageSelection,
+  getQ,
+} from "../../redux/PostsReducer/posts-selectors";
 const Header = (props) => {
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
@@ -76,6 +79,7 @@ const Header = (props) => {
               className={s.search}
               name="search"
               type="text"
+              value={props.q}
               // onChange={props.handleChange}
               // value={props.value}
               placeholder="Posts search"
@@ -190,6 +194,7 @@ const Header = (props) => {
               onFocus={() => {
                 setFocus(!focus);
               }}
+              value={props.q}
               onChange={handleChangeSearchPosts}
               onBlur={() => {
                 setFocus(!focus);
@@ -235,6 +240,7 @@ let mapStateToProps = (state) => {
     theme: getTheme(state),
     isPassword: getIsPassword(state),
     pageSelection: getPageSelection(state),
+    q: getQ(state),
   };
 };
 export default compose(
