@@ -15,7 +15,7 @@ const SET_PAGE_SELECTION = 'app/post-reducer/SET_PAGE_SELECTION';
 const SET_Q = 'app/post-reducer/SET_Q'
 const UPDATE_POST = 'app/posts-reducer/UPDATE_POST'
 const DROPDOWN_MENUS = 'app/posts-reducer/DROPDOWN_MENUS'
-
+const DROPDOWN_MENUS_POST_ID = 'app/posts-reducer/DROPDOWN_MENUS_POST_ID'
 let initialState = {
   posts: [
   ],
@@ -29,6 +29,7 @@ let initialState = {
   pageSelection: 'posts',
   q: '',
   dropdownMenus: false,
+  dropdownMenusPostId: null
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -61,6 +62,12 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...action.posts]
+      }
+    }
+    case DROPDOWN_MENUS_POST_ID: {
+      return {
+        ...state,
+        dropdownMenusPostId: action.postId
       }
     }
     case DROPDOWN_MENUS: {
@@ -214,6 +221,9 @@ export const setPageSelection = (pageSelection) => {
 }
 export const updatePostAC = (post) => {
   return { type: UPDATE_POST, post }
+}
+export const setDropdownMenusPostId = (postId) => {
+  return { type: DROPDOWN_MENUS_POST_ID, postId }
 }
 // ? Thunk Creator
 

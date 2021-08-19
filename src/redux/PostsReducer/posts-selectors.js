@@ -21,10 +21,13 @@ export const getPagePosts = state => {
 }
 export const getPageSelection = state => {
     return state.posts.pageSelection
-  }
-  export const getQ = state => {
-    return state.posts.q
-  }
-  export const getDropdownMenus = state => {
-    return state.posts.dropdownMenus
-  }
+}
+export const getQ = state => {
+  return state.posts.q
+}
+export const getDropdownMenus = state => {
+  return state.posts.dropdownMenus
+}
+export const getDropdownMenusPostId = state => {
+  return state.posts.dropdownMenusPostId
+}

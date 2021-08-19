@@ -56,6 +56,8 @@ import { getValue } from "./redux/SearchReducer/search-selectors";
 import FollowersContainer from "./components/Followers/FollowersContainer";
 import CreatePost from "./components/Posts/MyPosts/PostCreation/CreatePost/CreatePost";
 import UpdatePost from "./components/Posts/MyPosts/PostCreation/UpdatePost/UpdatePost";
+import DropdownMenus from "./components/Posts/MyPosts/Post/DropdownMenus/DropdownMenus";
+import { getDropdownMenus } from "./redux/PostsReducer/posts-selectors";
 
 const urlIndex = {
   0: "news",
@@ -219,6 +221,8 @@ class App extends React.Component {
               }
               id="appWraperContent"
             >
+              {/* {this.props.dropdownMenus && <DropdownMenus />} */}
+
               {(this.props.location.pathname === "/news") |
               (this.props.location.pathname.substr(0, 8) === "/profile") |
               (this.props.location.pathname === "/posts") |
@@ -334,6 +338,7 @@ const mapStateToProps = (state) => {
     isMenuActive: getMenuActive(state),
     updatePostData: getUpdatePost(state),
     isUpdatePost: getIsPostUpdate(state),
+    dropdownMenus: getDropdownMenus(state),
   };
 };
 

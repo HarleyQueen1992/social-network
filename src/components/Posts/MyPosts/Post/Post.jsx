@@ -8,6 +8,8 @@ import {
   deletePost,
   likePost,
   unlikePost,
+  setDropdownMenus,
+  setDropdownMenusPostId,
 } from "./../../../../redux/PostsReducer/posts-reducer";
 import heartActive from "./../../../../assets/images/heartActive.png";
 import avaInPosts from "./../../../../assets/images/user.png";
@@ -19,10 +21,14 @@ import { compose } from "redux";
 import { useEffect } from "react";
 import { Icons } from "./../../../../utils/Icons/Icons";
 import { getProfileInfo } from "../../../../redux/AuthReducer/auth-selectors";
+import {
+  getDropdownMenus,
+  getDropdownMenusPostId,
+} from "../../../../redux/PostsReducer/posts-selectors";
 
 const Post = (props) => {
   let res = Icons(props.theme);
-  let [dropdownMenus, setDropdownMenus] = useState(false);
+  // let [dropdownMenus, setDropdownMenus] = useState(false);
   let date = new Date(props.post.createdAt);
   date = date.toLocaleDateString("en-US", {
     day: "numeric",
@@ -68,30 +74,50 @@ const Post = (props) => {
         {props.profileInfo.isAdmin ||
         props.post.author.login == props.profileInfo.login ? (
           <div
-            className={p.morePost + " " + (dropdownMenus && p.morePostClose)}
+            className={
+              p.morePost +
+              " " +
+              (props.dropdownMenus &&
+              props.dropdownMenusPostId === props.post.id
+                ? p.morePostClose
+                : "")
+            }
             onClick={(e) => {
-              let height = e.pageY;
-              // document.getElementById("active__dropdown").remove();
-              setDropdownMenus(!dropdownMenus);
+              props.setDropdownMenusPostId(props.post.id);
+              if (props.dropdownMenusPostId === props.post.id) {
+                props.setDropdownMenus(!props.dropdownMenus);
+              } else {
+                props.setDropdownMenus(true);
+              }
             }}
           >
             <span
-              className={p.more + " " + (dropdownMenus && p.moreClose)}
+              className={
+                p.more +
+                " " +
+                (props.dropdownMenus &&
+                props.dropdownMenusPostId === props.post.id
+                  ? p.moreClose
+                  : "")
+              }
             ></span>
           </div>
         ) : (
           ""
         )}
       </header>
-      {dropdownMenus && (
+      {props.dropdownMenus && props.dropdownMenusPostId === props.post.id ? (
         <DropdownMenus
           setUpdatePost={props.setUpdatePost}
-          setDropdownMenus={setDropdownMenus}
+          setDropdownMenus={props.setDropdownMenus}
+          setDropdownMenusPostId={props.setDropdownMenusPostId}
           theme={props.theme}
           deletePost={props.deletePost}
           post={props.post}
           setIsUpdatePost={props.setIsUpdatePost}
         />
+      ) : (
+        ""
       )}
       <div className={p.postTitle}>{props.post.title}</div>
       <div className={p.postText}>{props.post.body}</div>
@@ -143,6 +169,8 @@ const Post = (props) => {
 let mapStateToProps = (state) => {
   return {
     profileInfo: getProfileInfo(state),
+    dropdownMenus: getDropdownMenus(state),
+    dropdownMenusPostId: getDropdownMenusPostId(state),
   };
 };
 export default compose(
@@ -152,5 +180,7 @@ export default compose(
     unlikePost,
     setUpdatePost,
     setIsUpdatePost,
+    setDropdownMenus,
+    setDropdownMenusPostId,
   })
 )(Post);

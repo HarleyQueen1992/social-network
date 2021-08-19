@@ -5,20 +5,19 @@ import { Icons } from "./../../../../../utils/Icons/Icons";
 const DropdownMenus = (props) => {
   let res = Icons(props.theme);
   document.onmousedown = function (e) {
-    if (e.target.className !== "") {
-      if (
-        e.target.className
-          .replace(/[^a-zA-Z ]/g, " ")
-          .split(/\s+|\./)
-          .filter(
-            (word) =>
-              (word === "DropdownMenus") |
-              (word === "morePost") |
-              (word === "more")
-          ).length == 0
-      ) {
-        props.setDropdownMenus(false);
-      }
+    if (
+      e.target.className
+        .replace(/[^a-zA-Z ]/g, " ")
+        .split(/\s+|\./)
+        .filter(
+          (word) =>
+            (word === "DropdownMenus") |
+            (word === "morePost") |
+            (word === "more")
+        ).length == 0
+    ) {
+      props.setDropdownMenus(false);
+      props.setDropdownMenusPostId(null);
     }
   };
 
