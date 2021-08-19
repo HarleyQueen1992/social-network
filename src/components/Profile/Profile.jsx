@@ -36,6 +36,7 @@ const Profile = (props) => {
     <div className={p.profileBlock}>
       <div className={p.profileInfo}>
         <ProfileInfo
+          profileInfo={props.profileInfo}
           friends={props.friends}
           isSavingPhoto={props.isSavingPhoto}
           saveProfileInfo={props.saveProfileInfo}

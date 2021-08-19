@@ -130,6 +130,7 @@ class ProfileContainer extends React.Component {
             }
             profile={this.props.profile}
             status={this.props.status}
+            profileInfo={this.props.profileInfo}
             updateStatus={this.props.updateStatus}
             savePhoto={this.props.savePhoto}
             follow={this.props.follow}

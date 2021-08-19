@@ -78,6 +78,8 @@ import HeartBlack from './../../assets/images/heartBlack.png'
 import LoadingWhite from './../../assets/images/loadingBanner.svg'
 import LoadingBlack from './../../assets/images/loadingAvatar.svg'
 
+import BlockWhite from './../../assets/images/blockWhite.png'
+import BlockBlack from './../../assets/images/blockBlack.png'
 
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
@@ -163,7 +165,8 @@ export const Icons = (theme, index = NaN) => {
     delete  : theme == themeLight ? DeleteBlack : DeleteWhite,
     update: theme == themeLight ? UpdateBlack : UpdateWhite,
     heart: theme == themeLight ?  HeartBlack : HeartWhite,
-    loading: theme == themeLight ? LoadingBlack : LoadingWhite
+    loading: theme == themeLight ? LoadingBlack : LoadingWhite,
+    block: theme == themeLight ? BlockWhite : BlockWhite
   }
 }
 // export const Icons = {

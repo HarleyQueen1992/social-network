@@ -37,11 +37,11 @@
   transition: all 0.5s;
   justify-self: center;
 }
-.menuItem img {
+.itemImg {
   align-self: center;
   justify-self: center;
 }
-.menuItem span {
+.itemTitle {
   align-self: center;
   justify-self: start;
   color: var(--fontColor);

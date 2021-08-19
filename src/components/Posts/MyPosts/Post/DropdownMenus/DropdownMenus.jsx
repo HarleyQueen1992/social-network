@@ -31,8 +31,8 @@ const DropdownMenus = (props) => {
             props.setIsUpdatePost(true);
           }}
         >
-          <img src={res["update"]} alt="update" />
-          <span>Upadte Post</span>
+          <img className={s.itemImg} src={res["update"]} alt="update" />
+          <span className={s.itemTitle}>Upadte Post</span>
         </div>
         <div
           className={s.menuItem}
@@ -40,8 +40,8 @@ const DropdownMenus = (props) => {
             props.deletePost(props.post.id);
           }}
         >
-          <img src={res["delete"]} alt="delete" />
-          <span>Delete Post</span>
+          <img className={s.itemImg} src={res["delete"]} alt="delete" />
+          <span className={s.itemTitle}>Delete Post</span>
         </div>
       </div>
     </div>

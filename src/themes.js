@@ -48,7 +48,9 @@ export const light = {
   more: "rgb(0 0 0 / 68%)",
   moreHover: "rgba(0, 0, 0, 0.108)",
   dropDown: "#eaeaea",
-  menuItemDropDown: "rgba(0, 0, 0, 0.103)"
+  menuItemDropDown: "rgba(0, 0, 0, 0.103)",
+  blockBlock: "rgb(226, 102, 102)",
+
   
 }
 
@@ -107,7 +109,8 @@ export const dark = {
   more: "rgba(255, 255, 255, 0.308)",
   moreHover: "rgba(255, 255, 255, 0.123)",
   dropDown: "#2b2b2b",
-  menuItemDropDown: "rgba(255, 255, 255, 0.103)"
+  menuItemDropDown: "rgba(255, 255, 255, 0.103)",
+  blockBlock: "rgb(182, 55, 55)",
 
 }
 

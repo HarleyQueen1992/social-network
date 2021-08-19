@@ -19,6 +19,7 @@ import PostCreation from "../../Posts/MyPosts/PostCreation/PostCreation";
 import EditProfile from "./../EditProfile/EditProfile";
 import ProfileBannerDefault from "./../../../assets/images/wp2655395.jpg";
 import LoadingAvatar from "./../../../assets/images/loadingAvatar.svg";
+import BlockUser from "./BlockUser/BlockUser";
 
 const ProfileInfo = (props) => {
   let res = Icons(props.theme, props.index);
@@ -36,6 +37,7 @@ const ProfileInfo = (props) => {
   let [valueStatus, setValueStatus] = useState(props.profile.status);
   const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
     useState(false);
+  let [isBlockUser, setIsBlockUser] = useState(false);
   const [editAboutMe, setEditAboutMe] = useState(false);
   const [editFullName, setEditFullName] = useState(false);
   const [valueFullName, setValueFullName] = useState(props.profile.fullname);
@@ -127,6 +129,7 @@ const ProfileInfo = (props) => {
 
   return (
     <div className={s.profilePage}>
+      {isBlockUser && <BlockUser setIsBlockUser={setIsBlockUser} />}
       <div
         onMouseDown={closePopup}
         className={
@@ -303,7 +306,26 @@ const ProfileInfo = (props) => {
               <div className={s.editProfile}>Edit profile</div>
             </div>
           ) : (
-            <div className={s.subscribeUnsubscribeBlock}>
+            <div
+              className={
+                s.subscribeUnsubscribeBlock +
+                " " +
+                (!props.profile.isAdmin && s.subscribeUnsubscribeBlockAndBan)
+              }
+            >
+              {!props.profile.isAdmin && props.profileInfo.isAdmin && (
+                <div
+                  className={s.banBlock}
+                  onClick={() => {
+                    document.querySelector("body").style.cssText =
+                      "overflow: hidden;";
+                    setIsBlockUser(true);
+                  }}
+                >
+                  {/* <img className={s.banImg} src={res["block"]} alt="ban img" /> */}
+                  <span className={s.ban}>Block</span>
+                </div>
+              )}
               {props.isFollowed ? (
                 <div
                   className={s.unsubscribeBlock}

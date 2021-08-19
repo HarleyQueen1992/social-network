@@ -345,6 +345,36 @@
 .subscribeUnsubscribeBlock {
   display: grid;
 }
+.subscribeUnsubscribeBlockAndBan {
+  grid-template-columns: 1fr 150px;
+}
+.banBlock {
+  cursor: pointer;
+  margin-right: 10px;
+  display: grid;
+  justify-self: end;
+  background-color: var(--blockBlock);
+  border-radius: 5px;
+  width: 80px;
+  align-self: center;
+  height: 30px;
+  /* grid-template-columns: 28px 1fr; */
+}
+.banBlock:hover {
+  background-color: red;
+}
+.banImg {
+  height: 20px;
+  align-self: center;
+  justify-self: end;
+}
+.ban {
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  justify-self: center;
+}
 .unsubscribeBlock {
   justify-self: end;
   width: 150px;
