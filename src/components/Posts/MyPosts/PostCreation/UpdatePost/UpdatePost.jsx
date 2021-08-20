@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import s from "./UpdatePost.module.css";
 import Gallery from "./../../../../../assets/images/gallery.png";
+import User from "./../../../../../assets/images/user.png";
 
 const UpdatePost = (props) => {
   const [isWriteHashTag, setIsWriteHashTag] = useState(false);
@@ -172,7 +173,7 @@ const UpdatePost = (props) => {
             <div className={s.popupContentBodyAuthorAvatarBlock}>
               <img
                 className={s.popupContentBodyAuthorAvatar}
-                src={props.profile.avatar}
+                src={props.profile.avatar ? props.profile.avatar : User}
                 alt="avatar"
               />
             </div>
