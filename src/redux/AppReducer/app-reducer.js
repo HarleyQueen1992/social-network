@@ -14,6 +14,7 @@ const IS_PASSWORD = 'app/app-reducer/IS_PASSWORD'
 const SET_THEME_STYLE = 'app/app-reducer/SET_THEME_STYLE'
 const SET_UPDATE_POST = 'app/app-reducer/SET_UPDATEPOST'
 const SET_IS_UPDATE_POST = 'app/app-reducer/SET_IS_UPDATE_POST'
+const SET_IS_LOADER = 'app/app-reducer/SET_IS_LOADER'
 
 let initialState = {
   initialized: false,
@@ -21,6 +22,7 @@ let initialState = {
   updatePostData: null,
   isUpdatePost: false,
   index: null,
+  isLoader: false,
   theme: localStorage.getItem('theme') == "light" ? light : dark,
   headerBlur: false,
   editMode: false,
@@ -53,6 +55,12 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         updatePostData: action.updatePost
+      }
+    }
+    case SET_IS_LOADER: {
+      return {
+        ...state,
+        isLoader: action.isLoader
       }
     }
     case SET_IS_UPDATE_POST: {
@@ -169,6 +177,7 @@ export const setUpdatePost = updatePost => ({
 export const setTheme = theme => ({ type: SET_THEME, theme })
 
 export const setThemeStyle = theme => ({ type: SET_THEME_STYLE })
+export const setIsLoader = isLoader => ({ type: SET_IS_LOADER,isLoader })
 
 // Thunk Creator
 

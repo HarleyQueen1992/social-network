@@ -34,3 +34,6 @@ export const getMenuActive = state => {
 export const getIsPassword = state => {
   return state.app.isPassword
 }
+export const getIsLoader = state => {
+  return state.app.isLoader
+}

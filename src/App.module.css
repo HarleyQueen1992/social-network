@@ -53,3 +53,15 @@ body {
 .activeEditProfileMenuBlock {
   display: grid;
 }
+.loader {
+  height: 35px;
+  position: fixed;
+  top: -44px;
+  left: 50%;
+  margin-left: -22px;
+  z-index: 99999;
+  transition: all 0.3s;
+}
+.loaderActive {
+  top: 51px;
+}

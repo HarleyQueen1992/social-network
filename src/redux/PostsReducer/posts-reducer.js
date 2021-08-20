@@ -1,4 +1,5 @@
 import { postsAPI } from "../../API/api"
+import { setIsLoader } from "../AppReducer/app-reducer"
 
 const ADD_POST = "app/posts-reducer/ADD-POST"
 const SET_SEARCH_POSTS = 'app/posts-reducer/SET_SEARCH_POSTS'
@@ -283,22 +284,27 @@ export const requestUserPosts = (login, page) => async dispatch => {
 }
 
 export const createPost = (title, body, attachments) => async dispatch => {
-
+  dispatch(setIsLoader(true))
   let response = await postsAPI.createPost(title, body, attachments)
   dispatch(addPostActionCreator(response))
+  dispatch(setIsLoader(false))
 }
 
 
 export const updatePost = (title, body, attachments, id) => async dispatch => {
-
+  dispatch(setIsLoader(true))
   let response = await postsAPI.updatePost(title, body, attachments, id)
   dispatch(updatePostAC(response))
+  dispatch(setIsLoader(false))
 }
 
-export const deletePost = (id) => async dispatch => {
+export const deletePost = (id) => async (dispatch,getState) => {
+  dispatch(setIsLoader(true))
+  let state = getState()
   let response = await postsAPI.deletePost(id)
     dispatch(deletePostAC(id))
-    dispatch(setTotalItems(initialState.totalItems - 1))
+    dispatch(setTotalItems(state.posts.totalItems - 1))
+    dispatch(setIsLoader(false))
   
 }
 export const likePost = (id) => async dispatch => {

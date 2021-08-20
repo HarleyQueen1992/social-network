@@ -42,6 +42,7 @@ import {
   getMenuActive,
   getIsPostUpdate,
   getUpdatePost,
+  getIsLoader,
 } from "./redux/AppReducer/app-selectors";
 import store from "./redux/redux-store";
 import { getIsAuth, getProfileInfo } from "./redux/AuthReducer/auth-selectors";
@@ -58,6 +59,7 @@ import CreatePost from "./components/Posts/MyPosts/PostCreation/CreatePost/Creat
 import UpdatePost from "./components/Posts/MyPosts/PostCreation/UpdatePost/UpdatePost";
 import DropdownMenus from "./components/Posts/MyPosts/Post/DropdownMenus/DropdownMenus";
 import { getDropdownMenus } from "./redux/PostsReducer/posts-selectors";
+import loaderWhite from "./assets/images/loaderWhite.svg";
 
 const urlIndex = {
   0: "news",
@@ -187,6 +189,13 @@ class App extends React.Component {
               handleChange={this.handleChange}
               index={this.props.index}
               theme={"adasd"}
+            />
+            <img
+              className={
+                s.loader + " " + (this.props.isLoader && s.loaderActive)
+              }
+              src={loaderWhite}
+              alt="loader"
             />
             {this.props.isUpdatePost ? (
               <UpdatePost
@@ -339,6 +348,7 @@ const mapStateToProps = (state) => {
     updatePostData: getUpdatePost(state),
     isUpdatePost: getIsPostUpdate(state),
     dropdownMenus: getDropdownMenus(state),
+    isLoader: getIsLoader(state),
   };
 };
 
