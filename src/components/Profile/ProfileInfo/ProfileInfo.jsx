@@ -323,13 +323,19 @@ const ProfileInfo = (props) => {
               className={
                 s.subscribeUnsubscribeBlock +
                 " " +
-                (!props.profile.isAdmin && s.subscribeUnsubscribeBlockAndBan)
+                (!props.profile.isAdmin & props.profileInfo.isAdmin &&
+                  s.subscribeUnsubscribeBlockAndBan)
               }
             >
               {!props.profile.isAdmin && props.profileInfo.isAdmin && (
                 <div
                   className={s.banBlock}
                   onClick={() => {
+                    document.querySelector(
+                      ".react-swipeable-view-container"
+                    ).style.cssText =
+                      "transform: translate(50) !important;" +
+                      "will-change: auto !important;";
                     document.querySelector("body").style.cssText =
                       "overflow: hidden;";
                     setIsBlockUser(true);

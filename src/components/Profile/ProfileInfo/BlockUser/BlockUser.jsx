@@ -3,15 +3,13 @@ import s from "./BlockUser.module.css";
 
 const BlockUser = (props) => {
   const closePopup = () => {
-    //     document.querySelector(".react-swipeable-view-container").style.cssText =
-    //       "will-change: transform; !important" +
-    //       "flex-direction: row;" +
-    //       "transition: all 0s ease 0s;" +
-    //       "direction: ltr;" +
-    //       "display: flex;" +
-    //       "transform: translate(" +
-    //       props.translate +
-    //       ", 0px);";
+    document.querySelector(".react-swipeable-view-container").style.cssText =
+      "will-change: transform; !important" +
+      "flex-direction: row;" +
+      "transition: all 0s ease 0s;" +
+      "direction: ltr;" +
+      "display: flex;" +
+      "transform: translate(-100%, 0px);";
     document.querySelector("body").style.cssText = "overflow: scroll;";
     props.setIsBlockUser(false);
   };
