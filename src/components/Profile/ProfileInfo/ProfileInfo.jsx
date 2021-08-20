@@ -31,6 +31,19 @@ const ProfileInfo = (props) => {
       day: "2-digit",
     }
   );
+  let updateWindowDimensions = () => {
+    if (window.innerWidth > 900) {
+      document.getElementById("appWraperContent").firstChild.style.cssText =
+        "overflow-x: inherit;";
+    } else {
+      document.getElementById("appWraperContent").firstChild.style.cssText =
+        "overflow-x: hidden;";
+    }
+  };
+  useEffect(() => {
+    updateWindowDimensions();
+    window.addEventListener("resize", updateWindowDimensions);
+  }, []);
 
   let [editStatus, setEditStatus] = useState(false);
   let [editMode, setEditMode] = useState(false);

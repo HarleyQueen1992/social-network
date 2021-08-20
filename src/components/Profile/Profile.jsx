@@ -4,8 +4,6 @@ import p from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
-  document.getElementById("appWraperContent").firstChild.style.cssText =
-    "overflow-x: none;";
   if (document.querySelector(".react-swipeable-view-container").childNodes) {
     document.querySelector(
       ".react-swipeable-view-container"
