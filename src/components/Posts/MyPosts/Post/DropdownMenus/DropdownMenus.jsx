@@ -29,6 +29,7 @@ const DropdownMenus = (props) => {
           onClick={() => {
             props.setUpdatePost(props.post);
             props.setIsUpdatePost(true);
+            document.querySelector("body").style.cssText = "overflow: hidden;";
           }}
         >
           <img className={s.itemImg} src={res["update"]} alt="update" />
