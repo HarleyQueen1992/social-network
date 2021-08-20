@@ -276,9 +276,7 @@ const CreatePost = (props) => {
           />
         </label>
         <div
-          onClick={
-            (valuePostText !== "") & (valuePostTitle !== "") && submitPost
-          }
+          onClick={valuePostTitle !== "" && submitPost}
           className={
             s.popupContentAddPost +
             " " +
