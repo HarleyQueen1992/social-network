@@ -28,7 +28,10 @@ import {
   setUpdatePost,
   setIsUpdatePost,
 } from "./redux/AppReducer/app-reducer";
-import { updatePost } from "./redux/PostsReducer/posts-reducer";
+import {
+  updatePost,
+  setDropdownMenus,
+} from "./redux/PostsReducer/posts-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {
   getInitialized,
@@ -206,6 +209,7 @@ class App extends React.Component {
                 valueTitle={this.props.updatePostData.title}
                 valueImages={this.props.updatePostData.attachments}
                 postId={this.props.updatePostData.id}
+                setDropdownMenus={this.props.setDropdownMenus}
                 translate={
                   this.props.index == 0
                     ? "0%"
@@ -365,6 +369,7 @@ let AppContainer = compose(
     setUpdatePost,
     setIsUpdatePost,
     updatePost,
+    setDropdownMenus,
   }),
   withRouter
 )(App);

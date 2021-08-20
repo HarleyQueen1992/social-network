@@ -26,6 +26,7 @@ const UpdatePost = (props) => {
     setValuePostText("");
     setValuePostTitle("");
     setValueHashTag("");
+    props.setDropdownMenus(false);
   };
 
   const submitPost = () => {
