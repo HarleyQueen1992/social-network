@@ -25,6 +25,7 @@ import {
   getDropdownMenus,
   getDropdownMenusPostId,
 } from "../../../../redux/PostsReducer/posts-selectors";
+import { NavLink } from "react-router-dom";
 
 const Post = (props) => {
   let res = Icons(props.theme);
@@ -59,14 +60,17 @@ const Post = (props) => {
       key={props.id}
     >
       <header className={p.header}>
-        <div className={p.avatarBlock}>
+        <NavLink
+          to={"profile/" + props.post.author.login}
+          className={p.avatarBlock}
+        >
           <img
             src={
               props.post.author.avatar ? props.post.author.avatar : avaInPosts
             }
             alt="user avatar"
           />
-        </div>
+        </NavLink>
         <div className={p.nameAndDate}>
           <div className={p.authorName}>{props.post.author.login}</div>
           <div className={p.datePost}>{date}</div>
