@@ -97,14 +97,14 @@ export const profileAPI = {
     })
   },
   usersFollowing(login, limit) {
-    return instance.get(`/users/${login}/following?limit=${limit}`).then(response => {
+    return instance.get(`/users/${login}/following/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   usersFollowers(login, limit) {
-    return instance.get(`/users/${login}/followers?limit=${limit}`).then(response => {
+    return instance.get(`/users/${login}/followers/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -151,14 +151,14 @@ export const profileAPI = {
     })
   },
   updateProfileInfo(birthday, location) {
-    return instance.patch('/profile', {birthday, location}).then(response => {
+    return instance.patch('/profile/', {birthday, location}).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   updateTheme(theme) {
-    return instance.patch('/profile', {theme}).then(response => {
+    return instance.patch('/profile/', {theme}).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -235,7 +235,7 @@ export const friendsAPI = {
 }
 export const followersAPI = {
   followers(page, limit) {
-    return instance.get(`/followers?page=${page}&limit=${limit}`).then(response => {
+    return instance.get(`/followers/?page=${page}&limit=${limit}`).then(response => {
 
       return response.data
     }).catch(error => {
@@ -243,7 +243,7 @@ export const followersAPI = {
     })
   },
   searchFollowers(q, page, limit) {
-    return search(`/followers?q=${q}&page=${page}&limit=${limit}/`).then(response => {
+    return search(`/followers/?q=${q}&page=${page}&limit=${limit}/`).then(response => {
 
       return response
     }).catch(error => {
@@ -251,14 +251,14 @@ export const followersAPI = {
     })
   },
   userFollowers(login,page, limit) {
-    return instance.get(`/users/${login}/followers?page=${page}&limit=${limit}`).then(response => {
+    return instance.get(`/users/${login}/followers/?page=${page}&limit=${limit}`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   searchUserFollowers(login,page, limit, q) {
-    return search(`/users/${login}/followers?q=${q}&page=${page}&limit=${limit}`).then(response => {
+    return search(`/users/${login}/followers/?q=${q}&page=${page}&limit=${limit}`).then(response => {
       return response
     }).catch(error => {
       return error.response.data
@@ -333,7 +333,7 @@ export const postsAPI = {
         }
       }).then(response => {
         return response.data
-      }).catch(response => {
+      }).catch(response => {  
         return response
       })
     } else {
@@ -348,7 +348,7 @@ export const postsAPI = {
     
   },
   getPosts(limit, page, q) {
-    return instance.get(`/profile/posts?page=${page}&limit=${limit}&q=${q}`).then(response => {
+    return instance.get(`/profile/posts/?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
     }).catch(response => {
       return response
@@ -356,7 +356,7 @@ export const postsAPI = {
   },
   
   getAllPosts(limit, page, q) {
-    return instance.get(`/posts?page=${page}&limit=${limit}&q=${q}`).then(response => {
+    return instance.get(`/posts/?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
     }).catch(response => {
       return response

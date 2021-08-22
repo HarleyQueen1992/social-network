@@ -193,13 +193,13 @@ class App extends React.Component {
               index={this.props.index}
               theme={"adasd"}
             />
-            <img
+            <div
               className={
-                s.loader + " " + (this.props.isLoader && s.loaderActive)
+                s.loaderBlock + " " + (this.props.isLoader && s.loaderActive)
               }
-              src={loaderWhite}
-              alt="loader"
-            />
+            >
+              <img className={s.loader} src={loaderWhite} alt="loader" />
+            </div>
             {this.props.isUpdatePost ? (
               <UpdatePost
                 setIsUpdatePost={this.props.setIsUpdatePost}

@@ -189,9 +189,19 @@ export const initializeApp = () => dispatch => {
     
   })
 }
-export const updateTheme = theme => async dispatch => {
-  let response = await profileAPI.updateTheme(theme)
-  dispatch(setTheme(response.theme))
-  dispatch(setProfileData(response, true))
+export const updateTheme = theme => async (dispatch,getState) => {
+  let state = getState()
+  if (!state.app.isLoader) {
+    dispatch(setIsLoader(true))
+  
+    dispatch(setTheme(state.auth.profileInfo.theme == 'light' ? 'dark' : 'light'))
+  
+    let response = await profileAPI.updateTheme(theme)
+    // dispatch(setTheme(response.theme))
+    dispatch(setProfileData(response, true))
+    dispatch(setIsLoader(false))
+  }
+  
+  // debugger
 }
 export default appReducer
