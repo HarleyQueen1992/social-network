@@ -6,6 +6,7 @@ import CreatePostLight from "./../../../assets/images/edit.png";
 import save from "./../../../assets/images/send.png";
 import { Icons } from "./../../../utils/Icons/Icons";
 import PostCreation from "./PostCreation/PostCreation";
+import Preloader from "../../common/Preloader/Preloader";
 
 const MyPosts = (props) => {
   let res = Icons(props.theme);
@@ -152,11 +153,20 @@ const MyPosts = (props) => {
         </header> */}
 
         <PostCreation translate="-200%" />
-        <div className={p.posts}>
-          {props.posts.map((post) => (
-            <Post border={true} key={post.id} theme={props.theme} post={post} />
-          ))}
-        </div>
+        {props.loadingPosts ? (
+          <Preloader />
+        ) : (
+          <div className={p.posts}>
+            {props.posts.map((post) => (
+              <Post
+                border={true}
+                key={post.id}
+                theme={props.theme}
+                post={post}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

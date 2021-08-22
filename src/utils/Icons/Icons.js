@@ -81,6 +81,9 @@ import LoadingBlack from './../../assets/images/loadingAvatar.svg'
 import BlockWhite from './../../assets/images/blockWhite.png'
 import BlockBlack from './../../assets/images/blockBlack.png'
 
+import PreloaderWhite from "./../../assets/images/preloaderWhite.svg"
+import PreloaderBlack from "./../../assets/images/preloaderBlack.svg"
+
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
 import facebook from "./../../assets/images/facebook.png"
@@ -166,7 +169,8 @@ export const Icons = (theme, index = NaN) => {
     update: theme == themeLight ? UpdateBlack : UpdateWhite,
     heart: theme == themeLight ?  HeartBlack : HeartWhite,
     loading: theme == themeLight ? LoadingBlack : LoadingWhite,
-    block: theme == themeLight ? BlockWhite : BlockWhite
+    block: theme == themeLight ? BlockWhite : BlockWhite,
+    preloader: theme == themeLight ? PreloaderBlack : PreloaderWhite
   }
 }
 // export const Icons = {

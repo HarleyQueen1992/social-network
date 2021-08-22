@@ -6,13 +6,15 @@ import PreloaderWhite from "./../../../assets/images/preloaderWhite.svg"
 import s from "./Preloader.module.css"
 import { connect } from "react-redux"
 import { compose } from "redux"
+import {Icons} from './../../../utils/Icons/Icons'
 
 const Preloader = props => {
+  let res = Icons(props.theme)
   return (
     <div className={s.preloader}>
       <img
         alt='preloader'
-        src={props.theme == "lightTheme" ? PreloaderBlack : PreloaderWhite}
+        src={res['preloader']}
       />
     </div>
   )

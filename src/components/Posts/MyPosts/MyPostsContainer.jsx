@@ -97,6 +97,7 @@ class MyPostsContainer extends React.Component {
             totalPostsItems={this.props.totalPostsItems}
             setUploadPost={this.props.setUploadPost}
             setPageSelection={this.props.setPageSelection}
+            loadingPosts={this.props.loadingPosts}
             pageSelection={this.props.pageSelection}
           />
         )}
