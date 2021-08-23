@@ -31,3 +31,12 @@ export const getDropdownMenus = state => {
 export const getDropdownMenusPostId = state => {
   return state.posts.dropdownMenusPostId
 }
+export const getSelectedPost = state => {
+  return state.posts.selectedPost
+}
+export const getIsBigPictures = state => {
+  return state.posts.isBigPictures
+}
+export const getImgUrl = state => {
+  return state.posts.imgUrl
+}

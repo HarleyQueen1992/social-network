@@ -19,12 +19,17 @@ const DROPDOWN_MENUS = 'app/posts-reducer/DROPDOWN_MENUS'
 const DROPDOWN_MENUS_POST_ID = 'app/posts-reducer/DROPDOWN_MENUS_POST_ID'
 const TOTAL_PAGE_COUNT = 'app/posts-reducer/TOTAL_PAGE_COUNT'
 const LEAVE_POSTS = 'app/posts-reducer/LEAVE_POSTS'
+const SET_SELECTED_POST = 'app/posts-reducer/SET_SELECTED_POST'
+const SET_IS_BIG_PICTURES = 'app/posts-reducer/SET_IS_BIG_PICTURES'
+const SET_IMG_URL = 'app/posts-reducer/SET_IMG_URL'
 
 let initialState = {
   posts: [
   ],
   newPostText: "mops.com",
   lastPost: null,
+  selectedPost: null,
+  isBigPictures: false,
   limit:5,
   totalItems: null,
   page: 1,  
@@ -34,7 +39,8 @@ let initialState = {
   q: '',
   dropdownMenus: false,
   dropdownMenusPostId: null,
-  totalPageCount: 1
+  totalPageCount: 1,
+  imgUrl: null
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -67,6 +73,18 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...action.posts]
+      }
+    }
+    case SET_SELECTED_POST: {
+      return {
+        ...state,
+        selectedPost: action.post
+      }
+    }
+    case SET_IS_BIG_PICTURES: {
+      return {
+        ...state,
+        isBigPictures: action.isBigPictures
       }
     }
     case TOTAL_PAGE_COUNT: {
@@ -148,6 +166,11 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         page: action.page
+      }
+    case SET_IMG_URL:
+      return {
+        ...state,
+        imgUrl: action.imgUrl
       }
     case DELETE_POST:
       return {
@@ -246,6 +269,15 @@ export const setTotalPageCount = (totalPageCount) => {
 }
 export const setLeavePosts = (pageDeletePost) => {
   return { type: LEAVE_POSTS, pageDeletePost }
+}
+export const setSelectedPost = (post) => {
+  return {type: SET_SELECTED_POST, post}
+}
+export const setIsBigPictures = (isBigPictures) => {
+  return {type: SET_IS_BIG_PICTURES, isBigPictures}
+}
+export const setImgUrl = (imgUrl) => {
+  return {type: SET_IMG_URL, imgUrl}
 }
 // ? Thunk Creator
 

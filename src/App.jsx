@@ -31,6 +31,7 @@ import {
 import {
   updatePost,
   setDropdownMenus,
+  setIsBigPictures,
 } from "./redux/PostsReducer/posts-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {
@@ -61,8 +62,14 @@ import FollowersContainer from "./components/Followers/FollowersContainer";
 import CreatePost from "./components/Posts/MyPosts/PostCreation/CreatePost/CreatePost";
 import UpdatePost from "./components/Posts/MyPosts/PostCreation/UpdatePost/UpdatePost";
 import DropdownMenus from "./components/Posts/MyPosts/Post/DropdownMenus/DropdownMenus";
-import { getDropdownMenus } from "./redux/PostsReducer/posts-selectors";
+import {
+  getDropdownMenus,
+  getImgUrl,
+  getIsBigPictures,
+  getSelectedPost,
+} from "./redux/PostsReducer/posts-selectors";
 import loaderWhite from "./assets/images/loaderWhite.svg";
+import BigPictures from "./components/Posts/BigPictures/BigPictures";
 
 const urlIndex = {
   0: "news",
@@ -200,6 +207,13 @@ class App extends React.Component {
             >
               <img className={s.loader} src={loaderWhite} alt="loader" />
             </div>
+            {this.props.isBigPictures && (
+              <BigPictures
+                selectPost={this.props.selectPost}
+                setIsBigPictures={this.props.setIsBigPictures}
+                imgUrl={this.props.imgUrl}
+              />
+            )}
             {this.props.isUpdatePost ? (
               <UpdatePost
                 setIsUpdatePost={this.props.setIsUpdatePost}
@@ -353,6 +367,9 @@ const mapStateToProps = (state) => {
     isUpdatePost: getIsPostUpdate(state),
     dropdownMenus: getDropdownMenus(state),
     isLoader: getIsLoader(state),
+    isBigPictures: getIsBigPictures(state),
+    selectPost: getSelectedPost(state),
+    imgUrl: getImgUrl(state),
   };
 };
 
@@ -370,6 +387,7 @@ let AppContainer = compose(
     setIsUpdatePost,
     updatePost,
     setDropdownMenus,
+    setIsBigPictures,
   }),
   withRouter
 )(App);

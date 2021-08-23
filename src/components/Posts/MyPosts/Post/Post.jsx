@@ -10,6 +10,9 @@ import {
   unlikePost,
   setDropdownMenus,
   setDropdownMenusPostId,
+  setSelectedPost,
+  setIsBigPictures,
+  setImgUrl,
 } from "./../../../../redux/PostsReducer/posts-reducer";
 import heartActive from "./../../../../assets/images/heartActive.png";
 import avaInPosts from "./../../../../assets/images/user.png";
@@ -24,6 +27,7 @@ import { getProfileInfo } from "../../../../redux/AuthReducer/auth-selectors";
 import {
   getDropdownMenus,
   getDropdownMenusPostId,
+  getSelectedPost,
 } from "../../../../redux/PostsReducer/posts-selectors";
 import { NavLink } from "react-router-dom";
 
@@ -138,7 +142,17 @@ const Post = (props) => {
         >
           {props.post.attachments &&
             props.post.attachments.map((img) => (
-              <div className={p.imagesItem}>
+              <div
+                className={p.imagesItem}
+                id={"image__item__" + props.post.id}
+                onClick={() => {
+                  document.querySelector("body").style.cssText =
+                    "overflow: hidden;";
+                  props.setImgUrl(img);
+                  props.setSelectedPost(props.post);
+                  props.setIsBigPictures(true);
+                }}
+              >
                 <img src={img} alt="images post" />
               </div>
             ))}
@@ -175,6 +189,7 @@ let mapStateToProps = (state) => {
     profileInfo: getProfileInfo(state),
     dropdownMenus: getDropdownMenus(state),
     dropdownMenusPostId: getDropdownMenusPostId(state),
+    selectedPost: getSelectedPost(state),
   };
 };
 export default compose(
@@ -186,5 +201,8 @@ export default compose(
     setIsUpdatePost,
     setDropdownMenus,
     setDropdownMenusPostId,
+    setSelectedPost,
+    setIsBigPictures,
+    setImgUrl,
   })
 )(Post);

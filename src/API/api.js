@@ -83,14 +83,14 @@ export const profileAPI = {
   },
 
   following(limit) {
-    return instance.get(`/following/?limit=${limit}`).then(response => {
+    return instance.get(`profile/following/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   followers(limit) {
-    return instance.get(`/followers/?limit=${limit}`).then(response => {
+    return instance.get(`profile/followers/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -194,7 +194,7 @@ export const profileAPI = {
 export const friendsAPI = {
   followings(currentPage, pageSize) {
     return instance.get(
-      `following/?page=${currentPage}&limit=${pageSize}`
+      `profile/following/?page=${currentPage}&limit=${pageSize}`
     ).then(response => {
       return response.data
     }).catch(response => {
@@ -204,7 +204,7 @@ export const friendsAPI = {
   
     getFriends(currentPage, pageSize) {
       return instance.get(
-        `following/?page=${currentPage}&limit=${pageSize}`,
+        `profile/following/?page=${currentPage}&limit=${pageSize}`,
       ).then(response => {
         return response.data
       }).catch(response => {
@@ -212,7 +212,7 @@ export const friendsAPI = {
       })
     },
     searchFriends(term, currentPage, limit) {
-      return search(`following/?q=${term}&page=${currentPage}&limit=${limit}`).then(response => {
+      return search(`profile/following/?q=${term}&page=${currentPage}&limit=${limit}`).then(response => {
         return response
       }).catch(response => {
         return response
@@ -235,7 +235,7 @@ export const friendsAPI = {
 }
 export const followersAPI = {
   followers(page, limit) {
-    return instance.get(`/followers/?page=${page}&limit=${limit}`).then(response => {
+    return instance.get(`profile/followers/?page=${page}&limit=${limit}`).then(response => {
 
       return response.data
     }).catch(error => {
@@ -243,7 +243,7 @@ export const followersAPI = {
     })
   },
   searchFollowers(q, page, limit) {
-    return search(`/followers/?q=${q}&page=${page}&limit=${limit}/`).then(response => {
+    return search(`profile/followers/?q=${q}&page=${page}&limit=${limit}/`).then(response => {
 
       return response
     }).catch(error => {
@@ -274,14 +274,14 @@ export const followersAPI = {
 // }
 export const followAPI = {
   unsubscribe(login) {
-    return instance.delete(`/following/${login}/`).then(response => {
+    return instance.delete(`profile/following/${login}/`).then(response => {
       return response
     }).catch(response => {
       return response
     })
   },
   followed(login) {
-    return instance.get(`following/${login}/`).then(response => {
+    return instance.get(`profile/following/${login}/`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -289,7 +289,7 @@ export const followAPI = {
   },
   
   subscribe(login) {
-    return instance.put(`following/${login}/`).then(response => {
+    return instance.put(`profile/following/${login}/`).then(response => {
       return response
     }).catch(response => {
       return response

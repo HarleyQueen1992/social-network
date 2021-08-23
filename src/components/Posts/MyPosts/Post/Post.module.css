@@ -219,7 +219,8 @@ button {
 /* Img list */
 .popupPostImages {
   grid-area: listImg;
-  padding: 10px;
+  padding-bottom: 10px;
+  /* padding: 10px; */
   height: auto;
   width: 100%;
 
@@ -227,10 +228,11 @@ button {
 }
 .imagesListItems {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 5px;
   grid-template-columns: 1fr 1fr;
 }
 .imagesItem {
+  cursor: pointer;
   display: grid;
   height: 100%;
 }
