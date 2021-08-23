@@ -1,6 +1,6 @@
-import { profileAPI, followAPI } from "../../API/api"
+import { profileAPI, followAPI, bansAPI } from "../../API/api"
 import { stopSubmit } from "redux-form"
-import { setIsPassword, toggleIsFetching } from "../AppReducer/app-reducer"
+import { setIsLoader, setIsPassword, toggleIsFetching } from "../AppReducer/app-reducer"
 import { getTheLastPost } from "./../PostsReducer/posts-reducer"
 const SET_USER_PROFILE = "app/profile-reducer/SET_USER_PROFILE"
 const SET_STATUS = "app/profile-reducer/SET_STATUS"
@@ -18,6 +18,7 @@ const SET_PAGE_SUBSCRIPTIONS = 'app/profile-reducer/SET_PAGE_SUBSCRIPTIONS'
 const IS_SUCCESSFUL_PASSWORD_CHANGE = 'app/profile-reducer/IS_SUCCESSFUL_PASSWORD_CHANGE'
 const SET_BANNER_IS_LOADING = 'app/profile-reducer/SET_BANNER_IS_LOADING'
 const SET_AVATAR_IS_LOADING = 'app/profile-reducer/SET_AVATAR_IS_LOADING'
+const SET_USER_BAN = 'app/profile-reducer/SET_USER_BAN'
 
 let initialState = {
   isFatching: true,
@@ -31,7 +32,8 @@ let initialState = {
   isFollowed: null,
   isSuccessfulPasswordChange: false,
   bannerIsLoading: null,
-  avatarIsLoading: null
+  avatarIsLoading: null,
+  userBan: null,
 
 }
 
@@ -114,6 +116,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         isSavingPhoto: action.isSaving,
       }
+    case SET_USER_BAN:
+      return {
+        ...state,
+        userBan: action.userBan
+      }
     default:
       return state
   }
@@ -138,6 +145,8 @@ export const setPageSubscribers = pageNumber => ({ type: SET_PAGE_SUBSCRIBERS, p
 export const setPageSubscriptions = pageNumber => ({ type: SET_PAGE_SUBSCRIPTIONS, pageNumber })
 
 export const setIsSuccessfulPasswordChange = isComplite => ({type: IS_SUCCESSFUL_PASSWORD_CHANGE, isComplite})
+
+export const setUserBan = userBan => ({type: SET_USER_BAN, userBan})
 
 
 export const isSavePhoto = isSaving => ({
@@ -212,10 +221,29 @@ export const getProfileData = login => async dispatch => {
   
   // dispatch(toggleIsFetching(false))
 }
+export const blockUser = (login, reason) => async dispatch => {
+  dispatch(setIsLoader(true))
+  // dispatch(toggleIsFetching(true))
+  let response = await bansAPI.banUser(login, reason)
+  dispatch(setUserBan(response))
+  dispatch(setIsLoader(false))
+  
+  // dispatch(toggleIsFetching(false))
+}
+export const unblockUser = (login) => async dispatch => {
+  dispatch(setIsLoader(true))
+  // dispatch(toggleIsFetching(true))
+  let response = await bansAPI.unblockUser(login)
+  dispatch(setUserBan({'code':'notFound'}))
+  dispatch(setIsLoader(false))
+}
 export const getUsersProfileData = login => async dispatch => {
   dispatch(toggleIsFatching(true))
   let response = await profileAPI.getUsersProfile(login)
   dispatch(setUserProfile(response))
+
+  let responseBanUser = await bansAPI.getBanUser(login)
+  dispatch(setUserBan(responseBanUser))
 
   let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
   dispatch(setTotalSubscribersItems(responseFollowers.totalItems))

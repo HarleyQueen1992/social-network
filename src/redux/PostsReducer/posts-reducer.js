@@ -333,7 +333,6 @@ export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
 }
 
 export const requestUserPosts = (login, page) => async dispatch => {
-  debugger
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }

@@ -34,6 +34,7 @@ import {
   setIsBigPictures,
 } from "./redux/PostsReducer/posts-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import { blockUser } from "./redux/ProfileReducer/profile-reducer";
 import {
   getInitialized,
   getTheme,
@@ -70,6 +71,7 @@ import {
 } from "./redux/PostsReducer/posts-selectors";
 import loaderWhite from "./assets/images/loaderWhite.svg";
 import BigPictures from "./components/Posts/BigPictures/BigPictures";
+import { getBanUser } from "./redux/ProfileReducer/profile-selectors";
 
 const urlIndex = {
   0: "news",
@@ -370,6 +372,7 @@ const mapStateToProps = (state) => {
     isBigPictures: getIsBigPictures(state),
     selectPost: getSelectedPost(state),
     imgUrl: getImgUrl(state),
+    banUser: getBanUser(state),
   };
 };
 
@@ -388,6 +391,7 @@ let AppContainer = compose(
     updatePost,
     setDropdownMenus,
     setIsBigPictures,
+    blockUser,
   }),
   withRouter
 )(App);

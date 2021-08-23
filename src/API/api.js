@@ -391,3 +391,27 @@ export const postsAPI = {
     })
   }
 }
+export const bansAPI = {
+  banUser(login, reason) {
+    return instance.put(`/bans/${login}/`, {reason}).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  unblockUser(login) {
+    return instance.delete(`/bans/${login}/`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+  getBanUser(login) {
+    return instance.get(`/bans/${login}/`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
+
+}

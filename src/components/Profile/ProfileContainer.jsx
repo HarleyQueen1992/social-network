@@ -14,6 +14,8 @@ import {
   getUsersProfileData,
   subscribe,
   unsubscribe,
+  blockUser,
+  unblockUser,
 } from "../../redux/ProfileReducer/profile-reducer";
 import {
   deletePost,
@@ -38,6 +40,7 @@ import {
   getTotalSubscribersItems,
   getAvatarIsLoading,
   getBannerIsLoading,
+  getBanUser,
 } from "../../redux/ProfileReducer/profile-selectors";
 import { requestAllFriends } from "./../../redux/FriendsReducer/friends-reducer";
 import Profile from "./Profile";
@@ -163,6 +166,9 @@ class ProfileContainer extends React.Component {
             setUploadPost={this.props.setUploadPost}
             avatarIsLoading={this.props.avatarIsLoading}
             bannerIsLoading={this.props.bannerIsLoading}
+            blockUser={this.props.blockUser}
+            banUser={this.props.banUser}
+            unblockUser={this.props.unblockUser}
           />
         )}
       </>
@@ -194,6 +200,7 @@ const mapStateToProps = (state) => ({
   postsPage: getPagePosts(state),
   avatarIsLoading: getAvatarIsLoading(state),
   bannerIsLoading: getBannerIsLoading(state),
+  banUser: getBanUser(state),
   // usersListFollowing: getUsersListFollowing(state),
 });
 
@@ -220,6 +227,8 @@ export default compose(
     requestUserPosts,
     savePhoto,
     setPageSelection,
+    blockUser,
+    unblockUser,
     // getUsersListFollowing,
   }),
   withRouter,

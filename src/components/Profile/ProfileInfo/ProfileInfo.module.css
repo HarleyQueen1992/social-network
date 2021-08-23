@@ -363,6 +363,21 @@
 .banBlock:hover {
   background-color: red;
 }
+.unbanBlock {
+  cursor: pointer;
+  margin-right: 10px;
+  display: grid;
+  justify-self: end;
+  background-color: #1877f2;
+  border-radius: 5px;
+  width: 80px;
+  align-self: center;
+  height: 30px;
+  transition: all 0.3s;
+}
+.unbanBlock:hover {
+  background-color: #1666cf;
+}
 .banImg {
   height: 20px;
   align-self: center;

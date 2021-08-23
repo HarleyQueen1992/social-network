@@ -142,7 +142,13 @@ const ProfileInfo = (props) => {
 
   return (
     <div className={s.profilePage}>
-      {isBlockUser && <BlockUser setIsBlockUser={setIsBlockUser} />}
+      {isBlockUser && (
+        <BlockUser
+          profile={props.profile}
+          blockUser={props.blockUser}
+          setIsBlockUser={setIsBlockUser}
+        />
+      )}
       <div
         onMouseDown={closePopup}
         className={
@@ -327,23 +333,43 @@ const ProfileInfo = (props) => {
                   s.subscribeUnsubscribeBlockAndBan)
               }
             >
-              {!props.profile.isAdmin && props.profileInfo.isAdmin && (
-                <div
-                  className={s.banBlock}
-                  onClick={() => {
-                    document.querySelector(
-                      ".react-swipeable-view-container"
-                    ).style.cssText =
-                      "transform: translate(50) !important;" +
-                      "will-change: auto !important;";
-                    document.querySelector("body").style.cssText =
-                      "overflow: hidden;";
-                    setIsBlockUser(true);
-                  }}
-                >
-                  {/* <img className={s.banImg} src={res["block"]} alt="ban img" /> */}
-                  <span className={s.ban}>Block</span>
-                </div>
+              {!props.profile.isAdmin && props.profileInfo.isAdmin ? (
+                props.banUser.code == "notFound" ? (
+                  <div
+                    className={s.banBlock}
+                    onClick={() => {
+                      document.querySelector(
+                        ".react-swipeable-view-container"
+                      ).style.cssText =
+                        "transform: translate(50) !important;" +
+                        "will-change: auto !important;";
+                      document.querySelector("body").style.cssText =
+                        "overflow: hidden;";
+                      setIsBlockUser(true);
+                    }}
+                  >
+                    {/* <img className={s.banImg} src={res["block"]} alt="ban img" /> */}
+                    <span className={s.ban}>Block</span>
+                  </div>
+                ) : (
+                  <div
+                    className={s.unbanBlock}
+                    onClick={() => {
+                      props.unblockUser(props.profile.login);
+                    }}
+                  >
+                    {/* <img className={s.banImg} src={res["block"]} alt="ban img" /> */}
+                    <span className={s.ban}>Unblock</span>
+                  </div>
+                )
+              ) : !props.profile.isAdmin && !props.profileInfo.isAdmin ? (
+                props.banUser.code !== "notFound" ? (
+                  <div>Banned</div>
+                ) : (
+                  ""
+                )
+              ) : (
+                ""
               )}
               {props.isFollowed ? (
                 <div

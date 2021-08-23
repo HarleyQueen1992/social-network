@@ -64,6 +64,9 @@ const Profile = (props) => {
           Subscribe={props.Subscribe}
           avatarIsLoading={props.avatarIsLoading}
           bannerIsLoading={props.bannerIsLoading}
+          blockUser={props.blockUser}
+          banUser={props.banUser}
+          unblockUser={props.unblockUser}
         />
       </div>
     </div>

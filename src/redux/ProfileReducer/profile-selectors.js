@@ -40,3 +40,7 @@ export const getAvatarIsLoading = state => {
 export const getBannerIsLoading = state => {
   return state.profilePage.bannerIsLoading
 }
+
+export const getBanUser = state => {
+  return state.profilePage.userBan
+}
