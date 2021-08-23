@@ -282,13 +282,13 @@ export const setImgUrl = (imgUrl) => {
 // ? Thunk Creator
 
 export const requestPosts = (page, q = '') => async (dispatch, getState) => {
+  
   let state = getState()
   dispatch(setQ(q))
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }
   if (page <= state.posts.totalPageCount && !state.app.isLoader ) {
-  
     let response = await postsAPI.getPosts(initialState.limit, page, q)
     dispatch(setUploadPost(false))
     dispatch(setTotalPageCount(response.totalPages))
@@ -333,6 +333,7 @@ export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
 }
 
 export const requestUserPosts = (login, page) => async dispatch => {
+  debugger
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }
@@ -340,6 +341,7 @@ export const requestUserPosts = (login, page) => async dispatch => {
   dispatch(setUploadPost(false))
   dispatch(setPosts(response.items))
   dispatch(setPage(page + 1))
+  dispatch(setTotalPageCount(response.totalPages))
   dispatch(setTotalItems(response.totalItems))
   dispatch(setLoadingPosts(false))
 }
@@ -359,7 +361,7 @@ export const updatePost = (title, body, attachments, id) => async dispatch => {
   dispatch(setIsLoader(false))
 }
 
-export const deletePost = (id, method) => async (dispatch,getState) => {
+export const deletePost = (id, login = '') => async (dispatch,getState) => {
   dispatch(setIsLoader(true))
   let state = getState()
   // let posts = state.posts.posts
@@ -373,20 +375,33 @@ export const deletePost = (id, method) => async (dispatch,getState) => {
   // let leavePosts = posts.slice(0, (pageDeletePost) * 5)
   // let page = pageDeletePost + 1
   let response = await postsAPI.deletePost(id)
-  let data
-  if (state.posts.pageSelection == 'posts') {
-    data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
-
-  } else {
-    data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
-
-  }
-  if (data.items.length === 5) {
-    let lastPost = [data.items[4]]
-    dispatch(setPosts(lastPost))
+  if (state.posts.totalPageCount !== 1) {
+    let data
+    if (state.posts.pageSelection == 'posts') {
+      data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
+  
+    } else if (state.posts.pageSelection == 'userPosts') {
+      data = await postsAPI.getUserPosts(login, initialState.limit, state.posts.page - 1)
+    } else {
+      data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
+  
+    }  
     dispatch(setTotalPageCount(data.totalPages))
-    dispatch(setTotalItems(data.totalItems))
+    
+    // if (data.items.length === 5) {
+      let lastPost = [data.items[4]]
+      // debugger
+      // if (data.totalPages >= state.posts.totalPageCount) {
+        dispatch(setPosts(lastPost))
+        dispatch(setTotalItems(data.totalItems)) 
+        
+      // }
+      
+      
+      
+    // }
   }
+  
 
 
   // for (let i = 0; i <state.posts.page - page ; i++ ) {

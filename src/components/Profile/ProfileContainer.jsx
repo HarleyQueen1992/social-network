@@ -24,6 +24,7 @@ import {
   setUploadPost,
   clearPosts,
   requestUserPosts,
+  setPageSelection,
 } from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
@@ -83,6 +84,7 @@ class ProfileContainer extends React.Component {
       this.props.getProfileData(login);
       this.props.requestPosts(1);
     } else {
+      this.props.setPageSelection("userPosts");
       this.props.getUsersProfileData(login);
       this.props.requestUserPosts(login, 1);
     }
@@ -217,6 +219,7 @@ export default compose(
     clearPosts,
     requestUserPosts,
     savePhoto,
+    setPageSelection,
     // getUsersListFollowing,
   }),
   withRouter,
