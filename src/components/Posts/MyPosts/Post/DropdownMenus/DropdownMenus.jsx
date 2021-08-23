@@ -38,7 +38,7 @@ const DropdownMenus = (props) => {
         <div
           className={s.menuItem}
           onClick={() => {
-            props.deletePost(props.post.id);
+            props.deletePost(props.post.id, props.post.author.login);
           }}
         >
           <img className={s.itemImg} src={res["delete"]} alt="delete" />

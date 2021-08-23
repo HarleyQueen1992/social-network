@@ -11,6 +11,7 @@ const CreatePost = (props) => {
   const [valuePostTitle, setValuePostTitle] = useState(props.valueTitle);
   const [valueHashTag, setValueHashTag] = useState("");
   const [uploadImages, setUploadImages] = useState(true);
+  // debugger;
   const closePopup = () => {
     document.querySelector(".react-swipeable-view-container").style.cssText =
       "will-change: transform; !important" +
@@ -249,11 +250,21 @@ const CreatePost = (props) => {
               valuePostImages.map((img, index) => (
                 <div className={s.imagesItem}>
                   {/* <span>123123</span> */}
-                  {!props.updatePost || uploadedTheFile ? (
-                    <img id={"img-" + index} src="Gallery" alt="images post" />
-                  ) : (
-                    <img src={img} alt="images post" />
-                  )}
+                  <img id={"img-" + index} src="Gallery" alt="images post" />
+                  <div
+                    className={s.closeImagesItemBlock}
+                    onClick={() => {
+                      let images = valuePostImages.filter(
+                        (file) => file.name !== img
+                      );
+                      // debugger;
+                      setValuePostImages(
+                        valuePostImages.filter((file) => file.name !== img.name)
+                      );
+                    }}
+                  >
+                    <div className={s.closeImagesItem}></div>
+                  </div>
                 </div>
               ))}
           </div>

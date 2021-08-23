@@ -232,16 +232,33 @@ const UpdatePost = (props) => {
         >
           <div className={s.imagesListItems} id="imagesListItems">
             {valuePostImages &&
-              valuePostImages.map((img, index) => (
-                <div className={s.imagesItem}>
-                  {/* <span>123123</span> */}
-                  {uploadedTheFile ? (
+              valuePostImages.map((img, index) =>
+                uploadedTheFile ? (
+                  <div className={s.imagesItem}>
                     <img id={"img-" + index} src="Gallery" alt="images post" />
-                  ) : (
+                    <div
+                      className={s.closeImagesItemBlock}
+                      onClick={() => {
+                        let images = valuePostImages.filter(
+                          (file) => file.name !== img
+                        );
+                        // debugger;
+                        setValuePostImages(
+                          valuePostImages.filter(
+                            (file) => file.name !== img.name
+                          )
+                        );
+                      }}
+                    >
+                      <div className={s.closeImagesItem}></div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={s.imagesItem}>
                     <img src={img} alt="images post" />
-                  )}
-                </div>
-              ))}
+                  </div>
+                )
+              )}
           </div>
         </div>
         <input
@@ -262,9 +279,7 @@ const UpdatePost = (props) => {
           />
         </label>
         <div
-          onClick={
-            (valuePostText !== "") & (valuePostTitle !== "") && submitPost
-          }
+          onClick={submitPost}
           className={
             s.popupContentAddPost +
             " " +
