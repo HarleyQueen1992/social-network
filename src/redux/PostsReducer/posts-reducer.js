@@ -22,6 +22,7 @@ const LEAVE_POSTS = 'app/posts-reducer/LEAVE_POSTS'
 const SET_SELECTED_POST = 'app/posts-reducer/SET_SELECTED_POST'
 const SET_IS_BIG_PICTURES = 'app/posts-reducer/SET_IS_BIG_PICTURES'
 const SET_IMG_URL = 'app/posts-reducer/SET_IMG_URL'
+const SET_PAGE_SIZE = 'app/posts-reducer/SET_PAGE_SIZE'
 
 let initialState = {
   posts: [
@@ -40,7 +41,8 @@ let initialState = {
   dropdownMenus: false,
   dropdownMenusPostId: null,
   totalPageCount: 1,
-  imgUrl: null
+  imgUrl: null,
+  pageSize: null
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -167,6 +169,11 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         page: action.page
       }
+      case SET_PAGE_SIZE:
+        return {
+          ...state,
+          pageSize: action.pageSize
+        }
     case SET_IMG_URL:
       return {
         ...state,
@@ -279,10 +286,13 @@ export const setIsBigPictures = (isBigPictures) => {
 export const setImgUrl = (imgUrl) => {
   return {type: SET_IMG_URL, imgUrl}
 }
+export const setPageSize = (pageSize) => {
+  return {type: SET_PAGE_SIZE, pageSize}
+}
 // ? Thunk Creator
 
 export const requestPosts = (page, q = '') => async (dispatch, getState) => {
-  
+console.log('upload')
   let state = getState()
   dispatch(setQ(q))
   if (page === 1) {
@@ -300,6 +310,7 @@ export const requestPosts = (page, q = '') => async (dispatch, getState) => {
     } else {
       dispatch(setSearchPosts(response.items))
     }
+    dispatch(setPageSize(response.pageSize))
     dispatch(setPage(page + 1))
     dispatch(setTotalItems(response.totalItems))
     dispatch(setLoadingPosts(false))
@@ -325,7 +336,9 @@ export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
       dispatch(setSearchPosts(response.items))
     }
     
+    dispatch(setPageSize(response.pageSize))
     dispatch(setPage(page + 1))
+    dispatch(setTotalPageCount(response.totalPages))
     dispatch(setTotalItems(response.totalItems))
     dispatch(setLoadingPosts(false))
   
@@ -340,6 +353,7 @@ export const requestUserPosts = (login, page) => async dispatch => {
   dispatch(setUploadPost(false))
   dispatch(setPosts(response.items))
   dispatch(setPage(page + 1))
+  dispatch(setPageSize(response.pageSize))
   dispatch(setTotalPageCount(response.totalPages))
   dispatch(setTotalItems(response.totalItems))
   dispatch(setLoadingPosts(false))
@@ -374,33 +388,25 @@ export const deletePost = (id, login = '') => async (dispatch,getState) => {
   // let leavePosts = posts.slice(0, (pageDeletePost) * 5)
   // let page = pageDeletePost + 1
   let response = await postsAPI.deletePost(id)
-  if (state.posts.totalPageCount !== 1) {
-    let data
-    if (state.posts.pageSelection == 'posts') {
-      data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
-  
-    } else if (state.posts.pageSelection == 'userPosts') {
-      data = await postsAPI.getUserPosts(login, initialState.limit, state.posts.page - 1)
-    } else {
-      data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
-  
-    }  
-    dispatch(setTotalPageCount(data.totalPages))
-    
-    // if (data.items.length === 5) {
-      let lastPost = [data.items[4]]
-      // debugger
-      // if (data.totalPages >= state.posts.totalPageCount) {
-        dispatch(setPosts(lastPost))
-        dispatch(setTotalItems(data.totalItems)) 
-        
-      // }
-      
-      
-      
-    // }
+  dispatch(deletePostAC(id))
+
+if (state.posts.page - 1 < state.posts.totalPageCount) {
+  let data
+  if (state.posts.pageSelection == 'posts') {
+    data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
+  } else if (state.posts.pageSelection == 'allPosts') {
+    data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
+  } else {
+    data = await postsAPI.getUserPosts(initialState.limit, state.posts.page - 1, '')
   }
-  
+  let lastPost = [data.items[4]]
+
+  dispatch(setPageSize(data.pageSize))
+  dispatch(setPosts(lastPost))
+  dispatch(setTotalItems(data.totalItems))
+  dispatch(setTotalPageCount(data.totalPages))
+}
+
 
 
   // for (let i = 0; i <state.posts.page - page ; i++ ) {
@@ -414,7 +420,7 @@ export const deletePost = (id, login = '') => async (dispatch,getState) => {
   //   }
     
   // }
-  dispatch(deletePostAC(id))
+  
   
   dispatch(setIsLoader(false))
   
