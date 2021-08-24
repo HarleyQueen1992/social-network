@@ -415,3 +415,12 @@ export const bansAPI = {
   },
 
 }
+export const newsAPI = {
+  getNews(limit, page, q) {
+    return instance.get(`/news/?page=${page}&limit=${limit}&q=${q}`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  }
+}

@@ -10,20 +10,22 @@ import {
   getTotalPostsItems,
 } from "../../redux/PostsReducer/posts-selectors";
 import {
-  requestAllPosts,
+  requestNews,
   clearPosts,
   setUploadPost,
+  setPageSelection,
 } from "./../../redux/PostsReducer/posts-reducer";
 import { getProfileInfo } from "./../../redux/AuthReducer/auth-selectors";
 import News from "./News";
 
 class NewsContainer extends React.Component {
   componentDidMount() {
-    this.props.requestAllPosts(1);
+    this.props.setPageSelection("news");
+    this.props.requestNews(1);
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.uploadPosts && !this.props.loadingPosts) {
-      this.props.requestAllPosts(this.props.postsPage);
+      this.props.requestNews(this.props.postsPage);
     }
   }
   componentWillUnmount() {
@@ -60,7 +62,8 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps, {
     clearPosts,
-    requestAllPosts,
+    requestNews,
     setUploadPost,
+    setPageSelection,
   })
 )(NewsContainer);

@@ -1,4 +1,4 @@
-import { postsAPI } from "../../API/api"
+import { newsAPI, postsAPI } from "../../API/api"
 import { setIsLoader } from "../AppReducer/app-reducer"
 
 const ADD_POST = "app/posts-reducer/ADD-POST"
@@ -316,7 +316,31 @@ console.log('upload')
     dispatch(setLoadingPosts(false))
   }
 }
-
+export const requestNews = (page, q = '') => async (dispatch, getState) => {
+  let state = getState()
+  dispatch(setQ(q))
+  if (page === 1) {
+    dispatch(setLoadingPosts(true))
+  }
+  if (page <= state.posts.totalPageCount && !state.app.isLoader ) {
+    let response = await newsAPI.getNews(initialState.limit, page, q)
+    dispatch(setUploadPost(false))
+    dispatch(setTotalPageCount(response.totalPages))
+    if (q === '' && state.posts.q !== '') {
+      dispatch(setSearchPosts(response.items))
+      
+    } else if (q == '' || q == state.posts.q) {
+      dispatch(setPosts(response.items))
+    } else {
+      dispatch(setSearchPosts(response.items))
+    }
+    dispatch(setPageSize(response.pageSize))
+    dispatch(setPage(page + 1))
+  
+    dispatch(setTotalItems(response.totalItems))
+    dispatch(setLoadingPosts(false))
+  }
+}
 export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
   let state = getState()
   dispatch(setQ(q))
@@ -359,10 +383,14 @@ export const requestUserPosts = (login, page) => async dispatch => {
   dispatch(setLoadingPosts(false))
 }
 
-export const createPost = (title, body, attachments) => async dispatch => {
+export const createPost = (title, body, attachments) => async (dispatch, getState) => {
+    let state = getState()
   dispatch(setIsLoader(true))
   let response = await postsAPI.createPost(title, body, attachments)
-  dispatch(addPostActionCreator(response))
+   if (state.posts.pageSelection != 'news') {
+    dispatch(addPostActionCreator(response))
+   }
+  
   dispatch(setIsLoader(false))
 }
 
@@ -396,8 +424,11 @@ if (state.posts.page - 1 < state.posts.totalPageCount) {
     data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
   } else if (state.posts.pageSelection == 'allPosts') {
     data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
+  } else if (state.posts.pageSelection == 'news') {
+    data = await newsAPI.getNews(initialState.limit, state.posts.page - 1, '')
   } else {
     data = await postsAPI.getUserPosts(initialState.limit, state.posts.page - 1, '')
+
   }
   let lastPost = [data.items[4]]
 
