@@ -77,8 +77,8 @@ export const profileAPI = {
   getUsersProfile(login) {
     return instance.get(`/users/${login}`).then(response => {
       return response.data
-    }).catch(response => {
-      return response.data
+    }).catch(error => {
+      return error.response.data
     })
   },
 
@@ -350,16 +350,16 @@ export const postsAPI = {
   getPosts(limit, page, q) {
     return instance.get(`/profile/posts/?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
-    }).catch(response => {
-      return response
+    }).catch(error => {
+      return  error.response.data
     })
   },
   
   getAllPosts(limit, page, q) {
     return instance.get(`/posts/?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
-    }).catch(response => {
-      return response
+    }).catch(error => {
+      return error.response.data
     })
   },
   getUserPosts(login, limit, page) {

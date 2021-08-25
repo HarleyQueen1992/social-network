@@ -14,3 +14,20 @@
 .hello {
   color: white;
 }
+.userIsNotFound {
+  height: 100%;
+  position: relative;
+}
+.userIsNotFound span {
+  position: absolute;
+  color: var(--fontColor);
+  /* top: 50%; */
+  height: 40px;
+  width: 250px;
+  left: 50%;
+  margin-left: -125px;
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}

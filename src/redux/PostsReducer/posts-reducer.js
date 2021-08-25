@@ -374,13 +374,18 @@ export const requestUserPosts = (login, page) => async dispatch => {
     dispatch(setLoadingPosts(true))
   }
   let response = await postsAPI.getUserPosts(login,  initialState.limit, page)
-  dispatch(setUploadPost(false))
-  dispatch(setPosts(response.items))
-  dispatch(setPage(page + 1))
-  dispatch(setPageSize(response.pageSize))
-  dispatch(setTotalPageCount(response.totalPages))
-  dispatch(setTotalItems(response.totalItems))
-  dispatch(setLoadingPosts(false))
+  if (response.code !== 'notFound') {
+    dispatch(setUploadPost(false))
+    dispatch(setPosts(response.items))
+    dispatch(setPage(page + 1))
+    dispatch(setPageSize(response.pageSize))
+    dispatch(setTotalPageCount(response.totalPages))
+    dispatch(setTotalItems(response.totalItems))
+    dispatch(setLoadingPosts(false))
+  } else {
+    
+  }
+  
 }
 
 export const createPost = (title, body, attachments) => async (dispatch, getState) => {

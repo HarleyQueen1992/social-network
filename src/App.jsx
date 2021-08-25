@@ -254,7 +254,7 @@ class App extends React.Component {
 
               {(this.props.location.pathname === "/news") |
               (this.props.location.pathname.substr(0, 8) === "/profile") |
-              (this.props.location.pathname === "/posts") |
+              (this.props.location.pathname.substr(0, 6) === "/posts") |
               (this.props.location.pathname === "/users") |
               (window.innerWidth < 900 &&
                 this.props.location.pathname === "/menu") |
@@ -284,7 +284,7 @@ class App extends React.Component {
                     )}
                   />
                   <Route
-                    path="/posts"
+                    path="/posts/:posts?"
                     render={() => (
                       <MyPostsContainer
                         changeIndex={this.changeIndex}

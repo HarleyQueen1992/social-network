@@ -18,6 +18,8 @@ import {
   getPageSelection,
   getQ,
 } from "../../../redux/PostsReducer/posts-selectors";
+import { withRouter } from "react-router-dom";
+import { withAuthRedirecr } from "./../../../Hoc/withAuthRedirect";
 import {
   getNewPostText,
   getIsFatching,
@@ -43,10 +45,13 @@ import s from "./MyPosts.module.css";
 
 class MyPostsContainer extends React.Component {
   componentDidMount() {
-    if (this.props.pageSelection === "posts") {
-      this.props.requestPosts(1);
-    } else {
+    let posts = this.props.match.params.posts;
+    if (posts == "all") {
+      this.props.setPageSelection("allPosts");
       this.props.requestAllPosts(1);
+    } else if (posts == "my" || posts == undefined) {
+      this.props.setPageSelection("posts");
+      this.props.requestPosts(1);
     }
   }
   componentDidUpdate(prevProps, prevState) {
@@ -135,5 +140,7 @@ export default compose(
     setUploadPost,
     setPageSelection,
     requestAllPosts,
-  })
+  }),
+  withRouter,
+  withAuthRedirecr
 )(MyPostsContainer);

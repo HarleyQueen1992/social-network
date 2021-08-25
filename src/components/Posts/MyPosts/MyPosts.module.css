@@ -42,6 +42,7 @@
   transition: all 0.3s;
 }
 .newsItemBlock {
+  text-decoration: none;
   cursor: pointer;
   display: grid;
   transition: all 0.2s;
@@ -55,6 +56,7 @@
   background-color: var(--headItem);
 }
 .allPostsItemBlock {
+  text-decoration: none;
   cursor: pointer;
   display: grid;
   transition: all 0.2s;

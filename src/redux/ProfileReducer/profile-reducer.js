@@ -240,22 +240,28 @@ export const unblockUser = (login) => async dispatch => {
 export const getUsersProfileData = login => async dispatch => {
   dispatch(toggleIsFatching(true))
   let response = await profileAPI.getUsersProfile(login)
-  dispatch(setUserProfile(response))
+  if (response.code !== 'notFound') {
+    dispatch(setUserProfile(response))
 
-  let responseBanUser = await bansAPI.getBanUser(login)
-  dispatch(setUserBan(responseBanUser))
-
-  let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
-  dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
-  dispatch(setSubscribers(responseFollowers.items))
-
-  let responseFollowing = await profileAPI.usersFollowing(login, initialState.pageSize)
-  dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
-  dispatch(setSubscriptions(responseFollowing.items))
+    let responseBanUser = await bansAPI.getBanUser(login)
+    dispatch(setUserBan(responseBanUser))
   
-  let responseIsFollowed = await followAPI.followed(login)
-  dispatch(toggleIsFollowed(responseIsFollowed.isFollowed))
+    let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
+    dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
+    dispatch(setSubscribers(responseFollowers.items))
+  
+    let responseFollowing = await profileAPI.usersFollowing(login, initialState.pageSize)
+    dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
+    dispatch(setSubscriptions(responseFollowing.items))
+    
+    let responseIsFollowed = await followAPI.followed(login)
+    dispatch(toggleIsFollowed(responseIsFollowed.isFollowed))
+    
+  } else {
+    dispatch(setUserProfile(response.code))
+  }
   dispatch(toggleIsFatching(false))
+
 
 }
 

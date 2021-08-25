@@ -7,6 +7,7 @@ import save from "./../../../assets/images/send.png";
 import { Icons } from "./../../../utils/Icons/Icons";
 import PostCreation from "./PostCreation/PostCreation";
 import Preloader from "../../common/Preloader/Preloader";
+import { NavLink } from "react-router-dom";
 
 const MyPosts = (props) => {
   let res = Icons(props.theme);
@@ -72,7 +73,8 @@ const MyPosts = (props) => {
             (props.pageSelection == "allPosts" && p.headerBorderBottomRight)
           }
         >
-          <div
+          <NavLink
+            to="/posts/my"
             className={p.newsItemBlock}
             onClick={() => {
               props.setPageSelection("posts");
@@ -87,8 +89,9 @@ const MyPosts = (props) => {
             >
               My Posts
             </span>
-          </div>
-          <div
+          </NavLink>
+          <NavLink
+            to="/posts/all"
             className={p.allPostsItemBlock}
             onClick={() => {
               props.setPageSelection("allPosts");
@@ -103,7 +106,7 @@ const MyPosts = (props) => {
             >
               All Posts
             </span>
-          </div>
+          </NavLink>
         </header>
         {/* <header className={p.header2 + " " + (focus ? p.active : "")}>
           <div className={p.heading + " " + (focus ? p.action : "")}>

@@ -126,6 +126,10 @@ class ProfileContainer extends React.Component {
       <>
         {this.props.isFatching ? (
           <Preloader />
+        ) : this.props.profile == "notFound" ? (
+          <div className={s.userIsNotFound}>
+            <span>User is not found</span>
+          </div>
         ) : (
           <Profile
             {...this.props}
