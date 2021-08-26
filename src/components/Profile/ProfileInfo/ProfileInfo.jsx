@@ -330,7 +330,7 @@ const ProfileInfo = (props) => {
                 s.subscribeUnsubscribeBlock +
                 " " +
                 (props.profile.isBanned & !props.profileInfo.isAdmin ||
-                props.profileInfo.isAdmin
+                props.profileInfo.isAdmin & !props.profile.isAdmin
                   ? s.subscribeUnsubscribeBlockAndBan
                   : "")
               }

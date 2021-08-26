@@ -298,18 +298,32 @@ export const updateStatus = status => async dispatch => {
   dispatch(setUserProfile(response))
 }
 export const subscribe = login => async dispatch => {
-  
   let response = await followAPI.subscribe(login)
   dispatch(toggleIsFollowed(true))
   
+  let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
+  dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
+  dispatch(setSubscribers(responseFollowers.items))
+
+  let responseFollowing = await profileAPI.usersFollowing(login, initialState.pageSize)
+  dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
+  dispatch(setSubscriptions(responseFollowing.items))
   
 }
+
 export const unsubscribe = login => async dispatch => {
- 
   let response = await followAPI.unsubscribe(login)
   dispatch(toggleIsFollowed(false))
-  
+
+  let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
+  dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
+  dispatch(setSubscribers(responseFollowers.items))
+
+  let responseFollowing = await profileAPI.usersFollowing(login, initialState.pageSize)
+  dispatch(setTotalSubscriptionsItems(responseFollowing.totalItems))
+  dispatch(setSubscriptions(responseFollowing.items))
 }
+
 export const changePassword = (oldPassword, newPassword1, newPassword2) => async dispatch => {
   let response = await profileAPI.changePassword(oldPassword, newPassword1, newPassword2)
   if (response.code == "invalid") {
