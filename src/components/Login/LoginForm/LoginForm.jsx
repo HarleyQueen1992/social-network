@@ -36,6 +36,7 @@ const LoginForm = (props) => {
           /> */}
           {createField("Password", "password", [], Input, {
             error: props.error,
+            type: "password",
           })}
         </div>
       </div>
