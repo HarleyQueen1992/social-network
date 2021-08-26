@@ -13,6 +13,7 @@ const Password = (props) => {
       formData.newPassword1,
       formData.newPassword2
     );
+    document.querySelector("body").style.cssText = "overflow: scroll;";
   };
   const closePopup = () => {
     props.setIsPassword(false);
