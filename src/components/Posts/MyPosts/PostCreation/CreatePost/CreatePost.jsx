@@ -175,7 +175,6 @@ const CreatePost = (props) => {
       setValuePostText("");
       setValuePostTitle("");
       setValueHashTag("");
-      console.log("exit");
     };
   }, []);
   return (

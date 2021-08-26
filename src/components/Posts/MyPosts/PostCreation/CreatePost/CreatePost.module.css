@@ -16,7 +16,7 @@
   justify-self: center;
   width: 500px;
   max-height: 100%;
-  border-radius: 10px;
+  border-radius: 16px;
   background-color: var(--navBarBac);
   z-index: 999999999999999;
 }
@@ -177,7 +177,7 @@
 
 .popupContentBody {
   display: grid;
-  padding: 16px;
+  padding: 5px 16px 16px 16px;
 }
 .popupContentTitleTextarea {
   width: 100%;

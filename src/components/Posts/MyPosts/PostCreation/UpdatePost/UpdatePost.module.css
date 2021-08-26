@@ -12,18 +12,48 @@
 .popupContent {
   align-self: center;
   display: grid;
-  grid-template-rows: 50px 1fr auto 50px 70px;
+  grid-template-rows: 50px 60px 1fr 60px 70px;
   justify-self: center;
-  width: 600px;
+  width: 500px;
   max-height: 100%;
-  padding: 0 0 5px 0;
-  border-radius: 20px;
+  border-radius: 16px;
   background-color: var(--navBarBac);
   z-index: 999999999999999;
 }
+.popupContentBodyImages {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+/* width */
+.popupContentBodyImages::-webkit-scrollbar {
+  display: block;
+  border-radius: 5px;
+  width: 6px;
+}
+
+/* Track */
+.popupContentBodyImages::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+/* Handle */
+.popupContentBodyImages::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.popupContentBodyImages::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 @media (max-width: 600px) {
   .popupContent {
     width: 100vw;
+    height: 100vh;
+  }
+  .popupContentBodyImages {
+    max-height: calc(100vh - 240px);
+    height: 100%;
   }
 }
 .popupContentHader {
@@ -123,6 +153,9 @@
 }
 .popupContentBodyAuthor {
   display: grid;
+  height: 50px;
+  align-self: center;
+  margin: 0 10px;
   grid-template-columns: 60px 1fr;
 }
 .popupContentBodyAuthorAvatarBlock {
@@ -144,7 +177,6 @@
 
 .popupContentBody {
   display: grid;
-  grid-template-rows: 50px 70px 1fr;
   padding: 16px;
 }
 .popupContentTitleTextarea {
@@ -162,8 +194,8 @@
 }
 .popupContentBodyTextarea {
   width: 100%;
-  min-height: 200px;
-  max-height: 500px;
+  min-height: 100px;
+  /* max-height: 300px; */
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid rgba(255, 255, 255, 0);
   resize: none;
@@ -184,8 +216,8 @@
   grid-template-columns: 1fr 1fr;
 }
 /* .imagesListItemsNone {
-    display: none;
-  } */
+  display: none;
+} */
 .imagesItem {
   display: grid;
   position: relative;
@@ -234,6 +266,8 @@
   background-color: white;
 }
 .popupContentAddToYourPostBlock {
+  height: 50px;
+  align-self: center;
   cursor: pointer;
   display: grid;
   grid-template-columns: 1fr 60px;

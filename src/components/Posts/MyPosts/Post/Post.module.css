@@ -165,6 +165,7 @@
 
 .postText {
   min-height: 50px;
+  margin-bottom: 10px;
   grid-area: body;
   color: var(--fontColor);
   font-weight: 400;
