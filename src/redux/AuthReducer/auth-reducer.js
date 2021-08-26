@@ -76,7 +76,14 @@ export const setIsAuth = isAuth => {
 }
 // Thunk Creator
 
-export const getAuthMe = () => async dispatch => {
+export const getAuthMe = () => async (dispatch, getState) => {
+  let state = getState()
+  for (let property in state.app.theme) {
+    document.documentElement.style.setProperty(
+      "--" + property,
+      state.app.theme[property]
+    );
+    }
   let data = await authAPI.getAuthMe()
   if (data.code !== 'notAuthenticated') {
     dispatch(setProfileData(data, true))
@@ -94,6 +101,7 @@ export const loginIn = (email, password, rememberMe) => async dispatch => {
     window.location = '/social-network/#/news';
     dispatch(setIndex(0))
     dispatch(setProfileData(data, true))
+    dispatch(setTheme(data.theme))
   } else {
     let message =
       data.messages.length > 0 ? data.messages[0] : "Some error"

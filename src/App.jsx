@@ -159,6 +159,15 @@ class App extends React.Component {
       : this.props.setTheme("light");
   };
   componentDidUpdate(prevProps) {
+    if (prevProps.theme !== this.props.theme) {
+      for (let property in this.props.theme) {
+        document.documentElement.style.setProperty(
+          "--" + property,
+          this.props.theme[property]
+        );
+      }
+    }
+
     if (this.props.location.pathname !== prevProps.location.pathname) {
       if (this.props.location.pathname.length == 1) {
         window.location = "/social-network/#/news";
@@ -174,6 +183,7 @@ class App extends React.Component {
     this.props.setEitMode(getValue);
   };
   render() {
+    //
     // window.addEventListener("resize", function () {
     //   if (window.innerWidth > 600) {
     //     toggleIsBigScreen(true)
@@ -357,7 +367,7 @@ const mapStateToProps = (state) => {
     initialized: getInitialized(state),
     isAuth: getIsAuth(state),
     isPostCreation: getIsPostCreation(state),
-    // theme: getTheme(state),
+    theme: getTheme(state),
     headerBlur: getHeaderBlur(state),
     Height: getInnerHeight(state),
     index: getIndex(state),
