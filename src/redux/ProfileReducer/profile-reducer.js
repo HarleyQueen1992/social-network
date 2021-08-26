@@ -119,7 +119,7 @@ const profileReducer = (state = initialState, action) => {
     case SET_USER_BAN:
       return {
         ...state,
-        userBan: action.userBan
+        profile: {...state.profile, isBanned: action.isBanned}
       }
     default:
       return state
@@ -146,7 +146,7 @@ export const setPageSubscriptions = pageNumber => ({ type: SET_PAGE_SUBSCRIPTION
 
 export const setIsSuccessfulPasswordChange = isComplite => ({type: IS_SUCCESSFUL_PASSWORD_CHANGE, isComplite})
 
-export const setUserBan = userBan => ({type: SET_USER_BAN, userBan})
+export const setUserBan = isBanned => ({type: SET_USER_BAN, isBanned})
 
 
 export const isSavePhoto = isSaving => ({
@@ -225,7 +225,7 @@ export const blockUser = (login, reason) => async dispatch => {
   dispatch(setIsLoader(true))
   // dispatch(toggleIsFetching(true))
   let response = await bansAPI.banUser(login, reason)
-  dispatch(setUserBan(response))
+  dispatch(setUserBan(true))
   dispatch(setIsLoader(false))
   
   // dispatch(toggleIsFetching(false))
@@ -234,7 +234,7 @@ export const unblockUser = (login) => async dispatch => {
   dispatch(setIsLoader(true))
   // dispatch(toggleIsFetching(true))
   let response = await bansAPI.unblockUser(login)
-  dispatch(setUserBan({'code':'notFound'}))
+  dispatch(setUserBan(false))
   dispatch(setIsLoader(false))
 }
 export const getUsersProfileData = login => async dispatch => {
@@ -243,9 +243,6 @@ export const getUsersProfileData = login => async dispatch => {
   if (response.code !== 'notFound') {
     dispatch(setUserProfile(response))
 
-    let responseBanUser = await bansAPI.getBanUser(login)
-    dispatch(setUserBan(responseBanUser))
-  
     let responseFollowers = await profileAPI.usersFollowers(login, initialState.pageSize)
     dispatch(setTotalSubscribersItems(responseFollowers.totalItems))
     dispatch(setSubscribers(responseFollowers.items))

@@ -329,12 +329,14 @@ const ProfileInfo = (props) => {
               className={
                 s.subscribeUnsubscribeBlock +
                 " " +
-                (!props.profile.isAdmin & props.profileInfo.isAdmin &&
-                  s.subscribeUnsubscribeBlockAndBan)
+                (props.profile.isBanned & !props.profileInfo.isAdmin ||
+                props.profileInfo.isAdmin
+                  ? s.subscribeUnsubscribeBlockAndBan
+                  : "")
               }
             >
               {!props.profile.isAdmin && props.profileInfo.isAdmin ? (
-                props.banUser.code == "notFound" ? (
+                !props.profile.isBanned ? (
                   <div
                     className={s.banBlock}
                     onClick={() => {
@@ -363,8 +365,10 @@ const ProfileInfo = (props) => {
                   </div>
                 )
               ) : !props.profile.isAdmin && !props.profileInfo.isAdmin ? (
-                props.banUser.code !== "notFound" ? (
-                  <div>Banned</div>
+                props.profile.isBanned ? (
+                  <div className={s.bannedBlock}>
+                    <div className={s.banned}>Banned</div>
+                  </div>
                 ) : (
                   ""
                 )

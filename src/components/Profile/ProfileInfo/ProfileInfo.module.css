@@ -363,6 +363,21 @@
 .banBlock:hover {
   background-color: red;
 }
+.bannedBlock {
+  width: 80px;
+  height: 30px;
+  align-self: center;
+  justify-self: end;
+  margin-right: 5px;
+  display: grid;
+}
+.banned {
+  align-self: center;
+  justify-self: center;
+  color: rgb(255, 0, 0);
+  font-size: 16px;
+  font-weight: bold;
+}
 .unbanBlock {
   cursor: pointer;
   margin-right: 10px;
@@ -421,6 +436,17 @@
   transition: all 0.2s;
   border-radius: 5px;
   background-color: #2748ad;
+}
+@media (max-width: 500px) {
+  .subscribeUnsubscribeBlockAndBan {
+    grid-template-columns: 1fr 100px;
+  }
+  .subscribeBlock {
+    width: 100px;
+  }
+  .unsubscribeBlock {
+    width: 100px;
+  }
 }
 .subscribeBlock:hover {
   background-color: #4e67b1;
