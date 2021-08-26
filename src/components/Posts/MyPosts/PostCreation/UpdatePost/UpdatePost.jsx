@@ -11,6 +11,12 @@ const UpdatePost = (props) => {
   const [valuePostTitle, setValuePostTitle] = useState(props.valueTitle);
   const [valueHashTag, setValueHashTag] = useState("");
   const [uploadImages, setUploadImages] = useState(true);
+  fetch(valuePostImages[0])
+    .then((res) => res.blob())
+    .then((blob) => {
+      let file = new File([blob], "dot.png", blob);
+      console.log(file);
+    });
   const closePopup = () => {
     document.querySelector(".react-swipeable-view-container").style.cssText =
       "will-change: transform; !important" +

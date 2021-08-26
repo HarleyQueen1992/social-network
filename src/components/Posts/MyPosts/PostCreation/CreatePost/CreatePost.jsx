@@ -64,8 +64,22 @@ const CreatePost = (props) => {
       var tx = document.getElementById("textarea");
       let height = tx.style.height;
       let heightNumber = Number(height.substring(0, height.length - 2));
-      if (heightNumber > 500) {
-        tx.setAttribute("style", "height: 500px;" + "overflow-y:scroll;");
+      let length = valuePostText.length;
+
+      // if (heightNumber > 200) {
+      //   tx.setAttribute("style", "height: 200px;" + "font-size:16px;");
+      // } else {
+      if (valuePostText.length > 100) {
+        tx.setAttribute(
+          "style",
+          "height:" + tx.scrollHeight + "px;overflow-y:hidden; font-size:16px;"
+        );
+        tx.addEventListener("input", OnInput, false);
+
+        function OnInput(e) {
+          this.style.height = "auto";
+          this.style.height = this.scrollHeight + "px";
+        }
       } else {
         tx.setAttribute(
           "style",
@@ -124,27 +138,27 @@ const CreatePost = (props) => {
   //     "display: grid;";
   // }
 
-  useEffect(() => {
-    if (window.innerWidth > 500) {
-      var tx = document.getElementById("textareaTitle");
-      let height = tx.style.height;
-      let heightNumber = Number(height.substring(0, height.length - 2));
-      if (heightNumber > 60) {
-        tx.setAttribute("style", "height: 60px;" + "overflow-y:scroll;");
-      } else {
-        tx.setAttribute(
-          "style",
-          "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
-        );
-        tx.addEventListener("input", OnInput, false);
+  // useEffect(() => {
+  //   if (window.innerWidth > 500) {
+  //     var tx = document.getElementById("textareaTitle");
+  //     let height = tx.style.height;
+  //     let heightNumber = Number(height.substring(0, height.length - 2));
+  //     if (heightNumber > 60) {
+  //       tx.setAttribute("style", "height: 60px;" + "overflow-y:scroll;");
+  //     } else {
+  //       tx.setAttribute(
+  //         "style",
+  //         "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
+  //       );
+  //       tx.addEventListener("input", OnInput, false);
 
-        function OnInput(e) {
-          this.style.height = "auto";
-          this.style.height = this.scrollHeight + "px";
-        }
-      }
-    }
-  }, [valuePostTitle]);
+  //       function OnInput(e) {
+  //         this.style.height = "auto";
+  //         this.style.height = this.scrollHeight + "px";
+  //       }
+  //     }
+  //   }
+  // }, [valuePostTitle]);
   useEffect(() => {
     return () => {
       document.querySelector(".react-swipeable-view-container").style.cssText =
@@ -184,91 +198,97 @@ const CreatePost = (props) => {
 
           <div className={s.popupContentHeaderOff} onClick={closePopup}></div>
         </div>
-        <div className={s.popupContentBody}>
-          <div className={s.popupContentBodyAuthor}>
-            <div className={s.popupContentBodyAuthorAvatarBlock}>
-              <img
-                className={s.popupContentBodyAuthorAvatar}
-                src={props.profile.avatar ? props.profile.avatar : User}
-                alt="avatar"
-              />
+        <div className={s.popupContentBodyAuthor}>
+          <div className={s.popupContentBodyAuthorAvatarBlock}>
+            <img
+              className={s.popupContentBodyAuthorAvatar}
+              src={props.profile.avatar ? props.profile.avatar : User}
+              alt="avatar"
+            />
+          </div>
+          <div className={s.popupContentBodyAuthorNameAndHashtag}>
+            <div className={s.popupContentBodyAuthorName}>
+              {props.profile.login}
             </div>
-            <div className={s.popupContentBodyAuthorNameAndHashtag}>
-              <div className={s.popupContentBodyAuthorName}>
-                {props.profile.login}
-              </div>
 
-              {isWriteHashTag ? (
-                <input
-                  className={s.popupContentBodyHashTagInput}
-                  type="text"
-                  value={valueHashTag}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={handleChangeHashTag}
-                  autoFocus
-                />
-              ) : (
-                <div onDoubleClick={() => setIsWriteHashTag(true)}>
-                  {valueHashTag == "" ? (
-                    <div className={s.addHashtag}>
-                      HashTag example, <span>#sport #study</span>
+            {isWriteHashTag ? (
+              <input
+                className={s.popupContentBodyHashTagInput}
+                type="text"
+                value={valueHashTag}
+                onClick={(e) => e.stopPropagation()}
+                onChange={handleChangeHashTag}
+                autoFocus
+              />
+            ) : (
+              <div onDoubleClick={() => setIsWriteHashTag(true)}>
+                {valueHashTag == "" ? (
+                  <div className={s.addHashtag}>
+                    HashTag example, <span>#sport #study</span>
+                  </div>
+                ) : (
+                  <div className={s.hashTag}>{valueHashTag}</div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={s.popupContentBodyImages}>
+          <div className={s.popupContentBody}>
+            <textarea
+              className={s.popupContentTitleTextarea}
+              id="textareaTitle"
+              value={valuePostTitle}
+              maxLength="70"
+              placeholder="Title post!"
+              onChange={handleChangePostTitle}
+            ></textarea>
+            <textarea
+              value={valuePostText}
+              id="textarea"
+              placeholder="What's on your mind?"
+              className={s.popupContentBodyTextarea}
+              maxLength="2000"
+              onChange={handleChangePostText}
+            >
+              <span></span>
+            </textarea>
+          </div>
+          <div
+            className={
+              s.popupPostImages +
+              " " +
+              (valuePostImages ? s.popupPostImagesActive : "")
+            }
+          >
+            <div className={s.imagesListItems} id="imagesListItems">
+              {valuePostImages &&
+                valuePostImages.map((img, index) => (
+                  <div className={s.imagesItem}>
+                    {/* <span>123123</span> */}
+                    <img id={"img-" + index} src="Gallery" alt="images post" />
+                    <div
+                      className={s.closeImagesItemBlock}
+                      onClick={() => {
+                        let images = valuePostImages.filter(
+                          (file) => file.name !== img
+                        );
+                        // debugger;
+                        setValuePostImages(
+                          valuePostImages.filter(
+                            (file) => file.name !== img.name
+                          )
+                        );
+                      }}
+                    >
+                      <div className={s.closeImagesItem}></div>
                     </div>
-                  ) : (
-                    <div className={s.hashTag}>{valueHashTag}</div>
-                  )}
-                </div>
-              )}
+                  </div>
+                ))}
             </div>
           </div>
-          <textarea
-            className={s.popupContentTitleTextarea}
-            id="textareaTitle"
-            value={valuePostTitle}
-            maxLength="70"
-            placeholder="Title post!"
-            onChange={handleChangePostTitle}
-          ></textarea>
-          <textarea
-            value={valuePostText}
-            id="textarea"
-            placeholder="What's on your mind?"
-            className={s.popupContentBodyTextarea}
-            onChange={handleChangePostText}
-          >
-            <span></span>
-          </textarea>
         </div>
-        <div
-          className={
-            s.popupPostImages +
-            " " +
-            (valuePostImages ? s.popupPostImagesActive : "")
-          }
-        >
-          <div className={s.imagesListItems} id="imagesListItems">
-            {valuePostImages &&
-              valuePostImages.map((img, index) => (
-                <div className={s.imagesItem}>
-                  {/* <span>123123</span> */}
-                  <img id={"img-" + index} src="Gallery" alt="images post" />
-                  <div
-                    className={s.closeImagesItemBlock}
-                    onClick={() => {
-                      let images = valuePostImages.filter(
-                        (file) => file.name !== img
-                      );
-                      // debugger;
-                      setValuePostImages(
-                        valuePostImages.filter((file) => file.name !== img.name)
-                      );
-                    }}
-                  >
-                    <div className={s.closeImagesItem}></div>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+
         <input
           type="file"
           multiple
