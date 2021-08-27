@@ -298,7 +298,7 @@ console.log('upload')
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }
-  if (page <= state.posts.totalPageCount && !state.app.isLoader ) {
+  if (page <= state.posts.totalPageCount && !state.app.isLoader && !state.posts.loadingPosts ) {
     let response = await postsAPI.getPosts(initialState.limit, page, q)
     dispatch(setUploadPost(false))
     dispatch(setTotalPageCount(response.totalPages))

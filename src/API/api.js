@@ -75,7 +75,7 @@ export const profileAPI = {
     })
   },
   getUsersProfile(login) {
-    return instance.get(`/users/${login}`).then(response => {
+    return instance.get(`/users/${login}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data

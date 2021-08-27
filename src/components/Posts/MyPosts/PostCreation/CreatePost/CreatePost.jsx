@@ -70,27 +70,16 @@ const CreatePost = (props) => {
       //   tx.setAttribute("style", "height: 200px;" + "font-size:16px;");
       // } else {
       if (valuePostText.length > 100) {
+        tx.setAttribute("style", "px;overflow-y:hidden; font-size:16px;");
         tx.setAttribute(
           "style",
           "height:" + tx.scrollHeight + "px;overflow-y:hidden; font-size:16px;"
         );
-        tx.addEventListener("input", OnInput, false);
-
-        function OnInput(e) {
-          this.style.height = "auto";
-          this.style.height = this.scrollHeight + "px";
-        }
       } else {
         tx.setAttribute(
           "style",
           "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
         );
-        tx.addEventListener("input", OnInput, false);
-
-        function OnInput(e) {
-          this.style.height = "auto";
-          this.style.height = this.scrollHeight + "px";
-        }
       }
     }
   }, [valuePostText]);
