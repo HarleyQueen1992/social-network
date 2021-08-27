@@ -195,7 +195,7 @@ export const updateTheme = theme => async (dispatch,getState) => {
     dispatch(setIsLoader(true))
   
     dispatch(setTheme(state.auth.profileInfo.theme == 'light' ? 'dark' : 'light'))
-  
+    localStorage.setItem("theme", state.auth.profileInfo.theme == 'light' ? 'dark' : 'light');
     let response = await profileAPI.updateTheme(theme)
     // dispatch(setTheme(response.theme))
     dispatch(setProfileData(response, true))

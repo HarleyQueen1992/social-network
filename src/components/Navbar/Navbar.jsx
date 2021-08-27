@@ -18,7 +18,6 @@ import { Icons } from "./../../utils/Icons/Icons";
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 
 const Navbar = (props) => {
-  localStorage.setItem("theme", props.theme);
   let res = Icons(props.theme);
   const themeToggler = () => {
     props.theme == "light"

@@ -102,6 +102,7 @@ export const loginIn = (email, password, rememberMe) => async dispatch => {
     dispatch(setIndex(0))
     dispatch(setProfileData(data, true))
     dispatch(setTheme(data.theme))
+    localStorage.setItem("theme", data.theme);
   } else {
     let message =
       data.messages.length > 0 ? data.messages[0] : "Some error"
