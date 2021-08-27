@@ -45,6 +45,7 @@ import s from "./MyPosts.module.css";
 
 class MyPostsContainer extends React.Component {
   componentDidMount() {
+    this.props.clearPosts();
     let posts = this.props.match.params.posts;
     if (posts == "all") {
       this.props.setPageSelection("allPosts");

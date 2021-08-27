@@ -1,5 +1,6 @@
 import { newsAPI, postsAPI } from "../../API/api"
 import { setIsLoader } from "../AppReducer/app-reducer"
+import { addLikeNews, deletePostNews, setNews, setPageNumber, setTotalItemsNews, setTotalPages, updatePostNews } from "../NewsPeducer/news-reducer"
 
 const ADD_POST = "app/posts-reducer/ADD-POST"
 const SET_SEARCH_POSTS = 'app/posts-reducer/SET_SEARCH_POSTS'
@@ -50,6 +51,7 @@ const postsReducer = (state = initialState, action) => {
     case ADD_POST: {
       return {
         ...state,
+        
         posts: [action.post, ...state.posts],
       }
     }
@@ -138,7 +140,8 @@ const postsReducer = (state = initialState, action) => {
     case CLEAR_POSTS: {
       return {
       ...state,
-      posts: []
+      posts: [],
+      loadingPosts: false
       }
     }
     case SET_LOADING_POSTS: {
@@ -302,11 +305,17 @@ console.log('upload')
     let response = await postsAPI.getPosts(initialState.limit, page, q)
     dispatch(setUploadPost(false))
     dispatch(setTotalPageCount(response.totalPages))
+    
     if (q === '' && state.posts.q !== '') {
       dispatch(setSearchPosts(response.items))
       
-    } else if (q == '' || q == state.posts.q) {
-      dispatch(setPosts(response.items))
+    } else if (q == '' || q == state.posts.q ) {
+      if (page === 1) {
+        dispatch(setSearchPosts(response.items))
+      } else {
+        dispatch(setPosts(response.items))
+      }
+      
     } else {
       dispatch(setSearchPosts(response.items))
     }
@@ -316,31 +325,7 @@ console.log('upload')
     dispatch(setLoadingPosts(false))
   }
 }
-export const requestNews = (page, q = '') => async (dispatch, getState) => {
-  let state = getState()
-  dispatch(setQ(q))
-  if (page === 1) {
-    dispatch(setLoadingPosts(true))
-  }
-  if (page <= state.posts.totalPageCount && !state.app.isLoader ) {
-    let response = await newsAPI.getNews(initialState.limit, page, q)
-    dispatch(setUploadPost(false))
-    dispatch(setTotalPageCount(response.totalPages))
-    if (q === '' && state.posts.q !== '') {
-      dispatch(setSearchPosts(response.items))
-      
-    } else if (q == '' || q == state.posts.q) {
-      dispatch(setPosts(response.items))
-    } else {
-      dispatch(setSearchPosts(response.items))
-    }
-    dispatch(setPageSize(response.pageSize))
-    dispatch(setPage(page + 1))
-  
-    dispatch(setTotalItems(response.totalItems))
-    dispatch(setLoadingPosts(false))
-  }
-}
+
 export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
   let state = getState()
   dispatch(setQ(q))
@@ -400,75 +385,80 @@ export const createPost = (title, body, attachments) => async (dispatch, getStat
 }
 
 
-export const updatePost = (title, body, attachments, id) => async dispatch => {
+export const updatePost = (title, body, attachments, id) => async (dispatch, getState) => {
   dispatch(setIsLoader(true))
+  let state = getState()
   let response = await postsAPI.updatePost(title, body, attachments, id)
-  dispatch(updatePostAC(response))
+  if (state.posts.pageSelection == 'news') {
+    dispatch(updatePostNews(response))
+  } else {
+    dispatch(updatePostAC(response))
+  }
+  
+  
   dispatch(setIsLoader(false))
 }
 
 export const deletePost = (id, login = '') => async (dispatch,getState) => {
   dispatch(setIsLoader(true))
   let state = getState()
-  // let posts = state.posts.posts
-  // let postsLength = posts.length
-  // let postsPage = postsLength / 5
-  // let index = posts.findIndex(p => p.id == id)
-  // let pageDeletePost = Math.floor((index / 5))
-  // dispatch(setLeavePosts(pageDeletePost))
-  
-  // let list = posts.slice(0, index)
-  // let leavePosts = posts.slice(0, (pageDeletePost) * 5)
-  // let page = pageDeletePost + 1
   let response = await postsAPI.deletePost(id)
-  dispatch(deletePostAC(id))
-
-if (state.posts.page - 1 < state.posts.totalPageCount) {
-  let data
-  if (state.posts.pageSelection == 'posts') {
-    data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
-  } else if (state.posts.pageSelection == 'allPosts') {
-    data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
-  } else if (state.posts.pageSelection == 'news') {
-    data = await newsAPI.getNews(initialState.limit, state.posts.page - 1, '')
+  if (state.posts.pageSelection == 'news') {
+    dispatch(deletePostNews(id))
   } else {
-    data = await postsAPI.getUserPosts(initialState.limit, state.posts.page - 1, '')
-
+    dispatch(deletePostAC(id))
   }
-  let lastPost = [data.items[4]]
+  
 
-  dispatch(setPageSize(data.pageSize))
-  dispatch(setPosts(lastPost))
-  dispatch(setTotalItems(data.totalItems))
-  dispatch(setTotalPageCount(data.totalPages))
-}
-
-
-
-  // for (let i = 0; i <state.posts.page - page ; i++ ) {
-  //   if (page+i <= state.posts.totalPageCount) {
-  //     let response = await postsAPI.getPosts(initialState.limit, page+i, '')
-  //     dispatch(setUploadPost(false))
-  //     dispatch(setPosts(response.items))
-  //     dispatch(setTotalPageCount(response.totalPages))
-  //     dispatch(setTotalItems(response.totalItems))
-  //     dispatch(setLoadingPosts(false))
-  //   }
+let data
+  if (state.posts.pageSelection == 'news') {
+    if (state.news.pageNumber - 1 < state.news.totalPages) {
+      data = await newsAPI.getNews(initialState.limit, state.news.pageNumber - 1, '')
+      let lastPost = [data.items[4]]
+      dispatch(setTotalPages(data.totalPages))
+      dispatch(setNews(lastPost))
+      dispatch(setTotalItemsNews(data.totalItems))
+    }
+  } else {
+    if (state.posts.page - 1 < state.posts.totalPageCount) {
+  
+      if (state.posts.pageSelection == 'posts') {
+        data = await postsAPI.getPosts(initialState.limit, state.posts.page - 1, '')
+      } else if (state.posts.pageSelection == 'allPosts') {
+        data = await postsAPI.getAllPosts(initialState.limit, state.posts.page - 1, '')
+      } else {
+        data = await postsAPI.getUserPosts(initialState.limit, state.posts.page - 1, '')
     
-  // }
-  
-  
+      }
+      let lastPost = [data.items[4]]
+      dispatch(setPosts(lastPost))
+      dispatch(setTotalItems(data.totalItems))
+      dispatch(setTotalPageCount(data.totalPages))
+    }
+  }
+
   dispatch(setIsLoader(false))
-  
+
 }
-export const likePost = (id) => async dispatch => {
+export const likePost = (id) => async (dispatch, getState) => {
+  let state = getState()
   let response = await postsAPI.likePost(id)
+  if (state.posts.pageSelection === 'news') {
+    dispatch(addLikeNews(id))
+  } else {
     dispatch(addLike(id))
+  }
+    
   
 }
-export const unlikePost = (id) => async dispatch => {
+export const unlikePost = (id) => async (dispatch,getState) => {
+  let state = getState()
   let response = await postsAPI.unlikePost(id)
+  if (state.posts.pageSelection === 'news') {
+    dispatch(addLikeNews(id))
+  } else {
     dispatch(addLike(id))
+  }
   
 }
 export default postsReducer

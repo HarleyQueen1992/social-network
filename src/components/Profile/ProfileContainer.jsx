@@ -99,6 +99,7 @@ class ProfileContainer extends React.Component {
     this.props.subscribe(login);
   };
   componentDidMount() {
+    this.props.clearPosts();
     this.refreshProfile();
   }
   componentDidUpdate(prevProps, prevState) {

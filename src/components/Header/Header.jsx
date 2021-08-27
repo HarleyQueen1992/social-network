@@ -23,6 +23,7 @@ import {
   getPageSelection,
   getQ,
 } from "../../redux/PostsReducer/posts-selectors";
+import { requestNews } from "../../redux/NewsPeducer/news-reducer";
 const Header = (props) => {
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
@@ -45,6 +46,8 @@ const Header = (props) => {
   let handleChangeSearchPosts = (e) => {
     if (props.pageSelection == "posts") {
       props.requestPosts(1, e.target.value);
+    } else if (props.pageSelection == "news") {
+      props.requestNews(1, e.target.value);
     } else {
       props.requestAllPosts(1, e.target.value);
     }
@@ -244,6 +247,11 @@ let mapStateToProps = (state) => {
   };
 };
 export default compose(
-  connect(mapStateToProps, { setPageSelection, requestAllPosts, requestPosts }),
+  connect(mapStateToProps, {
+    setPageSelection,
+    requestAllPosts,
+    requestPosts,
+    requestNews,
+  }),
   withRouter
 )(Header);
