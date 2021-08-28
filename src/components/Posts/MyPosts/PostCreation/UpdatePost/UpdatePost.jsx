@@ -56,35 +56,41 @@ const UpdatePost = (props) => {
     setValuePostTitle(event.target.value);
   };
   useEffect(() => {
-    if (window.innerWidth > 500) {
-      var tx = document.getElementById("textarea");
-      let height = tx.style.height;
-      let heightNumber = Number(height.substring(0, height.length - 2));
-      let length = valuePostText.length;
+    // if (window.innerWidth > 500) {
+    var tx = document.getElementById("textarea");
+    let height = tx.style.height;
+    let heightNumber = Number(height.substring(0, height.length - 2));
+    let length = valuePostText.length;
 
-      // if (heightNumber > 200) {
-      //   tx.setAttribute("style", "height: 200px;" + "font-size:16px;");
-      // } else {
-      if (valuePostText.length > 100) {
-        tx.setAttribute("style", "px;overflow-y:hidden; font-size:16px;");
-        tx.setAttribute(
-          "style",
-          "height:" + tx.scrollHeight + "px;overflow-y:hidden; font-size:16px;"
-        );
-      } else {
-        tx.setAttribute(
-          "style",
-          "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
-        );
-      }
-      // tx.addEventListener("input", OnInput, false);
-
-      // function OnInput(e) {
-      //   debugger;
-      //   this.style.height = "auto";
-      //   this.style.height = this.scrollHeight + "px";
-      // }
+    // if (heightNumber > 200) {
+    //   tx.setAttribute("style", "height: 200px;" + "font-size:16px;");
+    // } else {
+    if (valuePostText.length > 100) {
+      tx.setAttribute("style", "px;overflow-y:hidden; font-size:16px;");
+      tx.setAttribute(
+        "style",
+        "height:" + tx.scrollHeight + "px;overflow-y:hidden; font-size:16px;"
+      );
+    } else {
+      tx.setAttribute(
+        "style",
+        "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
+      );
     }
+    tx.addEventListener("input", OnInput, false);
+
+    function OnInput(e) {
+      this.style.height = "auto";
+      // this.style.height = this.scrollHeight + "px";
+    }
+    // tx.addEventListener("input", OnInput, false);
+
+    // function OnInput(e) {
+    //   debugger;
+    //   this.style.height = "auto";
+    //   this.style.height = this.scrollHeight + "px";
+    // }
+    // }
   }, [valuePostText]);
 
   useEffect(() => {

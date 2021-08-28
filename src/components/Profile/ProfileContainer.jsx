@@ -83,6 +83,7 @@ class ProfileContainer extends React.Component {
     // this.props.getUsersListFollowing(this.props.profileInfo.login);
 
     if (!login || login == this.props.profileInfo.login) {
+      this.props.setPageSelection("posts");
       login = this.props.profileInfo.login;
       this.props.getProfileData(login);
       this.props.requestPosts(1);
