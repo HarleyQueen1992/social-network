@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./App.module.css";
 import "./App.css";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -82,16 +82,19 @@ const urlIndex = {
   5: "menu",
 };
 let i = NaN;
-class App extends React.Component {
-  str = window.location.href;
-  url = window.location.origin + "/social-network/#/";
+const App = (props) => {
+  for (let property in props.theme) {
+    document.documentElement.style.setProperty(
+      "--" + property,
+      props.theme[property]
+    );
+  }
+  const [smallScreen, setSmallScreen] = useState(window.innerWidth < 900);
+  const [isScrolling, setIsScrolling] = useState(window.scrollY > 0);
+  let str = window.location.href;
+  let url = window.location.origin + "/social-network/#/";
 
-  // location = window.location
-  state = {
-    isBigScreen: window.innerWidth > 600,
-    editMode: false,
-  };
-  handleChange = (event, value) => {
+  let handleChange = (event, value) => {
     for (let key in urlIndex) {
       if (key == value) {
         i = key;
@@ -99,11 +102,11 @@ class App extends React.Component {
       }
     }
     window.location = "/social-network/#/" + urlIndex[i];
-    this.props.setIndex(Number(value));
+    props.setIndex(Number(value));
     window.scroll(0, 0);
   };
 
-  handleChangeIndex = (index) => {
+  let handleChangeIndex = (index) => {
     for (let key in urlIndex) {
       if (key == index) {
         i = key;
@@ -111,12 +114,12 @@ class App extends React.Component {
       }
     }
     window.location = "/social-network/#/" + urlIndex[i];
-    this.props.setIndex(Number(index));
+    props.setIndex(Number(index));
     window.scroll(0, 0);
   };
 
-  changeIndex = (velue) => {
-    let strUpdate = velue.substr(this.url.length);
+  let changeIndex = (velue) => {
+    let strUpdate = velue.substr(url.length);
     strUpdate = strUpdate.split("/")[0];
 
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
@@ -127,13 +130,13 @@ class App extends React.Component {
       }
     }
 
-    this.str = velue;
-    this.props.setIndex(Number(i));
+    str = velue;
+    props.setIndex(Number(i));
     window.scroll(0, 0);
   };
 
-  componentDidMount() {
-    let strUpdate = this.str.substr(this.url.length);
+  useEffect(() => {
+    let strUpdate = str.substr(url.length);
     strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
 
     if (strUpdate == "") {
@@ -149,217 +152,186 @@ class App extends React.Component {
         }
       }
     }
-    this.props.setIndex(Number(i));
-    this.props.initializeApp();
-  }
+    props.setIndex(Number(i));
+    props.initializeApp();
+  }, []);
+  // useEffect(() => {
+  //   // setIsOnline(status.isOnline);
 
-  themeToggler = () => {
-    this.props.theme === "light"
-      ? this.props.setTheme("dark")
-      : this.props.setTheme("light");
+  // }, [props.theme]);
+  window.onresize = () => {
+    setSmallScreen(window.innerWidth < 900);
   };
-  componentDidUpdate(prevProps) {
-    if (prevProps.theme !== this.props.theme) {
-      for (let property in this.props.theme) {
-        document.documentElement.style.setProperty(
-          "--" + property,
-          this.props.theme[property]
-        );
-      }
+  window.onscroll = function (e) {
+    setIsScrolling(window.scrollY > 0); // Value of scroll Y in px
+  };
+  useEffect(() => {
+    if (props.location.pathname.length == 1) {
+      window.location = "/social-network/#/news";
     }
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      if (this.props.location.pathname.length == 1) {
-        window.location = "/social-network/#/news";
-      }
-      let url = this.props.location.pathname;
-      url = url.replace(/[^a-zа-яё]/gi, "");
-      if (url == "settings") {
-        this.props.setIndex(Number(5));
-      }
+    let url = props.location.pathname;
+    url = url.replace(/[^a-zа-яё]/gi, "");
+    if (url == "settings") {
+      props.setIndex(Number(5));
     }
+  }, [props.location.pathname]);
+
+  if (!props.initialized) {
+    return <Preloader />;
   }
-  setEitMode = (value) => {
-    this.props.setEitMode(getValue);
-  };
-  render() {
-    //
-    // window.addEventListener("resize", function () {
-    //   if (window.innerWidth > 600) {
-    //     toggleIsBigScreen(true)
-    //   } else {
-    //     toggleIsBigScreen(false)
-    //   }
-    // })
-    if (!this.props.initialized) {
-      return <Preloader />;
-    }
-    if (!this.props.isAuth) {
-      return (
-        <div className="loginPage">
-          <Redirect to="/login/" />
-          <Route path="/login" render={() => <Login />} />
-          <Route path="/register" render={() => <Registration />} />
-        </div>
-      );
-    } else {
-      return (
-        <>
-          <div className={s.appWrapper}>
-            <Header
-              isBigScreen={this.isBigScreen}
-              handleChange={this.handleChange}
-              index={this.props.index}
-              theme={"adasd"}
+  if (!props.isAuth) {
+    return (
+      <div className="loginPage">
+        <Redirect to="/login/" />
+        <Route path="/login" render={() => <Login />} />
+        <Route path="/register" render={() => <Registration />} />
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <div className={s.appWrapper}>
+          <Header
+            // isBigScreen={isBigScreen}
+            handleChange={handleChange}
+            index={props.index}
+            theme={"adasd"}
+          />
+          <div
+            className={s.loaderBlock + " " + (props.isLoader && s.loaderActive)}
+          >
+            <img className={s.loader} src={loaderWhite} alt="loader" />
+          </div>
+
+          <div
+            className={
+              s.scrollUpArrowBlock +
+              " " +
+              (smallScreen & isScrolling && s.scrollUpArrowBlockActive)
+            }
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
+          >
+            <div className={s.scrollUpArrow}></div>
+          </div>
+
+          {props.isBigPictures && (
+            <BigPictures
+              selectPost={props.selectPost}
+              setIsBigPictures={props.setIsBigPictures}
+              imgUrl={props.imgUrl}
             />
-            <div
-              className={
-                s.loaderBlock + " " + (this.props.isLoader && s.loaderActive)
+          )}
+          {props.isUpdatePost ? (
+            <UpdatePost
+              setIsUpdatePost={props.setIsUpdatePost}
+              isUpdatePost={props.isUpdatePost}
+              profile={props.updatePostData.author}
+              valueText={props.updatePostData.body}
+              valueTitle={props.updatePostData.title}
+              valueImages={props.updatePostData.attachments}
+              postId={props.updatePostData.id}
+              setDropdownMenus={props.setDropdownMenus}
+              translate={
+                props.index == 0
+                  ? "0%"
+                  : props.index == 1
+                  ? "-100%"
+                  : props.index == 2 && "-200%"
               }
-            >
-              <img className={s.loader} src={loaderWhite} alt="loader" />
-            </div>
-            {this.props.isBigPictures && (
-              <BigPictures
-                selectPost={this.props.selectPost}
-                setIsBigPictures={this.props.setIsBigPictures}
-                imgUrl={this.props.imgUrl}
-              />
-            )}
-            {this.props.isUpdatePost ? (
-              <UpdatePost
-                setIsUpdatePost={this.props.setIsUpdatePost}
-                isUpdatePost={this.props.isUpdatePost}
-                profile={this.props.updatePostData.author}
-                valueText={this.props.updatePostData.body}
-                valueTitle={this.props.updatePostData.title}
-                valueImages={this.props.updatePostData.attachments}
-                postId={this.props.updatePostData.id}
-                setDropdownMenus={this.props.setDropdownMenus}
-                translate={
-                  this.props.index == 0
-                    ? "0%"
-                    : this.props.index == 1
-                    ? "-100%"
-                    : this.props.index == 2 && "-200%"
-                }
-                updatePost={this.props.isUpdatePost}
-                // addPostActionCreator={props.addPostActionCreator}
-                updatePost={this.props.updatePost}
-              />
-            ) : (
-              ""
-            )}
-            <div
-              className={
-                s.appWrapperContent +
-                " " +
-                (this.props.index != 0 ? s.up : " ") +
-                " " +
-                (this.props.editMode ? s.appWrapperContentEditMode : " ")
-              }
-              id="appWraperContent"
-            >
-              {/* {this.props.dropdownMenus && <DropdownMenus />} */}
+              updatePost={props.isUpdatePost}
+              // addPostActionCreator={props.addPostActionCreator}
+              updatePost={props.updatePost}
+            />
+          ) : (
+            ""
+          )}
+          <div
+            className={
+              s.appWrapperContent +
+              " " +
+              (props.index != 0 ? s.up : " ") +
+              " " +
+              (props.editMode ? s.appWrapperContentEditMode : " ")
+            }
+            id="appWraperContent"
+          >
+            {/* {props.dropdownMenus && <DropdownMenus />} */}
 
-              {(this.props.location.pathname === "/news") |
-              (this.props.location.pathname.substr(0, 8) === "/profile") |
-              (this.props.location.pathname.substr(0, 6) === "/posts") |
-              (this.props.location.pathname === "/users") |
-              (window.innerWidth < 900 &&
-                this.props.location.pathname === "/menu") |
-              (this.props.location.pathname.substr(0, 11) === "/followings") ? (
-                <SwipeableViews
-                  index={this.props.index}
-                  enableMouseEvents
-                  onChangeIndex={this.handleChangeIndex}
-                  className={s.swipeableViews}
-                >
-                  <Route
-                    path="/news"
-                    render={() => (
-                      <NewsContainer
-                        changeIndex={this.changeIndex}
-                        strUrl={this.str}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/profile/:login?"
-                    render={() => (
-                      <ProfileContainer
-                        changeIndex={this.changeIndex}
-                        strUrl={this.str}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/posts/:posts?"
-                    render={() => (
-                      <MyPostsContainer
-                        changeIndex={this.changeIndex}
-                        strUrl={this.str}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/users"
-                    render={() => (
-                      <UsersContainer
-                        changeIndex={this.changeIndex}
-                        strUrl={this.str}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/followings/:login?"
-                    render={() => (
-                      <FollowingsContainer
-                        changeIndex={this.changeIndex}
-                        strUrl={this.str}
-                      />
-                    )}
-                  />
-                  {window.innerWidth < 900 && (
-                    <Route
-                      path="/menu"
-                      render={() => (
-                        <MenuContainer
-                          changeIndex={this.changeIndex}
-                          strUrl={this.str}
-                        />
-                      )}
+            {(props.location.pathname === "/news") |
+            (props.location.pathname.substr(0, 8) === "/profile") |
+            (props.location.pathname.substr(0, 6) === "/posts") |
+            (props.location.pathname === "/users") |
+            (window.innerWidth < 900 && props.location.pathname === "/menu") |
+            (props.location.pathname.substr(0, 11) === "/followings") ? (
+              <SwipeableViews
+                index={props.index}
+                enableMouseEvents
+                onChangeIndex={handleChangeIndex}
+                className={s.swipeableViews}
+              >
+                <Route
+                  path="/news"
+                  render={() => (
+                    <NewsContainer changeIndex={changeIndex} strUrl={str} />
+                  )}
+                />
+                <Route
+                  path="/profile/:login?"
+                  render={() => (
+                    <ProfileContainer changeIndex={changeIndex} strUrl={str} />
+                  )}
+                />
+                <Route
+                  path="/posts/:posts?"
+                  render={() => (
+                    <MyPostsContainer changeIndex={changeIndex} strUrl={str} />
+                  )}
+                />
+                <Route
+                  path="/users"
+                  render={() => (
+                    <UsersContainer changeIndex={changeIndex} strUrl={str} />
+                  )}
+                />
+                <Route
+                  path="/followings/:login?"
+                  render={() => (
+                    <FollowingsContainer
+                      changeIndex={changeIndex}
+                      strUrl={str}
                     />
                   )}
-                </SwipeableViews>
-              ) : (
-                <Switch>
+                />
+                {window.innerWidth < 900 && (
                   <Route
-                    path="/settings"
-                    render={() => <SettingsContainer />}
+                    path="/menu"
+                    render={() => (
+                      <MenuContainer changeIndex={changeIndex} strUrl={str} />
+                    )}
                   />
-                  <Route
-                    path="/followers/:login?"
-                    render={() => <FollowersContainer />}
-                  />
-                  <Route render={() => <PageNotFound />} />
-                </Switch>
-              )}
-
-              {/* <Route path='/login' render={() => <Login />} />
-              
-              <Route path='/friends' render={() => <FriendsContainer />} />
-              <Route path='/users' render={() => <UsersContainer />} />
-              <Route path='/posts' r  ender={() => <MyPostsContainer />} />
-              <Route path='/services' render={() => <ServicesContainer />} /> */}
-              {/* <Route path='/' exact render={() => <ProfileContainer />} /> */}
-            </div>
-            {/* )} */}
+                )}
+              </SwipeableViews>
+            ) : (
+              <Switch>
+                <Route path="/settings" render={() => <SettingsContainer />} />
+                <Route
+                  path="/followers/:login?"
+                  render={() => <FollowersContainer />}
+                />
+                <Route render={() => <PageNotFound />} />
+              </Switch>
+            )}
           </div>
-        </>
-      );
-    }
+        </div>
+      </>
+    );
   }
-}
+};
 
 const mapStateToProps = (state) => {
   return {

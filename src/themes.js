@@ -50,6 +50,10 @@ export const light = {
   dropDown: "#eaeaea",
   menuItemDropDown: "rgba(0, 0, 0, 0.103)",
   blockBlock: "rgb(226, 102, 102)",
+  bacScrollTopArrow: "rgb(238, 232, 232)",
+  bacScrollTopArrowHover: "rgb(206, 206, 206)",
+  scrollTopArrow: "#1877f2"
+
 
   
 }
@@ -111,6 +115,10 @@ export const dark = {
   dropDown: "#2b2b2b",
   menuItemDropDown: "rgba(255, 255, 255, 0.103)",
   blockBlock: "rgb(182, 55, 55)",
+  bacScrollTopArrow: "rgb(90, 90, 90)",
+  bacScrollTopArrowHover: "rgb(110, 110, 110)",
+  scrollTopArrow: "white"
+
 
 }
 
