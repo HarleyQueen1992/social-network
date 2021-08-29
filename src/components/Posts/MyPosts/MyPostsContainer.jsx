@@ -56,6 +56,14 @@ class MyPostsContainer extends React.Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
+    let currentUrl = window.location.hash.replace(/^#/, "");
+    if (prevProps.location.pathname !== currentUrl) {
+      if (currentUrl == "/posts/my") {
+        this.props.setPageSelection("posts");
+      } else {
+        this.props.setPageSelection("allPosts");
+      }
+    }
     if (prevProps.pageSelection !== this.props.pageSelection) {
       this.props.clearPosts();
       if (this.props.pageSelection === "posts") {
