@@ -47,9 +47,9 @@ class MyPostsContainer extends React.Component {
   componentDidMount() {
     this.props.clearPosts();
     let posts = this.props.match.params.posts;
+
     if (posts == "all") {
       this.props.setPageSelection("allPosts");
-      this.props.requestAllPosts(1);
     } else if (posts == "my" || posts == undefined) {
       this.props.setPageSelection("posts");
       this.props.requestPosts(1);
@@ -58,17 +58,18 @@ class MyPostsContainer extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     let currentUrl = window.location.hash.replace(/^#/, "");
     if (prevProps.location.pathname !== currentUrl) {
-      if (currentUrl == "/posts/my") {
+      if (currentUrl == "/posts/my" || currentUrl == "/posts") {
         this.props.setPageSelection("posts");
       } else {
         this.props.setPageSelection("allPosts");
       }
     }
     if (prevProps.pageSelection !== this.props.pageSelection) {
-      this.props.clearPosts();
       if (this.props.pageSelection === "posts") {
+        this.props.clearPosts();
         this.props.requestPosts(1);
       } else {
+        this.props.clearPosts();
         this.props.requestAllPosts(1);
       }
     } else {
@@ -80,9 +81,6 @@ class MyPostsContainer extends React.Component {
         }
       }
     }
-    // if (this.props.uploadPosts && !this.props.loadingPosts) {
-    //   this.props.requestPosts(this.props.postsPage);
-    // }
   }
   componentWillUnmount() {
     this.props.clearPosts();

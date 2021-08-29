@@ -340,7 +340,11 @@ export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
       dispatch(setSearchPosts(response.items))
       
     } else if (q == '' || q == state.posts.q) {
-      dispatch(setPosts(response.items))
+      if (page === 1) {
+        dispatch(setSearchPosts(response.items))
+      } else {
+        dispatch(setPosts(response.items))
+      }
     } else {
       dispatch(setSearchPosts(response.items))
     }

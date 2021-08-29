@@ -88,9 +88,7 @@ body {
   transition: all 0.3s;
 }
 .scrollUpArrowBlockActive {
-  bottom: 5px;
-}
-.scrollUpArrowBlock:hover {
+  bottom: 10px;
   background-color: var(--bacScrollTopArrowHover);
 }
 .scrollUpArrow {

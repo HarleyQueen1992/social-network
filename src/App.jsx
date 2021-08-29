@@ -113,6 +113,7 @@ const App = (props) => {
         break;
       }
     }
+
     window.location = "/social-network/#/" + urlIndex[i];
     props.setIndex(Number(index));
     window.scroll(0, 0);
@@ -131,6 +132,7 @@ const App = (props) => {
     }
 
     str = velue;
+
     props.setIndex(Number(i));
     window.scroll(0, 0);
   };
