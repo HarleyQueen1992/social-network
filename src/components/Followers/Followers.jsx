@@ -13,7 +13,6 @@ const Followers = (props) => {
   let followers;
   let totalCount;
   const [isFocus, setIsFocus] = useState(false);
-
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
     return function () {

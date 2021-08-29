@@ -4,7 +4,7 @@ import p from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
-  if (document.querySelector(".react-swipeable-view-container").childNodes) {
+  if (document.querySelector(".react-swipeable-view-container")) {
     document.querySelector(
       ".react-swipeable-view-container"
     ).childNodes[1].style.cssText =

@@ -167,7 +167,6 @@ class App extends React.Component {
         );
       }
     }
-
     if (this.props.location.pathname !== prevProps.location.pathname) {
       if (this.props.location.pathname.length == 1) {
         window.location = "/social-network/#/news";
