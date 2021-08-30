@@ -12,10 +12,7 @@ class Registration extends React.Component {
       formData.email,
       formData.login,
       formData.password1,
-      formData.password2,
-      formData.aboutMe,
-      formData.birthday,
-      formData.location
+      formData.password2
     );
   };
   render() {

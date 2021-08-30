@@ -7,14 +7,19 @@ import {
 import s from "./../../common/FromsControls/FormContainer.module.css";
 import l from "./RegisterForm.module.css";
 import { NavLink } from "react-router-dom";
-
+import {
+  createField,
+  Input,
+  Textarea,
+} from "./../../common/FromsControls/FormsControls";
+let maxLength50 = maxLengthCreator(20);
 const RegisterForm = (props) => {
   // let history = useHistory()
   // if (props.isAuth) {
   //   history.push("/profile")
   // }
   return (
-    <form className={l.loginForm} onSubmit={props.handleSubmit}>
+    <form className={l.registerForm} onSubmit={props.handleSubmit}>
       <header className={l.header}>
         <span className={l.title}>Mosset</span>
         <h2 className={l.headerText}>
@@ -23,75 +28,62 @@ const RegisterForm = (props) => {
       </header>
       <div className={l.inputsBlock}>
         <div className={l.emailField}>
-          <Field
+          {createField("", "email", [], Input, {
+            type: "text",
+            placeholderValue: "email",
+          })}
+          {/* <Field
             className={l.inputField}
             placeholder={"Email"}
             name={"email"}
             component="input"
             validate={[required]}
-          />
+          /> */}
         </div>
         <div className={l.emailField}>
-          <Field
+          {createField("", "login", [], Input, {
+            type: "text",
+            placeholderValue: "login",
+          })}
+          {/* <Field
             className={l.inputField}
             placeholder={"login"}
             name={"login"}
             component="input"
             validate={[required]}
-          />
+          /> */}
         </div>{" "}
         <div className={l.passwordField}>
-          <Field
+          {createField("", "password1", [], Input, {
+            type: "password",
+            placeholderValue: "password",
+          })}
+          {/* <Field
             className={l.inputField}
             placeholder={"Password"}
             name={"password1"}
             component="input"
             type="password"
             validate={[required]}
-          />
+          /> */}
         </div>
         <div className={l.passwordField}>
-          <Field
+          {createField("", "password2", [], Input, {
+            type: "password",
+            placeholderValue: "repeat password",
+          })}
+          {/* <Field
             className={l.inputField}
             placeholder={"Repeat password"}
             name={"password2"}
             component="input"
             type="password"
             validate={[required]}
-          />
-        </div>
-        <div className={l.emailField}>
-          <Field
-            className={l.textareaField}
-            placeholder={"AboutMe"}
-            name={"aboutMe"}
-            component="textarea"
-            validate={[required]}
-          />
-        </div>
-        <div className={l.emailField}>
-          <Field
-            className={l.inputField}
-            placeholder={"date"}
-            name={"birthday"}
-            component="input"
-            type="date"
-            validate={[required]}
-          />
-        </div>
-        <div className={l.emailField}>
-          <Field
-            className={l.inputField}
-            placeholder={"location"}
-            name={"location"}
-            component="input"
-            type="text"
-            validate={[required]}
-          />
+          /> */}
         </div>
       </div>
       <div className={l.bottomBlock}>
-        <button className={l.loginBut}>Register</button>
+        <button className={l.registerBut}>Register</button>
 
         {props.error && <div className={s.formSummaryError}>{props.error}</div>}
         <div className={l.register}>

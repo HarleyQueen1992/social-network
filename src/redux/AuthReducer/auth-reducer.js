@@ -97,13 +97,15 @@ export const getAuthMe = () => async (dispatch, getState) => {
 
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password)
-  if (data.code !== "invalid" && data.code !== 'forbidden') {
+  if (data.code !== "invalid" && data.code !== 'inactiveProfile') {
     window.location = '/social-network/#/news';
     dispatch(setIndex(0))
     dispatch(setProfileData(data, true))
     dispatch(setTheme(data.theme))
     localStorage.setItem("theme", data.theme);
-  } else {
+  } else if (data.code === "inactiveProfile") {
+    window.location = '/social-network/#/activation';
+  }else {
     let message =
       data.messages.length > 0 ? data.messages[0] : "Some error"
     dispatch(stopSubmit("login", { _error: message }))

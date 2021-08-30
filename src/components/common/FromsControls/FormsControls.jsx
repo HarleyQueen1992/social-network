@@ -3,8 +3,14 @@ import styles from "./FormContainer.module.css";
 import { required } from "../../../utils/validators/validators";
 import { Field } from "redux-form";
 
-const FormControl = (props) => {
-  return <div className={styles.formControl}>{props.children}</div>;
+const FormControl = ({ input, meta: { touched, error }, children }) => {
+  const hasError = touched && error;
+  return (
+    <div className={styles.formControl}>
+      {children}
+      {hasError && <span>{error}</span>}
+    </div>
+  );
 };
 
 export const Textarea = (props) => {
@@ -17,10 +23,32 @@ export const Textarea = (props) => {
 };
 
 export const Input = (props) => {
-  const { input, meta, child, error, ...restProps } = props;
+  const { input, meta, child, error, value, ...restProps } = props;
   return (
     <FormControl {...props}>
-      <input className={styles.inputField} {...input} {...restProps} />
+      <label className={styles.labelInput} htmlFor="input__Field">
+        <span
+          className={
+            styles.placeholder +
+            " " +
+            (input.value && input.value.length > 0
+              ? styles.placeholderSmall
+              : "")
+          }
+        >
+          {props.placeholderValue}
+        </span>
+        <input
+          id="input__Field"
+          className={
+            styles.inputField +
+            " " +
+            (input.value && input.value.length > 0 ? styles.inputActive : "")
+          }
+          {...input}
+          {...restProps}
+        />
+      </label>
     </FormControl>
   );
 };

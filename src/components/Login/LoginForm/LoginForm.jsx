@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector, formValues } from "redux-form";
 import {
   maxLengthCreator,
   required,
@@ -7,6 +7,7 @@ import {
 import { createField, Input } from "./../../common/FromsControls/FormsControls";
 import s from "./LoginForm.module.css";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 let maxLength = maxLengthCreator(25);
 
@@ -24,7 +25,11 @@ const LoginForm = (props) => {
             name={"email"}
             component="input"
           /> */}
-        {createField("Email", "email", [], Input, { error: props.error })}
+        {createField("", "email", [], Input, {
+          error: props.error,
+          value: props.emailValues,
+          placeholderValue: "email",
+        })}
         {/* </div> */}
         <div className={s.passwordField}>
           {/* <Field
@@ -34,9 +39,11 @@ const LoginForm = (props) => {
             component="input"
             type="password"
           /> */}
-          {createField("Password", "password", [], Input, {
+          {createField("", "password", [], Input, {
             error: props.error,
             type: "password",
+            placeholderValue: "password",
+            value: props.passwordValues,
           })}
         </div>
       </div>
@@ -63,4 +70,16 @@ const LoginForm = (props) => {
 let LoginReduxForm = reduxForm({
   form: "login",
 })(LoginForm);
+
+// const ItemList = formValues("email")(LoginReduxForm);
+
+const selector = formValueSelector("login"); // <-- same as form name
+LoginReduxForm = connect((state) => {
+  // can select values individually
+  const emailValues = selector(state, "email");
+  return {
+    emailValues,
+  };
+})(LoginReduxForm);
+
 export default LoginReduxForm;

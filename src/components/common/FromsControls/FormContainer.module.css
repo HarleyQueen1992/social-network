@@ -12,20 +12,47 @@
 .formSummaryError {
   text-align: center;
   padding: 5px;
+  align-self: center;
   color: red;
 }
 .inputField {
   outline: none;
+  font-size: 14px;
   box-sizing: border-box;
+  /* background-color: white; */
   background-color: var(--bacInputLogin);
   border: 2px solid var(--bacInputLogin);
   border-radius: 5px;
-  padding: 5px;
+  padding: 9px 0 7px 8px;
   grid-template-rows: 1fr 1fr;
   justify-self: center;
-  width: 80%;
+  height: 36px;
+  width: 100%;
+  z-index: 999;
 }
-
+.inputActive {
+  padding: 16px 0 2px 8px !important;
+}
 .div {
   align-self: center;
+}
+.labelInput {
+  position: relative;
+  /* cursor: text; */
+  height: 36px;
+}
+.placeholder {
+  position: absolute;
+  text-transform: capitalize;
+  left: 8px;
+  right: 0;
+  font-weight: bold;
+  line-height: 36px;
+  pointer-events: none;
+  transform-origin: left;
+  transition: all 0.4s;
+  z-index: 9;
+}
+.placeholderSmall {
+  transform: scale(0.83333) translateY(-10px);
 }

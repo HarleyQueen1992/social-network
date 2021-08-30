@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.loginForm {
+.registerForm {
   align-self: center;
   justify-self: center;
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-rows: 150px 420px 110px;
+  grid-template-rows: 150px 200px 110px;
   grid-template-areas:
     "title"
     "block"
     "bottom";
-
+  grid-row-gap: 40px;
   transition: all 0.5s;
 }
 .header {
@@ -40,9 +40,9 @@
   color: var(--fontColor);
 }
 .inputsBlock {
-  margin-top: 40px;
   grid-area: block;
-  width: 100%;
+  width: 80%;
+  justify-self: center;
   /* height: 200px; */
   display: grid;
   /* grid-template-rows: 40px 40px; */
@@ -57,7 +57,7 @@
   border-radius: 5px;
   padding: 5px;
   justify-self: center;
-  width: 80%;
+  width: 100%;
 }
 .textareaField {
   outline: none;
@@ -69,7 +69,7 @@
   resize: none;
   height: 90px;
   justify-self: center;
-  width: 80%;
+  width: 100%;
 }
 
 .emailField {
@@ -82,13 +82,12 @@
 }
 
 .bottomBlock {
-  margin-top: 20px;
   display: grid;
-  grid-template-rows: 30px 30px 30px;
+  grid-template-rows: 30px auto 30px;
   grid-template-areas: "loginBut" "error" "register";
 }
 
-.loginBut {
+.registerBut {
   grid-area: loginBut;
   justify-self: center;
   width: 80%;
@@ -98,7 +97,7 @@
   /* width: 80px;
   height: 30px; */
 }
-.loginBut:hover {
+.registerBut:hover {
   background-color: rgb(214, 97, 97);
   border: 1px solid rgb(214, 97, 97);
 }
@@ -140,25 +139,19 @@
   display: flex;
   justify-content: center;
   align-self: center;
-  /* border-bottom: 1px solid white; */
 }
 .forgotYourPassword a {
   text-decoration: none;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
-
-  /* font-weight: bold; */
   color: var(--fontColor);
 }
 .register {
   grid-area: register;
-  /* padding-top: 30px; */
   align-self: center;
   justify-self: center;
   width: 80%;
   text-align: center;
-  /* display: grid;
-  grid-template-columns: 60% 40%; */
 }
 .regText {
   color: var(--fontColor);
