@@ -24,13 +24,6 @@ import BlockUser from "./BlockUser/BlockUser";
 const ProfileInfo = (props) => {
   let res = Icons(props.theme, props.index);
 
-  let birthdayMonth = new Date(props.profile.birthday).toLocaleDateString(
-    "en-US",
-    {
-      month: "long",
-      day: "2-digit",
-    }
-  );
   let updateWindowDimensions = () => {
     if (window.innerWidth > 900) {
       document.getElementById("appWraperContent").firstChild.style.cssText =
@@ -407,7 +400,17 @@ const ProfileInfo = (props) => {
                     alt="birthday"
                   />
                   <span className={s.birthdayTitle}>
-                    Birthday <span>{birthdayMonth}</span>
+                    Birthday{" "}
+                    <span>
+                      {props.profile.birthday &&
+                        new Date(props.profile.birthday).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "long",
+                            day: "2-digit",
+                          }
+                        )}
+                    </span>
                   </span>
                 </div>
                 <div className={s.listItems}>

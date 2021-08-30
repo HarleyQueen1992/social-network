@@ -16,18 +16,12 @@ import {
 import { withRouter } from "react-router-dom";
 import { Icons } from "./../../../utils/Icons/Icons";
 import { getTheme } from "../../../redux/AppReducer/app-selectors";
+import Defoultbanner from "./../../../assets/images/wp2655395.jpg";
 
 const EditProfile = (props) => {
-  let birthdayMonth = new Date(props.profile.birthday).toLocaleDateString(
-    "en-US",
-    {
-      month: "long",
-      day: "2-digit",
-    }
-  );
   let res = Icons(props.theme);
 
-  let disable = props.valueAboutMe.length < 70;
+  // let disable = props.valueAboutMe.length < 70;
 
   const cancelEditAboutMe = () => {
     props.setValueAboutMe(props.profile.aboutMe);
@@ -58,9 +52,9 @@ const EditProfile = (props) => {
       props.setProfileBanner(e.target.files[0]);
     }
   };
-  useEffect(() => {
-    disable = props.valueAboutMe.length <= 70;
-  }, [props.valueAboutMe]);
+  // useEffect(() => {
+  //   disable = props.valueAboutMe.length <= 70;
+  // }, [props.valueAboutMe]);
   useEffect(() => {
     return () => {
       props.setEditTellusMoreAboutYourself(false);
@@ -167,7 +161,14 @@ const EditProfile = (props) => {
         </div>
         <div className={s.CoverPhotoProfile}>
           <div className={s.banner}>
-            <img src={props.profile.banner} alt="profile photo" />
+            <img
+              src={
+                props.profile.banner === ""
+                  ? Defoultbanner
+                  : props.profile.banner
+              }
+              alt="profile photo"
+            />
           </div>
         </div>
       </div>
@@ -187,9 +188,7 @@ const EditProfile = (props) => {
                 props.editAboutMe && props.updateAboutMe(props.valueAboutMe);
               }
             }}
-            className={
-              s.addToAboutMe + " " + (disable ? s.addToAboutMeDisable : "")
-            }
+            className={s.addToAboutMe}
           >
             {props.editAboutMe ? (
               <span className={s.edit}>Save</span>
@@ -203,7 +202,6 @@ const EditProfile = (props) => {
             value={props.valueAboutMe}
             onChange={handleChangeAboutMe}
             className={s.aboutMeTextarea}
-            minLength="70"
             maxLength="400"
           ></textarea>
         ) : (
@@ -217,15 +215,8 @@ const EditProfile = (props) => {
         )}
         {props.editAboutMe && (
           <div className={s.charactersRemaining}>
-            {props.valueAboutMe.length < 70 ? (
-              <span className={s.moreCharacters}>
-                {70 - props.valueAboutMe.length} more characters
-              </span>
-            ) : (
-              <span>
-                Remaining {400 - props.valueAboutMe.length} characters
-              </span>
-            )}
+            <span>Remaining {400 - props.valueAboutMe.length} characters</span>
+
             <div onClick={cancelEditAboutMe} className={s.cancelAboutMeButton}>
               {" "}
               <span className={s.cancelAboutMe}>Cancel</span>{" "}
@@ -279,7 +270,16 @@ const EditProfile = (props) => {
                   />
                 </span>
               ) : (
-                <span className={s.birthday}>{birthdayMonth} </span>
+                <span className={s.birthday}>
+                  {props.profile.birthday &&
+                    new Date(props.profile.birthday).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "long",
+                        day: "2-digit",
+                      }
+                    )}{" "}
+                </span>
               )}
             </span>
           </div>
