@@ -72,6 +72,7 @@ import {
 import loaderWhite from "./assets/images/loaderWhite.svg";
 import BigPictures from "./components/Posts/BigPictures/BigPictures";
 import { getBanUser } from "./redux/ProfileReducer/profile-selectors";
+import Activation from "./components/Activation/Activation";
 
 const urlIndex = {
   0: "news",
@@ -188,6 +189,7 @@ const App = (props) => {
         <Redirect to="/login/" />
         <Route path="/login" render={() => <Login />} />
         <Route path="/register" render={() => <Registration />} />
+        <Route path="/activation" render={() => <Activation />} />
       </div>
     );
   } else {
