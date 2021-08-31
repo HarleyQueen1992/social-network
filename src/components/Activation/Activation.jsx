@@ -17,15 +17,23 @@ const Activation = (props) => {
   const Jump = (field, autoMove) => {
     if (field.value == "") {
       if (autoMove == 2) {
-        document.getElementById("id00" + String(autoMove - 1)).focus();
+        let e = document.getElementById("id00" + String(autoMove - 1));
+        e.focus();
+        e.setSelectionRange(1, 2);
       } else {
-        document.getElementById("id00" + String(autoMove - 2)).focus();
+        let e = document.getElementById("id00" + String(autoMove - 2));
+        e.focus();
+        e.setSelectionRange(1, 2);
       }
     } else {
       if (autoMove == 7) {
-        document.getElementById("id00" + String(autoMove - 1)).focus();
+        let e = document.getElementById("id00" + String(autoMove - 1));
+        e.focus();
+        e.setSelectionRange(1, 2);
       } else {
-        document.getElementById("id00" + autoMove).focus();
+        let e = document.getElementById("id00" + autoMove);
+        e.focus();
+        e.setSelectionRange(1, 2);
       }
     }
     // }
