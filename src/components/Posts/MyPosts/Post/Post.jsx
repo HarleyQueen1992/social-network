@@ -33,6 +33,7 @@ import { NavLink } from "react-router-dom";
 
 const Post = (props) => {
   let res = Icons(props.theme);
+  // let [isLoading, setIsLoading] = useState(true);
   // let [dropdownMenus, setDropdownMenus] = useState(false);
   let date = new Date(props.post.createdAt);
   date = date.toLocaleDateString("en-US", {
@@ -42,13 +43,15 @@ const Post = (props) => {
     minute: "2-digit",
   });
   useEffect(() => {
-    let element = document.getElementById(
-      "image__list_items__" + props.post.id
-    ).lastChild;
-    if (element && props.post.attachments.length % 2 == 1) {
-      document.getElementById(
+    if (props.post.attachments.length > 1) {
+      let element = document.getElementById(
         "image__list_items__" + props.post.id
-      ).lastChild.style.cssText = "grid-column-start: 1; grid-column-end: 3;";
+      ).lastChild;
+      if (element && props.post.attachments.length % 2 == 1) {
+        document.getElementById(
+          "image__list_items__" + props.post.id
+        ).lastChild.style.cssText = "grid-column-start: 1; grid-column-end: 3;";
+      }
     }
   });
 
@@ -136,12 +139,31 @@ const Post = (props) => {
           (props.post.attachments.length > 0 ? p.popupPostImagesActive : "")
         }
       >
-        <div
-          className={p.imagesListItems}
-          id={"image__list_items__" + props.post.id}
-        >
-          {props.post.attachments &&
-            props.post.attachments.map((img) => (
+        {props.post.attachments && props.post.attachments.length === 1 ? (
+          <div
+            className={p.imagesListItemsOne}
+            // id={"image__list_items__" + props.post.id}
+          >
+            <div
+              className={p.imagesItem}
+              // id={"image__item__" + props.post.id}
+              onClick={() => {
+                document.querySelector("body").style.cssText =
+                  "overflow: hidden;";
+                props.setImgUrl(props.post.attachments[0]);
+                props.setSelectedPost(props.post);
+                props.setIsBigPictures(true);
+              }}
+            >
+              <img src={props.post.attachments[0]} alt="images post" />
+            </div>
+          </div>
+        ) : (
+          <div
+            className={p.imagesListItems}
+            id={"image__list_items__" + props.post.id}
+          >
+            {props.post.attachments.map((img) => (
               <div
                 className={p.imagesItem}
                 id={"image__item__" + props.post.id}
@@ -156,7 +178,8 @@ const Post = (props) => {
                 <img src={img} alt="images post" />
               </div>
             ))}
-        </div>
+          </div>
+        )}
       </div>
       <div className={p.botBlock}>
         <div className={p.likeCountBlock}>

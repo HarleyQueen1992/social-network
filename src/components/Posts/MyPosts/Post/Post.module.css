@@ -232,11 +232,15 @@ button {
   grid-gap: 5px;
   grid-template-columns: 1fr 1fr;
 }
+.imagesListItemsOne {
+  display: grid;
+}
 .imagesItem {
   cursor: pointer;
   display: grid;
   height: 100%;
 }
+
 .imagesItem img {
   width: 100%;
   height: 100%;
