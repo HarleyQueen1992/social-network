@@ -172,6 +172,7 @@ const App = (props) => {
       window.location = "/social-network/#/news";
     }
     let url = props.location.pathname;
+
     url = url.replace(/[^a-zа-яё]/gi, "");
     if (url == "settings") {
       props.setIndex(Number(5));

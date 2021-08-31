@@ -52,7 +52,8 @@ export const light = {
   blockBlock: "rgb(226, 102, 102)",
   bacScrollTopArrow: "rgb(238, 232, 232)",
   bacScrollTopArrowHover: "rgb(206, 206, 206)",
-  scrollTopArrow: "#1877f2"
+  scrollTopArrow: "#1877f2",
+  placeholder: "rgb(54, 54, 54)"
 
 
   
@@ -117,7 +118,8 @@ export const dark = {
   blockBlock: "rgb(182, 55, 55)",
   bacScrollTopArrow: "rgb(90, 90, 90)",
   bacScrollTopArrowHover: "rgb(110, 110, 110)",
-  scrollTopArrow: "white"
+  scrollTopArrow: "white",
+  placeholder: "rgb(180, 180,180)"
 
 
 }

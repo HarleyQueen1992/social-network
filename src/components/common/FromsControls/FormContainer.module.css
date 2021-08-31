@@ -20,18 +20,49 @@
   font-size: 14px;
   box-sizing: border-box;
   /* background-color: white; */
-  background-color: var(--bacInputLogin);
-  border: 2px solid var(--bacInputLogin);
+  /* background-color: var(--bacInputLogin); */
+  background-color: rgba(0, 0, 0, 0);
+  /* border: 2px solid var(--bacInputLogin); */
+  border: 2px solid rgb(116, 116, 116);
   border-radius: 5px;
   padding: 9px 0 7px 8px;
   grid-template-rows: 1fr 1fr;
   justify-self: center;
   height: 36px;
+  color: var(--fontColor);
   width: 100%;
-  z-index: 999;
+  z-index: 998;
+}
+/* .inputField:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-color: rgb(255, 0, 0) !important;
+  background-image: none !important;
+  color: -internal-light-dark(black, white) !important;
+} */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--fontColor);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 174, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0) 51%,
+    rgba(0, 174, 255, 0.03) 100%
+  );
+}
+.inputField:focus {
+  border: 2px solid #1877f2;
 }
 .inputActive {
-  padding: 16px 0 2px 8px !important;
+  /* padding: 16px 0 2px 8px !important; */
 }
 .div {
   align-self: center;
@@ -44,15 +75,19 @@
 .placeholder {
   position: absolute;
   text-transform: capitalize;
-  left: 8px;
-  right: 0;
+  left: 5px;
+  background-color: var(--body);
+  padding: 0 8px 0 8px;
+  font-size: 16px;
   font-weight: bold;
-  line-height: 36px;
+  /* line-height: 32px; */
   pointer-events: none;
   transform-origin: left;
-  transition: all 0.4s;
-  z-index: 9;
+  transition: all 0.2s;
+  z-index: 999;
+  color: var(--placeholder);
+  line-height: 16px;
+  transform: scale(0.83333) translateY(-9px);
 }
 .placeholderSmall {
-  transform: scale(0.83333) translateY(-10px);
 }

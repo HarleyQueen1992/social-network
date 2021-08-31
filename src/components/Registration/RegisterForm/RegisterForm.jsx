@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector, formValues } from "redux-form";
 import {
   maxLengthCreator,
   required,
@@ -12,6 +12,8 @@ import {
   Input,
   Textarea,
 } from "./../../common/FromsControls/FormsControls";
+import { connect } from "react-redux";
+
 let maxLength50 = maxLengthCreator(20);
 const RegisterForm = (props) => {
   // let history = useHistory()
@@ -31,6 +33,18 @@ const RegisterForm = (props) => {
           {createField("", "email", [], Input, {
             type: "text",
             placeholderValue: "email",
+            // onFocus: () => {
+            //   document.getElementById("placeholder__email").style.cssText =
+            //     "line-height: 16px; transform: scale(0.83333) translateY(-9px);";
+            // },
+            // onBlur: () => {
+            //   if (!props.emailValues) {
+            //     document.getElementById("placeholder__email").style.cssText =
+            //       "transform: scale(1) translateY(7px);";
+            //   }
+            // },
+            placeholderValue: "email",
+            // value: props.passwordValues,
           })}
           {/* <Field
             className={l.inputField}
@@ -44,6 +58,16 @@ const RegisterForm = (props) => {
           {createField("", "login", [], Input, {
             type: "text",
             placeholderValue: "login",
+            // onFocus: () => {
+            //   document.getElementById("placeholder__login").style.cssText =
+            //     "line-height: 16px; transform: scale(0.83333) translateY(-9px);";
+            // },
+            // onBlur: () => {
+            //   if (!props.loginValues) {
+            //     document.getElementById("placeholder__login").style.cssText =
+            //       "transform: scale(1) translateY(7px);";
+            //   }
+            // },
           })}
           {/* <Field
             className={l.inputField}
@@ -57,6 +81,16 @@ const RegisterForm = (props) => {
           {createField("", "password1", [], Input, {
             type: "password",
             placeholderValue: "password",
+            // onFocus: () => {
+            //   document.getElementById("placeholder__password").style.cssText =
+            //     "line-height: 16px; transform: scale(0.83333) translateY(-9px);";
+            // },
+            // onBlur: () => {
+            //   if (!props.password1Values) {
+            //     document.getElementById("placeholder__password").style.cssText =
+            //       "transform: scale(1) translateY(7px);";
+            //   }
+            // },
           })}
           {/* <Field
             className={l.inputField}
@@ -71,6 +105,19 @@ const RegisterForm = (props) => {
           {createField("", "password2", [], Input, {
             type: "password",
             placeholderValue: "repeat password",
+            // onFocus: () => {
+            //   document.getElementById(
+            //     "placeholder__repeat password"
+            //   ).style.cssText =
+            //     "line-height: 16px; transform: scale(0.83333) translateY(-9px);";
+            // },
+            // onBlur: () => {
+            //   if (!props.password2Values) {
+            //     document.getElementById(
+            //       "placeholder__repeat password"
+            //     ).style.cssText = "transform: scale(1) translateY(7px);";
+            //   }
+            // },
           })}
           {/* <Field
             className={l.inputField}
@@ -99,4 +146,20 @@ const RegisterForm = (props) => {
 let RegisterReduxForm = reduxForm({
   form: "register",
 })(RegisterForm);
+
+const selector = formValueSelector("register"); // <-- same as form name
+RegisterReduxForm = connect((state) => {
+  // can select values individually
+  const emailValues = selector(state, "email");
+  const loginValues = selector(state, "login");
+  const password1Values = selector(state, "password1");
+  const password2Values = selector(state, "password2");
+  return {
+    emailValues,
+    loginValues,
+    password1Values,
+    password2Values,
+  };
+})(RegisterReduxForm);
+
 export default RegisterReduxForm;

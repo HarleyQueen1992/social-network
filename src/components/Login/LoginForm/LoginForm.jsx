@@ -29,6 +29,19 @@ const LoginForm = (props) => {
           error: props.error,
           value: props.emailValues,
           placeholderValue: "email",
+          type: "text",
+          autocomplete: "nope",
+
+          // onFocus: () => {
+          //   document.getElementById("placeholder__email").style.cssText =
+          //     "line-height: 16px; transform: scale(0.83333) translateY(-9px);";
+          // },
+          // onBlur: () => {
+          //   if (!props.emailValues) {
+          //     document.getElementById("placeholder__email").style.cssText =
+          //       "transform: scale(1) translateY(7px);";
+          //   }
+          // },
         })}
         {/* </div> */}
         <div className={s.passwordField}>
@@ -42,7 +55,18 @@ const LoginForm = (props) => {
           {createField("", "password", [], Input, {
             error: props.error,
             type: "password",
+            // onFocus: () => {
+            //   document.getElementById("placeholder__password").style.cssText =
+            //     "line-height: 16px; transform: scale(0.83333) translateY(-9px);";
+            // },
+            // onBlur: () => {
+            //   if (!props.passwordValues) {
+            //     document.getElementById("placeholder__password").style.cssText =
+            //       "transform: scale(1) translateY(7px);";
+            //   }
+            // },
             placeholderValue: "password",
+            autocomplete: "nope",
             value: props.passwordValues,
           })}
         </div>
@@ -77,8 +101,10 @@ const selector = formValueSelector("login"); // <-- same as form name
 LoginReduxForm = connect((state) => {
   // can select values individually
   const emailValues = selector(state, "email");
+  const passwordValues = selector(state, "password");
   return {
     emailValues,
+    passwordValues,
   };
 })(LoginReduxForm);
 
