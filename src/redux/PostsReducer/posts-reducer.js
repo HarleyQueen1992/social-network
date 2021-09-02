@@ -24,6 +24,7 @@ const SET_SELECTED_POST = 'app/posts-reducer/SET_SELECTED_POST'
 const SET_IS_BIG_PICTURES = 'app/posts-reducer/SET_IS_BIG_PICTURES'
 const SET_IMG_URL = 'app/posts-reducer/SET_IMG_URL'
 const SET_PAGE_SIZE = 'app/posts-reducer/SET_PAGE_SIZE'
+const SET_SPECIFIED_POST = 'app/posts-reducer/SET_SPECIFIED_POST'
 
 let initialState = {
   posts: [
@@ -36,6 +37,7 @@ let initialState = {
   totalItems: null,
   page: 1,  
   uploadPosts: true,
+  specifiedPost: null,
   loadingPosts: false,
   pageSelection: 'posts',
   q: '',
@@ -148,6 +150,12 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingPosts: action.loadingPosts
+      }
+    }
+    case SET_SPECIFIED_POST: {
+      return {
+        ...state,
+        specifiedPost: action.post
       }
     }
     case ADD_LIKES:
@@ -274,6 +282,9 @@ export const updatePostAC = (post) => {
 export const setDropdownMenusPostId = (postId) => {
   return { type: DROPDOWN_MENUS_POST_ID, postId }
 }
+export const setSpecifiedPost = (post) => {
+  return {type: SET_SPECIFIED_POST, post}
+}
 export const setTotalPageCount = (totalPageCount) => {
   return { type: TOTAL_PAGE_COUNT, totalPageCount }
 }
@@ -388,6 +399,10 @@ export const createPost = (title, body, attachments) => async (dispatch, getStat
   dispatch(setIsLoader(false))
 }
 
+export const requestSpecifiedPost = (postId) => async (dispatch) => {
+  let response = await postsAPI.getSpecifiedPost(postId)
+  dispatch(setSpecifiedPost(response))
+}
 
 export const updatePost = (title, body, attachments, id) => async (dispatch, getState) => {
   dispatch(setIsLoader(true))

@@ -144,7 +144,12 @@ const Post = (props) => {
             className={p.imagesListItemsOne}
             // id={"image__list_items__" + props.post.id}
           >
-            <div
+            <NavLink
+              to={
+                props.post.attachments[0].substring(27) +
+                "&postId=" +
+                props.post.id
+              }
               className={p.imagesItem}
               // id={"image__item__" + props.post.id}
               onClick={() => {
@@ -156,7 +161,7 @@ const Post = (props) => {
               }}
             >
               <img src={props.post.attachments[0]} alt="images post" />
-            </div>
+            </NavLink>
           </div>
         ) : (
           <div
@@ -164,19 +169,23 @@ const Post = (props) => {
             id={"image__list_items__" + props.post.id}
           >
             {props.post.attachments.map((img) => (
-              <div
+              <NavLink
+                to={
+                  // window.location.href.substring(38) +
+                  img.substring(27) + "&postId=" + props.post.id
+                }
                 className={p.imagesItem}
                 id={"image__item__" + props.post.id}
                 onClick={() => {
-                  document.querySelector("body").style.cssText =
-                    "overflow: hidden;";
-                  props.setImgUrl(img);
+                  // document.querySelector("body").style.cssText =
+                  //   "overflow: hidden;";
+                  // props.setImgUrl(img);
                   props.setSelectedPost(props.post);
-                  props.setIsBigPictures(true);
+                  // props.setIsBigPictures(true);
                 }}
               >
                 <img src={img} alt="images post" />
-              </div>
+              </NavLink>
             ))}
           </div>
         )}

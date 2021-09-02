@@ -15,27 +15,26 @@ const Activation = (props) => {
     x.value = x.value.toUpperCase();
   };
   const Jump = (field, autoMove) => {
+    let e;
     if (field.value == "") {
       if (autoMove == 2) {
-        let e = document.getElementById("id00" + String(autoMove - 1));
-        e.focus();
-        e.setSelectionRange(1, 2);
+        e = document.getElementById("id00" + String(autoMove - 1));
       } else {
-        let e = document.getElementById("id00" + String(autoMove - 2));
-        e.focus();
-        e.setSelectionRange(1, 2);
+        e = document.getElementById("id00" + String(autoMove - 2));
       }
     } else {
       if (autoMove == 7) {
-        let e = document.getElementById("id00" + String(autoMove - 1));
-        e.focus();
-        e.setSelectionRange(1, 2);
+        e = document.getElementById("id00" + String(autoMove - 1));
       } else {
-        let e = document.getElementById("id00" + autoMove);
-        e.focus();
-        e.setSelectionRange(1, 2);
+        e = document.getElementById("id00" + autoMove);
       }
     }
+    e.focus();
+    let value = e.value;
+    e.value = "";
+    e.value = value;
+
+    // e.setSelectionRange(-1, -1);
     // }
   };
   return (

@@ -44,8 +44,9 @@ export const authAPI = {
   getAuthMe() {
     return instance.get(`/profile/`).then(response => {
       return response.data
-    })
-    .catch(response => response.response.data)
+    }).catch(error => {
+      return error.response
+  })
   },
   loginIn(email, password) {
     return instance.put(`auth/`, { email, password }).then(response => {
@@ -315,6 +316,13 @@ export const postsAPI = {
       return response.data
     }).catch(response => {
       return response
+    })
+  },
+  getSpecifiedPost(postId) {
+    return instance.get(`/posts/${postId}/`).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
     })
   },
   updatePost(title, body, attachments, id) {

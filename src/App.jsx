@@ -8,6 +8,7 @@ import {
   Switch,
   Redirect,
   Route,
+  useLocation,
 } from "react-router-dom";
 import SettingsContainer from "./components/Settings/SettingsContainer";
 import NewsContainer from "./components/News/NewsContainer";
@@ -84,6 +85,7 @@ const urlIndex = {
 };
 let i = NaN;
 const App = (props) => {
+  let [prevUrl, setPrevUrl] = useState("");
   for (let property in props.theme) {
     document.documentElement.style.setProperty(
       "--" + property,
@@ -120,7 +122,7 @@ const App = (props) => {
     window.scroll(0, 0);
   };
 
-  let changeIndex = (velue) => {
+  let changeIndex = (velue, scrollY = 0) => {
     let strUpdate = velue.substr(url.length);
     strUpdate = strUpdate.split("/")[0];
 
@@ -135,26 +137,32 @@ const App = (props) => {
     str = velue;
 
     props.setIndex(Number(i));
-    window.scroll(0, 0);
+    window.scroll(0, scrollY);
   };
 
   useEffect(() => {
     let strUpdate = str.substr(url.length);
-    strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
-
-    if (strUpdate == "") {
-      i = 0;
-      window.location = "/social-network/#/" + urlIndex[i];
-    } else if (strUpdate == "settings") {
-      i = 5;
+    let abcd = strUpdate.slice(0, 7);
+    if (abcd === "profile") {
+      i = 1;
     } else {
-      for (let key in urlIndex) {
-        if (urlIndex[key] == strUpdate) {
-          i = key;
-          break;
+      strUpdate = strUpdate.replace(/[^a-zа-яё]/gi, "");
+
+      if (strUpdate == "") {
+        i = 0;
+        window.location = "/social-network/#/" + urlIndex[i];
+      } else if (strUpdate == "settings") {
+        i = 5;
+      } else {
+        for (let key in urlIndex) {
+          if (urlIndex[key] == strUpdate) {
+            i = key;
+            break;
+          }
         }
       }
     }
+
     props.setIndex(Number(i));
     props.initializeApp();
   }, []);
@@ -168,6 +176,22 @@ const App = (props) => {
   window.onscroll = function (e) {
     setIsScrolling(window.scrollY > 0); // Value of scroll Y in px
   };
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+  let query = useQuery();
+  useEffect(() => {
+    let id = query.get("id");
+    let scroll = window.scrollY;
+    if (!id) {
+      props.setIsBigPictures(false);
+      changeIndex(window.location.href, scroll);
+    } else {
+      props.setIsBigPictures(true);
+    }
+    setPrevUrl(window.location.href);
+  }, [window.location.href]);
+
   useEffect(() => {
     if (props.location.pathname.length == 1) {
       window.location = "/social-network/#/news";
@@ -196,6 +220,10 @@ const App = (props) => {
     return (
       <>
         <div className={s.appWrapper}>
+          {/* <Route
+            path="/photo"
+            render={() => <BigPictures selectPost={props.selectPost} />}
+          /> */}
           <Header
             // isBigScreen={isBigScreen}
             handleChange={handleChange}
@@ -224,13 +252,7 @@ const App = (props) => {
             <div className={s.scrollUpArrow}></div>
           </div>
 
-          {props.isBigPictures && (
-            <BigPictures
-              selectPost={props.selectPost}
-              setIsBigPictures={props.setIsBigPictures}
-              imgUrl={props.imgUrl}
-            />
-          )}
+          {props.isBigPictures && <BigPictures />}
           {props.isUpdatePost ? (
             <UpdatePost
               setIsUpdatePost={props.setIsUpdatePost}
@@ -323,7 +345,16 @@ const App = (props) => {
               </SwipeableViews>
             ) : (
               <Switch>
-                <Route path="/settings" render={() => <SettingsContainer />} />
+                <Route
+                  path="/settings"
+                  render={() => {
+                    console.log("123");
+                  }}
+                />
+                {/* <Route
+                  path="/photo"
+                  render={() => <BigPictures selectPost={props.selectPost} />}
+                /> */}
                 <Route
                   path="/followers/:login?"
                   render={() => <FollowersContainer />}

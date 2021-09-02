@@ -27,6 +27,7 @@ import {
   clearPosts,
   requestUserPosts,
   setPageSelection,
+  setIsBigPictures,
 } from "./../../redux/PostsReducer/posts-reducer";
 import {
   getIsFatching,
@@ -175,6 +176,7 @@ class ProfileContainer extends React.Component {
             blockUser={this.props.blockUser}
             banUser={this.props.banUser}
             unblockUser={this.props.unblockUser}
+            setIsBigPictures={this.props.setIsBigPictures}
           />
         )}
       </>
@@ -235,6 +237,7 @@ export default compose(
     setPageSelection,
     blockUser,
     unblockUser,
+    setIsBigPictures,
     // getUsersListFollowing,
   }),
   withRouter,

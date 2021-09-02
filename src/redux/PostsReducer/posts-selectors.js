@@ -40,3 +40,6 @@ export const getIsBigPictures = state => {
 export const getImgUrl = state => {
   return state.posts.imgUrl
 }
+export const getSpecifiedPost = state => {
+  return state.posts.specifiedPost
+}

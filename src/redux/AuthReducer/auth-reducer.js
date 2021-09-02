@@ -85,13 +85,13 @@ export const getAuthMe = () => async (dispatch, getState) => {
     );
     }
   let data = await authAPI.getAuthMe()
-  if (data.code !== 'notAuthenticated') {
+  if (!data.code) {
     dispatch(setProfileData(data, true))
     dispatch(setTheme(data.theme))
     dispatch(setThemeStyle())
     // dispatch(isSavePhoto(false))
   } else {
-    dispatch(setIsAuth( false))
+    dispatch(setIsAuth(false))
   }
 }
 

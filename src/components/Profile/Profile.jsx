@@ -1,18 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { requestSubscriptions } from "../../redux/ProfileReducer/profile-reducer";
 import p from "./Profile.module.css";
+import { useLocation, NavLink } from "react-router-dom";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 const Profile = (props) => {
+  let [prevUrl, setPrevUrl] = useState("");
   if (document.querySelector(".react-swipeable-view-container")) {
     document.querySelector(
       ".react-swipeable-view-container"
     ).childNodes[1].style.cssText =
       "overflow: initial; width: 100%; flex-shrink: 0;";
   }
+  let query = useQuery();
 
   useEffect(() => {
-    props.changeIndex(window.location.href);
+    // let id = query.get("id");
+    let scroll = window.scrollY;
+    // if (!id) {
+    //   props.setIsBigPictures(false);
+    props.changeIndex(window.location.href, scroll);
+    // } else {
+    //   props.setIsBigPictures(true);
+    // }
+    // setPrevUrl(window.location.href);
   }, [window.location.href]);
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
