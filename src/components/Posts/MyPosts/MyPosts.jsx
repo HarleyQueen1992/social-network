@@ -18,7 +18,8 @@ const MyPosts = (props) => {
     setIsFocus(!isFocus);
   };
   useEffect(() => {
-    props.changeIndex(window.location.href);
+    let scroll = window.scrollY;
+    props.changeIndex(window.location.href, scroll);
   }, [window.location.href]);
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);

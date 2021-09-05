@@ -60,7 +60,7 @@ class MyPostsContainer extends React.Component {
     if (prevProps.location.pathname !== currentUrl) {
       if (currentUrl == "/posts/my" || currentUrl == "/posts") {
         this.props.setPageSelection("posts");
-      } else {
+      } else if (currentUrl == "/posts/all") {
         this.props.setPageSelection("allPosts");
       }
     }

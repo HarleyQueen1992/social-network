@@ -25,6 +25,7 @@ const SET_IS_BIG_PICTURES = 'app/posts-reducer/SET_IS_BIG_PICTURES'
 const SET_IMG_URL = 'app/posts-reducer/SET_IMG_URL'
 const SET_PAGE_SIZE = 'app/posts-reducer/SET_PAGE_SIZE'
 const SET_SPECIFIED_POST = 'app/posts-reducer/SET_SPECIFIED_POST'
+const CLEAR_SPECIFIED_POST = 'app/posts-reducer/CLEAR_SPECIFIED_POST'
 
 let initialState = {
   posts: [
@@ -175,6 +176,11 @@ const postsReducer = (state = initialState, action) => {
           return p
         }),
       }
+    case CLEAR_SPECIFIED_POST:
+      return {
+        ...state,
+        specifiedPost: null
+      }
     case SET_PAGE:
       return {
         ...state,
@@ -302,6 +308,9 @@ export const setImgUrl = (imgUrl) => {
 }
 export const setPageSize = (pageSize) => {
   return {type: SET_PAGE_SIZE, pageSize}
+}
+export const clearSpecifiedPost = () => {
+  return {type: CLEAR_SPECIFIED_POST}
 }
 // ? Thunk Creator
 

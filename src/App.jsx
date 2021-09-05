@@ -184,6 +184,7 @@ const App = (props) => {
     let id = query.get("id");
     let scroll = window.scrollY;
     if (!id) {
+      document.querySelector("body").style.cssText = "overflow: scroll;";
       props.setIsBigPictures(false);
       changeIndex(window.location.href, scroll);
     } else {

@@ -8,42 +8,40 @@
 }
 .bigPicturesContentBlock {
   display: grid;
+  z-index: 997;
   grid-template-rows: 1fr;
   position: relative;
   align-self: center;
   justify-self: center;
 }
 .topBlock {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  display: grid;
+  height: 50px;
   background-color: #000000;
 }
-/* @media (max-width: 1800px) {
-  .bigPicturesContentBlock {
-    width: calc(700px + (900 - 700) * ((100vw - 900px) / (1800 - 900)));
-  }
-} */
-/* @media (max-width: 900px) {
-  .bigPicturesContentBlock {
-    width: 90%;
-  }
-} */
-/* @media (max-width: 500px) {
-  .bigPicturesContentBlock {
-    width: 100%;
-    height: 100vh;
-    background-color: black;
-  }
-} */
+
 .closeBlock {
-  position: absolute;
-  height: 30px;
+  position: relative;
+  height: 50px;
   cursor: pointer;
-  top: 5px;
-  right: 10px;
-  width: 30px;
+  justify-self: end;
+  display: grid;
+  transition: all 0.2s;
+  z-index: 999;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0);
+  width: 50px;
 }
 .close {
+  align-self: center;
+  justify-self: center;
   position: relative;
   height: 30px;
+  transition: all 0.3s;
   width: 30px;
 }
 .close::before {
@@ -51,8 +49,9 @@
   position: absolute;
   width: 25px;
   left: 2px;
-  height: 2px;
+  height: 3px;
   top: 15px;
+  transition: all 0.3s;
   background-color: rgb(199, 199, 199);
   transform: rotate(45deg);
 }
@@ -60,9 +59,10 @@
   content: "";
   position: absolute;
   width: 25px;
-  height: 2px;
+  height: 3px;
   left: 2px;
   top: 15px;
+  transition: all 0.3s;
   background-color: rgb(199, 199, 199);
   transform: rotate(-45deg);
 }
@@ -73,57 +73,100 @@
   max-height: 100vh;
 }
 .arrowLeftBlock {
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
-  z-index: 99;
-  top: 50%;
-  width: 35px;
-  height: 50px;
-  left: 10px;
-  margin-top: -15px;
+  z-index: 999;
+  width: 70px;
+  height: 100vh;
+  display: grid;
   cursor: pointer;
+  transition: all 0.5s;
+}
+.arrowLeftBlock:hover .arrowLeft {
+  margin-left: 5px;
+  background-color: rgba(255, 255, 255, 0.753);
+}
+.arrowLeftBlock:hover {
+  width: 65px;
+  background-color: rgba(0, 0, 0, 0.171);
 }
 .arrowLeft {
-  width: 35px;
-  height: 50px;
+  width: 48px;
+  margin-left: 10px;
+  transition: all 0.5s;
+  height: 48px;
+  align-self: center;
+  background-color: rgba(255, 255, 255, 0.274);
+  border-radius: 50%;
+  display: grid;
   position: relative;
 }
-.arrowLeft::after {
+.arrowLeft img {
+  width: 22px;
+  align-self: center;
+  margin-left: 10px;
+  /* transform: rotate(180deg); */
+}
+/* .arrowLeft::after {
   content: "";
   position: absolute;
-  width: 24px;
-  top: 32px;
-  left: 0;
+  width: 20px;
+  top: 30px;
+  left: 10px;
   height: 3px;
-  transform: rotate(50deg);
-  background-color: white;
+  transform: rotate(40deg);
+  background-color: rgb(0, 0, 0);
 }
 .arrowLeft::before {
   content: "";
   position: absolute;
-  top: 15px;
-  width: 24px;
-  left: 0;
-  transform: rotate(-50deg);
+  top: 16px;
+  width: 20px;
+  left: 10px;
+  transform: rotate(-40deg);
   height: 3px;
-  background-color: white;
+  background-color: rgb(0, 0, 0);
+} */
+.arrowRightBlock:hover .arrowRight {
+  margin-right: 5px;
+  background-color: rgba(255, 255, 255, 0.753);
 }
-
+.arrowRightBlock:hover {
+  width: 65px;
+  background-color: rgba(0, 0, 0, 0.171);
+}
 .arrowRightBlock {
   position: absolute;
-  top: 50%;
-  right: 10px;
-  width: 35px;
-  height: 50px;
-  margin-top: -15px;
+  z-index: 998;
+  transition: all 0.5s;
+  width: 70px;
+  background-color: rgba(0, 0, 0, 0);
+  height: 100vh;
+  right: 0;
+  display: grid;
   cursor: pointer;
 }
 .arrowRight {
-  width: 35px;
-  height: 50px;
-  transform: rotate(0.5turn);
+  width: 48px;
+  margin-right: 10px;
+  justify-self: end;
+  height: 48px;
+  align-self: center;
+  transition: all 0.5s;
+  background-color: rgba(255, 255, 255, 0.274);
+  border-radius: 50%;
+  display: grid;
   position: relative;
 }
-.arrowRight::after {
+.arrowRight img {
+  transform: rotate(180deg);
+  width: 22px;
+  justify-self: end;
+  align-self: center;
+  margin-right: 10px;
+  /* transform: rotate(180deg); */
+}
+/* .arrowRight::after {
   content: "";
   position: absolute;
   width: 24px;
@@ -142,15 +185,21 @@
   transform: rotate(-50deg);
   height: 3px;
   background-color: white;
-}
+} */
 .counter {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
+  position: relative;
+  align-self: center;
+  margin-left: 10px;
   font-size: 20px;
   color: rgba(255, 255, 255, 0.425);
 }
 .bottomBlock {
+  bottom: 0;
+  width: 100vw;
+  height: 50px;
+  display: grid;
+  z-index: 998;
+  position: absolute;
   background-color: #000000;
 }
 @media (max-width: 600px) {

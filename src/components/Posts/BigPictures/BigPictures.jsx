@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import s from "./BigPictures.module.css";
 import { useLocation, NavLink } from "react-router-dom";
 import { getSpecifiedPost } from "../../../redux/PostsReducer/posts-selectors";
-import { requestSpecifiedPost } from "./../../../redux/PostsReducer/posts-reducer";
+import {
+  requestSpecifiedPost,
+  clearSpecifiedPost,
+} from "./../../../redux/PostsReducer/posts-reducer";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { postsAPI } from "../../../API/api";
+import ArrowBlack from "./../../../assets/images/arrowBlack.png";
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -27,7 +31,12 @@ const BigPictures = (props) => {
         : ""
     );
   }, [props.specifiedPost]);
-
+  useEffect(() => {
+    // returned function will be called on component unmount
+    return () => {
+      props.clearSpecifiedPost();
+    };
+  }, []);
   return !props.specifiedPost ? (
     <div>Load</div>
   ) : indexImg || indexImg == 0 ? (
@@ -44,21 +53,25 @@ const BigPictures = (props) => {
             setIndexImg(indexImg - 1);
           }}
         >
-          <div className={s.arrowLeft}></div>
+          <div className={s.arrowLeft}>
+            <img src={ArrowBlack} alt="arrow left" />
+          </div>
         </NavLink>
       ) : (
         ""
       )}
-      <NavLink
-        to={"/" + window.location.hash.substring(2).split("?")[0]}
-        className={s.closeBlock}
-        onClick={() => {
-          document.querySelector("body").style.cssText = "overflow: scroll;";
-          // props.setIsBigPictures(false);
-        }}
-      >
-        <div className={s.close}></div>
-      </NavLink>
+      <div className={s.topBlock}>
+        <NavLink
+          to={"/" + window.location.hash.substring(2).split("?")[0]}
+          className={s.closeBlock}
+          // onClick={() => {
+
+          //   // props.setIsBigPictures(false);
+          // }}
+        >
+          <div className={s.close}></div>
+        </NavLink>
+      </div>
 
       <div className={s.bigPicturesContentBlock}>
         <img
@@ -80,13 +93,17 @@ const BigPictures = (props) => {
             setIndexImg(indexImg + 1);
           }}
         >
-          <div className={s.arrowRight}></div>
+          <div className={s.arrowRight}>
+            <img src={ArrowBlack} alt="arrow right" />
+          </div>
         </NavLink>
       ) : (
         ""
       )}
-      <div className={s.counter}>
-        {indexImg + 1} of {props.specifiedPost.attachments.length}
+      <div className={s.bottomBlock}>
+        <div className={s.counter}>
+          {indexImg + 1} of {props.specifiedPost.attachments.length}
+        </div>
       </div>
     </div>
   ) : (
@@ -101,5 +118,6 @@ let mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps, {
     requestSpecifiedPost,
+    clearSpecifiedPost,
   })
 )(BigPictures);
