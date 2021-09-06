@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+
+.popupFilters {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 999;
+  display: grid;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.445);
+}
+.popupFiltersBlock {
+  align-self: center;
+  justify-self: center;
+  height: 350px;
+  width: 450px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 50px 1fr 60px;
+  background-color: var(--navBarBac);
+  border-radius: 8px;
+}
+.header {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  border-bottom: 1px solid var(--BorderBottom);
+}
+.title {
+  color: var(--fontColor);
+  font-size: 23px;
+  font-family: "Patua One", cursive;
+  justify-self: center;
+  margin-left: 50px;
+  align-self: center;
+}
+.popupContentHader {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 50px;
+  /* border-bottom: 1px solid red; */
+}
+.popupContentHader::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  bottom: 0;
+  background-color: var(--BorderBottom);
+}
+.popupContentHeaderOff {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+  background-color: rgb(105, 105, 105);
+  transition: 0.5s all;
+}
+.popupContentHeaderOff:hover {
+  background-color: rgb(156, 156, 156);
+}
+.popupContentHeaderOff:before,
+.popupContentHeaderOff:after {
+  position: absolute;
+  left: 14px;
+  content: " ";
+  top: 5px;
+  height: 20px;
+  width: 2px;
+  background-color: rgb(255, 255, 255);
+}
+.popupContentHeaderOff:before {
+  transform: rotate(45deg);
+}
+.popupContentHeaderOff:after {
+  transform: rotate(-45deg);
+}
+.popupFiltersContent {
+  display: grid;
+  align-self: center;
+  grid-template-rows: repeat(4, 50px);
+}
+.filtersField {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.filtersFieldTitle {
+  color: var(--fontColor);
+  align-self: center;
+  margin-left: 20px;
+  justify-self: start;
+  font-family: "Patua One", cursive;
+}
+.customCheckbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.customCheckbox + label {
+  align-self: center;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+.customCheckbox + label::before {
+  content: "";
+  cursor: pointer;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.customCheckboxActive::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+/* стили при наведении курсора на checkbox */
+.customCheckbox:not(:disabled):not(:checked) + label:hover::before {
+  border-color: #b3d7ff;
+}
+/* стили для активного состояния чекбокса (при нажатии на него) */
+.customCheckbox:not(:disabled):active + label::before {
+  background-color: #b3d7ff;
+  border-color: #b3d7ff;
+}
+/* стили для чекбокса, находящегося в фокусе */
+.customCheckbox:focus + label::before {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.customCheckbox:focus:not(:checked) + label::before {
+  border-color: #80bdff;
+}
+/* стили для чекбокса, находящегося в состоянии disabled */
+.customCheckbox:disabled + label::before {
+  background-color: #e9ecef;
+}
+.popupFiltersButtons {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.buttonsReady {
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  width: 110px;
+  /* transition: all 0.2s; */
+  border-radius: 5px;
+  color: white;
+  background-color: #1877f2;
+  height: 36px;
+}
+.buttonsReady:active {
+  background-color: #3b84e4;
+  height: 34px;
+  width: 108px;
+}
+.buttonsReady:active span {
+  font-size: 15px;
+}
+.buttonsReady span {
+  align-self: center;
+  /* transition: all 0.2s; */
+  justify-self: center;
+  font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
+}

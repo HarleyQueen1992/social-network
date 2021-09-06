@@ -541,7 +541,14 @@ const ProfileInfo = (props) => {
           <div className={s.publicationsBlockAll}>
             <div className={s.publicationsTitleAndFilter}>
               <span className={s.publicationsTitle}>Publications</span>
-              <div className={s.publicationsFilter}>
+              <div
+                className={s.publicationsFilter}
+                onClick={() => {
+                  document.querySelector("body").style.cssText =
+                    "overflow: hidden;";
+                  props.setIsOpenFilters(true);
+                }}
+              >
                 <img
                   className={s.publicationsFilterImg}
                   src={res["filter"]}

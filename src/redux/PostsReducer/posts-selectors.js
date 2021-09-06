@@ -43,3 +43,6 @@ export const getImgUrl = state => {
 export const getSpecifiedPost = state => {
   return state.posts.specifiedPost
 }
+export const getOrdering = state => {
+  return state.posts.ordering
+}

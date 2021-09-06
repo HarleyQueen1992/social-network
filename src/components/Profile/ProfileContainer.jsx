@@ -16,6 +16,7 @@ import {
   unsubscribe,
   blockUser,
   unblockUser,
+  setIsOpenFilters,
 } from "../../redux/ProfileReducer/profile-reducer";
 import {
   deletePost,
@@ -52,6 +53,7 @@ import {
   getPosts,
   getTotalPostsItems,
   getUploadPosts,
+  getOrdering,
 } from "./../../redux/PostsReducer/posts-selectors";
 import {
   getIsAuth,
@@ -105,14 +107,26 @@ class ProfileContainer extends React.Component {
     this.refreshProfile();
   }
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ordering !== this.props.ordering) {
+      if (this.props.match.params.login) {
+        this.props.requestUserPosts(
+          this.props.match.params.login,
+          1,
+          this.props.ordering
+        );
+      } else {
+        this.props.requestPosts(1, "", this.props.ordering);
+      }
+    }
     if (this.props.uploadPosts && !this.props.loadingPosts) {
       if (this.props.match.params.login) {
         this.props.requestUserPosts(
           this.props.match.params.login,
-          this.props.postsPage
+          this.props.postsPage,
+          this.props.ordering
         );
       } else {
-        this.props.requestPosts(this.props.postsPage);
+        this.props.requestPosts(this.props.postsPage, "", this.props.ordering);
       }
     }
     if (this.props.match.params.login !== prevProps.match.params.login) {
@@ -177,6 +191,7 @@ class ProfileContainer extends React.Component {
             banUser={this.props.banUser}
             unblockUser={this.props.unblockUser}
             setIsBigPictures={this.props.setIsBigPictures}
+            setIsOpenFilters={this.props.setIsOpenFilters}
           />
         )}
       </>
@@ -209,6 +224,7 @@ const mapStateToProps = (state) => ({
   avatarIsLoading: getAvatarIsLoading(state),
   bannerIsLoading: getBannerIsLoading(state),
   banUser: getBanUser(state),
+  ordering: getOrdering(state),
   // usersListFollowing: getUsersListFollowing(state),
 });
 
@@ -238,6 +254,7 @@ export default compose(
     blockUser,
     unblockUser,
     setIsBigPictures,
+    setIsOpenFilters,
     // getUsersListFollowing,
   }),
   withRouter,

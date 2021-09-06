@@ -19,6 +19,7 @@ const IS_SUCCESSFUL_PASSWORD_CHANGE = 'app/profile-reducer/IS_SUCCESSFUL_PASSWOR
 const SET_BANNER_IS_LOADING = 'app/profile-reducer/SET_BANNER_IS_LOADING'
 const SET_AVATAR_IS_LOADING = 'app/profile-reducer/SET_AVATAR_IS_LOADING'
 const SET_USER_BAN = 'app/profile-reducer/SET_USER_BAN'
+const SET_IS_OPEN_FILTERS = 'app/profile-reducer/SET_IS_OPEN_FILTERS'
 
 let initialState = {
   isFatching: true,
@@ -34,6 +35,7 @@ let initialState = {
   bannerIsLoading: null,
   avatarIsLoading: null,
   userBan: null,
+  isOpenFilters: false,
 
 }
 
@@ -121,6 +123,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         profile: {...state.profile, isBanned: action.isBanned}
       }
+    case SET_IS_OPEN_FILTERS:
+      return {
+        ...state,
+        isOpenFilters: action.isOpenFilters
+      }
     default:
       return state
   }
@@ -148,6 +155,7 @@ export const setIsSuccessfulPasswordChange = isComplite => ({type: IS_SUCCESSFUL
 
 export const setUserBan = isBanned => ({type: SET_USER_BAN, isBanned})
 
+export const setIsOpenFilters = isOpenFilters => ({type: SET_IS_OPEN_FILTERS, isOpenFilters})
 
 export const isSavePhoto = isSaving => ({
   type: SAVING_IN_PHOTO_PROGRESS,

@@ -72,8 +72,12 @@ import {
 } from "./redux/PostsReducer/posts-selectors";
 import loaderWhite from "./assets/images/loaderWhite.svg";
 import BigPictures from "./components/Posts/BigPictures/BigPictures";
-import { getBanUser } from "./redux/ProfileReducer/profile-selectors";
+import {
+  getBanUser,
+  getIsOpenFilters,
+} from "./redux/ProfileReducer/profile-selectors";
 import Activation from "./components/Activation/Activation";
+import Filters from "./components/Profile/ProfileInfo/Filters/Filters";
 
 const urlIndex = {
   0: "news",
@@ -252,7 +256,7 @@ const App = (props) => {
           >
             <div className={s.scrollUpArrow}></div>
           </div>
-
+          {props.isOpenFilters && <Filters />}
           {props.isBigPictures && <BigPictures />}
           {props.isUpdatePost ? (
             <UpdatePost
@@ -391,6 +395,7 @@ const mapStateToProps = (state) => {
     selectPost: getSelectedPost(state),
     imgUrl: getImgUrl(state),
     banUser: getBanUser(state),
+    isOpenFilters: getIsOpenFilters(state),
   };
 };
 

@@ -80,6 +80,7 @@ const Profile = (props) => {
           blockUser={props.blockUser}
           banUser={props.banUser}
           unblockUser={props.unblockUser}
+          setIsOpenFilters={props.setIsOpenFilters}
         />
       </div>
     </div>

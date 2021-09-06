@@ -26,6 +26,7 @@ const SET_IMG_URL = 'app/posts-reducer/SET_IMG_URL'
 const SET_PAGE_SIZE = 'app/posts-reducer/SET_PAGE_SIZE'
 const SET_SPECIFIED_POST = 'app/posts-reducer/SET_SPECIFIED_POST'
 const CLEAR_SPECIFIED_POST = 'app/posts-reducer/CLEAR_SPECIFIED_POST'
+const SET_OREDERING = 'app/posts-reducer/SET_OREDERING'
 
 let initialState = {
   posts: [
@@ -46,7 +47,8 @@ let initialState = {
   dropdownMenusPostId: null,
   totalPageCount: 1,
   imgUrl: null,
-  pageSize: null
+  pageSize: null,
+  ordering: '-createdAt'
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -80,6 +82,12 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...action.posts]
+      }
+    }
+    case SET_OREDERING: {
+      return {
+        ...state,
+        ordering: action.ordering
       }
     }
     case SET_SELECTED_POST: {
@@ -312,9 +320,12 @@ export const setPageSize = (pageSize) => {
 export const clearSpecifiedPost = () => {
   return {type: CLEAR_SPECIFIED_POST}
 }
+export const setOrdering = (ordering) => {
+  return {type: SET_OREDERING, ordering}
+}
 // ? Thunk Creator
 
-export const requestPosts = (page, q = '') => async (dispatch, getState) => {
+export const requestPosts = (page, q = '', ordering = initialState.ordering) => async (dispatch, getState) => {
 console.log('upload')
   let state = getState()
   dispatch(setQ(q))
@@ -322,7 +333,7 @@ console.log('upload')
     dispatch(setLoadingPosts(true))
   }
   if (page <= state.posts.totalPageCount && !state.app.isLoader && !state.posts.loadingPosts ) {
-    let response = await postsAPI.getPosts(initialState.limit, page, q)
+    let response = await postsAPI.getPosts(initialState.limit, page, q, ordering)
     dispatch(setUploadPost(false))
     dispatch(setTotalPageCount(response.totalPages))
     
@@ -378,14 +389,18 @@ export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
   
 }
 
-export const requestUserPosts = (login, page) => async dispatch => {
+export const requestUserPosts = (login, page, ordering = initialState.ordering) => async dispatch => {
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }
-  let response = await postsAPI.getUserPosts(login,  initialState.limit, page)
+  let response = await postsAPI.getUserPosts(login,  initialState.limit, page, ordering)
   if (response.code !== 'notFound') {
     dispatch(setUploadPost(false))
-    dispatch(setPosts(response.items))
+    if (page === 1) {
+      dispatch(setSearchPosts(response.items))
+    } else {
+      dispatch(setPosts(response.items))
+    }
     dispatch(setPage(page + 1))
     dispatch(setPageSize(response.pageSize))
     dispatch(setTotalPageCount(response.totalPages))
