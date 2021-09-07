@@ -17,6 +17,7 @@ import {
   getTotalPostsItems,
   getPageSelection,
   getQ,
+  getOrdering,
 } from "../../../redux/PostsReducer/posts-selectors";
 import { withRouter } from "react-router-dom";
 import { withAuthRedirecr } from "./../../../Hoc/withAuthRedirect";
@@ -24,6 +25,7 @@ import {
   getNewPostText,
   getIsFatching,
 } from "../../../redux/ProfileReducer/profile-selectors";
+import { setIsOpenFilters } from "./../../../redux/ProfileReducer/profile-reducer";
 import {
   toggleIsPostCreation,
   toggleIsHeaderBlur,
@@ -56,6 +58,13 @@ class MyPostsContainer extends React.Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ordering != this.props.ordering) {
+      if (this.props.pageSelection === "posts") {
+        this.props.requestPosts(1, "", this.props.ordering);
+      } else {
+        this.props.requestAllPosts(1, "", this.props.ordering);
+      }
+    }
     let currentUrl = window.location.hash.replace(/^#/, "");
     if (prevProps.location.pathname !== currentUrl) {
       if (currentUrl == "/posts/my" || currentUrl == "/posts") {
@@ -67,17 +76,25 @@ class MyPostsContainer extends React.Component {
     if (prevProps.pageSelection !== this.props.pageSelection) {
       if (this.props.pageSelection === "posts") {
         this.props.clearPosts();
-        this.props.requestPosts(1);
+        this.props.requestPosts(1, "", this.props.ordering);
       } else {
         this.props.clearPosts();
-        this.props.requestAllPosts(1);
+        this.props.requestAllPosts(1, "", this.props.ordering);
       }
     } else {
       if (this.props.uploadPosts && !this.props.loadingPosts) {
         if (this.props.pageSelection === "posts") {
-          this.props.requestPosts(this.props.postsPage, this.props.q);
+          this.props.requestPosts(
+            this.props.postsPage,
+            this.props.q,
+            this.props.ordering
+          );
         } else {
-          this.props.requestAllPosts(this.props.postsPage, this.props.q);
+          this.props.requestAllPosts(
+            this.props.postsPage,
+            this.props.q,
+            this.props.ordering
+          );
         }
       }
     }
@@ -111,6 +128,7 @@ class MyPostsContainer extends React.Component {
             setPageSelection={this.props.setPageSelection}
             loadingPosts={this.props.loadingPosts}
             pageSelection={this.props.pageSelection}
+            setIsOpenFilters={this.props.setIsOpenFilters}
           />
         )}
       </div>
@@ -133,6 +151,7 @@ let mapStateToProps = (state) => {
     postsPage: getPagePosts(state),
     pageSelection: getPageSelection(state),
     q: getQ(state),
+    ordering: getOrdering(state),
   };
 };
 export default compose(
@@ -147,6 +166,7 @@ export default compose(
     setUploadPost,
     setPageSelection,
     requestAllPosts,
+    setIsOpenFilters,
   }),
   withRouter,
   withAuthRedirecr

@@ -13,17 +13,58 @@
   width: 800px;
   margin: 0 auto;
   padding: 10px;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 120px 1fr;
   grid-row-gap: 10px;
   grid-template-areas: "header" "posts";
+}
+.publicationsTitleAndFilter {
+  border-bottom: 1px solid var(--BorderBottom);
+  display: grid;
+  grid-template-columns: 1fr 110px;
+}
+.publicationsTitle {
+  color: var(--fontColor);
+  font-size: 22px;
+  align-self: center;
+  justify-self: center;
+  margin-left: 110px;
+  padding-left: 10px;
+  font-family: "Patua One", cursive;
+}
+.publicationsFilter {
+  margin-right: 10px;
+  align-self: center;
+  justify-self: end;
+  cursor: pointer;
+  width: 90px;
+  height: 60%;
+  border-radius: 5px;
+  background-color: var(--anythingNew);
+  align-self: center;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+.publicationsFilter:hover {
+  background-color: var(--anythingNewHover);
+}
+.publicationsFilterImg {
+  height: 20px;
+  align-self: center;
+  justify-self: center;
+}
+.publicationsFilterTitle {
+  color: var(--fontColor);
+  font-size: 16px;
+  align-self: center;
+  justify-self: start;
+  font-weight: bold;
 }
 /*? Header */
 .header {
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   position: relative;
-  padding: 5px;
   background-color: var(--navBarBac);
   border-radius: 10px;
 }
@@ -40,6 +81,15 @@
 .headerBorderBottomRight::after {
   transform: translate(112%, 0%);
   transition: all 0.3s;
+}
+.allPostsAndMyPosts {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  padding: 5px;
+  background-color: var(--navBarBac);
+  border-radius: 10px;
 }
 .newsItemBlock {
   text-decoration: none;

@@ -357,14 +357,14 @@ console.log('upload')
   }
 }
 
-export const requestAllPosts = (page, q = '') => async (dispatch,getState) => {
+export const requestAllPosts = (page, q = '', ordering = initialState.ordering) => async (dispatch,getState) => {
   let state = getState()
   dispatch(setQ(q))
   if (page === 1) {
     dispatch(setLoadingPosts(true))
   }
   
-    let response = await postsAPI.getAllPosts(initialState.limit, page, q)
+    let response = await postsAPI.getAllPosts(initialState.limit, page, q, ordering)
     dispatch(setUploadPost(false))
     
     if (q === '' && state.posts.q !== '') {

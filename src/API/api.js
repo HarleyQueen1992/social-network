@@ -363,8 +363,8 @@ export const postsAPI = {
     })
   },
   
-  getAllPosts(limit, page, q) {
-    return instance.get(`/posts/?page=${page}&limit=${limit}&q=${q}`).then(response => {
+  getAllPosts(limit, page, q, ordering) {
+    return instance.get(`/posts/?page=${page}&limit=${limit}&q=${q}&ordering=${ordering}`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data

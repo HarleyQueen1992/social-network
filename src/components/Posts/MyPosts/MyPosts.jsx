@@ -74,40 +74,60 @@ const MyPosts = (props) => {
             (props.pageSelection == "allPosts" && p.headerBorderBottomRight)
           }
         >
-          <NavLink
-            to="/posts/my"
-            className={p.newsItemBlock}
-            onClick={() => {
-              props.setPageSelection("posts");
-            }}
-          >
-            <span
-              className={
-                p.newsItem +
-                " " +
-                (props.pageSelection == "posts" && p.itemActive)
-              }
+          <div className={p.publicationsTitleAndFilter}>
+            <span className={p.publicationsTitle}>Publications</span>
+            <div
+              className={p.publicationsFilter}
+              onClick={() => {
+                document.querySelector("body").style.cssText =
+                  "overflow: hidden;";
+                props.setIsOpenFilters(true);
+              }}
             >
-              My Posts
-            </span>
-          </NavLink>
-          <NavLink
-            to="/posts/all"
-            className={p.allPostsItemBlock}
-            onClick={() => {
-              props.setPageSelection("allPosts");
-            }}
-          >
-            <span
-              className={
-                p.allPostsItem +
-                " " +
-                (props.pageSelection == "allPosts" && p.itemActive)
-              }
+              <img
+                className={p.publicationsFilterImg}
+                src={res["filter"]}
+                alt="filter"
+              />
+              <span className={p.publicationsFilterTitle}>Filters</span>
+            </div>
+          </div>
+          <div className={p.allPostsAndMyPosts}>
+            <NavLink
+              to="/posts/my"
+              className={p.newsItemBlock}
+              onClick={() => {
+                props.setPageSelection("posts");
+              }}
             >
-              All Posts
-            </span>
-          </NavLink>
+              <span
+                className={
+                  p.newsItem +
+                  " " +
+                  (props.pageSelection == "posts" && p.itemActive)
+                }
+              >
+                My Posts
+              </span>
+            </NavLink>
+            <NavLink
+              to="/posts/all"
+              className={p.allPostsItemBlock}
+              onClick={() => {
+                props.setPageSelection("allPosts");
+              }}
+            >
+              <span
+                className={
+                  p.allPostsItem +
+                  " " +
+                  (props.pageSelection == "allPosts" && p.itemActive)
+                }
+              >
+                All Posts
+              </span>
+            </NavLink>
+          </div>
         </header>
         {/* <header className={p.header2 + " " + (focus ? p.active : "")}>
           <div className={p.heading + " " + (focus ? p.action : "")}>
