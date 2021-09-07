@@ -88,7 +88,8 @@ export const getAuthMe = () => async (dispatch, getState) => {
   if (!data.code) {
     dispatch(setProfileData(data, true))
     dispatch(setTheme(data.theme))
-    dispatch(setThemeStyle())
+    localStorage.setItem("theme", data.theme);
+    // dispatch(setThemeStyle())
     // dispatch(isSavePhoto(false))
   } else {
     dispatch(setIsAuth(false))
