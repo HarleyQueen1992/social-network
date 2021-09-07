@@ -179,3 +179,17 @@
   justify-self: center;
   font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
 }
+@media (max-width: 450px) {
+  .popupFiltersBlock {
+    height: 100vh;
+    width: 100vw;
+    border-radius: 0;
+  }
+  .popupFiltersContent {
+    align-self: start;
+    margin-top: 30px;
+  }
+  .filtersField {
+    grid-template-columns: 90% 10%;
+  }
+}
