@@ -1,0 +1,70 @@
+/*! Profile description  */
+.profileDescription {
+  justify-self: center;
+  width: 876px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.publicationsBlock {
+  cursor: pointer;
+  position: relative;
+  justify-self: start;
+  width: 120px;
+  display: grid;
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+.publicationsBlock::after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #1877f2;
+}
+.publications {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-weight: bold;
+  font-size: 18px;
+}
+.editProfileBlock {
+  justify-self: end;
+  width: 150px;
+  align-self: center;
+  height: 60%;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 5px;
+  background-color: var(--editProfileBlock);
+}
+.editProfileImg {
+  align-self: center;
+  justify-self: end;
+  margin-right: 5px;
+}
+.editProfileBlock:hover {
+  background-color: var(--editProfileBlockHover);
+}
+.editProfile {
+  align-self: center;
+  justify-self: start;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.subscribeUnsubscribeBlock {
+  display: grid;
+}
+.subscribeUnsubscribeBlockAndBan {
+  grid-template-columns: 1fr 150px;
+}
+
+@media (max-width: 900px) {
+  .profileDescription {
+    width: 100%;
+    padding: 0 16px;
+  }
+}

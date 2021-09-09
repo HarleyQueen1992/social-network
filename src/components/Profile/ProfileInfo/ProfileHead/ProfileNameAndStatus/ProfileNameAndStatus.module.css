@@ -1,0 +1,89 @@
+/*! Profile Name and Status  */
+.profileNameAndStatus {
+  display: grid;
+  width: 892px;
+  justify-self: center;
+  position: relative;
+  padding: 0 10px;
+  grid-template-rows: 45px 1fr;
+}
+@media (max-width: 892px) {
+  .profileNameAndStatus {
+    width: 100%;
+  }
+}
+.profileNameAndStatus::after {
+  content: "";
+  position: absolute;
+  width: 876px;
+  bottom: 0;
+  justify-self: center;
+  height: 1px;
+  background-color: var(--BorderBottom);
+}
+.profileNameAndCheckMark {
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.profileNameAndCheckMarkIsAdmin {
+  margin-left: 37px;
+}
+.profileNameAndCheckMark span {
+  justify-self: center;
+  font-family: "Patua One", cursive;
+  color: var(--fontColor);
+  font-size: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.checkMarkBlock {
+  display: none;
+  margin-left: 5px;
+}
+.checkMarkBlockActive {
+  display: grid;
+}
+.checkMarkBlock img {
+  width: 34px;
+}
+.profileStatus {
+  justify-self: center;
+  min-height: 18px;
+  color: var(--statusColor);
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+.editStatus {
+  margin-top: 5px;
+  text-align: center;
+  justify-self: center;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  height: 26px;
+  color: var(--statusColor);
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0.233);
+  outline: none;
+}
+.setStatus {
+  margin-bottom: 10px;
+  color: #1877f2;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  justify-self: center;
+}
+.editStatus:focus {
+  border: 1px solid #1877f2;
+}
+@media (max-width: 908px) {
+  .profileNameAndStatus::after {
+    width: 100%;
+  }
+}

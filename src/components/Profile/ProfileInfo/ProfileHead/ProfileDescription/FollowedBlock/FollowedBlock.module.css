@@ -1,0 +1,52 @@
+.unsubscribeBlock {
+  justify-self: end;
+  width: 150px;
+  align-self: center;
+  height: 60%;
+  display: grid;
+  cursor: pointer;
+
+  transition: all 0.2s;
+  border-radius: 5px;
+  background-color: #c2c2c2;
+}
+.unsubscribeBlock:hover {
+  background-color: #aaa8a8;
+}
+.unsubscribe {
+  align-self: center;
+  color: black;
+  font-weight: bold;
+  justify-self: center;
+}
+.subscribeBlock {
+  justify-self: end;
+  width: 150px;
+  align-self: center;
+  height: 60%;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 5px;
+  background-color: #2748ad;
+}
+@media (max-width: 500px) {
+  .subscribeUnsubscribeBlockAndBan {
+    grid-template-columns: 1fr 100px;
+  }
+  .subscribeBlock {
+    width: 100px;
+  }
+  .unsubscribeBlock {
+    width: 100px;
+  }
+}
+.subscribeBlock:hover {
+  background-color: #4e67b1;
+}
+.subscribe {
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  justify-self: center;
+}

@@ -407,6 +407,8 @@
 @media (max-width: 600px) {
   .editProfileMenu {
     width: 100vw;
+    height: 100vh;
+    overflow: scroll;
     margin-top: 0;
     border-radius: 0;
     grid-template-rows:
@@ -437,4 +439,27 @@
     width: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
     height: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
   }
+}
+.editProfileMenuBlock {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.425);
+  display: none;
+  z-index: 999;
+}
+.editProfileMenuBottom {
+  height: 40px;
+  bottom: 0;
+}
+@media (max-width: 600px) {
+  .editProfileMenuBottom {
+    height: 0;
+  }
+}
+.activeEditProfileMenuBlock {
+  display: grid;
 }

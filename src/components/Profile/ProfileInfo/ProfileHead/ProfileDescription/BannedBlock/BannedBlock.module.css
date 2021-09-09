@@ -1,0 +1,58 @@
+/*! Banned block  */
+.banBlock {
+  cursor: pointer;
+  margin-right: 10px;
+  display: grid;
+  justify-self: end;
+  background-color: var(--blockBlock);
+  border-radius: 5px;
+  width: 80px;
+  align-self: center;
+  height: 30px;
+  /* grid-template-columns: 28px 1fr; */
+}
+.banBlock:hover {
+  background-color: red;
+}
+.bannedBlock {
+  width: 80px;
+  height: 30px;
+  align-self: center;
+  justify-self: end;
+  margin-right: 5px;
+  display: grid;
+}
+.banned {
+  align-self: center;
+  justify-self: center;
+  color: rgb(255, 0, 0);
+  font-size: 16px;
+  font-weight: bold;
+}
+.unbanBlock {
+  cursor: pointer;
+  margin-right: 10px;
+  display: grid;
+  justify-self: end;
+  background-color: #1877f2;
+  border-radius: 5px;
+  width: 80px;
+  align-self: center;
+  height: 30px;
+  transition: all 0.3s;
+}
+.unbanBlock:hover {
+  background-color: #1666cf;
+}
+.banImg {
+  height: 20px;
+  align-self: center;
+  justify-self: end;
+}
+.ban {
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  justify-self: center;
+}

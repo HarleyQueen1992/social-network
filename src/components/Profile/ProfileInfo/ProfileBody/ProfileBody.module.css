@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+
+/*! Profile body */
+.profileBody {
+  justify-self: center;
+  width: 892px;
+  margin: 8px 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+/*? Left column  */
+.leftColumn {
+  display: grid;
+  margin: 8px;
+  grid-row-gap: 16px;
+}
+@media (max-width: 892px) {
+  .profileBody {
+    width: 100vw;
+    grid-template-columns: 1fr;
+    grid-row-gap: 16px;
+    grid-template-rows: auto 1fr;
+  }
+  .leftColumn {
+    margin: 8px 8px 0 8px !important;
+  }
+  .rightColumn {
+    margin: 0 8px 8px 8px !important;
+  }
+}
+
+/*! Right column  */
+.rightColumn {
+  display: grid;
+  margin: 8px;
+  grid-row-gap: 16px;
+  grid-template-rows: 60px 100px 1fr;
+}
+.rightColumnNoOwner {
+  grid-template-rows: 100px 1fr;
+}
+/*? publications block */
+.publicationsBlockAll {
+  display: grid;
+  height: 100px;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+  grid-template-rows: 60% 40%;
+}
+.publicationsTitleAndFilter {
+  border-bottom: 1px solid var(--BorderBottom);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.publicationsTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+  align-self: center;
+  padding-left: 10px;
+  font-family: "Patua One", cursive;
+}
+.publicationsFilter {
+  margin-right: 10px;
+  align-self: center;
+  justify-self: end;
+  cursor: pointer;
+  width: 90px;
+  height: 60%;
+  border-radius: 5px;
+  background-color: var(--anythingNew);
+  align-self: center;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+.publicationsFilter:hover {
+  background-color: var(--anythingNewHover);
+}
+.publicationsFilterImg {
+  height: 20px;
+  align-self: center;
+  justify-self: center;
+}
+.publicationsFilterTitle {
+  color: var(--fontColor);
+  font-size: 16px;
+  align-self: center;
+  justify-self: start;
+  font-weight: bold;
+}
+.listBlock {
+  position: relative;
+  margin: 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.listBlock::after {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  height: 3px;
+  border-radius: 1px;
+  width: 100%;
+  background-color: #1877f2;
+}
+.listImg {
+  align-self: center;
+  justify-self: end;
+  padding-right: 5px;
+  height: 20px;
+}
+.listTitle {
+  padding-left: 2px;
+  color: #1877f2;
+  letter-spacing: 1px;
+  align-self: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.slidingBlock {
+  position: sticky;
+  align-self: start;
+  display: grid;
+  top: 61px;
+  grid-row-gap: 10px;
+}
+.editProfileMenuBlock {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.425);
+  display: none;
+  z-index: 999;
+}
+.editProfileMenuBottom {
+  height: 40px;
+  bottom: 0;
+}
+@media (max-width: 600px) {
+  .editProfileMenuBottom {
+    height: 0;
+  }
+}
+.activeEditProfileMenuBlock {
+  display: grid;
+}

@@ -1,0 +1,88 @@
+.subscriptionSubscribersBlock {
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  padding: 15px;
+  height: auto;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+}
+.subscriptionSubscribersBlockEmpty {
+  grid-template-rows: 40px 40px;
+}
+.subscriptionSubscribersTitle {
+  display: grid;
+  color: var(--fontColor);
+  font-size: 20px;
+  font-family: "Patua One", cursive;
+}
+.subscriptionSubscribersTitle a {
+  color: var(--fontColor);
+  text-decoration: none;
+  transition: all 0.1s;
+  font-size: 20px;
+  justify-self: start;
+  align-self: start;
+  font-family: "Patua One", cursive;
+}
+.subscriptionSubscribersTitle a span {
+  color: var(--fontColor);
+  text-decoration: none;
+  transition: all 0.1s;
+  font-size: 20px;
+  justify-self: start;
+  align-self: start;
+  font-family: "Patua One", cursive;
+}
+.subscriptionSubscribersTitle a:hover {
+  color: #1877f2;
+  cursor: pointer;
+}
+.subscriptionSubscribersList {
+  display: grid;
+  overflow: scroll;
+  grid-template-rows: 95px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.subscriptionSubscribersListNone {
+  display: none;
+}
+@media (max-width: 380px) {
+  .subscriptionSubscribersList {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.subscriptionSubscribersListItem {
+  display: grid;
+  grid-template-rows: 70px 25px;
+  text-decoration: none;
+}
+.subscriptionSubscribersBlockImg {
+  position: relative;
+  overflow: hidden;
+  width: 70px;
+  justify-self: center;
+  height: 70px;
+}
+.subscriptionSubscribersImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.subscriptionSubscribersName {
+  color: var(--fontColor);
+  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: bold;
+}

@@ -88,6 +88,14 @@ import PreloaderBlack from "./../../assets/images/preloaderBlack.svg"
 import MailWhite from './../../assets/images/mailWhite.png'
 import MailBlack from './../../assets/images/mailBlack.png'
 
+import CameraBlack from './../../assets/images/cameraBlack.png'
+import CameraWhite from './../../assets/images/cameraWhite.png'
+
+import BannerDefault from './../../assets/images/bannerDefault.jpg'
+
+import DefaultAvatr from './../../assets/images/user.png'
+
+import List from "./../../assets/images/menuBlueActive.png";
 
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
@@ -176,7 +184,12 @@ export const Icons = (theme, index = NaN) => {
     loading: theme == themeLight ? LoadingBlack : LoadingWhite,
     block: theme == themeLight ? BlockWhite : BlockWhite,
     preloader: theme == themeLight ? PreloaderBlack : PreloaderWhite,
-    mail: theme == themeLight ? MailBlack : MailWhite
+    mail: theme == themeLight ? MailBlack : MailWhite,
+    cameraBlack: CameraBlack,
+    cameraWhite: CameraWhite,
+    bannerDefault: BannerDefault,
+    defaultAvatr: DefaultAvatr,
+    list: List
   }
 }
 // export const Icons = {

@@ -1,0 +1,79 @@
+.profileInfoBlock {
+  display: grid;
+  grid-template-rows: 1fr;
+  padding: 10px 15px 15px 15px;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+}
+.briefInformationTitle {
+  color: var(--fontColor);
+  align-self: center;
+  font-size: 20px;
+  font-family: "Patua One", cursive;
+}
+.editInformation {
+  cursor: pointer;
+  width: 100%;
+  align-self: center;
+  height: 70%;
+  display: grid;
+  background-color: #ffffff18;
+  border-radius: 5px;
+}
+.editInformation:hover {
+  background-color: #ffffff21;
+}
+.editInformation span {
+  align-self: center;
+  justify-self: center;
+  color: var(--fontColor);
+  font-size: 17px;
+  font-weight: bold;
+  /* font-family: "Patua One", cursive; */
+}
+.listOfInformation {
+  display: grid;
+  grid-template-rows: 40px 40px 1fr;
+}
+.listItems {
+  align-self: center;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+}
+.person {
+  margin-top: 3px;
+}
+.birthdayImg {
+  width: 25px;
+  align-self: center;
+}
+.birthdayTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.birthdayTitle span {
+  color: #1877f2;
+  cursor: pointer;
+}
+.placeOfResidenceBlockTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.placeOfResidenceBlockTitle span {
+  color: #1877f2;
+  cursor: pointer;
+}
+.aboutMe {
+  margin-top: 5px;
+  color: var(--fontColor);
+  font-weight: bold;
+  min-width: 0px;
+  max-width: 100%;
+}
+.aboutMe span {
+  color: #1877f2;
+  white-space: break-spaces;
+  word-wrap: break-word;
+}

@@ -1,0 +1,14 @@
+.profileHead {
+  position: relative;
+  display: grid;
+  width: 100vw;
+  grid-template-rows: 350px 1fr 60px;
+  background: linear-gradient(180deg, #ffffff17, var(--navBarBac));
+}
+@media (max-width: 900px) {
+  .profileHead {
+    grid-template-rows:
+      calc(150px + (350 - 150) * ((100vw - 320px) / (900 - 320)))
+      1fr 60px;
+  }
+}
