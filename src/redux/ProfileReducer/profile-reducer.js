@@ -16,8 +16,6 @@ const SET_TOTAL_SUBSCRIPTIONS_ITEMS = "app/profile-reducer/SET_TOTAL_SUBSCRIPTIO
 const SET_PAGE_SUBSCRIBERS = 'app/profile-reducer/SET_PAGE_SUBSCRIBERS'
 const SET_PAGE_SUBSCRIPTIONS = 'app/profile-reducer/SET_PAGE_SUBSCRIPTIONS'
 const IS_SUCCESSFUL_PASSWORD_CHANGE = 'app/profile-reducer/IS_SUCCESSFUL_PASSWORD_CHANGE'
-const SET_BANNER_IS_LOADING = 'app/profile-reducer/SET_BANNER_IS_LOADING'
-const SET_AVATAR_IS_LOADING = 'app/profile-reducer/SET_AVATAR_IS_LOADING'
 const SET_USER_BAN = 'app/profile-reducer/SET_USER_BAN'
 const SET_IS_OPEN_FILTERS = 'app/profile-reducer/SET_IS_OPEN_FILTERS'
 
@@ -32,8 +30,6 @@ let initialState = {
   totalSubscribersItems: null,
   isFollowed: null,
   isSuccessfulPasswordChange: false,
-  bannerIsLoading: null,
-  avatarIsLoading: null,
   userBan: null,
   isOpenFilters: false,
 
@@ -50,16 +46,6 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         totalSubscribersItems: action.totalItems,
-      }
-    case SET_AVATAR_IS_LOADING: 
-      return {
-        ...state,
-        avatarIsLoading: action.avatarIsLoading
-      }
-    case SET_BANNER_IS_LOADING: 
-      return {
-        ...state,
-        bannerIsLoading: action.bannerIsLoading
       }
     case SET_TOTAL_SUBSCRIPTIONS_ITEMS:
       return {
@@ -113,11 +99,6 @@ const profileReducer = (state = initialState, action) => {
         subscriptions: action.subscriptions
 
       }
-    case SAVING_IN_PHOTO_PROGRESS:
-      return {
-        ...state,
-        isSavingPhoto: action.isSaving,
-      }
     case SET_USER_BAN:
       return {
         ...state,
@@ -133,15 +114,9 @@ const profileReducer = (state = initialState, action) => {
   }
 }
 
-export const toggleIsFatching = isFatching => ({
-  type: TOGGLE_IS_FATCHING,
-  isFatching,
-})
+export const toggleIsFatching = isFatching => ({ type: TOGGLE_IS_FATCHING, isFatching })
 
 export const toggleIsFollowed = isFollowed => ({ type: TOGGLE_IS_FOLLOWED, isFollowed })
-
-
-
 
 export const setTotalSubscribersItems = totalItems => ({ type: SET_TOTAL_SUBSCRIBERS_ITEMS, totalItems })
 
@@ -153,62 +128,22 @@ export const setPageSubscriptions = pageNumber => ({ type: SET_PAGE_SUBSCRIPTION
 
 export const setIsSuccessfulPasswordChange = isComplite => ({type: IS_SUCCESSFUL_PASSWORD_CHANGE, isComplite})
 
-export const setUserBan = isBanned => ({type: SET_USER_BAN, isBanned})
+export const setUserBan = isBanned => ({type: SET_USER_BAN, isBanned })
 
-export const setIsOpenFilters = isOpenFilters => ({type: SET_IS_OPEN_FILTERS, isOpenFilters})
+export const setIsOpenFilters = isOpenFilters => ({type: SET_IS_OPEN_FILTERS, isOpenFilters })
 
-export const isSavePhoto = isSaving => ({
-  type: SAVING_IN_PHOTO_PROGRESS,
-  isSaving,
-})
-export const setSubscribers = subscribers => ({
-  type: SET_SUBSCRIBERS,
-  subscribers,
-})
+export const isSavePhoto = isSaving => ({ type: SAVING_IN_PHOTO_PROGRESS,isSaving })
 
-export const setSubscriptions = subscriptions => ({
-  type: SET_SUBSCRIPTIONS,
-  subscriptions,
-})
+export const setSubscribers = subscribers => ({ type: SET_SUBSCRIBERS,subscribers })
 
-// export const isSavePhoto = isSaving => ({
-//   type: SAVING_IN_PHOTO_PROGRESS,
-//   isSaving,
-// })
+export const setSubscriptions = subscriptions => ({ type: SET_SUBSCRIPTIONS,subscriptions })
 
-export const setUserProfile = profile => {
-  return {
-    type: SET_USER_PROFILE,
-    profile,
-  }
-}
-export const savePhotoSuccess = photo => {
-  return {
-    type: SAVE_PHOTO_SUCCESS,
-    photo,
-  }
-}
-export const updateProfileBanner = banner => {
-  return {
-    type: UPDATE_PROFILE_BANNER,
-    banner,
-  }
-}
+export const setUserProfile = profile => ({ type: SET_USER_PROFILE,profile })
 
-export const setAvatarIsLoading = avatarIsLoading => {
-  return {
-    type: SET_AVATAR_IS_LOADING,
-    avatarIsLoading,
-  }
-}
+export const savePhotoSuccess = photo => ({ type: SAVE_PHOTO_SUCCESS, photo })
 
+export const updateProfileBanner = banner => ({ type: UPDATE_PROFILE_BANNER, banner })
 
-export const setBannerIsLoading = bannerIsLoading => {
-  return {
-    type: SET_BANNER_IS_LOADING,
-    bannerIsLoading,
-  }
-}
 
 // Thunk Creator
 
@@ -271,17 +206,17 @@ export const getUsersProfileData = login => async dispatch => {
 }
 
 export const setProfileBanner = file => async dispatch => {
-  dispatch(setBannerIsLoading(true))
+  dispatch(setIsLoader(true))
   let response = await profileAPI.updateProfileBanner(file)
   dispatch(updateProfileBanner(response.banner))
-  dispatch(setBannerIsLoading(false))
+  dispatch(setIsLoader(false))
 
 }
 export const savePhoto = file => async dispatch => {
-  dispatch(setAvatarIsLoading(true))
+  dispatch(setIsLoader(true))
   let response = await profileAPI.updateProfileAvatar(file)
   dispatch(savePhotoSuccess(response.avatar))
-  dispatch(setAvatarIsLoading(false))
+  dispatch(setIsLoader(false))
 }
 
 export const updateProfileInfo = (birthday, location) => async dispatch => {

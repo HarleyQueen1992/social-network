@@ -17,6 +17,7 @@ import { withRouter } from "react-router-dom";
 import { Icons } from "./../../../utils/Icons/Icons";
 import { getTheme } from "../../../redux/AppReducer/app-selectors";
 import Defoultbanner from "./../../../assets/images/wp2655395.jpg";
+import { getProfile } from "../../../redux/ProfileReducer/profile-selectors";
 
 const EditProfile = (props) => {
   let res = Icons(props.theme);
@@ -52,18 +53,11 @@ const EditProfile = (props) => {
       props.setProfileBanner(e.target.files[0]);
     }
   };
-  // useEffect(() => {
-  //   disable = props.valueAboutMe.length <= 70;
-  // }, [props.valueAboutMe]);
   useEffect(() => {
     return () => {
       props.setEditTellusMoreAboutYourself(false);
       props.setEditAboutMe(false);
       props.setEditFullName(false);
-      // props.setValueFullName(props.profile.fullname);
-      // props.setValueAboutMe(props.profile.aboutMe);
-      // props.setValueBirthday(props.profile.birthday);
-      // props.setValueLocation(props.profile.location);
       document.querySelector(".react-swipeable-view-container").style.cssText =
         "will-change: transform; !important" +
         "flex-direction: row;" +
@@ -327,13 +321,11 @@ const EditProfile = (props) => {
 let mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
-    // profile: getProfile(state),
-    // editMode: getEditMode(state),
+    profile: getProfile(state),
   };
 };
 export default compose(
   connect(mapStateToProps, {
-    // setEditMode,
     savePhoto,
     setProfileBanner,
     updateProfileInfo,

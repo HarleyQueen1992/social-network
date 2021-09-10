@@ -33,19 +33,6 @@ const ProfileInfo = (props) => {
   const [valueBirthday, setValueBirthday] = useState(props.profile.birthday);
   const [valueLocation, setValueLocation] = useState(props.profile.location);
 
-  // useEffect(() => {
-  //   if (
-  //     window.innerHeight <
-  //     document.getElementById("inTheLeftColumn").clientHeight + 71 // 51px - header height
-  //   ) {
-  //     let height = document.getElementById("inTheLeftColumn").clientHeight;
-  //     document.getElementById("inTheLeftColumn").style.cssText =
-  //       "top:" + (window.innerHeight - height - 20) + "px;"; // 20px padding-top
-  //   } else {
-  //     document.getElementById("inTheLeftColumn").style.cssText = "top: 61px;"; // 61px = 51px(header height) + 10px (padding-top)
-  //   }
-  // }, [editMode]);
-
   let openPoupup = (e) => {
     e.preventDefault();
     document.querySelector(".react-swipeable-view-container").style.cssText =
@@ -94,12 +81,11 @@ const ProfileInfo = (props) => {
           closePopup={closePopup}
           editMode={editMode}
           setEditMode={setEditMode}
-          profile={props.profile}
         />
       )}
 
       <ProfileHead openPoupup={openPoupup} isOwner={props.isOwner} />
-      <ProfileBody editMode={editMode} />
+      <ProfileBody isOwner={props.isOwner} editMode={editMode} />
     </div>
   );
 };

@@ -34,12 +34,6 @@ export const getTotalSubscribersItems = state => {
 export const getTotalSubscriptionsItems = state => {
   return state.profilePage.totalSubscriptionsItems
 }
-export const getAvatarIsLoading = state => {
-  return state.profilePage.avatarIsLoading
-}
-export const getBannerIsLoading = state => {
-  return state.profilePage.bannerIsLoading
-}
 export const getBanUser = state => {
   return state.profilePage.userBan
 }
