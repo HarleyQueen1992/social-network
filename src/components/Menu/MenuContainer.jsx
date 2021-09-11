@@ -10,6 +10,7 @@ import {
 import { logOut } from "../../redux/AuthReducer/auth-reducer";
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
 import Menu from "./Menu";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 
 class MenuContainer extends React.Component {
   render() {
@@ -35,5 +36,6 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-  connect(mapStateToProps, { logOut, setTheme, setIsPassword, updateTheme })
+  connect(mapStateToProps, { logOut, setTheme, setIsPassword, updateTheme }),
+  withAuthRedirecr
 )(MenuContainer);

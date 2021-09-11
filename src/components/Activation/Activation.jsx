@@ -121,7 +121,7 @@ const Activation = (props) => {
           </div>
           <div className={s.activationBlockButtons}>
             <span className={s.regText}>Already have an account?</span>
-            <NavLink className={s.regLink} to={"/login/"}>
+            <NavLink className={s.regLink} to={"/login"}>
               Login
             </NavLink>
           </div>

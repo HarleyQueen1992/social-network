@@ -38,6 +38,7 @@ import Preloader from "../common/Preloader/Preloader";
 
 //? Css
 import s from "./Profile.module.css";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
@@ -135,5 +136,6 @@ export default compose(
     requestUserPosts,
     setPageSelection,
   }),
-  withRouter
+  withRouter,
+  withAuthRedirecr
 )(ProfileContainer);

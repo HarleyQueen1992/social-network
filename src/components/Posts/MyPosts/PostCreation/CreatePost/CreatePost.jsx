@@ -51,7 +51,7 @@ const CreatePost = (props) => {
   const uploadAPhoto = (event) => {
     setUploadedTheFile(true);
     let arr = [];
-    for (let i = 0; i < event.target.files.length; i++) {
+    for (let i = 0; i < 10; i++) {
       arr.push(event.target.files[i]);
     }
     setValuePostImages(arr);

@@ -1,26 +1,27 @@
-import React from "react"
-import { connect } from "react-redux"
-import { Redirect } from "react-router-dom"
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import { getInnerHeight } from "./../redux/AppReducer/app-selectors"
+//? Selectors imports
+import { getIsAuth } from "./../redux/AuthReducer/auth-selectors";
 
-const mapStateToProps = state => ({
-  isAuth: state.auth.isAuth,
-  height: getInnerHeight(state),
-})
+const mapStateToProps = (state) => ({
+  isAuth: getIsAuth(state),
+});
 
-export const withAuthRedirecr = Component => {
+export const withAuthRedirecr = (Component) => {
   class RedirectComponent extends React.Component {
     render() {
-      if (window.innerHeight < this.props.height)
-        return <Redirect to='/login' />
+      if (!this.props.isAuth) {
+        return <Redirect to="/login" />;
+      }
 
-      return <Component {...this.props} />
+      return <Component {...this.props} />;
     }
   }
 
   let ConnectedAuthRedirectComponent =
-    connect(mapStateToProps)(RedirectComponent)
+    connect(mapStateToProps)(RedirectComponent);
 
-  return ConnectedAuthRedirectComponent
-}
+  return ConnectedAuthRedirectComponent;
+};

@@ -45,7 +45,7 @@ export const authAPI = {
     return instance.get(`/profile/`).then(response => {
       return response.data
     }).catch(error => {
-      return error.response
+      return error.response.data
   })
   },
   loginIn(email, password) {

@@ -99,7 +99,7 @@ export const getAuthMe = () => async (dispatch, getState) => {
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password)
   if (!data.code) {
-    window.location = '/social-network/#/news';
+    window.location = '#/news'
     dispatch(setIndex(0))
     dispatch(setProfileData(data, true))
     dispatch(setTheme(data.theme))

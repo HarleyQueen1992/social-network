@@ -24,6 +24,7 @@ import {
   getTotalItems,
 } from "../../redux/NewsPeducer/news-selectors";
 import { requestNews } from "./../../redux/NewsPeducer/news-reducer";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 class NewsContainer extends React.Component {
   componentDidMount() {
     this.props.clearPosts();
@@ -73,5 +74,6 @@ export default compose(
     requestNews,
     setUploadPost,
     setPageSelection,
-  })
+  }),
+  withAuthRedirecr
 )(NewsContainer);

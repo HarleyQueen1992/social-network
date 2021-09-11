@@ -41,6 +41,7 @@ import userPhoto from "./../../assets/images/user.png";
 import Followers from "./Followers";
 import s from "./Followers.module.css";
 import { getTheme } from "../../redux/AppReducer/app-selectors";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 
 class FollowersContainer extends React.Component {
   refreshFollowings = () => {
@@ -172,5 +173,6 @@ export default compose(
     follow,
     unfollow,
   }),
-  withRouter
+  withRouter,
+  withAuthRedirecr
 )(FollowersContainer);

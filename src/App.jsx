@@ -212,10 +212,13 @@ const App = (props) => {
   if (!props.initialized) {
     return <Preloader />;
   }
-  if (!props.isAuth) {
+  if (
+    (props.location.pathname === "/login") |
+    (props.location.pathname === "/register") |
+    (props.location.pathname === "/activation")
+  ) {
     return (
       <div className="loginPage">
-        <Redirect to="/login/" />
         <Route path="/login" render={() => <Login />} />
         <Route path="/register" render={() => <Registration />} />
         <Route path="/activation" render={() => <Activation />} />

@@ -39,6 +39,7 @@ import { unfollow } from "../../redux/UsersReducer/user-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import { getTheme } from "../../redux/AppReducer/app-selectors";
 import { getProfileInfo } from "../../redux/AuthReducer/auth-selectors";
+import { withAuthRedirecr } from "../../Hoc/withAuthRedirect";
 
 class FriendsContainer extends React.Component {
   refreshFollowings() {
@@ -188,5 +189,6 @@ export default compose(
     clearUsersSearch,
     toggleIsFatchingSearch,
   }),
-  withRouter
+  withRouter,
+  withAuthRedirecr
 )(FriendsContainer);

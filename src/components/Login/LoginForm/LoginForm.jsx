@@ -83,7 +83,7 @@ const LoginForm = (props) => {
         {props.error && <div className={s.formSummaryError}>{props.error}</div>}
         <div className={s.register}>
           <span className={s.regText}>You don't have an account yet?</span>
-          <NavLink className={s.regLink} to={"/register/"}>
+          <NavLink className={s.regLink} to={"/register"}>
             Register
           </NavLink>
         </div>
