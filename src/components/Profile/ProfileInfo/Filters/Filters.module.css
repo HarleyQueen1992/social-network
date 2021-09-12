@@ -181,7 +181,7 @@
 }
 @media (max-width: 450px) {
   .popupFiltersBlock {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     border-radius: 0;
   }

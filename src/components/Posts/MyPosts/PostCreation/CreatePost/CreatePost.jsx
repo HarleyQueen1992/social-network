@@ -49,10 +49,16 @@ const CreatePost = (props) => {
     setValueHashTag(event.target.value);
   };
   const uploadAPhoto = (event) => {
+    let files = event.target.files;
+    let length = files.length;
+    if (length > 5) {
+      length = 5;
+    }
+
     setUploadedTheFile(true);
     let arr = [];
-    for (let i = 0; i < 10; i++) {
-      arr.push(event.target.files[i]);
+    for (let i = 0; i < length; i++) {
+      arr.push(files[i]);
     }
     setValuePostImages(arr);
   };
@@ -285,6 +291,7 @@ const CreatePost = (props) => {
           type="file"
           multiple
           id="input__images"
+          maxLength="2"
           onChange={uploadAPhoto}
         />
         <label
