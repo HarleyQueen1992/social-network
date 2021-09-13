@@ -56,6 +56,11 @@ const CreatePost = (props) => {
     }
 
     setUploadedTheFile(true);
+    let files = event.target.files;
+    let length = files.length;
+    if (length > 5) {
+      length = 5;
+    }
     let arr = [];
     for (let i = 0; i < length; i++) {
       arr.push(files[i]);
