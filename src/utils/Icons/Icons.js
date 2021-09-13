@@ -84,7 +84,6 @@ import BlockBlack from './../../assets/images/blockBlack.png'
 import PreloaderWhite from "./../../assets/images/preloaderWhite.svg"
 import PreloaderBlack from "./../../assets/images/preloaderBlack.svg"
 
-
 import MailWhite from './../../assets/images/mailWhite.png'
 import MailBlack from './../../assets/images/mailBlack.png'
 
@@ -96,6 +95,8 @@ import BannerDefault from './../../assets/images/bannerDefault.jpg'
 import DefaultAvatr from './../../assets/images/user.png'
 
 import List from "./../../assets/images/menuBlueActive.png";
+
+import Gallery from './../../assets/images/gallery.png'
 
 import GitHub from "./../../assets/images/github.png"
 import vk from "./../../assets/images/vk.png"
@@ -189,7 +190,8 @@ export const Icons = (theme, index = NaN) => {
     cameraWhite: CameraWhite,
     bannerDefault: BannerDefault,
     defaultAvatr: DefaultAvatr,
-    list: List
+    list: List,
+    gallery: Gallery
   }
 }
 // export const Icons = {

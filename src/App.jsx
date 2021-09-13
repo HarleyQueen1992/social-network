@@ -28,11 +28,13 @@ import {
   setEditMode,
   setUpdatePost,
   setIsUpdatePost,
+  isPostCreation,
 } from "./redux/AppReducer/app-reducer";
 import {
   updatePost,
   setDropdownMenus,
   setIsBigPictures,
+  createPost,
 } from "./redux/PostsReducer/posts-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import { blockUser } from "./redux/ProfileReducer/profile-reducer";
@@ -61,7 +63,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import { getValue } from "./redux/SearchReducer/search-selectors";
 import FollowersContainer from "./components/Followers/FollowersContainer";
-import CreatePost from "./components/Posts/MyPosts/PostCreation/CreatePost/CreatePost";
+import PostForm from "./components/Posts/MyPosts/PostCreation/PostForm/PostForm";
 import UpdatePost from "./components/Posts/MyPosts/PostCreation/UpdatePost/UpdatePost";
 import DropdownMenus from "./components/Posts/MyPosts/Post/DropdownMenus/DropdownMenus";
 import {
@@ -78,6 +80,7 @@ import {
 } from "./redux/ProfileReducer/profile-selectors";
 import Activation from "./components/Activation/Activation";
 import Filters from "./components/Profile/ProfileInfo/Filters/Filters";
+import { Button } from "@material-ui/core";
 
 const urlIndex = {
   0: "news",
@@ -261,29 +264,30 @@ const App = (props) => {
           </div>
           {props.isOpenFilters && <Filters />}
           {props.isBigPictures && <BigPictures />}
-          {props.isUpdatePost ? (
-            <UpdatePost
-              setIsUpdatePost={props.setIsUpdatePost}
+          {props.isPostCreation && (
+            <PostForm
+              valueText={""}
+              valueTitle={""}
+              valueImages={[]}
+              button="Create"
+              closePopup={props.toggleIsPostCreation}
+              submit={props.createPost}
+              profile={props.profileInfo}
+            />
+          )}
+          {props.isUpdatePost && (
+            <PostForm
+              button="Update"
               isUpdatePost={props.isUpdatePost}
               profile={props.updatePostData.author}
               valueText={props.updatePostData.body}
               valueTitle={props.updatePostData.title}
               valueImages={props.updatePostData.attachments}
-              postId={props.updatePostData.id}
+              closePopup={props.setIsUpdatePost}
               setDropdownMenus={props.setDropdownMenus}
-              translate={
-                props.index == 0
-                  ? "0%"
-                  : props.index == 1
-                  ? "-100%"
-                  : props.index == 2 && "-200%"
-              }
-              updatePost={props.isUpdatePost}
-              // addPostActionCreator={props.addPostActionCreator}
-              updatePost={props.updatePost}
+              submit={props.updatePost}
+              updatePostData={props.updatePostData}
             />
-          ) : (
-            ""
           )}
           <div
             className={
@@ -414,6 +418,7 @@ let AppContainer = compose(
     setMenuActive,
     setUpdatePost,
     setIsUpdatePost,
+    createPost,
     updatePost,
     setDropdownMenus,
     setIsBigPictures,

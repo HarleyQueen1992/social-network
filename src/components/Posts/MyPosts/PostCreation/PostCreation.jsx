@@ -4,7 +4,8 @@ import ProfilePhoto from "./../../../../assets/images/user.png";
 import Gallery from "./../../../../assets/images/gallery.png";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import CreatePost from "./CreatePost/CreatePost";
+import CreatePost from "./PostForm/PostForm";
+import { toggleIsPostCreation } from "./../../../../redux/AppReducer/app-reducer";
 import { getTheme } from "./../../../../redux/AppReducer/app-selectors";
 import {
   addPostActionCreator,
@@ -21,10 +22,10 @@ const PostCreation = (props) => {
   //     props.changeIndex(newUrl);
   //   }
   const openPopup = () => {
-    document.querySelector(".react-swipeable-view-container").style.cssText =
-      "transform: translate(50) !important;" + "will-change: auto !important;";
+    // document.querySelector(".react-swipeable-view-container").style.cssText =
+    //   "transform: translate(50) !important;" + "will-change: auto !important;";
     document.querySelector("body").style.cssText = "overflow: hidden;";
-    setIsCreatePost(true);
+    props.toggleIsPostCreation(true);
   };
 
   return (
@@ -43,7 +44,7 @@ const PostCreation = (props) => {
           <span>What's on your mind?</span>
         </div>
       </div>
-      {isCreatePost && (
+      {/* {isCreatePost && (
         <CreatePost
           setIsCreatePost={setIsCreatePost}
           isCreatePost={isCreatePost}
@@ -56,7 +57,7 @@ const PostCreation = (props) => {
           createPost={props.createPost}
           button={"Post"}
         />
-      )}
+      )} */}
     </div>
   );
 };
@@ -72,5 +73,6 @@ export default compose(
   connect(mapStateToProps, {
     addPostActionCreator,
     createPost,
+    toggleIsPostCreation,
   })
 )(PostCreation);
