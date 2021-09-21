@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import s from "./EditProfile.module.css";
-import PhotoProfile from "./../../../assets/images/user.png";
-import BirthdayWhite from "./../../../assets/images/birthdayWhite.png";
-import CityWhite from "./../../../assets/images/cityWhite.png";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import {
@@ -11,36 +8,47 @@ import {
   updateAboutMe,
   updateFullName,
   savePhoto,
-} from "./../../../redux/ProfileReducer/profile-reducer";
+} from "../../../../redux/ProfileReducer/profile-reducer";
 // import { savePhoto } from "./../../../redux/SettingsReducer/settings-reducer";
 import { withRouter } from "react-router-dom";
-import { Icons } from "./../../../utils/Icons/Icons";
-import { getTheme } from "../../../redux/AppReducer/app-selectors";
-import Defoultbanner from "./../../../assets/images/wp2655395.jpg";
-import { getProfile } from "../../../redux/ProfileReducer/profile-selectors";
+import { Icons } from "../../../../utils/Icons/Icons";
+import { setEditProfile } from "./../../../../redux/AppReducer/app-reducer";
+import {
+  getTheme,
+  getEditProfile,
+} from "./../../../../redux/AppReducer/app-selectors";
+import { getProfile } from "../../../../redux/ProfileReducer/profile-selectors";
 
 const EditProfile = (props) => {
   let res = Icons(props.theme);
 
+  const [editTellusMoreAboutYourself, setEditTellusMoreAboutYourself] =
+    useState(false);
+  const [editAboutMe, setEditAboutMe] = useState(false);
+  const [editFullName, setEditFullName] = useState(false);
+  const [valueFullName, setValueFullName] = useState(props.profile.fullname);
+  const [valueAboutMe, setValueAboutMe] = useState(props.profile.aboutMe);
+  const [valueBirthday, setValueBirthday] = useState(props.profile.birthday);
+  const [valueLocation, setValueLocation] = useState(props.profile.location);
   // let disable = props.valueAboutMe.length < 70;
 
   const cancelEditAboutMe = () => {
-    props.setValueAboutMe(props.profile.aboutMe);
-    props.setEditAboutMe(false);
+    setValueAboutMe(props.profile.aboutMe);
+    setEditAboutMe(false);
   };
   const handleChangeFullName = (event) => {
-    props.setValueFullName(event.target.value);
+    setValueFullName(event.target.value);
   };
 
   const handleChangeBirthday = (event) => {
-    props.setValueBirthday(event.target.value);
+    setValueBirthday(event.target.value);
   };
   const handleChangeAboutMe = (event) => {
-    props.setValueAboutMe(event.target.value);
+    setValueAboutMe(event.target.value);
   };
 
   const handleChangeLocation = (event) => {
-    props.setValueLocation(event.target.value);
+    setValueLocation(event.target.value);
   };
 
   const onMainPhotoSelected = (e) => {
@@ -53,30 +61,34 @@ const EditProfile = (props) => {
       props.setProfileBanner(e.target.files[0]);
     }
   };
+  const closePopup = () => {
+    document.querySelector("body").style.cssText = "overflow: scroll;";
+    props.setEditProfile(false);
+  };
   useEffect(() => {
     return () => {
-      props.setEditTellusMoreAboutYourself(false);
-      props.setEditAboutMe(false);
-      props.setEditFullName(false);
-      document.querySelector(".react-swipeable-view-container").style.cssText =
-        "will-change: transform; !important" +
-        "flex-direction: row;" +
-        "transition: all 0s ease 0s;" +
-        "direction: ltr;" +
-        "display: flex;" +
-        "transform: translate(-100%, 0px);";
+      // setEditTellusMoreAboutYourself(false);
+      // setEditAboutMe(false);
+      // setEditFullName(false);
+      // document.querySelector(".react-swipeable-view-container").style.cssText =
+      //   "will-change: transform; !important" +
+      //   "flex-direction: row;" +
+      //   "transition: all 0s ease 0s;" +
+      //   "direction: ltr;" +
+      //   "display: flex;" +
+      //   "transform: translate(-100%, 0px);";
       document.querySelector("body").style.cssText = "overflow: scroll;";
-      props.setEditMode(false);
+      props.setEditProfile(false);
       console.log("exit");
     };
   }, []);
   return (
     <div
-      onMouseDown={props.closePopup}
+      onMouseDown={closePopup}
       className={
         s.editProfileMenuBlock +
         " " +
-        (props.editMode && s.activeEditProfileMenuBlock)
+        (props.editProfile && s.activeEditProfileMenuBlock)
       }
     >
       <div
@@ -89,7 +101,7 @@ const EditProfile = (props) => {
           <span className={s.editProfileTitle}>Edit profile</span>
           <div
             className={s.popupContentHeaderOff}
-            onClick={props.closePopup}
+            onClick={closePopup}
             id="backBlock"
           ></div>
         </div>
@@ -98,15 +110,14 @@ const EditProfile = (props) => {
             <div className={s.editProfileFullNameTitle}>Fullname</div>
             <div
               onClick={() => {
-                props.setEditFullName(!props.editFullName);
+                setEditFullName(!editFullName);
                 {
-                  props.editFullName &&
-                    props.updateFullName(props.valueFullName);
+                  editFullName && props.updateFullName(valueFullName);
                 }
               }}
               className={s.editInfo}
             >
-              {props.editFullName ? (
+              {editFullName ? (
                 <span className={s.edit}>Save</span>
               ) : (
                 <span className={s.edit}>Edit</span>
@@ -114,10 +125,10 @@ const EditProfile = (props) => {
             </div>
           </div>
           <div className={s.editProfileFullName}>
-            {props.editFullName ? (
+            {editFullName ? (
               <input
                 className={s.editFullName}
-                value={props.valueFullName}
+                value={valueFullName}
                 onChange={handleChangeFullName}
                 maxLength="50"
               ></input>
@@ -143,7 +154,7 @@ const EditProfile = (props) => {
               <img
                 src={
                   props.profile.avatar == ""
-                    ? PhotoProfile
+                    ? res["defaultAvatr"]
                     : props.profile.avatar
                 }
                 alt="profile photo"
@@ -169,7 +180,7 @@ const EditProfile = (props) => {
               <img
                 src={
                   props.profile.banner === ""
-                    ? Defoultbanner
+                    ? res["bannerDefault"]
                     : props.profile.banner
                 }
                 alt="profile photo"
@@ -181,30 +192,30 @@ const EditProfile = (props) => {
           className={
             s.editAboutMeBlock +
             " " +
-            (props.editAboutMe ? s.editAboutMeBlockActive : " ")
+            (editAboutMe ? s.editAboutMeBlockActive : " ")
           }
         >
           <div className={s.editAboutMeProfile}>
             <div className={s.editAboutMeTitle}>About me</div>
             <div
               onClick={() => {
-                props.setEditAboutMe(!props.editAboutMe);
+                setEditAboutMe(!editAboutMe);
                 {
-                  props.editAboutMe && props.updateAboutMe(props.valueAboutMe);
+                  editAboutMe && props.updateAboutMe(valueAboutMe);
                 }
               }}
               className={s.addToAboutMe}
             >
-              {props.editAboutMe ? (
+              {editAboutMe ? (
                 <span className={s.edit}>Save</span>
               ) : (
                 <span className={s.edit}>Add to</span>
               )}
             </div>
           </div>
-          {props.editAboutMe ? (
+          {editAboutMe ? (
             <textarea
-              value={props.valueAboutMe}
+              value={valueAboutMe}
               onChange={handleChangeAboutMe}
               className={s.aboutMeTextarea}
               maxLength="400"
@@ -218,11 +229,9 @@ const EditProfile = (props) => {
               )}
             </div>
           )}
-          {props.editAboutMe && (
+          {editAboutMe && (
             <div className={s.charactersRemaining}>
-              <span>
-                Remaining {400 - props.valueAboutMe.length} characters
-              </span>
+              <span>Remaining {400 - valueAboutMe.length} characters</span>
 
               <div
                 onClick={cancelEditAboutMe}
@@ -241,20 +250,15 @@ const EditProfile = (props) => {
             </div>
             <div
               onClick={() => {
-                props.setEditTellusMoreAboutYourself(
-                  !props.editTellusMoreAboutYourself
-                );
+                setEditTellusMoreAboutYourself(!editTellusMoreAboutYourself);
                 {
-                  props.editTellusMoreAboutYourself &&
-                    props.updateProfileInfo(
-                      props.valueBirthday,
-                      props.valueLocation
-                    );
+                  editTellusMoreAboutYourself &&
+                    props.updateProfileInfo(valueBirthday, valueLocation);
                 }
               }}
               className={s.editInfo}
             >
-              {props.editTellusMoreAboutYourself ? (
+              {editTellusMoreAboutYourself ? (
                 <span className={s.edit}>Save</span>
               ) : (
                 <span className={s.edit}>Edit</span>
@@ -270,10 +274,10 @@ const EditProfile = (props) => {
               />
               <span className={s.birthdayTitleAndText}>
                 <div className={s.birthdayTitle}>Birthday</div>
-                {props.editTellusMoreAboutYourself ? (
+                {editTellusMoreAboutYourself ? (
                   <span className={s.birthdayEditBlock}>
                     <input
-                      value={props.valueBirthday}
+                      value={valueBirthday}
                       onChange={handleChangeBirthday}
                       className={s.editBirthday}
                       type="date"
@@ -297,10 +301,10 @@ const EditProfile = (props) => {
               <img className={s.cityImg} src={res["location"]} alt="location" />
               <span className={s.locationTitleAndText}>
                 <div className={s.locationTitle}>Location</div>
-                {props.editTellusMoreAboutYourself ? (
+                {editTellusMoreAboutYourself ? (
                   <span className={s.locationEditBlock}>
                     <input
-                      value={props.valueLocation}
+                      value={valueLocation}
                       onChange={handleChangeLocation}
                       className={s.editLocation}
                       type="text"
@@ -322,6 +326,7 @@ let mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
     profile: getProfile(state),
+    editProfile: getEditProfile(state),
   };
 };
 export default compose(
@@ -331,6 +336,7 @@ export default compose(
     updateProfileInfo,
     updateAboutMe,
     updateFullName,
+    setEditProfile,
   }),
   withRouter
 )(EditProfile);

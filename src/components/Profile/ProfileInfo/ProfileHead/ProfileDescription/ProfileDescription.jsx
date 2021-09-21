@@ -18,6 +18,7 @@ import {
   blockUser,
   unblockUser,
 } from "./../../../../../redux/ProfileReducer/profile-reducer";
+import { setEditProfile } from "./../../../../../redux/AppReducer/app-reducer";
 
 // utils
 import { Icons } from "./../../../../../utils/Icons/Icons";
@@ -28,6 +29,10 @@ import BannedBlock from "./BannedBlock/BannedBlock";
 import FollowedBlock from "./FollowedBlock/FollowedBlock";
 
 const ProfileDescription = (props) => {
+  const openPopup = () => {
+    document.querySelector("body").style.cssText = "overflow: hidden;";
+    props.setEditProfile(true);
+  };
   let res = Icons(props.theme);
   return (
     <div className={s.profileDescription}>
@@ -35,7 +40,7 @@ const ProfileDescription = (props) => {
         <div className={s.publications}>Publications</div>
       </div>
       {props.isOwner ? (
-        <div onClick={props.openPoupup} className={s.editProfileBlock}>
+        <div onClick={openPopup} className={s.editProfileBlock}>
           <img
             className={s.editProfileImg}
             src={res["edit"]}
@@ -69,6 +74,12 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  connect(mapStateToProps, { subscribe, unsubscribe, blockUser, unblockUser }),
+  connect(mapStateToProps, {
+    subscribe,
+    unsubscribe,
+    blockUser,
+    unblockUser,
+    setEditProfile,
+  }),
   withRouter
 )(ProfileDescription);

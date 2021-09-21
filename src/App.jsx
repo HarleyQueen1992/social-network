@@ -25,7 +25,7 @@ import {
   setIndex,
   toggleIsBigScreen,
   setMenuActive,
-  setEditMode,
+  setEditProfile,
   setUpdatePost,
   setIsUpdatePost,
   isPostCreation,
@@ -46,7 +46,7 @@ import {
   getIsPostCreation,
   getIndex,
   getIsBigScreen,
-  getEditMode,
+  getEditProfile,
   getMenuActive,
   getIsPostUpdate,
   getUpdatePost,
@@ -60,7 +60,7 @@ import SwipeableViews from "react-swipeable-views";
 import MenuContainer from "./components/Menu/MenuContainer";
 import Header from "./components/Header/Header";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
-import EditProfile from "./components/Profile/EditProfile/EditProfile";
+import EditProfile from "./components/Profile/ProfileInfo/EditProfile/EditProfile";
 import { getValue } from "./redux/SearchReducer/search-selectors";
 import FollowersContainer from "./components/Followers/FollowersContainer";
 import PostForm from "./components/Posts/MyPosts/PostCreation/PostForm/PostForm";
@@ -275,6 +275,7 @@ const App = (props) => {
               profile={props.profileInfo}
             />
           )}
+          {props.editProfile && <EditProfile />}
           {props.isUpdatePost && (
             <PostForm
               button="Update"
@@ -392,7 +393,7 @@ const mapStateToProps = (state) => {
     index: getIndex(state),
     isBigScreen: getIsBigScreen(state),
     profileInfo: getProfileInfo(state),
-    editMode: getEditMode(state),
+    editProfile: getEditProfile(state),
     isMenuActive: getMenuActive(state),
     updatePostData: getUpdatePost(state),
     isUpdatePost: getIsPostUpdate(state),
@@ -414,7 +415,7 @@ let AppContainer = compose(
     toggleIsHeaderBlur,
     setIndex,
     toggleIsBigScreen,
-    setEditMode,
+    setEditProfile,
     setMenuActive,
     setUpdatePost,
     setIsUpdatePost,

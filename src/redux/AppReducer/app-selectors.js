@@ -25,8 +25,8 @@ export const getIndex = state => {
 export const getIsBigScreen = state => {
   return state.app.isBigScreen
 }
-export const getEditMode = state => {
-  return state.app.editMode
+export const getEditProfile= state => {
+  return state.app.editProfile
 }
 export const getMenuActive = state => {
   return state.app.isMenuActive

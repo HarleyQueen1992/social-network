@@ -8,7 +8,7 @@ const HEADER_BLUR = "app/app-reducer/HEADER_BLUR"
 const IS_FETCHING = "app/app-reducer/IS_FETCHING"
 const SET_INDEX = "app/app-reducer/SET_INDEX"
 const TOGGLE_IS_BIG_SCREEN = "app/app-reducer/TOGGLE_IS_BIG_SCREEN"
-const SET_EDITMODE = "app/app-reducer/SET_EDITMODE"
+const SET_EDITPROFILE = "app/app-reducer/SET_EDITPROFILE"
 const IS_MENU_ACTIVE = 'app/app-reducer/IS_MENU_ACTIVE'
 const IS_PASSWORD = 'app/app-reducer/IS_PASSWORD'
 const SET_THEME_STYLE = 'app/app-reducer/SET_THEME_STYLE'
@@ -25,7 +25,7 @@ let initialState = {
   isLoader: false,
   theme: localStorage.getItem('theme') == "light" ? light : dark,
   headerBlur: false,
-  editMode: false,
+  editProfile: false,
   isMenuActive: false,
   isBigScreen: window.innerWidth > 600,
   isPassword: false,
@@ -119,10 +119,10 @@ const appReducer = (state = initialState, action) => {
         headerBlur: action.headerBlur,
       }
     }
-    case SET_EDITMODE: {
+    case SET_EDITPROFILE: {
       return {
         ...state,
-        editMode: action.editMode,
+        editProfile: action.editMode,
         
       }
     }
@@ -135,8 +135,8 @@ const appReducer = (state = initialState, action) => {
 export const initializedSuccess = () => {
   return { type: INITIALIZED_SUCCESS }
 }
-export const setEditMode = editMode => {
-  return { type: SET_EDITMODE, editMode }
+export const setEditProfile = editMode => {
+  return { type: SET_EDITPROFILE, editMode }
 }
 export const toggleIsPostCreation = isPostCreation => ({
   type: IS_POST_CREATION,
