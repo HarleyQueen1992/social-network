@@ -1,0 +1,32 @@
+.editProfileFullName {
+  display: grid;
+}
+.fullName {
+  width: 100%;
+  color: var(--fontColor);
+  text-align: center;
+  font-size: 20px;
+  align-self: center;
+  font-family: "Patua One", cursive;
+  white-space: nowrap; /* Текст не переносится */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis;
+}
+.editFullName {
+  height: 70%;
+  width: 250px;
+  align-self: center;
+  border-radius: 5px;
+  border: 1px solid var(--editInfo);
+  outline: none;
+  padding: 5px 10px;
+  text-align: center;
+  background-color: #00000027;
+  color: var(--fontColor);
+  font-size: 18px;
+  font-family: "Patua One", cursive;
+  justify-self: center;
+}
+.editFullName:focus {
+  border: 1px solid #1877f2;
+}

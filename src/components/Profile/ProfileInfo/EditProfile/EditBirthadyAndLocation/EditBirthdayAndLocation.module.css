@@ -1,0 +1,119 @@
+.editTellUsMoreAboutYourselfBlock {
+  display: grid;
+  grid-template-rows: 50px 80px;
+}
+.editTellUsMoreAboutYourselfAndEdit {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.TellUsMoreAboutYourself {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.editInfo {
+  width: 70px;
+  height: 70%;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: grid;
+  margin-right: 10px;
+}
+.editInfo:hover {
+  background-color: var(--editInfo);
+}
+.edit {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-family: "Patua One", cursive;
+  font-size: 16px;
+}
+.moreAboutMyself {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.birthdayBlock {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  padding: 0 15px;
+}
+.birthdayEditBlock {
+  margin-left: 5px;
+  display: grid;
+}
+.editBirthday {
+  align-self: center;
+  width: 150px;
+  /* #cecece */
+  height: 25px;
+  background-color: var(--bacInput);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+  outline: none;
+  color: var(--fontColor);
+  padding: 5px;
+}
+.birthdayTitleAndText {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+.birthdayTitle {
+  align-self: center;
+  color: var(--fontColor);
+  font-weight: bold;
+}
+.birthdayImg {
+  width: 25px;
+  align-self: center;
+}
+.birthday {
+  align-self: center;
+  color: #1877f2;
+  font-weight: bold;
+  cursor: pointer;
+}
+.locationBlock {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  padding: 0 15px;
+}
+.locationTitleAndText {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+.locationTitle {
+  align-self: center;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+.location {
+  color: #1877f2;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: center;
+}
+.locationEditBlock {
+  margin-left: 5px;
+  display: grid;
+}
+.editLocation {
+  align-self: center;
+  width: 150px;
+  height: 25px;
+  background-color: var(--bacInput);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+  outline: none;
+  color: var(--fontColor);
+  padding: 5px;
+}
+.cityImg {
+  align-self: center;
+}

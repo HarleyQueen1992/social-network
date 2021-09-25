@@ -24,7 +24,8 @@ import {
   getQ,
 } from "../../redux/PostsReducer/posts-selectors";
 import { requestNews } from "../../redux/NewsPeducer/news-reducer";
-const Header = (props) => {
+const Header = React.memo(function Header(props) {
+  console.log("Rerender header");
   let res = Icons(props.theme, props.index);
   const [focus, setFocus] = useState(false);
   const [isBigScreen, setIsBigScreen] = useState(window.innerWidth > 900);
@@ -236,7 +237,7 @@ const Header = (props) => {
       {props.isPassword && <Password />}
     </div>
   );
-};
+});
 
 let mapStateToProps = (state) => {
   return {

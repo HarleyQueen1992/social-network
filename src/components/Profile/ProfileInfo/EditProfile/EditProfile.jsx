@@ -18,7 +18,12 @@ import {
   getEditProfile,
 } from "./../../../../redux/AppReducer/app-selectors";
 import { getProfile } from "../../../../redux/ProfileReducer/profile-selectors";
-
+import EditProfileForm from "./EditProfileForm/EditProfileForm";
+import EditBanner from "./EditBanner/EditBanner";
+import EditFullName from "./EditFullName/EditFullName";
+import EditAboutMe from "./EditAboutMe/EditAboutMe";
+import EditAvatar from "./EditAvatar/EditAvatar";
+import EditBirthdayAndLocation from "./EditBirthadyAndLocation/EditBirthdayAndLocation";
 const EditProfile = (props) => {
   let res = Icons(props.theme);
 
@@ -67,16 +72,6 @@ const EditProfile = (props) => {
   };
   useEffect(() => {
     return () => {
-      // setEditTellusMoreAboutYourself(false);
-      // setEditAboutMe(false);
-      // setEditFullName(false);
-      // document.querySelector(".react-swipeable-view-container").style.cssText =
-      //   "will-change: transform; !important" +
-      //   "flex-direction: row;" +
-      //   "transition: all 0s ease 0s;" +
-      //   "direction: ltr;" +
-      //   "display: flex;" +
-      //   "transform: translate(-100%, 0px);";
       document.querySelector("body").style.cssText = "overflow: scroll;";
       props.setEditProfile(false);
       console.log("exit");
@@ -105,7 +100,21 @@ const EditProfile = (props) => {
             id="backBlock"
           ></div>
         </div>
-        <div className={s.editProfileFullNameBlock}>
+        <EditProfileForm
+          edit={editFullName}
+          setEdit={setEditFullName}
+          value={valueFullName}
+          save={props.updateFullName}
+          title={"Full name"}
+        >
+          <EditFullName
+            editFullName={editFullName}
+            valueFullName={valueFullName}
+            setValueFullName={setValueFullName}
+            profile={props.profile}
+          />
+        </EditProfileForm>
+        {/* <div className={s.editProfileFullNameBlock}>
           <div className={s.editProfileFullNameTitleBlock}>
             <div className={s.editProfileFullNameTitle}>Fullname</div>
             <div
@@ -136,8 +145,15 @@ const EditProfile = (props) => {
               <span className={s.fullName}>{props.profile.fullname}</span>
             )}
           </div>
-        </div>
-        <div className={s.editPhotoProfileBlock}>
+        </div> */}
+        <EditProfileForm
+          onMainSelected={onMainPhotoSelected}
+          type="file"
+          title={"Avatar"}
+        >
+          <EditAvatar theme={props.theme} profile={props.profile} />
+        </EditProfileForm>
+        {/* <div className={s.editPhotoProfileBlock}>
           <div className={s.editPhotoProfile}>
             <div className={s.editPhotoTitle}>Avatar</div>
             <input
@@ -161,8 +177,15 @@ const EditProfile = (props) => {
               />
             </div>
           </div>
-        </div>
-        <div className={s.editPhotoProfileBlock}>
+        </div> */}
+        <EditProfileForm
+          onMainSelected={onMainBannerSelected}
+          type="file"
+          title={"Banner"}
+        >
+          <EditBanner theme={props.theme} profile={props.profile} />
+        </EditProfileForm>
+        {/* <div className={s.editPhotoProfileBlock}>
           <div className={s.editPhotoProfile}>
             <div className={s.editPhotoTitle}>Cover photo</div>
 
@@ -187,8 +210,23 @@ const EditProfile = (props) => {
               />
             </div>
           </div>
-        </div>
-        <div
+        </div> */}
+        <EditProfileForm
+          edit={editAboutMe}
+          setEdit={setEditAboutMe}
+          value={valueAboutMe}
+          save={props.updateAboutMe}
+          title={"About me"}
+        >
+          <EditAboutMe
+            editAboutMe={editAboutMe}
+            valueAboutMe={valueAboutMe}
+            setValueAboutMe={setValueAboutMe}
+            setEditAboutMe={setEditAboutMe}
+            profile={props.profile}
+          />
+        </EditProfileForm>
+        {/* <div
           className={
             s.editAboutMeBlock +
             " " +
@@ -242,8 +280,26 @@ const EditProfile = (props) => {
               </div>
             </div>
           )}
-        </div>
-        <div className={s.editTellUsMoreAboutYourselfBlock}>
+        </div> */}
+        <EditProfileForm
+          edit={editTellusMoreAboutYourself}
+          setEdit={setEditTellusMoreAboutYourself}
+          save={props.updateProfileInfo}
+          value={valueBirthday}
+          value2={valueLocation}
+          title={"Tell us More About Your self"}
+        >
+          <EditBirthdayAndLocation
+            editTellusMoreAboutYourself={editTellusMoreAboutYourself}
+            valueBirthday={valueBirthday}
+            theme={props.theme}
+            setValueBirthday={setValueBirthday}
+            setValueLocation={setValueLocation}
+            valueLocation={valueLocation}
+            profile={props.profile}
+          />
+        </EditProfileForm>
+        {/* <div className={s.editTellUsMoreAboutYourselfBlock}>
           <div className={s.editTellUsMoreAboutYourselfAndEdit}>
             <div className={s.TellUsMoreAboutYourself}>
               Tell us more about yourself
@@ -316,7 +372,7 @@ const EditProfile = (props) => {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={s.editProfileMenuBottom}></div>
     </div>

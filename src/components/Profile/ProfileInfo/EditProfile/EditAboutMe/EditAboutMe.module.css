@@ -1,0 +1,109 @@
+.editAboutMeBlock {
+  display: grid;
+  width: 450px;
+  justify-self: center;
+  grid-template-rows: 140px 40px;
+  grid-row-gap: 10px;
+  height: 190px;
+}
+.editAboutMeBlockActive {
+  grid-template-rows: 50px 150px 40px;
+}
+.editAboutMeProfile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.editAboutMeTitle {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.addToAboutMe {
+  width: 70px;
+  height: 70%;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: grid;
+  margin-right: 10px;
+}
+.addToAboutMeDisable {
+  pointer-events: none;
+}
+.addToAboutMe:hover {
+  background-color: var(--editInfo);
+}
+.edit {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-family: "Patua One", cursive;
+  font-size: 16px;
+}
+.aboutMeText {
+  padding: 0 15px;
+  color: var(--colorAbouMe);
+  align-self: center;
+  justify-self: center;
+  font-size: 18px;
+  word-break: break-word;
+}
+.aboutMeTextarea {
+  height: 140px;
+  width: 450px;
+  justify-self: center;
+  color: var(--fontColor);
+  background-color: rgba(0, 0, 0, 0.151);
+  outline: none;
+  padding: 10px;
+  resize: none;
+  white-space: break-spaces;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0);
+  font-size: 18px;
+  border-radius: 10px;
+}
+.aboutMeTextarea:focus {
+  border: 1px solid #1877f2;
+}
+.charactersRemaining {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-left: 10px;
+  color: #cacaca;
+  font-size: 15px !important;
+  font-size: 18px;
+}
+.moreCharacters {
+  color: red;
+}
+.cancelAboutMeButton {
+  justify-self: end;
+  margin-right: 10px;
+  width: 80px;
+  cursor: pointer;
+  background-color: red;
+  display: grid;
+  border-radius: 5px;
+  height: 80%;
+
+  align-self: center;
+}
+.cancelAboutMe {
+  color: rgb(255, 255, 255);
+  font-family: "Patua One", cursive;
+  align-self: center;
+  justify-self: center;
+}
+@media (max-width: 600px) {
+  .editAboutMeBlock {
+    width: 100vw;
+  }
+  .aboutMeTextarea {
+    width: calc(300px + (450 - 300) * ((100vw - 320px) / (600 - 320)));
+  }
+}

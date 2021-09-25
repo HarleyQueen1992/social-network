@@ -1,0 +1,39 @@
+.editProfileForm {
+  display: grid;
+  grid-template-rows: 50px minmax(40px, auto);
+}
+.titleBlock {
+  display: grid;
+  grid-template-columns: 1fr 70px;
+}
+.title {
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+  color: var(--fontColor);
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+}
+.editButtonBlock {
+  display: grid;
+}
+.editButton {
+  width: 70px;
+  height: 70%;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: grid;
+  margin-right: 10px;
+}
+.edit {
+  align-self: center;
+  justify-self: center;
+  color: #1877f2;
+  font-family: "Patua One", cursive;
+  font-size: 16px;
+}
+.editButton:hover {
+  background-color: var(--editInfo);
+}
