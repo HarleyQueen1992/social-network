@@ -1,5 +1,5 @@
 /*! Profile description  */
-.profileDescription {
+.descriptionProfile {
   justify-self: center;
   width: 876px;
   display: grid;
@@ -29,32 +29,6 @@
   font-weight: bold;
   font-size: 18px;
 }
-.editProfileBlock {
-  justify-self: end;
-  width: 150px;
-  align-self: center;
-  height: 60%;
-  display: grid;
-  grid-template-columns: 35% 65%;
-  cursor: pointer;
-  transition: all 0.2s;
-  border-radius: 5px;
-  background-color: var(--editProfileBlock);
-}
-.editProfileImg {
-  align-self: center;
-  justify-self: end;
-  margin-right: 5px;
-}
-.editProfileBlock:hover {
-  background-color: var(--editProfileBlockHover);
-}
-.editProfile {
-  align-self: center;
-  justify-self: start;
-  font-weight: bold;
-  color: var(--fontColor);
-}
 .subscribeUnsubscribeBlock {
   display: grid;
 }
@@ -63,7 +37,7 @@
 }
 
 @media (max-width: 900px) {
-  .profileDescription {
+  .descriptionProfile {
     width: 100%;
     padding: 0 16px;
   }

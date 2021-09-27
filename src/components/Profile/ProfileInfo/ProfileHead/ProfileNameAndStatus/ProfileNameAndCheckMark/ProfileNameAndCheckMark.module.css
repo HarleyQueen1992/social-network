@@ -1,0 +1,28 @@
+.profileNameAndCheckMark {
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.profileNameAndCheckMarkIsAdmin {
+  margin-left: 37px;
+}
+.profileNameAndCheckMark span {
+  justify-self: center;
+  font-family: "Patua One", cursive;
+  color: var(--fontColor);
+  font-size: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.checkMarkBlock {
+  display: none;
+  margin-left: 5px;
+}
+.checkMarkBlockActive {
+  display: grid;
+}
+.checkMarkBlock img {
+  width: 34px;
+}

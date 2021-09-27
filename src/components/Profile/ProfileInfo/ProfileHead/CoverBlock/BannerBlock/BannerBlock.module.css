@@ -1,0 +1,71 @@
+.bannerBlock {
+  justify-self: center;
+  width: 940px;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+}
+.banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  justify-self: center;
+}
+/* ? Edit photo Banner block */
+.editBannerBlock {
+  z-index: 2;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  width: 200px;
+  height: 34px;
+}
+.editBanner {
+  cursor: pointer;
+  width: 180px;
+  height: 34px;
+  background-color: white;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.editPhotoBannerBlock:hover {
+  background-color: rgb(245, 245, 245);
+}
+.editBannerImg {
+  height: 20px;
+  align-self: center;
+  justify-self: center;
+}
+.editBannerTitle {
+  align-self: center;
+  font-family: "Patua One", cursive;
+}
+
+@media (max-width: 700px) {
+  .editBannerBlock {
+    width: auto;
+  }
+  .editBanner {
+    width: 40px;
+    grid-template-columns: 1fr;
+  }
+  .editBannerTitle {
+    display: none;
+  }
+}
+@media (max-width: 940px) {
+  .bannerBlock {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .banner {
+    height: calc(150px + (350 - 150) * ((100vw - 320px) / (900 - 320)));
+  }
+}

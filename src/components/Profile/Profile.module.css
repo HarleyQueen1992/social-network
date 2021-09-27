@@ -1,4 +1,4 @@
-@media (max-width: 1355px) {
+/* @media (max-width: 1355px) {
   .posts {
     margin-left: calc(250px + (380 - 250) * ((100vw - 1250px) / (1355 - 1250)));
     justify-self: center;
@@ -13,7 +13,7 @@
 
 .hello {
   color: white;
-}
+} */
 .userIsNotFound {
   height: 100%;
   position: relative;

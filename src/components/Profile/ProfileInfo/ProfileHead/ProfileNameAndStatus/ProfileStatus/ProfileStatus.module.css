@@ -1,0 +1,33 @@
+.profileStatus {
+  justify-self: center;
+  min-height: 18px;
+  color: var(--statusColor);
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+.editStatus {
+  margin-top: 5px;
+  text-align: center;
+  justify-self: center;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  height: 26px;
+  color: var(--statusColor);
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0.233);
+  outline: none;
+}
+.setStatus {
+  margin-bottom: 10px;
+  color: #1877f2;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  justify-self: center;
+}
+.editStatus:focus {
+  border: 1px solid #1877f2;
+}

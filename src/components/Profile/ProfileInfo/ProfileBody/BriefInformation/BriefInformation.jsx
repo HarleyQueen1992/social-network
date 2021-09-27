@@ -2,21 +2,21 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-// Selectors imports
+//? Selectors imports
 import { getTheme } from "../../../../../redux/AppReducer/app-selectors";
 import { getProfile } from "../../../../../redux/ProfileReducer/profile-selectors";
 
-// Utils
+//? Utils
 import { Icons } from "./../../../../../utils/Icons/Icons";
 
-// Css
+//? Css
 import s from "./BriefInformation.module.css";
 
 const BriefInformation = (props) => {
   let res = Icons(props.theme);
+
   return (
     <div className={s.profileInfoBlock}>
-      {/* <div className={s.briefInformationTitle}>Brief information</div> */}
       <div className={s.listOfInformation}>
         <div className={s.listItems}>
           <img className={s.birthdayImg} src={res["birthday"]} alt="birthday" />

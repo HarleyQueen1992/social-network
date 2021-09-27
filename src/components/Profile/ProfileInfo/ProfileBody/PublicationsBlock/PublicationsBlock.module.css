@@ -1,0 +1,49 @@
+.publicationsBlockAll {
+  display: grid;
+  height: 100px;
+  border-radius: 10px;
+  background-color: var(--navBarBac);
+  grid-template-rows: 60% 40%;
+}
+.publicationsTitleAndFilter {
+  border-bottom: 1px solid var(--BorderBottom);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.publicationsTitle {
+  color: var(--fontColor);
+  font-size: 20px;
+  align-self: center;
+  padding-left: 10px;
+  font-family: "Patua One", cursive;
+}
+
+.listBlock {
+  position: relative;
+  margin: 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.listBlock::after {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  height: 3px;
+  border-radius: 1px;
+  width: 100%;
+  background-color: #1877f2;
+}
+.listImg {
+  align-self: center;
+  justify-self: end;
+  padding-right: 5px;
+  height: 20px;
+}
+.listTitle {
+  padding-left: 2px;
+  color: #1877f2;
+  letter-spacing: 1px;
+  align-self: center;
+  font-size: 18px;
+  font-weight: bold;
+}

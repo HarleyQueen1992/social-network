@@ -3,17 +3,15 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 
-// Reducer import
+//? Reducer import
 import {
   savePhoto,
   setProfileBanner,
   updateStatus,
-  subscribe,
-  unsubscribe,
   blockUser,
 } from "./../../../../redux/ProfileReducer/profile-reducer";
 
-// Selectors import
+//? Selectors import
 import { getTheme } from "../../../../redux/AppReducer/app-selectors";
 import {
   getIsFollowed,
@@ -21,20 +19,16 @@ import {
 } from "../../../../redux/ProfileReducer/profile-selectors";
 import { getProfileInfo } from "../../../../redux/AuthReducer/auth-selectors";
 
-// Components
+//? Components
 import BlockUser from "./../BlockUser/BlockUser";
-
-// utils
-import { Icons } from "./../../../../utils/Icons/Icons";
-// Css
-import s from "./ProfileHead.module.css";
-import BannerBlock from "./BannerBlock/BannerBlock";
+import CoverBlock from "./CoverBlock/CoverBlock";
 import ProfileNameAndStatus from "./ProfileNameAndStatus/ProfileNameAndStatus";
 import ProfileDescription from "./ProfileDescription/ProfileDescription";
 
-const ProfileHead = (props) => {
-  let res = Icons(props.theme, props.index);
+//? Css
+import s from "./ProfileHead.module.css";
 
+const ProfileHead = (props) => {
   let [isBlockUser, setIsBlockUser] = useState(false);
 
   return (
@@ -47,7 +41,7 @@ const ProfileHead = (props) => {
         />
       )}
       <div className={s.profileHead}>
-        <BannerBlock isOwner={props.isOwner} />
+        <CoverBlock isOwner={props.isOwner} />
         <ProfileNameAndStatus isOwner={props.isOwner} />
         <ProfileDescription
           isBlockUser={isBlockUser}

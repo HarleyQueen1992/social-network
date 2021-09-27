@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 
-// Selectors imports
+//? Selectors imports
 import {
   getIsFollowed,
   getProfile,
@@ -11,7 +11,12 @@ import {
 import { getTheme } from "../../../../../redux/AppReducer/app-selectors";
 import { getProfileInfo } from "../../../../../redux/AuthReducer/auth-selectors";
 
-// Reducer imports
+//? Components
+import BannedBlock from "./BannedBlock/BannedBlock";
+import FollowedBlock from "./FollowedBlock/FollowedBlock";
+import EditProfileButton from "./EditProfileButton/EditProfileButton";
+
+//? Reducer imports
 import {
   subscribe,
   unsubscribe,
@@ -20,34 +25,27 @@ import {
 } from "./../../../../../redux/ProfileReducer/profile-reducer";
 import { setEditProfile } from "./../../../../../redux/AppReducer/app-reducer";
 
-// utils
+//? Utils
 import { Icons } from "./../../../../../utils/Icons/Icons";
 
-// Css
+//? Css
 import s from "./ProfileDescription.module.css";
-import BannedBlock from "./BannedBlock/BannedBlock";
-import FollowedBlock from "./FollowedBlock/FollowedBlock";
 
 const ProfileDescription = (props) => {
+  let res = Icons(props.theme);
+
   const openPopup = () => {
     document.querySelector("body").style.cssText = "overflow: hidden;";
     props.setEditProfile(true);
   };
-  let res = Icons(props.theme);
+
   return (
-    <div className={s.profileDescription}>
+    <div className={s.descriptionProfile}>
       <div className={s.publicationsBlock}>
         <div className={s.publications}>Publications</div>
       </div>
       {props.isOwner ? (
-        <div onClick={openPopup} className={s.editProfileBlock}>
-          <img
-            className={s.editProfileImg}
-            src={res["edit"]}
-            alt="edit profile"
-          />
-          <div className={s.editProfile}>Edit profile</div>
-        </div>
+        <EditProfileButton openPopup={openPopup} editImg={res["edit"]} />
       ) : (
         <div
           className={

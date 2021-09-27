@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 
-// Components
-import EditProfile from "./EditProfile/EditProfile";
+//? Components
 import ProfileHead from "./ProfileHead/ProfileHead";
 import ProfileBody from "./ProfileBody/ProfileBody";
 
-// Css
+//? Css
 import s from "./ProfileInfo.module.css";
 
 const ProfileInfo = (props) => {
@@ -18,6 +17,7 @@ const ProfileInfo = (props) => {
         "overflow-x: hidden;";
     }
   };
+
   useEffect(() => {
     updateWindowDimensions();
     window.addEventListener("resize", updateWindowDimensions);

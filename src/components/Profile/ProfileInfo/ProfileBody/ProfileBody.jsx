@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { NavLink } from "react-router-dom";
 
-// Reducers import
+//? Reducers import
 import { setIsOpenFilters } from "./../../../../redux/ProfileReducer/profile-reducer";
 
-// Selectors import
+//? Selectors import
 import { getTheme } from "../../../../redux/AppReducer/app-selectors";
 import { getProfileInfo } from "../../../../redux/AuthReducer/auth-selectors";
 import { getPosts } from "../../../../redux/PostsReducer/posts-selectors";
@@ -16,20 +15,22 @@ import {
   getSubscriptions,
 } from "../../../../redux/ProfileReducer/profile-selectors";
 
-// Components
+//? Components
 import Post from "../../../Posts/MyPosts/Post/Post";
 import PostCreation from "../../../Posts/MyPosts/PostCreation/PostCreation";
-
-// Utils
-import { Icons } from "./../../../../utils/Icons/Icons";
-
-// Css
-import s from "./ProfileBody.module.css";
 import BriefInformation from "./BriefInformation/BriefInformation";
 import SubscriptionsBlock from "./SubscribtionsBlock/SubscriptionsBlock";
+import PublicationsBlock from "./PublicationsBlock/PublicationsBlock";
+
+//? Utils
+import { Icons } from "./../../../../utils/Icons/Icons";
+
+//? Css
+import s from "./ProfileBody.module.css";
 
 const ProfileBody = (props) => {
   let res = Icons(props.theme, props.index);
+
   useEffect(() => {
     window.addEventListener("resize", handleChangeInnerHeight);
 
@@ -50,6 +51,7 @@ const ProfileBody = (props) => {
       document.getElementById("slidingBlock").style.cssText = "top: 61px;"; // 61px = 51px(header height) + 10px (padding-top)
     }
   };
+
   return (
     <div className={s.profileBody}>
       <div className={s.leftColumn}>
@@ -61,34 +63,14 @@ const ProfileBody = (props) => {
       </div>
       <div
         className={
-          s.rightColumn + " " + (!props.isOwner ? s.rightColumnNoOwner : "")
+          s.rightColumn + " " + (!props.isOwner && s.rightColumnNoOwner)
         }
       >
         {props.isOwner && <PostCreation translate="-100%" />}
-        <div className={s.publicationsBlockAll}>
-          <div className={s.publicationsTitleAndFilter}>
-            <span className={s.publicationsTitle}>Publications</span>
-            <div
-              className={s.publicationsFilter}
-              onClick={() => {
-                document.querySelector("body").style.cssText =
-                  "overflow: hidden;";
-                props.setIsOpenFilters(true);
-              }}
-            >
-              <img
-                className={s.publicationsFilterImg}
-                src={res["filter"]}
-                alt="filter"
-              />
-              <span className={s.publicationsFilterTitle}>Filters</span>
-            </div>
-          </div>
-          <div className={s.listBlock}>
-            <img className={s.listImg} src={res["list"]} alt="list img" />
-            <span className={s.listTitle}>List</span>
-          </div>
-        </div>
+        <PublicationsBlock
+          res={res}
+          setIsOpenFilters={props.setIsOpenFilters}
+        />
         <div className={s.postsList}>
           {props.posts.map((post) => (
             <Post
