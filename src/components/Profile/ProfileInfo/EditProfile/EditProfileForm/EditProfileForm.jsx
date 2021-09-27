@@ -1,9 +1,15 @@
 import React from "react";
 
-// Css
+//? Css
 import s from "./EditProfileForm.module.css";
 
 const EditProfileForm = (props) => {
+  const onMainSelected = (e) => {
+    if (e.target.files.length) {
+      props.save(e.target.files[0]);
+    }
+  };
+
   return (
     <div className={s.editProfileForm}>
       <div className={s.titleBlock}>
@@ -11,7 +17,7 @@ const EditProfileForm = (props) => {
         {props.type === "file" ? (
           <div className={s.editButtonBlock}>
             <input
-              onChange={props.onMainSelected}
+              onChange={onMainSelected}
               type="file"
               id={"input__file" + props.title}
             />

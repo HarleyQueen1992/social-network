@@ -4,7 +4,7 @@
 }
 .titleBlock {
   display: grid;
-  grid-template-columns: 1fr 70px;
+  grid-template-columns: 1fr 80px;
 }
 .title {
   align-self: center;
@@ -13,9 +13,6 @@
   color: var(--fontColor);
   font-family: "Patua One", cursive;
   font-size: 18px;
-}
-.editButtonBlock {
-  display: grid;
 }
 .editButton {
   width: 70px;
@@ -27,13 +24,13 @@
   display: grid;
   margin-right: 10px;
 }
+.editButton:hover {
+  background-color: var(--editInfo);
+}
 .edit {
   align-self: center;
   justify-self: center;
   color: #1877f2;
   font-family: "Patua One", cursive;
   font-size: 16px;
-}
-.editButton:hover {
-  background-color: var(--editInfo);
 }

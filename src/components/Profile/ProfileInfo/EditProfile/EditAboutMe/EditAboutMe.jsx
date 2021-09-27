@@ -11,6 +11,7 @@ const EditAboutMe = (props) => {
   const handleChangeAboutMe = (e) => {
     props.setValueAboutMe(e.target.value);
   };
+
   return props.editAboutMe ? (
     <div className={s.editAboutMeBlock}>
       <textarea
@@ -22,7 +23,7 @@ const EditAboutMe = (props) => {
       <div className={s.charactersRemaining}>
         <span>Remaining {400 - props.valueAboutMe.length} characters</span>
 
-        <div onClick={cancelEditAboutMe} className={s.cancelAboutMeButton}>
+        <div onClick={cancelEditAboutMe} className={s.cancelAboutMeBlock}>
           {" "}
           <span className={s.cancelAboutMe}>Cancel</span>{" "}
         </div>

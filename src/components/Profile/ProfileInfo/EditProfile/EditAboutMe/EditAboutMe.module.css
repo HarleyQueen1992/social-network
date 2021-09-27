@@ -1,17 +1,9 @@
 .editAboutMeBlock {
   display: grid;
-  width: 450px;
   justify-self: center;
   grid-template-rows: 140px 40px;
   grid-row-gap: 10px;
   height: 190px;
-}
-.editAboutMeBlockActive {
-  grid-template-rows: 50px 150px 40px;
-}
-.editAboutMeProfile {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 .editAboutMeTitle {
   align-self: center;
@@ -20,29 +12,6 @@
   color: var(--fontColor);
   font-family: "Patua One", cursive;
   font-size: 18px;
-}
-.addToAboutMe {
-  width: 70px;
-  height: 70%;
-  justify-self: end;
-  align-self: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: grid;
-  margin-right: 10px;
-}
-.addToAboutMeDisable {
-  pointer-events: none;
-}
-.addToAboutMe:hover {
-  background-color: var(--editInfo);
-}
-.edit {
-  align-self: center;
-  justify-self: center;
-  color: #1877f2;
-  font-family: "Patua One", cursive;
-  font-size: 16px;
 }
 .aboutMeText {
   padding: 0 15px;
@@ -74,14 +43,14 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   margin-left: 10px;
-  color: #cacaca;
+  color: #b3acac;
   font-size: 15px !important;
   font-size: 18px;
 }
-.moreCharacters {
+/* .moreCharacters {
   color: red;
-}
-.cancelAboutMeButton {
+} */
+.cancelAboutMeBlock {
   justify-self: end;
   margin-right: 10px;
   width: 80px;
@@ -100,9 +69,6 @@
   justify-self: center;
 }
 @media (max-width: 600px) {
-  .editAboutMeBlock {
-    width: 100vw;
-  }
   .aboutMeTextarea {
     width: calc(300px + (450 - 300) * ((100vw - 320px) / (600 - 320)));
   }

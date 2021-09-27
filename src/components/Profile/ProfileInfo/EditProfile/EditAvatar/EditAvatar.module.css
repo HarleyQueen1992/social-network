@@ -1,6 +1,3 @@
-.photoProfile {
-  display: grid;
-}
 .avatar {
   align-self: center;
   justify-self: center;
@@ -20,7 +17,7 @@
   object-fit: cover;
 }
 @media (max-width: 600px) {
-  .photoProfile img {
+  .avatar img {
     width: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
     height: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
   }

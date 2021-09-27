@@ -1,8 +1,20 @@
-.editProfileMenu {
-  z-index: 999999999999999999999999999999999999999;
+.popupEditProfile {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.425);
+  display: grid;
+  z-index: 999;
+}
+.editProfileBlock {
+  z-index: 999;
   width: 600px;
   display: grid;
   margin-top: 40px;
+  margin-bottom: 40px;
   justify-self: center;
   border-radius: 10px;
   grid-template-rows: 50px 100px 260px 260px 1fr 130px;
@@ -24,7 +36,16 @@
   margin-left: 50px;
   font-family: "Patua One", cursive;
 }
-.popupContentHeaderOff {
+.editProfileTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--BorderBottom);
+  height: 1px;
+  width: 100%;
+}
+.closePopupEditProfile {
   cursor: pointer;
   height: 30px;
   width: 30px;
@@ -35,11 +56,11 @@
   background-color: red;
   transition: 0.5s all;
 }
-.popupContentHeaderOff:hover {
+.closePopupEditProfile:hover {
   background-color: rgba(255, 0, 0, 0.664);
 }
-.popupContentHeaderOff:before,
-.popupContentHeaderOff:after {
+.closePopupEditProfile:before,
+.closePopupEditProfile:after {
   position: absolute;
   left: 14px;
   content: " ";
@@ -48,367 +69,19 @@
   width: 2px;
   background-color: rgb(255, 255, 255);
 }
-.popupContentHeaderOff:before {
+.closePopupEditProfile:before {
   transform: rotate(45deg);
 }
-.popupContentHeaderOff:after {
+.closePopupEditProfile:after {
   transform: rotate(-45deg);
 }
-.editProfileTitle::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: var(--BorderBottom);
-  height: 1px;
-  width: 100%;
-}
-.editProfileFullNameBlock {
-  display: grid;
-  grid-template-rows: 50px minmax(40px, auto);
-}
-.editProfileFullNameTitleBlock {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.editProfileFullNameTitle {
-  align-self: center;
-  justify-self: start;
-  margin-left: 10px;
-  color: var(--fontColor);
-  font-family: "Patua One", cursive;
-  font-size: 18px;
-}
-.editProfileFullName {
-  display: grid;
-}
-.fullName {
-  width: 100%;
-  color: var(--fontColor);
-  text-align: center;
-  font-size: 20px;
-  align-self: center;
-  font-family: "Patua One", cursive;
-  white-space: nowrap; /* Текст не переносится */
-  overflow: hidden; /* Обрезаем всё за пределами блока */
-  text-overflow: ellipsis;
-}
-.editFullName {
-  height: 70%;
-  width: 250px;
-  align-self: center;
-  border-radius: 5px;
-  border: 1px solid var(--editInfo);
-  outline: none;
-  padding: 5px 10px;
-  text-align: center;
-  background-color: #00000027;
-  color: var(--fontColor);
-  font-size: 18px;
-  font-family: "Patua One", cursive;
-  justify-self: center;
-}
-.editFullName:focus {
-  border: 1px solid #1877f2;
-}
-.editPhotoProfileBlock {
-  display: grid;
-  grid-template-rows: 50px 210px;
-}
-.editPhotoProfile {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.editPhotoTitle {
-  align-self: center;
-  justify-self: start;
-  margin-left: 10px;
-  color: var(--fontColor);
-  font-family: "Patua One", cursive;
-  font-size: 18px;
-}
-.editPhoto {
-  width: 70px;
-  height: 70%;
-  justify-self: end;
-  align-self: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: grid;
-  margin-right: 10px;
-}
-.editPhoto:hover {
-  background-color: var(--editInfo);
-}
-.edit {
-  align-self: center;
-  justify-self: center;
-  color: #1877f2;
-  font-family: "Patua One", cursive;
-  font-size: 16px;
-}
-.photoProfile {
-  display: grid;
-}
-.avatar {
-  align-self: center;
-  justify-self: center;
-  position: relative;
-  overflow: hidden;
-  height: 180px;
-  width: 180px;
-}
-.avatar img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.CoverPhotoProfile {
-  display: grid;
-}
-.banner {
-  align-self: center;
-  justify-self: center;
-  width: 500px;
-  height: 180px;
-  position: relative;
-  overflow: hidden;
-}
-.banner img {
-  position: absolute;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  height: 180px;
-  object-fit: cover;
-}
-.editAboutMeBlock {
-  display: grid;
-  grid-template-rows: 50px 1fr;
-}
-.editAboutMeBlockActive {
-  grid-template-rows: 50px 150px 40px;
-}
-.editAboutMeProfile {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.editAboutMeTitle {
-  align-self: center;
-  justify-self: start;
-  margin-left: 10px;
-  color: var(--fontColor);
-  font-family: "Patua One", cursive;
-  font-size: 18px;
-}
-.addToAboutMe {
-  width: 70px;
-  height: 70%;
-  justify-self: end;
-  align-self: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: grid;
-  margin-right: 10px;
-}
-.addToAboutMeDisable {
-  pointer-events: none;
-}
-.addToAboutMe:hover {
-  background-color: var(--editInfo);
-}
-.edit {
-  align-self: center;
-  justify-self: center;
-  color: #1877f2;
-  font-family: "Patua One", cursive;
-  font-size: 16px;
-}
-.aboutMeText {
-  padding: 0 15px;
-  color: var(--colorAbouMe);
-  align-self: center;
-  justify-self: center;
-  font-size: 18px;
-  word-break: break-word;
-}
-.aboutMeTextarea {
-  height: 100%;
-  width: 450px;
-  justify-self: center;
-  color: var(--fontColor);
-  background-color: rgba(0, 0, 0, 0.151);
-  outline: none;
-  padding: 10px;
-  resize: none;
-  white-space: break-spaces;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0);
-  font-size: 18px;
-  border-radius: 10px;
-}
-.aboutMeTextarea:focus {
-  border: 1px solid #1877f2;
-}
-.charactersRemaining {
-  display: grid;
-  grid-template-columns: 220px 80px;
-  width: 300px;
-  margin-left: 10px;
-  color: #cacaca;
-  font-size: 15px !important;
-  justify-self: center;
-  font-size: 18px;
-}
-.moreCharacters {
-  color: red;
-}
-.cancelAboutMeButton {
-  margin-right: 10px;
-  cursor: pointer;
-  background-color: red;
-  display: grid;
-  border-radius: 5px;
-  height: 80%;
-  align-self: center;
-}
-.cancelAboutMe {
-  color: rgb(255, 255, 255);
-  font-family: "Patua One", cursive;
-  align-self: center;
-  justify-self: center;
-}
-.editTellUsMoreAboutYourselfBlock {
-  display: grid;
-  grid-template-rows: 50px 80px;
-}
-.editTellUsMoreAboutYourselfAndEdit {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-}
-.TellUsMoreAboutYourself {
-  align-self: center;
-  justify-self: start;
-  margin-left: 10px;
-  color: var(--fontColor);
-  font-family: "Patua One", cursive;
-  font-size: 18px;
-}
-.editInfo {
-  width: 70px;
-  height: 70%;
-  justify-self: end;
-  align-self: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: grid;
-  margin-right: 10px;
-}
-.editInfo:hover {
-  background-color: var(--editInfo);
-}
-.edit {
-  align-self: center;
-  justify-self: center;
-  color: #1877f2;
-  font-family: "Patua One", cursive;
-  font-size: 16px;
-}
-.moreAboutMyself {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-}
-.birthdayBlock {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  padding: 0 15px;
-}
-.birthdayEditBlock {
-  margin-left: 5px;
-  display: grid;
-}
-.editBirthday {
-  align-self: center;
-  width: 150px;
-  /* #cecece */
-  height: 25px;
-  background-color: var(--bacInput);
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.199);
-  outline: none;
-  color: var(--fontColor);
-  padding: 5px;
-}
-.birthdayTitleAndText {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-}
-.birthdayTitle {
-  align-self: center;
-  color: var(--fontColor);
-  font-weight: bold;
-}
-.birthdayImg {
-  width: 25px;
-  align-self: center;
-}
-.birthday {
-  align-self: center;
-  color: #1877f2;
-  font-weight: bold;
-  cursor: pointer;
-}
-.locationBlock {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  padding: 0 15px;
-}
-.locationTitleAndText {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 60px 1fr;
-}
-.locationTitle {
-  align-self: center;
-  font-weight: bold;
-  color: var(--fontColor);
-}
-.location {
-  color: #1877f2;
-  cursor: pointer;
-  font-weight: bold;
-  align-self: center;
-}
-.locationEditBlock {
-  margin-left: 5px;
-  display: grid;
-}
-.editLocation {
-  align-self: center;
-  width: 150px;
-  height: 25px;
-  background-color: var(--bacInput);
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.199);
-  outline: none;
-  color: var(--fontColor);
-  padding: 5px;
-}
-.cityImg {
-  align-self: center;
-}
+
 @media (max-width: 600px) {
-  .editProfileMenu {
+  .editProfileBlock {
     width: 100vw;
     height: 100vh;
     overflow: scroll;
+    margin-bottom: 0;
     margin-top: 0;
     border-radius: 0;
     grid-template-rows:
@@ -416,50 +89,4 @@
       calc(230px + (260 - 230) * ((100vw - 320px) / (600 -320)))
       1fr 130px;
   }
-  .editProfileMenuBottom {
-    height: 0;
-  }
-  .aboutMeTextarea {
-    width: calc(300px + (450 - 300) * ((100vw - 320px) / (600 - 320)));
-  }
-  .editPhotoProfileBlock {
-    grid-template-rows: 50px calc(
-        180px + (210 - 180) * ((100vw - 320px) / (600 - 320))
-      );
-  }
-  .banner img {
-    width: calc(280px + (500 - 280) * ((100vw - 320px) / (600 - 320)));
-    height: calc(140px + (180 - 140) * ((100vw - 320px) / (600 - 320)));
-  }
-  .banner {
-    width: calc(280px + (500 - 280) * ((100vw - 320px) / (600 - 320)));
-    height: calc(140px + (180 - 140) * ((100vw - 320px) / (600 - 320)));
-  }
-  .photoProfile img {
-    width: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
-    height: calc(150px + (180 - 150) * ((100vw - 320px) / (600 - 320)));
-  }
-}
-.editProfileMenuBlock {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  overflow-y: scroll;
-  background-color: rgba(0, 0, 0, 0.425);
-  display: none;
-  z-index: 999;
-}
-.editProfileMenuBottom {
-  height: 40px;
-  bottom: 0;
-}
-@media (max-width: 600px) {
-  .editProfileMenuBottom {
-    height: 0;
-  }
-}
-.activeEditProfileMenuBlock {
-  display: grid;
 }

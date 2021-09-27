@@ -4,16 +4,19 @@ import React from "react";
 import { Icons } from "../../../../../utils/Icons/Icons";
 
 //? Css
-import s from "./EditBirthdayAndLocation.module.css";
+import s from "./MoreAboutYourSelf.module.css";
 
 const EditBirthdayAndLocation = (props) => {
+  let res = Icons(props.theme);
+
   const handleChangeBirthday = (event) => {
     props.setValueBirthday(event.target.value);
   };
+
   const handleChangeLocation = (event) => {
     props.setValueLocation(event.target.value);
   };
-  let res = Icons(props.theme);
+
   return (
     <div className={s.moreAboutMyself}>
       <div className={s.birthdayBlock}>

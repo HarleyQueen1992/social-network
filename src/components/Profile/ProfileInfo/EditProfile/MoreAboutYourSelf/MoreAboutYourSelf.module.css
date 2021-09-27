@@ -14,26 +14,6 @@
   font-family: "Patua One", cursive;
   font-size: 18px;
 }
-.editInfo {
-  width: 70px;
-  height: 70%;
-  justify-self: end;
-  align-self: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: grid;
-  margin-right: 10px;
-}
-.editInfo:hover {
-  background-color: var(--editInfo);
-}
-.edit {
-  align-self: center;
-  justify-self: center;
-  color: #1877f2;
-  font-family: "Patua One", cursive;
-  font-size: 16px;
-}
 .moreAboutMyself {
   display: grid;
   grid-template-rows: 1fr 1fr;

@@ -8,18 +8,17 @@ import s from "./EditAvatar.module.css";
 
 const EditAvatar = (props) => {
   let res = Icons(props.theme);
+
   return (
-    <div className={s.photoProfile}>
-      <div className={s.avatar}>
-        <img
-          src={
-            props.profile.avatar == ""
-              ? res["defaultAvatr"]
-              : props.profile.avatar
-          }
-          alt="profile photo"
-        />
-      </div>
+    <div className={s.avatar}>
+      <img
+        src={
+          props.profile.avatar == ""
+            ? res["defaultAvatr"]
+            : props.profile.avatar
+        }
+        alt="profile photo"
+      />
     </div>
   );
 };

@@ -50,12 +50,6 @@ const PostForm = (props) => {
     setValueHashTag(event.target.value);
   };
   const uploadAPhoto = (event) => {
-    let files = event.target.files;
-    let length = files.length;
-    if (length > 5) {
-      length = 5;
-    }
-
     setUploadedTheFile(true);
     let files = event.target.files;
     let length = files.length;

@@ -8,6 +8,7 @@ import s from "./EditBanner.module.css";
 
 const EditBanner = (props) => {
   let res = Icons(props.theme);
+
   return (
     <div className={s.bannerBlock}>
       <div className={s.banner}>
