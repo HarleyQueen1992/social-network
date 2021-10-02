@@ -1,0 +1,36 @@
+.avatarBlock {
+  z-index: 2;
+  position: absolute;
+  top: 200px;
+  display: grid;
+  justify-self: center;
+  background-color: white;
+  padding: 5px;
+  border-radius: 50%;
+}
+.avatarSubblock {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  width: 150px;
+}
+.avatar {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .avatarBlock {
+    top: calc(3px + (200 - 3) * ((100vw - 320px) / (900 - 320)));
+  }
+}

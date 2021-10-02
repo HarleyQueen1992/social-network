@@ -21,7 +21,6 @@ const PostForm = (props) => {
   const [valuePostTitle, setValuePostTitle] = useState(props.valueTitle);
   const [valueHashTag, setValueHashTag] = useState("");
   // const [uploadImages, setUploadImages] = useState(true);
-
   const closePopup = () => {
     document.querySelector("body").style.cssText = "overflow: scroll;";
     if (props.isUpdatePost) {
@@ -43,12 +42,15 @@ const PostForm = (props) => {
       props.submit(valuePostTitle, valuePostText, valuePostImages);
     }
   };
+
   const handleChangePostText = (event) => {
     setValuePostText(event.target.value);
   };
+
   const handleChangeHashTag = (event) => {
     setValueHashTag(event.target.value);
   };
+
   const uploadAPhoto = (event) => {
     setUploadedTheFile(true);
     let files = event.target.files;
@@ -62,6 +64,7 @@ const PostForm = (props) => {
     }
     setValuePostImages(arr);
   };
+
   useEffect(() => {
     var tx = document.getElementById("textarea");
     let height = tx.style.height;
@@ -266,11 +269,15 @@ const PostForm = (props) => {
           />
         </label>
         <div
-          onClick={valuePostTitle !== "" && submitPost}
+          onClick={
+            (valuePostText !== "") | (valuePostImages.length !== 0) &&
+            submitPost
+          }
           className={
             s.popupContentAddPost +
             " " +
-            (valuePostTitle !== "" && s.popupContentAddPostSubmit)
+            ((valuePostText !== "") | (valuePostImages.length !== 0) &&
+              s.popupContentAddPostSubmit)
           }
         >
           <span>{props.button}</span>
