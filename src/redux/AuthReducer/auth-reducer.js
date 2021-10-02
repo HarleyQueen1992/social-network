@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form"
-import { profileAPI, authAPI } from "../../API/api"
+import { profileAPI, authAPI, axiosInstance } from "../../API/api"
 import { setIndex, setTheme, setThemeStyle } from "../AppReducer/app-reducer"
 const SET_USER_DATA = "app/auth-reducer/SET_USER_DATA"
 const SET_PROFILE_DATA = "app/auth-reducer/SET_PROFILE_DATA"
@@ -99,11 +99,18 @@ export const getAuthMe = () => async (dispatch, getState) => {
 export const loginIn = (email, password, rememberMe) => async dispatch => {
   let data = await authAPI.loginIn(email, password)
   if (!data.code) {
-    window.location = '#/news'
+    
+    
+    localStorage.setItem("accessToken", data.access);
+    localStorage.setItem("refreshToken", data.refresh);
+    axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + data.access
+    let response = await profileAPI.getProfile()
+
+    dispatch(setProfileData(response, true))
+
     dispatch(setIndex(0))
-    dispatch(setProfileData(data, true))
-    dispatch(setTheme(data.theme))
-    localStorage.setItem("theme", data.theme);
+    window.location = '#/news'
+    // localStorage.setItem("theme", data.theme);
     
   } else if (data.code === "inactiveProfile") {
     window.location = '/social-network/#/activation';
@@ -126,7 +133,8 @@ export const register = (email, login, password1, password2, aboutMe, birthday, 
 }
 
 export const logOut = () => async dispatch => {
-  let data = await authAPI.logOut()
+  localStorage.removeItem('accessToken')
+  localStorage.removeItem('refreshToken')
     dispatch(setProfileData(null, false))
   
 }

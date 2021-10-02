@@ -1,19 +1,47 @@
 import axios from "axios"
-import { loginIn } from "../redux/AuthReducer/auth-reducer"
+
+//? Utils 
 import { search } from "../utils/search"
 
-axios.defaults.withCredentials = true
-
-const instance = axios.create({
-  withCredentials: true,
+let axiosConfig = {
   baseURL: `https://mosset.herokuapp.com/api/v1`,
-  //  baseURL: `https://social-network-api-1.herokuapp.com/api/1.0`,
-  //  baseURL: `https://mosset.pagekite.me/api/1.0`,
- })
 
+}
+
+if (localStorage.getItem('accessToken')) {
+  axiosConfig.headers = {'Authorization': 'Bearer '+ localStorage.getItem('accessToken')}  
+}
+
+export const axiosInstance = axios.create(axiosConfig)
+
+axiosInstance.interceptors.response.use(
+  response => response,
+  error => {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+        const refresh_token = localStorage.getItem('refreshToken');
+        delete axiosInstance.defaults.headers['Authorization'];
+
+        return axiosInstance
+            .post('/token/refresh/', {refresh: refresh_token})
+            .then((response) => {
+
+                localStorage.setItem('accessToken', response.data.access);
+                localStorage.setItem('refreshToken', response.data.refresh);
+
+                axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+                originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
+
+                return axiosInstance(originalRequest);
+            })
+    }
+    return Promise.reject(error);
+}
+);
 export const usersAPI = {
   getUsers(pageNumber, pageSize) {
-    return instance
+    return axiosInstance
       .get(`users/?page=${pageNumber}&limit=${pageSize}`)
       .then(response => {
         return response.data
@@ -31,7 +59,7 @@ export const usersAPI = {
   },
 
   getUsersFollowingAll(login) {
-    return instance.get(`users/${login}/following/`).then(response => {
+    return axiosInstance.get(`users/${login}/following/`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -42,42 +70,41 @@ export const usersAPI = {
 
 export const authAPI = {
   getAuthMe() {
-    return instance.get(`/profile/`).then(response => {
+    return axiosInstance.get(`/profile/`).then(response => {
       return response.data
     }).catch(error => {
-      debugger
       return error.response.data
   })
   },
   loginIn(email, password) {
-    return instance.put(`auth/`, { email, password }).then(response => {
+    return axiosInstance.post(`token/`, { email, password }).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })  
   },
   register(email, login, password1, password2, aboutMe, birthday, location) {
-    return instance.post(`/auth/`, {email, login, password1, password2, aboutMe, birthday, location}).then(response => {
+    return axiosInstance.post(`/users/`, {email, login, password1, password2, aboutMe, birthday, location}).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   logOut() {
-    return instance.delete(`auth/`)
+    return axiosInstance.delete(`auth/`)
   },
 }
 
 export const profileAPI = {
   getProfile() {
-    return instance.get(`profile/`).then(response => {
+    return axiosInstance.get(`profile/`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   getUsersProfile(login) {
-    return instance.get(`/users/${login}/`).then(response => {
+    return axiosInstance.get(`/users/${login}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
@@ -85,28 +112,28 @@ export const profileAPI = {
   },
 
   following(limit) {
-    return instance.get(`profile/following/?limit=${limit}`).then(response => {
+    return axiosInstance.get(`profile/following/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   followers(limit) {
-    return instance.get(`profile/followers/?limit=${limit}`).then(response => {
+    return axiosInstance.get(`profile/followers/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   usersFollowing(login, limit) {
-    return instance.get(`/users/${login}/following/?limit=${limit}`).then(response => {
+    return axiosInstance.get(`/users/${login}/following/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   usersFollowers(login, limit) {
-    return instance.get(`/users/${login}/followers/?limit=${limit}`).then(response => {
+    return axiosInstance.get(`/users/${login}/followers/?limit=${limit}`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -114,14 +141,14 @@ export const profileAPI = {
   },
 
   saveProfileInfo(profileInfo) {
-    return instance.put(`/profile/`, profileInfo)
+    return axiosInstance.put(`/profile/`, profileInfo)
   },
   
   updateProfileAvatar(photoFile) {
     const formData = new FormData()
     formData.append("avatar", photoFile)
 
-    return instance.put(`/profile/avatar/`, formData, {
+    return axiosInstance.put(`/profile/avatar/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -132,35 +159,35 @@ export const profileAPI = {
     })
   },
   updateAboutMe(aboutMe) {
-    return instance.patch('/profile/', { aboutMe }).then(response => {
+    return axiosInstance.patch('/profile/', { aboutMe }).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   updateFullName(fullname) {
-    return instance.patch('/profile/', { fullname }).then(response => {
+    return axiosInstance.patch('/profile/', { fullname }).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   updateStatus(status) {
-    return instance.patch('/profile/', { status }).then(response => {
+    return axiosInstance.patch('/profile/', { status }).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   updateProfileInfo(birthday, location) {
-    return instance.patch('/profile/', {birthday, location}).then(response => {
+    return axiosInstance.patch('/profile/', {birthday, location}).then(response => {
       return response.data
     }).catch(response => {
       return response.data
     })
   },
   updateTheme(theme) {
-    return instance.patch('/profile/', {theme}).then(response => {
+    return axiosInstance.patch('/profile/', {theme}).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -169,7 +196,7 @@ export const profileAPI = {
   updateProfileBanner(bannerFile) {
     const formData = new FormData()
     formData.append("banner", bannerFile)
-    return instance.put(`/profile/banner/`, formData, {
+    return axiosInstance.put(`/profile/banner/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -180,7 +207,7 @@ export const profileAPI = {
     })
   },
   changePassword(oldPassword, newPassword1, newPassword2) {
-    return instance.put(
+    return axiosInstance.put(
       `/profile/password/`, {oldPassword, newPassword1, newPassword2}
     ).then(response => {
       return response.data
@@ -189,13 +216,13 @@ export const profileAPI = {
     })
   }
   // getFollow(id) {
-  //     return instance.get(`/follow/${id}`)
+  //     return axiosInstance.get(`/follow/${id}`)
   // }
 }
  
 export const friendsAPI = {
   followings(currentPage, pageSize) {
-    return instance.get(
+    return axiosInstance.get(
       `profile/following/?page=${currentPage}&limit=${pageSize}`
     ).then(response => {
       return response.data
@@ -205,7 +232,7 @@ export const friendsAPI = {
   },
   
     getFriends(currentPage, pageSize) {
-      return instance.get(
+      return axiosInstance.get(
         `profile/following/?page=${currentPage}&limit=${pageSize}`,
       ).then(response => {
         return response.data
@@ -221,7 +248,7 @@ export const friendsAPI = {
       })
     },
     userFollowings(login, page, limit) {
-      return instance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
+      return axiosInstance.get(`/users/${login}/following/?page=${page}&limit=${limit}`).then(response => {
         return response.data
       }).catch(response => {
         return response.data
@@ -237,7 +264,7 @@ export const friendsAPI = {
 }
 export const followersAPI = {
   followers(page, limit) {
-    return instance.get(`profile/followers/?page=${page}&limit=${limit}`).then(response => {
+    return axiosInstance.get(`profile/followers/?page=${page}&limit=${limit}`).then(response => {
 
       return response.data
     }).catch(error => {
@@ -253,7 +280,7 @@ export const followersAPI = {
     })
   },
   userFollowers(login,page, limit) {
-    return instance.get(`/users/${login}/followers/?page=${page}&limit=${limit}`).then(response => {
+    return axiosInstance.get(`/users/${login}/followers/?page=${page}&limit=${limit}`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
@@ -269,21 +296,21 @@ export const followersAPI = {
 }
 // export const getUsers = (currentPage = 1, pageSize = 10) => {
 //     debugger;
-//     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+//     return axiosInstance.get(`users?page=${currentPage}&count=${pageSize}`)
 //         .then(response => {
 //             return response.data;
 //         })
 // }
 export const followAPI = {
   unsubscribe(login) {
-    return instance.delete(`profile/following/${login}/`).then(response => {
+    return axiosInstance.delete(`profile/following/${login}/`).then(response => {
       return response
     }).catch(response => {
       return response
     })
   },
   followed(login) {
-    return instance.get(`profile/following/${login}/`).then(response => {
+    return axiosInstance.get(`profile/following/${login}/`).then(response => {
       return response.data
     }).catch(response => {
       return response.data
@@ -291,7 +318,7 @@ export const followAPI = {
   },
   
   subscribe(login) {
-    return instance.put(`profile/following/${login}/`).then(response => {
+    return axiosInstance.put(`profile/following/${login}/`).then(response => {
       return response
     }).catch(response => {
       return response
@@ -309,7 +336,7 @@ export const postsAPI = {
       formData.append('title', title)
       formData.append('body', body)
     
-    return instance.post(`posts/`, formData, {
+    return axiosInstance.post(`posts/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       }
@@ -320,7 +347,7 @@ export const postsAPI = {
     })
   },
   getSpecifiedPost(postId) {
-    return instance.get(`/posts/${postId}/`).then(response => {
+    return axiosInstance.get(`/posts/${postId}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
@@ -336,7 +363,7 @@ export const postsAPI = {
         formData.append('title', title)
         formData.append('body', body)
       
-      return instance.patch(`posts/${id}/`, formData, {
+      return axiosInstance.patch(`posts/${id}/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         }
@@ -346,7 +373,7 @@ export const postsAPI = {
         return response
       })
     } else {
-      return instance.patch(`posts/${id}/`, {title, body}).then(response => {
+      return axiosInstance.patch(`posts/${id}/`, {title, body}).then(response => {
         return response.data
       }).catch(response => {
         return response
@@ -357,7 +384,7 @@ export const postsAPI = {
     
   },
   getPosts(limit, page, q, ordering) {
-    return instance.get(`/profile/posts/?page=${page}&limit=${limit}&q=${q}&ordering=${ordering}`).then(response => {
+    return axiosInstance.get(`/profile/posts/?page=${page}&limit=${limit}&q=${q}&ordering=${ordering}`).then(response => {
       return response.data
     }).catch(error => {
       return  error.response.data
@@ -365,35 +392,35 @@ export const postsAPI = {
   },
   
   getAllPosts(limit, page, q, ordering) {
-    return instance.get(`/posts/?page=${page}&limit=${limit}&q=${q}&ordering=${ordering}`).then(response => {
+    return axiosInstance.get(`/posts/?page=${page}&limit=${limit}&q=${q}&ordering=${ordering}`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   getUserPosts(login, limit, page, ordering) {
-    return instance.get(`users/${login}/posts/?page=${page}&limit=${limit}&ordering=${ordering}`).then(response => {
+    return axiosInstance.get(`users/${login}/posts/?page=${page}&limit=${limit}&ordering=${ordering}`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   deletePost(postId) {
-    return instance.delete(`/posts/${postId}/`).then(response => {
+    return axiosInstance.delete(`/posts/${postId}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   likePost(postId) {
-    return instance.put(`/profile/liked/${postId}/`).then(response => {
+    return axiosInstance.put(`/profile/liked/${postId}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   unlikePost(postId) {
-    return instance.delete(`/profile/liked/${postId}/`).then(response => {
+    return axiosInstance.delete(`/profile/liked/${postId}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
@@ -402,21 +429,21 @@ export const postsAPI = {
 }
 export const bansAPI = {
   banUser(login, reason) {
-    return instance.put(`/bans/${login}/`, {reason}).then(response => {
+    return axiosInstance.put(`/bans/${login}/`, {reason}).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   unblockUser(login) {
-    return instance.delete(`/bans/${login}/`).then(response => {
+    return axiosInstance.delete(`/bans/${login}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
     })
   },
   getBanUser(login) {
-    return instance.get(`/bans/${login}/`).then(response => {
+    return axiosInstance.get(`/bans/${login}/`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
@@ -426,7 +453,7 @@ export const bansAPI = {
 }
 export const newsAPI = {
   getNews(limit, page, q) {
-    return instance.get(`/news/?page=${page}&limit=${limit}&q=${q}`).then(response => {
+    return axiosInstance.get(`/news/?page=${page}&limit=${limit}&q=${q}`).then(response => {
       return response.data
     }).catch(error => {
       return error.response.data
