@@ -125,6 +125,7 @@ export const register = (email, login, password1, password2, aboutMe, birthday, 
   let response = await authAPI.register(email, login, password1, password2, aboutMe, birthday, location)
 
   if (response.code == "invalid") {
+    window.location = '/social-network/#/activation';
     let message =
     response.messages.length > 0 ? response.messages[0] : "Some error"
 

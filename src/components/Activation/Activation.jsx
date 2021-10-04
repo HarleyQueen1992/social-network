@@ -10,9 +10,33 @@ import Footer from "./../common/Footer/Footer";
 const Activation = (props) => {
   let res = Icons(props.theme);
   const handleChangeInput = (x) => {
-    let value = x.value;
-    x.value = value.replace(/[^a-zA-Z0-9]+/g, "");
+    x.value = x.value.replace(/[^a-zA-Z0-9]+/g, "");
     x.value = x.value.toUpperCase();
+    let value = x.value;
+    if (value.length > 2) {
+      if (value.length > 6) {
+        value = value.substr(0, 6);
+      }
+      let arrValue = value.split("");
+      let j = 0;
+      for (let i = x.id.substr(4, 4); i <= value.length; i++) {
+        let e = document.getElementById("id00" + i);
+        e.value = arrValue[j];
+        // e.focus();
+        // e.onfocus();
+        j++;
+      }
+    } else {
+      if (value == "") {
+        x.value = "";
+      } else {
+        let arrValue = value.split("");
+        x.value = arrValue[arrValue.length - 1];
+        // debugger;
+      }
+
+      // debugger;
+    }
   };
   const Jump = (field, autoMove) => {
     let e;
@@ -30,9 +54,6 @@ const Activation = (props) => {
       }
     }
     e.focus();
-    let value = e.value;
-    e.value = "";
-    e.value = value;
 
     // e.setSelectionRange(-1, -1);
     // }
@@ -56,66 +77,49 @@ const Activation = (props) => {
                 id="id001"
                 onChange={(e) => {
                   Jump(e.target, "2");
-                }}
-                onInput={(e) => {
                   handleChangeInput(e.target);
                 }}
-                maxLength="1"
               />
               <input
                 type="text"
                 id="id002"
                 onChange={(e) => {
                   Jump(e.target, "3");
-                }}
-                onInput={(e) => {
                   handleChangeInput(e.target);
                 }}
-                maxLength="1"
               />
               <input
                 id="id003"
                 onChange={(e) => {
                   Jump(e.target, "4");
-                }}
-                type="text"
-                onInput={(e) => {
                   handleChangeInput(e.target);
                 }}
-                maxLength="1"
+                type="text"
+                // maxLength="1"
               />
               <input
                 id="id004"
                 onChange={(e) => {
                   Jump(e.target, "5");
-                }}
-                type="text"
-                onInput={(e) => {
                   handleChangeInput(e.target);
                 }}
-                maxLength="1"
+                type="text"
               />
               <input
                 id="id005"
                 onChange={(e) => {
                   Jump(e.target, "6");
-                }}
-                type="text"
-                onInput={(e) => {
                   handleChangeInput(e.target);
                 }}
-                maxLength="1"
+                type="text"
               />
               <input
                 id="id006"
                 onChange={(e) => {
                   Jump(e.target, "7");
-                }}
-                type="text"
-                onInput={(e) => {
                   handleChangeInput(e.target);
                 }}
-                maxLength="1"
+                type="text"
               />
             </div>
           </div>
