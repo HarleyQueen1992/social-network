@@ -53,7 +53,10 @@ export const light = {
   bacScrollTopArrow: "rgb(238, 232, 232)",
   bacScrollTopArrowHover: "rgb(206, 206, 206)",
   scrollTopArrow: "#1877f2",
-  placeholder: "rgb(54, 54, 54)"
+  placeholder: "rgb(54, 54, 54)",
+  bacInputCode: '#bebebe',
+  borderInputCode: "rgba(255, 255, 255, 0.315)",
+  bacFocusCode: '#e8e8e8'
 
 
   
@@ -119,7 +122,10 @@ export const dark = {
   bacScrollTopArrow: "rgb(90, 90, 90)",
   bacScrollTopArrowHover: "rgb(110, 110, 110)",
   scrollTopArrow: "white",
-  placeholder: "rgb(180, 180,180)"
+  placeholder: "rgb(180, 180,180)",
+  bacInputCode: 'rgb(65, 63, 63)',
+  borderInputCode: "rgba(255, 255, 255, 0.315)",
+  bacFocusCode: 'black'
 
 
 }

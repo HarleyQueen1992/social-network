@@ -72,19 +72,19 @@
   height: 100%;
   font-family: "Patua One", cursive;
   padding: 5px 10px;
-  background-color: rgb(65, 63, 63);
+  background-color: var(--bacInputCode);
   text-align: center;
   color: var(--fontColor);
   width: 100%;
   transition: all 0.4s;
 }
 .inputFieldBlock input:hover {
-  border: 2px solid rgba(255, 255, 255, 0.315);
+  border: 2px solid var(--borderInputCode);
 }
 
 .inputFieldBlock input:focus {
   border: 2px solid #1877f2;
-  background-color: black;
+  background-color: var(--bacFocusCode);
 }
 .activationBlockButtons {
   align-self: center;
