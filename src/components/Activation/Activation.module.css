@@ -65,7 +65,7 @@
   width: 100%;
   height: 100%;
 }
-.inputFieldBlock input {
+.inputField {
   outline: none;
   border-radius: 5px;
   border: 2px solid rgba(255, 255, 255, 0);
@@ -78,13 +78,22 @@
   width: 100%;
   transition: all 0.4s;
 }
-.inputFieldBlock input:hover {
+.inputFieldError {
+  border: 2px solid red;
+}
+.inputField:hover {
   border: 2px solid var(--borderInputCode);
 }
+.inputFieldError:hover {
+  border: 2px solid rgb(238, 116, 116);
+}
 
-.inputFieldBlock input:focus {
+.inputField:focus {
   border: 2px solid #1877f2;
   background-color: var(--bacFocusCode);
+}
+.inputFieldError:focus {
+  border: 2px solid rgb(255, 0, 64);
 }
 .activationBlockButtons {
   align-self: center;

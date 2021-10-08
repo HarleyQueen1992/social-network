@@ -1,29 +1,49 @@
 import React from "react";
-import s from "./Activation.module.css";
-import { Icons } from "./../../utils/Icons/Icons";
+import { reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+
+//? Css
+import s from "./Activation.module.css";
+
+//? Utils
+import { Icons } from "./../../utils/Icons/Icons";
+
+//? Selectors
 import { getTheme } from "../../redux/AppReducer/app-selectors";
+
+//? Reducers
+import { Verification } from "./../../redux/AuthReducer/auth-reducer";
+
+//? Components
 import Footer from "./../common/Footer/Footer";
 
 const Activation = (props) => {
+  let [error, setError] = useState(true);
+
+  let list = ["2", "3", "4", "5", "6", "7"];
+
   let res = Icons(props.theme);
+
   const handleChangeInput = (x) => {
     x.value = x.value.replace(/[^a-zA-Z0-9]+/g, "");
     x.value = x.value.toUpperCase();
+
     let value = x.value;
+
     if (value.length > 2) {
       if (value.length > 6) {
         value = value.substr(0, 6);
       }
+
       let arrValue = value.split("");
       let j = 0;
+
       for (let i = x.id.substr(4, 4); i <= value.length; i++) {
         let e = document.getElementById("id00" + i);
         e.value = arrValue[j];
-        // e.focus();
-        // e.onfocus();
         j++;
       }
     } else {
@@ -32,12 +52,23 @@ const Activation = (props) => {
       } else {
         let arrValue = value.split("");
         x.value = arrValue[arrValue.length - 1];
-        // debugger;
       }
-
-      // debugger;
+    }
+    let isReady = 1;
+    let code = [];
+    for (let i = 1; i < 7; i++) {
+      let e = document.getElementById("id00" + i);
+      if (e.value) {
+        code.push(e.value);
+        isReady++;
+      }
+    }
+    if (isReady == 7) {
+      props.Verification(code.join(""));
+      setError(true);
     }
   };
+
   const Jump = (field, autoMove) => {
     let e;
     if (field.value == "") {
@@ -54,10 +85,10 @@ const Activation = (props) => {
       }
     }
     e.focus();
-
-    // e.setSelectionRange(-1, -1);
-    // }
+    e.selectionStart = e.value.length;
+    setError(false);
   };
+
   return (
     <div className={s.activationPage}>
       <div className={s.main}>
@@ -72,15 +103,26 @@ const Activation = (props) => {
               confirm that the number is yours to keep your account safe.
             </div>
             <div className={s.inputFieldBlock}>
-              <input
-                type="text"
-                id="id001"
-                onChange={(e) => {
-                  Jump(e.target, "2");
-                  handleChangeInput(e.target);
-                }}
-              />
-              <input
+              {list.map((item, index) => (
+                <input
+                  className={
+                    s.inputField +
+                    " " +
+                    (props.error & error && s.inputFieldError)
+                  }
+                  type="text"
+                  id={"id00" + (index + 1)}
+                  onChange={(e) => {
+                    Jump(e.target, item);
+                    handleChangeInput(e.target);
+                  }}
+                  // onFocus={() => {
+                  //   setError(false);
+                  // }}
+                />
+              ))}
+
+              {/* <input
                 type="text"
                 id="id002"
                 onChange={(e) => {
@@ -120,7 +162,7 @@ const Activation = (props) => {
                   handleChangeInput(e.target);
                 }}
                 type="text"
-              />
+              /> */}
             </div>
           </div>
           <div className={s.activationBlockButtons}>
@@ -135,11 +177,16 @@ const Activation = (props) => {
     </div>
   );
 };
-
 const mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
   };
 };
+let ActivationContainer = compose(connect(mapStateToProps, { Verification }))(
+  Activation
+);
+let ActivationReduxForm = reduxForm({
+  form: "activation",
+})(ActivationContainer);
 
-export default compose(connect(mapStateToProps, {}))(Activation);
+export default ActivationReduxForm;

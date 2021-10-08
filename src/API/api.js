@@ -90,6 +90,13 @@ export const authAPI = {
       return error.response.data
     })
   },
+  verification(code) {
+    return axiosInstance.post(`/verification/`, {code}).then(response => {
+      return response.data
+    }).catch(error => {
+      return error.response.data
+    })
+  },
   logOut() {
     return axiosInstance.delete(`auth/`)
   },

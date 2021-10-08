@@ -124,18 +124,29 @@ export const register = (email, login, password1, password2, aboutMe, birthday, 
 
   let response = await authAPI.register(email, login, password1, password2, aboutMe, birthday, location)
 
-  if (response.code == "invalid") {
-    window.location = '/social-network/#/activation';
+  if (response.code) {
+    
     let message =
     response.messages.length > 0 ? response.messages[0] : "Some error"
 
     dispatch(stopSubmit("register", { _error: message }))
+  } else {
+    window.location = '/social-network/#/activation'; 
   }
 }
 
+export const Verification = (code) => async dispatch => {
+  let response = await authAPI.verification(code)
+  if (response.code) {
+    dispatch(stopSubmit("activation", { _error: true }))
+  } else {
+    dispatch(stopSubmit("activation", { _error: false }))
+  }
+}
 export const logOut = () => async dispatch => {
   localStorage.removeItem('accessToken')
   localStorage.removeItem('refreshToken')
+  delete axiosInstance.defaults.headers['Authorization']
     dispatch(setProfileData(null, false))
   
 }
