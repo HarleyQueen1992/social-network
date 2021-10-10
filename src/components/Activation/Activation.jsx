@@ -21,6 +21,7 @@ import { Verification } from "./../../redux/AuthReducer/auth-reducer";
 import Footer from "./../common/Footer/Footer";
 
 const Activation = (props) => {
+  let email = localStorage.getItem("email");
   let [error, setError] = useState(true);
 
   let list = ["2", "3", "4", "5", "6", "7"];
@@ -92,86 +93,65 @@ const Activation = (props) => {
   return (
     <div className={s.activationPage}>
       <div className={s.main}>
-        <div className={s.activationBlock}>
-          <header className={s.header}>
-            <img src={res["mail"]} alt="mail" />
-            <div className={s.title}>Enter confirmation code</div>
-          </header>
-          <div className={s.activationBlockContent}>
-            <div className={s.prevText}>
-              We have sent a 6-digit code to osadcijartem84@gmail.com. Please
-              confirm that the number is yours to keep your account safe.
+        {true ? (
+          <div className={email ? s.activationBlock : s.nothingActivateBlock}>
+            <header className={s.header}>
+              <img src={res["mail"]} alt="mail" />
+              <div className={s.title}>
+                {email ? "Enter confirmation code" : "Nothing To Activate"}
+              </div>
+            </header>
+            <div
+              className={
+                email
+                  ? s.activationBlockContent
+                  : s.nothingActivateBlockContents
+              }
+            >
+              <div className={s.prevText}>
+                {email
+                  ? `We have sent a 6-digit code to ${email}. Please confirm that the
+                number is yours to keep your account safe.`
+                  : "To activate your account, you first need to register it"}
+              </div>
+              {email && (
+                <div className={s.inputFieldBlock}>
+                  {list.map((item, index) => (
+                    <input
+                      className={
+                        s.inputField +
+                        " " +
+                        (props.error & error && s.inputFieldError)
+                      }
+                      type="text"
+                      id={"id00" + (index + 1)}
+                      onChange={(e) => {
+                        Jump(e.target, item);
+                        handleChangeInput(e.target);
+                      }}
+                      // onFocus={() => {
+                      //   setError(false);
+                      // }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-            <div className={s.inputFieldBlock}>
-              {list.map((item, index) => (
-                <input
-                  className={
-                    s.inputField +
-                    " " +
-                    (props.error & error && s.inputFieldError)
-                  }
-                  type="text"
-                  id={"id00" + (index + 1)}
-                  onChange={(e) => {
-                    Jump(e.target, item);
-                    handleChangeInput(e.target);
-                  }}
-                  // onFocus={() => {
-                  //   setError(false);
-                  // }}
-                />
-              ))}
-
-              {/* <input
-                type="text"
-                id="id002"
-                onChange={(e) => {
-                  Jump(e.target, "3");
-                  handleChangeInput(e.target);
-                }}
-              />
-              <input
-                id="id003"
-                onChange={(e) => {
-                  Jump(e.target, "4");
-                  handleChangeInput(e.target);
-                }}
-                type="text"
-                // maxLength="1"
-              />
-              <input
-                id="id004"
-                onChange={(e) => {
-                  Jump(e.target, "5");
-                  handleChangeInput(e.target);
-                }}
-                type="text"
-              />
-              <input
-                id="id005"
-                onChange={(e) => {
-                  Jump(e.target, "6");
-                  handleChangeInput(e.target);
-                }}
-                type="text"
-              />
-              <input
-                id="id006"
-                onChange={(e) => {
-                  Jump(e.target, "7");
-                  handleChangeInput(e.target);
-                }}
-                type="text"
-              /> */}
+            <div className={s.activationBlockButtons}>
+              <span className={s.regText}>
+                {email ? "Already have an account?" : "Register an account"}
+              </span>
+              <NavLink
+                className={s.regLink}
+                to={email ? "/login" : "/register"}
+              >
+                {email ? "Login" : "Register"}
+              </NavLink>
             </div>
           </div>
-          <div className={s.activationBlockButtons}>
-            <span className={s.regText}>Already have an account?</span>
-            <NavLink className={s.regLink} to={"/login"}>
-              Login
-            </NavLink>
-          </div>
-        </div>
+        ) : (
+          <NothingToActivate />
+        )}
       </div>
       <Footer />
     </div>

@@ -24,6 +24,17 @@
   height: 500px;
   background-color: rgba(255, 0, 0, 0);
 }
+.nothingActivateBlock {
+  box-sizing: border-box;
+  justify-self: center;
+  align-self: center;
+  display: grid;
+  width: 350px;
+  padding: 30px;
+  grid-template-rows: 178px 60px 1fr;
+  height: 400px;
+  background-color: rgba(255, 0, 0, 0);
+}
 @media (max-width: 350px) {
   .activationBlock {
     width: 100vw;
@@ -43,6 +54,10 @@
   font-family: "Patua One", cursive;
   justify-self: center;
   align-self: start;
+}
+.nothingActivateBlockContents {
+  display: grid;
+  width: 100%;
 }
 .activationBlockContent {
   display: grid;

@@ -130,7 +130,12 @@ export const register = (email, login, password1, password2, aboutMe, birthday, 
     response.messages.length > 0 ? response.messages[0] : "Some error"
 
     dispatch(stopSubmit("register", { _error: message }))
+    
   } else {
+    localStorage.setItem("email", email);
+    setTimeout(() => {
+      localStorage.removeItem('email')
+    }, 900000);
     window.location = '/social-network/#/activation'; 
   }
 }
@@ -140,6 +145,7 @@ export const Verification = (code) => async dispatch => {
   if (response.code) {
     dispatch(stopSubmit("activation", { _error: true }))
   } else {
+    localStorage.removeItem('email')
     dispatch(stopSubmit("activation", { _error: false }))
   }
 }
