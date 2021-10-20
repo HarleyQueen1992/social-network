@@ -19,9 +19,11 @@ import { Verification } from "./../../redux/AuthReducer/auth-reducer";
 
 //? Components
 import Footer from "./../common/Footer/Footer";
+import { getErrorActivate } from "../../redux/AuthReducer/auth-selectors";
 
 const Activation = (props) => {
   let email = localStorage.getItem("email");
+
   let [error, setError] = useState(true);
 
   let list = ["2", "3", "4", "5", "6", "7"];
@@ -93,65 +95,71 @@ const Activation = (props) => {
   return (
     <div className={s.activationPage}>
       <div className={s.main}>
-        {true ? (
-          <div className={email ? s.activationBlock : s.nothingActivateBlock}>
-            <header className={s.header}>
-              <img src={res["mail"]} alt="mail" />
-              <div className={s.title}>
-                {email ? "Enter confirmation code" : "Nothing To Activate"}
+        <div className={email ? s.activationBlock : s.nothingActivateBlock}>
+          <header className={s.header}>
+            <img src={res["mail"]} alt="mail" />
+            <div className={s.title}>
+              {email
+                ? "Enter confirmation code"
+                : props.errorActivate == false
+                ? "Profile activated"
+                : "Nothing To Activate"}
+            </div>
+          </header>
+          <div
+            className={
+              email ? s.activationBlockContent : s.nothingActivateBlockContents
+            }
+          >
+            <div className={s.prevText}>
+              {email
+                ? `We have sent a 6-digit code to ${email}. Please confirm that the
+                number is yours to keep your account safe.`
+                : props.errorActivate == false
+                ? "There is very little left, you just need to log into your account:)"
+                : "To activate your account, you first need to register it"}
+            </div>
+            {email && (
+              <div className={s.inputFieldBlock}>
+                {list.map((item, index) => (
+                  <input
+                    className={
+                      s.inputField +
+                      " " +
+                      (props.error & error && s.inputFieldError)
+                    }
+                    type="text"
+                    id={"id00" + (index + 1)}
+                    onChange={(e) => {
+                      Jump(e.target, item);
+                      handleChangeInput(e.target);
+                    }}
+                    // onFocus={() => {
+                    //   setError(false);
+                    // }}
+                  />
+                ))}
               </div>
-            </header>
-            <div
-              className={
-                email
-                  ? s.activationBlockContent
-                  : s.nothingActivateBlockContents
+            )}
+          </div>
+          <div className={s.activationBlockButtons}>
+            <span className={s.regText}>
+              {email
+                ? "Already have an account?"
+                : props.errorActivate == false
+                ? "Log into account"
+                : "Register an account"}
+            </span>
+            <NavLink
+              className={s.regLink}
+              to={
+                email || props.errorActivate == false ? "/login" : "/register"
               }
             >
-              <div className={s.prevText}>
-                {email
-                  ? `We have sent a 6-digit code to ${email}. Please confirm that the
-                number is yours to keep your account safe.`
-                  : "To activate your account, you first need to register it"}
-              </div>
-              {email && (
-                <div className={s.inputFieldBlock}>
-                  {list.map((item, index) => (
-                    <input
-                      className={
-                        s.inputField +
-                        " " +
-                        (props.error & error && s.inputFieldError)
-                      }
-                      type="text"
-                      id={"id00" + (index + 1)}
-                      onChange={(e) => {
-                        Jump(e.target, item);
-                        handleChangeInput(e.target);
-                      }}
-                      // onFocus={() => {
-                      //   setError(false);
-                      // }}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className={s.activationBlockButtons}>
-              <span className={s.regText}>
-                {email ? "Already have an account?" : "Register an account"}
-              </span>
-              <NavLink
-                className={s.regLink}
-                to={email ? "/login" : "/register"}
-              >
-                {email ? "Login" : "Register"}
-              </NavLink>
-            </div>
+              {email || props.errorActivate == false ? "Login" : "Register"}
+            </NavLink>
           </div>
-        ) : (
-          <NothingToActivate />
-        )}
+        </div>
       </div>
       <Footer />
     </div>
@@ -160,6 +168,7 @@ const Activation = (props) => {
 const mapStateToProps = (state) => {
   return {
     theme: getTheme(state),
+    errorActivate: getErrorActivate(state),
   };
 };
 let ActivationContainer = compose(connect(mapStateToProps, { Verification }))(

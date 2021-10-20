@@ -10,3 +10,6 @@ export const getUserId = (state) => {
 export const getLogin = (state) => {
     return state.auth.login;
 }
+export const getErrorActivate = (state) => {
+    return state.auth.errorActivate;
+}

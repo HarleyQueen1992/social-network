@@ -5,6 +5,7 @@ const SET_USER_DATA = "app/auth-reducer/SET_USER_DATA"
 const SET_PROFILE_DATA = "app/auth-reducer/SET_PROFILE_DATA"
 const SET_PROFILE_PHOTO = "app/auth-reducer/SET_PROFILE_PHOTO"
 const SET_IS_AUTH = "app/auth-reducer/SET_IS_AUTH"
+const SET_ERROR_ACTIVATE = "app/auth-reducer/SET_ERROR_ACTIVATE"
 
 let initialState = {
   userId: null,
@@ -12,6 +13,7 @@ let initialState = {
   email: null,
   isAuth: false,
   profileInfo: null,
+  errorActivate: null
 }
 
 // ? utils
@@ -38,6 +40,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuth: action.isAuth,
       }
+    case SET_ERROR_ACTIVATE:
+      return {
+        ...state,
+        errorActivate: action.error
+      }
     case SET_PROFILE_PHOTO: {
       return {
         ...state,
@@ -55,6 +62,13 @@ export const setAuthUserData = (userId, login, email, isAuth) => {
   return {
     type: SET_USER_DATA,
     data: { userId, login, email, isAuth },
+   }
+}
+
+export const setErrorActivate = (error) => {
+  return {
+    type: SET_ERROR_ACTIVATE,
+    error,
    }
 }
 
@@ -143,10 +157,12 @@ export const register = (email, login, password1, password2, aboutMe, birthday, 
 export const Verification = (code) => async dispatch => {
   let response = await authAPI.verification(code)
   if (response.code) {
+    dispatch(setErrorActivate(true))
     dispatch(stopSubmit("activation", { _error: true }))
   } else {
+    dispatch(setErrorActivate(false))
     localStorage.removeItem('email')
-    dispatch(stopSubmit("activation", { _error: false }))
+    dispatch(stopSubmit("activation", { _error: true }))
   }
 }
 export const logOut = () => async dispatch => {
