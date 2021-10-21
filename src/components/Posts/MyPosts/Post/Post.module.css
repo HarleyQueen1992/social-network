@@ -5,7 +5,7 @@
   display: grid;
   position: relative;
   /* grid-template-rows: 50px 30px; */
-  grid-template-areas: "header" "title" "body" "listImg" "bot";
+  grid-template-areas: "header" "text" "listImg" "bot";
   /* grid-row-gap: 20px; */
   /* grid-template-rows: minmax(50px, auto) 0%; */
   /* border: 2px solid #138D90; */
@@ -137,16 +137,6 @@
 .margin {
   margin: 15px 15px 15px 15px;
 }
-/* .border {
-  border-bottom: 1px solid var(--BorderBottom);
-} */
-.postTitle {
-  color: var(--fontColor);
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  word-break: break-all;
-}
 .authorImegeBlock {
   position: relative;
   overflow: hidden;
@@ -166,15 +156,16 @@
 
 .postText {
   min-height: 50px;
+  padding: 0 10px 0 10px;
   margin-bottom: 10px;
-  grid-area: body;
+  grid-area: text;
   color: var(--fontColor);
   font-weight: 400;
   word-break: break-all;
   white-space: pre-wrap;
   max-width: 100%;
   padding-top: 20px;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .photoName {

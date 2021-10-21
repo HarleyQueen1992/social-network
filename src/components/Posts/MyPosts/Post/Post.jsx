@@ -68,7 +68,7 @@ const Post = (props) => {
     >
       <header className={p.header}>
         <NavLink
-          to={"profile/" + props.post.author.login}
+          to={"/profile/" + props.post.author.login}
           className={p.avatarBlock}
         >
           <img
@@ -130,8 +130,8 @@ const Post = (props) => {
       ) : (
         ""
       )}
-      <div className={p.postTitle}>{props.post.title}</div>
-      <div className={p.postText}>{props.post.body}</div>
+
+      {props.post.body && <div className={p.postText}>{props.post.body}</div>}
       <div
         className={
           p.popupPostImages +
