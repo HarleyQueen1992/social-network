@@ -40,9 +40,7 @@ class NewsContainer extends React.Component {
     this.props.clearPosts();
   }
   render() {
-    return this.props.loadingPosts ? (
-      <Preloader />
-    ) : (
+    return (
       <News
         posts={this.props.posts}
         theme={this.props.theme}
