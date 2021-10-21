@@ -66,16 +66,18 @@ const PostForm = (props) => {
   };
 
   useEffect(() => {
+    if (valuePostText.length < 200) {
+      document
+        .getElementById("textarea")
+        .setAttribute("style", "font-size:22px;");
+    }
     var tx = document.getElementById("textarea");
-    let height = tx.style.height;
-    let heightNumber = Number(height.substring(0, height.length - 2));
-    let length = valuePostText.length;
 
     if (valuePostText.length > 200) {
-      tx.setAttribute("style", "px;overflow-y:hidden; font-size:16px;");
+      tx.setAttribute("style", "px;overflow-y:hidden; font-size:17px;");
       tx.setAttribute(
         "style",
-        "height:" + tx.scrollHeight + "px;overflow-y:hidden; font-size:16px;"
+        "height:" + tx.scrollHeight + "px;overflow-y:hidden; font-size:17px;"
       );
     } else {
       tx.setAttribute(
