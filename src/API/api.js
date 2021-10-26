@@ -18,15 +18,18 @@ axiosInstance.interceptors.response.use(
   response => response,
   error => {
     const originalRequest = error.config;
+    if (error.response.status === 401 && originalRequest.url === '/token/refresh/') {
+      window.location.href = '/social-network/#/login/';
+      return Promise.reject(error);
+    }
 
     if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
         const refresh_token = localStorage.getItem('refreshToken');
         delete axiosInstance.defaults.headers['Authorization'];
-
         return axiosInstance
             .post('/token/refresh/', {refresh: refresh_token})
             .then((response) => {
-
+              
                 localStorage.setItem('accessToken', response.data.access);
                 localStorage.setItem('refreshToken', response.data.refresh);
 
@@ -34,7 +37,7 @@ axiosInstance.interceptors.response.use(
                 originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
 
                 return axiosInstance(originalRequest);
-            })
+            }) 
     }
     return Promise.reject(error);
 }
