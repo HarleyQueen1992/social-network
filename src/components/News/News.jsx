@@ -4,16 +4,16 @@ import Post from "./../Posts/MyPosts/Post/Post";
 import PostCreation from "../Posts/MyPosts/PostCreation/PostCreation";
 
 const News = (props) => {
-  // useEffect(() => {
-  //   let scroll = window.scrollY;
-  //   props.changeIndex(window.location.href, scroll);
-  // }, [window.location.href]);
-  // useEffect(() => {
-  //   document.addEventListener("scroll", scrollHandler);
-  //   return function () {
-  //     document.removeEventListener("scroll", scrollHandler);
-  //   };
-  // });
+  useEffect(() => {
+    let scroll = window.scrollY;
+    props.changeIndex(window.location.href, scroll);
+  }, [window.location.href]);
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
   const scrollHandler = (e) => {
     if (
       e.target.documentElement.scrollHeight -
